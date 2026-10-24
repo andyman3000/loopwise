@@ -128,5 +128,5 @@ Speaker labels (P1, P2) restart in each group file, so G1 P1 and G2 P1 are diffe
 | A workshop, team coaching, shadowing or mentoring | "Maybe it's a standard course after all, maybe shadowing a team, maybe digging out use cases together, maybe some kind of mentoring." (sources/interviews/sponsor-soft.md:49) | O1 |
 
 ## Goes into comparison
-Goes into comparison: ____ (human decides)
-Decided by: ____ · Date: ____
+Goes into comparison: O1, together with emails O1 and inbox O1; O3, together with emails O3; O5, together with emails O4
+Decided by: Reference decision (replace with your own) · Date: 2026-08-18

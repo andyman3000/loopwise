@@ -115,5 +115,5 @@ All six mails arrived in weeks 3 to 5, "after the old form" (sources/emails/inqu
 | Two separate sessions | "We could also do two separate sessions if that is better, but I don't want the beginners to feel they are in the "remedial" group." (sources/emails/inquiry-06.md:16) | O4 |
 
 ## Goes into comparison
-Goes into comparison: ____ (human decides)
-Decided by: ____ · Date: ____
+Goes into comparison: O1, together with interviews O1 and inbox O1; O3, together with interviews O3; O4, together with interviews O5
+Decided by: Reference decision (replace with your own) · Date: 2026-08-18

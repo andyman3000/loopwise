@@ -99,5 +99,5 @@ No sponsor speaks in this source. Every answer comes after the training, not bef
 | Work in pairs, a working prototype by evening | "Working in pairs, and that everyone ended the day with a working prototype." (sources/feedback/feedback-export.md:65) | O1, O3 |
 
 ## Goes into comparison
-Goes into comparison: ____ (human decides)
-Decided by: ____ · Date: ____
+Goes into comparison: none
+Decided by: Reference decision (replace with your own) · Date: 2026-08-18

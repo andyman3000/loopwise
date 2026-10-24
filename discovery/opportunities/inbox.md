@@ -92,5 +92,5 @@ Most requests come after a booking: during preparation, on the day, or after the
 | Split the two days | "If that does not work, we could also split it and do day one as planned and day two later, but I would rather keep the two days together." (sources/inbox/inbox-export.md:17) | none of O1 to O4 |
 
 ## Goes into comparison
-Goes into comparison: ____ (human decides)
-Decided by: ____ · Date: ____
+Goes into comparison: O1, together with interviews O1 and emails O1
+Decided by: Reference decision (replace with your own) · Date: 2026-08-18
