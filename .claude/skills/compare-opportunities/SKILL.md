@@ -1,6 +1,6 @@
 ---
 name: compare-opportunities
-description: Compare the candidate opportunities in discovery/opportunities/ on fixed criteria (evidence strength, leverage, measurability, gaps) and challenge the favoured one. Use when the team asks "which opportunity should we pursue", "compare the opportunities", or after the human has chosen which opportunities go into the comparison. Writes an assessment for a human decision; never picks the opportunity.
+description: Compare the candidate opportunities in discovery/opportunities/ on fixed criteria (evidence strength, leverage, measurability, gaps, need or solution in disguise) and challenge the favoured one. Use when the team asks "which opportunity should we pursue", "compare the opportunities", or after the human has chosen which opportunities go into the comparison. Writes an assessment for a human decision; never picks the opportunity.
 ---
 
 # Compare opportunities
@@ -28,6 +28,12 @@ contrast" opportunities against each other, rather than judging one in isolation
   source. Say whose voice it is (sponsor, participant, academy staff).
 - **This file is an assessment by an agent, not a decision.** The selection fields stay empty.
 - Ask the human before including an opportunity that has no KPI branch in `discovery/kpi-tree.md`.
+- **Need, not solution in disguise.** An opportunity is a need or pain. It is a solution in disguise
+  when its wording names a page, button, field, format, feature or channel ("wants a price list",
+  "wants to book a call"), or when only one thing could meet it. Test: name two different solutions
+  that would each meet it. If you cannot, write the need underneath in the speaker's words, with the
+  quote. Do not rename the opportunity in its file; the human decides whether the reworded need goes
+  into the comparison.
 - **`discovery/opportunities/data.md` holds observations, not opportunities.** Use an observation as
   evidence for an opportunity on the same driver ("where" next to the quote's "why"). Never compare
   an observation as an opportunity of its own.
@@ -36,11 +42,15 @@ contrast" opportunities against each other, rather than judging one in isolation
 
 0. **Try first.** Ask the human for which opportunity they favour right now, with a one-sentence reason. The challenger step then also attacks their favourite, if it differs from the row the table favours. Wait for the answer before you read further or draft anything.
 1. Read all opportunity files and the KPI tree. List the opportunities you will compare and show
-   the list before writing.
+   the list before writing. Run the need-or-solution test on each one and show the result in the
+   same list. For any solution in disguise, show the need underneath and ask whether to compare that
+   need instead. Wait for the answer.
 2. For each criterion and each opportunity, fill one cell, verifying quotes in `sources/`.
    - **Evidence strength:** counted independent sources, whose voice, observed or only feared.
    - **Leverage:** which KPI branch in `discovery/kpi-tree.md`, and how direct: can the website
      change it, or does it need a change elsewhere?
+   - **Need or solution:** need, or solution in disguise. Give the two solutions that would each
+     meet it, or the need underneath.
    - **Measurability:** is there a signal within eight weeks, and which event or field shows it?
    - **Gaps and uncertainty:** what is not known, and what would answer it.
 3. Name the row the table appears to favour, as "Appears favoured: <name>, because <one line>".
@@ -49,6 +59,8 @@ contrast" opportunities against each other, rather than judging one in isolation
    bad bet. Be specific to the material: "what about other sponsors?" is useless, "the format
    question appears in one sponsor's interview only, `sources/interviews/...`, section 4" is useful.
    - Search `sources/` for counter-evidence to the favoured row. Quote it.
+   - Run the need-or-solution test again on the favoured row, harder: does its strongest quote ask
+     for a thing rather than describe a problem? Quote it.
    - Search for what would make the other option better: a stronger branch, a quicker signal, a
      cheaper way to reach it. Quote it.
    - Name what you could not check, and who could answer it.
@@ -74,6 +86,7 @@ contrast" opportunities against each other, rather than judging one in isolation
 | Leverage | <level>: KPI branch <A/B>, <direct/indirect>, <reasoning, source> | ... |
 | Measurability (8 weeks) | <level>: <signal, which event or field> | ... |
 | Gaps and uncertainty | <what is unknown, who can answer> | ... |
+| Need or solution | <need: two solutions that would each meet it> or <solution in disguise: the need underneath, quote, file, line> | ... |
 
 Appears favoured: <name>, because <one line>. A reading of the table, not a choice.
 
