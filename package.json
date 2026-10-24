@@ -6,7 +6,8 @@
   "description": "Training repo: the loop from business goal to next opportunity, for a fictional academy.",
   "scripts": {
     "start": "node server.js",
-    "test": "node --test"
+    "test": "node --test",
+    "check": "node scripts/check-discovery.js"
   },
   "engines": {
     "node": ">=20"
