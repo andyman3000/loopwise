@@ -18,6 +18,7 @@ Each link is a plain relationship: a product or a sum. This skill draws that tre
 - **Data builds the tree, it does not appear in it.** Use `data/` to check that each driver can be measured and to name its event or column. Do not write counts or rates into the file.
 - **The tree is a nested Markdown list** exactly as in the template, indented by two spaces per level, with `· measured:` after each driver. `/discovery/kpi-tree.md` draws it as a tree. Never put ` · ` anywhere else in a tree line: the drawing drops what follows it.
 - **Drivers are things the team can influence**, written as a count or a rate of something people do. Never a solution, feature or page.
+- **Say what is measured, in plain words.** Each driver has a short name and a sentence a newcomer understands without thinking: "percentage of website visits that open the inquiry page", not "reach rate" or "inquiry page views". A rate always names both sides: percentage of <the step before> that <do this step>. The `measured:` part spells out the division with event names: `<event>` ÷ `<event>`. If the data counts visits rather than people, say visits.
 - **Every branch the strategy names** goes into the tree. A branch the strategy parks keeps its name and the words "not this quarter", and gets no drivers.
 - **Quote the strategy** for the goal and each branch, with file and line. No quote, no branch.
 - **Try first, then compare.** Before you draft, ask the human: "Which steps does a sponsor go through from the website to a booking?" Wait for the answer and never invent it. Afterwards, fill "Your first try": their answer word for word, then at most two lines on where the tree differs. If they say skip, write "skipped". Do not shorten this step.
@@ -28,10 +29,10 @@ Each link is a plain relationship: a product or a sum. This skill draws that tre
 0. **Try first.** Ask the question above. Wait for the answer before you read further or draft anything.
 1. Read `product/strategy.md`. Quote the business goal with its line. If it cannot be counted, stop and say so.
 2. Take the branches the strategy names, in its order.
-3. For the active branch, take the drivers the strategy names in the order a sponsor meets them. Write each as a count or a rate (for example "start rate: started per inquiry page view").
-4. For each driver, find the event in `data/events.jsonl` or the column in `data/inquiries.csv` that measures it. If none exists, write "no event yet".
+3. For the active branch, take the drivers the strategy names in the order a sponsor meets them. The first is a count (how many enter the path); every later one is a rate of the step before it. Write each as `<short name>: <plain sentence>`, for example "start rate: percentage of inquiry page visits that start the form".
+4. For each driver, find the events in `data/events.jsonl` or the columns in `data/inquiries.csv` that measure it, and write the division (for example `inquiry_started` ÷ inquiry page visits). If none exists, write "no event yet".
 5. Write the branch formula: the goal of the branch as the product (or sum) of its drivers.
-6. Check: no number from `data/` in the file, every driver has a measure or "no event yet", the parked branch has no drivers, the file fits on one screen.
+6. Check: a newcomer can read each driver sentence and say what is counted and divided by what; no number from `data/` in the file, every driver has a measure or "no event yet", the parked branch has no drivers, the file fits on one screen.
 7. Draw it: run `npm run tree`. It writes `discovery/kpi-tree.html` from the Markdown. Never write or edit the HTML by hand; if the drawing is wrong, fix the Markdown and draw again. Tell the human to open the file in the browser.
 
 ## Output template (`discovery/kpi-tree.md`)
@@ -52,12 +53,15 @@ Where the tree differs:
 ## Tree
 - Business goal: <goal> (product/strategy.md:<line>)
   - Branch A: <name> (product/strategy.md:<line>)
-    - <driver> · measured: `<event or column>` in data/<file>
-    - <driver> · measured: ...
+    - <short name>: number of <what enters the path> · measured: <what is counted>, `<event>`
+    - <short name>: percentage of <step before> that <do this step> · measured: `<event>` ÷ `<event of the step before>`
+    - ...
   - Branch B: <name>, not this quarter (product/strategy.md:<line>)
 
 ## How branch A works
-<branch outcome> = <driver> × <driver> × ...
+<branch outcome> = <short name> × <short name> × ...
+
+Events are in data/events.jsonl.
 ````
 
 Then run `npm run tree` and stop. Do not start opportunity work.
