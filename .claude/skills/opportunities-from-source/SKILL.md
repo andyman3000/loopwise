@@ -31,7 +31,7 @@ This file is an **assessment by an agent, not a decision**. Say so at the top of
 0. **Try first.** Read just enough of the source to pick one telling quote. Show it with file:line and ask: what need or pain sits behind it, and is it a need or already a solution? Wait for the answer before you draft anything.
 1. Read the KPI tree, the personas, then every file of the source. Tell the human in three lines: which branches you map against, what the source holds (type, files, speakers), what is missing.
 2. Cluster evidence into opportunities. Three to six strong ones beat many weak ones.
-3. For each: quotes with file:line, voices counted, KPI branch with the link (an `[assumption: ...]` if the tree does not state it), counter-evidence, gaps, assessment.
+3. For each: quotes with file:line, voices counted, KPI branch and driver from `discovery/kpi-tree.md` (the short name, for example "call rate") with the link (an `[assumption: ...]` if the tree does not state it), counter-evidence, gaps, assessment.
 4. Check before writing: no opportunity names a solution; every opportunity has a quote with line; voices are counted, not estimated; nothing is ranked or chosen.
 
 ## Output template (`discovery/opportunities/<source-group>.md`)
@@ -54,7 +54,7 @@ This file is an **assessment by an agent, not a decision**. Say so at the top of
 - **Evidence:**
   - "<short verbatim quote>" (<file>:<line>, <speaker>, <role>)
 - **Voices:** <n> distinct speakers: <roles>. Second-hand: <yes/no, which>
-- **KPI branch:** <Branch X: name> because ... [assumption: ...]
+- **KPI branch:** <Branch X: name>, driver <short name from the tree> because ... [assumption: ...]
 - **Counter-evidence in this source:** "<quote>" (<file>:<line>) | none found in this source
 - **Gaps:** ...
 - **Assessment:** well supported | partly supported | unsupported. <reasoning>
