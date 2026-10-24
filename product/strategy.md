@@ -15,8 +15,8 @@ A sponsor finds the website, opens the inquiry form, sends it, has a scoping cal
 Each step loses people. This quarter we work on that path, because the website can change it and
 `data/` can count it.
 
-Drivers: inquiry page views; inquiries started; inquiries submitted; scoping calls booked; bookings
-confirmed. [assumption: sponsors who can name a success line before the call book more often]
+Drivers: website visits; visits that open the inquiry page; inquiries started; inquiries submitted;
+scoping calls booked; bookings confirmed. [assumption: sponsors who can name a success line before the call book more often]
 
 ## Why this path
 
