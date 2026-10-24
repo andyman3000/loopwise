@@ -14,6 +14,7 @@ This file is an **assessment by an agent, not a decision**. Say so at the top of
 
 ## Rules
 
+- **Try first, then compare.** Before you draft, ask the human for the need behind one quote. Show one quote from the source with file:line, then ask: what need or pain sits behind it, and is what the person says a need or already a solution?. Wait for the answer and never invent it. After drafting, fill the section "Your first try": their answer word for word, then two or three short lines on where your draft differs and why. If they say skip, write "skipped". This step is how participants learn the concept; do not shorten it.
 - Every claim quotes its source with location: file and line (`sources/interviews/participants-group-1.md:24`). No quote, no claim. Quotes are verbatim and short (one sentence or less).
 - **Do not invent numbers.** Count only what is in the files: sources, items, distinct speakers. No scores, no probabilities, no totals, no "most users".
 - Phrase each opportunity as a need or pain, in the speaker's words where possible. If it names a button, page, field or format, it is a solution: put it under "Solution ideas heard".
@@ -27,6 +28,7 @@ This file is an **assessment by an agent, not a decision**. Say so at the top of
 
 ## Steps
 
+0. **Try first.** Read just enough of the source to pick one telling quote. Show it with file:line and ask: what need or pain sits behind it, and is it a need or already a solution? Wait for the answer before you draft anything.
 1. Read the KPI tree, the personas, then every file of the source. Tell the human in three lines: which branches you map against, what the source holds (type, files, speakers), what is missing.
 2. Cluster evidence into opportunities. Three to six strong ones beat many weak ones.
 3. For each: quotes with file:line, voices counted, KPI branch with the link (an `[assumption: ...]` if the tree does not state it), counter-evidence, gaps, assessment.
@@ -39,6 +41,9 @@ This file is an **assessment by an agent, not a decision**. Say so at the top of
 
 > Assessment by an agent (`opportunities-from-source` skill), not a decision. Date: YYYY-MM-DD.
 > Reads: <files>, discovery/kpi-tree.md, product/personas/
+
+## Your first try
+<the human's answer, word for word> · Where the draft differs: <two or three short lines>
 
 ## Source
 | File | Type | Speakers (role) | Basis line from the file |
