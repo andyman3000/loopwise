@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KPI tree</title>
+<style>
+:root{--page:#f7f8fa;--ink:#1d2733;--muted:#5d6b7c}
+@media (prefers-color-scheme:dark){:root{--page:#131820;--ink:#e6ebf1;--muted:#9aa7b6;color-scheme:dark}}
+body{margin:0;background:var(--page);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:1000px;margin:0 auto;padding:24px 16px}
+h1{font-size:1.5rem;margin:0 0 .25rem}
+p{margin:0 0 1rem;color:var(--muted);font-size:.9rem}
+.drawing{overflow-x:auto}
+.drawing svg{display:block;max-width:none}
+</style>
+</head>
+<body>
+<main>
+<h1>KPI tree</h1>
+<p>Drawn from <code>discovery/kpi-tree.md</code> by <code>npm run tree</code>. Edit the Markdown, then draw again.</p>
+<div class="drawing">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 651" width="960" height="651" role="img" aria-label="KPI tree">
+<title>KPI tree</title>
+<style>
+svg{--bg:#f7f8fa;--box:#ffffff;--line:#9aa5b4;--fg:#1d2733;--muted:#5d6b7c;--goal:#1f4e79;--branch:#2f6f8f;--event:#3d6b4f}
+@media (prefers-color-scheme:dark){svg{--bg:#131820;--box:#1c2430;--line:#4f5d6e;--fg:#e6ebf1;--muted:#9aa7b6;--goal:#7fb2e0;--branch:#79c0d8;--event:#8fc9a3}}
+.bg{fill:var(--bg)}
+text{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;fill:var(--fg)}
+.node rect{fill:var(--box);stroke:var(--line);stroke-width:1}
+.level-0 rect{stroke:var(--goal);stroke-width:2}
+.level-1 rect{stroke:var(--branch);stroke-width:1.5}
+.parked rect{stroke-dasharray:5 4;stroke:var(--line)}
+.parked text{fill:var(--muted)}
+.kind{font-size:10px;letter-spacing:.08em;fill:var(--muted)}
+.title{font-size:14px;font-weight:600}
+.level-0 .title{fill:var(--goal)}
+.detail{font-size:12px;fill:var(--muted)}
+.event{font-size:11px;font-family:ui-monospace,Menlo,Consolas,monospace;fill:var(--event)}
+.link{fill:none;stroke:var(--line);stroke-width:1.5}
+.link.parked{stroke-dasharray:5 4}
+.formula{font-size:13px;font-family:ui-monospace,Menlo,Consolas,monospace}
+</style>
+<rect class="bg" width="100%" height="100%"/>
+<path class="link" d="M244 392.375 H272 V253.25 H300"/>
+<path class="link parked" d="M244 392.375 H272 V531.5 H300"/>
+<path class="link" d="M550 253.25 H578 V59 H606"/>
+<path class="link" d="M550 253.25 H578 V150.5 H606"/>
+<path class="link" d="M550 253.25 H578 V249.5 H606"/>
+<path class="link" d="M550 253.25 H578 V348.5 H606"/>
+<path class="link" d="M550 253.25 H578 V447.5 H606"/>
+<g class="node level-0"><rect x="24" y="356.375" width="220" height="72" rx="6"/><text class="kind" x="36" y="379.375">BUSINESS GOAL</text><text class="title" x="36" y="398.375">more booked in-house</text><text class="title" x="36" y="415.375">workshops per quarter</text></g>
+<g class="node level-1"><rect x="300" y="217.25" width="250" height="72" rx="6"/><text class="kind" x="312" y="240.25">BRANCH A</text><text class="title" x="312" y="259.25">inquiries that end in a</text><text class="title" x="312" y="276.25">booking</text></g>
+<g class="node level-2"><rect x="606" y="24" width="330" height="70" rx="6"/><text class="kind" x="618" y="47">DRIVER</text><text class="title" x="618" y="66">inquiry page views</text><text class="event" x="618" y="82">measured: page_view with page inquiry</text></g>
+<g class="node level-2"><rect x="606" y="108" width="330" height="85" rx="6"/><text class="kind" x="618" y="131">DRIVER</text><text class="title" x="618" y="150">start rate</text><text class="detail" x="618" y="166">inquiries started per inquiry page view</text><text class="event" x="618" y="181">measured: inquiry_started</text></g>
+<g class="node level-2"><rect x="606" y="207" width="330" height="85" rx="6"/><text class="kind" x="618" y="230">DRIVER</text><text class="title" x="618" y="249">submit rate</text><text class="detail" x="618" y="265">inquiries submitted per inquiry started</text><text class="event" x="618" y="280">measured: inquiry_submitted</text></g>
+<g class="node level-2"><rect x="606" y="306" width="330" height="85" rx="6"/><text class="kind" x="618" y="329">DRIVER</text><text class="title" x="618" y="348">call rate</text><text class="detail" x="618" y="364">scoping calls per inquiry submitted</text><text class="event" x="618" y="379">measured: scoping_call_booked</text></g>
+<g class="node level-2"><rect x="606" y="405" width="330" height="85" rx="6"/><text class="kind" x="618" y="428">DRIVER</text><text class="title" x="618" y="447">booking rate</text><text class="detail" x="618" y="463">bookings per scoping call</text><text class="event" x="618" y="478">measured: booking_confirmed</text></g>
+<g class="node level-1 parked"><rect x="300" y="504" width="250" height="55" rx="6"/><text class="kind" x="312" y="527">BRANCH B · NOT THIS QUARTER</text><text class="title" x="312" y="546">follow-up bookings</text></g>
+<text class="formula" x="24" y="605">bookings = inquiry page views × start rate × submit rate × call rate × booking rate</text>
+</svg>
+</div>
+</main>
+</body>
+</html>
