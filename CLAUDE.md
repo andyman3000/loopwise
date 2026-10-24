@@ -15,7 +15,6 @@ Project preferences for Claude Code in the Loopwise demo repo.
 - `sources/emails/`: six inquiry mails (synthetic)
 - `sources/feedback/`: one feedback export (mixed: paraphrased free text, invented ratings)
 - `sources/inbox/`: ten support requests (synthetic)
-- `sources/analytics/`: empty until exports exist
 - `data/`: 26 weeks of synthetic baseline data (event log, inquiry export) up to 2026-08-18.
   The full data set and its generator replace it with the tag `06-variant-decision`
 
@@ -48,7 +47,7 @@ loopwise/
   data/            events.jsonl, inquiries.csv   (synthetic baseline, 26 weeks)
   tests/
   product/         vision.md, strategy.md, constraints.md, personas/
-  sources/         interviews/, emails/, feedback/, inbox/, analytics/
+  sources/         interviews/, emails/, feedback/, inbox/
   docs/blocks/     step-by-step instructions per workshop block
   discovery/       kpi-tree.md, opportunities/, intents/, specs/,
                    test-cards/, decisions/, user-tests/
