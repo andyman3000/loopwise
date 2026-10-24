@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Thank you - Loopwise</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/">Loopwise</a>
+    <nav aria-label="Main">
+      <a href="/">Home</a>
+      <a href="/formats.html">Formats</a>
+      <a href="/inquiry.html">Inquiry</a>
+      <a href="/sponsor-prep.html">Sponsor preparation</a>
+    </nav>
+  </header>
+  <main>
+    <h1>Thank you</h1>
+    <p class="lead">We received your inquiry.</p>
+    <h2>What happens next</h2>
+    <ol>
+      <li>Within a few days we get in touch to book a scoping call.</li>
+      <li>In the call we clarify the format that fits your team.</li>
+      <li>After that we prepare together. You will find the steps on the <a href="/sponsor-prep.html">sponsor preparation page</a>.</li>
+    </ol>
+  </main>
+  <footer class="site-footer">Loopwise is a fictional academy used for a demo.</footer>
+  <script type="module">
+    import { logEvent } from '/components/events.js';
+    logEvent('page_view', { page: 'confirmation' }, 'baseline');
+  </script>
+</body>
+</html>

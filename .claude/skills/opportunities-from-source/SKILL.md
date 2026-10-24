@@ -1,0 +1,70 @@
+---
+name: opportunities-from-source
+description: Find opportunities (customer needs or pains, never solutions) in one source group under sources/, with verbatim quotes and line locations, counted voices, the KPI branch each would move, and counter-evidence. Run once per source group, e.g. "opportunities-from-source sources/interviews". Writes discovery/opportunities/<source-group>.md. Does not choose what goes into the comparison.
+---
+
+# opportunities-from-source
+
+- **When:** after `kpi-tree`, once per source group (`sources/interviews`, `sources/emails`, `sources/feedback`, `sources/inbox`, `sources/analytics`).
+- **Input:** one folder or file under `sources/`. If none is given, ask which one, then wait.
+- **Reads:** that source, `discovery/kpi-tree.md`, `product/personas/`.
+- **Writes:** `discovery/opportunities/<source-group>.md` (for example `interviews.md`).
+
+This file is an **assessment by an agent, not a decision**. Say so at the top of the output.
+
+## Rules
+
+- Every claim quotes its source with location: file and line (`sources/interviews/participants-group-1.md:24`). No quote, no claim. Quotes are verbatim and short (one sentence or less).
+- **Do not invent numbers.** Count only what is in the files: sources, items, distinct speakers. No scores, no probabilities, no totals, no "most users".
+- Phrase each opportunity as a need or pain, in the speaker's words where possible. If it names a button, page, field or format, it is a solution: put it under "Solution ideas heard".
+- **Voices:** count distinct speakers per opportunity and name their role (sponsor, participant, other). The interviewer is not a voice. One person said three times is one voice. Mark second-hand evidence (someone reporting what others said) as second-hand.
+- **Do not merge distinct needs.** Two needs that sound alike but come from different roles or different moments stay separate, with a line saying why they are separate.
+- **Decoy-like findings:** loud, vivid or repeated themes that do not link to any KPI branch, or rest on one voice, or are solution requests in disguise, go under "Looks like an opportunity, but". Say honestly why.
+- Counter-evidence from the same source is mandatory per opportunity. "None found in this source" is a valid answer; leaving it out is not.
+- Assessments in words on exactly three levels: **well supported**, **partly supported**, **unsupported**, each with reasoning, sources, counter-evidence, gaps.
+- If `discovery/kpi-tree.md` is missing, stop and say so: opportunities without a branch cannot be compared.
+- The skill never decides. "Goes into comparison" stays empty for a human.
+
+## Steps
+
+1. Read the KPI tree, the personas, then every file of the source. Tell the human in three lines: which branches you map against, what the source holds (type, files, speakers), what is missing.
+2. Cluster evidence into opportunities. Three to six strong ones beat many weak ones.
+3. For each: quotes with file:line, voices counted, KPI branch with the link (an `[assumption: ...]` if the tree does not state it), counter-evidence, gaps, assessment.
+4. Check before writing: no opportunity names a solution; every opportunity has a quote with line; voices are counted, not estimated; nothing is ranked or chosen.
+
+## Output template (`discovery/opportunities/<source-group>.md`)
+
+```markdown
+# Opportunities from <source-group>
+
+> Assessment by an agent (`opportunities-from-source` skill), not a decision. Date: YYYY-MM-DD.
+> Reads: <files>, discovery/kpi-tree.md, product/personas/
+
+## Source
+| File | Type | Speakers (role) | Basis line from the file |
+|---|---|---|---|
+
+## Opportunities
+### O1: <need or pain>
+- **Evidence:**
+  - "<short verbatim quote>" (<file>:<line>, <speaker>, <role>)
+- **Voices:** <n> distinct speakers: <roles>. Second-hand: <yes/no, which>
+- **KPI branch:** <Branch X: name> because ... [assumption: ...]
+- **Counter-evidence in this source:** "<quote>" (<file>:<line>) | none found in this source
+- **Gaps:** ...
+- **Assessment:** well supported | partly supported | unsupported. <reasoning>
+
+## Looks like an opportunity, but
+| Finding | Quote and location | Why it is not one (yet) |
+|---|---|---|
+
+## Solution ideas heard
+| Idea | Quote and location | Opportunity it might serve |
+|---|---|---|
+
+## Goes into comparison
+Goes into comparison: ____ (human decides)
+Decided by: ____ · Date: ____
+```
+
+Then stop. Do not compare across sources; that is `compare-opportunities`.
