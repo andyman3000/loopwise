@@ -47,6 +47,7 @@ loopwise/
   site/            pages, components/, config.json   (variants/ appears once variants are built)
   lib/             discovery-view.js: renders discovery/ at /discovery
                    opportunity-map.js: /discovery/map, opportunities by source and evidence
+                   opportunity-tree.js: /discovery/tree, the comparison drawn as an opportunity tree
   data/            scenario.json, events.jsonl, inquiries.csv   (synthetic baseline, 26 weeks)
   tests/
   product/         vision.md, strategy.md, constraints.md, personas/
@@ -66,6 +67,7 @@ npm run check   # citations point at real lines, quotes match, event names from 
 npm run tree    # draws discovery/kpi-tree.md as discovery/kpi-tree.html
 # http://localhost:3000/discovery shows the artefacts as readable pages, the KPI tree drawn
 # http://localhost:3000/discovery/map: every opportunity on an evidence map, filterable, read-only
+# http://localhost:3000/discovery/tree: the compared candidates linked to the business goal, read-only
 ```
 
 Node 20 or newer. No dependencies, no `npm install`. Keep it that way.
@@ -131,7 +133,7 @@ Run in this order. Each skill writes its artefact under `discovery/`.
 |---|---|---|
 | 1 | `kpi-tree` | `discovery/kpi-tree.md`, drawn as `discovery/kpi-tree.html` |
 | 2 | `opportunities-from-source` | `discovery/opportunities/<source-group>.md` |
-| 3 | `compare-opportunities` | `discovery/opportunity-comparison.md` |
+| 3 | `compare-opportunities` | `discovery/opportunity-comparison.md`, drawn at `/discovery/tree` |
 | 4 | `intent-and-ideas` | `discovery/intents/<opportunity>.md` |
 | 5 | `variant-spec` | `discovery/specs/<variant>.md`, then Claude Code builds `site/variants/<variant>/` |
 | 6 | `test-card` | `discovery/test-cards/<variant>.md` |

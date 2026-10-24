@@ -6,6 +6,7 @@ import { validateInquiry } from './site/components/inquiry-form.js';
 import { isEventType } from './site/components/events.js';
 import { discoveryPage } from './lib/discovery-view.js';
 import { mapPage } from './lib/opportunity-map.js';
+import { treePage } from './lib/opportunity-tree.js';
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
 const SITE = path.join(ROOT, 'site');
@@ -182,6 +183,10 @@ export function createServer() {
     if (pathname === '/discovery/map') {
       res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
       return res.end(req.method === 'HEAD' ? undefined : mapPage(process.env.LOOPWISE_ROOT || ROOT));
+    }
+    if (pathname === '/discovery/tree') {
+      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+      return res.end(req.method === 'HEAD' ? undefined : treePage(process.env.LOOPWISE_ROOT || ROOT));
     }
     const discovery = discoveryPage(process.env.LOOPWISE_ROOT || ROOT, pathname);
     if (discovery) {
