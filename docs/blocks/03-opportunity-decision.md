@@ -21,7 +21,7 @@ and what you can measure within eight weeks. The agent compares and challenges; 
 4. Open the comparison file only for the candidate you doubt. Read its evidence and the
    challenger. Do the strongest voices come from a question that asked for exactly that answer?
    The challenger quotes the interviewer's question before each strongest quote.
-5. Decide. Fill "Chosen opportunity" and "What would flip it" in
+5. Decide. Fill "Chosen opportunity" and "We would switch if" in
    `discovery/opportunity-comparison.md`. Reload the tree: your choice shows on top and on its card.
 6. Record the decision in `discovery/decisions/001-<short-name>.md`:
    ```markdown
@@ -30,7 +30,7 @@ and what you can measure within eight weeks. The agent compares and challenges; 
    ## What we decided
    ## Options considered
    ## Why, with the evidence it rests on (file and line)
-   ## What would flip it
+   ## We would switch if
    ## Who
    ## When
    ```
