@@ -10,7 +10,7 @@ A driver is something people do that you can count, and that moves a branch.
 Find website, Open website, read stuff, open form, fill form, schedule call, decide on detials, book. I think most people dont even get to the form
 
 Where the tree differs:
-- "Read stuff" has no driver of its own. The data sees only whether a visit opens the inquiry page.
+- "Read stuff" has no driver of its own. The data shows which pages a visit sees, but no driver counts reading.
 - "Decide on details" has no event. The data goes straight from call to booking.
 
 ## Tree
@@ -27,4 +27,4 @@ Where the tree differs:
 ## How branch A works
 bookings = website visits × reach rate × start rate × submit rate × call rate × booking rate
 
-Events are in data/events.jsonl. In this data every visit has exactly one page view.
+Events are in data/events.jsonl.
