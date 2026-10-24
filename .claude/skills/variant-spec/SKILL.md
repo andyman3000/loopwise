@@ -14,6 +14,7 @@ A spec is the hand-over to the build: precise enough that Claude Code can build 
 
 ## Rules
 
+- **Try first, then compare.** Before you draft, ask the human for which events they would need to see in eight weeks to know whether this variant works. Wait for the answer and never invent it. After drafting, fill the section "Your first try": their answer word for word, then two or three short lines on where your draft differs and why. If they say skip, write "skipped". This step is how participants learn the concept; do not shorten it.
 - **Every claim quotes its source with location** (file and line or section). No quote, no claim.
 - **Do not invent numbers.** No targets, no thresholds, no expected rates; those belong in the test card.
 - **Name what changes on the page by mechanism:** fields, order, wording, what happens on submit.
@@ -26,6 +27,7 @@ A spec is the hand-over to the build: precise enough that Claude Code can build 
 
 ## Steps
 
+0. **Try first.** Ask the human for which events they would need to see in eight weeks to know whether this variant works. Wait for the answer before you read further or draft anything.
 1. Read the intent and its selection field. Confirm the variant name and which idea it comes from. If the selection field is empty, say so and stop.
 2. Read the current inquiry page and its components, so the spec says what changes against today and what stays.
 3. Draft the spec with the template below. Show the human the section "What changes on the page" and ask them to confirm or change it.
@@ -41,6 +43,9 @@ A spec is the hand-over to the build: precise enough that Claude Code can build 
 > **Idea:** <I-number> in `discovery/intents/<opportunity>.md` ("<idea line, quoted>")
 > **Selection:** "<selection line, quoted>" (`discovery/intents/<opportunity>.md`, section "Selection (human)")
 > **Label:** <synthetic or composite, repeated from the material the intent rests on>
+
+## Your first try
+<the human's answer, word for word> · Where the draft differs: <two or three short lines>
 
 ## What changes on the page
 <step by step, what the sponsor sees and does, in order>
