@@ -55,7 +55,7 @@ Branch: Branch A: inquiries that end in a booking (product/strategy.md:12)
 ## Decision (human)
 
 Chosen opportunity: ____ (human decides)
-What would flip it: ____
+We would switch if: ____
 `;
 
 function repo(md) {
@@ -93,7 +93,7 @@ test('the page draws one card per candidate, marks the gap, the favourite and th
 
 test('a filled decision shows on the page and on the chosen card', () => {
   const html = treePage(repo(MD.replace('Chosen opportunity: ____ (human decides)', 'Chosen opportunity: C1, because it is lived')
-    .replace('What would flip it: ____', 'What would flip it: a sponsor who never booked')));
+    .replace('We would switch if: ____', 'We would switch if: a sponsor who never booked')));
   assert.match(html, /C1, because it is lived/);
   assert.match(html, /a sponsor who never booked/);
   assert.match(html, /<span class="tag pick">chosen<\/span>/);
