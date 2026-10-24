@@ -20,7 +20,7 @@ p{margin:0 0 1rem;color:var(--muted);font-size:.9rem}
 <h1>KPI tree</h1>
 <p>Drawn from <code>discovery/kpi-tree.md</code> by <code>npm run tree</code>. Edit the Markdown, then draw again.</p>
 <div class="drawing">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 651" width="960" height="651" role="img" aria-label="KPI tree">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 835" width="960" height="835" role="img" aria-label="KPI tree">
 <title>KPI tree</title>
 <style>
 svg{--bg:#f7f8fa;--box:#ffffff;--line:#9aa5b4;--fg:#1d2733;--muted:#5d6b7c;--goal:#1f4e79;--branch:#2f6f8f;--event:#3d6b4f}
@@ -35,29 +35,30 @@ text{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;fill:var(--fg)}
 .kind{font-size:10px;letter-spacing:.08em;fill:var(--muted)}
 .title{font-size:14px;font-weight:600}
 .level-0 .title{fill:var(--goal)}
-.detail{font-size:12px;fill:var(--muted)}
 .event{font-size:11px;font-family:ui-monospace,Menlo,Consolas,monospace;fill:var(--event)}
 .link{fill:none;stroke:var(--line);stroke-width:1.5}
 .link.parked{stroke-dasharray:5 4}
 .formula{font-size:13px;font-family:ui-monospace,Menlo,Consolas,monospace}
 </style>
 <rect class="bg" width="100%" height="100%"/>
-<path class="link" d="M244 392.375 H272 V253.25 H300"/>
-<path class="link parked" d="M244 392.375 H272 V531.5 H300"/>
-<path class="link" d="M550 253.25 H578 V59 H606"/>
-<path class="link" d="M550 253.25 H578 V150.5 H606"/>
-<path class="link" d="M550 253.25 H578 V249.5 H606"/>
-<path class="link" d="M550 253.25 H578 V348.5 H606"/>
-<path class="link" d="M550 253.25 H578 V447.5 H606"/>
-<g class="node level-0"><rect x="24" y="356.375" width="220" height="72" rx="6"/><text class="kind" x="36" y="379.375">BUSINESS GOAL</text><text class="title" x="36" y="398.375">more booked in-house</text><text class="title" x="36" y="415.375">workshops per quarter</text></g>
-<g class="node level-1"><rect x="300" y="217.25" width="250" height="72" rx="6"/><text class="kind" x="312" y="240.25">BRANCH A</text><text class="title" x="312" y="259.25">inquiries that end in a</text><text class="title" x="312" y="276.25">booking</text></g>
-<g class="node level-2"><rect x="606" y="24" width="330" height="70" rx="6"/><text class="kind" x="618" y="47">DRIVER</text><text class="title" x="618" y="66">inquiry page views</text><text class="event" x="618" y="82">measured: page_view with page inquiry</text></g>
-<g class="node level-2"><rect x="606" y="108" width="330" height="85" rx="6"/><text class="kind" x="618" y="131">DRIVER</text><text class="title" x="618" y="150">start rate</text><text class="detail" x="618" y="166">inquiries started per inquiry page view</text><text class="event" x="618" y="181">measured: inquiry_started</text></g>
-<g class="node level-2"><rect x="606" y="207" width="330" height="85" rx="6"/><text class="kind" x="618" y="230">DRIVER</text><text class="title" x="618" y="249">submit rate</text><text class="detail" x="618" y="265">inquiries submitted per inquiry started</text><text class="event" x="618" y="280">measured: inquiry_submitted</text></g>
-<g class="node level-2"><rect x="606" y="306" width="330" height="85" rx="6"/><text class="kind" x="618" y="329">DRIVER</text><text class="title" x="618" y="348">call rate</text><text class="detail" x="618" y="364">scoping calls per inquiry submitted</text><text class="event" x="618" y="379">measured: scoping_call_booked</text></g>
-<g class="node level-2"><rect x="606" y="405" width="330" height="85" rx="6"/><text class="kind" x="618" y="428">DRIVER</text><text class="title" x="618" y="447">booking rate</text><text class="detail" x="618" y="463">bookings per scoping call</text><text class="event" x="618" y="478">measured: booking_confirmed</text></g>
-<g class="node level-1 parked"><rect x="300" y="504" width="250" height="55" rx="6"/><text class="kind" x="312" y="527">BRANCH B · NOT THIS QUARTER</text><text class="title" x="312" y="546">follow-up bookings</text></g>
-<text class="formula" x="24" y="605">bookings = inquiry page views × start rate × submit rate × call rate × booking rate</text>
+<path class="link" d="M244 530.375 H272 V345.25 H300"/>
+<path class="link parked" d="M244 530.375 H272 V715.5 H300"/>
+<path class="link" d="M550 345.25 H578 V67.5 H606"/>
+<path class="link" d="M550 345.25 H578 V176 H606"/>
+<path class="link" d="M550 345.25 H578 V292 H606"/>
+<path class="link" d="M550 345.25 H578 V399.5 H606"/>
+<path class="link" d="M550 345.25 H578 V507 H606"/>
+<path class="link" d="M550 345.25 H578 V623 H606"/>
+<g class="node level-0"><rect x="24" y="494.375" width="220" height="72" rx="6"/><text class="kind" x="36" y="517.375">BUSINESS GOAL</text><text class="title" x="36" y="536.375">more booked in-house</text><text class="title" x="36" y="553.375">workshops per quarter</text></g>
+<g class="node level-1"><rect x="300" y="309.25" width="250" height="72" rx="6"/><text class="kind" x="312" y="332.25">BRANCH A</text><text class="title" x="312" y="351.25">inquiries that end in a</text><text class="title" x="312" y="368.25">booking</text></g>
+<g class="node level-2"><rect x="606" y="24" width="330" height="87" rx="6"/><text class="kind" x="618" y="47">DRIVER · WEBSITE VISITS</text><text class="title" x="618" y="66">number of visits to any page of the</text><text class="title" x="618" y="83">website</text><text class="event" x="618" y="99">measured: visits with a page_view</text></g>
+<g class="node level-2"><rect x="606" y="125" width="330" height="102" rx="6"/><text class="kind" x="618" y="148">DRIVER · REACH RATE</text><text class="title" x="618" y="167">percentage of website visits that open</text><text class="title" x="618" y="184">the inquiry page</text><text class="event" x="618" y="200">measured: visits with a page_view of the</text><text class="event" x="618" y="215">inquiry page ÷ all visits</text></g>
+<g class="node level-2"><rect x="606" y="241" width="330" height="102" rx="6"/><text class="kind" x="618" y="264">DRIVER · START RATE</text><text class="title" x="618" y="283">percentage of inquiry page visits that</text><text class="title" x="618" y="300">start the form</text><text class="event" x="618" y="316">measured: inquiry_started ÷ inquiry page</text><text class="event" x="618" y="331">visits</text></g>
+<g class="node level-2"><rect x="606" y="357" width="330" height="85" rx="6"/><text class="kind" x="618" y="380">DRIVER · SUBMIT RATE</text><text class="title" x="618" y="399">percentage of started forms that are sent</text><text class="event" x="618" y="415">measured: inquiry_submitted ÷</text><text class="event" x="618" y="430">inquiry_started</text></g>
+<g class="node level-2"><rect x="606" y="456" width="330" height="102" rx="6"/><text class="kind" x="618" y="479">DRIVER · CALL RATE</text><text class="title" x="618" y="498">percentage of sent inquiries that get a</text><text class="title" x="618" y="515">scoping call</text><text class="event" x="618" y="531">measured: scoping_call_booked ÷</text><text class="event" x="618" y="546">inquiry_submitted</text></g>
+<g class="node level-2"><rect x="606" y="572" width="330" height="102" rx="6"/><text class="kind" x="618" y="595">DRIVER · BOOKING RATE</text><text class="title" x="618" y="614">percentage of scoping calls that end in a</text><text class="title" x="618" y="631">booking</text><text class="event" x="618" y="647">measured: booking_confirmed ÷</text><text class="event" x="618" y="662">scoping_call_booked</text></g>
+<g class="node level-1 parked"><rect x="300" y="688" width="250" height="55" rx="6"/><text class="kind" x="312" y="711">BRANCH B · NOT THIS QUARTER</text><text class="title" x="312" y="730">follow-up bookings</text></g>
+<text class="formula" x="24" y="789">bookings = website visits × reach rate × start rate × submit rate × call rate × booking rate</text>
 </svg>
 </div>
 </main>
