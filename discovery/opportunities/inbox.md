@@ -43,10 +43,10 @@ Most requests come after a booking: during preparation, on the day, or after the
   - "I followed the setup guide, but I only got to it this morning." (sources/inbox/inbox-export.md:89, INB-007, product owner, participant)
   - "The trainer said we should have tested this before day one." (sources/inbox/inbox-export.md:89, INB-007, product owner, participant)
 - **Voices:** 2 distinct speakers: participants. Second-hand: yes, INB-006 reports two more: "Two colleagues next to me have the same problem." (sources/inbox/inbox-export.md:77)
-- **KPI branch:** Branch B: follow-up bookings, not this quarter. [assumption: time lost on setup lowers what participants take away and report to the sponsor.] No Branch A driver: the booking is already confirmed. The setup check is part of sponsor preparation on the website, which the tree does not measure.
+- **KPI branch:** Branch B: follow-up bookings, not this quarter. [assumption: time lost on setup lowers what participants take away and report to the sponsor.] Side link to Branch A, driver booking rate. [assumption: a sponsor who sees how the setup check works (site/sponsor-prep.html:23) worries less about a lost first morning.]
 - **Counter-evidence in this source:** "So from our end nothing is blocking." (sources/inbox/inbox-export.md:65, INB-005, product manager): this team tested the setup ahead and had no problem.
 - **Gaps:** Two requests, synthetic. They do not say how much time was lost, or whether the setup instructions reached them in time.
-- **Assessment:** partly supported. Two first-hand cases plus a second-hand report, one clear counter-example. No Branch A link.
+- **Assessment:** partly supported. Two first-hand cases plus a second-hand report, one clear counter-example. It sits mainly on Branch B; the booking rate link is an assumption.
 - **Why separate from the tool approval finding below:** that one is the sponsor waiting on IT before the date. O2 is the participant on the day itself. Different role, different moment.
 
 ### O3: After the training, the sponsor does not know how to keep it going
@@ -56,10 +56,10 @@ Most requests come after a booking: during preparation, on the day, or after the
   - "A few have built something in the workshop, but not on their actual tasks yet." (sources/inbox/inbox-export.md:113, INB-009, department head, sponsor)
   - "We would like to book the follow-up session that was mentioned at the end of day two." (sources/inbox/inbox-export.md:101, INB-008, team lead, sponsor)
 - **Voices:** 2 distinct speakers: sponsors. Second-hand: yes, INB-009 reports what she sees in her team, not what participants said.
-- **KPI branch:** Branch B: follow-up bookings, not this quarter. INB-008 is a follow-up booking request in the sponsor's own words. No Branch A driver.
+- **KPI branch:** Branch B: follow-up bookings, not this quarter. INB-008 is a follow-up booking request in the sponsor's own words. Side link to Branch A, driver booking rate. [assumption: a sponsor who can see before booking what helps after the training (site/sponsor-prep.html:25) worries less that it fades.] INB-009 asks for exactly that after her training.
 - **Counter-evidence in this source:** "Thanks again, the feedback in the team was good." (sources/inbox/inbox-export.md:113, INB-009): the same sponsor is happy with the training itself. INB-008 wants a follow-up but pushes it out: "Could we do it in about six weeks, ideally as a half day online?" (sources/inbox/inbox-export.md:101)
-- **Gaps:** Two requests, both still open. Branch B is out of scope this quarter, so this cannot move this quarter's number.
-- **Assessment:** partly supported. Two sponsors, one names the fade, one asks for a follow-up. It sits on a branch the strategy leaves for later.
+- **Gaps:** Two requests, both still open. Branch B is out of scope this quarter, so this cannot move this quarter's number directly.
+- **Assessment:** partly supported. Two sponsors, one names the fade, one asks for a follow-up. It sits mainly on Branch B, which the strategy leaves for later; the booking rate link is an assumption.
 
 ### O4: Participants do not know what to bring or prepare beyond the setup
 - **Evidence:**
@@ -67,7 +67,7 @@ Most requests come after a booking: during preparation, on the day, or after the
   - "I have a discovery topic coming up next month that I could use, but parts of it are confidential." (sources/inbox/inbox-export.md:29, INB-002, product owner, participant)
   - "Anything else we should prepare apart from the setup checklist?" (sources/inbox/inbox-export.md:65, INB-005, product manager, participant)
 - **Voices:** 2 distinct speakers: participants. Second-hand: no.
-- **KPI branch:** Branch B: follow-up bookings, not this quarter. [assumption: participants who bring a real task take more into their work afterwards.] No Branch A driver. The moment is preparation, after the booking.
+- **KPI branch:** Branch B: follow-up bookings, not this quarter. [assumption: participants who bring a real task take more into their work afterwards.] No side link to Branch A: what to bring is settled after the booking, and no request here shows a sponsor asking about it before.
 - **Counter-evidence in this source:** none found in this source.
 - **Gaps:** Two requests, synthetic. Neither says what happened when they did or did not bring a task.
 - **Assessment:** partly supported. Two clear first-hand questions. No Branch A link.

@@ -49,10 +49,10 @@ Speaker labels (P1, P2) restart in each group file, so G1 P1 and G2 P1 are diffe
   - "Honestly, I haven't worked that out." (sources/interviews/sponsor-hard.md:37, S, sponsor)
   - "If this flops, I look bad in front of my team and in front of the board." (sources/interviews/sponsor-hard.md:19, S, sponsor)
 - **Voices:** 1 distinct speaker: sponsor (hard). Second-hand: no.
-- **KPI branch:** Branch B: follow-up bookings, which the tree marks as not this quarter. "Show me it works. Then we talk about more teams." (sources/interviews/sponsor-hard.md:55). For Branch A, driver booking rate. [assumption: a sponsor who needs a business case and has no measure hesitates to confirm a booking after the scoping call.]
+- **KPI branch:** Branch B: follow-up bookings, not this quarter. Her own words aim there: "Show me it works. Then we talk about more teams." (sources/interviews/sponsor-hard.md:55). Side link to Branch A, driver booking rate. [assumption: a sponsor who needs a business case and has no measure hesitates to confirm a booking after the scoping call.]
 - **Counter-evidence in this source:** "They can work out hard goals for themselves later." (sources/interviews/sponsor-soft.md:63): the soft sponsor does not need a measure up front. "What I got approved is a first step." (sources/interviews/sponsor-hard.md:13): the first booking is already approved without one.
 - **Gaps:** One voice. The evidence speaks of the next budget, not the first booking. No source says which measure would be enough.
-- **Assessment:** partly supported. The need is clear and repeated by one sponsor. Its strongest link is to Branch B, which is out of scope this quarter. The Branch A link is an assumption.
+- **Assessment:** partly supported. The need is clear and repeated by one sponsor. It sits mainly on Branch B, which is out of scope this quarter. The booking rate link is an assumption.
 - **Why separate from O3:** O2 is about proving an effect to others. O3 is about fearing there will be none. The soft sponsor shares the fear but not the need for proof.
 
 ### O3: Sponsors fear the training fades like the last one and nothing changes
@@ -77,10 +77,10 @@ Speaker labels (P1, P2) restart in each group file, so G1 P1 and G2 P1 are diffe
   - "I don't even know what the idea could turn into." (sources/interviews/participants-group-3.md:19, G3 P1, participant)
   - "And I didn't do it with AI." (sources/interviews/participants-group-3.md:37, G3 P3, participant)
 - **Voices:** 6 distinct speakers: participants. Second-hand: yes, the soft sponsor reports the same: "I know what the tool can do, I just can't see what to use it for in my own work." (sources/interviews/sponsor-soft.md:29), and "That's not what's missing." (sources/interviews/sponsor-soft.md:41) about access, with "I think what's missing is ideas" on the same line.
-- **KPI branch:** Branch B: follow-up bookings, not this quarter. [assumption: what participants tell the sponsor afterwards decides whether more is booked; the sponsor hears it "From what people say." (sources/interviews/sponsor-soft.md:25)] No Branch A driver: participants do not inquire or book.
+- **KPI branch:** Branch B: follow-up bookings, not this quarter. [assumption: what participants tell the sponsor afterwards decides whether more is booked; the sponsor hears it "From what people say." (sources/interviews/sponsor-soft.md:25)] Side link to Branch A, driver booking rate. [assumption: if a new sponsor can see what past participants now use in their own work, the fear that the training fades (O3) weighs less.]
 - **Counter-evidence in this source:** "For research that's honestly brilliant." (sources/interviews/participants-group-1.md:13, G1 P1). "I already have several agents running in parallel and I mostly work at the level of the spec." (sources/interviews/participants-group-2.md:17, G2 P4). "I built myself a small interface for one of my own cases" (sources/interviews/participants-group-3.md:25, G3 P5).
 - **Gaps:** These are participants after a format. We do not know if the same holds before one. The content of the training is not owned by this repo; only preparation and follow-up are.
-- **Assessment:** well supported as a need: six voices in three groups, plus a sponsor reporting it. Its link to this quarter's branch is weak: it reaches Branch A only through the sponsor, and the tree does not state that link.
+- **Assessment:** well supported as a need: six voices in three groups, plus a sponsor reporting it. It sits mainly on Branch B, out of scope this quarter. The booking rate link runs through a sponsor and is an assumption.
 - **Why separate from O3:** O4 is the participant's pain during their work. O3 is the sponsor's fear before booking. Different role, different moment.
 
 ### O5: The sponsor cannot tell whether one format can hold a group of very mixed levels
