@@ -56,6 +56,7 @@ loopwise/
   discovery/       kpi-tree.md, opportunities/, intents/, specs/,
                    test-cards/, decisions/, user-tests/
   .claude/skills/  one folder per skill
+  .claude/rules/   writing.md: how every artefact and reply is written
 ```
 
 ## How to run
@@ -92,8 +93,8 @@ product context, the discovery artefacts and the decisions taken on them.
 
 The trainer changes this one line per cohort, for example to `product managers`.
 
-- **Plain English in every artefact.** Sentences under 15 words. Common words. One idea per
-  sentence. No filler, no consultant phrases.
+- **Plain English in every artefact and every reply.** Common words. The writing rules are in
+  `.claude/rules/writing.md`, loaded in every session.
 - **Loopwise words mean what `product/glossary.md` says.** Use them that way in every artefact.
 - **Explain product terms once.** While the audience line names people new to product work, explain
   each product term (opportunity, KPI branch, proxy metric, counter metric, success line, kill
