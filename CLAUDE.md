@@ -112,7 +112,8 @@ The trainer changes this one line per cohort, for example to `product managers`.
 - **Assessments on three levels, in words:** well supported, partly supported, unsupported. Each
   with reasoning, sources, counter-evidence and gaps.
 - **Agents never decide.** Selection fields (chosen opportunity, chosen variant, keep or roll back)
-  stay empty for a human.
+  stay empty for a human. One exception: "Goes into comparison" is written by `compare-opportunities`
+  after the human explicitly confirmed or changed its shortlist, with the human's name.
 - **Synthetic data and composites are labelled** in the file header, and any artefact built on them
   repeats the label.
 - Assumptions are written as `[assumption: ...]`.
