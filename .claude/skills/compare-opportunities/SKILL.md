@@ -120,7 +120,9 @@ contrast" opportunities against each other, rather than judging one in isolation
      candidate acts on it. The loss is written `<lost> of <reached> <what>`, counted from `data.md`.
      A candidate is listed on every driver its opportunity files name. A driver no opportunity file
      names, added by the data rule as `[assumption: the need also acts on <driver>]`, is marked
-     `(assumed)` after the ID.
+     `(assumed)` after the ID. Under that driver, one indented line gives the data observation
+     that suggests the link, counted, with its D-number: `  - Data: <observation> (data.md D<n>)`.
+     No observation, no assumed link.
    - **Candidates:** every field is one line, at most 15 words, except the quote.
 6. Write the file with the template below. Run `npm run check`.
 7. **Send the human to the tree before they decide.** Your closing message always gives the link
@@ -161,6 +163,7 @@ Where the draft differs:
 Outcome: <business goal> (<file:line>)
 Branch: <Branch A: name> (<file:line>)
 - <driver>: <lost> of <reached> <what> (data.md D<n>) · Candidates: <IDs, "(assumed)" after a driver only the comparison adds, or "none">
+  - Data: <only under a driver with an assumed link: the observation that suggests it, counted> (data.md D<n>)
 
 ## Candidates
 ### C1: <need, in the sponsor's or participant's terms>
