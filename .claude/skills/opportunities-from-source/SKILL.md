@@ -1,14 +1,14 @@
 ---
 name: opportunities-from-source
-description: Find opportunities (customer needs or pains, never solutions) in one source group under sources/, with verbatim quotes and line locations, counted voices, the KPI branch each would move, and counter-evidence. Run once per source group, e.g. "opportunities-from-source sources/interviews". Writes discovery/opportunities/<source-group>.md. Does not choose what goes into the comparison.
+description: Find opportunities (customer needs or pains, never solutions) in one source group under sources/, with verbatim quotes and line locations, counted voices, the KPI branch each would move, and counter-evidence. Run once per source group, e.g. "opportunities-from-source sources/interviews". The usage data in data/ can be read too: it yields observations (where people drop out), not opportunities. Writes discovery/opportunities/<source-group>.md. Does not choose what goes into the comparison.
 ---
 
 # opportunities-from-source
 
-- **When:** after `kpi-tree`, once per source group (`sources/interviews`, `sources/emails`, `sources/feedback`, `sources/inbox`, `sources/analytics`).
-- **Input:** one folder or file under `sources/`. If none is given, offer every source group first (step 0a), then wait.
+- **When:** after `kpi-tree`, once per source group (`sources/interviews`, `sources/emails`, `sources/feedback`, `sources/inbox`, and `data`).
+- **Input:** one folder or file under `sources/`, or `data`. If none is given, offer every source group first (step 0a), then wait.
 - **Reads:** that source, `discovery/kpi-tree.md`, `product/personas/`.
-- **Writes:** `discovery/opportunities/<source-group>.md` (for example `interviews.md`).
+- **Writes:** `discovery/opportunities/<source-group>.md` (for example `interviews.md`, or `data.md` for the usage data).
 
 This file is an **assessment by an agent, not a decision**. Say so at the top of the output.
 
@@ -24,11 +24,12 @@ This file is an **assessment by an agent, not a decision**. Say so at the top of
 - Counter-evidence from the same source is mandatory per opportunity. "None found in this source" is a valid answer; leaving it out is not.
 - Assessments in words on exactly three levels: **well supported**, **partly supported**, **unsupported**, each with reasoning, sources, counter-evidence, gaps.
 - If `discovery/kpi-tree.md` is missing, stop and say so: opportunities without a branch cannot be compared.
+- **Usage data shows where, never why.** When the source is `data`, write observations, not opportunities: a counted share at one step of the KPI tree, with the events divided. Each observation names the driver it sits on and which source groups could explain why. It becomes an opportunity only when a quote from another source gives the reason; this skill does not make that link for `data`. Counts are allowed here because they are counted from the files.
 - The skill never decides. "Goes into comparison" stays empty for a human.
 
 ## Steps
 
-0a. **Offer the sources** (only if none was given). List every folder under `sources/` as it is on disk, never from memory: name, number of files, and what kind of material it is (the `Basis` line from the file headers, for example "anonymised composite" or "synthetic"). Mark empty folders as empty. Ask which one to read, and wait.
+0a. **Offer the sources** (only if none was given). List every folder under `sources/` as it is on disk, never from memory: name, number of files, and what kind of material it is (the `Basis` line from the file headers, for example "anonymised composite" or "synthetic"). Mark empty folders as empty. Add `data` as the last row: "event log and inquiry export, synthetic (data/README.md), shows what people do, not why", with the time span from `data/README.md`. Ask which one to read, and wait.
 0. **Try first.** Read just enough of the source to pick one telling quote. Show it with file:line and ask: what need or pain sits behind it, and is it a need or already a solution? Wait for the answer before you draft anything.
 1. Read the KPI tree, the personas, then every file of the source. Tell the human in three lines: which branches you map against, what the source holds (type, files, speakers), what is missing.
 2. Cluster evidence into opportunities. Three to six strong ones beat many weak ones.
@@ -72,5 +73,21 @@ This file is an **assessment by an agent, not a decision**. Say so at the top of
 Goes into comparison: ____ (human decides)
 Decided by: ____ · Date: ____
 ```
+
+## Output template for `data` (`discovery/opportunities/data.md`)
+
+Same header, "Your first try" and "Goes into comparison" as above. For try first, show one count from the data and ask: what does this number tell you, and what does it not tell you? Instead of "Source", "Opportunities", "Looks like an opportunity, but" and "Solution ideas heard":
+
+```markdown
+> Observations, not opportunities: usage data shows where people drop out, not why.
+
+## Observations
+### D1: <what people do, in plain words>
+- **Count:** <n> of <m> (`<event>` ÷ `<event>`, data/events.jsonl, <first date> to <last date>)
+- **Driver:** <short name from discovery/kpi-tree.md>
+- **Why:** unknown from this data. Could be explained by: <source groups, and what to look for there>
+```
+
+Observations go into the comparison only together with an opportunity from another source.
 
 Then stop. Do not compare across sources; that is `compare-opportunities`.
