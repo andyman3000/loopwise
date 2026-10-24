@@ -20,20 +20,20 @@ Where the draft differs:
 ## Source
 | File | What it holds | Basis line from the file |
 |---|---|---|
-| data/events.jsonl | 3163 events, one visit per session, every event `variant` baseline | Everything in this folder is synthetic. |
+| data/events.jsonl | 7508 events, one visit per session, a visit can see several pages, every event `variant` baseline | Everything in this folder is synthetic. |
 | data/inquiries.csv | 113 submitted inquiries, with `sponsor_type`, `scoping_call_booked`, `booking_confirmed` | Everything in this folder is synthetic. |
 
 Time span: 2026-02-18 to 2026-08-18, 26 weeks (data/README.md:11).
 "Read them as an illustration of how a funnel is counted, never as evidence about real sponsors." (data/README.md:15-16)
-Every visit in the log has exactly one page view, so a visit is one page. All later events of a visit sit on the inquiry page.
+A visit can see several pages and opens the inquiry page at most once, as its last page view (data/README.md:18-20). All later events of a visit sit on the inquiry page.
 The event `inquiry_step_completed` never occurs, so nothing is counted inside the form.
 
 ## Observations
 
 ### D1: Most visits never open the inquiry page
-- **Count:** 740 of 2764 visits open the inquiry page (`page_view` of the inquiry page ÷ all visits with a `page_view`, data/events.jsonl, 2026-02-18 to 2026-08-18). The other visits: 697 on sponsor preparation, 670 on formats, 657 on home.
+- **Count:** 740 of 3766 visits open the inquiry page (`page_view` of the inquiry page ÷ all visits with a `page_view`, data/events.jsonl, 2026-02-18 to 2026-08-18). The other 3026 visits see formats in 1915 visits, home in 1619, sponsor preparation in 1193; one visit can see several of them. All 740 inquiry page visits see another page first.
 - **Driver:** reach rate
-- **Why:** unknown from this data. Each visit is one page, so the data cannot show whether someone came back later. Could be explained by: `sources/interviews` and `sources/emails` (what a sponsor looks for before they inquire); `sources/inbox` (questions people send instead of using the form).
+- **Why:** unknown from this data. Visits are not linked to each other, so the data cannot show whether someone came back later. Could be explained by: `sources/interviews` and `sources/emails` (what a sponsor looks for before they inquire); `sources/inbox` (questions people send instead of using the form).
 
 ### D2: Most visits to the inquiry page leave without starting the form
 - **Count:** 194 of 740 inquiry page visits start the form (`inquiry_started` ÷ `page_view` of the inquiry page, data/events.jsonl, 2026-02-18 to 2026-08-18). 546 leave without starting.
