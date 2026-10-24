@@ -1,6 +1,6 @@
 {
   "synthetic": true,
-  "note": "SYNTHETIC. Every file in data/ is generated from this scenario with a fixed seed. No real visitor, sponsor, company or booking exists behind any row. This is the baseline export: 26 weeks of the current inquiry form, taken on launch day.",
+  "note": "SYNTHETIC. Every file in data/ is generated from this scenario with fixed seeds. No real visitor, sponsor, company or booking exists behind any row. This is the baseline export: 26 weeks of the current inquiry form, taken on launch day. All knobs, browsing paths included, are scenario design, not findings.",
   "seed": 33,
   "launchDate": "2026-08-19",
   "weeksBefore": 26,
@@ -50,14 +50,12 @@
     }
   },
   "browse": {
-    "note": "Browsing paths: own seed, so the main stream and every event from the inquiry page view onward stay as without them. reachRate is the share of visits that open the inquiry page.",
-    "seed": 1,
+    "note": "Browsing paths: own seed, so the main stream and every event from the inquiry page view onward stay as without them. reachRate is the share of visits that open the inquiry page. pagesSeen is the number of pages a visit sees before it ends or opens the inquiry page, the same for every visit.",
+    "seed": 4,
     "firstSessionNo": 500001,
     "reachRate": 0.2,
     "weeklyJitter": 0.15,
-    "earlierViewsShare": 0.55,
-    "twoEarlierViews": 0.35,
-    "viewsPerOtherVisit": {
+    "pagesSeen": {
       "1": 0.5,
       "2": 0.3,
       "3": 0.2
@@ -67,6 +65,8 @@
       "formats": 0.45,
       "sponsor-prep": 0.2
     },
+    "formatsShare": 0.6,
+    "formatsReachFactor": 0.67,
     "minutesBetween": [
       1,
       6

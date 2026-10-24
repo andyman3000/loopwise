@@ -91,38 +91,48 @@ export function buildData(scenario) {
     return { choice, text, vague: false, example: line.id };
   };
 
-  // One visit can see several pages. Earlier pages of an inquiry visit come a few minutes before it;
-  // the other visits never reach the inquiry page. Their number follows from the reach rate.
-  const browseWeek = (weekStart, inquiryVisits) => {
-    const nextPage = (prev) => {
-      let p;
-      do p = weighted(br.pages, brnd); while (p === prev);
-      return p;
-    };
-    for (const v of inquiryVisits) {
-      if (brnd() >= br.earlierViewsShare) continue;
-      const n = brnd() < br.twoEarlierViews ? 2 : 1;
-      let t = v.t;
-      let page = null;
-      const before = [];
-      for (let k = 0; k < n; k++) {
-        t -= delay(br.minutesBetween[0] * 60, br.minutesBetween[1] * 60, brnd);
-        page = nextPage(page);
-        before.push([t, page]);
+  // One visit sees several pages. Every visit draws how many pages it sees from the same
+  // distribution (pagesSeen); a visit that inquires then opens the inquiry page as its last page.
+  // A share of visits (formatsShare, the same for every path length) sees the formats page. Seeing it
+  // changes the chance to inquire by formatsReachFactor; nothing else does, not the path length,
+  // not another page. rNo and rWith are the reach without and with formats:
+  // formatsShare * rWith + (1 - formatsShare) * rNo = reachRate.
+  const rNo = br ? br.reachRate / (1 - br.formatsShare * (1 - br.formatsReachFactor)) : 0;
+  const rWith = br ? rNo * br.formatsReachFactor : 0;
+  // Chance that a visit sees the formats page, for visits that inquire and visits that do not.
+  const formatsGiven = (inquires) => inquires
+    ? (br.formatsShare * rWith) / br.reachRate
+    : (br.formatsShare * (1 - rWith)) / (1 - br.reachRate);
+  const path = (inquires) => {
+    const k = Number(weighted(br.pagesSeen, brnd));
+    const withFormats = brnd() < formatsGiven(inquires);
+    for (;;) {
+      const pages = [];
+      for (let i = 0; i < k; i++) {
+        let p;
+        do p = weighted(br.pages, brnd); while (p === pages[i - 1]);
+        pages.push(p);
       }
-      for (const [bt, bp] of before.reverse()) emit(bt, 'page_view', scenario.baselineVariant, v.s, { page: bp });
+      if (pages.includes('formats') === withFormats) return pages;
+    }
+  };
+  const gap = () => delay(br.minutesBetween[0] * 60, br.minutesBetween[1] * 60, brnd);
+
+  const browseWeek = (weekStart, inquiryVisits) => {
+    for (const v of inquiryVisits) {
+      const pages = path(true);
+      let t = v.t;
+      const times = pages.map(() => (t -= gap())).reverse();
+      pages.forEach((p, i) => emit(times[i], 'page_view', scenario.baselineVariant, v.s, { page: p }));
     }
     const others = Math.round((inquiryVisits.length * (1 - br.reachRate)) / br.reachRate * (1 + br.weeklyJitter * (2 * brnd() - 1)));
     for (let i = 0; i < others; i++) {
       const s = 's-' + String(++browseSessionNo).padStart(6, '0');
-      const n = Number(weighted(br.viewsPerOtherVisit, brnd));
       let t = randomTime(weekStart, brnd);
-      let page = null;
-      for (let k = 0; k < n; k++) {
-        if (k > 0) t += delay(br.minutesBetween[0] * 60, br.minutesBetween[1] * 60, brnd);
-        page = nextPage(page);
-        emit(t, 'page_view', scenario.baselineVariant, s, { page });
-      }
+      path(false).forEach((p, j) => {
+        if (j > 0) t += gap();
+        emit(t, 'page_view', scenario.baselineVariant, s, { page: p });
+      });
     }
   };
 
