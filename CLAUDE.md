@@ -80,6 +80,22 @@ product context, the discovery artefacts and the decisions taken on them.
 
 ---
 
+# Audience and Language
+
+**Audience: developers new to product work**
+
+The trainer changes this one line per cohort, for example to `product managers`.
+
+- **Plain English in every artefact.** Sentences under 15 words. Common words. One idea per
+  sentence. No filler, no consultant phrases.
+- **Explain product terms once.** While the audience line names people new to product work, explain
+  each product term (opportunity, KPI branch, proxy metric, counter metric, success line, kill
+  criterion) in one short sentence the first time it appears in a file. For `product managers`,
+  skip these explanations.
+- Quotes from sources stay word for word, even when their language is not plain.
+
+---
+
 # Hard Constraints (Always Apply)
 
 - **English** in every file.
