@@ -1,0 +1,75 @@
+{
+  "synthetic": true,
+  "note": "SYNTHETIC. Every file in data/ is generated from this scenario with a fixed seed. No real visitor, sponsor, company or booking exists behind any row. This is the baseline export: 26 weeks of the current inquiry form, taken on launch day.",
+  "seed": 33,
+  "launchDate": "2026-08-19",
+  "weeksBefore": 26,
+  "baselineVariant": "baseline",
+  "traffic": {
+    "inquiryPageViewsPerWeek": 30,
+    "otherPageViewsPerWeek": 80,
+    "weeklyJitter": 0.25
+  },
+  "steps": {
+    "before": {
+      "startGivenView": 0.3,
+      "submitGivenStart": 0.54
+    }
+  },
+  "sponsorMix": {
+    "soft": 0.55,
+    "hard": 0.45
+  },
+  "teamSizes": [
+    6,
+    8,
+    10,
+    12,
+    15,
+    20,
+    25,
+    30
+  ],
+  "scopingCallRate": {
+    "before": {
+      "soft": 0.34,
+      "hard": 0.48
+    }
+  },
+  "bookingGivenCall": {
+    "soft": 0.4,
+    "hard": 0.55
+  },
+  "followup": {
+    "delayDaysAfterBooking": 28,
+    "answerRate": 0.6,
+    "answers": {
+      "using-it-regularly": 0.25,
+      "using-it-sometimes": 0.4,
+      "not-yet": 0.35
+    }
+  },
+  "browse": {
+    "note": "Browsing paths: own seed, so the main stream and every event from the inquiry page view onward stay as without them. reachRate is the share of visits that open the inquiry page.",
+    "seed": 1,
+    "firstSessionNo": 500001,
+    "reachRate": 0.2,
+    "weeklyJitter": 0.15,
+    "earlierViewsShare": 0.55,
+    "twoEarlierViews": 0.35,
+    "viewsPerOtherVisit": {
+      "1": 0.5,
+      "2": 0.3,
+      "3": 0.2
+    },
+    "pages": {
+      "home": 0.35,
+      "formats": 0.45,
+      "sponsor-prep": 0.2
+    },
+    "minutesBetween": [
+      1,
+      6
+    ]
+  }
+}

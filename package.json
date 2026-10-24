@@ -8,7 +8,8 @@
     "start": "node server.js",
     "test": "node --test",
     "check": "node scripts/check-discovery.js",
-    "tree": "node scripts/draw-kpi-tree.js"
+    "tree": "node scripts/draw-kpi-tree.js",
+    "generate": "node scripts/generate-events.js"
   },
   "engines": {
     "node": ">=20"
