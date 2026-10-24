@@ -13,6 +13,8 @@ This file is an **assessment by an agent, not a decision**. Say so at the top of
 
 ## Rules
 
+- **The tree is a nested Markdown list** exactly as in the template: business goal, then branches, then drivers and `Assumption:` lines, indented by two spaces per level, with `· measured:` after each driver. `/discovery/kpi-tree.md` draws it as a tree.
+- **Try first, then compare.** Before you draft, ask the human for the two or three ways they think the business goal could grow, and one number they would watch for each. Wait for the answer and never invent it. After drafting, fill the section "Your first try": their answer word for word, then two or three short lines on where your draft differs and why. If they say skip, write "skipped". This step is how participants learn the concept; do not shorten it.
 - Every claim quotes its source with location (file and line or section). No quote, no claim.
 - **Do not invent numbers.** No targets, baselines, scores, probabilities or totals. A number appears only if it is counted from a file (for example events found in `data/`) or quoted verbatim from the strategy.
 - Every link between levels that the strategy does not state is marked `[assumption: ...]`. Most links are assumptions; say so rather than hide it.
@@ -22,6 +24,7 @@ This file is an **assessment by an agent, not a decision**. Say so at the top of
 
 ## Steps
 
+0. **Try first.** Ask the human for the two or three ways they think the business goal could grow, and one number they would watch for each. Wait for the answer before you read further or draft anything.
 1. Read `product/strategy.md`. Quote the business goal verbatim with its section. If there is no goal that can be counted, stop and say so: a tree without a countable goal cannot be compared.
 2. Derive two to four branches: the independent ways the goal can grow, as the strategy describes them. Quote the passage for each branch. If you add a branch the strategy does not name, mark it `[assumption: ...]`.
 3. Under each branch, two to four drivers. For each driver, name where it would be measured: an event or field in `data/` if it exists (quote the name and file), otherwise "not measured yet" plus the place it would come from (form, scoping call, follow-up survey).
@@ -36,19 +39,20 @@ This file is an **assessment by an agent, not a decision**. Say so at the top of
 > Assessment by an agent (`kpi-tree` skill), not a decision. Date: YYYY-MM-DD.
 > Reads: product/strategy.md, CLAUDE.md, data/ (present / not present)
 
+## Your first try
+<the human's answer, word for word> · Where the draft differs: <two or three short lines>
+
 ## Business goal
 "<verbatim goal>" (product/strategy.md, section <name>)
 
 ## Tree
-```
-Business goal: <goal>
-├── Branch A: <name>
-│   ├── <driver>   measured: <event/field in data/... | not measured yet, would come from ...>
-│   └── <driver>   measured: ...
-│        [assumption: <why this driver moves the branch>]
-└── Branch B: <name>
-    └── ...
-```
+- Business goal: <goal>
+  - Branch A: <name>
+    - <driver> · measured: <event/field in data/... | not measured yet, would come from ...>
+    - <driver> · measured: ...
+    - Assumption: <why these drivers move the branch>
+  - Branch B: <name>
+    - ...
 
 ## Branches
 ### Branch A: <name>
