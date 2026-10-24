@@ -13,7 +13,7 @@ time, each with a quote, its location and counter-evidence. Needs, not solutions
    - How many different voices carry each opportunity, and does the file say so?
 3. Run it again for the other source groups as time allows: `emails`, `feedback`, `inbox`. The last
    row, `data`, is the usage data: it gives observations (where people drop out), not opportunities.
-   Which source group could tell you why? The reference state `02-opportunities` has all four.
+   Which source group could tell you why? The reference state `02-opportunities` has all five files, `data.md` included.
 4. Leave "Goes into comparison" empty for now. You fill it at the start of block 3.
 5. Check and commit:
    ```bash
