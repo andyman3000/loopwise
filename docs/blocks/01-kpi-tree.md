@@ -9,9 +9,9 @@ would move.
 1. Read `product/strategy.md`. It is one page. Note the business goal and the path the academy works
    on this quarter.
 2. In Claude Code: `/kpi-tree`. It first asks you which steps a sponsor goes through from the website
-   to a booking. Answer before it drafts. It then writes `discovery/kpi-tree.md`.
-3. Open `http://localhost:3000/discovery/kpi-tree.md` (with `npm start` running) to see the tree drawn.
-   Compare it with your steps. Which step did you name that the tree does not have, and why?
+   to a booking. Answer before it drafts. It then writes `discovery/kpi-tree.md` and draws it as
+   `discovery/kpi-tree.html`.
+3. Open `discovery/kpi-tree.html` in your browser to see the tree. Compare it with your steps. Which step did you name that the tree does not have, and why?
 4. Read the formula under the tree. Each driver multiplies the others: a small change in any of them
    moves the bookings.
 5. Check and commit:
