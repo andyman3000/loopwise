@@ -23,7 +23,7 @@ contrast" opportunities against each other, rather than judging one in isolation
 - **Do not invent numbers.** Only counted numbers: independent sources, voices, events in a log.
   No scores, no weights, no probabilities, no totals.
 - **Three levels, in words:** well supported, partly supported, unsupported. The evidence lines for
-  strength, leverage and measurability give the level, the reasoning, the sources, the
+  strength, leverage and readability give the level, the reasoning, the sources, the
   counter-evidence and the gaps. The funnel line gives counts only, no level.
 - **Independent sources:** two quotes from the same interview or the same mail thread are one
   source. Say whose voice it is (sponsor, participant, academy staff).
@@ -88,7 +88,8 @@ contrast" opportunities against each other, rather than judging one in isolation
      more than one driver, give each. Never multiply the two: an estimated total is not a count.
    - **Need or solution:** need, or solution in disguise. Give the two solutions that would each
      meet it, or the need underneath.
-   - **Measurability:** is there a signal within eight weeks, which event or field shows it, and
+   - **Readable from today's data:** is there a signal within eight weeks in the events and fields
+     that exist today, which event or field shows it, and
      how many of those events the data holds over its whole span ("55 calls in 26 weeks").
    - **Gaps and uncertainty:** what is not known, and what would answer it.
 3. Name the candidate the comparison appears to favour, as "Appears favoured: <ID>, because <one
@@ -138,7 +139,7 @@ Drawn as a tree at `http://localhost:3000/discovery/tree`.
 ## What you decide
 Question: Which need do we work on for the next eight weeks?
 Appears favoured: <ID>, because <one line>. A reading of the comparison, not a choice.
-Not readable in eight weeks: <IDs, or "none">. <one line: why, with the event count>
+Not readable from today's data: <IDs, or "none">. <one line: why, with the event count>
 No candidate: <driver: lost of reached, from data.md>; <...>. Open research questions, not candidates.
 
 ## Your first try
@@ -158,7 +159,7 @@ Branch: <Branch A: name> (<file:line>)
 - **Evidence:** <level>: <independent source groups, voices, observed or feared>
 - **Leverage:** <level>: <direct or indirect, can the website change it>
 - **Need or solution:** <need, or solution in disguise>
-- **Measurable in 8 weeks:** <level>: <event, events over the data span>
+- **Readable from today's data in 8 weeks:** <level>: <event, events over the data span>
 - **Wins on:** <one line>
 - **Loses on:** <one line>
 - **Strongest quote:** "<quote>" (<file:line>)
@@ -169,7 +170,7 @@ Branch: <Branch A: name> (<file:line>)
 - **Leverage:** <KPI branch, direct or indirect, reasoning, source>
 - **Where in the funnel:** <driver: lost there, counted> · <of those reaching it, how many book> (data.md D-number)
 - **Need or solution:** <two solutions that would each meet it, or the need underneath with its quote>
-- **Measurability (8 weeks):** <signal, which event or field, events over the data span>
+- **Readable from today's data (8 weeks):** <signal, which event or field, events over the data span>
 - **Gaps and uncertainty:** <what is unknown, who can answer>
 
 ## Shortlist
