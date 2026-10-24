@@ -16,6 +16,7 @@ contrast" opportunities against each other, rather than judging one in isolation
 
 ## Rules
 
+- **Try first, then compare.** Before you draft, ask the human for which opportunity they favour right now, with a one-sentence reason. The challenger step then also attacks their favourite, if it differs from the row the table favours. Wait for the answer and never invent it. After drafting, fill the section "Your first try": their answer word for word, then two or three short lines on where your draft differs and why. If they say skip, write "skipped". This step is how participants learn the concept; do not shorten it.
 - **Every claim quotes its source with location** (file and line or section). No quote, no claim.
   Open the cited file in `sources/` and check the quote is there. If it is not, say so in the cell
   and do not use it.
@@ -30,6 +31,7 @@ contrast" opportunities against each other, rather than judging one in isolation
 
 ## Steps
 
+0. **Try first.** Ask the human for which opportunity they favour right now, with a one-sentence reason. The challenger step then also attacks their favourite, if it differs from the row the table favours. Wait for the answer before you read further or draft anything.
 1. Read all opportunity files and the KPI tree. List the opportunities you will compare and show
    the list before writing.
 2. For each criterion and each opportunity, fill one cell, verifying quotes in `sources/`.
@@ -57,6 +59,9 @@ contrast" opportunities against each other, rather than judging one in isolation
 
 > Assessment by an agent (`compare-opportunities`), not a decision. Date: YYYY-MM-DD.
 > Inputs: <list of files in discovery/opportunities/>, discovery/kpi-tree.md
+
+## Your first try
+<the human's answer, word for word> · Where the draft differs: <two or three short lines>
 
 ## Comparison
 
