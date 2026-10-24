@@ -44,11 +44,11 @@ function describe(text, level) {
   const head = label.match(/^(Business goal|Branch [A-Z]):\s*(.*)$/i);
   if (head) { kind = head[1].toLowerCase(); label = head[2]; }
   let title = label;
-  let detail = '';
   const colon = label.indexOf(': ');
-  if (level >= 2 && colon > 0) { title = label.slice(0, colon); detail = label.slice(colon + 2); }
+  // A driver reads "<short name>: <plain sentence>": the sentence is what the box says.
+  if (level >= 2 && colon > 0) { kind += ' · ' + label.slice(0, colon); title = label.slice(colon + 2); }
   const event = measured ? measured.replace(/`/g, '').replace(/\s+in data\/\S+$/, '').trim() : '';
-  return { kind, title, detail, event, parked };
+  return { kind, title, event, parked };
 }
 
 function wrap(s, width) {
@@ -70,11 +70,10 @@ function layout(items) {
     const d = describe(item.text, level);
     const w = COL_W[Math.min(level, 2)];
     const titleLines = wrap(d.title, w);
-    const detailLines = wrap(d.detail, w);
     const eventLines = wrap(d.event && 'measured: ' + d.event, w);
-    const h = 12 + 14 + titleLines.length * LINE_H + detailLines.length * 15 + eventLines.length * 15 + 12;
+    const h = 12 + 14 + titleLines.length * LINE_H + eventLines.length * 15 + 12;
     const x = PAD + COL_W.slice(0, Math.min(level, 2)).reduce((a, b) => a + b + GAP_X, 0);
-    const node = { ...d, level, x, w, h, titleLines, detailLines, eventLines, children: [] };
+    const node = { ...d, level, x, w, h, titleLines, eventLines, children: [] };
     nodes.push(node);
     if (!item.children.length) { node.y = y; y += h + ROW_GAP; return node; }
     node.children = item.children.map((c) => place(c, level + 1));
@@ -108,7 +107,6 @@ export function drawTree(md) {
     const text = [`<text class="kind" x="${n.x + 12}" y="${ty}">${esc(n.kind.toUpperCase())}${n.parked ? ' · NOT THIS QUARTER' : ''}</text>`];
     ty += 6;
     for (const l of n.titleLines) { ty += LINE_H; text.push(`<text class="title" x="${n.x + 12}" y="${ty - 4}">${esc(l)}</text>`); }
-    for (const l of n.detailLines) { ty += 15; text.push(`<text class="detail" x="${n.x + 12}" y="${ty - 3}">${esc(l)}</text>`); }
     for (const l of n.eventLines) { ty += 15; text.push(`<text class="event" x="${n.x + 12}" y="${ty - 3}">${esc(l)}</text>`); }
     boxes.push(`<g class="node level-${Math.min(n.level, 2)}${n.parked ? ' parked' : ''}"><rect x="${n.x}" y="${n.y}" width="${n.w}" height="${n.h}" rx="6"/>${text.join('')}</g>`);
   }
@@ -129,7 +127,6 @@ text{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;fill:var(--fg)}
 .kind{font-size:10px;letter-spacing:.08em;fill:var(--muted)}
 .title{font-size:14px;font-weight:600}
 .level-0 .title{fill:var(--goal)}
-.detail{font-size:12px;fill:var(--muted)}
 .event{font-size:11px;font-family:ui-monospace,Menlo,Consolas,monospace;fill:var(--event)}
 .link{fill:none;stroke:var(--line);stroke-width:1.5}
 .link.parked{stroke-dasharray:5 4}

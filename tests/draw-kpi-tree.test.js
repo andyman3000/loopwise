@@ -30,6 +30,8 @@ test('draws one box per node, a dashed parked branch, events, the formula, escap
   assert.match(html, /class="node level-1 parked"/);
   assert.match(html, /NOT THIS QUARTER/);
   assert.match(html, /measured: inquiry_started</);
+  assert.match(html, /DRIVER · START RATE</);
+  assert.match(html, /class="title"[^>]*>started per view</);
   assert.match(html, /inquiries &amp; calls/);
   assert.match(html, /bookings = start rate × booking rate/);
   assert.doesNotMatch(html, /product\/strategy\.md/);
