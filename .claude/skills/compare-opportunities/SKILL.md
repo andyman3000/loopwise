@@ -1,22 +1,22 @@
 ---
 name: compare-opportunities
-description: Compare the candidate opportunities in discovery/opportunities/ on fixed criteria (evidence strength, leverage, measurability, gaps, need or solution in disguise) and challenge the favoured one. Use when the team asks "which opportunity should we pursue", "compare the opportunities", or after the human has chosen which opportunities go into the comparison. Writes an assessment for a human decision; never picks the opportunity.
+description: Narrow the opportunities in discovery/opportunities/ to a shortlist the human confirms, then compare the shortlist on fixed criteria (evidence strength, leverage, measurability, gaps, need or solution in disguise) and challenge the favoured one. Use when the team asks "which opportunity should we pursue" or "compare the opportunities", after opportunities-from-source has run on the sources. Writes an assessment for a human decision; never picks the opportunity.
 ---
 
 # Compare opportunities
 
-**When:** after `opportunities-from-source` has run on the sources and the human has said which
-opportunities go into the comparison. Before `intent-and-ideas`.
+**When:** after `opportunities-from-source` has run on the sources. Before `intent-and-ideas`.
 **Reads:** every file in `discovery/opportunities/`; `discovery/kpi-tree.md`; `sources/` (all
 subfolders) to verify each quote the opportunity files cite.
-**Writes:** `discovery/opportunity-comparison.md`.
+**Writes:** `discovery/opportunity-comparison.md`; the "Goes into comparison" lines in
+`discovery/opportunities/*.md`, only after the human confirmed the shortlist.
 
 Before the build there is only evidence, so this skill compares evidence. Torres: "compare and
 contrast" opportunities against each other, rather than judging one in isolation.
 
 ## Rules
 
-- **Try first, then compare.** Before you draft, ask the human for which opportunity they favour right now, with a one-sentence reason. The challenger step then also attacks their favourite, if it differs from the row the table favours. Wait for the answer and never invent it. After drafting, fill the section "Your first try": their answer word for word, then two or three short lines on where your draft differs and why. If they say skip, write "skipped". This step is how participants learn the concept; do not shorten it.
+- **Try first, then compare.** Before you draft, ask the human for which opportunity they favour right now, with a one-sentence reason. Point them to their opportunity map first: with `npm start` running, `http://localhost:3000/discovery/map` shows every opportunity by source and evidence. The challenger step then also attacks their favourite, if it differs from the row the table favours. Wait for the answer and never invent it. After drafting, fill the section "Your first try": their answer word for word, then two or three short lines on where your draft differs and why. If they say skip, write "skipped". This step is how participants learn the concept; do not shorten it.
 - **Every claim quotes its source with location** (file and line or section). No quote, no claim.
   Open the cited file in `sources/` and check the quote is there. If it is not, say so in the cell
   and do not use it.
@@ -26,7 +26,12 @@ contrast" opportunities against each other, rather than judging one in isolation
   level, the reasoning, the sources, the counter-evidence and the gaps.
 - **Independent sources:** two quotes from the same interview or the same mail thread are one
   source. Say whose voice it is (sponsor, participant, academy staff).
-- **This file is an assessment by an agent, not a decision.** The selection fields stay empty.
+- **Shortlist: the agent narrows, the human confirms.** Propose a few well supported opportunities,
+  never pick one. Write "Goes into comparison" only after the human explicitly said yes to the
+  shortlist or changed it, and write what they confirmed, not your proposal. A vague reply ("ok",
+  "go on") is not a confirmation: ask again.
+- **This file is an assessment by an agent, not a decision.** "Chosen opportunity" and "What would
+  flip it" stay empty for the human.
 - Ask the human before including an opportunity that has no KPI branch in `discovery/kpi-tree.md`.
 - **Need, not solution in disguise.** An opportunity is a need or pain. It is a solution in disguise
   when its wording names a page, button, field, format, feature or channel ("wants a price list",
@@ -40,12 +45,23 @@ contrast" opportunities against each other, rather than judging one in isolation
 
 ## Steps
 
-0. **Try first.** Ask the human for which opportunity they favour right now, with a one-sentence reason. The challenger step then also attacks their favourite, if it differs from the row the table favours. Wait for the answer before you read further or draft anything.
-1. Read all opportunity files and the KPI tree. List the opportunities you will compare and show
-   the list before writing. Run the need-or-solution test on each one and show the result in the
-   same list. For any solution in disguise, show the need underneath and ask whether to compare that
-   need instead. Wait for the answer.
-2. For each criterion and each opportunity, fill one cell, verifying quotes in `sources/`.
+0. **Try first.** Ask the human to open their opportunity map (`npm start`, then `http://localhost:3000/discovery/map`) and say which opportunity they favour right now, with a one-sentence reason. The challenger step then also attacks their favourite, if it differs from the row the table favours. Wait for the answer before you read further or draft anything.
+1. **Shortlist.** Read all opportunity files and the KPI tree. If a "Goes into comparison" line is
+   already filled, show it and ask whether it still holds; otherwise propose:
+   - **Merge** the same need found in several source files into one candidate, naming every source
+     and ID ("emails O1 + interviews O1 + inbox O1").
+   - **Keep** a candidate if it passes all three: it is a need, not a solution in disguise (the
+     need-or-solution test in Rules); it sits on an active branch of `discovery/kpi-tree.md` or has a
+     side link to one; it is well supported, or partly supported in two or more independent source
+     groups after merging.
+   - **Show** the shortlist, three to five candidates, each with one line on why. Then show every
+     opportunity that dropped out, each with its one-line reason, so the human can bring it back.
+     If their favourite from step 0 dropped out, say so first.
+   - **Ask:** "Confirm this shortlist, or tell me what to add or drop. Who confirms?" Wait.
+   - **Write** the confirmed selection into the "Goes into comparison" line of each opportunity
+     file: the IDs from that file, with merges named ("O1, together with interviews O1"), or
+     `none`. Fill `Decided by` with the name they gave and `Date` with today. Touch nothing else.
+2. For each criterion and each confirmed candidate, fill one cell, verifying quotes in `sources/`.
    - **Evidence strength:** counted independent sources, whose voice, observed or only feared.
    - **Leverage:** which KPI branch in `discovery/kpi-tree.md`, and how direct: can the website
      change it, or does it need a change elsewhere?
@@ -77,6 +93,10 @@ contrast" opportunities against each other, rather than judging one in isolation
 
 ## Your first try
 <the human's answer, word for word> · Where the draft differs: <two or three short lines>
+
+## Shortlist
+Confirmed by <name>, <date>: <candidates as confirmed, merges named>
+Proposed by the agent: <the proposal, if the human changed it> · Dropped: <ID, file: one-line reason; ...>
 
 ## Comparison
 
