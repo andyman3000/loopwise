@@ -21,6 +21,7 @@ field here: assumptions belong to each idea, and the test card tests them.
 
 ## Rules
 
+- **Try first, then compare.** Before you draft, ask the human for one solution idea of their own, in one line, named by what changes on the page. If it fits the intent, include it among the ideas and say it is theirs. Wait for the answer and never invent it. After drafting, fill the section "Your first try": their answer word for word, then two or three short lines on where your draft differs and why. If they say skip, write "skipped". This step is how participants learn the concept; do not shorten it.
 - **Every claim quotes its source with location** (file and line or section). No quote, no claim.
 - **Do not invent numbers.** Only counted numbers: sources, voices, events in a log. No targets, no
   success lines, no thresholds here; those belong in the test card.
@@ -34,6 +35,7 @@ field here: assumptions belong to each idea, and the test card tests them.
 
 ## Steps
 
+0. **Try first.** Ask the human for one solution idea of their own, in one line, named by what changes on the page. If it fits the intent, include it among the ideas and say it is theirs. Wait for the answer before you read further or draft anything.
 1. Confirm the chosen opportunity with the human and read the decision record. If the record does
    not exist or names a different opportunity, say so and stop.
 2. Draft the intent: what should change for whom (which persona in `product/personas/`), why now,
@@ -51,6 +53,9 @@ field here: assumptions belong to each idea, and the test card tests them.
 
 > Assessment by an agent (`intent-and-ideas`), not a decision. Date: YYYY-MM-DD.
 > Opportunity: <name> in discovery/opportunities/<file>.md · Decision: discovery/decisions/<file>.md
+
+## Your first try
+<the human's answer, word for word> · Where the draft differs: <two or three short lines>
 
 ## What should change for whom
 <two or three sentences, persona from product/personas/<file>, strongest quote with source>
