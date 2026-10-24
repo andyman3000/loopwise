@@ -5,12 +5,11 @@ and what you can measure within eight weeks. The agent compares and challenges; 
 
 ## What you do (about 60 min)
 
-1. Selection first. Run `npm start` and open `http://localhost:3000/discovery/pick`. Every
-   opportunity is a card; the colour bar shows how well it is supported, the dots count the voices.
-   Filter by source, evidence, voice or KPI branch. Click the cards you want compared, enter your
-   name, save. The page fills "Goes into comparison", `Decided by` and `Date` in each file under
-   `discovery/opportunities/`. Grouping the same need from several sources into one is allowed;
-   write it into the field in the Markdown file after saving.
+1. Selection first. Look at the opportunity map: `npm start`, then
+   `http://localhost:3000/discovery/map`. The colour shows how well each opportunity is supported,
+   the dots count the voices. Then, in each file under `discovery/opportunities/`, fill "Goes into
+   comparison" with the opportunities you want compared, plus `Decided by` and `Date`. Grouping the
+   same need from several sources into one is allowed; say so in the field.
 2. In Claude Code: `/compare-opportunities`. It writes `discovery/opportunity-comparison.md`.
 3. Read the challenger part. Do the strongest voices come from a question that asked for exactly
    that answer? Is the favoured opportunity measurable in eight weeks?
