@@ -15,9 +15,12 @@ the block is for, what you do step by step, and when you are done.
 | [07-result.md](07-result.md) | Read the result | `07-result` |
 | [08-next-bet.md](08-next-bet.md) | Next bet | `08-next-bet` |
 
-## The same three moves in every block
+## The same four moves in every block
 
 - **Run the skill.** In Claude Code, inside the `loopwise` folder, type `/` and the skill name.
+- **Try first.** Before it drafts anything, the skill asks you one question about the step. Answer it
+  yourself, in a sentence or two. Afterwards the output shows your answer next to its draft, under
+  "Your first try". That comparison is where you learn the most.
 - **Read the output critically.** Does every claim have a quote with file and line? Is a number
   counted, or estimated? `npm run check` tests the citations against the lines they point at.
 - **Decide yourself.** Every skill leaves a field marked `____ (human decides)`. Fill it with your
