@@ -26,7 +26,8 @@ This file is an **assessment by an agent, not a decision**. Say so at the top of
 - Assessments in words on exactly three levels: **well supported**, **partly supported**, **unsupported**, each with reasoning, sources, counter-evidence, gaps.
 - If `discovery/kpi-tree.md` is missing, stop and say so: opportunities without a branch cannot be compared.
 - **Usage data shows where, never why.** When the source is `data`, write observations, not opportunities: a counted share at one step of the KPI tree, with the events divided. Each observation names the driver it sits on and which source groups could explain why. It becomes an opportunity only when a quote from another source gives the reason; this skill does not make that link for `data`. Counts are allowed here because they are counted from the files.
-- The skill never decides. "Goes into comparison" stays empty for a human.
+- The skill never decides. "Goes into comparison" stays empty; `compare-opportunities` fills it once
+  the human has confirmed the shortlist.
 
 ## Steps
 
@@ -71,7 +72,7 @@ This file is an **assessment by an agent, not a decision**. Say so at the top of
 |---|---|---|
 
 ## Goes into comparison
-Goes into comparison: ____ (human decides)
+Goes into comparison: ____ (human confirms the shortlist in compare-opportunities)
 Decided by: ____ · Date: ____
 ```
 
