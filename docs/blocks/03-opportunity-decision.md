@@ -15,7 +15,7 @@ and what you can measure within eight weeks. The agent compares and challenges; 
 3. Open `http://localhost:3000/discovery/tree`. It draws the comparison as a tree: the business
    goal on top, the funnel steps below it, your candidates at the bottom, each linked to the steps
    it acts on. Read three things there:
-   - the question in the box on top, and which candidates are not readable in eight weeks;
+   - the question in the box on top, and which candidates are not readable from today's data in eight weeks;
    - the steps with a dashed grey border: a loss, and no candidate acts there;
    - on each card, what it wins on and what it loses on. Click a card to see only its links.
 4. Open the comparison file only for the candidate you doubt. Read its evidence and the
