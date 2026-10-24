@@ -22,6 +22,8 @@ labels which of the two it is.
 
 ## How this repo works
 
+Step-by-step instructions for every workshop block are in [docs/blocks/](docs/blocks/README.md).
+
 All skills are in `.claude/skills/` from the start; `CLAUDE.md` lists them in chain order. You start
 at `00-start` and run the chain yourself. Each further tag is a reference state after one workshop
 block. If you decided differently, keep your own state or continue from the reference state.

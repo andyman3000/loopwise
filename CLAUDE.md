@@ -48,6 +48,7 @@ loopwise/
   tests/
   product/         vision.md, strategy.md, constraints.md, personas/
   sources/         interviews/, emails/, feedback/, inbox/, analytics/
+  docs/blocks/     step-by-step instructions per workshop block
   discovery/       kpi-tree.md, opportunities/, intents/, specs/,
                    test-cards/, decisions/, user-tests/
   .claude/skills/  one folder per skill
