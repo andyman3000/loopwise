@@ -8,8 +8,9 @@ and what you can measure within eight weeks. The agent compares and challenges; 
 1. Run `npm start`. In Claude Code: `/compare-opportunities`. It first asks which opportunity you
    favour. Answer from your opportunity map at `http://localhost:3000/discovery/map`: the colour
    shows how well each opportunity is supported, the dots count the voices.
-2. The skill merges the same need across sources and proposes a shortlist of three to five, with
-   everything it dropped and why. Confirm it, or say what to add or drop, and give your name. It
+2. The skill merges the same need across sources and proposes every candidate that passes its
+   keep test, with everything it dropped and why, and the steps where the data shows a loss no
+   source explains. Confirm it, or say what to add or drop, and give your name. It
    writes your choice into "Goes into comparison", then writes `discovery/opportunity-comparison.md`.
 3. Read the challenger part. Do the strongest voices come from a question that asked for exactly
    that answer? Is the favoured opportunity measurable in eight weeks?
