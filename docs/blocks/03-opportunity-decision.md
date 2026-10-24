@@ -12,11 +12,18 @@ and what you can measure within eight weeks. The agent compares and challenges; 
    keep test, with everything it dropped and why, and the steps where the data shows a loss no
    source explains. Confirm it, or say what to add or drop, and give your name. It
    writes your choice into "Goes into comparison", then writes `discovery/opportunity-comparison.md`.
-3. Read the challenger part. Do the strongest voices come from a question that asked for exactly
-   that answer? Is the favoured opportunity measurable in eight weeks?
-4. Decide. Fill "Chosen opportunity" and "What would flip it" in
-   `discovery/opportunity-comparison.md`.
-5. Record the decision in `discovery/decisions/001-<short-name>.md`:
+3. Open `http://localhost:3000/discovery/tree`. It draws the comparison as a tree: the business
+   goal on top, the funnel steps below it, your candidates at the bottom, each linked to the steps
+   it acts on. Read three things there:
+   - the question in the box on top, and which candidates are not readable in eight weeks;
+   - the steps with a dashed red border: a big loss, and no candidate acts there;
+   - on each card, what it wins on and what it loses on. Click a card to see only its links.
+4. Open the comparison file only for the candidate you doubt. Read its evidence and the
+   challenger. Do the strongest voices come from a question that asked for exactly that answer?
+   The challenger quotes the interviewer's question before each strongest quote.
+5. Decide. Fill "Chosen opportunity" and "What would flip it" in
+   `discovery/opportunity-comparison.md`. Reload the tree: your choice shows on top and on its card.
+6. Record the decision in `discovery/decisions/001-<short-name>.md`:
    ```markdown
    # Decision 001: <chosen opportunity>
 
@@ -27,7 +34,7 @@ and what you can measure within eight weeks. The agent compares and challenges; 
    ## Who
    ## When
    ```
-6. Check and commit:
+7. Check and commit:
    ```bash
    npm run check
    git add discovery && git commit -m "block 3: opportunity decision"
