@@ -100,7 +100,9 @@ The trainer changes this one line per cohort, for example to `product managers`.
 
 - **English** in every file.
 - **Every claim in an artefact quotes its source with location**: file and line, for example
-  `sources/interviews/sponsor-soft.md:49`. No quote, no claim.
+  `sources/interviews/sponsor-soft.md:49`. No quote, no claim. This includes statements about
+  rules, limits and strategy ("prices stay off the website"): cite the line in `product/` that says
+  it, for example `product/constraints.md:7`, never "by rule" or a section name alone.
 - **Only counted numbers.** A number appears only if it is counted from a file in `sources/` or
   `data/`. No scores, no probabilities, no estimated totals, no invented targets.
 - **Assessments on three levels, in words:** well supported, partly supported, unsupported. Each
