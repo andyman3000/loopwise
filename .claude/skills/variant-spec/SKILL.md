@@ -1,5 +1,5 @@
 ---
-name: spec
+name: variant-spec
 description: Write the spec for one solution variant the human has chosen, so Claude Code can build it and test-card can draft its card. Use after the intent's selection field names the ideas that become variants, when the team says "write the spec", "spec this variant", or "what exactly do we build for <variant>". Input is one variant name. Writes one file per variant; never chooses variants and never builds.
 ---
 
@@ -36,7 +36,7 @@ A spec is the hand-over to the build: precise enough that Claude Code can build 
 ```markdown
 # Spec: <variant>
 
-> Spec drafted by an agent (`spec`) on <YYYY-MM-DD>, before the build.
+> Spec drafted by an agent (`variant-spec`) on <YYYY-MM-DD>, before the build.
 > **Variant:** `<variant>`, served at `/inquiry?variant=<variant>`
 > **Idea:** <I-number> in `discovery/intents/<opportunity>.md` ("<idea line, quoted>")
 > **Selection:** "<selection line, quoted>" (`discovery/intents/<opportunity>.md`, section "Selection (human)")

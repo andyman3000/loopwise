@@ -5,8 +5,8 @@ description: Draft the test card for one solution variant before it is built or 
 
 # Test card
 
-**When:** after `spec` has written the spec for the variant, and before any variant goes live or into a user test. Once per variant.
-**Reads:** `discovery/intents/<opportunity>.md`, `discovery/specs/<variant>.md` (the spec, written by `spec`), `product/constraints.md`, `discovery/kpi-tree.md`, `sources/` (interviews, emails, feedback, inbox, analytics).
+**When:** after `variant-spec` has written the spec for the variant, and before any variant goes live or into a user test. Once per variant.
+**Reads:** `discovery/intents/<opportunity>.md`, `discovery/specs/<variant>.md` (the spec, written by `variant-spec`), `product/constraints.md`, `discovery/kpi-tree.md`, `sources/` (interviews, emails, feedback, inbox, analytics).
 **Writes:** `discovery/test-cards/<variant>.md`.
 
 This is an assessment drafted by an agent, not a decision. A human owns the card and every value on it.

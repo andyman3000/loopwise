@@ -6,7 +6,7 @@ description: Turn the opportunity a human has chosen into an intent (what should
 # Intent and ideas
 
 **When:** after the human has chosen an opportunity in `discovery/opportunity-comparison.md` and the
-decision is recorded in `discovery/decisions/`. Before `spec`.
+decision is recorded in `discovery/decisions/`. Before `variant-spec`.
 **Input:** the chosen opportunity, named by the human. If no name is given, ask. Do not take it from
 "Appears favoured" in the comparison.
 **Reads:** `discovery/opportunity-comparison.md`; the decision record for the opportunity choice in
