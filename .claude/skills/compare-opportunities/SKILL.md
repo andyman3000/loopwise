@@ -31,8 +31,8 @@ contrast" opportunities against each other, rather than judging one in isolation
   keep test, never pick one, and never cut a passing candidate to reach a number. Write "Goes into comparison" only after the human explicitly said yes to the
   shortlist or changed it, and write what they confirmed, not your proposal. A vague reply ("ok",
   "go on") is not a confirmation: ask again.
-- **This file is an assessment by an agent, not a decision.** "Chosen opportunity" and "What would
-  flip it" stay empty for the human.
+- **This file is an assessment by an agent, not a decision.** "Chosen opportunity" and "We would
+  switch if" stay empty for the human.
 - Ask the human before including an opportunity that has no KPI branch in `discovery/kpi-tree.md`.
 - **Need, not solution in disguise.** An opportunity is a need or pain. It is a solution in disguise
   when its wording names a page, button, field, format, feature or channel ("wants a price list",
@@ -90,7 +90,10 @@ contrast" opportunities against each other, rather than judging one in isolation
      meet it, or the need underneath.
    - **Readable from today's data:** is there a signal within eight weeks in the events and fields
      that exist today, which event or field shows it, and
-     how many of those events the data holds over its whole span ("55 calls in 26 weeks").
+     how many of those events the data holds over its whole span ("55 calls in 26 weeks"). A
+     signal on another branch counts too when it measures the need itself (a follow-up answer for a
+     need about what happens after the training): name it with its count, its branch, and how long
+     after the booking it arrives.
    - **Gaps and uncertainty:** what is not known, and what would answer it.
 3. Name the candidate the comparison appears to favour, as "Appears favoured: <ID>, because <one
    line>". This is a reading of the comparison, not a choice.
@@ -159,7 +162,7 @@ Branch: <Branch A: name> (<file:line>)
 - **Evidence:** <level>: <independent source groups, voices, observed or feared>
 - **Leverage:** <level>: <direct or indirect, can the website change it>
 - **Need or solution:** <need, or solution in disguise>
-- **Readable from today's data in 8 weeks:** <level>: <event, events over the data span>
+- **Readable from today's data in 8 weeks:** <level>: <event, events over the data span>; also <a signal on another branch that measures the need: event, count, delay>, if any
 - **Wins on:** <one line>
 - **Loses on:** <one line>
 - **Strongest quote:** "<quote>" (<file:line>)
@@ -197,5 +200,5 @@ Dropped:
 ## Decision (human)
 
 Chosen opportunity: ____ (human decides)
-What would flip it: ____ (a finding that would make you switch, and which candidate you would switch to)
+We would switch if: ____ (a finding, and the candidate you would switch to, for example "call notes show sponsors settle the format in five minutes: then C3")
 ```
