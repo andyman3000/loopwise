@@ -118,8 +118,9 @@ contrast" opportunities against each other, rather than judging one in isolation
    participant reads the top first, then opens the evidence for the one candidate they doubt.
    - **Tree:** one line per driver of the active branch, in funnel order, every driver even when no
      candidate acts on it. The loss is written `<lost> of <reached> <what>`, counted from `data.md`.
-     A candidate is listed on every driver its opportunity files name as the driver in their KPI
-     branch line; a step mentioned only inside an `[assumption: ...]` does not count. A driver no
+     A candidate is listed on every driver its opportunity files name in their KPI branch line, as
+     the driver or as a further one ("Could also sit on start rate"); a step mentioned only inside
+     an `[assumption: ...]` does not count. A driver no
      opportunity file names, added by the data rule as `[assumption: the need also acts on <driver>]`, is marked
      `(assumed)` after the ID. Under that driver, one indented line gives the data observation
      that suggests the link, counted, with its D-number: `  - Data: <observation> (data.md D<n>)`.
