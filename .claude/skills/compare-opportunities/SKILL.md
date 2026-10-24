@@ -28,6 +28,9 @@ contrast" opportunities against each other, rather than judging one in isolation
   source. Say whose voice it is (sponsor, participant, academy staff).
 - **This file is an assessment by an agent, not a decision.** The selection fields stay empty.
 - Ask the human before including an opportunity that has no KPI branch in `discovery/kpi-tree.md`.
+- **`discovery/opportunities/data.md` holds observations, not opportunities.** Use an observation as
+  evidence for an opportunity on the same driver ("where" next to the quote's "why"). Never compare
+  an observation as an opportunity of its own.
 
 ## Steps
 
