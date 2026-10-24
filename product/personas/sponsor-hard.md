@@ -35,7 +35,7 @@
 
 ## Frustrations
 
-- **Trainings that faded.** "four weeks later everything was as before" (`interviews/sponsor-hard.md:23`).
+- **Trainings that changed nothing.** "four weeks later everything was as before" (`interviews/sponsor-hard.md:23`).
 - **Personal risk.** "If this flops, I look bad in front of my team and in front of the board." (`interviews/sponsor-hard.md:19`)
 - **Wrong kind of format.** A tool course that dates, a use-case list, the strongest bored and the weakest out on the first morning (`interviews/sponsor-hard.md:41`).
 - **Access overhead.** "getting all the access takes longer than building the thing" (`interviews/sponsor-hard.md:49`).
