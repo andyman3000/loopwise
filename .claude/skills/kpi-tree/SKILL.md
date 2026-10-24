@@ -1,13 +1,13 @@
 ---
 name: kpi-tree
-description: Draw the KPI tree for the business goal: the branches the strategy names, and under each the drivers the team can influence, each tied to the event that measures it. Use at the start of discovery, before any opportunity work, or when the strategy changes. Writes discovery/kpi-tree.md. Shows the mechanism only; it does not diagnose, rank or recommend.
+description: Draw the KPI tree for the business goal: the branches the strategy names, and under each the drivers the team can influence, each tied to the event that measures it. Use at the start of discovery, before any opportunity work, or when the strategy changes. Writes discovery/kpi-tree.md and draws it as discovery/kpi-tree.html. Shows the mechanism only; it does not diagnose, rank or recommend.
 ---
 
 # kpi-tree
 
 - **When:** first step of the discovery chain, before `opportunities-from-source`. Again when `product/strategy.md` changes.
 - **Reads:** `product/strategy.md` (goal and branches), `CLAUDE.md`, `data/events.jsonl` and `data/inquiries.csv` (which events and columns exist).
-- **Writes:** `discovery/kpi-tree.md`.
+- **Writes:** `discovery/kpi-tree.md` (the tree as text) and `discovery/kpi-tree.html` (the same tree drawn, made by `npm run tree`).
 
 A KPI tree breaks one output metric (the business goal) into the input metrics a team can move.
 Each link is a plain relationship: a product or a sum. This skill draws that tree and nothing else.
@@ -32,6 +32,7 @@ Each link is a plain relationship: a product or a sum. This skill draws that tre
 4. For each driver, find the event in `data/events.jsonl` or the column in `data/inquiries.csv` that measures it. If none exists, write "no event yet".
 5. Write the branch formula: the goal of the branch as the product (or sum) of its drivers.
 6. Check: no number from `data/` in the file, every driver has a measure or "no event yet", the parked branch has no drivers, the file fits on one screen.
+7. Draw it: run `npm run tree`. It writes `discovery/kpi-tree.html` from the Markdown. Never write or edit the HTML by hand; if the drawing is wrong, fix the Markdown and draw again. Tell the human to open the file in the browser.
 
 ## Output template (`discovery/kpi-tree.md`)
 
@@ -59,4 +60,4 @@ Where the tree differs:
 <branch outcome> = <driver> × <driver> × ...
 ````
 
-Then stop. Do not start opportunity work.
+Then run `npm run tree` and stop. Do not start opportunity work.
