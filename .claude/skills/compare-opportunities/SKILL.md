@@ -122,7 +122,13 @@ contrast" opportunities against each other, rather than judging one in isolation
      names, added by the data rule as `[assumption: the need also acts on <driver>]`, is marked
      `(assumed)` after the ID.
    - **Candidates:** every field is one line, at most 15 words, except the quote.
-6. Write the file with the template below. Then stop. Do not start an intent.
+6. Write the file with the template below. Run `npm run check`.
+7. **Send the human to the tree before they decide.** Your closing message always gives the link
+   `http://localhost:3000/discovery/tree` (start the server with `npm start` if it is not running)
+   and says to read the tree before filling "Chosen opportunity" and "We would switch if". Name the
+   one thing to look at first: the question on top and the steps where no candidate acts. Never
+   close without the link, also when the human asks for a summary in the chat. Then stop. Do not
+   start an intent.
 
 The file is drawn as a tree at `http://localhost:3000/discovery/tree`. The page reads the sections
 "What you decide", "Your first try", "Tree", "Candidates" and "Decision (human)" by their line
