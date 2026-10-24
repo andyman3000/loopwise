@@ -30,7 +30,8 @@ the block is for, what you do step by step, and when you are done.
 
 The skills write Markdown into `discovery/`. To read them comfortably, run `npm start` and open
 `http://localhost:3000/discovery`. The KPI tree is drawn there as a tree. To fill a decision field,
-edit the Markdown file itself.
+edit the Markdown file itself. One exception: in block 3 you choose the opportunities for the
+comparison on `http://localhost:3000/discovery/pick`, which writes the choice into the files.
 
 ## Your own branch and the reference states
 
