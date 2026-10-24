@@ -28,6 +28,7 @@ Branch: Branch A: inquiries that end in a booking (product/strategy.md:12)
 - website visits: 100 visits, the top of the funnel (data.md D1) · Candidates: none
 - start rate: 5 of 10 leave without starting (data.md D3) · Candidates: none
 - call rate: 4 of 8 get no call (data.md D5) · Candidates: C2 (assumed)
+  - Data: visits with a formats view go on less often, 3 of 9 against 4 of 6 (data.md D2)
 - booking rate: 3 of 5 calls end without a booking (data.md D6) · Candidates: C1, C2
 
 ## Candidates
@@ -71,6 +72,8 @@ test('the comparison is parsed into goal, drivers in order, candidates and their
   assert.equal(p.branch, 'Branch A: inquiries that end in a booking');
   assert.deepEqual(p.drivers.map((d) => d.name), ['website visits', 'start rate', 'call rate', 'booking rate']);
   assert.deepEqual([p.drivers[0].lost, p.drivers[1].lost, p.drivers[1].of], [null, 5, 10]);
+  assert.deepEqual(p.drivers.map((d) => d.data.length), [0, 0, 1, 0]);
+  assert.match(p.drivers[2].data[0], /^visits with a formats view/);
   assert.deepEqual(p.candidates.map((c) => c.id), ['C1', 'C2']);
   assert.deepEqual(p.candidates[1].drivers, [{ name: 'call rate', assumed: true }, { name: 'booking rate', assumed: false }]);
   assert.deepEqual([p.candidates[0].evidence.level, p.candidates[0].measurable.level], ['well supported', 'unsupported']);
@@ -85,6 +88,7 @@ test('the page draws one card per candidate, marks the gap, the favourite and th
   assert.equal((html.match(/class="node driver/g) || []).length, 4);
   assert.equal((html.match(/No candidate acts here/g) || []).length, 1, 'start rate is a gap, website visits is not');
   assert.match(html, /comparison favours/);
+  assert.match(html, /Data behind the dashed link:<\/b> visits with a formats view/);
   assert.match(html, /your first try/);
   assert.match(html, /Open\. You fill "Chosen opportunity"/);
   assert.match(html, /&lt;unclear&gt; driver/);
