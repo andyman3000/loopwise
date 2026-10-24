@@ -58,6 +58,7 @@ loopwise/
 ```bash
 npm start   # http://localhost:3000, PORT overrides
 npm test    # node --test
+npm run check   # citations point at real lines, quotes match, event names from the list
 ```
 
 Node 20 or newer. No dependencies, no `npm install`. Keep it that way.

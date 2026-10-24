@@ -10,6 +10,7 @@ build that chain themselves, with skills, on top of a small working website.
 ```bash
 npm start   # http://localhost:3000, set PORT to change it
 npm test
+npm run check   # citations, quotes, event names, dashes in discovery/ and product/
 ```
 
 No dependencies, no `npm install`. Node 20 or newer.
