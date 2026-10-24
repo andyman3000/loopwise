@@ -13,6 +13,7 @@ This is an assessment by an agent, not a decision. A human picks the variant and
 
 ## Rules
 
+- **Try first, then compare.** Before you draft, ask the human for which variant they would ship, and whether they would test it with users first, with a one-sentence reason. Wait for the answer and never invent it. After drafting, fill the section "Your first try": their answer word for word, then two or three short lines on where your draft differs and why. If they say skip, write "skipped". This step is how participants learn the concept; do not shorten it.
 - **Compare assumptions, not variants** (Torres, "compare and contrast"). For each variant, take the critical assumptions from its test card and check them against `sources/` yourself; do not copy the card's level unchecked.
 - **Three levels, in words:** **well supported**, **partly supported**, **unsupported**, each with reasoning, sources, counter-evidence and gaps. For an unsupported assumption, say how cheaply it can be tested (what test, with whom, what it needs).
 - **Every claim quotes its source with location** (file and line or section). No quote, no claim.
@@ -25,6 +26,7 @@ This is an assessment by an agent, not a decision. A human picks the variant and
 
 ## Steps
 
+0. **Try first.** Ask the human for which variant they would ship, and whether they would test it with users first, with a one-sentence reason. Wait for the answer before you read further or draft anything.
 1. List the variants and check each has a test card. Missing card: stop and name it.
 2. Per variant, assess each critical assumption against `sources/`. Search for counter-evidence on purpose.
 3. Note persona objections per sponsor type, if personas or reviews exist.
@@ -38,6 +40,9 @@ This is an assessment by an agent, not a decision. A human picks the variant and
 
 > Assessment by an agent on <YYYY-MM-DD>, not a decision.
 > Variants: <n counted> in `discovery/specs/` · Test cards: <n counted> · User tests: <n counted, or "none in discovery/user-tests/">
+
+## Your first try
+<the human's answer, word for word> · Where the draft differs: <two or three short lines>
 
 ## <variant>
 Test card: `discovery/test-cards/<variant>.md`
