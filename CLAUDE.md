@@ -6,7 +6,8 @@ Project preferences for Claude Code in the Loopwise demo repo.
 
 **Product context (read before any discovery work):**
 - [product/vision.md](product/vision.md): who we serve, what we believe, what we are not
-- [product/strategy.md](product/strategy.md): business goal, the two levers, what we do not do this quarter
+- [product/strategy.md](product/strategy.md): business goal, the one path we work on this quarter, what we do not do
+- [product/glossary.md](product/glossary.md): Loopwise words in plain English (sponsor, participant, format, scoping call, ...)
 - [product/constraints.md](product/constraints.md): hard limits on data, tech, measurement and material
 - [product/personas/](product/personas/): soft sponsor, hard sponsor, participant
 
@@ -88,6 +89,7 @@ The trainer changes this one line per cohort, for example to `product managers`.
 
 - **Plain English in every artefact.** Sentences under 15 words. Common words. One idea per
   sentence. No filler, no consultant phrases.
+- **Loopwise words mean what `product/glossary.md` says.** Use them that way in every artefact.
 - **Explain product terms once.** While the audience line names people new to product work, explain
   each product term (opportunity, KPI branch, proxy metric, counter metric, success line, kill
   criterion) in one short sentence the first time it appears in a file. For `product managers`,
