@@ -26,7 +26,8 @@ Where the draft differs:
 Outcome: more booked workshops (product/strategy.md:8)
 Branch: Branch A: inquiries that end in a booking (product/strategy.md:12)
 - website visits: 100 visits, the top of the funnel (data.md D1) · Candidates: none
-- start rate: 5 of 10 leave without starting (data.md D3) · Candidates: none
+- start rate: 5 of 10 leave without starting (data.md D3) · Candidates: C1 (needs research)
+  - Research: a file says it could sit here (x.md:1)
 - call rate: 4 of 8 get no call (data.md D5) · Candidates: C2 (assumed)
   - Data: visits with a formats view go on less often, 3 of 9 against 4 of 6 (data.md D2)
 - booking rate: 3 of 5 calls end without a booking (data.md D6) · Candidates: C1, C2
@@ -75,7 +76,9 @@ test('the comparison is parsed into goal, drivers in order, candidates and their
   assert.deepEqual(p.drivers.map((d) => d.data.length), [0, 0, 1, 0]);
   assert.match(p.drivers[2].data[0], /^visits with a formats view/);
   assert.deepEqual(p.candidates.map((c) => c.id), ['C1', 'C2']);
-  assert.deepEqual(p.candidates[1].drivers, [{ name: 'call rate', assumed: true }, { name: 'booking rate', assumed: false }]);
+  assert.deepEqual(p.candidates[1].drivers, [{ name: 'call rate', kind: 'assumed' }, { name: 'booking rate', kind: 'named' }]);
+  assert.deepEqual(p.candidates[0].drivers, [{ name: 'start rate', kind: 'research' }, { name: 'booking rate', kind: 'named' }]);
+  assert.deepEqual(p.drivers[1].research, ['a file says it could sit here (x.md:1)']);
   assert.deepEqual([p.candidates[0].evidence.level, p.candidates[0].measurable.level], ['well supported', 'unsupported']);
   assert.equal(p.candidates[0].quote.where, 'sources/interviews/a.md:3');
   assert.deepEqual([p.favoured.id, p.firstTry.id, p.chosen, p.flip], ['C2', 'C1', '', '']);
@@ -86,7 +89,9 @@ test('the page draws one card per candidate, marks the gap, the favourite and th
   const html = treePage(repo(MD));
   assert.equal((html.match(/<button type="button" class="card/g) || []).length, 2);
   assert.equal((html.match(/class="node driver/g) || []).length, 4);
-  assert.equal((html.match(/No candidate acts here/g) || []).length, 1, 'start rate is a gap, website visits is not');
+  assert.equal((html.match(/No candidate with evidence yet/g) || []).length, 1, 'start rate is a gap with a possible candidate, website visits is not a gap');
+  assert.match(html, /Needs research:<\/b> a file says/);
+  assert.match(html, /start rate \(needs research\)/);
   assert.match(html, /comparison favours/);
   assert.match(html, /Data behind the dashed link:<\/b> visits with a formats view/);
   assert.match(html, /your first try/);
