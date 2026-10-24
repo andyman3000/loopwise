@@ -26,6 +26,11 @@ This file is an **assessment by an agent, not a decision**. Say so at the top of
 - Assessments in words on exactly three levels: **well supported**, **partly supported**, **unsupported**, each with reasoning, sources, counter-evidence, gaps.
 - If `discovery/kpi-tree.md` is missing, stop and say so: opportunities without a branch cannot be compared.
 - **Usage data shows where, never why.** When the source is `data`, write observations, not opportunities: a counted share at one step of the KPI tree, with the events divided. Each observation names the driver it sits on and which source groups could explain why. It becomes an opportunity only when a quote from another source gives the reason; this skill does not make that link for `data`. Counts are allowed here because they are counted from the files.
+- **Split each step by what came before it.** Where the data shows what a visit did before a step
+  (for example which pages it saw), count every one of those the same way: of the visits that did
+  it, how many reach the next step, against the visits that did not. Do this for every page, never
+  for a chosen one, and write each split that differs into one observation on the same driver. It
+  still shows where, not why.
 - The skill never decides. "Goes into comparison" stays empty; `compare-opportunities` fills it once
   the human has confirmed the shortlist.
 
