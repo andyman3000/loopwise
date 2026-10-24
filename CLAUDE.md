@@ -44,6 +44,7 @@ same customer are the biggest lever.
 loopwise/
   README.md  CLAUDE.md  package.json  server.js
   site/            pages, components/, config.json   (variants/ appears once variants are built)
+  lib/             discovery-view.js: renders discovery/ at /discovery
   data/            empty at the start
   tests/
   product/         vision.md, strategy.md, constraints.md, personas/
@@ -60,6 +61,7 @@ loopwise/
 npm start   # http://localhost:3000, PORT overrides
 npm test    # node --test
 npm run check   # citations point at real lines, quotes match, event names from the list
+# http://localhost:3000/discovery shows the artefacts as readable pages, the KPI tree drawn
 ```
 
 Node 20 or newer. No dependencies, no `npm install`. Keep it that way.

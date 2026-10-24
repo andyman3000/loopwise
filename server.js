@@ -4,6 +4,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { validateInquiry } from './site/components/inquiry-form.js';
 import { isEventType } from './site/components/events.js';
+import { discoveryPage } from './lib/discovery-view.js';
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
 const SITE = path.join(ROOT, 'site');
@@ -176,6 +177,11 @@ export function createServer() {
     if (req.method !== 'GET' && req.method !== 'HEAD') {
       res.writeHead(405, { Allow: 'GET, HEAD' });
       return res.end('Method not allowed');
+    }
+    const discovery = discoveryPage(process.env.LOOPWISE_ROOT || ROOT, pathname);
+    if (discovery) {
+      res.writeHead(discovery.status, { 'Content-Type': 'text/html; charset=utf-8' });
+      return res.end(req.method === 'HEAD' ? undefined : discovery.html);
     }
     let file;
     if (pathname === '/inquiry') {

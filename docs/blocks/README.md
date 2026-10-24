@@ -23,6 +23,12 @@ the block is for, what you do step by step, and when you are done.
 - **Decide yourself.** Every skill leaves a field marked `____ (human decides)`. Fill it with your
   choice, your name, the date and one sentence why.
 
+## Reading the artefacts
+
+The skills write Markdown into `discovery/`. To read them comfortably, run `npm start` and open
+`http://localhost:3000/discovery`. The KPI tree is drawn there as a tree. To fill a decision field,
+edit the Markdown file itself.
+
 ## Your own branch and the reference states
 
 You work on your own branch, started from `00-start`. After every block there is a reference state.

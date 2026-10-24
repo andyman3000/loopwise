@@ -13,6 +13,9 @@ npm test
 npm run check   # citations, quotes, event names, dashes in discovery/ and product/
 ```
 
+With `npm start` running, `http://localhost:3000/discovery` shows every artefact as a readable page,
+and draws the KPI tree as a tree.
+
 No dependencies, no `npm install`. Node 20 or newer.
 
 ## About the material

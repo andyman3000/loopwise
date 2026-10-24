@@ -7,7 +7,8 @@ depends on. Every opportunity later gets checked against one branch of this tree
 
 1. In Claude Code: `/kpi-tree`. It reads `product/strategy.md`, `product/vision.md` and the material,
    and writes `discovery/kpi-tree.md`.
-2. Read the tree. For each driver ask: is it measured already, or marked "not measured yet"? Which
+2. Open `http://localhost:3000/discovery/kpi-tree.md` (with `npm start` running) to see the tree drawn.
+   Read it. For each driver ask: is it measured already, or marked "not measured yet"? Which
    links are marked `[assumption: ...]`?
 3. Pick one assumption and check it against `product/strategy.md`. Is it really an assumption, or
    does the strategy state it as fact?
