@@ -1,6 +1,6 @@
 ---
 name: compare-opportunities
-description: Narrow the opportunities in discovery/opportunities/ to a shortlist the human confirms, then compare the shortlist on fixed criteria (evidence strength, leverage, where in the funnel, need or solution in disguise, measurability, gaps) and challenge the favoured one. Use when the team asks "which opportunity should we pursue" or "compare the opportunities", after opportunities-from-source has run on the sources. Writes an assessment for a human decision; never picks the opportunity.
+description: Narrow the opportunities in discovery/opportunities/ to a shortlist the human confirms, then compare the shortlist on fixed criteria (evidence strength, leverage, where in the funnel, need or solution in disguise, measurability, gaps) and challenge the favoured one, drawn as an opportunity tree at /discovery/tree. Use when the team asks "which opportunity should we pursue" or "compare the opportunities", after opportunities-from-source has run on the sources. Writes an assessment for a human decision; never picks the opportunity.
 ---
 
 # Compare opportunities
@@ -16,15 +16,15 @@ contrast" opportunities against each other, rather than judging one in isolation
 
 ## Rules
 
-- **Try first, then compare.** Before you draft, ask the human for which opportunity they favour right now, with a one-sentence reason. Point them to their opportunity map first: with `npm start` running, `http://localhost:3000/discovery/map` shows every opportunity by source and evidence. The challenger step then also attacks their favourite, if it differs from the row the table favours. Wait for the answer and never invent it. After drafting, fill the section "Your first try": their answer word for word, then two or three short lines on where your draft differs and why. If they say skip, write "skipped". This step is how participants learn the concept; do not shorten it.
+- **Try first, then compare.** Before you draft, ask the human for which opportunity they favour right now, with a one-sentence reason. Point them to their opportunity map first: with `npm start` running, `http://localhost:3000/discovery/map` shows every opportunity by source and evidence. The challenger step then also attacks their favourite, if it differs from the candidate the comparison favours. Wait for the answer and never invent it. After drafting, fill the section "Your first try": their answer word for word, the candidate ID it matches ("Matches: C1", or "none"), then two or three short lines on where your draft differs and why. If they say skip, write "skipped". This step is how participants learn the concept; do not shorten it.
 - **Every claim quotes its source with location** (file and line or section). No quote, no claim.
-  Open the cited file in `sources/` and check the quote is there. If it is not, say so in the cell
+  Open the cited file in `sources/` and check the quote is there. If it is not, say so in the line
   and do not use it.
 - **Do not invent numbers.** Only counted numbers: independent sources, voices, events in a log.
   No scores, no weights, no probabilities, no totals.
-- **Three levels, in words:** well supported, partly supported, unsupported. The cells for evidence,
-  leverage and measurability give the level, the reasoning, the sources, the counter-evidence and
-  the gaps. The funnel row gives counts only, no level.
+- **Three levels, in words:** well supported, partly supported, unsupported. The evidence lines for
+  strength, leverage and measurability give the level, the reasoning, the sources, the
+  counter-evidence and the gaps. The funnel line gives counts only, no level.
 - **Independent sources:** two quotes from the same interview or the same mail thread are one
   source. Say whose voice it is (sponsor, participant, academy staff).
 - **Shortlist: the agent narrows, the human confirms.** Propose every candidate that passes the
@@ -51,7 +51,7 @@ contrast" opportunities against each other, rather than judging one in isolation
 
 ## Steps
 
-0. **Try first.** Ask the human to open their opportunity map (`npm start`, then `http://localhost:3000/discovery/map`) and say which opportunity they favour right now, with a one-sentence reason. The challenger step then also attacks their favourite, if it differs from the row the table favours. Wait for the answer before you read further or draft anything.
+0. **Try first.** Ask the human to open their opportunity map (`npm start`, then `http://localhost:3000/discovery/map`) and say which opportunity they favour right now, with a one-sentence reason. The challenger step then also attacks their favourite, if it differs from the candidate the comparison favours. Wait for the answer before you read further or draft anything.
 1. **Shortlist.** Read all opportunity files and the KPI tree. If a "Goes into comparison" line is
    already filled, show it and ask whether it still holds; otherwise propose:
    - **Merge** the same need found in several source files into one candidate, naming every source
@@ -77,7 +77,8 @@ contrast" opportunities against each other, rather than judging one in isolation
      `none`. Fill `Decided by` with the name they gave and `Date` with the export date (Rules).
      Leave the line in `data.md` as it is: observations are evidence, not candidates. Touch
      nothing else.
-2. For each criterion and each confirmed candidate, fill one cell, verifying quotes in `sources/`.
+2. For each criterion and each confirmed candidate, fill one line under "Evidence", verifying quotes in
+   `sources/`.
    - **Evidence strength:** counted independent sources, whose voice, observed or only feared.
    - **Leverage:** which KPI branch in `discovery/kpi-tree.md`, and how direct: can the website
      change it, or does it need a change elsewhere?
@@ -90,21 +91,36 @@ contrast" opportunities against each other, rather than judging one in isolation
    - **Measurability:** is there a signal within eight weeks, which event or field shows it, and
      how many of those events the data holds over its whole span ("55 calls in 26 weeks").
    - **Gaps and uncertainty:** what is not known, and what would answer it.
-3. Name the row the table appears to favour, as "Appears favoured: <name>, because <one line>".
-   This is a reading of the table, not a choice.
+3. Name the candidate the comparison appears to favour, as "Appears favoured: <ID>, because <one
+   line>". This is a reading of the comparison, not a choice.
 4. **Challenger.** You are a challenger. Your job is to find out early whether the favoured row is a
    bad bet. Be specific to the material: "what about other sponsors?" is useless, "the format
    question appears in one sponsor's interview only, `sources/interviews/...`, section 4" is useful.
    - Search `sources/` for counter-evidence to the favoured row. Quote it.
    - Run the need-or-solution test again on the favoured row, harder: does its strongest quote ask
      for a thing rather than describe a problem? Quote it.
+   - **Leading questions.** For the strongest interview quote of each candidate, open the source and
+     quote the interviewer's question right before it, with its line. Say whether the question
+     asked for exactly that answer ("What must not happen?" before a fear). Mails and inbox requests
+     are unprompted; say so.
    - Ask: does the favoured row win on how many people it reaches or on how close they are to a
      booking, and what does it lose on the other? Quote the counts.
    - Search for what would make another candidate better: a stronger branch, a quicker signal, a
      cheaper way to reach it. Quote it.
    - Name what you could not check, and who could answer it.
-   Do not answer your own challenges and do not change the table to fit them.
-5. Write the file with the template below. Then stop. Do not start an intent.
+   Do not answer your own challenges and do not change the comparison to fit them.
+5. **Sum up for the decider.** Fill "What you decide", "Tree" and "Candidates" from steps 1 to 4.
+   These are short on purpose: the long reasoning and every quote stay under "Evidence". A
+   participant reads the top first, then opens the evidence for the one candidate they doubt.
+   - **Tree:** one line per driver of the active branch, in funnel order, every driver even when no
+     candidate acts on it. The loss is written `<lost> of <reached> <what>`, counted from `data.md`.
+     A link that rests on an `[assumption: ...]` is marked `(assumed)`.
+   - **Candidates:** every field is one line, at most 15 words, except the quote.
+6. Write the file with the template below. Then stop. Do not start an intent.
+
+The file is drawn as a tree at `http://localhost:3000/discovery/tree`. The page reads the sections
+"What you decide", "Your first try", "Tree", "Candidates" and "Decision (human)" by their line
+prefixes, so keep the headings, the field names and the line shapes exactly as in the template.
 
 ## Output template
 
@@ -113,34 +129,60 @@ contrast" opportunities against each other, rather than judging one in isolation
 
 > Assessment by an agent (`compare-opportunities`), not a decision. Date: YYYY-MM-DD.
 > Inputs: <list of files in discovery/opportunities/>, discovery/kpi-tree.md
+> Material: <the labels of the material the inputs rest on>. This file repeats that label.
+
+Drawn as a tree at `http://localhost:3000/discovery/tree`.
+
+## What you decide
+Question: Which need do we work on for the next eight weeks?
+Appears favoured: <ID>, because <one line>. A reading of the comparison, not a choice.
+Not readable in eight weeks: <IDs, or "none">. <one line: why, with the event count>
+No candidate: <driver: lost of reached, from data.md>; <...>. Open research questions, not candidates.
 
 ## Your first try
-<the human's answer, word for word> · Where the draft differs: <two or three short lines>
+<the human's answer, word for word>
+Matches: <candidate ID, or "none">
+Where the draft differs:
+- <two or three short lines>
+
+## Tree
+Outcome: <business goal> (<file:line>)
+Branch: <Branch A: name> (<file:line>)
+- <driver>: <lost> of <reached> <what> (data.md D<n>) · Candidates: <IDs, "(assumed)" after an assumed link, or "none">
+
+## Candidates
+### C1: <need, in the sponsor's or participant's terms>
+- **From:** <source IDs, merges named>
+- **Evidence:** <level>: <independent source groups, voices, observed or feared>
+- **Leverage:** <level>: <direct or indirect, can the website change it>
+- **Need or solution:** <need, or solution in disguise>
+- **Measurable in 8 weeks:** <level>: <event, events over the data span>
+- **Wins on:** <one line>
+- **Loses on:** <one line>
+- **Strongest quote:** "<quote>" (<file:line>)
+
+## Evidence
+### C1: <name>
+- **Evidence strength:** <reasoning, quotes with file and line, counter-evidence, gaps>
+- **Leverage:** <KPI branch, direct or indirect, reasoning, source>
+- **Where in the funnel:** <driver: lost there, counted> · <of those reaching it, how many book> (data.md D-number)
+- **Need or solution:** <two solutions that would each meet it, or the need underneath with its quote>
+- **Measurability (8 weeks):** <signal, which event or field, events over the data span>
+- **Gaps and uncertainty:** <what is unknown, who can answer>
 
 ## Shortlist
 Confirmed by <name>, <date>: <candidates as confirmed, merges named>
-Proposed by the agent: <the proposal, or "confirmed as proposed"> · Dropped: <ID, file: one-line reason; ...>
-Gap: <driver: count, no candidate acts there; ...> Open research questions, not candidates.
-
-## Comparison
-
-One column per confirmed candidate.
-
-| Criterion | <Candidate 1> | <Candidate 2> | ... |
-|---|---|---|---|
-| Evidence strength | <level>: <reasoning>. Sources: <file, line>. Counter: <...>. Gaps: <...> | ... |
-| Leverage | <level>: KPI branch <A/B>, <direct/indirect>, can the website change it, <reasoning, source> | ... |
-| Where in the funnel | <driver>: <lost there, counted> · <of those reaching it, how many book> (data.md D-number) | ... |
-| Need or solution | <need: two solutions that would each meet it> or <solution in disguise: the need underneath, quote, file, line> | ... |
-| Measurability (8 weeks) | <level>: <signal, which event or field, events over the data span> | ... |
-| Gaps and uncertainty | <what is unknown, who can answer> | ... |
-
-Appears favoured: <name>, because <one line>. A reading of the table, not a choice.
+Proposed by the agent: <the proposal, or "confirmed as proposed">
+Dropped:
+- <ID, file>: <one-line reason>
 
 ## Challenger (on the favoured row)
 
 **Counter-evidence to <favoured>:**
 - "<quote>" (<file, line or section>): <why it cuts against>
+
+**Leading questions:**
+- <ID>: "<interviewer question>" (<file:line>) before "<quote>": <asked for exactly this, or open>
 
 **Wins on, loses on:** <reach or closeness to a booking, with the counts>
 
@@ -152,5 +194,5 @@ Appears favoured: <name>, because <one line>. A reading of the table, not a choi
 ## Decision (human)
 
 Chosen opportunity: ____ (human decides)
-What would flip it: ____
+What would flip it: ____ (a finding that would make you switch, and which candidate you would switch to)
 ```
