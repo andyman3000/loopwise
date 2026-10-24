@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { validateInquiry } from './site/components/inquiry-form.js';
 import { isEventType } from './site/components/events.js';
 import { discoveryPage } from './lib/discovery-view.js';
-import { pickPage, saveSelection } from './lib/opportunity-pick.js';
+import { mapPage } from './lib/opportunity-map.js';
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
 const SITE = path.join(ROOT, 'site');
@@ -149,10 +149,6 @@ const API = {
     res.writeHead(204);
     res.end();
   },
-  '/api/pick': (body, res) => {
-    const out = saveSelection(process.env.LOOPWISE_ROOT || ROOT, body);
-    sendJson(res, out.ok ? 200 : 400, out);
-  },
 };
 
 export function createServer() {
@@ -183,9 +179,9 @@ export function createServer() {
       res.writeHead(405, { Allow: 'GET, HEAD' });
       return res.end('Method not allowed');
     }
-    if (pathname === '/discovery/pick') {
+    if (pathname === '/discovery/map') {
       res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-      return res.end(req.method === 'HEAD' ? undefined : pickPage(process.env.LOOPWISE_ROOT || ROOT));
+      return res.end(req.method === 'HEAD' ? undefined : mapPage(process.env.LOOPWISE_ROOT || ROOT));
     }
     const discovery = discoveryPage(process.env.LOOPWISE_ROOT || ROOT, pathname);
     if (discovery) {

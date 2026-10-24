@@ -14,8 +14,8 @@ npm run check   # citations, quotes, event names, dashes in discovery/ and produ
 ```
 
 With `npm start` running, `http://localhost:3000/discovery` shows every artefact as a readable page,
-and draws the KPI tree as a tree. `http://localhost:3000/discovery/pick` shows every opportunity as a
-card, filters by source, evidence, voice and KPI branch, and saves your selection into the files.
+and draws the KPI tree as a tree. `http://localhost:3000/discovery/map` shows every opportunity as a
+card on an evidence map, filterable by source, evidence, voice and KPI branch.
 
 No dependencies, no `npm install`. Node 20 or newer.
 

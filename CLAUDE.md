@@ -45,7 +45,7 @@ loopwise/
   README.md  CLAUDE.md  package.json  server.js
   site/            pages, components/, config.json   (variants/ appears once variants are built)
   lib/             discovery-view.js: renders discovery/ at /discovery
-                   opportunity-pick.js: /discovery/pick, choose what goes into the comparison
+                   opportunity-map.js: /discovery/map, opportunities by source and evidence
   data/            events.jsonl, inquiries.csv   (synthetic baseline, 26 weeks)
   tests/
   product/         vision.md, strategy.md, constraints.md, personas/
@@ -64,7 +64,7 @@ npm test    # node --test
 npm run check   # citations point at real lines, quotes match, event names from the list
 npm run tree    # draws discovery/kpi-tree.md as discovery/kpi-tree.html
 # http://localhost:3000/discovery shows the artefacts as readable pages, the KPI tree drawn
-# http://localhost:3000/discovery/pick: tick the opportunities for the comparison, saves to the files
+# http://localhost:3000/discovery/map: every opportunity on an evidence map, filterable, read-only
 ```
 
 Node 20 or newer. No dependencies, no `npm install`. Keep it that way.

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { parseOpportunities, parseSelection, saveSelection, pickPage } from '../lib/opportunity-pick.js';
+import { parseOpportunities, parseSelection, mapPage } from '../lib/opportunity-map.js';
 
 const OPP = `# Opportunities: interviews
 
@@ -27,10 +27,10 @@ Goes into comparison: ____ (human decides)
 Decided by: ____ · Date: ____
 `;
 
-function repo() {
-  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'loopwise-pick-'));
+function repo(md = OPP) {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'loopwise-map-'));
   fs.mkdirSync(path.join(root, 'discovery', 'opportunities'), { recursive: true });
-  fs.writeFileSync(path.join(root, 'discovery', 'opportunities', 'interviews.md'), OPP);
+  fs.writeFileSync(path.join(root, 'discovery', 'opportunities', 'interviews.md'), md);
   fs.writeFileSync(path.join(root, 'discovery', 'opportunities', 'data.md'), '# Observations\n');
   fs.writeFileSync(path.join(root, 'discovery', 'kpi-tree.md'), '- Branch A: inquiries that end in a booking (x:1)\n- Branch B: follow-up bookings, not this quarter (x:2)\n');
   return root;
@@ -44,35 +44,22 @@ test('opportunities are parsed with level, voices, speakers and branch', () => {
   assert.equal(o1.quote.where, 'sources/interviews/a.md:4');
 });
 
-test('an empty selection reads as nothing chosen', () => {
-  assert.deepEqual(parseSelection(OPP), { ids: [], decidedBy: '' });
+test('an empty selection reads as nothing chosen, a filled one as its ids', () => {
+  assert.deepEqual(parseSelection(OPP), { ids: [] });
+  assert.deepEqual(parseSelection(OPP.replace('____ (human decides)', 'O2, O1')), { ids: ['O2', 'O1'] });
 });
 
-test('saving writes only the two selection lines and leaves data.md alone', () => {
-  const root = repo();
-  const out = saveSelection(root, { decidedBy: 'Kim', selections: { interviews: ['O2', 'O1'] } }, '2026-10-26');
-  assert.equal(out.ok, true);
-  const md = fs.readFileSync(path.join(root, 'discovery', 'opportunities', 'interviews.md'), 'utf8');
-  assert.equal(md, OPP.replace('Goes into comparison: ____ (human decides)', 'Goes into comparison: O1, O2').replace('Decided by: ____ · Date: ____', 'Decided by: Kim · Date: 2026-10-26'));
-  assert.deepEqual(parseSelection(md), { ids: ['O1', 'O2'], decidedBy: 'Kim' });
-  assert.equal(fs.readFileSync(path.join(root, 'discovery', 'opportunities', 'data.md'), 'utf8'), '# Observations\n');
-});
-
-test('nothing is written for an unknown id, a missing source or no name', () => {
-  const root = repo();
-  const file = path.join(root, 'discovery', 'opportunities', 'interviews.md');
-  assert.equal(saveSelection(root, { decidedBy: 'Kim', selections: { interviews: ['O9'] } }).ok, false);
-  assert.equal(saveSelection(root, { decidedBy: 'Kim', selections: {} }).ok, false);
-  assert.equal(saveSelection(root, { decidedBy: ' ', selections: { interviews: [] } }).ok, false);
-  assert.equal(fs.readFileSync(file, 'utf8'), OPP);
-});
-
-test('the page shows a card per opportunity with branch names from the KPI tree and escapes text', () => {
-  const root = repo();
-  fs.appendFileSync(path.join(root, 'discovery', 'opportunities', 'interviews.md'), '');
-  const html = pickPage(root);
+test('the map shows a card per opportunity, branch names from the KPI tree, and leaves data.md out', () => {
+  const html = mapPage(repo());
   assert.equal((html.match(/<article class="card/g) || []).length, 2);
   assert.match(html, /A: inquiries that end in a booking/);
   assert.match(html, /side link to A, driver booking rate/);
-  assert.doesNotMatch(html, /data\.md/);
+  assert.match(html, /Nothing is in the comparison yet/);
+  assert.doesNotMatch(html, /data\.md|<form|\/api\//);
+});
+
+test('the map marks what the files put into the comparison', () => {
+  const html = mapPage(repo(OPP.replace('____ (human decides)', 'O2')));
+  assert.equal((html.match(/class="in"/g) || []).length, 1);
+  assert.match(html, /1 marked "in comparison"/);
 });
