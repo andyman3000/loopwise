@@ -124,11 +124,6 @@ contrast" opportunities against each other, rather than judging one in isolation
      `(assumed)` after the ID. Under that driver, one indented line gives the data observation
      that suggests the link, counted, with its D-number: `  - Data: <observation> (data.md D<n>)`.
      No observation, no assumed link.
-     A step an opportunity file raises only as possible ("could also sit on start rate"), with no
-     evidence for it, is marked `(needs research)` after the ID. Under that driver, one indented line
-     says where it is raised and what would answer it:
-     `  - Research: <what is raised, file:line>; <what is unknown, who or what could answer>`.
-     Such a step still counts as a gap in "No candidate": it has no candidate with evidence.
    - **Candidates:** every field is one line, at most 15 words, except the quote.
 6. Write the file with the template below. Run `npm run check`.
 7. **Send the human to the tree before they decide.** Your closing message always gives the link
@@ -168,9 +163,8 @@ Where the draft differs:
 ## Tree
 Outcome: <business goal> (<file:line>)
 Branch: <Branch A: name> (<file:line>)
-- <driver>: <lost> of <reached> <what> (data.md D<n>) · Candidates: <IDs, "(assumed)" after a driver only the comparison adds, "(needs research)" after a driver only raised as possible, or "none">
+- <driver>: <lost> of <reached> <what> (data.md D<n>) · Candidates: <IDs, "(assumed)" after a driver only the comparison adds, or "none">
   - Data: <only under a driver with an assumed link: the observation that suggests it, counted> (data.md D<n>)
-  - Research: <only under a driver with a "(needs research)" link: where it is raised, file:line; what is unknown, who could answer>
 
 ## Candidates
 ### C1: <need, in the sponsor's or participant's terms>
