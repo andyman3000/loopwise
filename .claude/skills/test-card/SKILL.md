@@ -13,6 +13,7 @@ This is an assessment drafted by an agent, not a decision. A human owns the card
 
 ## Rules
 
+- **Try first, then compare.** Before you draft, ask the human for their success line in one sentence: what must happen for this variant to count as working. Wait for the answer and never invent it. After drafting, fill the section "Your first try": their answer word for word, then two or three short lines on where your draft differs and why. If they say skip, write "skipped". This step is how participants learn the concept; do not shorten it.
 - **Critical assumptions first** (Torres): the assumptions this variant rests on, not the variant as a whole. Each gets an evidence level in words: **well supported**, **partly supported** or **unsupported**, with reasoning, sources, counter-evidence and gaps.
 - **Every claim quotes its source with location** (file and line or section). No quote, no claim.
 - **Do not invent numbers.** Evidence uses only counted numbers: sources, voices, events in the log. No scores, no probabilities, no totals.
@@ -24,6 +25,7 @@ This is an assessment drafted by an agent, not a decision. A human owns the card
 
 ## Steps
 
+0. **Try first.** Ask the human for their success line in one sentence: what must happen for this variant to count as working. Wait for the answer before you read further or draft anything.
 1. Read the variant file and its intent. If the variant name has no file in `discovery/specs/`, stop and ask.
 2. List the critical assumptions: what must be true for this variant to change behaviour. Two to four. Search `sources/` for evidence for and against each.
 3. Map the variant to its KPI branch in `discovery/kpi-tree.md` (quote the line).
@@ -39,6 +41,9 @@ This is an assessment drafted by an agent, not a decision. A human owns the card
 > Card owner: ____ (human decides)
 > Variant: `discovery/specs/<variant>.md` · Intent: `discovery/intents/<opportunity>.md`
 > KPI branch: <branch> ("<quote>", `discovery/kpi-tree.md`, <section>)
+
+## Your first try
+<the human's answer, word for word> · Where the draft differs: <two or three short lines>
 
 ## What changes for whom
 <who does what differently on the page, in one or two sentences>
