@@ -5,14 +5,13 @@ time, each with a quote, its location and counter-evidence. Needs, not solutions
 
 ## What you do (about 35 min)
 
-1. In Claude Code: `/opportunities-from-source sources/interviews`. It writes
-   `discovery/opportunities/interviews.md`.
+1. In Claude Code: `/opportunities-from-source`. It lists every source group in `sources/`. Start
+   with `interviews`. It writes `discovery/opportunities/interviews.md`.
 2. Read it critically:
    - Does every opportunity quote the source with file and line? Open two of them and check.
    - Is anything a solution in disguise ("they need a dashboard")?
    - How many different voices carry each opportunity, and does the file say so?
-3. Run it for the other source groups as time allows: `sources/emails`, `sources/feedback`,
-   `sources/inbox`. The reference state `02-opportunities` has all four.
+3. Run it again for the other source groups as time allows: `emails`, `feedback`, `inbox`. The reference state `02-opportunities` has all four.
 4. Leave "Goes into comparison" empty for now. You fill it at the start of block 3.
 5. Check and commit:
    ```bash
