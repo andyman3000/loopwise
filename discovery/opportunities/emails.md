@@ -13,7 +13,7 @@ The sponsor wants to know how much it costs but cannot find the information. Bot
 Where the draft differs:
 - Same reading: price list and format overview are solutions. Both are listed under "Solution ideas heard".
 - "I don't know what I am getting" is O1 here. Four of six senders say it in some form, so it carries the file.
-- "If I can afford it" rests on this one mail only, and prices stay off the website by rule. The draft lists it under "Looks like an opportunity, but".
+- "If I can afford it" rests on this one mail only, and prices stay off the website (product/constraints.md:7). The draft lists it under "Looks like an opportunity, but".
 
 ## Source
 | File | Type | Speakers (role) | Basis line from the file |
@@ -95,7 +95,7 @@ All six mails arrived in weeks 3 to 5, "after the old form" (sources/emails/inqu
 | Finding | Quote and location | Why it is not one (yet) |
 |---|---|---|
 | Not sure the company tools and data rules allow the workshop | "I would rather know this now than discover it on the morning of the training." (sources/emails/inquiry-05.md:18) | Real and asked before booking, but one voice: "our IT has not approved the AI tool you seem to use in your sessions yet." (sources/emails/inquiry-05.md:14). Could sit on booking rate [assumption]. Needs a second voice from another source. |
-| Not knowing whether it is affordable | "do you have a price list or an overview of your formats you could send me?" (sources/emails/inquiry-03.md:12) | One voice, and it arrives as a request for a price list, which is a solution. Prices stay off the website and out of the data by rule (CLAUDE.md, scope), so this repo cannot test it. |
+| Not knowing whether it is affordable | "do you have a price list or an overview of your formats you could send me?" (sources/emails/inquiry-03.md:12) | One voice, and it arrives as a request for a price list, which is a solution. Prices stay off the website and out of the data (product/constraints.md:7), so this repo cannot test it. |
 | Everyone should leave with something usable the week after | "Ideally everyone leaves with something they can use in their own product work the week after." (sources/emails/inquiry-06.md:18) | One voice, and an outcome wish rather than a pain. Close to O3; it may count as evidence there once another source repeats it. |
 | Product lags behind engineering | "Our engineers are further along." (sources/emails/inquiry-04.md:16) | Context for why the mail was sent, not a need in the inquiry. One voice, no driver. |
 
