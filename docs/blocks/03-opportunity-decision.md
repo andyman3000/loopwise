@@ -5,12 +5,12 @@ and what you can measure within eight weeks. The agent compares and challenges; 
 
 ## What you do (about 60 min)
 
-1. Selection first. Look at the opportunity map: `npm start`, then
-   `http://localhost:3000/discovery/map`. The colour shows how well each opportunity is supported,
-   the dots count the voices. Then, in each file under `discovery/opportunities/`, fill "Goes into
-   comparison" with the opportunities you want compared, plus `Decided by` and `Date`. Grouping the
-   same need from several sources into one is allowed; say so in the field.
-2. In Claude Code: `/compare-opportunities`. It writes `discovery/opportunity-comparison.md`.
+1. Run `npm start`. In Claude Code: `/compare-opportunities`. It first asks which opportunity you
+   favour. Answer from your opportunity map at `http://localhost:3000/discovery/map`: the colour
+   shows how well each opportunity is supported, the dots count the voices.
+2. The skill merges the same need across sources and proposes a shortlist of three to five, with
+   everything it dropped and why. Confirm it, or say what to add or drop, and give your name. It
+   writes your choice into "Goes into comparison", then writes `discovery/opportunity-comparison.md`.
 3. Read the challenger part. Do the strongest voices come from a question that asked for exactly
    that answer? Is the favoured opportunity measurable in eight weeks?
 4. Decide. Fill "Chosen opportunity" and "What would flip it" in
