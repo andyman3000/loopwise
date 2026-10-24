@@ -61,6 +61,7 @@ loopwise/
 npm start   # http://localhost:3000, PORT overrides
 npm test    # node --test
 npm run check   # citations point at real lines, quotes match, event names from the list
+npm run tree    # draws discovery/kpi-tree.md as discovery/kpi-tree.html
 # http://localhost:3000/discovery shows the artefacts as readable pages, the KPI tree drawn
 ```
 
@@ -121,7 +122,7 @@ Run in this order. Each skill writes its artefact under `discovery/`.
 
 | # | Skill | Writes |
 |---|---|---|
-| 1 | `kpi-tree` | `discovery/kpi-tree.md` |
+| 1 | `kpi-tree` | `discovery/kpi-tree.md`, drawn as `discovery/kpi-tree.html` |
 | 2 | `opportunities-from-source` | `discovery/opportunities/<source-group>.md` |
 | 3 | `compare-opportunities` | `discovery/opportunity-comparison.md` |
 | 4 | `intent-and-ideas` | `discovery/intents/<opportunity>.md` |
