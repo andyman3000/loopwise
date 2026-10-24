@@ -106,7 +106,7 @@ Run in this order. Each skill writes its artefact under `discovery/`.
 | 2 | `opportunities-from-source` | `discovery/opportunities/<source-group>.md` |
 | 3 | `compare-opportunities` | `discovery/opportunity-comparison.md` |
 | 4 | `intent-and-ideas` | `discovery/intents/<opportunity>.md` |
-| 5 | `spec` | `discovery/specs/<variant>.md`, then Claude Code builds `site/variants/<variant>/` |
+| 5 | `variant-spec` | `discovery/specs/<variant>.md`, then Claude Code builds `site/variants/<variant>/` |
 | 6 | `test-card` | `discovery/test-cards/<variant>.md` |
 | 7 | `compare-variants` | `discovery/variant-comparison.md` |
 | 8 | `read-result` | the `## Result` section of `discovery/test-cards/<variant>.md` |
@@ -144,4 +144,4 @@ never records one on its own.
 | Date | Author | Changes |
 |---|---|---|
 | 2026-10-21 | product team | Initial version |
-| 2026-10-24 | product team | Training start state: `spec` skill added, only what exists at the start is described |
+| 2026-10-24 | product team | Training start state: `variant-spec` skill added, only what exists at the start is described |
