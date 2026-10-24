@@ -13,7 +13,7 @@ const MD = `# Opportunity comparison
 ## What you decide
 Question: Which need do we work on for the next eight weeks?
 Appears favoured: C2, because it has the most voices. A reading, not a choice.
-Not readable in eight weeks: C1. Few bookings.
+Not readable from today's data: C1. Few bookings.
 No candidate: start rate: 5 of 10 leave. Open research questions, not candidates.
 
 ## Your first try
@@ -36,7 +36,7 @@ Branch: Branch A: inquiries that end in a booking (product/strategy.md:12)
 - **Evidence:** well supported: 2 source groups
 - **Leverage:** partly supported: indirect
 - **Need or solution:** need
-- **Measurable in 8 weeks:** unsupported: \`booking_confirmed\`, 3 events
+- **Readable from today's data in 8 weeks:** unsupported: \`booking_confirmed\`, 3 events
 - **Wins on:** first-hand
 - **Loses on:** late
 - **Strongest quote:** "Everything was as before." (sources/interviews/a.md:3)
@@ -44,7 +44,7 @@ Branch: Branch A: inquiries that end in a booking (product/strategy.md:12)
 ### C2: Sponsor does not know what to ask for
 - **From:** emails O1
 - **Evidence:** partly supported: 1 group
-- **Measurable in 8 weeks:** partly supported: \`scoping_call_booked\`
+- **Readable from today's data in 8 weeks:** partly supported: \`scoping_call_booked\`
 - **Wins on:** reach
 - **Loses on:** <unclear> driver
 
