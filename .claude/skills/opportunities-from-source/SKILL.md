@@ -6,7 +6,7 @@ description: Find opportunities (customer needs or pains, never solutions) in on
 # opportunities-from-source
 
 - **When:** after `kpi-tree`, once per source group (`sources/interviews`, `sources/emails`, `sources/feedback`, `sources/inbox`, `sources/analytics`).
-- **Input:** one folder or file under `sources/`. If none is given, ask which one, then wait.
+- **Input:** one folder or file under `sources/`. If none is given, offer every source group first (step 0a), then wait.
 - **Reads:** that source, `discovery/kpi-tree.md`, `product/personas/`.
 - **Writes:** `discovery/opportunities/<source-group>.md` (for example `interviews.md`).
 
@@ -28,6 +28,7 @@ This file is an **assessment by an agent, not a decision**. Say so at the top of
 
 ## Steps
 
+0a. **Offer the sources** (only if none was given). List every folder under `sources/` as it is on disk, never from memory: name, number of files, and what kind of material it is (the `Basis` line from the file headers, for example "anonymised composite" or "synthetic"). Mark empty folders as empty. Ask which one to read, and wait.
 0. **Try first.** Read just enough of the source to pick one telling quote. Show it with file:line and ask: what need or pain sits behind it, and is it a need or already a solution? Wait for the answer before you draft anything.
 1. Read the KPI tree, the personas, then every file of the source. Tell the human in three lines: which branches you map against, what the source holds (type, files, speakers), what is missing.
 2. Cluster evidence into opportunities. Three to six strong ones beat many weak ones.
