@@ -39,5 +39,5 @@ format they need or how they would recognise success (`sources/interviews/sponso
 Sponsors come to the scoping call with a success line already written. Four weeks after a format,
 participants can name one thing they do differently (`sources/interviews/participants-group-1.md:51`).
 Other teams in the same company ask for the format on their own
-(`sources/interviews/sponsor-soft.md:61`), and most of our format days come from customers who have
-booked before. [assumption: follow-up bookings become the larger share; not counted yet]
+(`sources/interviews/sponsor-soft.md:61`), and many of our workshops come from customers who have
+booked before. [assumption: not counted yet]

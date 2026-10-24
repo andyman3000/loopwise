@@ -5,51 +5,49 @@ Status: draft. Numbers appear only where they are counted from a file; everythin
 
 ## Business goal
 
-**Business goal: more booked in-house format days per quarter**
+**Business goal: more booked in-house workshops per quarter**
 
-Loopwise earns on booked format days. There are two ways to get more of them.
+Loopwise earns money when a sponsor books a workshop for their team.
 
-## The two levers
+## This quarter: more inquiries that end in a booking
 
-**Lever A: new bookings.** A sponsor inquires through the website, has a scoping call, books.
-Drivers: inquiries started per month; inquiry completion rate (started to submitted); inquiry to
-scoping call to booking conversion. [assumption: sponsors who can name a success line book more often]
+A sponsor finds the website, opens the inquiry form, sends it, has a scoping call, and books.
+Each step loses people. This quarter we work on that path, because the website can change it and
+`data/` can count it.
 
-**Lever B: follow-up bookings.** A customer who has booked once books again: more days, more teams,
-a follow-up session. Drivers: participants who bring their own task to the session; follow-up
-answered four weeks after the training; follow-up booking within six months.
-[assumption: reported use in daily work drives follow-up bookings]
+Drivers: inquiry page views; inquiries started; inquiries submitted; scoping calls booked; bookings
+confirmed. [assumption: sponsors who can name a success line before the call book more often]
 
-## Why follow-up bookings are the biggest lever
+## Why this path
 
-Sponsors make the next booking depend on the first one working:
+Sponsors often come without knowing what they want:
 
-- "Anything beyond that, I need to show the effect." (`sources/interviews/sponsor-hard.md:13`)
-- "Show me it works. Then we talk about more teams." (`sources/interviews/sponsor-hard.md:55`)
-- A pilot, and if it works, "we call it a method and multiply it" (`sources/interviews/sponsor-soft.md:67`).
-- Customers already ask for a follow-up session (`sources/inbox/inbox-export.md:101`) and for help
-  keeping it going (`sources/inbox/inbox-export.md:113`).
+- They ask for "something with AI" for the team (`sources/emails/inquiry-03.md:14`).
+- Before booking, sponsors often cannot say which format they need or how they would recognise
+  success (`sources/interviews/sponsor-soft.md:49`, `sources/interviews/sponsor-hard.md:37`).
 
-And the first booking is what fails today: a training that fades after four weeks
-(`sources/interviews/sponsor-hard.md:23`, `sources/emails/inquiry-04.md:14`) leaves nothing to book
-again. [assumption: follow-up bookings are the largest share of potential format days; we have no
-counted split of bookings into new and follow-up]
+A scoping call with a sponsor who cannot say what success looks like often ends without a booking.
+[assumption: the call fails for this reason; `data/` shows how many calls end without a booking, not
+why]
 
 ## What we deliberately do not do this quarter
 
+- **No work on follow-up bookings.** Customers who book again matter a lot: "Show me it works. Then
+  we talk about more teams." (`sources/interviews/sponsor-hard.md:55`). But the website cannot cause
+  them, and they take months to show (see `product/constraints.md`). They come back on the table
+  once the inquiry path works.
 - No prices on the website or in data.
-- No change to the content of the training itself from this repo; the website reaches preparation
-  and follow-up only.
+- No change to the content of the training itself from this repo.
 - No new tooling: the site stays static Node without dependencies.
 - No claim that a website change caused more bookings (see `product/constraints.md`).
-- No chat assistant on the site and no variants generated live from specs.
-- Which opportunity we pursue is not decided here. It is decided by a human in
-  `discovery/decisions/`, after `compare-opportunities`.
+- No chat assistant on the site.
+- Which step of the path we work on is not decided here. It is decided by a human in
+  `discovery/kpi-tree.md` and `discovery/decisions/`.
 
 ## How we will know
 
-- Per lever, the drivers above, counted from `data/events.jsonl` and `data/inquiries.csv` once they
-  exist (synthetic). The KPI tree in `discovery/kpi-tree.md` holds them.
-- For any variant we ship: a success line written before it goes live, in its test card under
+- The drivers above, counted from `data/events.jsonl` and `data/inquiries.csv` (synthetic). The KPI
+  tree in `discovery/kpi-tree.md` holds them.
+- For any change we ship: a success line written before it goes live, in its test card under
   `discovery/test-cards/`, read against the data by `read-result`.
 - Bookings themselves: reported, not attributed (see `product/constraints.md`).

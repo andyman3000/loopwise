@@ -16,8 +16,8 @@ Project preferences for Claude Code in the Loopwise demo repo.
 - `sources/feedback/`: one feedback export (mixed: paraphrased free text, invented ratings)
 - `sources/inbox/`: ten support requests (synthetic)
 - `sources/analytics/`: empty until exports exist
-- `data/`: empty at the start. Synthetic event log, inquiry export and generator arrive with the
-  tag `06-variant-decision`
+- `data/`: 26 weeks of synthetic baseline data (event log, inquiry export) up to 2026-08-18.
+  The full data set and its generator replace it with the tag `06-variant-decision`
 
 ---
 
@@ -29,8 +29,8 @@ Loopwise offers in-house formats for product teams (product managers, product ow
 consultants with product duties), from a half-day workshop to multi-week team coaching, including
 Agentic Product Management. A sponsor in the customer company inquires through the website, settles
 the format in a scoping call, and then prepares it with the academy: participant list, setup check,
-expectations survey, follow-up. The academy earns on booked format days; follow-up bookings from the
-same customer are the biggest lever.
+expectations survey, follow-up. The academy earns money on booked workshops. This quarter it works
+on one path: more inquiries that end in a booking (`product/strategy.md`).
 
 | Persona | Role | Focus |
 |---|---|---|
@@ -45,7 +45,7 @@ loopwise/
   README.md  CLAUDE.md  package.json  server.js
   site/            pages, components/, config.json   (variants/ appears once variants are built)
   lib/             discovery-view.js: renders discovery/ at /discovery
-  data/            empty at the start
+  data/            events.jsonl, inquiries.csv   (synthetic baseline, 26 weeks)
   tests/
   product/         vision.md, strategy.md, constraints.md, personas/
   sources/         interviews/, emails/, feedback/, inbox/, analytics/
@@ -152,9 +152,8 @@ never records one on its own.
 
 | Metric | Target |
 |---|---|
-| Booked in-house format days per quarter | [TODO: no counted baseline yet] |
-| Inquiry completion rate (started to submitted) | [TODO: count from `data/` once generated] |
-| Follow-up bookings within 6 months | [TODO: no counted baseline yet] |
+| Booked in-house workshops per quarter | [TODO: count from `data/`] |
+| Inquiry completion rate (started to submitted) | [TODO: count from `data/`] |
 
 ---
 
