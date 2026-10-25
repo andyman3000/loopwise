@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { parseComparison, treePage } from '../lib/opportunity-tree.js';
+import { parseComparison, parseIntent, treePage } from '../lib/opportunity-tree.js';
 
 const MD = `# Opportunity comparison
 
@@ -106,4 +106,49 @@ test('a filled decision shows on the page and on the chosen card', () => {
 test('without a comparison, or with the old table format, the page says what to do', () => {
   assert.match(treePage(repo()), /No comparison yet/);
   assert.match(treePage(repo('# Opportunity comparison\n\n## Comparison\n| a | b |\n')), /no "Tree" or "Candidates" section/);
+});
+
+const INTENT = `# Intent: ask without knowing the format
+
+> Assessment by an agent. Date: 2026-08-18.
+> Opportunity: C2, sponsor does not know the format, in discovery/opportunity-comparison.md · Decision: discovery/decisions/001-x.md
+
+## Three ideas side by side
+
+| Idea | Critical assumption | Level | Driver | What a test would need |
+|---|---|---|---|---|
+| I1: a call request instead of the form | sponsors would rather talk | partly supported | call rate (\`discovery/kpi-tree.md:25\`) | the tester asks for a call |
+| I2: three questions about the team | sponsors can describe their team | unsupported | start rate | the tester answers all three |
+| I3: examples of success lines | sponsors can name a success line | unsupported | submit rate | the tester picks or writes one |
+
+## Selection (human)
+
+- Assumption we test first: sponsors can name a success line
+- Why this one first: no source has it
+- Idea it comes from: I3
+- Variant name (lowercase with dashes): success-line-first
+- Who: Reference decision (replace with your own) · When: 2026-08-18
+`;
+
+test('an intent gives its candidate, three ideas with level and driver, and the selected idea', () => {
+  const i = parseIntent(INTENT);
+  assert.equal(i.candidate, 'C2');
+  assert.deepEqual(i.ideas.map((x) => x.id), ['I1', 'I2', 'I3']);
+  assert.deepEqual(i.ideas.map((x) => x.level), ['partly supported', 'unsupported', 'unsupported']);
+  assert.equal(i.ideas[1].driver, 'start rate');
+  assert.deepEqual([i.chosen, i.variant], ['I3', 'success-line-first']);
+  assert.deepEqual([parseIntent(INTENT.replace('I3\n', '____ (human decides)\n')).chosen], ['']);
+});
+
+test('the tree draws the three ideas under their opportunity and marks the one tested first', () => {
+  const root = repo(MD);
+  fs.mkdirSync(path.join(root, 'discovery', 'intents'));
+  fs.writeFileSync(path.join(root, 'discovery', 'intents', 'x.md'), INTENT);
+  fs.writeFileSync(path.join(root, 'discovery', 'intents', 'other.md'), INTENT.replace('Opportunity: C2', 'Opportunity: C9'));
+  const html = treePage(root);
+  assert.equal((html.match(/<button type="button" class="sol/g) || []).length, 3, 'C9 is not on the tree, so its ideas are left out');
+  assert.equal((html.match(/data-parent="C2"/g) || []).length, 3);
+  assert.match(html, /tested first: success-line-first/);
+  assert.match(html, /href="\/discovery\/intents\/x.md"/);
+  assert.doesNotMatch(treePage(repo(MD)), /class="sol/);
 });
