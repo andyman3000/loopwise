@@ -1,6 +1,6 @@
 ---
 name: intent-and-ideas
-description: Guide the pair from the chosen opportunity to 3 to 5 solution ideas on the opportunity tree, one step per message. The pair lists its own ideas, the skill adds ideas from other angles, the pair picks 3 to 5 and the skill shows the driver and the critical assumption of each, then the pair names the idea it tests first. The file is rewritten after every step, so the ideas show on /discovery/tree from the first step on. Use after the opportunity decision is recorded, when the team says "write the intent", "let's develop ideas", or "what could we build for this opportunity". Writes the intent. Never picks an idea.
+description: Guide the pair from the chosen opportunity to an intent (problem, desired outcome, for whom, open questions) and 3 to 5 solution ideas on the opportunity tree, one question per message. The skill drafts the intent and the pair corrects it, then the pair lists its own ideas, the skill adds ideas from other angles, the pair picks 3 to 5 and the skill shows the driver and the critical assumption of each, then the pair names the idea it tests first. The file is rewritten after every step, so the ideas show on /discovery/tree from the first step on. Use after the opportunity decision is recorded, when the team says "write the intent", "let's develop ideas", or "what could we build for this opportunity". Writes the intent. Never picks an idea.
 ---
 
 # Intent and ideas
@@ -23,7 +23,7 @@ idea fails, however well it is built.
 
 ## Rules
 
-- **One step per message.** Each step ends with one question to the pair. Wait for the answer. A vague reply ("go on", "ok", "you choose") gets one more ask; if it stays vague, carry on and note "the pair added none".
+- **One question per message.** Each step ends with one question to the pair; step 1 asks up to three, one at a time. Wait for the answer. A vague reply ("go on", "ok", "you choose") gets one more ask; if it stays vague, carry on and note "the pair added none".
 - **Write the file after every step**, then tell the pair to reload `http://localhost:3000/discovery/tree`. The tree draws every row of "Solution ideas" under the opportunity.
 - **No judging in steps 1 and 2.** No levels, no "this would not work", no constraint checks. Every idea goes in the table. An idea may change any page of the website. If it changes another page than the inquiry page, name the page after the idea, for example "(formats page)".
 - **Ideas are named by mechanism:** what the sponsor sees or does on the page ("one question before the form", "calendar link after three case stories"), not by strategy ("reduce friction"). If the pair names a feature without a page change ("a trust badge"), ask once: "What would the sponsor see on the page?"
@@ -35,8 +35,9 @@ idea fails, however well it is built.
 
 ## Steps
 
-1. **Your ideas** (about 10 min). Read the decision record; if it is missing or names a different opportunity, say so and stop. Name the opportunity in one line with its strongest quote. Ask the pair to start `npm start` in a second terminal if it is not running.
+1. **The intent, then your ideas** (about 15 min). Read the decision record; if it is missing or names a different opportunity, say so and stop. Name the opportunity in one line with its strongest quote. Ask the pair to start `npm start` in a second terminal if it is not running.
    **First check whether the opportunity holds two needs.** It does if its name joins two needs with "or", or if the comparison puts it on drivers far apart in the funnel. If so, show each part in one line with one quote and its file and line. Ask: "Which part do you work on?" Wait for the answer. Do not suggest a part. Write the answer in the pair's words into "Part we work on" under "Selection (human)". A pair that wants both writes "both". If the opportunity holds one need, write "the whole opportunity" there.
+   **Then draft the intent** for the part the pair named, from the decision record, the comparison and `discovery/kpi-tree.md`: the title, "Problem", "Desired outcome", "For whom and where" and "Open questions". Mark the five "(draft)". The title says what should change, for whom ("Sponsors can say before the call what should be different afterwards"), never the opportunity's name. The desired outcome names the KPI branch, the driver and the event that would show it, each with its line, and today's counted value; it sets no target, because targets go on the test card. Open questions come from "Gaps and uncertainty" and "Could not check" in the comparison, each with who can answer it and what it blocks. Write the file. Ask: "Is this the change you want? Correct anything." Put the pair's corrections in and remove "(draft)" from what they confirmed.
    Then ask: "List as many ways as you can to change the website for this, on the inquiry page or any page before it, one line each. Wild ones too." Ask "What else?" once. Write the file: each idea a row, From "the pair", with its driver. Point to the tree.
 2. **More ideas from other angles** (about 5 min). Add five or six ideas in one message, each from a different angle, and say the angle in the From column:
    - "today's page, changed": take `site/inquiry.html` or `site/formats.html` and swap, cut, reorder or combine one element.
@@ -49,13 +50,27 @@ idea fails, however well it is built.
 ## Output template
 
 ```markdown
-# Intent: <short name>
+# Intent: <what should change, for whom, in words> (draft)
 
 > Assessment by an agent (`intent-and-ideas`), not a decision. Date: YYYY-MM-DD.
 > Opportunity: <C-id>, <name>, in discovery/opportunity-comparison.md · Decision: discovery/decisions/<file>.md
 > Material: <synthetic or composite, repeated from the material the opportunity rests on>
 
+An intent says what should change, for whom, and why, before anyone picks a solution.
 A critical assumption is the one thing that must be true for an idea to work.
+
+## Problem (draft)
+<the part of the opportunity we work on, in two or three sentences, with the strongest quote and its file and line>
+
+## Desired outcome (draft)
+<who is better off, and how> · KPI branch and driver (`discovery/kpi-tree.md:<line>`) · the event that would show it, with today's counted value (`<file>:<line>`). No target: targets go on the test card.
+
+## For whom and where (draft)
+- Who: <sponsor types or personas, with `product/personas/<file>.md`>
+- Pages the ideas may change: <pages in `site/`>
+
+## Open questions (draft)
+- <question> · who can answer: <role> · blocks: the prototype / the launch / later
 
 ## Solution ideas
 
@@ -81,4 +96,4 @@ A critical assumption is the one thing that must be true for an idea to work.
 A second round adds a second "Selection (human)" below this one, with its own variant name.
 ```
 
-"Boundaries" and "Ideas not picked" appear from step 3 on.
+"Boundaries" and "Ideas not picked" appear from step 3 on. "(draft)" stays on a section until the pair confirms or corrects it.
