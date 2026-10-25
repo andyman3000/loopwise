@@ -115,5 +115,6 @@ A critical assumption is the one thing that must be true for an idea to work.
 - Variant name (lowercase with dashes): ____ (human decides)
 - Who: ____ · When: ____
 
-The other two ideas stay here for the next round.
+The other two ideas stay here for the next round. A second round adds a second "Selection (human)"
+below this one, with its own variant name.
 ```
