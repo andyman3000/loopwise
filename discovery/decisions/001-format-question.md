@@ -7,7 +7,7 @@
 We work on C2 for the next eight weeks: the sponsor does not know what to ask for, or which format fits.
 
 ## Options considered
-- C1: the sponsor fears the training fades like the last one (interviews O3 + emails O3).
+- C1: the sponsor fears nothing changes after the training, as last time (interviews O3 + emails O3).
 - C2: the sponsor does not know what to ask for, or which format fits (interviews O1 + emails O1 + inbox O1).
 - C3: the sponsor worries one format cannot hold mixed levels (interviews O5 + emails O4).
 

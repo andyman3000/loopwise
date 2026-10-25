@@ -68,7 +68,7 @@ The event `inquiry_step_completed` never occurs, so nothing is counted inside th
 ### D8: Few follow-up answers exist, and they sit outside this quarter
 - **Count:** 14 `followup_answered` events, all about four weeks after the booking: 6 "not-yet", 5 "using-it-sometimes", 3 "using-it-regularly" (data/events.jsonl, 2026-04-26 to 2026-08-18). 23 bookings were confirmed in the same data.
 - **Driver:** none in the tree. This belongs to Branch B: follow-up bookings, which the tree marks as not this quarter.
-- **Why:** unknown from this data. It does not show whether those who answered "not-yet" book again. Could be explained by: `sources/feedback` and `sources/interviews` (whether the training fades in the weeks after).
+- **Why:** unknown from this data. It does not show whether those who answered "not-yet" book again. Could be explained by: `sources/feedback` and `sources/interviews` (whether people stop using what they learned in the weeks after).
 
 Observations go into the comparison only together with an opportunity from another source.
 

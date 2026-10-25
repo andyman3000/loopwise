@@ -34,7 +34,7 @@ No sponsor speaks in this source. Every answer comes after the training, not bef
 - **Assessment:** partly supported. Four respondents say it in their own words, and three others clearly found their use. It sits mainly on Branch B; the booking rate link is an assumption.
 - **Why separate from O2:** O1 is not seeing where it fits. O2 is losing what was learned once the normal week starts, even when the fit is clear.
 
-### O2: Without a plan for the weeks after, the training fades into the normal week
+### O2: Without a plan for the weeks after, people drop the methods once normal work resumes
 - **Evidence:**
   - "Methods from trainings are the first thing to go when the pressure is on" (sources/feedback/feedback-export.md:38, R02, participant)
   - "What I missed: a plan for the next weeks." (sources/feedback/feedback-export.md:42, R05, participant)
@@ -43,10 +43,10 @@ No sponsor speaks in this source. Every answer comes after the training, not bef
   - "it would help to meet again once I have made some progress." (sources/feedback/feedback-export.md:44, R07, participant)
   - "After most workshops I think it was nice and then carry on exactly as before." (sources/feedback/feedback-export.md:45, R08, participant)
 - **Voices:** 5 distinct respondents: participants (R02, R05, R06, R07, R08). Second-hand: no.
-- **KPI branch:** Branch B: follow-up bookings, not this quarter. [assumption: a team that keeps using it after the training is what makes a sponsor book again.] Side link to Branch A, driver booking rate. [assumption: a sponsor who can see before booking what happens in the weeks after (site/sponsor-prep.html:25) worries less that it fades.]
+- **KPI branch:** Branch B: follow-up bookings, not this quarter. [assumption: a team that keeps using it after the training is what makes a sponsor book again.] Side link to Branch A, driver booking rate. [assumption: a sponsor who can see before booking what happens in the weeks after (site/sponsor-prep.html:25) worries less that nothing changes after it.]
 - **Counter-evidence in this source:** "This time I have a good feeling I will build it into my daily work." (sources/feedback/feedback-export.md:45, R08): the same respondent expects it to stick this time. "I will get a few things started at work with this." (sources/feedback/feedback-export.md:49, R12).
-- **Gaps:** Nobody here reports the weeks after; these are fears and wishes on day 2. R05 and R06 phrase it as a wish for a plan, which is a solution; the pain behind it is the fade R02 and R08 name.
-- **Assessment:** partly supported. Five respondents point at it, two name the fade in their own words. It sits mainly on Branch B; the booking rate link is an assumption.
+- **Gaps:** No respondent here reports on the weeks after; these are fears and wishes on day 2. R05 and R06 phrase it as a wish for a plan, which is a solution; the pain behind it is that people drop the methods once normal work resumes (R02, R08).
+- **Assessment:** partly supported. Five respondents point at it, two say in their own words that they drop the methods afterwards (R02, R08). It sits mainly on Branch B; the booking rate link is an assumption.
 
 ### O3: Participants with little background get lost early in the day
 - **Evidence:**

@@ -55,7 +55,7 @@ Speaker labels (P1, P2) restart in each group file, so G1 P1 and G2 P1 are diffe
 - **Assessment:** partly supported. The need is clear and repeated by one sponsor. It sits mainly on Branch B, which is out of scope this quarter. The booking rate link is an assumption.
 - **Why separate from O3:** O2 is about proving an effect to others. O3 is about fearing there will be none. The soft sponsor shares the fear but not the need for proof.
 
-### O3: Sponsors fear the training fades like the last one and nothing changes
+### O3: Sponsors fear nothing changes after the training, as last time
 - **Evidence:**
   - "Booked, everyone thought it was nice, four weeks later everything was as before." (sources/interviews/sponsor-hard.md:23, S, sponsor)
   - "The hard part is holding ourselves accountable afterwards." (sources/interviews/sponsor-hard.md:29, S, sponsor)
@@ -63,7 +63,7 @@ Speaker labels (P1, P2) restart in each group file, so G1 P1 and G2 P1 are diffe
   - "Everyone enjoyed it, and that's where it ends." (sources/interviews/sponsor-soft.md:37, S, sponsor)
   - "On the day everything is great, and then the next morning you carry on exactly the way you did before." (sources/interviews/participants-group-1.md:35, G1 P2, participant)
 - **Voices:** 3 distinct speakers: 2 sponsors, 1 participant. Second-hand: yes, the soft sponsor reports what her people say: "It came up again and again in conversations." (sources/interviews/sponsor-soft.md:25)
-- **KPI branch:** Branch A, driver booking rate. [assumption: a sponsor who saw past trainings fade waits for a sign in the scoping call that this one will stick, and does not confirm without it.] Also Branch B, not this quarter.
+- **KPI branch:** Branch A, driver booking rate. [assumption: a sponsor who saw past trainings change nothing waits for a sign in the scoping call that people will use this one, and does not confirm without it.] Also Branch B, not this quarter.
 - **Counter-evidence in this source:** "This time, no. It was practical." (sources/interviews/participants-group-1.md:39, G1 P2): the same participant says the last format did stick. "That's something I'll stick with." (sources/interviews/participants-group-3.md:25, G3 P5). Both sponsors still went ahead with a first step: "What I got approved is a first step." (sources/interviews/sponsor-hard.md:13)
 - **Gaps:** No source shows a sponsor who did not book because of this fear. The participant voice describes the pattern, not a booking choice.
 - **Assessment:** well supported as a sponsor fear. Both sponsors say it in their own words, and a participant confirms the pattern. The link to booking rate is an assumption.
@@ -77,7 +77,7 @@ Speaker labels (P1, P2) restart in each group file, so G1 P1 and G2 P1 are diffe
   - "I don't even know what the idea could turn into." (sources/interviews/participants-group-3.md:19, G3 P1, participant)
   - "And I didn't do it with AI." (sources/interviews/participants-group-3.md:37, G3 P3, participant)
 - **Voices:** 6 distinct speakers: participants. Second-hand: yes, the soft sponsor reports the same: "I know what the tool can do, I just can't see what to use it for in my own work." (sources/interviews/sponsor-soft.md:29), and "That's not what's missing." (sources/interviews/sponsor-soft.md:41) about access, with "I think what's missing is ideas" on the same line.
-- **KPI branch:** Branch B: follow-up bookings, not this quarter. [assumption: what participants tell the sponsor afterwards decides whether more is booked; the sponsor hears it "From what people say." (sources/interviews/sponsor-soft.md:25)] Side link to Branch A, driver booking rate. [assumption: if a new sponsor can see what past participants now use in their own work, the fear that the training fades (O3) weighs less.]
+- **KPI branch:** Branch B: follow-up bookings, not this quarter. [assumption: what participants tell the sponsor afterwards decides whether more is booked; the sponsor hears it "From what people say." (sources/interviews/sponsor-soft.md:25)] Side link to Branch A, driver booking rate. [assumption: if a new sponsor can see what past participants now use in their own work, the fear that nothing changes after the training (O3) weighs less.]
 - **Counter-evidence in this source:** "For research that's honestly brilliant." (sources/interviews/participants-group-1.md:13, G1 P1). "I already have several agents running in parallel and I mostly work at the level of the spec." (sources/interviews/participants-group-2.md:17, G2 P4). "I built myself a small interface for one of my own cases" (sources/interviews/participants-group-3.md:25, G3 P5).
 - **Gaps:** These are participants after a format. We do not know if the same holds before one. The content of the training is not owned by this repo; only preparation and follow-up are.
 - **Assessment:** well supported as a need: six voices in three groups, plus a sponsor reporting it. It sits mainly on Branch B, out of scope this quarter. The booking rate link runs through a sponsor and is an assumption.

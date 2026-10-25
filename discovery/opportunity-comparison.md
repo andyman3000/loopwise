@@ -35,7 +35,7 @@ Branch: Branch A: inquiries that end in a booking (product/strategy.md:12)
 - booking rate: 32 of 55 scoping calls end without a booking (data.md D6) · Candidates: C1, C2, C3
 
 ## Candidates
-### C1: Sponsor fears the training fades like the last one
+### C1: Sponsor fears nothing changes after the training, as last time
 - **From:** interviews O3 + emails O3
 - **Evidence:** well supported: 2 source groups, 3 sponsors plus 1 participant, lived, not only feared
 - **Leverage:** partly supported: indirect, the fear is settled in the call, off the website
@@ -66,7 +66,7 @@ Branch: Branch A: inquiries that end in a booking (product/strategy.md:12)
 - **Strongest quote:** "I am worried that one group will be bored and the other lost." (sources/emails/inquiry-06.md:14)
 
 ## Evidence
-### C1: Sponsor fears the training fades like the last one
+### C1: Sponsor fears nothing changes after the training, as last time
 - **Evidence strength:** well supported. Two independent source groups: interviews and emails. Voices: 3 sponsors (sponsor-hard, sponsor-soft, inquiry-04) and 1 participant. Lived, not only feared: "Booked, everyone thought it was nice, four weeks later everything was as before." (sources/interviews/sponsor-hard.md:23); "But when I asked around a few weeks later, almost nobody was using any of it." (sources/emails/inquiry-04.md:14). Feared: "What I fear most: people go home with a full bag of new tricks and no reason to reach for any of them, so nothing changes." (sources/interviews/sponsor-soft.md:37). Participant: "On the day everything is great, and then the next morning you carry on exactly the way you did before." (sources/interviews/participants-group-1.md:35). Counter-evidence: the same participant says "This time, no. It was practical." (sources/interviews/participants-group-1.md:39). Gap: no source shows a sponsor who did not book because of this fear.
 - **Leverage:** Branch A, booking rate (discovery/kpi-tree.md:24). Indirect: the fear is settled in the scoping call, which happens off the website. The website could show what happens after the training; the sponsor preparation page already names a "Follow-up after four weeks" (site/sponsor-prep.html:25). The link to booking rate is an assumption in both files (discovery/opportunities/interviews.md:66, discovery/opportunities/emails.md:66). The fear also belongs to Branch B, which is not this quarter (product/strategy.md:35).
 - **Where in the funnel:** booking rate: 32 of 55 scoping calls end without a booking · 23 of 55 book (data.md D6).
@@ -91,7 +91,7 @@ Branch: Branch A: inquiries that end in a booking (product/strategy.md:12)
 - **Gaps and uncertainty:** no source says the worry stopped a booking. The day itself is training content this repo does not own (discovery/opportunities/interviews.md:97). Academy staff who run scoping calls could say how often it comes up.
 
 ## Shortlist
-Confirmed by Reference decision (replace with your own), 2026-08-18: C1 fade fear (interviews O3 + emails O3); C2 does not know what to ask for (interviews O1 + emails O1 + inbox O1); C3 mixed levels (interviews O5 + emails O4)
+Confirmed by Reference decision (replace with your own), 2026-08-18: C1 fears nothing changes after the training (interviews O3 + emails O3); C2 does not know what to ask for (interviews O1 + emails O1 + inbox O1); C3 mixed levels (interviews O5 + emails O4)
 Proposed by the agent: confirmed as proposed
 Dropped:
 - interviews O2: parked branch, link to the active branch is an assumption; related to emails O2, but about the next budget, not the first booking
@@ -115,19 +115,19 @@ Dropped:
 
 **Counter-evidence to C1 (the first try):**
 - "This time, no. It was practical." (sources/interviews/participants-group-1.md:39): the participant who named the pattern says it did not happen this time.
-- "What I got approved is a first step." (sources/interviews/sponsor-hard.md:13): the sponsor who lived the fade still booked.
+- "What I got approved is a first step." (sources/interviews/sponsor-hard.md:13): this sponsor saw a past training change nothing and still booked.
 - "Happy to explain more in a call." (sources/emails/inquiry-04.md:20): the fearful sender moves on to a call. Nothing here shows the fear costing a call.
 - "No work on follow-up bookings." (product/strategy.md:35): part of this fear is about what happens after, which the strategy leaves for later.
 
 **Leading questions:**
-- C1: "Have you run trainings before?" (sources/interviews/sponsor-hard.md:21) before "Booked, everyone thought it was nice, four weeks later everything was as before.": open, it does not ask for a fade. sponsor-soft's fear follows "What would you not want to happen?" (sources/interviews/sponsor-soft.md:35): asked for exactly a fear. The participant volunteered it after a question to someone else: "P4, you mentioned a training earlier. What did you take from it?" (sources/interviews/participants-group-1.md:31). The mail is unprompted.
+- C1: "Have you run trainings before?" (sources/interviews/sponsor-hard.md:21) before "Booked, everyone thought it was nice, four weeks later everything was as before.": an open question. It does not ask whether a training changed nothing. sponsor-soft's fear follows "What would you not want to happen?" (sources/interviews/sponsor-soft.md:35): asked for exactly a fear. The participant volunteered it after a question to someone else: "P4, you mentioned a training earlier. What did you take from it?" (sources/interviews/participants-group-1.md:31). The mail is unprompted.
 - C2: "When you picture working with someone on this, what does it look like?" (sources/interviews/sponsor-soft.md:47) before "I have no idea." (sources/interviews/sponsor-soft.md:49): open. The four mails and the inbox request are unprompted.
 - C3: "Let me come back to that. What must not happen?" (sources/interviews/sponsor-hard.md:39) before "And that the strongest are bored while the weakest drop out on the first morning.": asked for exactly a fear. The mail is unprompted.
 
 **Wins on, loses on:** C2 wins on reach: it can act where 740 inquiry page visits arrive and 194 forms start (data.md D3). It loses on closeness: of 194 who start, 23 book, against 23 of 55 for C1 and C3, which act after the call (data.md D6).
 
 **What would make another candidate the better choice:**
-- "Booked, everyone thought it was nice, four weeks later everything was as before." (sources/interviews/sponsor-hard.md:23): if call notes show sponsors stop at the call over this fear, C1 sits where the conversion is closest to a booking. The 14 `followup_answered` answers, 6 of them "not-yet" (data.md D8), already measure the fade itself, 28 to 31 days after a booking.
+- "Booked, everyone thought it was nice, four weeks later everything was as before." (sources/interviews/sponsor-hard.md:23): if call notes show sponsors stop at the call over this fear, C1 sits where the conversion is closest to a booking. The 14 `followup_answered` answers, 6 of them "not-yet" (data.md D8), already measure whether people use what they learned, 28 to 31 days after a booking.
 - "Do you split into levels, or do you ask people beforehand where they stand?" (sources/emails/inquiry-06.md:16): a concrete question the website could answer on a page that exists. If scoping calls show it comes up often, C3 is a cheap way in.
 
 **Could not check:** what happens in scoping calls and why 32 end without a booking: academy staff who run them. Whether the six mail senders booked: the academy's inquiry records. Whether visits that see the formats page leave because they cannot tell which format fits: a user test with sponsors.

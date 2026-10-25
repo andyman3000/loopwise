@@ -56,10 +56,10 @@ Most requests come after a booking: during preparation, on the day, or after the
   - "A few have built something in the workshop, but not on their actual tasks yet." (sources/inbox/inbox-export.md:113, INB-009, department head, sponsor)
   - "We would like to book the follow-up session that was mentioned at the end of day two." (sources/inbox/inbox-export.md:101, INB-008, team lead, sponsor)
 - **Voices:** 2 distinct speakers: sponsors. Second-hand: yes, INB-009 reports what she sees in her team, not what participants said.
-- **KPI branch:** Branch B: follow-up bookings, not this quarter. INB-008 is a follow-up booking request in the sponsor's own words. Side link to Branch A, driver booking rate. [assumption: a sponsor who can see before booking what helps after the training (site/sponsor-prep.html:25) worries less that it fades.] INB-009 asks for exactly that after her training.
+- **KPI branch:** Branch B: follow-up bookings, not this quarter. INB-008 is a follow-up booking request in the sponsor's own words. Side link to Branch A, driver booking rate. [assumption: a sponsor who can see before booking what helps after the training (site/sponsor-prep.html:25) worries less that nothing changes after it.] INB-009 asks for exactly that after her training.
 - **Counter-evidence in this source:** "Thanks again, the feedback in the team was good." (sources/inbox/inbox-export.md:113, INB-009): the same sponsor is happy with the training itself. INB-008 wants a follow-up but pushes it out: "Could we do it in about six weeks, ideally as a half day online?" (sources/inbox/inbox-export.md:101)
 - **Gaps:** Two requests, both still open. Branch B is out of scope this quarter, so this cannot move this quarter's number directly.
-- **Assessment:** partly supported. Two sponsors, one names the fade, one asks for a follow-up. It sits mainly on Branch B, which the strategy leaves for later; the booking rate link is an assumption.
+- **Assessment:** partly supported. Two sponsors, one fears nothing changes after the training, one asks for a follow-up. It sits mainly on Branch B, which the strategy leaves for later; the booking rate link is an assumption.
 
 ### O4: Participants do not know what to bring or prepare beyond the setup
 - **Evidence:**
