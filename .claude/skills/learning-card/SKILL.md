@@ -9,7 +9,7 @@ description: Guide the pair that built a variant through what its prototype test
 if the cross test dropped. Also after a second round, to update the card.
 **Input:** the variant name. If missing, ask.
 **Reads:** `discovery/test-cards/<variant>-prototype.md` (the assumption, the signs, the two lines);
-`discovery/user-tests/<variant>-spec.md` and `<variant>-page.md` if they exist;
+`discovery/user-tests/<variant>-cross.md` (the watcher's notes from the cross test), `<variant>-spec.md` and `<variant>-page.md` if they exist; `discovery/specs/<variant>.md` (section "Invented lines on the page");
 `product/personas/sponsor-soft.md`, `product/personas/sponsor-hard.md`;
 `discovery/intents/<opportunity>.md` (the other two ideas).
 **Writes:** `discovery/decisions/<nnn>-<variant>.md`. If a file for this variant exists, add a dated
@@ -23,19 +23,20 @@ The pair decides. This skill asks, quotes and writes; it decides nothing.
 ## Rules
 
 - **One question at a time.** Wait for the answer before the next one. At most five sentences per turn. No emojis.
-- **Try first is the gut feeling.** The first question is always: "How did the test go, in a few words?" Never start with analysis.
+- **Try first is the gut feeling.** The first question is always: "How did the test go, in a few words?" Never start with analysis. A vague reply ("go on", "ok") gets one more ask; if it stays vague, write "skipped". "skip" is written as "skipped".
 - **Never ask for what the files hold.** Quote the assumption, the signs and the lines from the prototype card. Do not ask the pair to repeat them.
 - **Write only what the pair says.** Observations, the learning and the decision are the pair's words, shortened at most. If an answer is vague, ask one follow-up. If it stays vague, write it as said and mark it "[vague: the pair did not say more]".
-- **Observations from people and from personas stay apart.** A cross-test observation is what the watcher saw or heard. A persona observation quotes the walkthrough file and the persona-file line it rests on (`product/personas/<file>:<line>`). If the card rests on persona runs only, the top line says so.
+- **Observations from people and from personas stay apart.** A cross-test observation quotes the watcher's notes with file and line (`discovery/user-tests/<variant>-cross.md:<line>`). If the cross test happened but the notes file is missing, ask the pair to write it first (block 6a says how) and wait. A persona observation quotes the walkthrough file and the persona-file line it rests on (`product/personas/<file>:<line>`).
 - **Hold observations against the signs, not against hopes.** For each sign on the prototype card, ask whether the watcher saw it. The pair answers; you do not.
 - **Decides nothing.** The pair names one of three outcomes and why: move on (with what changes before roll-out), another round (changed spec or the next idea from the intent), or kill. If they do not name one, the field stays `____ (human decides)`. Never suggest which one.
 - **Every claim quotes its source with location** (file and line). No invented numbers: one tester is a pattern, not a rate.
-- **"Pressure-tested, not validated"** stands at the top when any observation comes from a persona.
+- **"Pressure-tested, not validated"** stands at the top only when no person tested the page, that is, when `<variant>-cross.md` does not exist. With a cross test, the top line says "Tested with one person from another pair: a pattern, not a rate."
+- **Invented lines.** If the outcome is move on, ask: "Which lines on the page are invented, and who confirms them before roll-out?" Quote the spec's "Invented lines on the page". Write the answer under "Therefore we will".
 
 ## Steps
 
 0. **Try first.** Ask: "How did the test go, in a few words?" Wait.
-1. Read the prototype card and the user-test files. If the prototype card is missing, stop and say so.
+1. Read the prototype card and the user-test files. If the prototype card is missing, stop and say so. If neither `<variant>-cross.md` nor `<variant>-page.md` exists, ask which test happened.
 2. Ask: "What did the tester do or say? List it freely." Reflect it back as a short list. Ask: "Anything else, or shall we work with these?"
 3. Go through the signs on the prototype card, one message for all of them: quote each sign, ask which ones the watcher saw. Record the answer per sign: seen, not seen, unclear.
 4. Quote the assumption and the two lines. Ask: "Against these lines, did the assumption hold, break, or is it unclear? Why?" If unclear: "What would you need to see to be sure?"
@@ -49,9 +50,9 @@ The pair decides. This skill asks, quotes and writes; it decides nothing.
 ```markdown
 # Decision <nnn>: <variant>, learning card
 
-> Decision record and learning card. <"Pressure-tested, not validated: rests on persona runs, not on people." if any observation comes from a persona>
+> Decision record and learning card. <"Tested with one person from another pair: a pattern, not a rate." if `<variant>-cross.md` exists; otherwise "Pressure-tested, not validated: rests on persona runs, not on people.">
 > Written by the `learning-card` skill from what the pair said. The material behind the prototype is <synthetic or composite, repeated from the card>.
-> Rests on: `discovery/test-cards/<variant>-prototype.md`<, `discovery/user-tests/<variant>-<mode>.md`>
+> Rests on: `discovery/test-cards/<variant>-prototype.md`<, `discovery/user-tests/<variant>-cross.md`><, `discovery/user-tests/<variant>-<mode>.md`>
 
 ## Round 1, <YYYY-MM-DD>
 
@@ -62,7 +63,7 @@ The pair decides. This skill asks, quotes and writes; it decides nothing.
 "<assumption, quoted>" (`discovery/test-cards/<variant>-prototype.md:<line>`)
 
 ### We observed
-- <cross test, seen by the watcher: what the tester did or said>
+- <cross test: "<what the tester did or said>" (`discovery/user-tests/<variant>-cross.md:<line>`)>
 - <persona: "<quote>" (`discovery/user-tests/<file>:<line>`), resting on `product/personas/<file>:<line>`>
 
 | Sign (from the card) | Points to | Seen? |
