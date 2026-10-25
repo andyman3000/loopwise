@@ -66,7 +66,7 @@ The event `inquiry_step_completed` never occurs, so nothing is counted inside th
 - **Why:** unknown from this data. `sponsor_type` is "a synthetic attribute that no event carries" (data/README.md:7-8), so the split exists only for sent inquiries, not for visits or started forms. Could be explained by: `sources/interviews` (the two sponsor interviews); `sources/emails` (which mails read like which sponsor type).
 
 ### D8: Few follow-up answers exist, and they sit outside this quarter
-- **Count:** 14 `followup_answered` events, all four weeks after the training: 6 "not-yet", 5 "using-it-sometimes", 3 "using-it-regularly" (data/events.jsonl, 2026-04-26 to 2026-08-18). 23 bookings were confirmed in the same data.
+- **Count:** 14 `followup_answered` events, all about four weeks after the booking: 6 "not-yet", 5 "using-it-sometimes", 3 "using-it-regularly" (data/events.jsonl, 2026-04-26 to 2026-08-18). 23 bookings were confirmed in the same data.
 - **Driver:** none in the tree. This belongs to Branch B: follow-up bookings, which the tree marks as not this quarter.
 - **Why:** unknown from this data. It does not show whether those who answered "not-yet" book again. Could be explained by: `sources/feedback` and `sources/interviews` (whether the training fades in the weeks after).
 
