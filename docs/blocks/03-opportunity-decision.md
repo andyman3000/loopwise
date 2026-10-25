@@ -43,4 +43,6 @@ and what you can measure within eight weeks. The agent compares and challenges; 
 **Done when:** the comparison exists and decision 001 names the opportunity, the options, a reason
 and who decided.
 
+Two pairs may choose the same opportunity. That is fine: in block 4, try to test a different solution.
+
 **For the Abgleich:** did you pick the better supported opportunity or the more reachable one, and why?

@@ -1,24 +1,47 @@
 # Setup
 
-**What it's for:** everyone has the repo running and Claude Code sees the skills, before the first block starts.
+**What it's for:** everyone has the repo running, Claude Code sees the skills, and Claude Code can
+open a page in a browser, before the first block starts.
 
-## What you do (about 5 min)
+You work in pairs for both days, on one laptop and one branch per pair.
 
-1. Clone the repo and start your own branch from the start state:
+## What you do (about 10 min)
+
+1. Clone the repo and start your pair's branch from the start state. Use your two names:
    ```bash
    git clone <repo> loopwise && cd loopwise
-   git switch -c mine 00-start
+   git switch -c pair-<name>-<name> 00-start
    ```
 2. Check the website runs. Node 20 or newer, no `npm install` needed:
    ```bash
    npm test      # all green
    npm start     # then open http://localhost:3000 and click "Inquiry"
    ```
-   Stop the server with `Ctrl+C`.
+   Leave the server running for step 4.
 3. Start Claude Code **inside the `loopwise` folder** and type `/`. You should see `kpi-tree`,
    `opportunities-from-source` and the other skills of the chain.
-4. Open [01-kpi-tree.md](01-kpi-tree.md).
+4. **Browser tool.** On day 2 a skill opens your page in a browser. Add one browser tool to Claude
+   Code, for your user only. It is not part of the repo. Pick one:
+   - Playwright MCP (needs Node). From the
+     [official README](https://github.com/microsoft/playwright-mcp), section "Claude Code":
+     ```bash
+     claude mcp add playwright npx @playwright/mcp@latest
+     ```
+   - Chrome DevTools MCP (needs Chrome and Node). From the
+     [official client guide](https://github.com/ChromeDevTools/chrome-devtools-mcp/blob/main/docs/client-configurations.md),
+     section "Claude Code":
+     ```bash
+     claude mcp add chrome-devtools --scope user npx chrome-devtools-mcp@latest
+     ```
+   Run the line in a terminal inside the `loopwise` folder, then restart Claude Code. `/mcp` lists the
+   tool. Check it with the server still running. Ask Claude Code:
+   > Open http://localhost:3000/inquiry with the browser tool and tell me the heading of the page.
 
-**Done when:** tests are green, the inquiry page opens, and `/kpi-tree` shows up in Claude Code.
+   It should answer "Inquiry". Then stop the server with `Ctrl+C`.
+5. Open [01-kpi-tree.md](01-kpi-tree.md).
 
-If Claude Code lists no skills, it was started outside the `loopwise` folder.
+**Done when:** tests are green, the inquiry page opens, `/kpi-tree` shows up in Claude Code, and
+Claude Code read the inquiry page with the browser tool.
+
+If Claude Code lists no skills, it was started outside the `loopwise` folder. If the browser tool
+does not work, carry on: the skill then reads the page's HTML and says so. Tell the trainer.

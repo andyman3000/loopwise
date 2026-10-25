@@ -1,26 +1,31 @@
-# Block 7: Read the result
+# Block 7: Demo, read the result
 
-**What it's for:** eight weeks after launch you read every line of the test card against the data.
-The honest answer to "did the assumption hold?" is often "partly". You learn what you may conclude,
-and what small numbers do not allow.
+**What it's for:** you see how a launched variant is read against data, eight weeks after launch.
+The trainer runs it on the reference variant. You switch once and rerun two counts yourself. The
+honest answer to "did the assumption hold?" is often "partly". You learn what you may conclude, and
+what small numbers do not allow.
 
-## What you do (about 60 min)
+## What you do (about 10 of the demo's 60 min)
 
-1. In Claude Code: `/read-result`. It reads `shipped` from `site/config.json`, counts events before
-   and after, and writes the "Result" section of that variant's test card.
-2. Check two numbers yourself. The result section lists the command behind each number; run two of
-   them and compare.
-3. Go through the card line by line: success line, usage, proxy, counter metric, kill criterion.
-   Which ones are met, not met, unclear?
-4. Decide: keep, adjust or roll back. Fill `Decision`, `Who`, `Date` at the end of the Result section.
-5. Check and commit:
+1. Commit your own work first. Then switch to the reference state of the demo:
    ```bash
-   npm run check
-   git add discovery && git commit -m "block 7: result"
+   git add -A && git commit -m "my state before the demo"
+   git switch -c demo 06-test-decision
    ```
+2. The trainer shows the reference launch card in `discovery/test-cards/<shipped variant>.md` and
+   runs `/read-result`. It reads `shipped` from `site/config.json`, counts events before and after,
+   and writes the "Result" section of that test card.
+3. Rerun the two counts the trainer names. The Result section lists the command behind each number.
+   Copy the command, run it, compare the number.
+4. Follow the trainer through the card, line by line: success line, usage, proxy, counter metric,
+   kill criterion. Which are met, not met, unclear?
 
-**Done when:** the Result section exists, you checked two of its numbers, and your decision is in.
+**Done when:** you are on `demo` and your two counts match the Result section.
 
 **For the Abgleich:** what would you not conclude from these numbers, even though it is tempting?
+
+**Afterwards, on your own:** on the `demo` branch, run `/read-result` yourself and fill `Decision`,
+`Who`, `Date` at the end of the Result section. Your own branch stays as you left it:
+`git switch -` takes you back.
 
 The data are synthetic and the files say so.
