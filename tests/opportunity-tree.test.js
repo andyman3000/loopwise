@@ -184,3 +184,14 @@ test('right after the first step, ideas without an assumption are drawn, with no
   assert.doesNotMatch(html, /Critical assumption:|not given/);
   assert.match(html, /class="tag you">the pair/);
 });
+
+test('an idea that moves two drivers shows a chip for each, and the page lights up every driver it names', () => {
+  const root = repo(MD);
+  fs.mkdirSync(path.join(root, 'discovery', 'intents'));
+  fs.writeFileSync(path.join(root, 'discovery', 'intents', 'x.md'), INTENT.replace('| start rate |', '| start rate (`discovery/kpi-tree.md:21`) · submit rate (`discovery/kpi-tree.md:22`) |'));
+  const html = treePage(root);
+  const sol = html.match(/<button type="button" class="sol[^"]*"[^>]*data-driver="start rate[\s\S]*?<\/button>/)[0];
+  assert.equal((sol.match(/class="chip"/g) || []).length, 2);
+  assert.match(sol, /<span class="chip">start rate<\/span><span class="chip">submit rate<\/span>/);
+  assert.match(html, /drivers\.filter\(/, 'the page script lights up all named drivers, not the first');
+});
