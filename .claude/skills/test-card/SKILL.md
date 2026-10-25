@@ -36,7 +36,7 @@ knows only the situation and the task, never the assumption.
 
 ### Rules
 
-- **One assumption.** Take the assumption the human named in "Assumption we test first" in the intent's "Selection (human)", word for word. If that field is empty, stop and say so. Do not pick one.
+- **One assumption.** Take the assumption the human named in "Assumption we test first" in the intent's "Selection (human)" whose variant name matches, word for word. A second round adds a second selection below the first. If no selection names this variant, or its assumption field is empty, stop and say so. Do not pick one.
 - **The scenario is written for the tester:** a situation in two or three sentences ("You are ..., you want ..."), and one task ("Find ...", "Send ..."). It must not name the assumption, the idea or the answer the team hopes for.
 - **Signs are what the watcher can see or hear:** a click, a pause, a question the tester asks, a field left empty, words the tester says. Not a feeling the watcher guesses. Each sign is tied to the go-on line or to the rework-or-drop line.
 - **Go-on line and rework-or-drop line** are set before the test, in words, by the human. Propose both, mark each "proposal". No percentages: one tester per pair cannot carry a rate.
@@ -110,7 +110,7 @@ to take it back.
 ### Steps
 
 0. **Try first.** Ask the human for their success line in one sentence: what must happen for this variant to count as working. Wait for the answer before you read further or draft anything.
-1. Read the spec, the prototype card `discovery/test-cards/<variant>-prototype.md` and the learning card `discovery/decisions/002-<variant>.md` if they exist, and the intent. If the variant name has no file in `discovery/specs/`, stop and ask.
+1. Read the spec, the prototype card `discovery/test-cards/<variant>-prototype.md` and the learning card for this variant in `discovery/decisions/` (`<nnn>-<variant>.md`) if they exist, and the intent. If the variant name has no file in `discovery/specs/`, stop and ask.
 2. List the critical assumptions: what must be true for this variant to change behaviour. Two to four. Start with the one the prototype tested and what the learning card says about it, quoted. Search `sources/` for evidence for and against each.
 3. Map the variant to its KPI branch in `discovery/kpi-tree.md` (quote the line).
 4. Count the events in `data/events.jsonl` that carry this variant.
@@ -124,7 +124,7 @@ to take it back.
 
 > Assessment drafted by an agent on <YYYY-MM-DD>, not a decision.
 > Card owner: ____ (human decides)
-> Variant: `discovery/specs/<variant>.md` · Intent: `discovery/intents/<opportunity>.md` · Prototype test: `discovery/test-cards/<variant>-prototype.md`, learning card `discovery/decisions/002-<variant>.md` (or "none")
+> Variant: `discovery/specs/<variant>.md` · Intent: `discovery/intents/<opportunity>.md` · Prototype test: `discovery/test-cards/<variant>-prototype.md`, learning card `discovery/decisions/<nnn>-<variant>.md` (or "none")
 > KPI branch: <branch> ("<quote>", `discovery/kpi-tree.md:<line>`)
 > Material: <synthetic or composite, repeated>
 > Data: <n> events in `data/events.jsonl` carry this variant <(command)>
