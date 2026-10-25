@@ -17,12 +17,12 @@ A spec is the hand-over to the build: precise enough that Claude Code can build 
 - **Try first, then compare.** Before you draft, ask the human: "What is the smallest page that lets a tester hit the assumption?" Wait for the answer and never invent it. A vague reply ("go on", "ok") is not an answer: ask once more, and if it stays vague, write "skipped". After drafting, fill the section "Your first try": their answer word for word, then two or three short lines on where your draft differs and why. If they say skip, write "skipped". This step is how participants learn the concept; do not shorten it.
 - **Every claim quotes its source with location** (file and line). No quote, no claim.
 - **Do not invent numbers.** No targets, no thresholds, no expected rates; those belong in the test card.
-- **Every sign on the prototype card needs something on the page.** For each sign, name the element where the watcher can see it. If a sign has no element, say so under "Open points for the human".
+- **Every sign on the prototype card needs something on the page.** For each sign, name the element where the watcher can see it, and check it can happen on every path through the page. If a sign has no element, or a path skips it, say so under "Open points for the human".
 - **Name what changes on the page by mechanism:** fields, order, wording, what happens on submit.
 - **Events come from this list only:** `page_view`, `inquiry_started`, `inquiry_step_completed`, `inquiry_submitted`, `success_line_filled`, `scoping_call_booked`, `booking_confirmed`, `followup_answered`. For each, say when it fires and which props it carries. The prototype test does not read them; they are there for a later launch. If the variant needs something no event covers, say so under "What we cannot see".
-- **Fields go to the server as top-level scalars** (string, number, boolean) in the `POST /api/inquiry` body. The server stores any such field by rule (at most 20, strings up to 300 characters) and drops objects and arrays. Name every field.
-- **Where it lives:** the page is `site/variants/<variant>/index.html`, served at `/inquiry?variant=<variant>` once the name is listed under `variants` in `site/config.json`. Do not set `shipped`; that is a human decision after the launch card.
-- **Wording shown to sponsors that comes from the material is marked** with its source, and any invented example is marked as invented.
+- **Fields go to the server as top-level scalars** (string, number, boolean) in the `POST /api/inquiry` body. The server stores any such field by rule (at most 20, strings up to 300 characters) and drops objects and arrays. Name every field. Core validation still applies on top: name, company, a valid email, and `message` of at least 10 characters (`site/components/inquiry-form.js:4`). A page that drops or renames one of these fails on send; keep them, or put the server change under "Open points for the human".
+- **Where it lives:** the page is `site/variants/<variant>/index.html`, served at `/inquiry?variant=<variant>` once the name is listed under `variants` in `site/config.json`. Do not set `shipped`; that is a human decision after the launch card. A page copied from `site/inquiry.html` keeps its nav; the nav link "Inquiry" must point to `/inquiry?variant=<variant>`, or a tester who clicks it lands on the baseline form.
+- **Wording shown to sponsors that comes from the material is marked** with its source, and any invented line is marked as invented. List every invented line in the section "Invented lines on the page": the test card in launch mode reads it.
 - Respect `product/constraints.md`. If the idea and a constraint disagree, name the conflict and stop at that point; do not resolve it.
 - **This file is a spec drafted by an agent.** The human reads it before the build. Open points stay open.
 
@@ -71,6 +71,10 @@ A spec is the hand-over to the build: precise enough that Claude Code can build 
 
 ## What we cannot see
 - <what this variant changes that no event measures>
+
+## Invented lines on the page
+| Line the sponsor sees | Who could confirm it |
+|---|---|
 
 ## Out of scope for the prototype
 - <...>
