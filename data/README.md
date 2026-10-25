@@ -24,3 +24,7 @@ Other visits see one to three of these pages and never reach the inquiry page.
 `scenario.json` (seeds, launch date, traffic, step rates, sponsor mix, browsing paths; it carries
 `"synthetic": true`). Regenerate with `npm run generate`: same seeds, byte-identical files. Change
 the scenario, never the generated files.
+
+`followup_answered` comes 28 to 31 days after that visit's `booking_confirmed`. Its prop
+`weeks_after: 4` counts weeks after the booking. The data hold no training date, so they cannot say
+how long after the training an answer came.
