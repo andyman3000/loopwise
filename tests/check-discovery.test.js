@@ -49,3 +49,10 @@ test('wrong line, empty line, missing file, wrong quote, unknown event and dash 
   const { errors } = check(root);
   assert.equal(errors.length, 6, errors.join('\n'));
 });
+
+test('a quote after the citation is checked too', () => {
+  const bad = repo({ 'sources/a.md': source, 'discovery/x.md': 'Claim (`sources/a.md:4`, "no idea which format fits").\n' });
+  assert.equal(check(bad).errors.length, 1);
+  const ok = repo({ 'sources/a.md': source, 'discovery/x.md': 'Claim (`sources/a.md:3`, "no idea which format fits").\n' });
+  assert.deepEqual(check(ok).errors, []);
+});

@@ -1,6 +1,6 @@
 // Deterministic checks on the discovery artefacts, run with `npm run check`.
 // 1. Every citation `file:line` (or "file, line N") points at an existing, non-empty line.
-// 2. A quote directly before a citation appears on the cited line(s).
+// 2. A quote directly before or after a citation appears on the cited line(s).
 // 3. Event names come from the list in CLAUDE.md (column names of data/*.csv are allowed).
 // 4. No em or en dashes.
 // Exit code 1 if anything fails. No dependencies.
@@ -104,6 +104,15 @@ export function check(root) {
         const hay = norm(inside.map((s) => s.text).join(' '));
         const missing = q[1].split(/\.\.\.|\u2026|\[[^\]]*\]/).map(norm).filter((s) => s.length >= 4 && !hay.includes(s));
         if (missing.length) errors.push(`${where}: quote not on ${inside.map((s) => s.label).join(', ')}: "${missing[0].slice(0, 60)}"`);
+      }
+      // A quote directly after a citation, as in (`file:12`, "quote"), must appear on that citation's lines.
+      for (const sp of spans) {
+        const after = text.slice(sp.end).match(/^`?\s*[,:]\s*"([^"]{8,})"/);
+        if (!after) continue;
+        quotes++;
+        const hay = norm(sp.text);
+        const missing = after[1].split(/\.\.\.|\u2026|\[[^\]]*\]/).map(norm).filter((x) => x.length >= 4 && !hay.includes(x));
+        if (missing.length) errors.push(`${where}: quote not on ${sp.label}: "${missing[0].slice(0, 60)}"`);
       }
     });
   }
