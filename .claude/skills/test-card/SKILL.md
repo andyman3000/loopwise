@@ -10,7 +10,7 @@ and say in one line what each is for. If the variant name is missing, ask.
 
 | Mode | When | Reads first | Writes |
 |---|---|---|---|
-| `prototype` | inside `/intent-and-ideas` (its step 7); on its own for the next idea in a second round | `discovery/intents/<opportunity>.md` | `discovery/test-cards/<variant>-prototype.md` |
+| `prototype` | after `/intent-and-ideas`, once the pair named the idea it tests first; again for the next idea in a second round | `discovery/intents/<opportunity>.md` | `discovery/test-cards/<variant>-prototype.md` |
 | `launch` | after the learning card says move on, before release | `discovery/specs/<variant>.md` | `discovery/test-cards/<variant>.md` |
 
 Both modes also read `product/constraints.md`, `discovery/kpi-tree.md`, `product/personas/` and
