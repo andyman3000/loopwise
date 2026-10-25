@@ -27,14 +27,14 @@ The pair decides. This skill asks, quotes and writes; it decides nothing.
 - **Never ask for what the files hold.** Quote the assumption, the signs and the lines from the prototype card. Do not ask the pair to repeat them.
 - **Write only what the pair says.** Observations, the learning and the decision are the pair's words, shortened at most. If an answer is vague, ask one follow-up. If it stays vague, write it as said and mark it "[vague: the pair did not say more]".
 - **Observations from people and from personas stay apart.** A cross-test observation quotes the watcher's notes with file and line (`discovery/user-tests/<variant>-cross.md:<line>`). If the cross test happened but the notes file is missing, ask the pair to write it first (block 6a says how) and wait. A persona observation quotes the walkthrough file and the persona-file line it rests on (`product/personas/<file>:<line>`). A persona action with no persona-file line behind it is not an observation and is left out.
-- **One round, one set of files.** Round 1 reads `<variant>-cross.md`, `<variant>-page.md` and the card's first section. Round 2 reads `<variant>-cross-2.md` and `<variant>-page-2.md` and the card's "Round 2" section. Never quote an earlier round's test as evidence for a later round. The top line is chosen per round: "tested with one person" only if that round has its own cross-test file.
+- **One round, one set of files.** Round 1 reads `<variant>-cross.md`, `<variant>-page.md` and the card's first section. Round 2 reads `<variant>-cross-2.md` and `<variant>-page-2.md` and the card's "Round 2" section. Never quote an earlier round's test as evidence for a later round.
 - **A test that does not count.** If the watcher's notes say the tester had no real case the scenario asked for, write at the top of the round: "This test does not count: the tester had no such case (`<notes file>:<line>`)." Ask the pair for another tester, or for `/persona-walkthrough <variant> page`, before the outcome.
 - **No sign judged.** If every sign of the round is "cannot tell" or "unclear", say so in one line: "No sign could be judged in this round, so it cannot show whether the assumption holds." The pair still names one of the three outcomes; a person test is the usual next step.
 - **Hold observations against the signs, not against hopes.** For each sign on the prototype card, ask whether the watcher saw it. The pair answers; you do not.
 - **A seen rework sign is named.** If the pair says the assumption held while a sign that points to rework or drop was seen, quote that sign and ask once: "This sign was seen. Does it change your answer?" Write what they say. The same if the pair calls the result unclear and still moves on: quote the go-on line and ask once, "The go-on line asked for this. Did you see it?"
 - **Decides nothing.** The pair names one of three outcomes and why: move on (with what changes before roll-out), another round (changed spec or the next idea from the intent), or kill. If they do not name one, the field stays `____ (human decides)`. Never suggest which one.
 - **Every claim quotes its source with location** (file and line). A citation into `discovery/` carries a short quote, so `npm run check` catches a line that moved; never a section name alone. No invented numbers: one tester is a pattern, not a rate.
-- **"Pressure-tested, not validated"** stands at the top only when no person tested the page, that is, when `<variant>-cross.md` does not exist. With a cross test, the top line says "Tested with one person from another pair: a pattern, not a rate."
+- **The label of a round.** Each round starts with one label line. If that round has its own cross-test file (`<variant>-cross.md` for round 1, `<variant>-cross-2.md` for round 2): "Tested with one person from another pair: a pattern, not a rate." Otherwise: "Pressure-tested, not validated: rests on persona runs, not on people."
 - **Changes on other pages.** If a change the pair names for roll-out sits on another page than the inquiry page, say once that a variant replaces only `/inquiry`, so that change needs its own decision. Write it as said.
 - **Invented lines.** If the outcome is move on, ask: "Which lines on the page are invented, and who confirms them before roll-out?" Quote the spec's "Invented lines on the page". Write the answer under "Therefore we will".
 
@@ -55,11 +55,13 @@ The pair decides. This skill asks, quotes and writes; it decides nothing.
 ```markdown
 # Decision <nnn>: <variant>, learning card
 
-> Decision record and learning card. <"Tested with one person from another pair: a pattern, not a rate." if `<variant>-cross.md` exists; otherwise "Pressure-tested, not validated: rests on persona runs, not on people.">
+> Decision record and learning card. Each round below starts with its own label line.
 > Written by the `learning-card` skill from what the pair said. The material behind the prototype is <synthetic or composite, repeated from the card>.
 > Rests on: `discovery/test-cards/<variant>-prototype.md`<, `discovery/user-tests/<variant>-cross.md`><, `discovery/user-tests/<variant>-<mode>.md`>
 
 ## Round 1, <YYYY-MM-DD>
+
+> <label line for this round, see "The label of a round">
 
 ### How it went (first try)
 <gut feeling, word for word>
