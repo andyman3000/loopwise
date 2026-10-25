@@ -9,7 +9,7 @@ the block is for, what you do step by step, and when you are done.
 | [01-kpi-tree.md](01-kpi-tree.md) | KPI tree | `01-kpi-tree` |
 | [02-opportunities.md](02-opportunities.md) | Opportunities from sources | `02-opportunities` |
 | [03-opportunity-decision.md](03-opportunity-decision.md) | Compare opportunities and decide | `03-opportunity-decision` |
-| [04-test-card.md](04-test-card.md) | Intent, three ideas, the assumption to test, prototype test card | `04-test-card` |
+| [04-test-card.md](04-test-card.md) | Ideas, the assumption to test, prototype test card | `04-test-card` |
 | [05-prototype.md](05-prototype.md) | Spec, persona reads the spec, build the prototype | `05-prototype` |
 | [06-test-decision.md](06-test-decision.md) | Cross test, learning card, carry on | `06-test-decision` |
 | [07-result.md](07-result.md) | Demo: read the result | `07-result` |
