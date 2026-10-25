@@ -65,7 +65,10 @@ your own run, you are the decider.
 ## Where the pages are
 
 - `/` home, `/formats.html`, `/inquiry` (the form), `/confirmation.html`, `/sponsor-prep.html`
-- `/inquiry` serves the variant named in `site/config.json` under `shipped`, if set and present.
-  Otherwise it serves the baseline form. `/inquiry?variant=baseline` always serves the baseline.
-  `/inquiry?variant=<name>` serves `site/variants/<name>/index.html` if `<name>` is listed in
-  `variants` in `site/config.json`.
+- A variant can replace any page. It holds a file with the page's name:
+  `site/variants/<name>/inquiry.html`, `formats.html`, or `index.html` for home.
+- `/<page>?variant=<name>` serves the variant's version of that page if `<name>` is listed in
+  `variants` in `site/config.json`. A page the variant does not hold is the baseline page. Links
+  between pages keep `?variant=<name>`, so a visitor stays inside the variant.
+- Without `?variant=`, every page the variant named under `shipped` holds replaces the baseline.
+  `?variant=baseline` always serves the baseline.

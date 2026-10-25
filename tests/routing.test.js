@@ -23,7 +23,7 @@ before(async () => {
   for (const name of ['zz-test-a', 'zz-test-b']) {
     const d = path.join(VARIANTS, name);
     fs.mkdirSync(d, { recursive: true });
-    fs.writeFileSync(path.join(d, 'index.html'), `<!doctype html><title>${name}</title>${MARK}-${name}`);
+    fs.writeFileSync(path.join(d, 'inquiry.html'), `<!doctype html><title>${name}</title>${MARK}-${name}<a href="/formats.html">F</a><a href="/styles.css">S</a>`);
     created.push(d);
   }
   server = createServer();
@@ -103,6 +103,31 @@ test('?variant with path traversal is 404', async () => {
   assert.equal((await get('/inquiry?variant=../../server')).status, 404);
 });
 
+test('a variant replaces any page by holding a file of the same name', async () => {
+  const f = path.join(VARIANTS, 'zz-test-b', 'formats.html');
+  fs.writeFileSync(f, `<!doctype html>${MARK}-formats`);
+  try {
+    setConfig({ shipped: null, variants: ['zz-test-a', 'zz-test-b'] });
+    assert.match((await get('/formats.html?variant=zz-test-b')).text, new RegExp(MARK + '-formats'));
+    assert.match((await get('/formats?variant=zz-test-b')).text, new RegExp(MARK + '-formats'));
+    assert.doesNotMatch((await get('/formats.html')).text, new RegExp(MARK), 'no variant asked for, none shipped');
+    assert.doesNotMatch((await get('/formats.html?variant=zz-test-a')).text, new RegExp(MARK), 'zz-test-a holds no formats page');
+    setConfig({ shipped: 'zz-test-b', variants: ['zz-test-b'] });
+    assert.match((await get('/formats.html')).text, new RegExp(MARK + '-formats'), 'shipped variant replaces every page it holds');
+    assert.match((await get('/inquiry.html')).text, new RegExp(MARK + '-zz-test-b'), '/inquiry.html is the same page as /inquiry');
+  } finally { fs.rmSync(f); }
+});
+
+test('a page the variant does not hold is the baseline page, and its links keep the variant', async () => {
+  setConfig({ shipped: null, variants: ['zz-test-a'] });
+  const home = await get('/?variant=zz-test-a');
+  assert.equal(home.status, 200);
+  assert.match(home.text, /href="\/inquiry\.html\?variant=zz-test-a"/);
+  const own = (await get('/inquiry?variant=zz-test-a')).text;
+  assert.match(own, /href="\/formats\.html\?variant=zz-test-a"/);
+  assert.match(own, /href="\/styles\.css"/, 'files that are not pages keep their link');
+});
+
 test('/compare, /dashboard and the test-card endpoint are not part of the start state', async () => {
   setConfig({ shipped: null, variants: [] });
   for (const p of ['/compare', '/dashboard']) assert.equal((await get(p)).status, 404, p);
@@ -112,7 +137,7 @@ test('/compare, /dashboard and the test-card endpoint are not part of the start 
 test('site/config.json lists only built variants, and shipped is null or one of them', () => {
   const c = JSON.parse(fs.readFileSync(path.join(SITE, 'config.json'), 'utf8'));
   assert.ok(Array.isArray(c.variants));
-  for (const v of c.variants) assert.ok(fs.existsSync(path.join(SITE, 'variants', v, 'index.html')), `${v} has no index.html`);
+  for (const v of c.variants) assert.ok(fs.readdirSync(path.join(SITE, 'variants', v)).some((f) => f.endsWith('.html')), `${v} holds no page`);
   assert.ok(c.shipped === null || c.variants.includes(c.shipped), 'shipped must be null or a listed variant');
 });
 

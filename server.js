@@ -95,12 +95,32 @@ function readConfig() {
   }
 }
 
-// A variant is servable only if it is listed in config.variants and its folder has an index.html.
+// A page of the site by name: "/" is index, "/inquiry" and "/inquiry.html" are inquiry.
+// Only names with a baseline file in site/ are pages; everything else is served as a static file.
+function pageName(pathname) {
+  const m = pathname.match(/^\/(?:([a-z0-9-]+?)(?:\.html)?)?$/);
+  const name = m ? m[1] || 'index' : null;
+  return name && fs.existsSync(path.join(SITE, name + '.html')) ? name : null;
+}
+
+// A variant is servable only if it is listed in config.variants and its folder exists.
 // Only listed names reach the filesystem, so no path traversal is possible.
-function variantFile(name) {
+function variantDir(name) {
   if (typeof name !== 'string' || !readConfig().variants.includes(name)) return null;
-  const file = path.join(SITE, 'variants', name, 'index.html');
-  return file.startsWith(path.join(SITE, 'variants') + path.sep) && fs.existsSync(file) ? file : null;
+  const dir = path.join(SITE, 'variants', name);
+  return dir.startsWith(path.join(SITE, 'variants') + path.sep) && fs.existsSync(dir) ? dir : null;
+}
+
+// A variant replaces a page by holding a file of the same name: variants/<name>/formats.html.
+// A page the variant does not hold is the baseline page.
+function variantPage(dir, page) {
+  const file = dir && path.join(dir, page + '.html');
+  return file && fs.existsSync(file) ? file : null;
+}
+
+// Links between pages keep ?variant=<name>, so a visitor stays inside the variant.
+function keepVariant(html, variant) {
+  return html.replace(/href="(\/[a-z0-9-]*(?:\.html)?)"/g, (all, href) => (pageName(href) ? `href="${href}?variant=${encodeURIComponent(variant)}"` : all));
 }
 
 // Extra fields from a variant form are passed through by rule, not by name: any top-level key
@@ -194,14 +214,18 @@ export function createServer() {
       return res.end(req.method === 'HEAD' ? undefined : discovery.html);
     }
     let file;
-    if (pathname === '/inquiry') {
+    const page = pageName(pathname);
+    if (page) {
       const variant = new URL(req.url, 'http://localhost').searchParams.get('variant');
-      const baseline = path.join(SITE, 'inquiry.html');
-      if (variant === null) file = (variantFile(readConfig().shipped) || baseline);
+      const baseline = path.join(SITE, page + '.html');
+      if (variant === null) file = variantPage(variantDir(readConfig().shipped), page) || baseline;
       else if (variant === 'baseline') file = baseline;
       else {
-        file = variantFile(variant);
-        if (!file) return notFound();
+        const dir = variantDir(variant);
+        if (!dir) return notFound();
+        const html = keepVariant(fs.readFileSync(variantPage(dir, page) || baseline, 'utf8'), variant);
+        res.writeHead(200, { 'Content-Type': TYPES['.html'], 'Content-Length': Buffer.byteLength(html) });
+        return res.end(req.method === 'HEAD' ? undefined : html);
       }
     } else file = resolvePath(pathname);
     if (!file) return notFound();
