@@ -10,7 +10,7 @@ description: Play both sponsor personas (soft and hard) through the prototype te
 | Mode | When | The personas meet | Writes |
 |---|---|---|---|
 | `spec` | after `variant-spec`, before the build | the spec's "What changes on the page" and "Fields and validation" | `discovery/user-tests/<variant>-spec.md` |
-| `page` | after the build; in block 6 as fallback if the cross test drops, or after a rebuild | the page at `http://localhost:<port>/inquiry?variant=<variant>` | `discovery/user-tests/<variant>-page.md` |
+| `page` | after the build; in block 6 as fallback if the cross test drops, or after a rebuild | the page at `http://localhost:<port>/<page>?variant=<variant>`, the start page the spec names | `discovery/user-tests/<variant>-page.md` |
 
 **Reads:** `discovery/test-cards/<variant>-prototype.md` (scenario, signs, the two lines);
 `product/personas/sponsor-soft.md`; `product/personas/sponsor-hard.md`; in mode `spec`,
@@ -30,11 +30,11 @@ anything its file has no source for.
 - **What a persona types is built from its file.** Text the persona enters in a field is made only from lines of its file, and the walkthrough quotes those lines. A sign that turns on what the persona would write in its own words is "cannot tell", in both modes. Name, company and email get placeholders ("Test Sponsor", "sponsor@example.com"), marked as having no source.
 - **No source, no reaction.** If the persona file has nothing on a point, write "[no source in the persona file: the persona cannot tell]" and do not use it as a sign. Never invent a goal, a fear or a habit the file does not hold.
 - **Judge by the card's signs only**, after the walkthrough. For each sign: shown, not shown, or cannot tell, with the walkthrough line it rests on. A sign the card marks "only the cross test with people can test this" is "cannot tell", unless the walkthrough quotes a persona line that states the behaviour (see "too strict" below). A field the persona leaves empty because its file has no line for it is "cannot tell", never "not shown". If the card says a persona can show a sign but its file holds only the worry, the goal, what the sponsor knows, or a different behaviour, the sign is "cannot tell", and the file says the card was too generous. The other way round: if the card says only people can show a sign, but the walkthrough quotes a persona line that states the behaviour, mark it shown or not shown and say the card was too strict. A stall that matches no sign goes under "Other stalls", with its source.
-- **Mode `page` uses a browser tool** (Playwright MCP or Chrome DevTools MCP): open the page, take a snapshot of each screen, click as the persona would. React to what is on screen, not to the code. If no browser tool is connected, read `site/variants/<variant>/index.html` and its scripts instead, and write at the top of the file: "No browser tool connected: the personas read the HTML, not the page. The HTML shows things a sponsor never sees." Never read the HTML silently in place of the page.
-- **Screen text is cited to the page.** Text the persona reads on screen is cited as `site/variants/<variant>/index.html:<line>`, or written without quote marks. A quote followed by a persona citation must stand in the persona file, or `npm run check` fails.
+- **Mode `page` uses a browser tool** (Playwright MCP or Chrome DevTools MCP): open the page, take a snapshot of each screen, click as the persona would. React to what is on screen, not to the code. If no browser tool is connected, read the files in `site/variants/<variant>/` and their scripts instead, and write at the top of the file: "No browser tool connected: the personas read the HTML, not the page. The HTML shows things a sponsor never sees." Never read the HTML silently in place of the page.
+- **Screen text is cited to the page.** Text the persona reads on screen is cited as `site/variants/<variant>/<page>.html:<line>`, or written without quote marks. A quote followed by a persona citation must stand in the persona file, or `npm run check` fails.
 - **No publishing.** The page stays on localhost. Do not upload it anywhere.
 - **Every claim quotes its source with location** (file and line). No invented numbers.
-- **Decides nothing.** No verdict on the variant, no go-on, no rework or drop. The file ends with what the pair might change, as proposals. Proposals change the inquiry page only; a gap on another page goes under "Other stalls", marked "not on the variant page".
+- **Decides nothing.** No verdict on the variant, no go-on, no rework or drop. The file ends with what the pair might change, as proposals. Proposals may change any page; name the page in each.
 - **Round 2 gets its own file.** A run for round 2 of the learning card writes `<variant>-<mode>-2.md`. A rerun within the same round replaces the file and says at the top which earlier run it replaced, with the date. Ask which case it is if unsure.
 
 ## Steps
@@ -44,7 +44,7 @@ anything its file has no source for.
 2. Read both persona files.
 3. Open what the personas meet:
    - mode `spec`: read `discovery/specs/<variant>.md`, only the two sections named above. If the spec does not exist, stop.
-   - mode `page`: ask which port the server runs on (3000 unless `PORT` is set), then check it answers: `curl -s -o /dev/null -w '%{http_code}' 'http://localhost:<port>/inquiry?variant=<variant>'`. Not 200: ask the human to run `npm start` in a second terminal and check `site/config.json` lists the variant. Then open the page with the browser tool. Record which tool, or that none was connected.
+   - mode `page`: ask which port the server runs on (3000 unless `PORT` is set), then check it answers: `curl -s -o /dev/null -w '%{http_code}' 'http://localhost:<port>/<page>?variant=<variant>'`. Not 200: ask the human to run `npm start` in a second terminal and check `site/config.json` lists the variant. Then open the page with the browser tool. Record which tool, or that none was connected.
 4. Walk through as each persona, in turn. Per screen or step: what they notice first, what they would do and why, where they hesitate, what they would ask. Each line with its persona-file source. 100 to 250 words per persona.
 5. Judge each sign, per persona: shown, not shown, cannot tell. Then hold the result against the go-on line and the rework-or-drop line, in words: which line the observations lean towards, or "unclear".
 6. Show the human the sign table. Ask what is wrong or missing, and correct it.
@@ -57,7 +57,7 @@ anything its file has no source for.
 
 > **Pressure-tested, not validated.** The personas are built from the same sources as the opportunity.
 > Run by an agent (`persona-walkthrough`) on <YYYY-MM-DD>. Not a decision.
-> Prototype card: `discovery/test-cards/<variant>-prototype.md` · Met: <`discovery/specs/<variant>.md` | `http://localhost:<port>/inquiry?variant=<variant>`>
+> Prototype card: `discovery/test-cards/<variant>-prototype.md` · Met: <`discovery/specs/<variant>.md` | `http://localhost:<port>/<page>?variant=<variant>`>
 > Browser tool: <Playwright MCP | Chrome DevTools MCP | none: read the HTML> (mode `page` only)
 > Material: personas are drafts from anonymised composite interviews and synthetic inquiries (`product/personas/sponsor-soft.md:<line>`, `product/personas/sponsor-hard.md:<line>`)
 
