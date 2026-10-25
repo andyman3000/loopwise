@@ -78,7 +78,7 @@ Level in the intent: <level, quoted>
 ## Test scenario (the tester sees only this)
 - **Situation:** <two or three sentences, "You are ...">
 - **Task:** <one sentence>
-- **Page:** `/inquiry?variant=<variant>`
+- **Page:** `/<page>?variant=<variant>`, the page the spec names as the start
 - **Sources:** <citations for the team facts in the situation, not read to the tester>
 - **Does not count if:** <only when the situation asks for a real case: "the tester has no such case">
 
@@ -111,10 +111,10 @@ to take it back.
 - **Thresholds are proposals, not evidence.** The success line, kill criterion and time frame are targets a human sets; mark each "proposal". Where a baseline is needed, name the events it is computed from and say whether `data/` holds them yet. Never state a baseline value you have not counted.
 - **Citations into `discovery/` carry a short quote**, so `npm run check` catches a line that moved. Never cite a section name alone.
 - **Every line is checkable against data later.** Each metric names the event(s) it is computed from, from this list only: `page_view`, `inquiry_started`, `inquiry_step_completed`, `inquiry_submitted`, `success_line_filled`, `scoping_call_booked`, `booking_confirmed`, `followup_answered`. If a line cannot be computed from these, say so under "What we cannot see" instead of inventing an event.
-- **Changes before roll-out come first.** If the learning card moves on "with what changes before roll-out", check each change is in the spec. If a page change is missing, list it and stop: the spec needs it before the launch card. A change that is not a page change (someone confirms a line, a person test) is listed as open on the card, not as missing. A change on another page than the inquiry page (the thank-you page, formats) cannot ship with the variant, because only `/inquiry` is replaced: list it under "What we cannot see".
+- **Changes before roll-out come first.** If the learning card moves on "with what changes before roll-out", check each change is in the spec. If a page change is missing, list it and stop: the spec needs it before the launch card. A change that is not a page change (someone confirms a line, a person test) is listed as open on the card, not as missing. A change on another page belongs in the spec like any other: the variant holds one file per page it changes.
 - **Invented lines are assumptions.** Every line the spec marks as invented that the page shows to sponsors (a promise about what the academy does) becomes a critical assumption, with "unsupported" until someone who runs the training confirms it.
 - **Hold every threshold against its counted baseline.** Where `data/` holds the baseline, count it and put it next to the threshold. If the baseline already meets the kill criterion, or already meets the success line, say so in one line: the threshold would fire, or pass, on day one. The human sets the value.
-- **Name the driver the page can move.** A variant replaces only the inquiry page. If the intent's driver lies after it (call rate, booking rate), name the driver the page can move and write the link as `[assumption: ...]`. Quote both drivers from `discovery/kpi-tree.md`.
+- **Name the driver the page can move.** A variant changes pages on the website, up to the sent inquiry. If the intent's driver lies after it (call rate, booking rate), name the driver the pages can move and write the link as `[assumption: ...]`. Quote both drivers from `discovery/kpi-tree.md`.
 - **Say whether this repo's data holds the variant.** Count the events in `data/events.jsonl` whose `variant` is this variant. If there are none, write in the header and under "What we cannot see": "No event in `data/` carries this variant, so this card cannot be read against the data in this repo."
 - **The success line is set upfront**, before launch, and never edited after data arrives. A later change is a new card version with a date.
 - Leave the Result section empty. `read-result` fills it.
