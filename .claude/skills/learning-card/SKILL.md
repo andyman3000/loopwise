@@ -13,7 +13,8 @@ if the cross test dropped. Also after a second round, to update the card.
 `product/personas/sponsor-soft.md`, `product/personas/sponsor-hard.md`;
 `discovery/intents/<opportunity>.md` (the other two ideas).
 **Writes:** `discovery/decisions/<nnn>-<variant>.md`. If a file for this variant exists, add a dated
-round below the last one; never rewrite an earlier round. Otherwise use the next free number in
+round below the last one, with all its sections, its own decision, Who and When included; never
+rewrite an earlier round. Otherwise use the next free number in
 `discovery/decisions/`: 002 for the first variant, 003 for the next idea.
 
 A learning card (Osterwalder, Strategyzer) records what a test showed: we believed, we observed, we
@@ -62,6 +63,7 @@ The pair decides. This skill asks, quotes and writes; it decides nothing.
 ## Round 1, <YYYY-MM-DD>
 
 > <label line for this round, see "The label of a round">
+> Rests on: <the files of this round only>
 
 ### How it went (first try)
 <gut feeling, word for word>
@@ -85,20 +87,23 @@ From that we learned that <the pair's sentence>.
 ### Therefore we will
 <the pair's next step>
 
-## Options considered
+### Options considered
 - Move on: <what changes before roll-out, or "not chosen">
 - Another round: <changed spec or the next idea, quoted from the intent>
 - Kill: <...>
 
-## What we decided
+### What we decided
 ____ (human decides) <filled only with the pair's words>
 
-## Why
+### Why
 <the pair's reason>
 
-## Who
+### Who
 <names the pair gave>
 
-## When
+### When
 <date the pair gave>
+
+## Round 2, <YYYY-MM-DD>
+<the same sections as round 1, from the label line to "When", for this round only>
 ```
