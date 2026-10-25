@@ -7,7 +7,7 @@ description: Write the spec for the one variant whose prototype test card exists
 
 **When:** after `test-card` in prototype mode has written `discovery/test-cards/<variant>-prototype.md`. Before the build.
 **Input:** one variant name. It must match "Variant name" in the intent's "Selection (human)" and have a prototype card. If no name is given, ask. If either is missing, say which and stop.
-**Reads:** `discovery/test-cards/<variant>-prototype.md` (the assumption, the scenario, the signs); `discovery/intents/<opportunity>.md` (the idea and its assumptions); `site/inquiry.html` and `site/components/` (what the page does today); `site/formats.html` (the formats a page may name); `product/constraints.md`; `product/personas/`; `sources/` where the variant needs wording from the material.
+**Reads:** `discovery/test-cards/<variant>-prototype.md` (the assumption, the scenario, the signs); `discovery/intents/<opportunity>.md` (the idea and its assumptions); the pages the idea changes in `site/` and `site/components/` (what they do today); `site/formats.html` (the formats a page may name); `product/constraints.md`; `product/personas/`; `sources/` where the variant needs wording from the material.
 **Writes:** `discovery/specs/<variant>.md`.
 
 A spec is the hand-over to the build: precise enough that Claude Code can build the page from this file alone. **It covers only what the prototype test needs**: the smallest page on which a tester can meet the assumption and the watcher can see the signs. Everything else is out of scope and listed as such.
@@ -23,7 +23,7 @@ A spec is the hand-over to the build: precise enough that Claude Code can build 
 - **Events come from this list only:** `page_view`, `inquiry_started`, `inquiry_step_completed`, `inquiry_submitted`, `success_line_filled`, `scoping_call_booked`, `booking_confirmed`, `followup_answered`. For each, say when it fires and which props it carries. The prototype test does not read them; they are there for a later launch. If the variant needs something no event covers, say so under "What we cannot see".
 - **Fields go to the server as top-level scalars** (string, number, boolean) in the `POST /api/inquiry` body. The server stores any such field by rule (at most 20, strings up to 300 characters) and drops objects and arrays. It cuts a longer string without a warning, so every new text field gets `maxlength="300"`. Name every field. Core validation still applies on top: name, company, a valid email, and `message` of at least 10 characters (`site/components/inquiry-form.js:4`). A page that drops one of these fails on send, so keep all four. The message field may get a new label, or be filled from what the sponsor ticks or types: text built from the sponsor's own choices counts as their answer. Never fill it with fixed text that is the same whatever the sponsor does: every record would carry the same fake answer. Every new field sits inside the `<form>` element, or it is not sent.
 - **After the send.** The page redirects to `/confirmation.html`, which says the academy gets in touch "within a few days" to book a scoping call. If the variant promises something else (a call back, a time), say so under "Open points for the human".
-- **Where it lives:** the page is `site/variants/<variant>/index.html`, served at `/inquiry?variant=<variant>` once the name is listed under `variants` in `site/config.json`. Do not set `shipped`; that is a human decision after the launch card. A page copied from `site/inquiry.html` keeps its nav; the nav link "Inquiry" must point to `/inquiry?variant=<variant>`, or a tester who clicks it lands on the baseline form.
+- **Where it lives:** a variant can replace any page (`README.md:68`). It holds one file per page it changes, named like the page: `site/variants/<variant>/inquiry.html`, `formats.html`, or `index.html` for home. Each is served at `/<page>?variant=<variant>` once the name is listed under `variants` in `site/config.json`. Pages the variant does not hold stay the baseline, and the server keeps `?variant=` on links between pages. Do not set `shipped`; that is a human decision after the launch card. The spec names every page it changes and the page the tester starts on.
 - **Wording shown to sponsors that comes from the material is marked** with its source, and any invented line is marked as invented. List every invented line in the section "Invented lines on the page": the test card in launch mode reads it. Wording adapted from a source is written as the label, then "adapted from `<file>:<line>`", without quote marks around the label: `npm run check` reads a quote followed by a citation as word for word.
 - Respect `product/constraints.md`. If the idea and a constraint disagree, name the conflict and stop at that point; do not resolve it.
 - **This file is a spec drafted by an agent.** The human reads it before the build. Open points stay open.
@@ -32,7 +32,7 @@ A spec is the hand-over to the build: precise enough that Claude Code can build 
 
 0. **Try first.** Ask the human: "What is the smallest page that lets a tester hit the assumption?" Wait for the answer before you read further or draft anything.
 1. Read the prototype card: the assumption, the scenario, the signs. Then the intent and its "Selection (human)". Confirm the variant name and which idea it comes from.
-2. Read the current inquiry page and its components, so the spec says what changes against today and what stays.
+2. Read the current pages the idea changes and their components, so the spec says what changes against today and what stays.
 3. Draft the spec with the template below. Show the human the section "What changes on the page" and ask them to confirm or change it.
 4. Write the file. Tell the human in three lines what the build needs most, which open point needs their judgement, and that the next step is `/persona-walkthrough <variant> spec`. Say that every open point touching a sign must be answered before the build.
 
@@ -42,7 +42,7 @@ A spec is the hand-over to the build: precise enough that Claude Code can build 
 # Spec: <variant>
 
 > Spec drafted by an agent (`variant-spec`) on <YYYY-MM-DD>, before the build.
-> **Variant:** `<variant>`, served at `/inquiry?variant=<variant>`
+> **Variant:** `<variant>` · Pages it changes: <page files> · Tester starts at `/<page>?variant=<variant>`
 > **Idea:** <I-number> in `discovery/intents/<opportunity>.md` ("<idea line, quoted>")
 > **Assumption under test:** "<quoted>" (`discovery/test-cards/<variant>-prototype.md:<line>`)
 > **Label:** <synthetic or composite, repeated from the material the intent rests on>
@@ -85,6 +85,7 @@ A spec is the hand-over to the build: precise enough that Claude Code can build 
 - <point>: who can answer it · Answer: ____ (human decides; points that touch a sign before the build)
 
 ## Build prompt
-> Build the variant in discovery/specs/<variant>.md as site/variants/<variant>/index.html
+> Build the variant in discovery/specs/<variant>.md as one file per page it changes in
+> site/variants/<variant>/, named like the page it replaces (inquiry.html, formats.html),
 > and add the name to "variants" in site/config.json. Do not set "shipped".
 ```
