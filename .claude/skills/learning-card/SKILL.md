@@ -12,8 +12,9 @@ if the cross test dropped. Also after a second round, to update the card.
 `discovery/user-tests/<variant>-spec.md` and `<variant>-page.md` if they exist;
 `product/personas/sponsor-soft.md`, `product/personas/sponsor-hard.md`;
 `discovery/intents/<opportunity>.md` (the other two ideas).
-**Writes:** `discovery/decisions/002-<variant>.md`. If the file exists, add a dated round below
-the last one; never rewrite an earlier round.
+**Writes:** `discovery/decisions/<nnn>-<variant>.md`. If a file for this variant exists, add a dated
+round below the last one; never rewrite an earlier round. Otherwise use the next free number in
+`discovery/decisions/`: 002 for the first variant, 003 for the next idea.
 
 A learning card (Osterwalder, Strategyzer) records what a test showed: we believed, we observed, we
 learned, therefore we will. Here it is also the decision record for what happens to the variant.
@@ -46,7 +47,7 @@ The pair decides. This skill asks, quotes and writes; it decides nothing.
 ## Output template
 
 ```markdown
-# Decision 002: <variant>, learning card
+# Decision <nnn>: <variant>, learning card
 
 > Decision record and learning card. <"Pressure-tested, not validated: rests on persona runs, not on people." if any observation comes from a persona>
 > Written by the `learning-card` skill from what the pair said. The material behind the prototype is <synthetic or composite, repeated from the card>.
