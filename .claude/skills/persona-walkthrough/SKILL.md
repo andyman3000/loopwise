@@ -35,7 +35,7 @@ anything its file has no source for.
 - **No publishing.** The page stays on localhost. Do not upload it anywhere.
 - **Every claim quotes its source with location** (file and line). No invented numbers.
 - **Decides nothing.** No verdict on the variant, no go-on, no rework or drop. The file ends with what the pair might change, as proposals. Proposals change the inquiry page only; a gap on another page goes under "Other stalls", marked "not on the variant page".
-- **A second round does not overwrite.** If `<variant>-<mode>.md` exists, write `<variant>-<mode>-2.md`.
+- **Round 2 gets its own file.** A run for round 2 of the learning card writes `<variant>-<mode>-2.md`. A rerun within the same round replaces the file and says at the top which earlier run it replaced, with the date. Ask which case it is if unsure.
 
 ## Steps
 
