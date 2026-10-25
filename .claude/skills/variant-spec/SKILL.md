@@ -82,7 +82,7 @@ A spec is the hand-over to the build: precise enough that Claude Code can build 
 - <...>
 
 ## Open points for the human
-- <point>: who can answer it
+- <point>: who can answer it · Answer: ____ (human decides; points that touch a sign before the build)
 
 ## Build prompt
 > Build the variant in discovery/specs/<variant>.md as site/variants/<variant>/index.html
