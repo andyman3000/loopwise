@@ -23,7 +23,8 @@ another round, or kill. That decision is your learning card, decision 002.
    ## Signs from the card
    - <sign>: seen / not seen / unclear
    ```
-   When the tester asks you something, write the question down and answer "what would you do now?"
+   If the tester has no real case the scenario asks for, the test does not count: find another
+   tester. When the tester asks you something, write the question down and answer "what would you do now?"
    Stop the server with `Ctrl+C` when the test is over. The tester goes back to their own pair.
 3. **Learning card (25 min).** Together again: `/learning-card <variant>`. It asks one question at a
    time. It asks how it went, what the tester did, which signs you saw, and whether the assumption
@@ -52,7 +53,8 @@ Go as far as you get. What you do depends on your learning card:
   says so. You see a result read against data in the demo.
 - **Another round, changed spec:** change the spec. If a sign or the scenario changes, add a dated
   "Round 2" section to the card below the first; do not edit round 1. Rebuild, run `/persona-walkthrough <variant> page`,
-  then `/learning-card <variant>` again. It adds round 2 to decision 002.
+  then `/learning-card <variant>` again. It adds round 2 to decision 002. If you can, test round 2
+  with a person too, and name the notes `<variant>-cross-2.md`. Personas alone often judge no sign.
 - **Another round, next idea, or kill:** say why in the learning card. In the intent, fill a second
   "Selection (human)" below the first for the next idea, with its own variant name. Then
   `/test-card <next-variant> prototype`, `/variant-spec <next-variant>`, build, and
