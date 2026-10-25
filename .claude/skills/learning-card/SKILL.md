@@ -30,7 +30,7 @@ The pair decides. This skill asks, quotes and writes; it decides nothing.
 - **Hold observations against the signs, not against hopes.** For each sign on the prototype card, ask whether the watcher saw it. The pair answers; you do not.
 - **A seen rework sign is named.** If the pair says the assumption held while a sign that points to rework or drop was seen, quote that sign and ask once: "This sign was seen. Does it change your answer?" Write what they say.
 - **Decides nothing.** The pair names one of three outcomes and why: move on (with what changes before roll-out), another round (changed spec or the next idea from the intent), or kill. If they do not name one, the field stays `____ (human decides)`. Never suggest which one.
-- **Every claim quotes its source with location** (file and line). No invented numbers: one tester is a pattern, not a rate.
+- **Every claim quotes its source with location** (file and line). A citation into `discovery/` carries a short quote, so `npm run check` catches a line that moved; never a section name alone. No invented numbers: one tester is a pattern, not a rate.
 - **"Pressure-tested, not validated"** stands at the top only when no person tested the page, that is, when `<variant>-cross.md` does not exist. With a cross test, the top line says "Tested with one person from another pair: a pattern, not a rate."
 - **Changes on other pages.** If a change the pair names for roll-out sits on another page than the inquiry page, say once that a variant replaces only `/inquiry`, so that change needs its own decision. Write it as said.
 - **Invented lines.** If the outcome is move on, ask: "Which lines on the page are invented, and who confirms them before roll-out?" Quote the spec's "Invented lines on the page". Write the answer under "Therefore we will".
@@ -40,7 +40,7 @@ The pair decides. This skill asks, quotes and writes; it decides nothing.
 0. **Try first.** Ask: "How did the test go, in a few words?" Wait.
 1. Read the prototype card and the user-test files. If the prototype card is missing, stop and say so. If neither `<variant>-cross.md` nor `<variant>-page.md` exists, ask which test happened.
 2. Ask: "What did the tester do or say? List it freely." Reflect it back as a short list. Ask: "Anything else, or shall we work with these?"
-3. Go through the signs on the prototype card, one message for all of them: quote each sign, ask which ones the watcher saw. Record the answer per sign: seen, not seen, unclear.
+3. Quote the sign marks from `<variant>-cross.md` in one message and ask: "Do these marks stand?" Ask per sign only where a mark is missing. Without a cross test, quote the persona run's sign table instead.
 4. Quote the assumption and the two lines. Ask: "Against these lines, did the assumption hold, break, or is it unclear? Why?" If unclear: "What would you need to see to be sure?"
 5. Ask: "Finish the sentence: From that we learned that ..."
 6. Ask: "Which outcome: move on, another round, or kill? And why?" If move on: "What changes before roll-out?" If another round: "Changed spec, or the next idea from the intent?" Name the two other ideas from the intent, quoted.
