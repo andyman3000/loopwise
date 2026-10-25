@@ -50,8 +50,8 @@ Go as far as you get. What you do depends on your learning card:
   line, usage, proxy, counter metric, kill criterion, time frame. Fill its `Card owner`. Your own launch card cannot be read against the
   data in this repo. The synthetic data were generated for one reference variant only, and the card
   says so. You see a result read against data in the demo.
-- **Another round, changed spec:** change the spec. If a sign on your card lost its place on the
-  page, change the card and date the change. Rebuild, run `/persona-walkthrough <variant> page`,
+- **Another round, changed spec:** change the spec. If a sign or the scenario changes, add a dated
+  "Round 2" section to the card below the first; do not edit round 1. Rebuild, run `/persona-walkthrough <variant> page`,
   then `/learning-card <variant>` again. It adds round 2 to decision 002.
 - **Another round, next idea, or kill:** say why in the learning card. In the intent, fill a second
   "Selection (human)" below the first for the next idea, with its own variant name. Then

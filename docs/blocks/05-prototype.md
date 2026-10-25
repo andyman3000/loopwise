@@ -9,7 +9,8 @@ Code builds the page. On Tuesday a person from another pair tests it.
 1. **Spec (20 min).** `/variant-spec <variant>`. It asks for the smallest page that lets a tester hit
    the assumption. It reads your prototype card and writes `discovery/specs/<variant>.md`. Read
    "What changes on the page" before it writes, and correct it. Check the table "Where the watcher
-   sees each sign": every sign on your card needs a place on the page.
+   sees each sign": every sign on your card needs a place on the page. Answer every open point
+   that touches a sign before you build.
 2. **Persona reads the spec (15 min).** `/persona-walkthrough <variant> spec`. It first asks where
    you expect the personas to stall. Then it plays the soft and the hard sponsor through your
    scenario and writes `discovery/user-tests/<variant>-spec.md`. Every reaction quotes the persona
