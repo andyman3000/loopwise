@@ -136,8 +136,8 @@ Run in this order. Each skill writes its artefact under `discovery/`.
 | 1 | `kpi-tree` | `discovery/kpi-tree.md`, drawn as `discovery/kpi-tree.html` |
 | 2 | `opportunities-from-source` | `discovery/opportunities/<source-group>.md` |
 | 3 | `compare-opportunities` | `discovery/opportunity-comparison.md`, drawn at `/discovery/tree` |
-| 4 | `intent-and-ideas` | `discovery/intents/<opportunity>.md`: own ideas, How Might We, techniques, up to five, three, selection; then, inside the same run, `discovery/test-cards/<variant>-prototype.md` (drawn at `/discovery/tree`) |
-| 5 | `test-card <variant> prototype` | only for the next idea in a second round; otherwise it runs inside step 4 |
+| 4 | `intent-and-ideas` | `discovery/intents/<opportunity>.md`: own ideas, more ideas, 3 to 5 with driver and assumption, the idea tested first; drawn at `/discovery/tree` after every step |
+| 5 | `test-card <variant> prototype` | `discovery/test-cards/<variant>-prototype.md` |
 | 6 | `variant-spec` | `discovery/specs/<variant>.md`, then Claude Code builds `site/variants/<variant>/` |
 | 7 | `persona-walkthrough <variant> spec` or `page` | `discovery/user-tests/<variant>-spec.md` or `<variant>-page.md` |
 | 8 | `learning-card` | `discovery/decisions/002-<variant>.md` |
