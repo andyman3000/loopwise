@@ -46,8 +46,8 @@ Go as far as you get. What you do depends on your learning card:
 
 - **Move on:** first write the changes from "Therefore we will" into the spec, and rebuild if they
   change the page. A variant replaces only the inquiry page, so a change to the thank-you page
-  waits. Then `/test-card <variant> launch` and fill its `Card owner`. It writes `discovery/test-cards/<variant>.md`: success line, usage,
-  proxy, counter metric, kill criterion, time frame. Your own launch card cannot be read against the
+  waits. Then `/test-card <variant> launch`. It writes `discovery/test-cards/<variant>.md`: success
+  line, usage, proxy, counter metric, kill criterion, time frame. Fill its `Card owner`. Your own launch card cannot be read against the
   data in this repo. The synthetic data were generated for one reference variant only, and the card
   says so. You see a result read against data in the demo.
 - **Another round, changed spec:** change the spec. If a sign on your card lost its place on the
