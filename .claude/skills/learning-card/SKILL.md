@@ -36,7 +36,7 @@ The pair decides. This skill asks, quotes and writes; it decides nothing.
 - **Decides nothing.** The pair names one of three outcomes and why: move on (with what changes before roll-out), another round (changed spec or the next idea from the intent), or kill. If they do not name one, the field stays `____ (human decides)`. Never suggest which one.
 - **Every claim quotes its source with location** (file and line). A citation into `discovery/` carries a short quote, so `npm run check` catches a line that moved; never a section name alone. No invented numbers: one tester is a pattern, not a rate.
 - **The label of a round.** Each round starts with one label line. If that round has its own cross-test file (`<variant>-cross.md` for round 1, `<variant>-cross-2.md` for round 2): "Tested with one person from another pair: a pattern, not a rate." Otherwise: "Pressure-tested, not validated: rests on persona runs, not on people."
-- **Changes on other pages.** If a change the pair names for roll-out sits on another page than the inquiry page, say once that a variant replaces only `/inquiry`, so that change needs its own decision. Write it as said.
+- **Changes on other pages.** A change the pair names for roll-out may sit on any page. Name the page, and write the change as said.
 - **Invented lines.** If the outcome is move on, ask: "Which lines on the page are invented, and who confirms them before roll-out?" Quote the spec's "Invented lines on the page". Write the answer under "Therefore we will".
 
 ## Steps
