@@ -22,7 +22,7 @@ the block is for, what you do step by step, and when you are done.
   yourself, in a sentence or two. Afterwards the output shows your answer next to its draft, under
   "Your first try". That comparison is where you learn the most.
 - **Read the output critically.** Does every claim have a quote with file and line? Is a number
-  counted, or estimated? `npm run check` tests the citations against the lines they point at.
+  counted, or estimated? `npm run check` tests that each cited line exists, and that a quote stands on the line it cites. It cannot tell whether a line without a quote says what the claim says: check that yourself.
 - **Decide yourself.** Every skill leaves a field marked `____ (human decides)`. Fill it with your
   choice, your name, the date and one sentence why.
 

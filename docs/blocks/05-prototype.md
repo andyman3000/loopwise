@@ -15,7 +15,8 @@ Code builds the page. On Tuesday a person from another pair tests it.
    scenario and writes `discovery/user-tests/<variant>-spec.md`. Every reaction quotes the persona
    file. A persona cannot tell you what its file has no source for; the file says where.
 3. **Change the spec (10 min).** Pick at most two findings and change the spec. You decide; the
-   persona run only proposes.
+   persona run only proposes. Then check "Where the watcher sees each sign" still has a place for
+   every sign.
 4. **Build and open (12 min).** Use the build prompt at the end of the spec:
    > Build the variant in discovery/specs/<variant>.md as site/variants/<variant>/index.html
    > and add the name to "variants" in site/config.json. Do not set "shipped".
