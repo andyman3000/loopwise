@@ -1,62 +1,53 @@
 ---
 name: intent-and-ideas
-description: Turn the opportunity a human has chosen into an intent (what should change for whom, why now, the outcome it serves, boundaries) plus exactly three solution ideas named by mechanism, each resting on a different critical assumption. Use after the opportunity decision is recorded, when the team says "write the intent", "what could we build for this opportunity", or "give us solution ideas". Never picks which assumption is tested first.
+description: Guide the pair through block 4, one step per message. Frame the chosen opportunity as a How Might We question, collect the pair's own ideas, push wider with three creative techniques, converge to up to five ideas and then three that differ in their critical assumption, let the pair pick the assumption to test first, and write the prototype test for it. Use after the opportunity decision is recorded, when the team says "write the intent", "let's develop ideas", or "what could we build for this opportunity". Writes the intent and the prototype test card. Never picks an idea or an assumption.
 ---
 
 # Intent and ideas
 
 **When:** after the human has chosen an opportunity in `discovery/opportunity-comparison.md` and the
-decision is recorded in `discovery/decisions/`. Before `test-card` in prototype mode.
+decision is recorded in `discovery/decisions/`. Before `variant-spec`.
 **Input:** the chosen opportunity, named by the human. If no name is given, ask. Do not take it from
 "Appears favoured" in the comparison.
-**Reads:** `discovery/opportunity-comparison.md`; the decision record for the opportunity choice in
-`discovery/decisions/`; the matching file in `discovery/opportunities/`; `product/constraints.md`;
-`product/personas/`.
-**Writes:** `discovery/intents/<opportunity-slug>.md`.
+**Reads:** `discovery/opportunity-comparison.md`; the decision record in `discovery/decisions/`; the
+matching files in `discovery/opportunities/`; `discovery/kpi-tree.md`; `product/constraints.md`;
+`product/personas/`; `site/inquiry.html` (what the page does today);
+`.claude/skills/test-card/SKILL.md` (mode `prototype`, for step 7).
+**Writes:** `discovery/intents/<opportunity-slug>.md` and `discovery/test-cards/<variant>-prototype.md`.
 
-**The intent is the hand-over to the build, not a level in the tree.** The opportunity solution tree
-(Torres) has four levels: desired outcome, opportunities, solutions, assumption tests. The intent sits
-beside it and tells the builders what should change and where the edges are. There is no hypothesis
-field here: assumptions belong to each idea, and the test card tests them.
+This is the diverge and converge part of the double diamond. First many ideas, without judging them.
+Then a few, held against what the inquiry page can do and what a prototype can test. The pair has the
+ideas; the skill keeps the pace, brings techniques and pushes past the obvious. AI ideas tend to be
+obvious or average; their value is the push, not the originality. So the pair always goes first.
 
 **A critical assumption** is the one thing that must be true for an idea to work. If it is false, the
 idea fails, however well it is built.
 
 ## Rules
 
-- **Try first, then compare.** Before you draft, ask the human for one solution idea of their own, in one line, named by what changes on the page. Wait for the answer and never invent it. If it names a feature but not what changes on the page ("a trust badge"), ask once: "What would the sponsor see on the page?" If it fits the intent, it becomes one of the three ideas, marked as theirs. If it names a solution that does not fit the intent, say why in "Your first try" and do not use it. A vague reply ("go on", "ok", "you choose") is not an answer: ask once more, and if it stays vague, write "skipped". After drafting, fill the section "Your first try": their answer word for word, then two or three short lines on where your draft differs and why. If they say skip, write "skipped". This step is how participants learn the concept; do not shorten it.
-- **Every claim quotes its source with location** (file and line). No quote, no claim.
-- **Do not invent numbers.** Only counted numbers: sources, voices, events in a log. No targets, no
-  success lines, no thresholds here; those belong in the test card.
-- **Three levels, in words** for each assumption: well supported, partly supported, unsupported,
-  with reasoning, sources, counter-evidence, gaps.
-- **Exactly three ideas, each with a different critical assumption.** Two ideas that fail for the same
-  reason are one idea in two shapes: replace one of them. Say in one line per idea why its critical
-  assumption differs from the other two.
-- **Ideas change the inquiry page.** It is the only page a variant can replace (`server.js`, route `/inquiry`). An idea for another page (formats, sponsor preparation) is written as what the inquiry page could show of it. Ideas keep the four core fields: name, company, a valid email and a message of at least 10 characters (`site/components/inquiry-form.js:4`). An idea may relabel the message field, add a help line, or fill it from what the sponsor ticks or types. It may not drop a core field: that needs a server and test change, and the workshop has no slot for it.
-- **Ideas are named by mechanism:** what changes on the page ("one question before the form",
-  "calendar link after three case stories"), not by strategy ("reduce friction").
-- **Boundaries come from `product/constraints.md` and the decision record.** Quote them. If the
-  two disagree, name the conflict and stop at that point; do not resolve it.
-- **This file is an assessment by an agent, not a decision.** The selection fields stay
-  `____ (human decides)`. Do not suggest which assumption to test first.
+- **One step per message.** Each step ends with one question to the pair. Wait for the answer. Never run two steps in one message, and never skip ahead to drafting.
+- **The pair goes first.** In step 1 and in every technique, the pair answers before the skill adds ideas. A vague reply ("go on", "ok", "you choose") gets one more ask; if it stays vague, carry on and note "the pair added none" for that step.
+- **No judging while diverging** (steps 1 to 3). No levels, no "this would not work", no constraint checks. Every idea goes on the list. Ideas that would change another page than the inquiry page stay on the list, marked "not on the variant page".
+- **Change the angle on purpose.** Each technique looks from a different side. Before you add ideas, check your last ones: if they share a mechanism (all text on the page, all a new field), take a different one. Models drift into one cluster; this rule pushes against it.
+- **Ideas are named by mechanism:** what the sponsor sees or does on the page ("one question before the form", "calendar link after three case stories"), not by strategy ("reduce friction"). If the pair names a feature without a page change ("a trust badge"), ask once: "What would the sponsor see on the page?"
+- **Boundaries apply from step 4 on**, not before. They come from `product/constraints.md` and the server: no prices (`product/constraints.md:7`); a variant replaces only the inquiry page (`server.js`, route `/inquiry`); the form keeps its four core fields, name, company, a valid email and a message of at least 10 characters (`site/components/inquiry-form.js:4`). An idea may relabel the message field, add a help line, or fill it from what the sponsor ticks or types. It may not drop a core field. State the boundaries in step 4; do not ask about them.
+- **Every claim quotes its source with location** (file and line). No quote, no claim. Evidence levels in words: well supported, partly supported, unsupported.
+- **Do not invent numbers.** Only counted numbers: sources, voices, events in a log. No targets and no thresholds before step 7.
+- **This file is an assessment by an agent, not a decision.** The pair picks the five, the three, the assumption and the variant. Every selection field stays `____ (human decides)` until the pair fills it. Never suggest which assumption to test first.
 
 ## Steps
 
-0. **Try first.** Ask the human for one solution idea of their own, in one line, named by what changes on the page. Wait for the answer before you read further or draft anything.
-1. Confirm the chosen opportunity with the human and read the decision record. If the record does
-   not exist or names a different opportunity, say so and stop.
-2. Draft the intent: what should change for whom (which persona in `product/personas/`), why now,
-   the outcome it serves (the KPI branch named in the comparison), boundaries. Show it, ask the
-   human to confirm or change it. A vague reply is not a confirmation: ask again.
-3. Propose exactly three ideas. Include the obvious one and ideas that solve the same problem
-   differently. One line each: what changes on the page. Under each, the assumptions it rests on,
-   each with its level and source. Mark the assumption the idea fails without as "critical".
-4. Check: three critical assumptions, no two the same. Fill the table "Three ideas side by side".
-   In "What a test would need", say what a tester would have to do or see on a page to show the
-   assumption holds or breaks. No numbers.
-5. Write the file with the template below. Then stop. Tell the human what to fill in "Selection"
-   and that the next step is `/test-card <variant> prototype`. Do not write a test card.
+1. **Your ideas first** (about 8 min). Name the chosen opportunity in one line, with its strongest quote. Ask: "Write down as many ways as you can think of to change the inquiry page for this, one line each. Wild ones too. Take five minutes." Collect them as they come, ask "What else?" once, then move on. These ideas go under "Your first try", word for word. Read the decision record now; if it is missing or names a different opportunity, say so and stop.
+2. **How Might We** (about 3 min). Propose one question: "How might we help <persona> <need, in the sponsor's words> so that <driver from `discovery/kpi-tree.md`> moves?" Quote the need and the driver line. Ask the pair to sharpen it. Take their version.
+3. **Push wider: three techniques** (about 15 min, one technique per message). For each, say in one line what it does, give one prompt, wait for the pair's ideas, then add three or four of your own that build on theirs or go elsewhere:
+   - **SCAMPER on today's inquiry page** (`site/inquiry.html`): substitute, combine, adapt, modify, put to another use, eliminate, reverse. Pick the two or three letters that fit best.
+   - **Analogy from another domain:** "How does a car configurator, a doctor's intake form, a travel agent or a dating app solve this?" Name a concrete pattern from that domain and carry it to the inquiry page.
+   - **Reversal:** "How could we make the sponsor even less sure, or make the inquiry fail?" Then flip each answer into an idea.
+   After the third technique, show the full list, numbered, with the pair's ideas marked. Ask: "Anything to add before we choose?"
+4. **Converge to up to five** (about 4 min). State the boundaries in one short list. Ask the pair to pick up to five ideas from the list. For each pick, fill one row: what changes on the page, the critical assumption, its level with the source, the driver it moves (quoted from `discovery/kpi-tree.md`), and whether a prototype on the inquiry page can test it. An idea that breaks a boundary stays in the table, marked; say why in one line. Show the table. Ask whether to swap any.
+5. **Three that differ** (about 3 min). Ask the pair to pick three from the five. Check their critical assumptions: if two fail for the same reason, say so and ask for a swap. Fill "Three ideas side by side". The other ideas stay in the file, under "Further ideas".
+6. **Selection.** Ask, one at a time: which assumption do you test first, and why that one first? Not "the idea we like most": the assumption that would hurt most if wrong, or the one with no source. Then the variant name, lowercase with dashes. Then their names and the date. Write the intent file now, with the template below.
+7. **Prototype test** (about 15 min). Run mode `prototype` of `.claude/skills/test-card/SKILL.md`, from its step 1, with its rules and its template. Its try-first question is the first question of this step. Write `discovery/test-cards/<variant>-prototype.md`. Then stop. Tell the pair to own the card (block 4, step "Own the card") and that the next step is `/variant-spec <variant>`. Point them to `http://localhost:3000/discovery/tree`: the three ideas now hang under their opportunity.
 
 ## Output template
 
@@ -64,49 +55,39 @@ idea fails, however well it is built.
 # Intent: <short name>
 
 > Assessment by an agent (`intent-and-ideas`), not a decision. Date: YYYY-MM-DD.
-> Opportunity: <name> in discovery/opportunities/<file>.md · Decision: discovery/decisions/<file>.md
+> Opportunity: <C-id>, <name>, in discovery/opportunity-comparison.md · Decision: discovery/decisions/<file>.md
 > Material: <synthetic or composite, repeated from the material the opportunity rests on>
 
 A critical assumption is the one thing that must be true for an idea to work.
 
 ## Your first try
-<the human's answer, word for word> · Where the draft differs: <two or three short lines>
+- <each idea the pair wrote in step 1, word for word>
 
-## What should change for whom
-<two or three sentences, persona from product/personas/<file>, strongest quote with source>
+## How might we
+<the pair's version of the question> · Need: "<quote>" (`<file>:<line>`) · Driver: <driver> (`discovery/kpi-tree.md:<line>`)
 
-## Why now
-<reason, with source>
-
-## Outcome it serves
-<KPI branch and driver from discovery/kpi-tree.md, quoted>
+## All ideas
+1. <idea, by mechanism> · <the pair | SCAMPER | analogy | reversal> <· not on the variant page>
+2. ...
 
 ## Boundaries
-- <constraint> (product/constraints.md:<line>)
-- Out of scope: <...>
+- <constraint> (`<file>:<line>`)
 
-## Open questions
-- <question>: who can answer it
-
-## Solution ideas
-
-### I1: <mechanism: what changes on the page> [<"your idea" if it came from the first try>]
-- **Assumptions:**
-  - <assumption> (critical): <level>. <reasoning>. Sources: <...>. Counter: <...>. Gaps: <...>
-  - <assumption>: <level>. ...
-- **Why its critical assumption differs:** <one line>
-
-### I2: ...
-
-### I3: ...
+## Up to five
+| Idea | What changes on the page | Critical assumption | Level | Driver it moves | Prototype can test it |
+|---|---|---|---|---|---|
+| <n>: <idea> | <...> | <assumption> | <level>, <source> | <driver> | yes / no, <why> |
 
 ## Three ideas side by side
 
-| Idea | Critical assumption | Level | What a test would need |
-|---|---|---|---|
-| I1: <mechanism> | <assumption> | <level> | <what a tester does or sees that shows it holds or breaks> |
-| I2: ... | | | |
-| I3: ... | | | |
+| Idea | Critical assumption | Level | Driver | What a test would need |
+|---|---|---|---|---|
+| I1: <mechanism> | <assumption> | <level> | <driver> | <what a tester does or sees that shows it holds or breaks> |
+| I2: ... | | | | |
+| I3: ... | | | | |
+
+## Further ideas
+- <the ideas from "Up to five" not in the three, for the next round>
 
 ## Selection (human)
 
@@ -116,6 +97,5 @@ A critical assumption is the one thing that must be true for an idea to work.
 - Variant name (lowercase with dashes): ____ (human decides)
 - Who: ____ · When: ____
 
-The other two ideas stay here for the next round. A second round adds a second "Selection (human)"
-below this one, with its own variant name.
+A second round adds a second "Selection (human)" below this one, with its own variant name.
 ```
