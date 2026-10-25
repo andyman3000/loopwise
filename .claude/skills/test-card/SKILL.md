@@ -74,6 +74,7 @@ Level in the intent: <level, quoted>
 - **Situation:** <two or three sentences, "You are ...">
 - **Task:** <one sentence>
 - **Page:** `/inquiry?variant=<variant>`
+- **Does not count if:** <only when the situation asks for a real case: "the tester has no such case">
 
 ## Signs the watcher looks for
 | Sign (what the watcher sees or hears) | Points to | Can a persona show it? |
@@ -115,7 +116,7 @@ to take it back.
 ### Steps
 
 0. **Try first.** Ask the human for their success line in one sentence: what must happen for this variant to count as working. Wait for the answer before you read further or draft anything.
-1. If the spec changed after the learning card, ask whether the page was rebuilt. Read the spec, the prototype card `discovery/test-cards/<variant>-prototype.md` and the learning card for this variant in `discovery/decisions/` (`<nnn>-<variant>.md`) if they exist, and the intent. If the variant name has no file in `discovery/specs/`, stop and ask.
+1. If the spec changed after the learning card, ask whether the page was rebuilt. If not, stop: the launch card describes the page that ships, so the rebuild comes first. Read the spec, the prototype card `discovery/test-cards/<variant>-prototype.md` and the learning card for this variant in `discovery/decisions/` (`<nnn>-<variant>.md`) if they exist, and the intent. If the variant name has no file in `discovery/specs/`, stop and ask.
 2. List the critical assumptions: what must be true for this variant to change behaviour. Two to four. Start with the one the prototype tested and what the learning card says about it, quoted. Search `sources/` for evidence for and against each.
 3. Map the variant to its KPI branch in `discovery/kpi-tree.md` (quote the line).
 4. Count the events in `data/events.jsonl` that carry this variant.
