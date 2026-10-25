@@ -54,7 +54,7 @@ export function initInquiryForm(form, { variant = 'baseline' } = {}) {
       const res = await fetch('/api/inquiry', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(fields),
+        body: JSON.stringify({ ...fields, variant }),
       });
       const json = await res.json().catch(() => ({}));
       if (res.ok && json.redirect) {
