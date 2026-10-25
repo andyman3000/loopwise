@@ -195,3 +195,17 @@ test('an idea that moves two drivers shows a chip for each, and the page lights 
   assert.match(sol, /<span class="chip">start rate<\/span><span class="chip">submit rate<\/span>/);
   assert.match(html, /drivers\.filter\(/, 'the page script lights up all named drivers, not the first');
 });
+
+test('every round marks its own idea, and an idea named in words only is not marked', () => {
+  const two = INTENT + '\n## Selection (human)\n\n- Idea it comes from: I1, the second round\n- Variant name (lowercase with dashes): second-try\n';
+  const i = parseIntent(two);
+  assert.deepEqual(i.tested, [{ id: 'I3', variant: 'success-line-first' }, { id: 'I1', variant: 'second-try' }]);
+  const root = repo(MD);
+  fs.mkdirSync(path.join(root, 'discovery', 'intents'));
+  fs.writeFileSync(path.join(root, 'discovery', 'intents', 'x.md'), two);
+  const html = treePage(root);
+  assert.equal((html.match(/class="sol picked"/g) || []).length, 2);
+  assert.match(html, /tested first: success-line-first/);
+  assert.match(html, /tested in round 2: second-try/);
+  assert.deepEqual(parseIntent(INTENT.replace('- Idea it comes from: I3', '- Idea it comes from: the call button')).tested, []);
+});
