@@ -113,13 +113,13 @@ const INTENT = `# Intent: ask without knowing the format
 > Assessment by an agent. Date: 2026-08-18.
 > Opportunity: C2, sponsor does not know the format, in discovery/opportunity-comparison.md · Decision: discovery/decisions/001-x.md
 
-## Three ideas side by side
+## Solution ideas
 
-| Idea | Critical assumption | Level | Driver | What a test would need |
+| Idea | From | Driver | Critical assumption | Level |
 |---|---|---|---|---|
-| I1: a call request instead of the form | sponsors would rather talk | partly supported | call rate (\`discovery/kpi-tree.md:25\`) | the tester asks for a call |
-| I2: three questions about the team | sponsors can describe their team | unsupported | start rate | the tester answers all three |
-| I3: examples of success lines | sponsors can name a success line | unsupported | submit rate | the tester picks or writes one |
+| I1: a call request instead of the form | the pair | call rate (\`discovery/kpi-tree.md:25\`) | sponsors would rather talk | partly supported |
+| I2: three questions about the team | another domain | start rate | sponsors can describe their team | unsupported |
+| I3: examples of success lines | today's page, changed | submit rate | sponsors can name a success line | unsupported |
 
 ## Selection (human)
 
@@ -130,17 +130,18 @@ const INTENT = `# Intent: ask without knowing the format
 - Who: Reference decision (replace with your own) · When: 2026-08-18
 `;
 
-test('an intent gives its candidate, three ideas with level and driver, and the selected idea', () => {
+test('an intent gives its candidate, its ideas with source, level and driver, and the idea tested first', () => {
   const i = parseIntent(INTENT);
   assert.equal(i.candidate, 'C2');
   assert.deepEqual(i.ideas.map((x) => x.id), ['I1', 'I2', 'I3']);
   assert.deepEqual(i.ideas.map((x) => x.level), ['partly supported', 'unsupported', 'unsupported']);
   assert.equal(i.ideas[1].driver, 'start rate');
+  assert.equal(i.ideas[0].from, 'the pair');
   assert.deepEqual([i.chosen, i.variant], ['I3', 'success-line-first']);
   assert.deepEqual([parseIntent(INTENT.replace('I3\n', '____ (human decides)\n')).chosen], ['']);
 });
 
-test('the tree draws the three ideas under their opportunity and marks the one tested first', () => {
+test('the tree draws the ideas under their opportunity and marks the one tested first', () => {
   const root = repo(MD);
   fs.mkdirSync(path.join(root, 'discovery', 'intents'));
   fs.writeFileSync(path.join(root, 'discovery', 'intents', 'x.md'), INTENT);
@@ -151,4 +152,35 @@ test('the tree draws the three ideas under their opportunity and marks the one t
   assert.match(html, /tested first: success-line-first/);
   assert.match(html, /href="\/discovery\/intents\/x.md"/);
   assert.doesNotMatch(treePage(repo(MD)), /class="sol/);
+});
+
+test('right after the first step, ideas without an assumption are drawn, with no level pill', () => {
+  const early = `# Intent: x
+
+> Opportunity: C2, sponsor does not know the format
+
+## Solution ideas
+
+| Idea | From | Driver | Critical assumption | Level |
+|---|---|---|---|---|
+| I1: a call request instead of the form | the pair | call rate | | |
+| I2: a format quiz | the pair | start rate | | |
+| I3: case stories | another domain | reach rate | | |
+| I4: one question first | turned around | start rate | | |
+| I5: a chat | today's page, changed | start rate | | |
+
+## Selection (human)
+
+- Idea it comes from: ____ (human decides)
+`;
+  const i = parseIntent(early);
+  assert.equal(i.ideas.length, 5);
+  assert.deepEqual([i.ideas[0].assumption, i.ideas[0].level, i.chosen], ['', '', '']);
+  const root = repo(MD);
+  fs.mkdirSync(path.join(root, 'discovery', 'intents'));
+  fs.writeFileSync(path.join(root, 'discovery', 'intents', 'x.md'), early);
+  const html = treePage(root);
+  assert.equal((html.match(/<button type="button" class="sol/g) || []).length, 5);
+  assert.doesNotMatch(html, /Critical assumption:|not given/);
+  assert.match(html, /class="tag you">the pair/);
 });
