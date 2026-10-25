@@ -19,10 +19,12 @@ Code builds the page. On Tuesday a person from another pair tests it.
    persona run only proposes. Then check "Where the watcher sees each sign" still has a place for
    every sign.
 4. **Build and open (12 min).** Use the build prompt at the end of the spec:
-   > Build the variant in discovery/specs/<variant>.md as site/variants/<variant>/index.html
+   > Build the variant in discovery/specs/<variant>.md as one file per page it changes in
+   > site/variants/<variant>/, named like the page it replaces (inquiry.html, formats.html),
    > and add the name to "variants" in site/config.json. Do not set "shipped".
 
-   Then `npm start` and open `http://localhost:3000/inquiry?variant=<variant>`. Click through it
+   Then `npm start` and open the start page from the spec, for example
+   `http://localhost:3000/inquiry?variant=<variant>`. Click through it
    once as the tester will. Stop the server with `Ctrl+C`.
 5. **Check and commit (5 min).**
    ```bash
@@ -31,7 +33,7 @@ Code builds the page. On Tuesday a person from another pair tests it.
    ```
 
 **Done when:** the spec, the persona run on the spec and a page that opens at
-`/inquiry?variant=<variant>` are committed. Tuesday's test needs a page from every pair, so the build
+the start page with `?variant=<variant>` are committed. Tuesday's test needs a page from every pair, so the build
 comes before anything else that is left.
 
 **If you are short of time:** skip steps 2 and 3. On Tuesday you can run

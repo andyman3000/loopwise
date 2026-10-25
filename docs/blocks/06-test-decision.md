@@ -8,7 +8,7 @@ another round, or kill. That decision is your learning card, decision 002.
 
 1. **Set up the ring (3 min).** One person of each pair goes to the next pair and plays the sponsor
    there. The other stays and watches their own page. On your laptop: `npm start`, open
-   `http://localhost:3000/inquiry?variant=<variant>`, and open your prototype card next to it.
+   the start page from the spec, for example `http://localhost:3000/inquiry?variant=<variant>`, and open your prototype card next to it.
 2. **Test (20 min).** Give the tester only the "Test scenario" from your card: the situation and the
    task. Ask them to think aloud. Do not explain the page, and do not name the assumption. Then
    watch, and write your notes into `discovery/user-tests/<variant>-cross.md`:
@@ -46,8 +46,7 @@ validated". The personas come from the same sources as your opportunity.
 Go as far as you get. What you do depends on your learning card:
 
 - **Move on:** first write the changes from "Therefore we will" into the spec, and rebuild if they
-  change the page. A variant replaces only the inquiry page, so a change to the thank-you page
-  waits. Then `/test-card <variant> launch`. It writes `discovery/test-cards/<variant>.md`: success
+  change a page. A variant can change any page, the thank-you page too. Then `/test-card <variant> launch`. It writes `discovery/test-cards/<variant>.md`: success
   line, usage, proxy, counter metric, kill criterion, time frame. Fill its `Card owner`. Your own launch card cannot be read against the
   data in this repo. The synthetic data were generated for one reference variant only, and the card
   says so. You see a result read against data in the demo.
