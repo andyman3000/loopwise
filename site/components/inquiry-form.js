@@ -35,7 +35,8 @@ export function showErrors(form, errors) {
   }
 }
 
-export function initInquiryForm(form, { variant = 'baseline' } = {}) {
+// submittedProps and onSubmitted let a variant add props to inquiry_submitted and clean up after a send.
+export function initInquiryForm(form, { variant = 'baseline', submittedProps = () => ({}), onSubmitted } = {}) {
   let started = false;
   form.addEventListener('focusin', () => {
     if (started) return;
@@ -58,7 +59,8 @@ export function initInquiryForm(form, { variant = 'baseline' } = {}) {
       });
       const json = await res.json().catch(() => ({}));
       if (res.ok && json.redirect) {
-        logEvent('inquiry_submitted', {}, variant);
+        logEvent('inquiry_submitted', submittedProps(), variant);
+        if (onSubmitted) onSubmitted();
         // sendBeacon is queued by the browser and survives navigation
         window.location.href = json.redirect;
         return;
