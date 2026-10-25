@@ -16,9 +16,11 @@ opportunity from the first step on.
 In Claude Code: `/intent-and-ideas` and name your chosen opportunity. The skill guides you one step
 at a time and waits for you each time. You go first.
 
-1. **Your ideas (10 min).** If your opportunity holds two needs, the skill first asks which part you
-   work on. Then list as many ways to change the website as you can, on the inquiry page or any
-   page before it. Wild ones too. Do not judge them yet. Each idea shows the drivers it would move.
+1. **The intent, then your ideas (15 min).** If your opportunity holds two needs, the skill first
+   asks which part you work on. It then drafts the intent: what should change for whom, the problem,
+   the desired outcome and the open questions. Correct it until it says what you mean. Then list
+   as many ways to change the website as you can, on the inquiry page or any page before it.
+   Wild ones too. Do not judge them yet. Each idea shows the drivers it would move.
 2. **More ideas (5 min).** The skill adds five or six ideas from other angles: today's page changed,
    a pattern from another domain, the problem turned around. Add more if they spark something.
 3. **Pick 3 to 5 (10 min).** The skill shows for each pick the critical assumption and how well the
