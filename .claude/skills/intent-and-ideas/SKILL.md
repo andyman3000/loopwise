@@ -33,6 +33,7 @@ idea fails, however well it is built.
 - **Exactly three ideas, each with a different critical assumption.** Two ideas that fail for the same
   reason are one idea in two shapes: replace one of them. Say in one line per idea why its critical
   assumption differs from the other two.
+- **Ideas change the inquiry page.** It is the only page a variant can replace (`server.js`, route `/inquiry`). An idea for another page (formats, sponsor preparation) is written as what the inquiry page could show of it.
 - **Ideas are named by mechanism:** what changes on the page ("one question before the form",
   "calendar link after three case stories"), not by strategy ("reduce friction").
 - **Boundaries come from `product/constraints.md` and the decision record.** Quote them. If the
