@@ -21,6 +21,7 @@
 - Leadership gave everyone the tools and said, go and use them (`interviews/sponsor-soft.md:13`).
 - Developers enable themselves; product and project people ask what they are supposed to do with it (`interviews/sponsor-soft.md:17`).
 - All of the group went to an external course at some point, mostly optional (`interviews/sponsor-soft.md:21`).
+- Asked for people with at least a basics course; several turned up who hadn't (`interviews/sponsor-soft.md:45`).
 - Same job title, very different work underneath; levels range from a former developer to people using only built-in AI (`interviews/sponsor-soft.md:45`).
 - Teams differ too: some still experiment as they go, others have a few shared helpers (`interviews/sponsor-soft.md:45`).
 
