@@ -3,7 +3,7 @@
 Loopwise is a fictional academy that offers in-house formats for product teams. This is a training
 repo for the loop from a business goal to the next opportunity: pick the problem, define success up
 front, test solutions, decide, and let the result flow back into the next decision. Participants
-build that chain themselves, with skills, on top of a small working website.
+build that chain themselves in pairs, with skills, on top of a small working website.
 
 ## Run
 
@@ -38,20 +38,21 @@ block. If you decided differently, keep your own state or continue from the refe
 | `01-kpi-tree` | KPI tree |
 | `02-opportunities` | opportunities per source group, selection still empty |
 | `03-opportunity-decision` | selection, opportunity comparison, decision 001 |
-| `04-variants` | intent and ideas, three specs, three variants under `site/variants/` |
-| `05-test-cards` | three test cards |
-| `06-variant-decision` | variant comparison, decision 002, shipped variant, synthetic data and dashboard |
+| `04-test-card` | intent with three ideas and the selection, prototype test card |
+| `05-prototype` | spec, persona run on the spec, built variant under `site/variants/` |
+| `06-test-decision` | learning card as decision 002, reference launch card, shipped variant, synthetic data and dashboard |
 | `07-result` | result section of the shipped variant's test card |
 | `08-next-bet` | measured values in the KPI tree, next opportunity |
 
-**Two switches are planned for everyone:** to `04-variants`, because the data match these variants,
-and to `06-variant-decision`, because that is where the data arrive. The other tags are fallbacks.
-Tags are added block by block; `git tag` lists the ones that exist.
+**Each pair keeps its own opportunity and variant to the end.** One switch is planned, and it is
+optional: to `06-test-decision` for the demo, because that is where the data arrive. The synthetic
+data fit only the reference variant, so a pair's own launch card cannot be read against them. The
+other tags are fallbacks. Tags are added block by block; `git tag` lists the ones that exist.
 
 ```bash
 git tag                                # list the tags
-git checkout 04-variants               # read-only look at a state
-git switch -c mine-04 04-variants      # or: continue on your own branch from it (recommended)
+git checkout 04-test-card                  # read-only look at a state
+git switch -c demo 06-test-decision        # or: continue on a branch from it (recommended)
 ```
 
 **Dates.** The reference states follow a fictional timeline: the shipped variant launches on
