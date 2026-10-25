@@ -109,8 +109,11 @@ test('/compare, /dashboard and the test-card endpoint are not part of the start 
   assert.notEqual((await get('/api/test-cards/x/assumptions')).status, 200);
 });
 
-test('site/config.json at start is shipped null with no variants', () => {
-  assert.deepEqual(JSON.parse(fs.readFileSync(path.join(SITE, 'config.json'), 'utf8')), { shipped: null, variants: [] });
+test('site/config.json lists only built variants, and shipped is null or one of them', () => {
+  const c = JSON.parse(fs.readFileSync(path.join(SITE, 'config.json'), 'utf8'));
+  assert.ok(Array.isArray(c.variants));
+  for (const v of c.variants) assert.ok(fs.existsSync(path.join(SITE, 'variants', v, 'index.html')), `${v} has no index.html`);
+  assert.ok(c.shipped === null || c.variants.includes(c.shipped), 'shipped must be null or a listed variant');
 });
 
 test('/api/inquiry passes through extra scalar fields by rule and drops the rest', async () => {
