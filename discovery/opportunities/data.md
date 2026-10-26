@@ -24,7 +24,7 @@ Where the draft differs:
 | data/inquiries.csv | 113 submitted inquiries, with `sponsor_type`, `scoping_call_booked`, `booking_confirmed` | Everything in this folder is synthetic. |
 
 Time span: 2026-02-18 to 2026-08-18, 26 weeks (data/README.md:11).
-"Read them as an illustration of how a funnel is counted, never as evidence about real sponsors." (data/README.md:21-22)
+"Read them as an illustration of how a funnel is counted, never as evidence about real sponsors." (data/README.md:25-26)
 A visit can see several pages and opens the inquiry page at most once, as its last page view (data/README.md:18-20). All later events of a visit sit on the inquiry page.
 The event `inquiry_step_completed` never occurs, so nothing is counted inside the form.
 
