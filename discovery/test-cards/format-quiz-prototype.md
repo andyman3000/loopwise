@@ -21,20 +21,23 @@ Where the draft differs:
 - The draft adds signs for the quiz annoying the tester. The pair tests this idea first to find out "if this helps or if it annoys people" (`discovery/intents/format-question.md:61`).
 - The belief about trust is not part of this assumption, so this test cannot check it.
 
-## The assumption we test
+## We believe that (the assumption we test)
 "A sponsor who is unsure about the format chooses the quiz, and can answer its questions on a page without a person." (`discovery/intents/format-question.md:60`)
 Level in the intent: "partly supported" (`discovery/intents/format-question.md:37`)
 
 No learning card for an earlier variant of this intent exists in `discovery/decisions/`.
 
-## Test scenario (the tester sees only this)
+## To test that, we will
+Show one tester from another pair the page `/formats?variant=format-quiz`. The tester gets only the scenario below. The person who built the page watches for the signs.
+
+### Test scenario (the tester sees only this)
 - **Situation:** You help a product team in your company get better at using AI in their daily work. Think of a real team you know well that could use outside training for this. You are on the website of an academy that runs trainings inside companies.
 - **Task:** Get in touch with the academy about a training for that team.
 - **Page:** `/formats?variant=format-quiz`. The quiz link sits next to the form and "also sits on the formats page" (`discovery/intents/format-question.md:37`). [assumption: the test starts on the formats page; the spec names the start page and may change it]
 - **Sources:** the soft sponsor "supports the move to AI for product and project roles, together with the team leads" (`product/personas/sponsor-soft.md:14`). The hard sponsor is "head of product" (`product/personas/sponsor-hard.md:14`). The academy runs trainings for "one team inside one company" (`product/glossary.md:21`).
 - **Does not count if:** the tester has no such team.
 
-## Signs the watcher looks for
+### Signs the watcher looks for
 | Sign (what the watcher sees or hears) | Points to | Can a persona show it? |
 |---|---|---|
 | The tester clicks the quiz link before writing in the form | go on | only the cross test with people can test this |
@@ -45,10 +48,10 @@ No learning card for an earlier variant of this intent exists in `discovery/deci
 | The tester asks for a call or a person instead of the quiz | rework or drop | only the cross test with people can test this. The hard sponsor "Wants to talk to someone who delivered it, or a comparable reference" (`product/personas/sponsor-hard.md:46`). That is a different behaviour. |
 | The tester says the quiz takes too long, or asks how many questions are left | rework or drop | only the cross test with people can test this |
 
-## Go-on line
+## We are right if (go-on line)
 The tester clicks the quiz link on their own, answers every question without help, and sends the inquiry. (proposal) · Set on: ____ (human decides)
 
-## Rework-or-drop line
+## We rework or drop the idea if (rework-or-drop line)
 The tester passes the link. Or the tester stops at a question, asks the watcher, or leaves the quiz before the end. (proposal) · Set on: ____ (human decides)
 
 ## What this test cannot show
