@@ -9,7 +9,8 @@
     "test": "node --test",
     "check": "node scripts/check-discovery.js",
     "tree": "node scripts/draw-kpi-tree.js",
-    "generate": "node scripts/generate-events.js"
+    "generate": "node scripts/generate-events.js",
+    "summary": "node scripts/summary.js"
   },
   "engines": {
     "node": ">=20"

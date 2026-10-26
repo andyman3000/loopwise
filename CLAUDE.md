@@ -69,6 +69,7 @@ npm start   # http://localhost:3000, PORT overrides
 npm test    # node --test
 npm run check   # citations point at real lines, quotes match, event names from the list
 npm run tree    # draws discovery/kpi-tree.md as discovery/kpi-tree.html
+npm run summary # the dashboard's numbers as plain lines (from tag 06)
 # http://localhost:3000/discovery shows the artefacts as readable pages, the KPI tree drawn
 # http://localhost:3000/discovery/map: every opportunity on an evidence map, filterable, read-only
 # http://localhost:3000/discovery/tree: the compared candidates linked to the business goal, read-only
@@ -120,9 +121,10 @@ The trainer changes this one line per cohort, for example to `product managers`.
 - **Assessments on three levels, in words:** well supported, partly supported, unsupported. Each
   with reasoning, sources, counter-evidence and gaps.
 - **Agents never decide.** Selection fields (chosen opportunity, chosen variant, keep or roll back)
-  stay empty for a human. Two exceptions: "Goes into comparison" is written by `compare-opportunities`
-  after the human explicitly confirmed or changed its shortlist, with the human's name; and
-  `learning-card` writes the decision the pair states, in their words.
+  stay empty for a human. Three exceptions: "Goes into comparison" is written by `compare-opportunities`
+  after the human explicitly confirmed or changed its shortlist, with the human's name;
+  `learning-card` writes the decision the pair states, in their words; and `read-result` writes the
+  conclusion and decision the human states after reading the result together, in their words.
 - **Synthetic data and composites are labelled** in the file header, and any artefact built on them
   repeats the label.
 - Assumptions are written as `[assumption: ...]`.
