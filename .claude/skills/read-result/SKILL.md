@@ -41,9 +41,13 @@ assessment, not a decision. A human decides what happens to the variant.
 2. Find the switch date (first event carrying the shipped variant, or the date on the test card; quote
    which). Before = the same number of weeks before it as the time frame after it, unless the test card
    defines the baseline differently.
-3. Count per week, before and after: `inquiry_started`, `inquiry_submitted`, `success_line_filled`,
-   `scoping_call_booked`, `booking_confirmed`. Derive only the rates the test card names.
-4. From `data/inquiries.csv`, count success-line answers: filled with a criterion, "don't know yet", empty.
+3. Count per week, before and after: inquiry page visits (`page_view` of the inquiry page),
+   `inquiry_started`, `inquiry_submitted`, `scoping_call_booked`, `booking_confirmed`, and the variant's
+   own events the test card names (for example `inquiry_step_completed` with its props). Derive only the
+   rates the test card names.
+4. From `data/inquiries.csv`, count the answers the variant collected: every column beyond `id`,
+   `submitted_at`, `variant`, `sponsor_type`, `team_size`, `scoping_call_booked` and `booking_confirmed`.
+   Per column: answered, "don't know yet" or the variant's own unsure answer, empty.
 5. Hold each test-card line against the counts: met / not met / unclear.
 6. Check the kill criterion week by week, exactly as worded on the test card.
 
@@ -59,8 +63,8 @@ assessment, not a decision. A human decides what happens to the variant.
 > Assessment by the read-result agent, <YYYY-MM-DD>. Not a decision.
 
 ### What happened
-| Week | Phase | started | submitted | success line filled | scoping calls | bookings |
-|---|---|---|---|---|---|---|
+| Week | Phase | inquiry page visits | started | submitted | <variant event the card names> | scoping calls | bookings |
+|---|---|---|---|---|---|---|---|
 Command: `node -e "..."`
 
 ### Test-card lines
@@ -70,8 +74,8 @@ Command: `node -e "..."`
 ### Kill criterion
 Reached / not reached. Weeks checked, the count for each, command.
 
-### Success-line answers
-criterion: n · "don't know yet": n · empty: n (of n submitted). Command.
+### Answers the variant collected
+Per column of `data/inquiries.csv` the variant added: answered: n · "don't know yet": n · empty: n (of n submitted). Command.
 
 ### Did the critical assumptions hold?
 Per assumption: well supported / partly supported / unsupported, with reasoning, counts, counter-evidence, gaps.
