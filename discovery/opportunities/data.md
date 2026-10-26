@@ -24,7 +24,7 @@ Where the draft differs:
 | data/inquiries.csv | 113 submitted inquiries, with `sponsor_type`, `scoping_call_booked`, `booking_confirmed` | Everything in this folder is synthetic. |
 
 Time span: 2026-02-18 to 2026-08-18, 26 weeks (data/README.md:11).
-"Read them as an illustration of how a funnel is counted, never as evidence about real sponsors." (data/README.md:15-16)
+"Read them as an illustration of how a funnel is counted, never as evidence about real sponsors." (data/README.md:20-21)
 A visit can see several pages and opens the inquiry page at most once, as its last page view (data/README.md:18-20). All later events of a visit sit on the inquiry page.
 The event `inquiry_step_completed` never occurs, so nothing is counted inside the form.
 
@@ -63,7 +63,7 @@ The event `inquiry_step_completed` never occurs, so nothing is counted inside th
 ### D7: Both sponsor types drop out at the same steps
 - **Count:** soft sponsors: 49 inquiries, 22 calls, 8 bookings. Hard sponsors: 64 inquiries, 33 calls, 15 bookings (`sponsor_type`, `scoping_call_booked`, `booking_confirmed` in data/inquiries.csv, 2026-02-18 to 2026-08-18).
 - **Driver:** call rate and booking rate
-- **Why:** unknown from this data. `sponsor_type` is "a synthetic attribute that no event carries" (data/README.md:7-8), so the split exists only for sent inquiries, not for visits or started forms. Could be explained by: `sources/interviews` (the two sponsor interviews); `sources/emails` (which mails read like which sponsor type).
+- **Why:** unknown from this data. `sponsor_type` is "a synthetic attribute that no event carries" (data/README.md:9-10), so the split exists only for sent inquiries, not for visits or started forms. Could be explained by: `sources/interviews` (the two sponsor interviews); `sources/emails` (which mails read like which sponsor type).
 
 ### D8: Few follow-up answers exist, and they sit outside this quarter
 - **Count:** 14 `followup_answered` events, all about four weeks after the booking: 6 "not-yet", 5 "using-it-sometimes", 3 "using-it-regularly" (data/events.jsonl, 2026-04-26 to 2026-08-18). 23 bookings were confirmed in the same data.

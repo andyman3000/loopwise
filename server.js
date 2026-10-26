@@ -7,6 +7,7 @@ import { isEventType } from './site/components/events.js';
 import { discoveryPage } from './lib/discovery-view.js';
 import { mapPage } from './lib/opportunity-map.js';
 import { treePage } from './lib/opportunity-tree.js';
+import { parseJsonl, parseCsv, summarize } from './site/components/funnel.js';
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
 const SITE = path.join(ROOT, 'site');
@@ -180,6 +181,24 @@ export function createServer() {
       res.end('Not found');
     };
 
+    // The dashboard reads the generated data, counted against the variant site/config.json ships.
+    if (pathname === '/api/data/summary') {
+      if (req.method !== 'GET') {
+        res.writeHead(405, { Allow: 'GET' });
+        return res.end('Method not allowed');
+      }
+      try {
+        const dir = dataDir();
+        const scenario = { ...JSON.parse(fs.readFileSync(path.join(dir, 'scenario.json'), 'utf8')), shippedVariant: readConfig().shipped };
+        if (!scenario.weeksAfter || !scenario.shippedVariant) throw new Error('no launch in the data');
+        const events = parseJsonl(fs.readFileSync(path.join(dir, 'events.jsonl'), 'utf8'));
+        const inquiries = parseCsv(fs.readFileSync(path.join(dir, 'inquiries.csv'), 'utf8'));
+        return sendJson(res, 200, summarize(events, inquiries, scenario));
+      } catch {
+        return sendJson(res, 404, { ok: false, error: 'No launch data. Run npm run generate after a variant is shipped.' });
+      }
+    }
+
     if (pathname.startsWith('/api/')) {
       if (req.method !== 'POST') {
         res.writeHead(405, { Allow: 'POST' });
@@ -215,7 +234,8 @@ export function createServer() {
     }
     let file;
     const page = pageName(pathname);
-    if (page) {
+    if (pathname === '/dashboard') file = path.join(SITE, 'dashboard.html');
+    else if (page) {
       const variant = new URL(req.url, 'http://localhost').searchParams.get('variant');
       const baseline = path.join(SITE, page + '.html');
       if (variant === null) file = variantPage(variantDir(readConfig().shipped), page) || baseline;

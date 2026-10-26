@@ -64,5 +64,21 @@ test('a visit has several page views, the inquiry page at most once and last', (
     assert.ok(inquiry <= 1, s + ' opens the inquiry page twice');
     if (inquiry) assert.equal(v[v.length - 1], 'inquiry', s);
   }
-  for (const e of events.filter((x) => x.type !== 'page_view')) assert.ok(views.get(e.session)?.includes('inquiry'), e.session);
+  // Quiz screens are passed on the formats page, also by visits that leave before the inquiry page.
+  for (const e of events.filter((x) => x.type !== 'page_view')) {
+    const page = e.type === 'inquiry_step_completed' ? 'formats' : 'inquiry';
+    assert.ok(views.get(e.session)?.includes(page), e.session + ' ' + e.type);
+  }
+});
+
+test('the quiz appears only after launch, on the shipped variant, and every sent inquiry says whether it came through it', () => {
+  const events = fs.readFileSync(path.join(ROOT, 'data', 'events.jsonl'), 'utf8').trim().split('\n').map((l) => JSON.parse(l));
+  const launch = scenario.launchDate + 'T00:00:00Z';
+  for (const e of events.filter((x) => x.type === 'inquiry_step_completed')) {
+    assert.ok(e.ts >= launch, e.session);
+    assert.equal(e.variant, scenario.shippedVariant);
+    assert.ok(e.props.step >= 1 && e.props.step <= 4 && typeof e.props.answered === 'boolean' && typeof e.props.unsure === 'boolean');
+    assert.ok(!(e.props.answered && e.props.unsure), e.session);
+  }
+  for (const e of events.filter((x) => x.type === 'inquiry_submitted' && x.ts >= launch)) assert.equal(typeof e.props.quiz, 'boolean');
 });

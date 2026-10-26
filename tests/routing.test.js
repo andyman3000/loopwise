@@ -128,9 +128,10 @@ test('a page the variant does not hold is the baseline page, and its links keep 
   assert.match(own, /href="\/styles\.css"/, 'files that are not pages keep their link');
 });
 
-test('/compare, /dashboard and the test-card endpoint are not part of the start state', async () => {
+test('/compare and the test-card endpoint do not exist; the dashboard arrives with the launch data', async () => {
   setConfig({ shipped: null, variants: [] });
-  for (const p of ['/compare', '/dashboard']) assert.equal((await get(p)).status, 404, p);
+  assert.equal((await get('/compare')).status, 404);
+  assert.equal((await get('/dashboard')).status, 200);
   assert.notEqual((await get('/api/test-cards/x/assumptions')).status, 200);
 });
 

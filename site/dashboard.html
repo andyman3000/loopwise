@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard - Loopwise</title>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    main.wide{max-width:70rem}
+    .band{background:#8a5a00;color:#fff;font-weight:700;text-align:center;padding:.5rem 16px;letter-spacing:.04em}
+    .tag{display:inline-block;background:#8a5a00;color:#fff;font-size:.75rem;font-weight:700;border-radius:4px;padding:.05rem .5rem;margin-left:.5rem;vertical-align:middle}
+    figure{margin:1rem 0;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:.5rem 1rem 1rem}
+    figcaption{font-weight:600;margin:.25rem 0 .5rem}
+    svg{width:100%;height:auto;display:block}
+    svg text{fill:var(--fg);font:11px system-ui,sans-serif}
+    svg .muted{fill:var(--muted)}
+    svg .axis{stroke:var(--line)}
+    svg .before{fill:var(--muted)}
+    svg .after{fill:var(--accent)}
+    svg .rate{fill:none;stroke:var(--accent);stroke-width:2}
+    svg .kill{stroke:var(--err);stroke-width:2;stroke-dasharray:6 4}
+    svg .level{stroke:var(--muted);stroke-width:1;stroke-dasharray:2 3}
+    svg .launch{stroke:var(--fg);stroke-width:1.5}
+    table{border-collapse:collapse;width:100%;font-size:.9rem}
+    th,td{border-bottom:1px solid var(--line);padding:.4rem .5rem;text-align:left;vertical-align:top}
+    .num{text-align:right;font-variant-numeric:tabular-nums}
+    .scroll{overflow-x:auto}
+    .note{color:var(--muted);font-size:.9rem}
+  </style>
+</head>
+<body>
+  <div class="band" id="band" role="note">SYNTHETIC DATA: nothing on this page was measured on real visitors</div>
+  <header class="site-header">
+    <a class="brand" href="/">Loopwise</a>
+    <nav aria-label="Main">
+      <a href="/">Home</a>
+      <a href="/formats.html">Formats</a>
+      <a href="/inquiry.html">Inquiry</a>
+      <a href="/sponsor-prep.html">Sponsor preparation</a>
+      <a href="/dashboard" aria-current="page">Dashboard</a>
+    </nav>
+  </header>
+  <main class="wide">
+    <h1>Dashboard</h1>
+    <p class="lead" id="lead">Loading...</p>
+    <div id="content"></div>
+  </main>
+  <footer class="site-footer">Loopwise is a fictional academy used for a demo. All data is synthetic.</footer>
+  <script type="module" src="/dashboard.js"></script>
+</body>
+</html>
