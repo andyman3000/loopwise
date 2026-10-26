@@ -1,90 +1,86 @@
 ---
 name: read-result
-description: Read the result of the shipped variant against its test card. Use after the measurement window closes, or when someone asks "did our assumption hold?", "read the result", "how did the shipped variant do?". Counts events and inquiries before and after, checks every test-card line, and writes the Result section of the test card. Proposes keep, adjust or roll back; never decides.
+description: Read the result of the shipped variant against its test card, together with the human. Use after the measurement window closes, or when someone asks "did our assumption hold?", "read the result", "how did the shipped variant do?". Takes the numbers the dashboard shows (npm run summary), asks the human for their reading first, sets its own reading beside it, settles the differences with the human, and writes the Result section of the test card with the conclusion in the human's words. Does not count on its own and never decides.
 ---
 
 # read-result
 
 > **When:** the time frame on the test card of the shipped variant has passed, or a mid-way check is asked for.
 > **Reads:** `site/config.json` (key `shipped`, gives `<variant>`); `discovery/test-cards/<variant>.md`;
-> `data/events.jsonl`; `data/inquiries.csv`; `data/scenario.json` (only to state whether the data is synthetic).
+> the output of `npm run summary` (the same numbers as `http://localhost:3000/dashboard`, from the
+> same code); `data/scenario.json` only to state whether the data is synthetic.
 > **Writes:** the `## Result` section of `discovery/test-cards/<variant>.md`. One path. Replace only that
 > section (append it if missing); leave every other line of the test card untouched.
 
-You compare what happened with what the test card said in advance. You are an agent writing an
-assessment, not a decision. A human decides what happens to the variant.
+The numbers are already counted, by code, on the dashboard. This skill does not count them again. It
+helps the human read them against the test card: the human reads first, then the skill reads, then
+both settle where they differ and draw the conclusion. The conclusion and the decision are the human's.
 
 ## Rules
 
-- **Decision rule first, then the counts.** Before you count, ask the human for their decision rule, in these words: "Before I count anything: what result would make you keep the variant, change it, or take it back? One short sentence for each." Add this example: "Keep it if more people start the form and no fewer send it. Change it if people start but then do not send. Take it back if fewer people start." Ask it even when the human has already seen the data: a rule set before the reading keeps the decision from being fitted to the numbers. Wait for the answer and never invent it. A vague reply ("go on", "ok", "let's see") gets one more ask; if it stays vague, write "skipped". After counting, fill the section "Your decision rule": the rule word for word, then which of the three the counts point to under that rule, in one or two lines. This step is how participants learn the concept; do not shorten it.
-- **Every claim quotes its source with location**: file and line, section, or the exact command that
-  produced the count. No quote, no claim.
-- **Do not invent numbers.** Only counted numbers: events in the log, rows in the export. No scores, no
-  probabilities, no totals across unlike things, no extrapolation.
-- **Reproducible counts.** Next to every number, give the command or computation that produced it, so a
-  reader can rerun it. Prefer a `node -e` one-liner over `data/events.jsonl` or `data/inquiries.csv`.
-- **Assessments in words, three levels only:** well supported, partly supported, unsupported. Each with
-  reasoning, the counts, counter-evidence and gaps.
-- **`data/scenario.json` is off limits for outcomes.** Read it only to see whether the data is synthetic.
-  Never read or quote expected results, rates or story beats from it. The result comes from the log.
-- **Take the lines from the test card**, not from memory: success line, usage hypothesis, proxy metric,
-  counter metric, kill criterion, time frame, what we cannot see. If a line has no number, say so: "not
-  checkable as written".
-- **n per week is always shown.** With small weekly n, say plainly what that does to every rate.
-- **No causality for bookings.** Say what the data cannot show.
-- **The decision field stays empty.** You propose; you do not decide.
+- **The human reads first.** Before you say what any number means, ask for their reading (step 1).
+  Wait for the answer and never invent it. A vague reply ("go on", "ok", "looks fine") gets one more
+  ask; if it stays vague, write "skipped". Do not shorten this step: it is how participants learn to
+  read a result.
+- **One source for numbers:** `npm run summary`. Quote its lines word for word. Never recount from
+  `data/events.jsonl` or `data/inquiries.csv` in your own way. If a line of the test card has no
+  number in the summary, say "not on the dashboard" and give a `node -e` command over `data/` that
+  counts it, as written on the card.
+- **Take the lines from the test card**, word for word, with their section: success line, usage
+  hypothesis, proxy metric, call quality, counter metric, kill criterion. Read each against what the
+  card says, including what it says about the usual swing.
+- **Three readings per line, in words:** met, not met, unclear. Unclear when the card itself says the
+  line shows a direction only, or when the difference is a few cases.
+- **Say what the numbers cannot show:** small numbers per week, bookings that cannot be tied to the
+  website change, anything the card lists under "What we cannot see".
+- **`data/scenario.json` is off limits for outcomes.** Read it only to see whether the data is
+  synthetic. Never read or quote expected results, rates or story beats from it.
+- **The decision is the human's.** Write the conclusion and the decision in the human's words, with
+  the name and date they give. If they name none, the decision field stays `____ (human decides)`.
+  Never suggest which of keep, change or take back to choose.
+- **Plain words.** Short sentences, no coined labels, as in `.claude/rules/writing.md`.
 
 ## Steps
 
-0. **Decision rule first.** Ask: "Before I count anything: what result would make you keep the variant, change it, or take it back? One short sentence for each." Add this example: "Keep it if more people start the form and no fewer send it. Change it if people start but then do not send. Take it back if fewer people start." Wait for the answer before you read further or draft anything.
-1. Read `site/config.json`, then the test card. List its lines verbatim with their section.
-2. Find the switch date (first event carrying the shipped variant, or the date on the test card; quote
-   which). Before = the same number of weeks before it as the time frame after it, unless the test card
-   defines the baseline differently.
-3. Count per week, before and after: inquiry page visits (`page_view` of the inquiry page),
-   `inquiry_started`, `inquiry_submitted`, `scoping_call_booked`, `booking_confirmed`, and the variant's
-   own events the test card names (for example `inquiry_step_completed` with its props). Derive only the
-   rates the test card names.
-4. From `data/inquiries.csv`, count the answers the variant collected: every column beyond `id`,
-   `submitted_at`, `variant`, `sponsor_type`, `team_size`, `scoping_call_booked` and `booking_confirmed`.
-   Per column: answered, "don't know yet" or the variant's own unsure answer, empty.
-5. Hold each test-card line against the counts: met / not met / unclear.
-6. Check the kill criterion week by week, exactly as worded on the test card.
+1. **The numbers, then the human's reading.** Read `site/config.json` and the test card. Run
+   `npm run summary` and show its output unchanged. Point to `http://localhost:3000/dashboard` for the
+   same numbers as charts. Then ask, in these words: "Read the card against these numbers. For each
+   line: met, not met or unclear, and why in a few words. Then: would you keep the variant, change it,
+   or take it back?" Wait.
+2. **Our reading beside theirs.** Read each card line against the summary yourself: met, not met or
+   unclear, with the summary line it rests on. Show a table with both readings side by side. Below it,
+   list only the lines where the two readings differ, one sentence each on why yours differs.
+3. **Settle the differences together.** Ask: "Where we differ, which reading holds, and why?" Take
+   their answer for each line. If they keep their reading, write theirs as the agreed one and note
+   yours in one line.
+4. **The conclusion.** Ask: "So: keep, change or take back, and why? Who decides, and on what date?"
+   Write it in their words.
+5. **Write the Result section** with the template below. Then tell the human in one line that the next
+   step is `/next-bet`.
 
 ## Output template (the `## Result` section)
 
 ```markdown
 ## Result
 
-### Your decision rule (set before the counts)
-<the human's rule, word for word> · Under this rule the counts point to: <keep / change / take back / unclear, and why, in one or two lines>
-
 > [Synthetic data: generated by scripts/generate-events.js, see data/scenario.json] (first line, only if synthetic)
-> Assessment by the read-result agent, <YYYY-MM-DD>. Not a decision.
+> Read together with the read-result agent, <YYYY-MM-DD>. The numbers come from `npm run summary`, the same as the dashboard.
 
-### What happened
-| Week | Phase | inquiry page visits | started | submitted | <variant event the card names> | scoping calls | bookings |
-|---|---|---|---|---|---|---|---|
-Command: `node -e "..."`
+### The numbers
+<the output of npm run summary, unchanged, in a code block>
 
-### Test-card lines
-| Line (quoted, section) | Target | Counted | Met / not met / unclear | Command |
+### Your reading (before ours)
+<the human's answer to step 1, word for word>
+
+### Line by line
+| Line (quoted, section) | Your reading | Our reading | Agreed reading | Rests on (summary line) |
 |---|---|---|---|---|
 
-### Kill criterion
-Reached / not reached. Weeks checked, the count for each, command.
+### What the numbers cannot show
+<small numbers, bookings, the card's "What we cannot see", in plain sentences>
 
-### Answers the variant collected
-Per column of `data/inquiries.csv` the variant added: answered: n · "don't know yet": n · empty: n (of n submitted). Command.
+### Conclusion
+<the conclusion in the human's words: keep, change or take back, and why>
 
-### Did the critical assumptions hold?
-Per assumption: well supported / partly supported / unsupported, with reasoning, counts, counter-evidence, gaps.
-
-### What the data cannot say
-Small n per week (name it), no causality for bookings, anything else the test card listed.
-
-### Proposal
-Keep / adjust / roll back, one paragraph why, with the counts it rests on.
-
-**Decision:** ____ (human decides) · **Who:** ____ · **Date:** ____
+**Decision:** <the human's words, or ____ (human decides)> · **Who:** <name the human gives> · **Date:** <date>
 ```
