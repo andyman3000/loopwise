@@ -14,6 +14,7 @@ the block is for, what you do step by step, and when you are done.
 | [06-test-decision.md](06-test-decision.md) | Cross test, learning card, carry on | `06-test-decision` |
 | [07-result.md](07-result.md) | Demo: read the result | `07-result` |
 | [08-next-bet.md](08-next-bet.md) | Demo: next bet | `08-next-bet` |
+| [09-feedback.md](09-feedback.md) | Feedback and your results, end of day 2 | none |
 
 ## The same four moves in every block
 
