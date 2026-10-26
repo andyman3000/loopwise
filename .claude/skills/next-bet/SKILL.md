@@ -1,6 +1,6 @@
 ---
 name: next-bet
-description: Carry a read result back into the tree. Use after read-result has written the Result section and someone asks "what next?", "update the KPI tree", "which opportunity now?". Enters measured values on the KPI tree branch, sets the status of the tested opportunity, reads the new success-line answers as a fresh source, and proposes the next opportunity. Never decides.
+description: Carry a read result back into the tree. Use after read-result has written the Result section and someone asks "what next?", "update the KPI tree", "which opportunity now?". Enters measured values on the KPI tree branch, sets the status of the tested opportunity, reads the answers the shipped variant collected as a fresh source, and proposes the next opportunity. Never decides.
 ---
 
 # next-bet
@@ -8,7 +8,7 @@ description: Carry a read result back into the tree. Use after read-result has w
 > **When:** after `read-result`, once the Result section of the shipped variant's test card exists.
 > **Reads:** `site/config.json` (key `shipped`); the `## Result` section of `discovery/test-cards/<variant>.md`;
 > `discovery/kpi-tree.md`; `discovery/opportunities/`; `discovery/opportunity-comparison.md`;
-> `discovery/decisions/`; `data/inquiries.csv` (the success-line answers, read as a NEW source).
+> `discovery/decisions/`; `data/inquiries.csv` (the answers the shipped variant collected, read as a NEW source).
 > **Writes:** two paths, by design (plan: "update both"): `discovery/kpi-tree.md` (measured values on
 > the branch) and `discovery/opportunity-comparison.md` (an appended status and next-bet section). This
 > is the one skill in the chain that writes two artefacts, because the loop closes on both.
@@ -20,8 +20,8 @@ decision.
 ## Rules
 
 - **Try first, then compare.** Before you draft, ask the human for what they would work on next, and why, before you read the new evidence. Wait for the answer and never invent it. After drafting, fill the section "Your first try": their answer word for word, then two or three short lines on where your draft differs and why. If they say skip, write "skipped". This step is how participants learn the concept; do not shorten it.
-- **Every claim quotes its source with location**: file and line or section. A success-line answer is
-  quoted verbatim with its row in `data/inquiries.csv`. No quote, no claim.
+- **Every claim quotes its source with location**: file and line or section. An answer the variant
+  collected is quoted verbatim with its row in `data/inquiries.csv`. No quote, no claim.
 - **Do not invent numbers.** Only counted numbers: values from the Result section (copied, not
   recomputed differently), answers counted in the export. No scores, no probabilities, no totals.
 - **Assessments in words, three levels only:** well supported, partly supported, unsupported. Each with
@@ -41,8 +41,11 @@ decision.
 1. Read the Result section. Copy the counted values and the weeks they cover.
 2. Read the KPI tree; find the branch the tested opportunity hangs on (quote it). Enter the values.
 3. Read the decision files for the tested opportunity: what it said would tip the decision. Check it.
-4. Read every success-line answer in `data/inquiries.csv`. Sort each into the opportunities in
-   `discovery/opportunities/` it describes, or "fits none". Quote each with its row. Count per opportunity.
+4. Read every answer the shipped variant collected in `data/inquiries.csv`: the columns beyond `id`,
+   `submitted_at`, `variant`, `sponsor_type`, `team_size`, `scoping_call_booked` and
+   `booking_confirmed`, in the variant's rows. An answer can be a sentence the sponsor wrote or an option
+   the sponsor ticked. Sort each into the opportunities in `discovery/opportunities/` it describes, or
+   "fits none". "I don't know yet" fits none. Quote each with its row. Count per opportunity.
 5. Compare: which opportunity does the evidence now point to, and how does that change the earlier
    comparison? Name counter-evidence and what one more source would settle.
 
@@ -67,7 +70,7 @@ decision.
 Status: well supported / partly supported / unsupported, with reasoning, the Result counts, what the
 decision file said would tip it and whether it did.
 
-### New source: success-line answers (data/inquiries.csv)
+### New source: answers the variant collected (data/inquiries.csv)
 | Opportunity | Answers (n) | Quotes with row |
 |---|---|---|
 | fits none | n | |
