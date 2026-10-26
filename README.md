@@ -40,7 +40,7 @@ block. If you decided differently, keep your own state or continue from the refe
 | `03-opportunity-decision` | selection, opportunity comparison, decision 001 |
 | `04-test-card` | intent with 3 to 5 ideas and the idea tested first, prototype test card |
 | `05-prototype` | spec, persona run on the spec, built variant under `site/variants/` |
-| `06-test-decision` | learning card as decision 002, reference launch card, shipped variant, synthetic data and dashboard |
+| `06-test-decision` | learning cards as decisions 002 (dropped variant) and 003 (shipped variant), reference launch card, shipped variant, synthetic data and dashboard |
 | `07-result` | result section of the shipped variant's test card |
 | `08-next-bet` | measured values in the KPI tree, next opportunity |
 
