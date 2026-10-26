@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inquiry - Loopwise</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/">Loopwise</a>
+    <nav aria-label="Main">
+      <a href="/">Home</a>
+      <a href="/formats.html">Formats</a>
+      <a href="/inquiry.html" aria-current="page">Inquiry</a>
+      <a href="/sponsor-prep.html">Sponsor preparation</a>
+    </nav>
+  </header>
+  <main>
+    <h1>Inquiry</h1>
+    <p class="lead">Tell us a little about you and what you need.</p>
+    <p><a href="/formats.html?variant=format-quiz&amp;quiz=open">Unsure what to pick? Find out in a small quiz</a></p>
+    <p>After you send this, we book a scoping call with you. In the call we talk about the format and how you will know it worked.</p>
+    <form id="inquiry-form" novalidate>
+      <div class="field"><label for="name">Name</label><input id="name" name="name" autocomplete="name"><p class="error" data-error-for="name" hidden></p></div>
+      <div class="field"><label for="company">Company</label><input id="company" name="company" autocomplete="organization"><p class="error" data-error-for="company" hidden></p></div>
+      <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email"><p class="error" data-error-for="email" hidden></p></div>
+      <div class="field"><label for="teamSize">Team size (optional)</label><input id="teamSize" name="teamSize" type="number" min="1" inputmode="numeric"><p class="error" data-error-for="teamSize" hidden></p></div>
+      <div class="field"><label for="message">What do you need?</label><textarea id="message" name="message" rows="6"></textarea><p class="error" data-error-for="message" hidden></p></div>
+      <input type="hidden" name="quizRoles">
+      <input type="hidden" name="quizStand">
+      <input type="hidden" name="quizBefore">
+      <input type="hidden" name="quizAfter">
+      <input type="hidden" name="quizAnswered">
+      <input type="hidden" name="quizUnsure">
+      <p class="error" id="form-error" role="alert" hidden></p>
+      <button class="button" type="submit">Send inquiry</button>
+    </form>
+  </main>
+  <footer class="site-footer">Loopwise is a fictional academy used for a demo.</footer>
+  <script type="module">
+    import { initInquiryForm } from '/components/inquiry-form.js';
+    import { logEvent } from '/components/events.js';
+    const VARIANT = 'format-quiz';
+    const KEY = 'formatQuiz';
+    const UNSURE = "I don't know yet";
+    const LABELS = ['Team', 'Size', 'Where the team stands with AI', 'Tried before', 'After the training we want'];
+    const HIDDEN = { 0: 'quizRoles', 2: 'quizStand', 3: 'quizBefore', 4: 'quizAfter' };
+    const form = document.getElementById('inquiry-form');
+    logEvent('page_view', { page: 'inquiry' }, VARIANT);
+
+    function readQuiz() {
+      try {
+        const a = JSON.parse(sessionStorage.getItem(KEY));
+        return Array.isArray(a) && a.length === 5 ? a : null;
+      } catch {
+        return null;
+      }
+    }
+
+    // "Product owners" reads "product owners" inside a sentence; "UX people" keeps its capitals.
+    const inSentence = (s) => (/^[A-Z](?![A-Z])/.test(s) ? s[0].toLowerCase() + s.slice(1) : s);
+    // Answers that hold a comma themselves are kept apart with semicolons.
+    const joinAnswers = (values) => values.map(inSentence).join(values.some((v) => v.includes(',')) ? '; ' : ', ');
+
+    // Fills the form from the quiz answers, using only what the sponsor ticked or typed.
+    function fill(answers) {
+      const lines = [];
+      answers.forEach((a, i) => {
+        const values = Array.isArray(a?.values) ? a.values.map(String) : [];
+        if (a?.unsure) lines.push(`${LABELS[i]}: ${UNSURE}.`);
+        else if (values.length) lines.push(`${LABELS[i]}: ${joinAnswers(values)}.`);
+        if (HIDDEN[i]) form.elements[HIDDEN[i]].value = (a?.unsure ? UNSURE : values.join('; ')).slice(0, 300);
+      });
+      const size = answers[1]?.unsure ? '' : answers[1]?.values?.[0];
+      if (size) form.elements.teamSize.value = size;
+      form.elements.message.value = lines.join('\n');
+      form.elements.quizAnswered.value = String(answers.filter((a) => !a?.unsure && a?.values?.length).length);
+      form.elements.quizUnsure.value = String(answers.filter((a) => a?.unsure).length);
+    }
+
+    const answers = readQuiz();
+    if (answers) fill(answers);
+
+    initInquiryForm(form, {
+      variant: VARIANT,
+      submittedProps: () => ({ quiz: Boolean(answers) }),
+      onSubmitted: () => {
+        try { sessionStorage.removeItem(KEY); } catch {}
+      },
+    });
+  </script>
+</body>
+</html>

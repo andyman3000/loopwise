@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Formats - Loopwise</title>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    [hidden]{display:none !important}
+    .quiz fieldset{border:0;padding:0;margin:0}
+    .quiz legend{font-weight:600;font-size:1.15rem;margin-bottom:.5rem}
+    .quiz .step{color:var(--muted);margin:0 0 .25rem}
+    .quiz .option{display:flex;gap:.6rem;align-items:flex-start;font-weight:400;margin:.4rem 0}
+    .quiz .option input{width:auto;margin-top:.35rem}
+    .quiz input[type=number]{max-width:10rem}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/">Loopwise</a>
+    <nav aria-label="Main">
+      <a href="/">Home</a>
+      <a href="/formats.html" aria-current="page">Formats</a>
+      <a href="/inquiry.html">Inquiry</a>
+      <a href="/sponsor-prep.html">Sponsor preparation</a>
+    </nav>
+  </header>
+  <main>
+    <h1>Example formats</h1>
+    <p class="lead">These are starting points. The scoping call shapes the real format.</p>
+    <p id="quiz-link"><a href="#quiz">Unsure what to pick? Find out in a small quiz</a></p>
+
+    <form class="card quiz" id="quiz" hidden novalidate>
+      <fieldset data-step="1" data-kind="multi">
+        <p class="step">Question 1 of 5</p>
+        <legend>Who is in the team?</legend>
+        <label class="option"><input type="checkbox" value="Product managers"> Product managers</label>
+        <label class="option"><input type="checkbox" value="Product owners"> Product owners</label>
+        <label class="option"><input type="checkbox" value="UX people"> UX people</label>
+        <label class="option"><input type="checkbox" value="People moving over from project management and consulting"> People moving over from project management and consulting</label>
+        <label class="option"><input type="checkbox" value="Not decided yet, it could be several teams"> Not decided yet, it could be several teams</label>
+        <label class="option"><input type="checkbox" data-unsure> I don't know yet</label>
+      </fieldset>
+      <fieldset data-step="2" data-kind="number" hidden>
+        <p class="step">Question 2 of 5</p>
+        <legend>How many people are in the team?</legend>
+        <div class="field"><label for="quiz-size">Number of people</label><input id="quiz-size" type="number" min="1" step="1" inputmode="numeric"></div>
+        <label class="option"><input type="checkbox" data-unsure> I don't know yet</label>
+      </fieldset>
+      <fieldset data-step="3" data-kind="multi" hidden>
+        <p class="step">Question 3 of 5</p>
+        <legend>Where does the team stand with AI today?</legend>
+        <label class="option"><input type="checkbox" value="Almost no hands-on AI experience"> Almost no hands-on AI experience</label>
+        <label class="option"><input type="checkbox" value="Some already use chat tools, some don't"> Some already use chat tools, some don't</label>
+        <label class="option"><input type="checkbox" value="Tools are rolled out, but the actual work hasn't changed"> Tools are rolled out, but the actual work hasn't changed</label>
+        <label class="option"><input type="checkbox" value="From never written a prompt to building their own agents"> From never written a prompt to building their own agents</label>
+        <label class="option"><input type="checkbox" data-unsure> I don't know yet</label>
+      </fieldset>
+      <fieldset data-step="4" data-kind="multi" hidden>
+        <p class="step">Question 4 of 5</p>
+        <legend>What has the team tried before?</legend>
+        <label class="option"><input type="checkbox" value="Nothing yet, this is the first training" data-alone> Nothing yet, this is the first training</label>
+        <label class="option"><input type="checkbox" value="Some went to an external course, mostly optional"> Some went to an external course, mostly optional</label>
+        <label class="option"><input type="checkbox" value="A training after which daily work stayed the same"> A training after which daily work stayed the same</label>
+        <label class="option"><input type="checkbox" value="Developers got training, product people did not"> Developers got training, product people did not</label>
+        <label class="option"><input type="checkbox" data-unsure> I don't know yet</label>
+      </fieldset>
+      <fieldset data-step="5" data-kind="multi" hidden>
+        <p class="step">Question 5 of 5</p>
+        <legend>What should be different after the training?</legend>
+        <label class="option"><input type="checkbox" value="People say where it helped them in their work"> People say where it helped them in their work</label>
+        <label class="option"><input type="checkbox" value="Other teams ask to have a look"> Other teams ask to have a look</label>
+        <label class="option"><input type="checkbox" value="One or two things people use straight after"> One or two things people use straight after</label>
+        <label class="option"><input type="checkbox" value="Something concretely different four weeks later, and a way to measure it"> Something concretely different four weeks later, and a way to measure it</label>
+        <label class="option"><input type="checkbox" data-unsure> I don't know yet</label>
+      </fieldset>
+      <p class="actions">
+        <button class="button secondary" type="button" id="quiz-back" hidden>Back</button>
+        <button class="button" type="button" id="quiz-next">Next</button>
+      </p>
+    </form>
+
+    <section class="card"><h2>Half-day workshop</h2><p><strong>Duration:</strong> 4 hours, on site or remote.</p><p><strong>Audience:</strong> product managers and product owners who want one topic in depth, up to 16 people.</p></section>
+    <section class="card"><h2>Two-day training</h2><p><strong>Duration:</strong> 2 consecutive days.</p><p><strong>Audience:</strong> a product team of 8 to 20 people, mixed roles including UX.</p></section>
+    <section class="card"><h2>Agentic Product Management lab</h2><p><strong>Duration:</strong> 2 days plus a 2-hour follow-up session.</p><p><strong>Audience:</strong> product managers who want to work with AI agents on real tasks from their own backlog.</p></section>
+    <section class="card"><h2>Multi-week team coaching</h2><p><strong>Duration:</strong> 6 to 12 weeks, one session per week.</p><p><strong>Audience:</strong> one intact product team working on a live product.</p></section>
+    <section class="card"><h2>Shadowing</h2><p><strong>Duration:</strong> 3 to 5 days inside the team, followed by a feedback session.</p><p><strong>Audience:</strong> individual product managers and leads who want feedback on how they work day to day.</p></section>
+    <p>Prefer to talk first? Every inquiry leads to a scoping call with us.</p>
+    <p class="actions"><a class="button" href="/inquiry.html">Make an inquiry</a></p>
+  </main>
+  <footer class="site-footer">Loopwise is a fictional academy used for a demo.</footer>
+  <script type="module">
+    import { logEvent } from '/components/events.js';
+    const VARIANT = 'format-quiz';
+    logEvent('page_view', { page: 'formats' }, VARIANT);
+
+    const link = document.getElementById('quiz-link');
+    const quiz = document.getElementById('quiz');
+    const steps = [...quiz.querySelectorAll('fieldset')];
+    const back = document.getElementById('quiz-back');
+    const next = document.getElementById('quiz-next');
+    let current = 0;
+
+    function show(i) {
+      current = i;
+      steps.forEach((s, n) => { s.hidden = n !== i; });
+      back.hidden = i === 0;
+      next.textContent = i === steps.length - 1 ? 'Continue to the inquiry' : 'Next';
+    }
+
+    function open() {
+      link.hidden = true;
+      quiz.hidden = false;
+      show(0);
+      quiz.scrollIntoView({ block: 'start' });
+    }
+
+    // "I don't know yet" and "Nothing yet" stand alone: they clear the other answers on their screen.
+    for (const step of steps) {
+      step.addEventListener('change', (e) => {
+        const box = e.target;
+        if (box.type === 'checkbox' && box.checked) {
+          const alone = box.hasAttribute('data-unsure') || box.hasAttribute('data-alone');
+          for (const other of step.querySelectorAll('input[type=checkbox]')) {
+            if (other === box) continue;
+            const otherAlone = other.hasAttribute('data-unsure') || other.hasAttribute('data-alone');
+            if (alone || otherAlone) other.checked = false;
+          }
+          if (box.hasAttribute('data-unsure')) {
+            const num = step.querySelector('input[type=number]');
+            if (num) num.value = '';
+          }
+        }
+      });
+      const num = step.querySelector('input[type=number]');
+      if (num) num.addEventListener('input', () => {
+        if (num.value !== '') step.querySelector('[data-unsure]').checked = false;
+      });
+    }
+
+    function answerOf(step) {
+      const unsure = step.querySelector('[data-unsure]').checked;
+      if (step.dataset.kind === 'number') {
+        const n = Number(step.querySelector('input[type=number]').value);
+        return { values: !unsure && Number.isInteger(n) && n >= 1 ? [String(n)] : [], unsure };
+      }
+      const values = [...step.querySelectorAll('input[type=checkbox]:checked:not([data-unsure])')].map((b) => b.value);
+      return { values, unsure };
+    }
+
+    link.querySelector('a').addEventListener('click', (e) => { e.preventDefault(); open(); });
+    back.addEventListener('click', () => show(current - 1));
+    next.addEventListener('click', () => {
+      const a = answerOf(steps[current]);
+      logEvent('inquiry_step_completed', { step: current + 1, answered: a.values.length > 0, unsure: a.unsure }, VARIANT);
+      if (current < steps.length - 1) return show(current + 1);
+      try {
+        sessionStorage.setItem('formatQuiz', JSON.stringify(steps.map(answerOf)));
+      } catch {}
+      window.location.href = '/inquiry.html?variant=' + VARIANT;
+    });
+
+    if (new URLSearchParams(location.search).get('quiz') === 'open') open();
+  </script>
+</body>
+</html>
