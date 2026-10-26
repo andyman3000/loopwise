@@ -1,6 +1,6 @@
 ---
 name: test-card
-description: Draft the test card for one solution variant, in one of two modes. "prototype" writes the card for the prototype test before the spec and the build - one critical assumption, a test scenario for a tester, signs to watch, a go-on line and a rework-or-drop line. "launch" writes the card for the release - critical assumptions, a success line set upfront, usage hypothesis, proxy metric, counter metric, kill criterion, time frame. Use as "/test-card <variant> prototype" or "/test-card <variant> launch". Writes one file per variant and mode; never decides whether the variant ships.
+description: Draft the test card for one solution variant, in one of two modes. Both read as a Strategyzer test card: we believe that, to test that we will, we are right if. "prototype" writes the card for the prototype test before the spec and the build - one critical assumption, a test scenario for a tester, signs to watch, a go-on line and a rework-or-drop line. "launch" writes the card for the release - critical assumptions, a success line set upfront, usage hypothesis, proxy metric, counter metric, kill criterion, time frame. Use as "/test-card <variant> prototype" or "/test-card <variant> launch". Writes one file per variant and mode; never decides whether the variant ships.
 ---
 
 # Test card
@@ -34,6 +34,11 @@ A prototype test shows one person a rough page and watches what they do. It test
 assumption, before anyone builds the real thing. The person who built the page watches; the tester
 knows only the situation and the task, never the assumption.
 
+The card reads as a test card (Osterwalder, Strategyzer): **We believe that** <the assumption>.
+**To test that, we will** <show a tester the page, with this scenario, and watch for these signs>.
+**We are right if** <go-on line>. **We rework or drop the idea if** <rework-or-drop line>.
+The learning card later answers it line by line: we believed, we observed, we learned, therefore we will.
+
 ### Rules
 
 - **One assumption.** Take the assumption the human named in "Assumption we test first" in the intent's "Selection (human)" whose variant name matches, word for word. A second round adds a second selection below the first. If no selection names this variant, or its assumption field is empty, stop and say so. Do not pick one.
@@ -50,7 +55,7 @@ knows only the situation and the task, never the assumption.
 
 ### Steps
 
-0. **Try first.** Ask the human: "What would you need to see a tester do, or hear them say, to believe the assumption holds?" Wait for the answer before you read further or draft anything.
+0. **Try first.** Ask the human: "Finish three sentences in your own words. We believe that ... To test that, we will ... We are right if ..." Wait for the answer before you read further or draft anything. The last sentence matters most: what would a tester have to do, or say, for the assumption to hold?
 1. Read the intent and its "Selection (human)". Quote the assumption, the idea and the variant name. If a field is empty, stop and say which. If `discovery/decisions/` holds a learning card for an earlier variant of the same intent, quote its "We learned" line and ask the human: "What does this idea answer of what you learned?" Put the answer under "The assumption we test".
 2. Read the idea's assumptions and their sources in the intent. Do not reassess them.
 3. Draft the scenario, the signs, the two lines and what the test cannot show. Apply the persona-source rule to every sign. Hold the situation against both persona files: their "Persona type" line and their facts (the soft sponsor has no budget and no line authority, `product/personas/sponsor-soft.md:5`; the hard sponsor already got a first step approved, `product/personas/sponsor-hard.md:16`). A role or fact that clashes goes under "What this test cannot show"; the personas then keep their own file.
@@ -71,27 +76,30 @@ knows only the situation and the task, never the assumption.
 ## Your first try
 <the human's answer, word for word> · Where the draft differs: <two or three short lines>
 
-## The assumption we test
+## We believe that
 "<assumption, quoted from Selection (human)>" (`discovery/intents/<opportunity>.md:<line>`)
 Level in the intent: <level, quoted>
 
-## Test scenario (the tester sees only this)
+## To test that, we will
+Show one tester from another pair the page `/<page>?variant=<variant>`. The tester gets only the scenario below. The person who built the page watches for the signs.
+
+### Test scenario (the tester sees only this)
 - **Situation:** <two or three sentences, "You are ...">
 - **Task:** <one sentence>
 - **Page:** `/<page>?variant=<variant>`, the page the spec names as the start
 - **Sources:** <citations for the team facts in the situation, not read to the tester>
 - **Does not count if:** <only when the situation asks for a real case: "the tester has no such case">
 
-## Signs the watcher looks for
+### Signs the watcher looks for
 | Sign (what the watcher sees or hears) | Points to | Can a persona show it? |
 |---|---|---|
 | <sign> | go on | <"yes: <quote>" (`product/personas/<file>:<line>`), or "only the cross test with people can test this"> |
 | <sign> | rework or drop | ... |
 
-## Go-on line
+## We are right if (go-on line)
 <in words, proposal> · Set on: <YYYY-MM-DD>
 
-## Rework-or-drop line
+## We rework or drop the idea if (rework-or-drop line)
 <in words, proposal> · Set on: <YYYY-MM-DD>
 
 ## What this test cannot show
@@ -103,7 +111,8 @@ Level in the intent: <level, quoted>
 ## Mode `launch`
 
 A launch card says, before release, what must happen for the variant to count as working, and when
-to take it back.
+to take it back. Its first section says this as a test card (Osterwalder, Strategyzer): we believe
+that, to test that we will, we measure, we are right if, we take it back if.
 
 ### Rules
 
@@ -143,6 +152,15 @@ to take it back.
 
 ## Your first try
 <the human's answer, word for word> · Where the draft differs: <two or three short lines>
+
+## The card in five lines
+- **We believe that** <the weakest critical assumption below, in one sentence>.
+- **To test that, we will** release the variant to <who> for <time frame>.
+- **And measure** <proxy metric>.
+- **We are right if** <success line>.
+- **We take it back if** <kill criterion>.
+
+Each line repeats a field below in one sentence. If a field changes, this section changes with it.
 
 ## What changes for whom
 <who does what differently on the page, in one or two sentences>
