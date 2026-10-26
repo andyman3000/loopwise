@@ -30,7 +30,6 @@
       <input type="hidden" name="quizRoles">
       <input type="hidden" name="quizStand">
       <input type="hidden" name="quizBefore">
-      <input type="hidden" name="quizAfter">
       <input type="hidden" name="quizAnswered">
       <input type="hidden" name="quizUnsure">
       <p class="error" id="form-error" role="alert" hidden></p>
@@ -44,15 +43,15 @@
     const VARIANT = 'format-quiz';
     const KEY = 'formatQuiz';
     const UNSURE = "I don't know yet";
-    const LABELS = ['Team', 'Size', 'Where the team stands with AI', 'Tried before', 'After the training we want'];
-    const HIDDEN = { 0: 'quizRoles', 2: 'quizStand', 3: 'quizBefore', 4: 'quizAfter' };
+    const LABELS = ['Team', 'Size', 'Where the team stands with AI', 'Tried before'];
+    const HIDDEN = { 0: 'quizRoles', 2: 'quizStand', 3: 'quizBefore' };
     const form = document.getElementById('inquiry-form');
     logEvent('page_view', { page: 'inquiry' }, VARIANT);
 
     function readQuiz() {
       try {
         const a = JSON.parse(sessionStorage.getItem(KEY));
-        return Array.isArray(a) && a.length === 5 ? a : null;
+        return Array.isArray(a) && a.length === 4 ? a : null;
       } catch {
         return null;
       }

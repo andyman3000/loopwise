@@ -59,3 +59,63 @@ Reference decision (replace with your own)
 
 ### When
 2026-10-26
+
+## Round 2, 2026-10-26
+
+> **Synthetic cross test: no test with a person took place.** The watcher's notes were written for the reference run, to show what a passed test looks like (`discovery/user-tests/format-quiz-cross-2.md:4`). In your own run, this line reads "Tested with one person from another pair: a pattern, not a rate."
+> Rests on: `discovery/test-cards/format-quiz-prototype.md` (section "Round 2"), `discovery/user-tests/format-quiz-cross-2.md`
+
+We came back to the quiz after success-line-first failed (`discovery/decisions/003-success-line-first.md`). The spec changed: four questions, the question about what should be different after the training is gone, and a line above the first question says open answers are worked out in the scoping call.
+
+### How it went (first try)
+Smooth. The tester went through the quiz in one go and sent the inquiry.
+
+### We believed
+"A sponsor who is unsure about the format chooses the quiz, and can answer its questions on a page without a person." (`discovery/test-cards/format-quiz-prototype.md:25`)
+
+### We observed
+- The tester chose the quiz on their own (`discovery/user-tests/format-quiz-cross-2.md:7`).
+- The line above the first question took the pressure off: "Good. Because I don't know half of this." (`discovery/user-tests/format-quiz-cross-2.md:8`)
+- The tester answered what they knew, several answers where two fit (`discovery/user-tests/format-quiz-cross-2.md:9`, `discovery/user-tests/format-quiz-cross-2.md:11`).
+- The tester ticked "I don't know yet" without stopping: "No idea what they did before I joined." (`discovery/user-tests/format-quiz-cross-2.md:12`)
+- The filled message helped: "Oh, it wrote that for me." (`discovery/user-tests/format-quiz-cross-2.md:13`)
+- The tester still added the format question: "Mainly I want to know which format fits." (`discovery/user-tests/format-quiz-cross-2.md:14`)
+- The tester sent the inquiry (`discovery/user-tests/format-quiz-cross-2.md:15`).
+
+| Sign (from the card, round 2) | Points to | Seen? |
+|---|---|---|
+| The tester clicks the quiz link before writing in the form | go on | seen |
+| The tester goes through all four questions without asking the watcher, ticking "I don't know yet" where they do not know | go on | seen |
+| The tester finishes the quiz and sends the inquiry | go on | seen |
+| The tester stops the quiz before the end | rework or drop | not seen |
+| The tester asks the watcher what a question means | rework or drop | not seen |
+| The tester passes the link and writes straight into the form | rework or drop | not seen |
+| The tester asks for a person instead of the quiz | rework or drop | not seen |
+
+Against the lines: held. The go-on line asked that the tester "goes through all four questions without asking the watcher, and sends the inquiry" (`discovery/test-cards/format-quiz-prototype.md:81`). All three go-on signs were seen, no rework sign.
+
+### We learned
+From that we learned that an unsure sponsor answers questions about the team today, when the page says that not knowing is fine. The sponsor still wants the format question answered by a person, in the scoping call.
+
+### Therefore we will
+Move on with format-quiz. Before roll-out:
+- Academy staff who run scoping calls confirm the invented line "Tick what you know. What you don't know yet, we work out with you in the scoping call." The spec lists it as invented, to be confirmed by "academy staff who run scoping calls" (`discovery/specs/format-quiz.md:131`).
+- The baseline formats page logs a `page_view` too, so formats page visits count the same way with and without the quiz. The spec names this gap: "The baseline formats page logs no `page_view`" (`discovery/specs/format-quiz.md:123`).
+
+### Options considered
+- Move on: chosen, with the two changes above.
+- Another round, changed spec: not chosen. No rework sign was seen.
+- Another round, next idea: not chosen. I4 "a "Book a call" button in place of the form" (`discovery/intents/format-question.md:38`) stays open for later, because the tester still asked about the format.
+- Kill: not chosen.
+
+### What we decided
+Move on with format-quiz, round 2 page, after the two changes before roll-out.
+
+### Why
+One tester went through all four questions without help and sent the inquiry. The line about open answers turned "I don't know" from a stop into an answer.
+
+### Who
+Reference decision (replace with your own)
+
+### When
+2026-10-26

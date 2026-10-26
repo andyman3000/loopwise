@@ -31,8 +31,9 @@
     <p id="quiz-link"><a href="#quiz">Unsure what to pick? Find out in a small quiz</a></p>
 
     <form class="card quiz" id="quiz" hidden novalidate>
+      <p>Tick what you know. What you don't know yet, we work out with you in the scoping call.</p>
       <fieldset data-step="1" data-kind="multi">
-        <p class="step">Question 1 of 5</p>
+        <p class="step">Question 1 of 4</p>
         <legend>Who is in the team?</legend>
         <label class="option"><input type="checkbox" value="Product managers"> Product managers</label>
         <label class="option"><input type="checkbox" value="Product owners"> Product owners</label>
@@ -42,13 +43,13 @@
         <label class="option"><input type="checkbox" data-unsure> I don't know yet</label>
       </fieldset>
       <fieldset data-step="2" data-kind="number" hidden>
-        <p class="step">Question 2 of 5</p>
+        <p class="step">Question 2 of 4</p>
         <legend>How many people are in the team?</legend>
         <div class="field"><label for="quiz-size">Number of people</label><input id="quiz-size" type="number" min="1" step="1" inputmode="numeric"></div>
         <label class="option"><input type="checkbox" data-unsure> I don't know yet</label>
       </fieldset>
       <fieldset data-step="3" data-kind="multi" hidden>
-        <p class="step">Question 3 of 5</p>
+        <p class="step">Question 3 of 4</p>
         <legend>Where does the team stand with AI today?</legend>
         <label class="option"><input type="checkbox" value="Almost no hands-on AI experience"> Almost no hands-on AI experience</label>
         <label class="option"><input type="checkbox" value="Some already use chat tools, some don't"> Some already use chat tools, some don't</label>
@@ -57,21 +58,12 @@
         <label class="option"><input type="checkbox" data-unsure> I don't know yet</label>
       </fieldset>
       <fieldset data-step="4" data-kind="multi" hidden>
-        <p class="step">Question 4 of 5</p>
+        <p class="step">Question 4 of 4</p>
         <legend>What has the team tried before?</legend>
         <label class="option"><input type="checkbox" value="Nothing yet, this is the first training" data-alone> Nothing yet, this is the first training</label>
         <label class="option"><input type="checkbox" value="Some went to an external course, mostly optional"> Some went to an external course, mostly optional</label>
         <label class="option"><input type="checkbox" value="A training after which daily work stayed the same"> A training after which daily work stayed the same</label>
         <label class="option"><input type="checkbox" value="Developers got training, product people did not"> Developers got training, product people did not</label>
-        <label class="option"><input type="checkbox" data-unsure> I don't know yet</label>
-      </fieldset>
-      <fieldset data-step="5" data-kind="multi" hidden>
-        <p class="step">Question 5 of 5</p>
-        <legend>What should be different after the training?</legend>
-        <label class="option"><input type="checkbox" value="People say where it helped them in their work"> People say where it helped them in their work</label>
-        <label class="option"><input type="checkbox" value="Other teams ask to have a look"> Other teams ask to have a look</label>
-        <label class="option"><input type="checkbox" value="One or two things people use straight after"> One or two things people use straight after</label>
-        <label class="option"><input type="checkbox" value="Something concretely different four weeks later, and a way to measure it"> Something concretely different four weeks later, and a way to measure it</label>
         <label class="option"><input type="checkbox" data-unsure> I don't know yet</label>
       </fieldset>
       <p class="actions">

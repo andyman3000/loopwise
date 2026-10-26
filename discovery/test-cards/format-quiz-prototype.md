@@ -61,3 +61,24 @@ The tester passes the link. Or the tester stops at a question, asks the watcher,
 - Whether the sponsor trusts the academy more after the quiz.
 - The scenario fits both sponsors. The soft sponsor is an "influencer without budget authority" (`product/personas/sponsor-soft.md:5`). The hard sponsor "got a first step approved" (`product/personas/sponsor-hard.md:16`). Each persona keeps its own file in the persona runs.
 - Six of the seven signs have no line in a persona file. The persona runs can show stalls only, not these signs.
+
+## Round 2, 2026-10-26
+
+The spec changed after two failed cross tests (`discovery/decisions/003-success-line-first.md`). The quiz has four questions, not five. A line above the first question says open answers are worked out in the scoping call. The assumption and the scenario stay. Two signs change, because "I don't know yet" is now an answer the page invites.
+
+### Signs the watcher looks for, round 2
+| Sign (what the watcher sees or hears) | Points to | Can a persona show it? |
+|---|---|---|
+| The tester clicks the quiz link before writing in the form | go on | only the cross test with people can test this |
+| The tester goes through all four questions without asking the watcher, ticking "I don't know yet" where they do not know | go on | only the cross test with people can test this |
+| The tester finishes the quiz and sends the inquiry | go on | only the cross test with people can test this |
+| The tester stops the quiz before the end | rework or drop | only the cross test with people can test this |
+| The tester asks the watcher what a question means | rework or drop | only the cross test with people can test this |
+| The tester passes the link and writes straight into the form | rework or drop | only the cross test with people can test this |
+| The tester asks for a call or a person instead of the quiz | rework or drop | only the cross test with people can test this |
+
+### We are right if (go-on line), round 2
+The tester clicks the quiz link on their own, goes through all four questions without asking the watcher, and sends the inquiry. "I don't know yet" counts as an answer. (proposal) · Set on: 2026-10-26
+
+### We rework or drop the idea if (rework-or-drop line), round 2
+The tester passes the link, stops the quiz before the end, asks the watcher what a question means, or asks for a person instead. (proposal) · Set on: 2026-10-26

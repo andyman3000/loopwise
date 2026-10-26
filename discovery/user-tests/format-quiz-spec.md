@@ -24,7 +24,7 @@ A persona cannot show anything its file has no source for.
 ## Soft sponsor
 No clash with the scenario. She "supports the move to AI for product and project roles, together with the team leads" (`product/personas/sponsor-soft.md:14`).
 
-- **Formats page, quiz link.** The link asks whether she is unsure what to pick (`discovery/specs/format-quiz.md:23`). She "Does not know the format or how many pieces it has" (`product/personas/sponsor-soft.md:43`). So the question fits her. Whether she clicks it: [no source in the persona file: the persona cannot tell].
+- **Formats page, quiz link.** The link asks whether she is unsure what to pick (`discovery/specs/format-quiz.md:25`). She "Does not know the format or how many pieces it has" (`product/personas/sponsor-soft.md:43`). So the question fits her. Whether she clicks it: [no source in the persona file: the persona cannot tell].
 - **Q1, who is in the team.** She hesitates. She "Sketched three slices (by role, by team, by project) and picked none, on purpose" (`product/personas/sponsor-soft.md:44`). The question assumes one team she has already picked. If she goes on, she ticks product managers, product owners and the people moving over from project management. Her file names product and project roles (`product/personas/sponsor-soft.md:14`, `product/personas/sponsor-soft.md:22`).
 - **Q2, team size.** She leaves it empty. [no source in the persona file: the persona cannot tell]
 - **Q3, where the team stands with AI.** She hesitates. Q3 allows one answer. Her people range "from a former developer to people using only built-in AI" (`product/personas/sponsor-soft.md:25`). Her teams differ as well (`product/personas/sponsor-soft.md:26`).
@@ -41,7 +41,7 @@ The persona keeps its own role: "head of product" (`product/personas/sponsor-har
 - **Q3, where the team stands with AI.** He hesitates between two options. Tools are rolled out, but "the actual work hasn't changed" (`product/personas/sponsor-hard.md:23`). The group "ranges from never written a prompt to building their own agents" (`product/personas/sponsor-hard.md:24`). Q3 allows one answer.
 - **Q4, what the team tried before.** He hesitates again. Developers got training and product people did not (`product/personas/sponsor-hard.md:24`). An earlier training changed nothing: "four weeks later everything was as before" (`product/personas/sponsor-hard.md:38`). Q4 allows one answer.
 - **Q5, what should be different.** He ticks the two options that come from his file. He wants "One or two things ready that people can use productively straight after" (`product/personas/sponsor-hard.md:31`). He asks "What is concretely different four weeks later, and how do we measure it?" (`product/personas/sponsor-hard.md:3`).
-- **After the quiz.** The quiz gives him nothing back. The spec leaves a format suggestion out (`discovery/specs/format-quiz.md:148`). He "asks the provider what to look at" for a measure (`product/personas/sponsor-hard.md:48`). He "Wants to talk to someone who delivered it, or a comparable reference" (`product/personas/sponsor-hard.md:46`). The page offers no person and no reference (`discovery/specs/format-quiz.md:156`).
+- **After the quiz.** The quiz gives him nothing back. The spec leaves a format suggestion out (`discovery/specs/format-quiz.md:145`). He "asks the provider what to look at" for a measure (`product/personas/sponsor-hard.md:48`). He "Wants to talk to someone who delivered it, or a comparable reference" (`product/personas/sponsor-hard.md:46`). The page offers no person and no reference (`discovery/specs/format-quiz.md:153`).
 - **Inquiry page.** The form is filled from his answers. Name, company and email get placeholders, with no source. Whether he sends: [no source in the persona file: the persona cannot tell].
 
 ## Signs
@@ -74,7 +74,7 @@ Unclear. Neither persona file can show any of the three go-on signs. The only si
 ## What the pair might change (proposals)
 - Formats page, Q1: add an answer like "not decided yet, several teams". Because the soft sponsor picked no team on purpose (`product/personas/sponsor-soft.md:44`).
 - Formats page, Q3 and Q4: allow several ticks. Because both persona files fit two options at each question.
-- Formats page, every question: add an "I don't know yet" option. The spec leaves this open (`discovery/specs/format-quiz.md:157`). Both personas have no line for Q2.
+- Formats page, every question: add an "I don't know yet" option. The spec leaves this open (`discovery/specs/format-quiz.md:154`). Both personas have no line for Q2.
 - Inquiry page or confirmation page: say what the scoping call covers, for example how success gets measured. Because the hard sponsor asks the provider what to look at (`product/personas/sponsor-hard.md:48`).
 - Formats page: say that a talk with a person is possible. Because the hard sponsor wants to talk to someone (`product/personas/sponsor-hard.md:46`).
 
