@@ -21,10 +21,12 @@ you may conclude, and what small numbers do not allow.
    before and after the launch. It writes the "Result" section of the launch card.
 4. Rerun two counts yourself. The Result section lists the command behind each number.
    Run each command in your terminal and compare the number.
-   - **Success line:** of the inquiry page visits with the variant, how many start the form
-     (`page_view` of the inquiry page and `inquiry_started`, variant `format-quiz`).
-   - **Counter metric:** of the visitors who start the variant inquiry, how many send it
-     (`inquiry_started` and `inquiry_submitted`, variant `format-quiz`, after the launch).
+   The quiz ran in every other week after launch, today's form in the weeks between.
+   - **Success line:** of the inquiry page visits, how many start the form, in the quiz weeks
+     (variant `format-quiz`) and in the off weeks (variant `baseline`, after the launch)
+     (`page_view` of the inquiry page and `inquiry_started`).
+   - **Counter metric:** of the visitors who start the form, how many send it, in the quiz weeks and
+     in the off weeks (`inquiry_started` and `inquiry_submitted`).
    Together they show the trade-off: did the quiz bring more starts, and did it cost inquiries?
 5. Follow the trainer through the card, line by line: success line, usage, proxy, counter metric,
    kill criterion. Which are met, not met, unclear? Where was your prediction wrong?
