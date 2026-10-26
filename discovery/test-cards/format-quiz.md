@@ -16,10 +16,10 @@ A kill criterion is the line at which we take the variant back.
 Skipped: drafted by Claude for the reference run. In your own run, this is your success line in one sentence. · Where the draft differs: no answer to compare.
 
 ## The card in five lines
-- **We believe that** a sponsor who can take the quiz has already told us about the team before the scoping call, and starts the form at least as often as today.
+- **We believe that** a sponsor who is unsure about the format goes on from the formats page to the inquiry when the quiz is there, has already told us about the team before the scoping call, and starts the form at least as often as today.
 - **To test that, we will** run the quiz in every other week for eight weeks, and today's form in the weeks between.
-- **And measure** how many of the four questions about the team we still have to ask in each scoping call, and the start rate, quiz weeks against off weeks.
-- **We are right if** in at least half of the calls from quiz weeks we ask at most one of the four questions about the team, and the start rate in quiz weeks is not below the off weeks.
+- **And measure** the visits that see the formats page and open the inquiry page, how many of the four questions about the team we still have to ask in each scoping call, and the start rate, quiz weeks against off weeks.
+- **We are right if** more formats page visits open the inquiry page in quiz weeks than in any four weeks before launch and in the off weeks, in at least half of the calls from quiz weeks we ask at most one of the four questions about the team, and the start rate in quiz weeks is not below the off weeks.
 - **We take it back if** the submit rate falls more than a quarter below the baseline in two quiz weeks in a row.
 
 Each line repeats a field below in one sentence. If a field changes, this section changes with it.
@@ -49,24 +49,45 @@ Before setting any line, we counted the start rate of today's form in blocks of 
 | 2026-06-24 | 35 of 119 | 29.4% |
 | 2026-07-22 | 34 of 116 | 29.3% |
 
-Nothing changed on the form, and still two neighbouring blocks differ by 12 points (28.8% and 16.7%). A difference in start rate smaller than that can come from the usual swing alone. So the start rate can show a direction, not that the quiz works. The success line rests on the scoping calls instead, where the quiz should make a larger difference.
+Nothing changed on the form, and still two neighbouring blocks differ by 12 points (28.8% and 16.7%). A difference in start rate smaller than that can come from the usual swing alone. So the start rate can show a direction, not that the quiz works.
 
-Command: `node -e 'const fs=require("fs");const ev=fs.readFileSync("data/events.jsonl","utf8").trim().split("\n").map(JSON.parse);const L=Date.parse("2026-08-19T00:00:00Z"),W=7*864e5,wk=e=>Math.floor((Date.parse(e.ts)-L)/W);const c=p=>new Set(ev.filter(p).map(e=>e.session)).size;for(let b=-24;b<0;b+=4){const i=e=>wk(e)>=b&&wk(e)<b+4;console.log(b,c(e=>i(e)&&e.type==="inquiry_started")+"/"+c(e=>i(e)&&e.type==="page_view"&&e.props.page==="inquiry"))}'`
+The intent names a second number: "Today 376 of 2291 visits that see the formats page open the inquiry page" (`discovery/intents/format-question.md:19`). The quiz sits on the formats page, so this is where it should act first. The same four-week blocks, for visits that see the formats page:
+
+| Four weeks from | Open the inquiry page, of visits with the formats page | Share |
+|---|---|---|
+| 2026-03-04 | 55 of 329 | 16.7% |
+| 2026-04-01 | 58 of 360 | 16.1% |
+| 2026-04-29 | 57 of 337 | 16.9% |
+| 2026-05-27 | 58 of 346 | 16.8% |
+| 2026-06-24 | 58 of 384 | 15.1% |
+| 2026-07-22 | 60 of 386 | 15.5% |
+
+This share hardly swings: 15.1% to 16.9%. A clear rise above it would not be the usual swing. A visit counts in the week of its first page view.
+
+The success line therefore rests on this share and on the scoping calls, where the quiz should make a larger difference than on the start rate.
+
+Commands: the start rate blocks with `node -e 'const fs=require("fs");const ev=fs.readFileSync("data/events.jsonl","utf8").trim().split("\n").map(JSON.parse);const L=Date.parse("2026-08-19T00:00:00Z"),W=7*864e5,wk=e=>Math.floor((Date.parse(e.ts)-L)/W);const c=p=>new Set(ev.filter(p).map(e=>e.session)).size;for(let b=-24;b<0;b+=4){const i=e=>wk(e)>=b&&wk(e)<b+4;console.log(b,c(e=>i(e)&&e.type==="inquiry_started")+"/"+c(e=>i(e)&&e.type==="page_view"&&e.props.page==="inquiry"))}'`, the formats page blocks with `npm run summary` (line "four-week blocks before launch").
 
 ## Critical assumptions
-1. **A sponsor who can take the quiz starts the inquiry form more often than one who meets today's form**: unsupported
+1. **A sponsor on the formats page who is unsure which format fits goes on to the inquiry when the quiz is there**: partly supported
+   - Reasoning: the data show the drop; why visits drop rests on the pair's word.
+   - Sources: "Today 376 of 2291 visits that see the formats page open the inquiry page" (`discovery/intents/format-question.md:19`). The pair: "Yes. We know this happens from previous user tests" (`discovery/intents/format-question.md:29`).
+   - Prototype test: in round 2 the tester went from the formats page through the quiz to the inquiry (`discovery/user-tests/format-quiz-cross-2.md:7`).
+   - Counter-evidence: the user tests the pair names are not in `sources/` (`discovery/intents/format-question.md:29`).
+   - Gap: the alternating weeks count the share; they cannot show why a visit leaves.
+2. **A sponsor who can take the quiz starts the inquiry form more often than one who meets today's form**: unsupported
    - Reasoning: the prototype tests watched one tester per round go through the quiz. No test compared sponsors with and without the quiz.
    - Sources: the tester in round 2 saw the filled message and said: "Oh, it wrote that for me." (`discovery/user-tests/format-quiz-cross-2.md:13`)
    - Prototype test: "From that we learned that an unsure sponsor answers questions about the team today, when the page says that not knowing is fine." (`discovery/decisions/002-format-quiz.md:98`)
    - Counter-evidence: in round 1 the tester stopped the quiz and did not send (`discovery/user-tests/format-quiz-cross.md:16`).
    - Gap: the alternating weeks show a direction for the start rate. A difference inside the usual swing of 12 points cannot show more.
-2. **An unsure sponsor goes through all four questions on a page, without a person**: partly supported
+3. **An unsure sponsor goes through all four questions on a page, without a person**: partly supported
    - Reasoning: round 2 passed with one synthetic tester. Round 1 failed with one synthetic tester.
    - Sources: "Good. Because I don't know half of this." (`discovery/user-tests/format-quiz-cross-2.md:8`)
    - Prototype test: the round 2 go-on line held, "All three go-on signs were seen, no rework sign." (`discovery/decisions/002-format-quiz.md:95`)
    - Counter-evidence: "I'd rather talk to someone about this." (`discovery/user-tests/format-quiz-cross.md:14`)
    - Gap: one tester per round is a pattern, not a rate. The usage hypothesis below counts how many reach question 4.
-3. **The scoping call works out what the sponsor does not know yet**: unsupported
+4. **The scoping call works out what the sponsor does not know yet**: unsupported
    - Reasoning: the quiz promises it in an invented line. Nobody who runs scoping calls has confirmed it.
    - Sources: the spec lists the line as invented, to be confirmed by "academy staff who run scoping calls" (`discovery/specs/format-quiz.md:131`).
    - Prototype test: "Academy staff who run scoping calls confirm the invented line" is a change before roll-out (`discovery/decisions/002-format-quiz.md:102`). Open.
@@ -76,7 +97,12 @@ Command: `node -e 'const fs=require("fs");const ev=fs.readFileSync("data/events.
 Changes before roll-out from the learning card: the staff confirmation above is open, not a page change. Baseline pages logging `page_view` is done.
 
 ## Success line (set upfront, before launch)
-In at least half of the scoping calls from quiz weeks, we ask at most one of the four questions about the team (proposal). Before launch: in 0 of 9 recorded calls did we ask at most one (`data/inquiries.csv`, calls recorded from 2026-07-22). And the start rate in the quiz weeks is not below the start rate in the off weeks (proposal; a direction only, see "How much the unchanged form swings"). Context: 69 of 235 inquiry page visits started the form in the eight weeks before launch (29.4%). · Computed from: `call_team_questions` in `data/inquiries.csv` for inquiries sent in quiz weeks; sessions with `inquiry_started` ÷ sessions with `page_view` of the inquiry page, per kind of week. A quiz week is a week in which the inquiry page events carry `format-quiz`. · Set on: 2026-08-18
+Three parts, all set before launch:
+- More visits that see the formats page open the inquiry page in the quiz weeks together than in any four-week block before launch (highest: 16.9%) and than in the off weeks together (proposal).
+- In at least half of the scoping calls from quiz weeks, we ask at most one of the four questions about the team (proposal). Before launch: in 0 of 9 recorded calls did we ask at most one (`data/inquiries.csv`, calls recorded from 2026-07-22).
+- The start rate in the quiz weeks is not below the start rate in the off weeks (proposal; a direction only, see "How much the unchanged form swings"). Context: 69 of 235 inquiry page visits started the form in the eight weeks before launch (29.4%).
+
+· Computed from: visits with a `page_view` of the formats page that also have a `page_view` of the inquiry page ÷ visits with a `page_view` of the formats page, a visit counted in the week of its first page view; `call_team_questions` in `data/inquiries.csv` for inquiries sent in quiz weeks; sessions with `inquiry_started` ÷ sessions with `page_view` of the inquiry page, per kind of week. A quiz week is a week in which the inquiry page events carry `format-quiz`. · Set on: 2026-08-18
 
 ## Usage hypothesis: adoption
 In the quiz weeks, at least a quarter of inquiry page visits come through the quiz, and at least half of the visits that start the quiz reach question 4 (proposal). Also counted, without a threshold: how often each question gets "I don't know yet". · Computed from: sessions with `inquiry_step_completed` step 1 that also have a `page_view` of the inquiry page ÷ sessions with that `page_view`; sessions with step 4 ÷ sessions with step 1; `inquiry_step_completed` with `unsure: true` per step

@@ -257,7 +257,7 @@ function weeklyTable(summary) {
 
 // The lines as written on discovery/test-cards/format-quiz.md.
 const CARD = {
-  success: 'In at least half of the scoping calls from quiz weeks, we ask at most one of the four questions about the team, and the start rate in quiz weeks is not below the off weeks (a direction only)',
+  success: 'More formats page visits open the inquiry page in quiz weeks than in any four-week block before launch (highest 16.9%) and than in the off weeks; in at least half of the scoping calls from quiz weeks, we ask at most one of the four questions about the team; and the start rate in quiz weeks is not below the off weeks (a direction only)',
   adoption: 'In the quiz weeks, at least a quarter of inquiry page visits come through the quiz, and at least half of the visits that start the quiz reach question 4',
   proxy: 'Call rate: sent inquiries that get a scoping call, quiz weeks against off weeks',
   quality: 'Format settled in the call, quiz weeks against off weeks, no threshold',
@@ -267,7 +267,7 @@ const CARD = {
 };
 // What a better number means for each line, in the words the room reads.
 const BETTER = {
-  'Success line': 'Fewer questions about the team in the call is better: the sponsor has told us about the team through the quiz, and the call can go to the format. The start rate should not be lower in quiz weeks.',
+  'Success line': 'More formats page visits going on to the inquiry page is better: that is what the intent set out to change. Fewer questions about the team in the call is better: the sponsor has told us about the team through the quiz, and the call can go to the format. The start rate should not be lower in quiz weeks.',
   Adoption: 'Higher is better: more sponsors use the quiz and finish it. Many "I don\'t know yet" answers are not bad; they show what the call has to work out.',
   'Proxy metric': 'Higher is better: more sent inquiries lead to a scoping call.',
   'Call quality': 'Higher is better: more calls end with the format settled. This is what the sponsor came for.',
@@ -288,7 +288,7 @@ function cardTable(s) {
   const ctx = `before launch ${s.before.started} of ${s.before.views} (${pct(s.before.startRate)})`;
   const rows = [
     ['Success line', CARD.success,
-      `calls with at most 1 of 4 questions about the team asked: quiz weeks ${cq.quiz.fewTeamQuestions} of ${cq.quiz.n}, off weeks ${cq.off.fewTeamQuestions} of ${cq.off.n}, before launch ${cq.before.fewTeamQuestions} of ${cq.before.n}. Start rate: quiz weeks ${s.quiz.started} of ${s.quiz.views} (${pct(s.quiz.startRate)}), off weeks ${s.off.started} of ${s.off.views} (${pct(s.off.startRate)}). Context: ${ctx}`,
+      `formats page visits that open the inquiry page: quiz weeks ${kOfN(s.reach.quiz)}, off weeks ${kOfN(s.reach.off)}, four-week blocks before launch ${s.reach.blocks.map((b) => pct(b.rate)).join(', ')}. Calls with at most 1 of 4 questions about the team asked: quiz weeks ${cq.quiz.fewTeamQuestions} of ${cq.quiz.n}, off weeks ${cq.off.fewTeamQuestions} of ${cq.off.n}, before launch ${cq.before.fewTeamQuestions} of ${cq.before.n}. Start rate: quiz weeks ${s.quiz.started} of ${s.quiz.views} (${pct(s.quiz.startRate)}), off weeks ${s.off.started} of ${s.off.views} (${pct(s.off.startRate)}). Context: ${ctx}`,
       `From call_team_questions in inquiries.csv, recorded by the person who ran the call for every call from ${cq.recordFrom}. Start rate: sessions with inquiry_started divided by sessions with a page_view of the inquiry page, per kind of week. Four-week blocks of today's form swung by up to 12 points before launch, so the start rate shows a direction only.`],
     ['Adoption', CARD.adoption,
       `${u.viaQuiz} of ${u.views} visits came through the quiz (${pct(u.viaQuizShare)}); ${u.finishedQuiz} of ${u.startedQuiz} quiz starts reached question 4 (${pct(u.finishShare)})`,
