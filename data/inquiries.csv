@@ -1,4 +1,4 @@
-id,submitted_at,variant,sponsor_type,team_size,quiz,quiz_answered,quiz_unsure,quiz_roles,quiz_stand,quiz_before,scoping_call_booked,booking_confirmed,call_basic_questions,call_format_settled
+id,submitted_at,variant,sponsor_type,team_size,quiz,quiz_answered,quiz_unsure,quiz_roles,quiz_stand,quiz_before,scoping_call_booked,booking_confirmed,call_team_questions,call_format_settled
 inq-0004,2026-02-19T11:58:35.000Z,baseline,soft,10,,,,,,,false,false,,
 inq-0002,2026-02-20T10:29:57.000Z,baseline,hard,25,,,,,,,false,false,,
 inq-0001,2026-02-20T15:44:25.000Z,baseline,soft,15,,,,,,,false,false,,

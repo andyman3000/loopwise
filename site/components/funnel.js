@@ -186,13 +186,13 @@ export function sentByQuiz(rows, variant) {
   return { quiz: mine.filter((r) => r.quiz === 'true').length, noQuiz: mine.filter((r) => r.quiz !== 'true').length };
 }
 
-// What the person who ran each scoping call recorded: calls that needed at most one of the four
-// basics, and calls that settled the format. Only rows with a record count.
+// What the person who ran each scoping call recorded: calls in which they asked at most one of the
+// four questions about the team, and calls that settled the format. Only rows with a record count.
 export function callQuality(rows) {
-  const rec = rows.filter((r) => r.call_basic_questions !== undefined && r.call_basic_questions !== '');
+  const rec = rows.filter((r) => r.call_team_questions !== undefined && r.call_team_questions !== '');
   return {
     n: rec.length,
-    fewBasics: rec.filter((r) => Number(r.call_basic_questions) <= 1).length,
+    fewTeamQuestions: rec.filter((r) => Number(r.call_team_questions) <= 1).length,
     formatSettled: rec.filter((r) => r.call_format_settled === 'true').length,
   };
 }

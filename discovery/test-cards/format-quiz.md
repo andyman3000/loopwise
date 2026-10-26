@@ -16,10 +16,10 @@ A kill criterion is the line at which we take the variant back.
 Skipped: drafted by Claude for the reference run. In your own run, this is your success line in one sentence. · Where the draft differs: no answer to compare.
 
 ## The card in five lines
-- **We believe that** a sponsor who can take the quiz comes to the scoping call with the basics about the team already answered, and starts the form at least as often as today.
+- **We believe that** a sponsor who can take the quiz has already told us about the team before the scoping call, and starts the form at least as often as today.
 - **To test that, we will** run the quiz in every other week for eight weeks, and today's form in the weeks between.
-- **And measure** the scoping calls that need at most one of the four basics, and the start rate, quiz weeks against off weeks.
-- **We are right if** at least half of the calls from quiz weeks need at most one basic, and the start rate in quiz weeks is not below the off weeks.
+- **And measure** how many of the four questions about the team we still have to ask in each scoping call, and the start rate, quiz weeks against off weeks.
+- **We are right if** in at least half of the calls from quiz weeks we ask at most one of the four questions about the team, and the start rate in quiz weeks is not below the off weeks.
 - **We take it back if** the submit rate falls more than a quarter below the baseline in two quiz weeks in a row.
 
 Each line repeats a field below in one sentence. If a field changes, this section changes with it.
@@ -76,7 +76,7 @@ Command: `node -e 'const fs=require("fs");const ev=fs.readFileSync("data/events.
 Changes before roll-out from the learning card: the staff confirmation above is open, not a page change. Baseline pages logging `page_view` is done.
 
 ## Success line (set upfront, before launch)
-At least half of the scoping calls from quiz weeks need at most one of the four basics (proposal). Before launch: 0 of 9 recorded calls needed at most one basic (`data/inquiries.csv`, calls recorded from 2026-07-22). And the start rate in the quiz weeks is not below the start rate in the off weeks (proposal; a direction only, see "How much the unchanged form swings"). Context: 69 of 235 inquiry page visits started the form in the eight weeks before launch (29.4%). · Computed from: `call_basic_questions` in `data/inquiries.csv` for inquiries sent in quiz weeks; sessions with `inquiry_started` ÷ sessions with `page_view` of the inquiry page, per kind of week. A quiz week is a week in which the inquiry page events carry `format-quiz`. · Set on: 2026-08-18
+In at least half of the scoping calls from quiz weeks, we ask at most one of the four questions about the team (proposal). Before launch: in 0 of 9 recorded calls did we ask at most one (`data/inquiries.csv`, calls recorded from 2026-07-22). And the start rate in the quiz weeks is not below the start rate in the off weeks (proposal; a direction only, see "How much the unchanged form swings"). Context: 69 of 235 inquiry page visits started the form in the eight weeks before launch (29.4%). · Computed from: `call_team_questions` in `data/inquiries.csv` for inquiries sent in quiz weeks; sessions with `inquiry_started` ÷ sessions with `page_view` of the inquiry page, per kind of week. A quiz week is a week in which the inquiry page events carry `format-quiz`. · Set on: 2026-08-18
 
 ## Usage hypothesis: adoption
 In the quiz weeks, at least a quarter of inquiry page visits come through the quiz, and at least half of the visits that start the quiz reach question 4 (proposal). Also counted, without a threshold: how often each question gets "I don't know yet". · Computed from: sessions with `inquiry_step_completed` step 1 that also have a `page_view` of the inquiry page ÷ sessions with that `page_view`; sessions with step 4 ÷ sessions with step 1; `inquiry_step_completed` with `unsure: true` per step
@@ -85,10 +85,10 @@ In the quiz weeks, at least a quarter of inquiry page visits come through the qu
 Call rate: sent inquiries that get a scoping call, quiz weeks against off weeks. Context: 16 of 40 baseline inquiries sent in the eight weeks before launch got a call (`data/inquiries.csv`). [assumption: a sponsor who comes to the call with quiz answers books more often; the booking rate itself is too small to read in eight weeks] · Computed from: `scoping_call_booked` ÷ `inquiry_submitted`, per kind of week
 
 ## Call quality (second proxy)
-From 2026-07-22, four weeks before launch, the person who runs a scoping call records two things for every call: how many of the four basics they still had to ask (who is in the team, how many people, where the team stands with AI, what the team tried before), and whether the format was settled in the call. The four basics are the four quiz questions.
-- **Fewer basics:** the success line above. Off weeks and the weeks before launch show what today's form gives. This is where the quiz should save time.
+From 2026-07-22, four weeks before launch, the person who runs a scoping call records two things for every call: how many of the four questions about the team they still had to ask, and whether the format was settled in the call. The four questions about the team are: who is in the team, how many people, where the team stands with AI, and what the team tried before. They are the four quiz questions.
+- **Fewer questions about the team:** the success line above. Off weeks and the weeks before launch show what today's form gives. This is where the quiz should save time.
 - **Format settled:** reported for quiz weeks, off weeks and the four weeks before launch, no threshold. This is what the opportunity is about: the sponsor "does not know what to ask for, or which format fits" (`discovery/decisions/001-format-question.md:7`).
-· Computed from: `call_basic_questions` (0 to 4) and `call_format_settled` in `data/inquiries.csv`, per kind of week. Not an event: the website cannot see the call.
+· Computed from: `call_team_questions` (0 to 4) and `call_format_settled` in `data/inquiries.csv`, per kind of week. Not an event: the website cannot see the call.
 · Limit: the person recording sees the quiz answers in the message before the call, and may ask less because of that. The record is a count of questions asked, not a judgement, to keep that effect small. Expect about ten calls per kind of week, so one call moves the share by about ten points.
 
 ## Counter metric
@@ -106,7 +106,7 @@ Inside the quiz weeks, inquiries that came through the quiz can be set against t
 ## What we cannot see
 - Why a sponsor did not take the quiz. "No event fires for the click on the link." (`discovery/specs/format-quiz.md:119`)
 - Whether a booking comes from the quiz. Bookings after the call depend on the call, not on the website.
-- What the sponsor asks in the scoping call. The call record counts the basics the academy asked, not the sponsor's own questions.
+- What the sponsor asks in the scoping call. The call record counts the questions about the team the academy asked, not the sponsor's own questions.
 - Every number in `data/` is synthetic. The result shows how a card is read, not how sponsors behave.
 
 ## Result

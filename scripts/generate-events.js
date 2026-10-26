@@ -20,7 +20,7 @@ export function mulberry32(seed) {
   };
 }
 
-export const CSV_HEADER = 'id,submitted_at,variant,sponsor_type,team_size,quiz,quiz_answered,quiz_unsure,quiz_roles,quiz_stand,quiz_before,scoping_call_booked,booking_confirmed,call_basic_questions,call_format_settled';
+export const CSV_HEADER = 'id,submitted_at,variant,sponsor_type,team_size,quiz,quiz_answered,quiz_unsure,quiz_roles,quiz_stand,quiz_before,scoping_call_booked,booking_confirmed,call_team_questions,call_format_settled';
 export const BASELINE_CSV_HEADER = 'id,submitted_at,variant,sponsor_type,team_size,scoping_call_booked,booking_confirmed';
 
 function csvCell(v) {
@@ -54,8 +54,8 @@ export function buildData(scenario) {
   const cr = scenario.callRecord;
   const crnd = cr ? mulberry32(cr.seed) : null;
   const recordFrom = cr ? Date.parse(cr.recordFrom + 'T00:00:00Z') : Infinity;
-  // Of the four basics (team, team size, AI level, earlier training), the ones still asked in the
-  // call. A basic the quiz answered is rarely asked again; one left open or answered "I don't know
+  // Of the four questions about the team (who, how many, AI level, earlier training), the ones still
+  // asked in the call. A question the quiz answered is rarely asked again; one left open or answered "I don't know
   // yet" is asked as often as without the quiz.
   const callRecord = (type, quiz) => {
     let asked = 0;

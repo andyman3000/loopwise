@@ -93,7 +93,7 @@ test('a call is recorded only when it took place, and only from the record start
   let recorded = 0;
   for (const line of lines.slice(1)) {
     const cells = line.match(/("([^"]|"")*"|[^,]*)(,|$)/g).map((c) => c.replace(/,$/, ''));
-    const asked = cells[col('call_basic_questions')];
+    const asked = cells[col('call_team_questions')];
     if (asked === '') continue;
     recorded++;
     assert.equal(cells[col('scoping_call_booked')], 'true', cells[0]);

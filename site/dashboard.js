@@ -125,7 +125,7 @@ function callChart(summary) {
   const cq = summary.callsQuality;
   const f = figure(`Scoping calls, recorded from ${cq.recordFrom}: quiz weeks against off weeks and the weeks before launch`, summary.synthetic);
   const groups = [['before', 'Before launch'], ['off', 'Off weeks'], ['quiz', 'Quiz weeks']];
-  const measures = [['fewBasics', 'Needed at most one of the four basics (success line: at least half in quiz weeks)'], ['formatSettled', 'Format settled in the call']];
+  const measures = [['fewTeamQuestions', 'Calls in which we asked at most 1 of the 4 questions about the team (success line: at least half in quiz weeks)'], ['formatSettled', 'Format settled in the call']];
   const W = 840, rowH = 26, left = 150, right = 120, top = 8;
   const height = top + measures.length * (groups.length * rowH + 34);
   const s = svg('svg', { viewBox: `0 0 ${W} ${height}`, role: 'img', 'aria-label': 'Scoping call records by kind of week' });
@@ -144,13 +144,13 @@ function callChart(summary) {
       s.append(svg('text', { x: left + plotW + 8, y: y + 15 }, `${k} of ${n} (${pct(n ? share : null)})`));
       y += rowH;
     }
-    if (key === 'fewBasics') {
+    if (key === 'fewTeamQuestions') {
       const x = left + plotW * 0.5;
       s.append(svg('line', { class: 'kill', x1: x, x2: x, y1: y - groups.length * rowH, y2: y }));
     }
     y += 12;
   }
-  f.append(s, el('p', { class: 'note' }, 'Recorded by the person who ran each call: how many of the four basics (team, team size, AI level, earlier training) they still had to ask, and whether the format was settled. The dashed line marks half. About ten calls per kind of week, so one call moves a share by about ten points.'));
+  f.append(s, el('p', { class: 'note' }, 'Recorded by the person who ran each call: how many of the four questions about the team they still had to ask (who is in it, how many people, where it stands with AI, what it tried before; the four quiz questions), and whether the format was settled. The dashed line marks half. About ten calls per kind of week, so one call moves a share by about ten points.'));
   return f;
 }
 
@@ -176,7 +176,7 @@ function weeklyTable(summary) {
 
 // The lines as written on discovery/test-cards/format-quiz.md.
 const CARD = {
-  success: 'At least half of the scoping calls from quiz weeks need at most one of the four basics, and the start rate in quiz weeks is not below the off weeks (a direction only)',
+  success: 'In at least half of the scoping calls from quiz weeks, we ask at most one of the four questions about the team, and the start rate in quiz weeks is not below the off weeks (a direction only)',
   adoption: 'In the quiz weeks, at least a quarter of inquiry page visits come through the quiz, and at least half of the visits that start the quiz reach question 4',
   proxy: 'Call rate: sent inquiries that get a scoping call, quiz weeks against off weeks',
   quality: 'Format settled in the call, quiz weeks against off weeks, no threshold',
@@ -195,8 +195,8 @@ function cardTable(s) {
   const ctx = `before launch ${s.before.started} of ${s.before.views} (${pct(s.before.startRate)})`;
   const rows = [
     ['Success line', CARD.success,
-      `at most one basic: quiz weeks ${cq.quiz.fewBasics} of ${cq.quiz.n}, off weeks ${cq.off.fewBasics} of ${cq.off.n}, before launch ${cq.before.fewBasics} of ${cq.before.n}. Start rate: quiz weeks ${s.quiz.started} of ${s.quiz.views} (${pct(s.quiz.startRate)}), off weeks ${s.off.started} of ${s.off.views} (${pct(s.off.startRate)}). Context: ${ctx}`,
-      `From call_basic_questions in inquiries.csv, recorded by the person who ran the call for every call from ${cq.recordFrom}. Start rate: sessions with inquiry_started divided by sessions with a page_view of the inquiry page, per kind of week. Four-week blocks of today's form swung by up to 12 points before launch, so the start rate shows a direction only.`],
+      `calls with at most 1 of 4 questions about the team asked: quiz weeks ${cq.quiz.fewTeamQuestions} of ${cq.quiz.n}, off weeks ${cq.off.fewTeamQuestions} of ${cq.off.n}, before launch ${cq.before.fewTeamQuestions} of ${cq.before.n}. Start rate: quiz weeks ${s.quiz.started} of ${s.quiz.views} (${pct(s.quiz.startRate)}), off weeks ${s.off.started} of ${s.off.views} (${pct(s.off.startRate)}). Context: ${ctx}`,
+      `From call_team_questions in inquiries.csv, recorded by the person who ran the call for every call from ${cq.recordFrom}. Start rate: sessions with inquiry_started divided by sessions with a page_view of the inquiry page, per kind of week. Four-week blocks of today's form swung by up to 12 points before launch, so the start rate shows a direction only.`],
     ['Adoption', CARD.adoption,
       `${u.viaQuiz} of ${u.views} visits came through the quiz (${pct(u.viaQuizShare)}); ${u.finishedQuiz} of ${u.startedQuiz} quiz starts reached question 4 (${pct(u.finishShare)})`,
       `A visit came through the quiz when it has inquiry_step_completed step 1 and a page_view of the inquiry page. Quiz starts include visits that left the quiz on the formats page. "I don't know yet" per question: ${unsure}.`],

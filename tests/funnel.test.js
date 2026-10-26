@@ -57,7 +57,7 @@ test('sent inquiries split by the quiz column', () => {
   assert.deepEqual(sentByQuiz(rows, 'v'), { quiz: 1, noQuiz: 1 });
 });
 
-test('call quality counts only recorded calls: at most one basic asked, and format settled', () => {
-  const rows = parseCsv('id,call_basic_questions,call_format_settled\n1,0,true\n2,1,false\n3,3,true\n4,,\n');
-  assert.deepEqual(callQuality(rows), { n: 3, fewBasics: 2, formatSettled: 2 });
+test('call quality counts only recorded calls: at most one question about the team asked, and format settled', () => {
+  const rows = parseCsv('id,call_team_questions,call_format_settled\n1,0,true\n2,1,false\n3,3,true\n4,,\n');
+  assert.deepEqual(callQuality(rows), { n: 3, fewTeamQuestions: 2, formatSettled: 2 });
 });

@@ -13,7 +13,7 @@
   `quiz_unsure` count its questions with an answer and with "I don't know yet". `quiz_roles`,
   `quiz_stand` and `quiz_before` hold what the sponsor ticked on questions 1, 3 and 4.
   From 2026-07-22 on, the person who runs a scoping call records each call:
-  `call_basic_questions` is how many of the four basics they still had to ask (who is in the team,
+  `call_team_questions` is how many of the four questions about the team they still had to ask (who is in the team,
   how many people, where the team stands with AI, what the team tried before), and
   `call_format_settled` whether the format was settled in the call. Earlier calls have no record.
 - `*-live.jsonl`: written by the running site, git-ignored.
