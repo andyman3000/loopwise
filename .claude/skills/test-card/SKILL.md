@@ -76,7 +76,7 @@ The learning card later answers it line by line: we believed, we observed, we le
 ## Your first try
 <the human's answer, word for word> · Where the draft differs: <two or three short lines>
 
-## We believe that
+## We believe that (the assumption we test)
 "<assumption, quoted from Selection (human)>" (`discovery/intents/<opportunity>.md:<line>`)
 Level in the intent: <level, quoted>
 
