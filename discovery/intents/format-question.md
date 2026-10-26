@@ -38,6 +38,7 @@ No target here. Targets go on the test card.
 | I4: a "Book a call" button in place of the form | the pair | call rate (`discovery/kpi-tree.md:23`) | A sponsor who does not know what to ask would rather talk than write. | partly supported: "If a list is not how you work, maybe a 20 minute call would be easier." (`sources/emails/inquiry-03.md:16`); "Happy to explain more in a call." (`sources/emails/inquiry-04.md:20`). Counter-evidence: one sender wants answers in writing first, "If you can answer these in writing, I am happy to follow up with a call." (`sources/emails/inquiry-02.md:23`). Another wants information to forward internally (`sources/emails/inquiry-01.md:18`). |
 | I6: the message label "What do you need?" becomes "What do you see in your team today?", with two example answers below it | today's page, changed | start rate (`discovery/kpi-tree.md:21`) | A sponsor who cannot name a format starts writing when the page asks about the team instead of the need. | partly supported: sponsors who do not know the format describe their team without being asked. "Some of them already use chat tools, some don't." (`sources/emails/inquiry-01.md:14`); "Product is lagging behind, and everyone is doing their own thing." (`sources/emails/inquiry-04.md:16`); "mostly people moving over from project management and consulting" (`sources/inbox/inbox-export.md:125`). Gap: these messages were sent anyway, so they say nothing about sponsors who gave up before sending (`discovery/opportunities/emails.md:44`). |
 | I9: a picture of a product team's week (planning, discovery, delivery, review), where the sponsor clicks the part that goes wrong | another domain: doctor's intake form | start rate (`discovery/kpi-tree.md:21`) | A sponsor can point at the part of the team's work where things go wrong. | unsupported: no source shows a sponsor naming one part of the team's work that goes wrong. The soft sponsor suggests looking at "how work comes in and moves along" (`sources/interviews/sponsor-soft.md:53`), but has not picked a direction (`sources/interviews/sponsor-soft.md:57`). Counter-evidence: "For the others I can't say, go there, do that. It's one big question mark." (`sources/interviews/sponsor-soft.md:33`). |
+| I12: the inquiry page opens with the question "What should be different for your team in three months?", with example answers for both kinds of sponsor and a "don't know yet" box. The contact form comes second. The format is settled in the scoping call. | the pair | start rate (`discovery/kpi-tree.md:21`) · submit rate (`discovery/kpi-tree.md:22`) | A sponsor who is shown example answers can say what should be different for the team after the training. | unsupported: "Whether this sponsor can write a success line when given examples. No source tests it." (`product/personas/sponsor-soft.md:68`). Sponsors ask for it: "So: how would we know it worked? What would you look at?" (`sources/interviews/sponsor-hard.md:37`); "How do you measure whether it worked? What would you show me afterwards?" (`sources/emails/inquiry-02.md:19`). Counter-evidence: "Those are very soft points, I know. It's not a hard return on investment." (`sources/interviews/sponsor-soft.md:63`). |
 
 ## Boundaries
 - No prices on the website (`product/constraints.md:7`).
@@ -61,5 +62,14 @@ No target here. Targets go on the test card.
 - Why this one first: "Find out, if this helps or if it annoys people. After all it takes up valuable time"
 - Variant name (lowercase with dashes): format-quiz
 - Who: Reference decision (replace with your own) · When: 2026-10-25
+
+## Selection (human)
+
+- Part we work on: both
+- Idea it comes from: I12, the inquiry page opens with what should be different for the team
+- Assumption we test first: A sponsor who is shown example answers can say what should be different for the team after the training.
+- Why this one first: The quiz asked questions the sponsor came to us with. Examples to react to ask less of a sponsor who does not know yet (`discovery/decisions/002-format-quiz.md:55`).
+- Variant name (lowercase with dashes): success-line-first
+- Who: Reference decision (replace with your own) · When: 2026-10-26
 
 A second round adds a second "Selection (human)" below this one, with its own variant name.

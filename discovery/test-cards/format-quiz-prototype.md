@@ -18,11 +18,11 @@ We are sucesful, if testers of our prototype find the link, click it and go thro
 Where the draft differs:
 - The answer names a solution, "a small wizard". It is kept word for word above.
 - The answer counts finding the link, clicking it, finishing and sending. The draft adds signs for answering without a person.
-- The draft adds signs for the quiz annoying the tester. The pair tests this idea first to find out "if this helps or if it annoys people" (`discovery/intents/format-question.md:61`).
+- The draft adds signs for the quiz annoying the tester. The pair tests this idea first to find out "if this helps or if it annoys people" (`discovery/intents/format-question.md:62`).
 - The belief about trust is not part of this assumption, so this test cannot check it.
 
 ## We believe that (the assumption we test)
-"A sponsor who is unsure about the format chooses the quiz, and can answer its questions on a page without a person." (`discovery/intents/format-question.md:60`)
+"A sponsor who is unsure about the format chooses the quiz, and can answer its questions on a page without a person." (`discovery/intents/format-question.md:61`)
 Level in the intent: "partly supported" (`discovery/intents/format-question.md:37`)
 
 No learning card for an earlier variant of this intent exists in `discovery/decisions/`.

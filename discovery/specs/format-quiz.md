@@ -2,7 +2,7 @@
 
 > Spec drafted by an agent (`variant-spec`) on 2026-10-25, before the build.
 > **Variant:** `format-quiz` · Pages it changes: `formats.html`, `inquiry.html` · Tester starts at `/formats.html?variant=format-quiz`
-> **Idea:** I2 in `discovery/intents/format-question.md` ("I2, a small quiz next to the form", `discovery/intents/format-question.md:59`)
+> **Idea:** I2 in `discovery/intents/format-question.md` ("I2, a small quiz next to the form", `discovery/intents/format-question.md:60`)
 > **Assumption under test:** "A sponsor who is unsure about the format chooses the quiz, and can answer its questions on a page without a person." (`discovery/test-cards/format-quiz-prototype.md:25`)
 > **Label:** interviews are anonymised composites; mails, inbox and data are synthetic (`discovery/intents/format-question.md:5`). This spec repeats that label.
 
@@ -115,7 +115,7 @@ The variant name comes from `?variant=` (`site/components/events.js:23`).
 - Home, sponsor preparation and the confirmation page stay the baseline pages.
 
 ## Critical assumptions it rests on
-- "A sponsor who is unsure about the format chooses the quiz, and can answer its questions on a page without a person." (`discovery/intents/format-question.md:60`) · partly supported (`discovery/intents/format-question.md:37`). One sender asks to be asked: "Then you can ask me the questions I apparently don't know to ask." (`sources/emails/inquiry-03.md:16`). The same sender proposes a call for it, not a page.
+- "A sponsor who is unsure about the format chooses the quiz, and can answer its questions on a page without a person." (`discovery/intents/format-question.md:61`) · partly supported (`discovery/intents/format-question.md:37`). One sender asks to be asked: "Then you can ask me the questions I apparently don't know to ask." (`sources/emails/inquiry-03.md:16`). The same sender proposes a call for it, not a page.
 - [assumption: session storage keeps the answers from the formats page to the inquiry page in the same tab. A tester who opens the inquiry page in a new tab gets an empty form.]
 
 ## What we cannot see
