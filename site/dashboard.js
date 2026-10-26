@@ -62,7 +62,7 @@ function countsChart(summary) {
       fr.s.append(r);
     }
   });
-  f.append(fr.s, el('p', { class: 'note' }, 'Light bar: started. Dark bar: submitted. Grey: baseline form, before launch and in the off weeks. Teal: ' + summary.variant + ', in the quiz weeks. Week = seven days counted from the launch date.'));
+  f.append(fr.s, el('p', { class: 'note' }, 'The gap between the light and the dark bar is forms started but not sent; a smaller gap is better. Light bar: started. Dark bar: submitted. Grey: baseline form, before launch and in the off weeks. Teal: ' + summary.variant + ', in the quiz weeks. Week = seven days counted from the launch date.'));
   return f;
 }
 
@@ -88,7 +88,7 @@ function rateChart(summary) {
   fr.s.append(svg('text', { class: 'muted', x: bx + 4, y: fr.y(lvl) - 4 }, `baseline ${pct(lvl)}`));
   fr.s.append(svg('line', { class: 'kill', x1: fr.left + fr.step * fr.first, x2: fr.W - fr.right, y1: fr.y(line), y2: fr.y(line) }));
   fr.s.append(svg('text', { x: fr.W - fr.right - 4, y: fr.y(line) + 14, 'text-anchor': 'end' }, `kill line ${pct(line)} (a quarter below the baseline)`));
-  f.append(fr.s, el('p', { class: 'note' }, 'The card asks for two quiz weeks in a row below the dashed line; off weeks do not count. Weekly n is small (see n below each week), so single weeks swing widely.'));
+  f.append(fr.s, el('p', { class: 'note' }, 'Higher is better. The card asks for two quiz weeks in a row below the dashed line; off weeks do not count. Weekly n is small (see n below each week), so single weeks swing widely.'));
   return f;
 }
 
@@ -116,7 +116,7 @@ function startChart(summary) {
     fr.s.append(svg('line', { class: 'level', x1: fr.left + fr.step * fr.first, x2: fr.W - fr.right, y1: fr.y(v), y2: fr.y(v) }));
     fr.s.append(svg('text', { x: fr.W - fr.right - 4, y: fr.y(v) + dy, 'text-anchor': 'end' }, `${label} together ${pct(v)}`));
   }
-  f.append(fr.s, el('p', { class: 'note' }, 'Teal points: quiz weeks. Grey points after launch: off weeks with the baseline form. The card reads the start rate as a direction only: before launch, four-week blocks of the unchanged form swung by up to 12 points.'));
+  f.append(fr.s, el('p', { class: 'note' }, 'Higher is better. Teal points: quiz weeks. Grey points after launch: off weeks with the baseline form. The card reads the start rate as a direction only: before launch, four-week blocks of the unchanged form swung by up to 12 points.'));
   return f;
 }
 
@@ -125,7 +125,7 @@ function callChart(summary) {
   const cq = summary.callsQuality;
   const f = figure(`Scoping calls, recorded from ${cq.recordFrom}: quiz weeks against off weeks and the weeks before launch`, summary.synthetic);
   const groups = [['before', 'Before launch'], ['off', 'Off weeks'], ['quiz', 'Quiz weeks']];
-  const measures = [['fewTeamQuestions', 'Calls in which we asked at most 1 of the 4 questions about the team (success line: at least half in quiz weeks)'], ['formatSettled', 'Format settled in the call']];
+  const measures = [['fewTeamQuestions', 'Calls in which we asked at most 1 of the 4 questions about the team. Longer bar is better. Success line: at least half in quiz weeks'], ['formatSettled', 'Calls in which the format was settled. Longer bar is better']];
   const W = 840, rowH = 26, left = 150, right = 120, top = 8;
   const height = top + measures.length * (groups.length * rowH + 34);
   const s = svg('svg', { viewBox: `0 0 ${W} ${height}`, role: 'img', 'aria-label': 'Scoping call records by kind of week' });
@@ -183,6 +183,15 @@ const CARD = {
   counter: 'Submit rate: started forms that are sent, quiz weeks against off weeks',
   kill: 'The weekly submit rate falls more than a quarter below the baseline, below 43.5%, in two quiz weeks in a row',
 };
+// What a better number means for each line, in the words the room reads.
+const BETTER = {
+  'Success line': 'Fewer questions about the team in the call is better: the sponsor has told us about the team through the quiz, and the call can go to the format. The start rate should not be lower in quiz weeks.',
+  Adoption: 'Higher is better: more sponsors use the quiz and finish it. Many "I don\'t know yet" answers are not bad; they show what the call has to work out.',
+  'Proxy metric': 'Higher is better: more sent inquiries lead to a scoping call.',
+  'Call quality': 'Higher is better: more calls end with the format settled. This is what the sponsor came for.',
+  'Counter metric': 'Should not get worse: the quiz must not make sponsors give up on the form after they started it.',
+  'Kill criterion': 'Not reached is good. Reached means: take the quiz back.',
+};
 const BASELINE_TEXT = 'eight weeks before launch';
 const kOfN = (x) => `${x.k} of ${x.n}`;
 
@@ -215,11 +224,11 @@ function cardTable(s) {
   ];
   const wrap = el('div', { class: 'scroll' });
   const t = el('table');
-  t.innerHTML = '<thead><tr><th>Line</th><th>As written on the card</th><th>Count</th><th>Computation</th></tr></thead>';
+  t.innerHTML = '<thead><tr><th>Line</th><th>As written on the card</th><th>What counts as better</th><th>Count</th><th>Computation</th></tr></thead>';
   const tb = el('tbody');
   for (const r of rows) {
     const tr = el('tr');
-    for (const v of r) tr.append(el('td', {}, v));
+    for (const v of [r[0], r[1], BETTER[r[0]], r[2], r[3]]) tr.append(el('td', {}, v));
     tb.append(tr);
   }
   t.append(tb);
