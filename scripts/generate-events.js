@@ -20,7 +20,7 @@ export function mulberry32(seed) {
   };
 }
 
-export const CSV_HEADER = 'id,submitted_at,variant,sponsor_type,team_size,quiz,quiz_answered,quiz_unsure,quiz_roles,quiz_stand,quiz_before,scoping_call_booked,booking_confirmed';
+export const CSV_HEADER = 'id,submitted_at,variant,sponsor_type,team_size,quiz,quiz_answered,quiz_unsure,quiz_roles,quiz_stand,quiz_before,scoping_call_booked,booking_confirmed,call_basic_questions,call_format_settled';
 export const BASELINE_CSV_HEADER = 'id,submitted_at,variant,sponsor_type,team_size,scoping_call_booked,booking_confirmed';
 
 function csvCell(v) {
@@ -49,6 +49,23 @@ export function buildData(scenario) {
   const qrnd = qz ? mulberry32(qz.seed) : null;
   // The ticked answers of sent inquiries draw from a third stream, so they never shift the counts.
   const arnd = qz ? mulberry32(qz.answerSeed) : null;
+  // What the person who runs a scoping call records, from recordFrom on. Its own stream, so it never
+  // shifts any other number.
+  const cr = scenario.callRecord;
+  const crnd = cr ? mulberry32(cr.seed) : null;
+  const recordFrom = cr ? Date.parse(cr.recordFrom + 'T00:00:00Z') : Infinity;
+  // Of the four basics (team, team size, AI level, earlier training), the ones still asked in the
+  // call. A basic the quiz answered is rarely asked again; one left open or answered "I don't know
+  // yet" is asked as often as without the quiz.
+  const callRecord = (type, quiz) => {
+    let asked = 0;
+    for (let i = 0; i < 4; i++) {
+      const p = quiz && quiz[i].answered ? cr.askIfAnswered : cr.askIfOpen[type];
+      if (crnd() < p) asked++;
+    }
+    const settled = crnd() < cr.formatSettled[type] + (quiz ? cr.formatSettledQuizBoost : 0);
+    return { asked, settled };
+  };
   const events = [];
   const inquiries = [];
   let seq = 0;
@@ -224,11 +241,13 @@ export function buildData(scenario) {
       let booked = false;
       let callMs = null;
       let bookMs = null;
+      let callRec = null;
       const rate = (after ? scenario.scopingCallRate.after : scenario.scopingCallRate.before)[type];
       if (rnd() < rate) {
         const ct = t + delay(86400 + 3600, 3 * 86400 + 6 * 3600);
         called = emit(ct, 'scoping_call_booked', variant, s, {});
         if (called) callMs = ct;
+        if (called && cr && ct >= recordFrom) callRec = callRecord(type, quiz);
         if (called && rnd() < scenario.bookingGivenCall[type]) {
           const bt = ct + delay(5 * 86400, 20 * 86400);
           booked = emit(bt, 'booking_confirmed', variant, s, {});
@@ -245,7 +264,7 @@ export function buildData(scenario) {
         quizAnswered: quiz ? quiz.filter((a) => a.answered).length : '',
         quizUnsure: quiz ? quiz.filter((a) => a.unsure).length : '',
         texts: quiz ? quizTexts(quiz, type) : { roles: '', stand: '', before: '' },
-        called, booked, callMs, bookMs,
+        called, booked, callMs, bookMs, callRec,
       });
     }
     if (br) browseWeek(weekStart, inquiryVisits, quizOn);
@@ -260,7 +279,7 @@ export function buildData(scenario) {
   inquiries.sort((a, b) => a.ms - b.ms || a.id.localeCompare(b.id));
   const rows = baselineOnly
     ? inquiries.map((q) => [q.id, new Date(q.ms).toISOString(), q.variant, q.type, q.teamSize, q.called && q.callMs < launch, q.booked && q.bookMs < launch])
-    : inquiries.map((q) => [q.id, new Date(q.ms).toISOString(), q.variant, q.type, q.teamSize, q.quiz, q.quizAnswered, q.quizUnsure, q.texts.roles, q.texts.stand, q.texts.before, q.called, q.booked]);
+    : inquiries.map((q) => [q.id, new Date(q.ms).toISOString(), q.variant, q.type, q.teamSize, q.quiz, q.quizAnswered, q.quizUnsure, q.texts.roles, q.texts.stand, q.texts.before, q.called, q.booked, q.callRec ? q.callRec.asked : '', q.callRec ? q.callRec.settled : '']);
   const csvText = [baselineOnly ? BASELINE_CSV_HEADER : CSV_HEADER]
     .concat(rows.map((r) => r.map(csvCell).join(',')))
     .join('\n') + '\n';

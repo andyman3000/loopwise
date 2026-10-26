@@ -188,6 +188,17 @@ export function sentByQuiz(rows, variant) {
   return { quiz: mine.filter((r) => r.quiz === 'true').length, noQuiz: mine.filter((r) => r.quiz !== 'true').length };
 }
 
+// What the person who ran each scoping call recorded: calls that needed at most one of the four
+// basics, and calls that settled the format. Only rows with a record count.
+export function callQuality(rows) {
+  const rec = rows.filter((r) => r.call_basic_questions !== undefined && r.call_basic_questions !== '');
+  return {
+    n: rec.length,
+    fewBasics: rec.filter((r) => Number(r.call_basic_questions) <= 1).length,
+    formatSettled: rec.filter((r) => r.call_format_settled === 'true').length,
+  };
+}
+
 // Everything the dashboard shows. scenario supplies launch date, window, shipped variant.
 export function summarize(events, inquiries, scenario) {
   const launchMs = Date.parse(scenario.launchDate + 'T00:00:00Z');
@@ -199,6 +210,12 @@ export function summarize(events, inquiries, scenario) {
   const off = periodTotals(weeks, 'off');
   const kill = checkKill(weeks, before.rate);
   const afterRows = rowsBetween(inquiries, launchMs, Infinity);
+  const callsQuality = {
+    quiz: callQuality(inquiries.filter((r) => r.variant === variant)),
+    off: callQuality(afterRows.filter((r) => r.variant === scenario.baselineVariant)),
+    before: callQuality(rowsBetween(inquiries, -Infinity, launchMs)),
+    recordFrom: scenario.callRecord?.recordFrom ?? null,
+  };
   const baselineRows = rowsBetween(inquiries, launchMs - BASELINE_WEEKS * WEEK_MS, launchMs);
   const calls = { before: scopingCallRate(baselineRows, scenario.baselineVariant), after: scopingCallRate(inquiries, variant), off: scopingCallRate(afterRows, scenario.baselineVariant) };
   const use = quizUsage(events, variant);
@@ -216,6 +233,7 @@ export function summarize(events, inquiries, scenario) {
     off,
     kill,
     successLinePoints: SUCCESS_LINE_POINTS,
+    callsQuality,
     sent: sentByQuiz(inquiries, variant),
     calls,
     bookings: { before: bookingRate(baselineRows, scenario.baselineVariant), after: bookingRate(inquiries, variant), off: bookingRate(afterRows, scenario.baselineVariant) },

@@ -145,6 +145,7 @@ const CARD = {
   success: 'Start rate in the quiz weeks is at least 5 percentage points above the start rate in the off weeks',
   adoption: 'In the quiz weeks, at least a quarter of inquiry page visits come through the quiz, and at least half of the visits that start the quiz reach question 4',
   proxy: 'Call rate: sent inquiries that get a scoping call, quiz weeks against off weeks',
+  quality: 'Scoping calls that needed at most one of the four basics, and calls that settled the format, quiz weeks against off weeks',
   counter: 'Submit rate: started forms that are sent, quiz weeks against off weeks',
   kill: 'The weekly submit rate falls more than a quarter below the baseline, below 43.5%, in two quiz weeks in a row',
 };
@@ -153,7 +154,7 @@ const kOfN = (x) => `${x.k} of ${x.n}`;
 
 function cardTable(s) {
   const f = figure('Test card ' + s.variant + ' against counts', s.synthetic);
-  const u = s.usage, c = s.calls;
+  const u = s.usage, c = s.calls, cq = s.callsQuality;
   const after = s.weeks.filter((w) => w.arm === 'quiz');
   const below = s.kill.weeksBelow;
   const unsure = u.perStep.map((p) => `question ${p.step}: ${p.unsure} of ${p.n}`).join('; ');
@@ -168,6 +169,9 @@ function cardTable(s) {
     ['Proxy metric', CARD.proxy,
       `quiz weeks ${kOfN(c.after)}; off weeks ${kOfN(c.off)}; context before launch ${kOfN(c.before)}`,
       `Inquiries with scoping_call_booked, out of all sent inquiries. Quiz weeks: ${s.variant} inquiries (${s.sent.quiz} through the quiz, ${s.sent.noQuiz} without). Off weeks: baseline-form inquiries sent after launch.`],
+    ['Call quality', CARD.quality,
+      `at most one basic: quiz weeks ${cq.quiz.fewBasics} of ${cq.quiz.n}, off weeks ${cq.off.fewBasics} of ${cq.off.n}, before launch ${cq.before.fewBasics} of ${cq.before.n}; format settled: quiz weeks ${cq.quiz.formatSettled} of ${cq.quiz.n}, off weeks ${cq.off.formatSettled} of ${cq.off.n}, before launch ${cq.before.formatSettled} of ${cq.before.n}`,
+      `From call_basic_questions and call_format_settled in inquiries.csv, recorded by the person who ran the call for every call from ${cq.recordFrom}. Before launch: calls recorded in the weeks before the switch. The person recording sees the quiz answers in the message.`],
     ['Counter metric', CARD.counter,
       `quiz weeks ${s.quiz.submitted} of ${s.quiz.started} (${pct(s.quiz.rate)}); off weeks ${s.off.submitted} of ${s.off.started} (${pct(s.off.rate)}); context before launch ${s.before.submitted} of ${s.before.started} (${pct(s.before.rate)})`,
       `inquiry_submitted divided by inquiry_started, per kind of week.`],

@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { weeklyFunnel, periodTotals, checkKill, quizUsage, sentByQuiz, parseCsv } from '../site/components/funnel.js';
+import { weeklyFunnel, periodTotals, checkKill, quizUsage, sentByQuiz, callQuality, parseCsv } from '../site/components/funnel.js';
 
 const LAUNCH = Date.parse('2026-08-19T00:00:00Z');
 const at = (days) => new Date(LAUNCH + days * 86400000 + 3600000).toISOString();
@@ -55,4 +55,9 @@ test('quiz usage: visits through the quiz, finish share, and "I don\'t know yet"
 test('sent inquiries split by the quiz column', () => {
   const rows = parseCsv('id,variant,quiz\n1,v,true\n2,v,false\n3,baseline,\n');
   assert.deepEqual(sentByQuiz(rows, 'v'), { quiz: 1, noQuiz: 1 });
+});
+
+test('call quality counts only recorded calls: at most one basic asked, and format settled', () => {
+  const rows = parseCsv('id,call_basic_questions,call_format_settled\n1,0,true\n2,1,false\n3,3,true\n4,,\n');
+  assert.deepEqual(callQuality(rows), { n: 3, fewBasics: 2, formatSettled: 2 });
 });

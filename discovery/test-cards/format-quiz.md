@@ -55,7 +55,7 @@ What it costs: four weeks per side, so each side has about 120 inquiry page visi
    - Sources: the spec lists the line as invented, to be confirmed by "academy staff who run scoping calls" (`discovery/specs/format-quiz.md:131`).
    - Prototype test: "Academy staff who run scoping calls confirm the invented line" is a change before roll-out (`discovery/decisions/002-format-quiz.md:102`). Open.
    - Counter-evidence: none found in `sources/`.
-   - Gap: academy staff who run scoping calls. Nothing is logged about the call, so this test cannot see it.
+   - Gap: academy staff who run scoping calls. The call record below counts settled formats, not whether the promise was kept.
 
 Changes before roll-out from the learning card: the staff confirmation above is open, not a page change. Baseline pages logging `page_view` is done.
 
@@ -67,6 +67,13 @@ In the quiz weeks, at least a quarter of inquiry page visits come through the qu
 
 ## Proxy metric
 Call rate: sent inquiries that get a scoping call, quiz weeks against off weeks. Context: 16 of 40 baseline inquiries sent in the eight weeks before launch got a call (`data/inquiries.csv`). [assumption: a sponsor who comes to the call with quiz answers books more often; the booking rate itself is too small to read in eight weeks] · Computed from: `scoping_call_booked` ÷ `inquiry_submitted`, per kind of week
+
+## Call quality (second proxy)
+From 2026-07-22, four weeks before launch, the person who runs a scoping call records two things for every call: how many of the four basics they still had to ask (who is in the team, how many people, where the team stands with AI, what the team tried before), and whether the format was settled in the call. The four basics are the four quiz questions.
+- **Fewer basics:** in the quiz weeks, more calls need at most one basic than in the off weeks (proposal; no threshold, the calls are too few for one). This is where the quiz should save time.
+- **Format settled:** reported for quiz weeks, off weeks and the four weeks before launch, no threshold. This is what the opportunity is about: the sponsor "does not know what to ask for, or which format fits" (`discovery/decisions/001-format-question.md:7`).
+· Computed from: `call_basic_questions` (0 to 4) and `call_format_settled` in `data/inquiries.csv`, per kind of week. Not an event: the website cannot see the call.
+· Limit: the person recording sees the quiz answers in the message before the call, and may ask less because of that. The record is a count of questions asked, not a judgement, to keep that effect small. Expect about ten calls per kind of week.
 
 ## Counter metric
 Submit rate: started forms that are sent, quiz weeks against off weeks. A quiz that fills the form could bring starts that are not sent. · Computed from: `inquiry_submitted` ÷ `inquiry_started`, per kind of week · Baseline: 40 of 69 in the eight weeks before launch (58.0%)
@@ -83,7 +90,7 @@ Inside the quiz weeks, inquiries that came through the quiz can be set against t
 ## What we cannot see
 - Why a sponsor did not take the quiz. "No event fires for the click on the link." (`discovery/specs/format-quiz.md:119`)
 - Whether a booking comes from the quiz. Bookings after the call depend on the call, not on the website.
-- What happens in the scoping call. Nothing is logged about it, so better or fewer questions in the call cannot be counted. Recording one field per call, for example whether the format was settled, would make that visible in a next test.
+- What the sponsor asks in the scoping call. The call record counts the basics the academy asked, not the sponsor's own questions.
 - Every number in `data/` is synthetic. The result shows how a card is read, not how sponsors behave.
 
 ## Result

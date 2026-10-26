@@ -84,3 +84,21 @@ test('the quiz appears only after launch, on the shipped variant, and every inqu
   const sent = events.filter((x) => x.type === 'inquiry_submitted' && x.ts >= launch);
   for (const e of sent) assert.equal(typeof e.props.quiz, e.variant === scenario.shippedVariant ? 'boolean' : 'undefined', e.session);
 });
+
+test('a call is recorded only when it took place, and only from the record start on', () => {
+  const lines = fs.readFileSync(path.join(ROOT, 'data', 'inquiries.csv'), 'utf8').trim().split('\n');
+  const head = lines[0].split(',');
+  const col = (name) => head.indexOf(name);
+  const from = Date.parse(scenario.callRecord.recordFrom + 'T00:00:00Z');
+  let recorded = 0;
+  for (const line of lines.slice(1)) {
+    const cells = line.match(/("([^"]|"")*"|[^,]*)(,|$)/g).map((c) => c.replace(/,$/, ''));
+    const asked = cells[col('call_basic_questions')];
+    if (asked === '') continue;
+    recorded++;
+    assert.equal(cells[col('scoping_call_booked')], 'true', cells[0]);
+    assert.ok(Number(asked) >= 0 && Number(asked) <= 4, cells[0]);
+    assert.ok(Date.parse(cells[col('submitted_at')]) >= from - 7 * 86400000, cells[0]);
+  }
+  assert.ok(recorded > 0);
+});

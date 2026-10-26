@@ -160,5 +160,20 @@
         }
       }
     }
+  },
+  "callRecord": {
+    "note": "What the person who runs a scoping call records for every call from recordFrom on: how many of the four basics they still had to ask, and whether the format was settled in the call. Own seed.",
+    "seed": 49,
+    "recordFrom": "2026-07-22",
+    "askIfAnswered": 0.15,
+    "askIfOpen": {
+      "soft": 0.8,
+      "hard": 0.6
+    },
+    "formatSettled": {
+      "soft": 0.4,
+      "hard": 0.6
+    },
+    "formatSettledQuizBoost": 0.1
   }
 }
