@@ -31,7 +31,10 @@ export function summaryLines(s) {
     'Submit rate, started forms that are sent (should not get worse):',
     `  quiz weeks ${kn(s.quiz.submitted, s.quiz.started)} · off weeks ${kn(s.off.submitted, s.off.started)} · before launch ${kn(s.before.submitted, s.before.started)}`,
     `Kill line ${pct(s.kill.line)}: quiz weeks below it: ${s.kill.weeksBelow.length ? 'week ' + s.kill.weeksBelow.join(', week ') : 'none'}; longest run of quiz weeks in a row: ${s.kill.longestRun}`,
-    `Bookings: quiz weeks ${s.bookings.after.k} of ${s.bookings.after.n} · off weeks ${s.bookings.off.k} of ${s.bookings.off.n} · before launch ${s.bookings.before.k} of ${s.bookings.before.n}`,
+    'Bookings, the business goal (higher is better; not read on the card, see below):',
+    `  bookings: quiz weeks ${s.bookings.after.k} in ${s.quiz.weeks} weeks · off weeks ${s.bookings.off.k} in ${s.off.weeks} weeks · before launch ${s.bookings.before.k} in ${s.baselineWeeks} weeks`,
+    `  booking rate, bookings of scoping calls: quiz weeks ${kn(s.bookings.after.k, s.bookings.after.calls)} · off weeks ${kn(s.bookings.off.k, s.bookings.off.calls)} · before launch ${kn(s.bookings.before.k, s.bookings.before.calls)}`,
+    `  A booking comes days to weeks after its call. Calls late in the window may still book after ${s.dataThrough}.`,
   ];
 }
 

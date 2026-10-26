@@ -154,6 +154,40 @@ function callChart(summary) {
   return f;
 }
 
+// Bookings, the business goal: how many, and how many of the scoping calls ended in one.
+function bookingChart(summary) {
+  const b = summary.bookings;
+  const f = figure('Bookings, the business goal: quiz weeks against off weeks and the weeks before launch', summary.synthetic);
+  const groups = [['before', 'Before launch', summary.baselineWeeks], ['off', 'Off weeks', summary.off.weeks], ['after', 'Quiz weeks', summary.quiz.weeks]];
+  const W = 840, rowH = 26, left = 150, right = 170, top = 8;
+  const height = top + 2 * (groups.length * rowH + 34);
+  const s = svg('svg', { viewBox: `0 0 ${W} ${height}`, role: 'img', 'aria-label': 'Bookings and booking rate by kind of week' });
+  const plotW = W - left - right;
+  // Bars for the count are drawn per week, so eight weeks before launch do not look like more.
+  const perWeek = (g, weeks) => b[g].k / weeks;
+  const maxPerWeek = Math.max(0.0001, ...groups.map(([g, , weeks]) => perWeek(g, weeks)));
+  let y = top;
+  for (const [mode, label] of [['count', 'Bookings, bar drawn per week. Longer bar is better'], ['rate', 'Booking rate: scoping calls that ended in a booking. Longer bar is better']]) {
+    s.append(svg('text', { x: 0, y: y + 14, 'font-weight': 600 }, label));
+    y += 22;
+    for (const [g, name, weeks] of groups) {
+      const x = b[g];
+      const share = mode === 'count' ? perWeek(g, weeks) / maxPerWeek : (x.calls ? x.k / x.calls : 0);
+      const text = mode === 'count' ? `${x.k} in ${weeks} weeks, ${(x.k / weeks).toFixed(2).replace(/\.?0+$/, '')} a week` : `${x.k} of ${x.calls} calls (${pct(x.calls ? x.k / x.calls : null)})`;
+      s.append(svg('text', { x: 0, y: y + 15 }, name));
+      s.append(svg('rect', { x: left, y: y + 3, width: plotW, height: rowH - 8, fill: 'none', stroke: 'currentColor', 'stroke-opacity': 0.15 }));
+      const bar = svg('rect', { x: left, y: y + 3, width: plotW * share, height: rowH - 8, class: g === 'after' ? 'after' : 'before' });
+      bar.append(svg('title', {}, `${name}: ${text}`));
+      s.append(bar);
+      s.append(svg('text', { x: left + plotW + 8, y: y + 15 }, text));
+      y += rowH;
+    }
+    y += 12;
+  }
+  f.append(s, el('p', { class: 'note' }, `Counted up to ${summary.dataThrough}. A booking comes days to weeks after its call, so calls late in the window may still book. With a handful of bookings per side, one booking more or less changes the picture. The test card does not read bookings for that reason.`));
+  return f;
+}
+
 function weeklyTable(summary) {
   const f = figure('Weekly funnel', summary.synthetic);
   const det = el('details', { open: '' });
@@ -182,6 +216,7 @@ const CARD = {
   quality: 'Format settled in the call, quiz weeks against off weeks, no threshold',
   counter: 'Submit rate: started forms that are sent, quiz weeks against off weeks',
   kill: 'The weekly submit rate falls more than a quarter below the baseline, below 43.5%, in two quiz weeks in a row',
+  bookings: 'Not a line on the card. Under "What we cannot see": whether a booking comes from the quiz',
 };
 // What a better number means for each line, in the words the room reads.
 const BETTER = {
@@ -191,9 +226,11 @@ const BETTER = {
   'Call quality': 'Higher is better: more calls end with the format settled. This is what the sponsor came for.',
   'Counter metric': 'Should not get worse: the quiz must not make sponsors give up on the form after they started it.',
   'Kill criterion': 'Not reached is good. Reached means: take the quiz back.',
+  Bookings: 'Higher is better: bookings are the business goal. But the card does not read them: a booking depends on the call, comes weeks later, and the numbers are a handful.',
 };
 const BASELINE_TEXT = 'eight weeks before launch';
 const kOfN = (x) => `${x.k} of ${x.n}`;
+const kOfCalls = (x) => `${x.k} of ${x.calls} calls (${pct(x.calls ? x.k / x.calls : null)})`;
 
 function cardTable(s) {
   const f = figure('Test card ' + s.variant + ' against counts', s.synthetic);
@@ -221,6 +258,9 @@ function cardTable(s) {
     ['Kill criterion', CARD.kill,
       `${below.length} of ${after.length} quiz weeks below the kill line${below.length ? ` (week ${below.join(', week ')})` : ''}; longest run of quiz weeks in a row: ${s.kill.longestRun}`,
       `Kill line = 0.75 times the submit rate of the ${BASELINE_TEXT}, ${pct(s.before.rate)} = ${pct(s.kill.line)}. Only quiz weeks count. Weekly started in quiz weeks: ${Math.min(...after.map((w) => w.n))} to ${Math.max(...after.map((w) => w.n))}.`],
+    ['Bookings', CARD.bookings,
+      `bookings: quiz weeks ${s.bookings.after.k} in ${s.quiz.weeks} weeks, off weeks ${s.bookings.off.k} in ${s.off.weeks} weeks, before launch ${s.bookings.before.k} in ${s.baselineWeeks} weeks. Booking rate: quiz weeks ${kOfCalls(s.bookings.after)}, off weeks ${kOfCalls(s.bookings.off)}, before launch ${kOfCalls(s.bookings.before)}`,
+      `Booking rate as in the KPI tree: booking_confirmed divided by scoping_call_booked, for inquiries sent in each kind of week. Counted up to ${s.dataThrough}; calls late in the window may still book. The weeks before launch are twice as many as each side.`],
   ];
   const wrap = el('div', { class: 'scroll' });
   const t = el('table');
@@ -233,8 +273,7 @@ function cardTable(s) {
   }
   t.append(tb);
   wrap.append(t);
-  f.append(wrap, el('p', { class: 'note' }, 'The page counts; it does not read the counts. Whether a line is met, and whether to keep, adjust or withdraw the variant, is read on the test card by the read-result skill and decided by a human. Bookings: ' +
-    `${s.bookings.after.k} of ${s.bookings.after.n} in quiz weeks, ${s.bookings.off.k} of ${s.bookings.off.n} in off weeks, ${s.bookings.before.k} of ${s.bookings.before.n} before launch (as of ${s.dataThrough}; later bookings are not in the data and cannot be attributed to the website change).`));
+  f.append(wrap, el('p', { class: 'note' }, 'The page counts; it does not read the counts. Whether a line is met, and whether to keep, adjust or withdraw the variant, is read on the test card by the read-result skill and decided by a human.'));
   return f;
 }
 
@@ -250,6 +289,6 @@ async function main() {
   if (!s.synthetic) document.getElementById('band').textContent = 'WARNING: data is not marked synthetic in scenario.json';
   lead.textContent = `From ${s.launchDate}, ${s.variant} ran in ${s.quiz.weeks} quiz weeks, alternating with ${s.off.weeks} off weeks on the baseline form. Inquiries started: ${s.quiz.started} in quiz weeks, ${s.off.started} in off weeks.`;
   root.append(el('p', { class: 'baseline' }, 'The test compares quiz weeks with off weeks after launch. The eight weeks before launch are context, and they set the kill line. The weekly charts and table show all 26 weeks before launch.'));
-  root.append(cardTable(s), callChart(s), startChart(s), rateChart(s), countsChart(s), weeklyTable(s));
+  root.append(cardTable(s), callChart(s), bookingChart(s), startChart(s), rateChart(s), countsChart(s), weeklyTable(s));
 }
 main();

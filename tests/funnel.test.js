@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { weeklyFunnel, periodTotals, checkKill, quizUsage, sentByQuiz, callQuality, parseCsv } from '../site/components/funnel.js';
+import { weeklyFunnel, periodTotals, checkKill, quizUsage, sentByQuiz, callQuality, bookingRate, parseCsv } from '../site/components/funnel.js';
 
 const LAUNCH = Date.parse('2026-08-19T00:00:00Z');
 const at = (days) => new Date(LAUNCH + days * 86400000 + 3600000).toISOString();
@@ -60,4 +60,9 @@ test('sent inquiries split by the quiz column', () => {
 test('call quality counts only recorded calls: at most one question about the team asked, and format settled', () => {
   const rows = parseCsv('id,call_team_questions,call_format_settled\n1,0,true\n2,1,false\n3,3,true\n4,,\n');
   assert.deepEqual(callQuality(rows), { n: 3, fewTeamQuestions: 2, formatSettled: 2 });
+});
+
+test('booking rate is bookings divided by scoping calls, as in the KPI tree', () => {
+  const rows = parseCsv('id,variant,scoping_call_booked,booking_confirmed\n1,v,true,true\n2,v,true,false\n3,v,false,false\n4,w,true,true\n');
+  assert.deepEqual(bookingRate(rows, 'v'), { k: 1, calls: 2, sent: 3, rate: 0.5 });
 });

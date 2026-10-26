@@ -147,10 +147,12 @@ export function scopingCallRate(rows, variant) {
   return { k, n: mine.length, rate: rate(k, mine.length) };
 }
 
+// Bookings and the booking rate as the KPI tree defines it: bookings divided by scoping calls.
 export function bookingRate(rows, variant) {
   const mine = rows.filter((r) => r.variant === variant);
+  const calls = mine.filter((r) => r.scoping_call_booked === 'true').length;
   const k = mine.filter((r) => r.booking_confirmed === 'true').length;
-  return { k, n: mine.length, rate: rate(k, mine.length) };
+  return { k, calls, sent: mine.length, rate: rate(k, calls) };
 }
 
 // Usage of the quiz: inquiry page visits that came through it, how far visits get, and how often
