@@ -18,8 +18,13 @@ you may conclude, and what small numbers do not allow.
    The skill asks the trainer the same question first.
 3. The trainer runs `/read-result`. It reads `shipped` from `site/config.json`. It counts events
    before and after the launch. It writes the "Result" section of the launch card.
-4. Rerun the two counts the trainer names. The Result section lists the command behind each number.
+4. Rerun two counts yourself. The Result section lists the command behind each number.
    Run each command in your terminal and compare the number.
+   - **Success line:** of the inquiries sent with the variant, how many carry a success line
+     (`inquiry_submitted`, variant `success-line-first`, prop `success_line`).
+   - **Counter metric:** of the visitors who start the variant inquiry, how many send it
+     (`inquiry_started` and `inquiry_submitted`, variant `success-line-first`, after the launch).
+   Together they show the trade-off: did the new step get answered, and did it cost inquiries?
 5. Follow the trainer through the card, line by line: success line, usage, proxy, counter metric,
    kill criterion. Which are met, not met, unclear? Where was your prediction wrong?
 
