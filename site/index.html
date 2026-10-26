@@ -29,5 +29,9 @@
     <p class="actions"><a class="button" href="/inquiry.html">Make an inquiry</a> <a class="button secondary" href="/formats.html">See example formats</a></p>
   </main>
   <footer class="site-footer">Loopwise is a fictional academy used for a demo.</footer>
+  <script type="module">
+    import { logEvent } from '/components/events.js';
+    logEvent('page_view', { page: 'home' }, 'baseline');
+  </script>
 </body>
 </html>

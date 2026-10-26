@@ -25,5 +25,9 @@
     <section class="card"><h2>4. Follow-up after four weeks</h2><p>Four weeks after the format we ask participants and the sponsor what has changed in daily work, and we agree on possible next steps.</p></section>
   </main>
   <footer class="site-footer">Loopwise is a fictional academy used for a demo.</footer>
+  <script type="module">
+    import { logEvent } from '/components/events.js';
+    logEvent('page_view', { page: 'sponsor-prep' }, 'baseline');
+  </script>
 </body>
 </html>
