@@ -29,8 +29,9 @@ at a time and waits for you each time. You go first.
    assumption would hurt most if it is wrong, or has no source. Then a variant name, lowercase with
    dashes (for example `examples-first`). The tree marks it with a green border.
 5. **Prototype test card (15 min).** `/test-card <variant> prototype`. It writes
-   `discovery/test-cards/<variant>-prototype.md`: the assumption, a scenario for the tester
-   (situation and task), the signs you watch for, a go-on line and a rework-or-drop line.
+   `discovery/test-cards/<variant>-prototype.md` in three sentences. We believe that <the
+   assumption>. To test that, we will <show a tester the page with a scenario and watch for signs>.
+   We are right if <go-on line>. A fourth line says when you rework or drop the idea.
 6. **Own the card (10 min).** Read it as the tester will: does the scenario give away the
    assumption? Can you see each sign, or would you have to guess? Fill `Card owner`. Turn the two
    lines into your own words.
