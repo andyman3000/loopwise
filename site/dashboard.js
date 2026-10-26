@@ -120,6 +120,53 @@ function startChart(summary) {
   return f;
 }
 
+// The two drivers the intent set out to move (discovery/intents/format-question.md, "Desired outcome").
+function goalSection(summary) {
+  const f = figure('What we set out to change', summary.synthetic);
+  f.append(el('p', {}, 'The intent: "A sponsor who is unsure about the format starts an inquiry anyway. The sponsor says what the team needs, without naming a format first." Two numbers should move: more visits that see the formats page go on to the inquiry page, and more inquiry page visits start the form.'));
+  const r = summary.reach;
+  const blocks = (list, key) => list.map((b) => b[key]).filter((x) => x !== null);
+  const startBlocks = [];
+  const before = summary.weeks.filter((w) => w.period === 'before');
+  for (let i = before.length % 4; i + 4 <= before.length; i += 4) {
+    const part = before.slice(i, i + 4);
+    const v = part.reduce((a, w) => a + w.views, 0), st = part.reduce((a, w) => a + w.started, 0);
+    if (v) startBlocks.push(st / v);
+  }
+  const span = (xs) => `${pct(Math.min(...xs))} to ${pct(Math.max(...xs))}`;
+  const rows = [
+    ['Visits that see the formats page and open the inquiry page', 'reach', [['before', r.before], ['off', r.off], ['quiz', r.quiz]].map(([g, x]) => [g, x.k, x.n]),
+      `Higher is better. Before launch, four-week blocks of the unchanged site ranged from ${span(blocks(r.blocks, 'rate'))}: a difference larger than that is not the usual swing.`],
+    ['Inquiry page visits that start the form', 'start', [['before', summary.before], ['off', summary.off], ['quiz', summary.quiz]].map(([g, x]) => [g, x.started, x.views]),
+      `Higher is better. Before launch, four-week blocks of the unchanged form ranged from ${span(startBlocks)}: a difference inside that can be the usual swing.`],
+  ];
+  const names = { before: 'Before launch', off: 'Off weeks', quiz: 'Quiz weeks' };
+  const W = 840, rowH = 26, left = 150, right = 150, top = 8;
+  const height = top + rows.length * (3 * rowH + 52);
+  const s = svg('svg', { viewBox: `0 0 ${W} ${height}`, role: 'img', 'aria-label': 'The two numbers the intent set out to move, by kind of week' });
+  const plotW = W - left - right;
+  let y = top;
+  for (const [label, , bars, note] of rows) {
+    s.append(svg('text', { x: 0, y: y + 14, 'font-weight': 600 }, label));
+    y += 22;
+    const max = Math.max(...bars.map(([, k, n]) => (n ? k / n : 0)), 0.0001) / 0.9;
+    for (const [g, k, n] of bars) {
+      const share = n ? k / n : 0;
+      s.append(svg('text', { x: 0, y: y + 15 }, names[g]));
+      s.append(svg('rect', { x: left, y: y + 3, width: plotW, height: rowH - 8, fill: 'none', stroke: 'currentColor', 'stroke-opacity': 0.15 }));
+      const bar = svg('rect', { x: left, y: y + 3, width: (plotW * share) / max, height: rowH - 8, class: g === 'quiz' ? 'after' : 'before' });
+      bar.append(svg('title', {}, `${names[g]}: ${k} of ${n}`));
+      s.append(bar);
+      s.append(svg('text', { x: left + plotW + 8, y: y + 15 }, `${k} of ${n} (${pct(n ? share : null)})`));
+      y += rowH;
+    }
+    s.append(svg('text', { class: 'muted', x: 0, y: y + 14, 'font-size': 11 }, note));
+    y += 30;
+  }
+  f.append(s, el('p', { class: 'note' }, 'Bars start at zero and are drawn to scale within each group. Source of the intent: discovery/intents/format-question.md, section "Desired outcome".'));
+  return f;
+}
+
 // One bar per kind of week and per call record: share of recorded calls, with k of n written next to it.
 function callChart(summary) {
   const cq = summary.callsQuality;
@@ -289,6 +336,6 @@ async function main() {
   if (!s.synthetic) document.getElementById('band').textContent = 'WARNING: data is not marked synthetic in scenario.json';
   lead.textContent = `From ${s.launchDate}, ${s.variant} ran in ${s.quiz.weeks} quiz weeks, alternating with ${s.off.weeks} off weeks on the baseline form. Inquiries started: ${s.quiz.started} in quiz weeks, ${s.off.started} in off weeks.`;
   root.append(el('p', { class: 'baseline' }, 'The test compares quiz weeks with off weeks after launch. The eight weeks before launch are context, and they set the kill line. The weekly charts and table show all 26 weeks before launch.'));
-  root.append(cardTable(s), callChart(s), bookingChart(s), startChart(s), rateChart(s), countsChart(s), weeklyTable(s));
+  root.append(goalSection(s), cardTable(s), callChart(s), bookingChart(s), startChart(s), rateChart(s), countsChart(s), weeklyTable(s));
 }
 main();

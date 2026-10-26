@@ -199,6 +199,43 @@ export function callQuality(rows) {
   };
 }
 
+// Reach from the formats page: of the visits that see the formats page, how many open the inquiry
+// page. A visit belongs to the week of its first page view. Returned per kind of week, for the
+// baseline weeks, and per four-week block before launch, to show how much it swings unchanged.
+export function formatsReach(events, launchMs, weeks) {
+  const visits = new Map();
+  for (const e of events) {
+    if (e.type !== 'page_view') continue;
+    const v = visits.get(e.session) || { pages: new Set(), ms: Infinity };
+    v.pages.add(e.props?.page);
+    v.ms = Math.min(v.ms, Date.parse(e.ts));
+    visits.set(e.session, v);
+  }
+  const byWeek = new Map(weeks.map((w) => [w.week, w]));
+  const count = (pred) => {
+    let n = 0, k = 0;
+    for (const v of visits.values()) {
+      if (!v.pages.has('formats')) continue;
+      const w = Math.floor((v.ms - launchMs) / WEEK_MS);
+      if (!pred(w, byWeek.get(w))) continue;
+      n++;
+      if (v.pages.has('inquiry')) k++;
+    }
+    return { k, n, rate: rate(k, n) };
+  };
+  const first = weeks[0]?.week ?? 0;
+  const blocks = [];
+  for (let b = first + ((-first) % 4); b < 0; b += 4) {
+    blocks.push({ from: new Date(launchMs + b * WEEK_MS).toISOString().slice(0, 10), ...count((w) => w >= b && w < b + 4) });
+  }
+  return {
+    quiz: count((w, wk) => wk?.arm === 'quiz'),
+    off: count((w, wk) => wk?.arm === 'off'),
+    before: count((w, wk) => Boolean(wk?.baseline)),
+    blocks,
+  };
+}
+
 // Everything the dashboard shows. scenario supplies launch date, window, shipped variant.
 export function summarize(events, inquiries, scenario) {
   const launchMs = Date.parse(scenario.launchDate + 'T00:00:00Z');
@@ -209,6 +246,7 @@ export function summarize(events, inquiries, scenario) {
   const quiz = periodTotals(weeks, 'quiz');
   const off = periodTotals(weeks, 'off');
   const kill = checkKill(weeks, before.rate);
+  const reach = formatsReach(events, launchMs, weeks);
   const afterRows = rowsBetween(inquiries, launchMs, Infinity);
   const callsQuality = {
     quiz: callQuality(inquiries.filter((r) => r.variant === variant)),
@@ -233,6 +271,7 @@ export function summarize(events, inquiries, scenario) {
     off,
     kill,
     callsQuality,
+    reach,
     sent: sentByQuiz(inquiries, variant),
     calls,
     bookings: { before: bookingRate(baselineRows, scenario.baselineVariant), after: bookingRate(inquiries, variant), off: bookingRate(afterRows, scenario.baselineVariant) },
