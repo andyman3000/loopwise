@@ -57,12 +57,12 @@ function countsChart(summary) {
   weeks.forEach((w, i) => {
     for (const [k, off] of [['started', -bw], ['submitted', 0]]) {
       const h = fr.y(0) - fr.y(w[k]);
-      const r = svg('rect', { class: w.period, x: fr.x(i) + off, y: fr.y(w[k]), width: bw, height: h, opacity: k === 'started' ? 0.45 : 1 });
+      const r = svg('rect', { class: w.arm === 'off' ? 'before' : w.period, x: fr.x(i) + off, y: fr.y(w[k]), width: bw, height: h, opacity: k === 'started' ? 0.45 : 1 });
       r.append(svg('title', {}, `${w.start}: ${k} ${w[k]} (n=${w.n} started)`));
       fr.s.append(r);
     }
   });
-  f.append(fr.s, el('p', { class: 'note' }, 'Light bar: started. Dark bar: submitted. Grey: baseline form. Teal: ' + summary.variant + '. Week = seven days counted from the launch date.'));
+  f.append(fr.s, el('p', { class: 'note' }, 'Light bar: started. Dark bar: submitted. Grey: baseline form, before launch and in the off weeks. Teal: ' + summary.variant + ', in the quiz weeks. Week = seven days counted from the launch date.'));
   return f;
 }
 
@@ -78,7 +78,7 @@ function rateChart(summary) {
   }
   weeks.forEach((w, i) => {
     if (!pts[i]) return;
-    const c = svg('circle', { cx: pts[i][0], cy: pts[i][1], r: 3, class: w.period });
+    const c = svg('circle', { cx: pts[i][0], cy: pts[i][1], r: 3, class: w.arm === 'off' ? 'before' : w.period });
     c.append(svg('title', {}, `${w.start}: ${pct(w.completionRate)} (${w.submitted} of n=${w.n})`));
     fr.s.append(c);
   });
@@ -88,7 +88,7 @@ function rateChart(summary) {
   fr.s.append(svg('text', { class: 'muted', x: bx + 4, y: fr.y(lvl) - 4 }, `baseline ${pct(lvl)}`));
   fr.s.append(svg('line', { class: 'kill', x1: fr.left + fr.step * fr.first, x2: fr.W - fr.right, y1: fr.y(line), y2: fr.y(line) }));
   fr.s.append(svg('text', { x: fr.W - fr.right - 4, y: fr.y(line) + 14, 'text-anchor': 'end' }, `kill line ${pct(line)} (a quarter below the baseline)`));
-  f.append(fr.s, el('p', { class: 'note' }, 'The card asks for two weeks in a row below the dashed line. Weekly n is small (see n below each week), so single weeks swing widely.'));
+  f.append(fr.s, el('p', { class: 'note' }, 'The card asks for two quiz weeks in a row below the dashed line; off weeks do not count. Weekly n is small (see n below each week), so single weeks swing widely.'));
   return f;
 }
 
@@ -103,17 +103,20 @@ function startChart(summary) {
   }
   weeks.forEach((w, i) => {
     if (!pts[i]) return;
-    const c = svg('circle', { cx: pts[i][0], cy: pts[i][1], r: 3, class: w.period });
+    const c = svg('circle', { cx: pts[i][0], cy: pts[i][1], r: 3, class: w.arm === 'off' ? 'before' : w.period });
     c.append(svg('title', {}, `${w.start}: ${pct(w.startRate)} (${w.started} of ${w.views} visits)`));
     fr.s.append(c);
   });
-  const lvl = summary.before.startRate, line = summary.successLine;
+  const lvl = summary.before.startRate;
   const bx = fr.left + fr.step * Math.max(0, fr.first - summary.baselineWeeks);
   fr.s.append(svg('line', { class: 'level', x1: bx, x2: fr.left + fr.step * fr.first, y1: fr.y(lvl), y2: fr.y(lvl) }));
   fr.s.append(svg('text', { class: 'muted', x: bx + 4, y: fr.y(lvl) - 4 }, `baseline ${pct(lvl)}`));
-  fr.s.append(svg('line', { class: 'level', x1: fr.left + fr.step * fr.first, x2: fr.W - fr.right, y1: fr.y(line), y2: fr.y(line) }));
-  fr.s.append(svg('text', { x: fr.W - fr.right - 4, y: fr.y(line) - 6, 'text-anchor': 'end' }, `success line ${pct(line)}, over all eight weeks`));
-  f.append(fr.s, el('p', { class: 'note' }, 'The success line is read over the eight weeks together, not week by week.'));
+  for (const [arm, label, dy] of [['quiz', 'quiz weeks', -6], ['off', 'off weeks', 14]]) {
+    const v = summary[arm].startRate;
+    fr.s.append(svg('line', { class: 'level', x1: fr.left + fr.step * fr.first, x2: fr.W - fr.right, y1: fr.y(v), y2: fr.y(v) }));
+    fr.s.append(svg('text', { x: fr.W - fr.right - 4, y: fr.y(v) + dy, 'text-anchor': 'end' }, `${label} together ${pct(v)}`));
+  }
+  f.append(fr.s, el('p', { class: 'note' }, 'Teal points: quiz weeks. Grey points after launch: off weeks with the baseline form. The success line compares the four quiz weeks with the four off weeks, together, not week by week.'));
   return f;
 }
 
@@ -127,7 +130,7 @@ function weeklyTable(summary) {
   const tb = el('tbody');
   for (const w of summary.weeks) {
     const tr = el('tr');
-    tr.innerHTML = `<td>${w.start}</td><td>${w.baseline ? 'before (baseline)' : w.period}</td><td class="num">${w.views}</td><td class="num">${w.started}</td><td class="num">${pct(w.startRate)}</td><td class="num">${w.submitted}</td><td class="num">${pct(w.completionRate)}</td>`;
+    tr.innerHTML = `<td>${w.start}</td><td>${w.baseline ? 'before (baseline)' : w.arm ? (w.arm === 'quiz' ? 'after, quiz week' : 'after, off week') : w.period}</td><td class="num">${w.views}</td><td class="num">${w.started}</td><td class="num">${pct(w.startRate)}</td><td class="num">${w.submitted}</td><td class="num">${pct(w.completionRate)}</td>`;
     tb.append(tr);
   }
   t.append(tb);
@@ -139,11 +142,11 @@ function weeklyTable(summary) {
 
 // The lines as written on discovery/test-cards/format-quiz.md.
 const CARD = {
-  success: 'Start rate of format-quiz over the eight weeks is at least 33%',
-  usage: 'At least a quarter of inquiry page visits come through the quiz, and at least half of the visits that start the quiz reach question 4',
-  proxy: 'Call rate: sent inquiries that get a scoping call',
-  counter: 'Submit rate: started forms that are sent',
-  kill: 'The weekly submit rate falls more than a quarter below the baseline, below 43.5%, in two weeks in a row',
+  success: 'Start rate in the quiz weeks is at least 5 percentage points above the start rate in the off weeks',
+  adoption: 'In the quiz weeks, at least a quarter of inquiry page visits come through the quiz, and at least half of the visits that start the quiz reach question 4',
+  proxy: 'Call rate: sent inquiries that get a scoping call, quiz weeks against off weeks',
+  counter: 'Submit rate: started forms that are sent, quiz weeks against off weeks',
+  kill: 'The weekly submit rate falls more than a quarter below the baseline, below 43.5%, in two quiz weeks in a row',
 };
 const BASELINE_TEXT = 'eight weeks before launch';
 const kOfN = (x) => `${x.k} of ${x.n}`;
@@ -151,25 +154,26 @@ const kOfN = (x) => `${x.k} of ${x.n}`;
 function cardTable(s) {
   const f = figure('Test card ' + s.variant + ' against counts', s.synthetic);
   const u = s.usage, c = s.calls;
-  const after = s.weeks.filter((w) => w.period === 'after');
+  const after = s.weeks.filter((w) => w.arm === 'quiz');
   const below = s.kill.weeksBelow;
   const unsure = u.perStep.map((p) => `question ${p.step}: ${p.unsure} of ${p.n}`).join('; ');
+  const ctx = `before launch ${s.before.started} of ${s.before.views} (${pct(s.before.startRate)})`;
   const rows = [
     ['Success line', CARD.success,
-      `after ${s.after.started} of ${s.after.views} (${pct(s.after.startRate)}); baseline ${s.before.started} of ${s.before.views} (${pct(s.before.startRate)})`,
-      `Sessions with inquiry_started divided by sessions with a page_view of the inquiry page. After: the ${after.length} weeks after launch. Baseline: the ${BASELINE_TEXT}.`],
-    ['Usage hypothesis', CARD.usage,
+      `quiz weeks ${s.quiz.started} of ${s.quiz.views} (${pct(s.quiz.startRate)}); off weeks ${s.off.started} of ${s.off.views} (${pct(s.off.startRate)}); difference ${((s.quiz.startRate - s.off.startRate) * 100).toFixed(1)} points. Context: ${ctx}`,
+      `Sessions with inquiry_started divided by sessions with a page_view of the inquiry page. Quiz weeks: ${s.quiz.weeks} weeks in which the inquiry page was ${s.variant}. Off weeks: ${s.off.weeks} weeks with the baseline form. Before launch: the ${BASELINE_TEXT}, context only.`],
+    ['Adoption', CARD.adoption,
       `${u.viaQuiz} of ${u.views} visits came through the quiz (${pct(u.viaQuizShare)}); ${u.finishedQuiz} of ${u.startedQuiz} quiz starts reached question 4 (${pct(u.finishShare)})`,
       `A visit came through the quiz when it has inquiry_step_completed step 1 and a page_view of the inquiry page. Quiz starts include visits that left the quiz on the formats page. "I don't know yet" per question: ${unsure}.`],
     ['Proxy metric', CARD.proxy,
-      `after ${kOfN(c.after)}; baseline ${kOfN(c.before)}`,
-      `Inquiries with scoping_call_booked, out of all sent inquiries. After: all ${s.variant} inquiries (${s.sent.quiz} through the quiz, ${s.sent.noQuiz} without). Before: baseline-form inquiries sent in the ${BASELINE_TEXT}.`],
+      `quiz weeks ${kOfN(c.after)}; off weeks ${kOfN(c.off)}; context before launch ${kOfN(c.before)}`,
+      `Inquiries with scoping_call_booked, out of all sent inquiries. Quiz weeks: ${s.variant} inquiries (${s.sent.quiz} through the quiz, ${s.sent.noQuiz} without). Off weeks: baseline-form inquiries sent after launch.`],
     ['Counter metric', CARD.counter,
-      `after ${s.after.submitted} of ${s.after.started} (${pct(s.after.rate)}); baseline ${s.before.submitted} of ${s.before.started} (${pct(s.before.rate)})`,
-      `inquiry_submitted divided by inquiry_started: after is the ${after.length} weeks after launch, baseline is the ${BASELINE_TEXT}.`],
+      `quiz weeks ${s.quiz.submitted} of ${s.quiz.started} (${pct(s.quiz.rate)}); off weeks ${s.off.submitted} of ${s.off.started} (${pct(s.off.rate)}); context before launch ${s.before.submitted} of ${s.before.started} (${pct(s.before.rate)})`,
+      `inquiry_submitted divided by inquiry_started, per kind of week.`],
     ['Kill criterion', CARD.kill,
-      `${below.length} of ${after.length} weeks after launch below the kill line${below.length ? ` (weeks ${below.join(', ')})` : ''}; longest run in a row: ${s.kill.longestRun}`,
-      `Kill line = 0.75 times the baseline submit rate ${pct(s.before.rate)} = ${pct(s.kill.line)}. A week is below it when sent divided by started is lower. The card asks for ${s.kill.consecutive} such weeks in a row. Weekly started: ${Math.min(...after.map((w) => w.n))} to ${Math.max(...after.map((w) => w.n))}.`],
+      `${below.length} of ${after.length} quiz weeks below the kill line${below.length ? ` (week ${below.join(', week ')})` : ''}; longest run of quiz weeks in a row: ${s.kill.longestRun}`,
+      `Kill line = 0.75 times the submit rate of the ${BASELINE_TEXT}, ${pct(s.before.rate)} = ${pct(s.kill.line)}. Only quiz weeks count. Weekly started in quiz weeks: ${Math.min(...after.map((w) => w.n))} to ${Math.max(...after.map((w) => w.n))}.`],
   ];
   const wrap = el('div', { class: 'scroll' });
   const t = el('table');
@@ -183,7 +187,7 @@ function cardTable(s) {
   t.append(tb);
   wrap.append(t);
   f.append(wrap, el('p', { class: 'note' }, 'The page counts; it does not read the counts. Whether a line is met, and whether to keep, adjust or withdraw the variant, is read on the test card by the read-result skill and decided by a human. Bookings: ' +
-    `${s.bookings.after.k} of ${s.bookings.after.n} after, ${s.bookings.before.k} of ${s.bookings.before.n} baseline (as of ${s.dataThrough}; later bookings are not in the data and cannot be attributed to the website change).`));
+    `${s.bookings.after.k} of ${s.bookings.after.n} in quiz weeks, ${s.bookings.off.k} of ${s.bookings.off.n} in off weeks, ${s.bookings.before.k} of ${s.bookings.before.n} before launch (as of ${s.dataThrough}; later bookings are not in the data and cannot be attributed to the website change).`));
   return f;
 }
 
@@ -197,8 +201,8 @@ async function main() {
   }
   const s = await res.json();
   if (!s.synthetic) document.getElementById('band').textContent = 'WARNING: data is not marked synthetic in scenario.json';
-  lead.textContent = `Launch ${s.launchDate}: ${s.before.started} inquiries started in the baseline weeks, ${s.after.started} after launch (${s.after.weeks} weeks).`;
-  root.append(el('p', { class: 'baseline' }, 'Baseline: the eight weeks before launch, as read on the test card. The start rate, the submit rate, the kill line and the scoping call comparison use only these weeks; the weekly charts and table show all 26 weeks before launch.'));
+  lead.textContent = `From ${s.launchDate}, ${s.variant} ran in ${s.quiz.weeks} quiz weeks, alternating with ${s.off.weeks} off weeks on the baseline form. Inquiries started: ${s.quiz.started} in quiz weeks, ${s.off.started} in off weeks.`;
+  root.append(el('p', { class: 'baseline' }, 'The test compares quiz weeks with off weeks after launch. The eight weeks before launch are context, and they set the kill line. The weekly charts and table show all 26 weeks before launch.'));
   root.append(cardTable(s), startChart(s), rateChart(s), countsChart(s), weeklyTable(s));
 }
 main();

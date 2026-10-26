@@ -139,14 +139,14 @@ export function buildData(scenario) {
   };
   const gap = () => delay(br.minutesBetween[0] * 60, br.minutesBetween[1] * 60, brnd);
 
-  // After launch the shipped variant serves the formats page; home and sponsor preparation stay baseline.
-  const pageVariant = (p, after) => (after && p === 'formats' ? scenario.shippedVariant : scenario.baselineVariant);
-  const browseWeek = (weekStart, inquiryVisits, after) => {
+  // In quiz weeks the shipped variant serves the formats page; home and sponsor preparation stay baseline.
+  const pageVariant = (p, quizOn) => (quizOn && p === 'formats' ? scenario.shippedVariant : scenario.baselineVariant);
+  const browseWeek = (weekStart, inquiryVisits, quizOn) => {
     for (const v of inquiryVisits) {
       const pages = path(true, Boolean(v.quiz));
       let t = v.t;
       const times = pages.map((p, i) => (t -= gap() + (i === 0 && v.quiz ? (QUIZ_STEPS + 1) * 30000 : 0))).reverse();
-      pages.forEach((p, i) => emit(times[i], 'page_view', pageVariant(p, after), v.s, { page: p }));
+      pages.forEach((p, i) => emit(times[i], 'page_view', pageVariant(p, quizOn), v.s, { page: p }));
     }
     const others = Math.round((inquiryVisits.length * (1 - br.reachRate)) / br.reachRate * (1 + br.weeklyJitter * (2 * brnd() - 1)));
     for (let i = 0; i < others; i++) {
@@ -154,12 +154,12 @@ export function buildData(scenario) {
       let t = randomTime(weekStart, brnd);
       path(false).forEach((p, j) => {
         if (j > 0) t += gap();
-        emit(t, 'page_view', pageVariant(p, after), s, { page: p });
+        emit(t, 'page_view', pageVariant(p, quizOn), s, { page: p });
         // Some visits start the quiz on the formats page and leave it before the inquiry page.
-        if (after && qz && p === 'formats' && qrnd() < qz.dropGivenFormatsVisit) {
+        if (quizOn && qz && p === 'formats' && qrnd() < qz.dropGivenFormatsVisit) {
           const stop = Number(weighted(qz.dropAtStep, qrnd));
           const type = weighted(scenario.sponsorMix, qrnd);
-          emitQuiz(t + (stop + 1) * 30000, pageVariant(p, after), s, quizAnswers(type).slice(0, stop));
+          emitQuiz(t + (stop + 1) * 30000, pageVariant(p, quizOn), s, quizAnswers(type).slice(0, stop));
           t += (stop + 1) * 30000;
         }
       });
@@ -171,7 +171,9 @@ export function buildData(scenario) {
 
   for (const w of weeks) {
     const after = w >= 0;
-    const variant = after ? scenario.shippedVariant : scenario.baselineVariant;
+    // With alternating weeks the shipped variant runs in even weeks after launch, the baseline in odd ones.
+    const quizOn = after && (!scenario.alternateWeeks || w % 2 === 0);
+    const variant = quizOn ? scenario.shippedVariant : scenario.baselineVariant;
     const weekStart = launch + w * 7 * DAY;
     const jitter = (m) => Math.max(1, Math.round(m * (1 + scenario.traffic.weeklyJitter * (2 * rnd() - 1))));
 
@@ -186,7 +188,7 @@ export function buildData(scenario) {
     }
 
     const views = jitter(scenario.traffic.inquiryPageViewsPerWeek);
-    const st = after ? scenario.steps.after : scenario.steps.before;
+    const st = quizOn ? scenario.steps.after : scenario.steps.before;
     const inquiryVisits = [];
     for (let i = 0; i < views; i++) {
       const s = 's-' + String(++sessionNo).padStart(6, '0');
@@ -195,7 +197,7 @@ export function buildData(scenario) {
       let quiz = null;
       if (after) {
         type = weighted(scenario.sponsorMix, qrnd);
-        if (qrnd() < st.quizGivenView) {
+        if (quizOn && qrnd() < st.quizGivenView) {
           quiz = quizAnswers(type);
           emitQuiz(t, variant, s, quiz);
         }
@@ -203,7 +205,7 @@ export function buildData(scenario) {
       emit(t, 'page_view', variant, s, { page: 'inquiry' });
       inquiryVisits.push({ s, t, quiz });
       if (after) {
-        if (qrnd() >= (quiz ? st.startGivenQuiz : st.startGivenNoQuiz)) continue;
+        if (qrnd() >= (quizOn ? (quiz ? st.startGivenQuiz : st.startGivenNoQuiz) : st.startGivenView)) continue;
       } else if (rnd() >= st.startGivenView) continue;
       if (!after) type = weighted(scenario.sponsorMix);
       t += delay(5, 40);
@@ -213,7 +215,7 @@ export function buildData(scenario) {
       } else if (rnd() >= st.submitGivenStart) continue;
 
       t += delay(60, 300);
-      const props = after ? { quiz: Boolean(quiz) } : {};
+      const props = quizOn ? { quiz: Boolean(quiz) } : {};
       emit(t, 'inquiry_submitted', variant, s, props);
       const id = 'inq-' + String(++inquiryNo).padStart(4, '0');
       const teamSize = pick(scenario.teamSizes);
@@ -239,14 +241,14 @@ export function buildData(scenario) {
       }
       inquiries.push({
         ms: t, id, variant, type, teamSize,
-        quiz: after ? Boolean(quiz) : '',
+        quiz: quizOn ? Boolean(quiz) : '',
         quizAnswered: quiz ? quiz.filter((a) => a.answered).length : '',
         quizUnsure: quiz ? quiz.filter((a) => a.unsure).length : '',
         texts: quiz ? quizTexts(quiz, type) : { roles: '', stand: '', before: '' },
         called, booked, callMs, bookMs,
       });
     }
-    if (br) browseWeek(weekStart, inquiryVisits, after);
+    if (br) browseWeek(weekStart, inquiryVisits, quizOn);
   }
 
   // A baseline export is taken on launch day: later events are not in it yet.

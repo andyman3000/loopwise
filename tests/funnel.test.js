@@ -19,11 +19,22 @@ test('weekly funnel counts inquiry page visits, starts and sends per week, once 
   assert.equal(periodTotals(weeks, 'baseline').rate, 1);
 });
 
-test('kill check counts weeks below a quarter under the baseline and the longest run', () => {
-  const weeks = [0.2, 0.6, 0.2, 0.2].map((r, i) => ({ week: i, period: 'after', completionRate: r }));
+test('kill check counts only quiz weeks; two quiz weeks are in a row with an off week between them', () => {
+  const arms = ['quiz', 'off', 'quiz', 'off', 'quiz', 'off'];
+  const weeks = [0.2, 0.1, 0.6, 0.1, 0.2, 0.1].map((r, i) => ({ week: i, period: 'after', arm: arms[i], completionRate: r }));
   const k = checkKill(weeks, 0.6);
-  assert.deepEqual(k.weeksBelow, [0, 2, 3]);
-  assert.equal(k.longestRun, 2);
+  assert.deepEqual(k.weeksBelow, [0, 4]);
+  assert.equal(k.longestRun, 1);
+  weeks[2].completionRate = 0.2;
+  assert.equal(checkKill(weeks, 0.6).longestRun, 3);
+});
+
+test('a week after launch is a quiz week when the inquiry page was the variant, else an off week', () => {
+  const events = [ev(1, 'page_view', 'a', { page: 'inquiry' }), ev(8, 'page_view', 'b', { page: 'inquiry' }, 'baseline')];
+  const weeks = weeklyFunnel(events, { launchMs: LAUNCH, weeksBefore: 1, weeksAfter: 2, variant: 'v' });
+  assert.deepEqual(weeks.map((w) => w.arm), [null, 'quiz', 'off']);
+  assert.equal(periodTotals(weeks, 'quiz').views, 1);
+  assert.equal(periodTotals(weeks, 'off').views, 1);
 });
 
 test('quiz usage: visits through the quiz, finish share, and "I don\'t know yet" per question', () => {

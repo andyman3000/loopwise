@@ -4,7 +4,8 @@
 export const WEEK_MS = 7 * 86400000;
 export const KILL_FACTOR = 0.75; // "more than a quarter below the baseline rate"
 export const KILL_CONSECUTIVE = 2;
-export const SUCCESS_LINE_THRESHOLD = 0.33; // start rate, as set on the launch card
+// Start rate in quiz weeks at least this many points above the weeks without the quiz, as set on the launch card.
+export const SUCCESS_LINE_POINTS = 0.05;
 // The test card reads the baseline as the same eight weeks before the switch (weeks -8 to -1).
 export const BASELINE_WEEKS = 8;
 
@@ -47,7 +48,8 @@ export function rate(num, den) {
 
 // events: [{ts, type, session, props}], counting unique sessions per week and type.
 // views are inquiry page visits; started and submitted are form sessions.
-export function weeklyFunnel(events, { launchMs, weeksBefore, weeksAfter }) {
+// A week after launch is a quiz week when the inquiry page was served as the variant in it, else an off week.
+export function weeklyFunnel(events, { launchMs, weeksBefore, weeksAfter, variant }) {
   const weeks = [];
   for (let w = -weeksBefore; w < weeksAfter; w++) {
     weeks.push({
@@ -55,6 +57,7 @@ export function weeklyFunnel(events, { launchMs, weeksBefore, weeksAfter }) {
       start: new Date(launchMs + w * WEEK_MS).toISOString().slice(0, 10),
       period: w < 0 ? 'before' : 'after',
       baseline: w < 0 && w >= -BASELINE_WEEKS,
+      arm: null,
       views: 0,
       started: 0,
       submitted: 0,
@@ -73,11 +76,15 @@ export function weeklyFunnel(events, { launchMs, weeksBefore, weeksAfter }) {
     const w = weekIndex(e.ts, launchMs);
     const bucket = weeks[w + weeksBefore];
     if (!bucket) continue;
-    if (isView) bucket.views++;
+    if (isView) {
+      bucket.views++;
+      if (bucket.period === 'after' && e.variant === variant) bucket.arm = 'quiz';
+    }
     else if (e.type === 'inquiry_started') bucket.started++;
     else bucket.submitted++;
   }
   for (const b of weeks) {
+    if (b.period === 'after' && !b.arm) b.arm = 'off';
     b.n = b.started;
     b.startRate = rate(b.started, b.views);
     b.completionRate = rate(b.submitted, b.started);
@@ -85,9 +92,11 @@ export function weeklyFunnel(events, { launchMs, weeksBefore, weeksAfter }) {
   return weeks;
 }
 
-// period 'before' (all weeks before launch), 'after', or 'baseline' (the eight weeks before launch).
+// period 'before' (all weeks before launch), 'after', 'baseline' (the eight weeks before launch),
+// 'quiz' or 'off' (the two kinds of week after launch).
 export function periodTotals(weeks, period) {
-  const w = weeks.filter((x) => (period === 'baseline' ? x.baseline : x.period === period));
+  const pick = { baseline: (x) => x.baseline, quiz: (x) => x.arm === 'quiz', off: (x) => x.arm === 'off' }[period] || ((x) => x.period === period);
+  const w = weeks.filter(pick);
   const views = w.reduce((s, x) => s + x.views, 0);
   const started = w.reduce((s, x) => s + x.started, 0);
   const submitted = w.reduce((s, x) => s + x.submitted, 0);
@@ -103,7 +112,8 @@ export function killLine(beforeRate, factor = KILL_FACTOR) {
 // Weeks without a start have no rate and break a streak.
 export function checkKill(weeks, beforeRate, { factor = KILL_FACTOR, consecutive = KILL_CONSECUTIVE } = {}) {
   const line = killLine(beforeRate, factor);
-  const after = weeks.filter((w) => w.period === 'after');
+  // Only quiz weeks count; two quiz weeks are in a row when no other quiz week lies between them.
+  const after = weeks.filter((w) => w.arm === 'quiz');
   const weeksBelow = [];
   let longestRun = 0;
   let streak = 0;
@@ -182,12 +192,15 @@ export function sentByQuiz(rows, variant) {
 export function summarize(events, inquiries, scenario) {
   const launchMs = Date.parse(scenario.launchDate + 'T00:00:00Z');
   const variant = scenario.shippedVariant;
-  const weeks = weeklyFunnel(events, { launchMs, weeksBefore: scenario.weeksBefore, weeksAfter: scenario.weeksAfter });
+  const weeks = weeklyFunnel(events, { launchMs, weeksBefore: scenario.weeksBefore, weeksAfter: scenario.weeksAfter, variant });
   const before = periodTotals(weeks, 'baseline');
   const after = periodTotals(weeks, 'after');
+  const quiz = periodTotals(weeks, 'quiz');
+  const off = periodTotals(weeks, 'off');
   const kill = checkKill(weeks, before.rate);
+  const afterRows = rowsBetween(inquiries, launchMs, Infinity);
   const baselineRows = rowsBetween(inquiries, launchMs - BASELINE_WEEKS * WEEK_MS, launchMs);
-  const calls = { before: scopingCallRate(baselineRows, scenario.baselineVariant), after: scopingCallRate(inquiries, variant) };
+  const calls = { before: scopingCallRate(baselineRows, scenario.baselineVariant), after: scopingCallRate(inquiries, variant), off: scopingCallRate(afterRows, scenario.baselineVariant) };
   const use = quizUsage(events, variant);
   const submittedAfter = inquiries.filter((r) => r.variant === variant).length;
   return {
@@ -199,11 +212,13 @@ export function summarize(events, inquiries, scenario) {
     weeks,
     before,
     after,
+    quiz,
+    off,
     kill,
-    successLine: SUCCESS_LINE_THRESHOLD,
+    successLinePoints: SUCCESS_LINE_POINTS,
     sent: sentByQuiz(inquiries, variant),
     calls,
-    bookings: { before: bookingRate(baselineRows, scenario.baselineVariant), after: bookingRate(inquiries, variant) },
+    bookings: { before: bookingRate(baselineRows, scenario.baselineVariant), after: bookingRate(inquiries, variant), off: bookingRate(afterRows, scenario.baselineVariant) },
     usage: use,
     submittedAfter,
   };

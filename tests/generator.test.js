@@ -71,14 +71,16 @@ test('a visit has several page views, the inquiry page at most once and last', (
   }
 });
 
-test('the quiz appears only after launch, on the shipped variant, and every sent inquiry says whether it came through it', () => {
+test('the quiz appears only after launch, on the shipped variant, and every inquiry sent with it says whether it came through the quiz', () => {
   const events = fs.readFileSync(path.join(ROOT, 'data', 'events.jsonl'), 'utf8').trim().split('\n').map((l) => JSON.parse(l));
   const launch = scenario.launchDate + 'T00:00:00Z';
   for (const e of events.filter((x) => x.type === 'inquiry_step_completed')) {
     assert.ok(e.ts >= launch, e.session);
     assert.equal(e.variant, scenario.shippedVariant);
+    if (scenario.alternateWeeks) assert.equal(Math.floor((Date.parse(e.ts) - Date.parse(launch)) / (7 * 86400000)) % 2, 0, 'quiz outside a quiz week: ' + e.session);
     assert.ok(e.props.step >= 1 && e.props.step <= 4 && typeof e.props.answered === 'boolean' && typeof e.props.unsure === 'boolean');
     assert.ok(!(e.props.answered && e.props.unsure), e.session);
   }
-  for (const e of events.filter((x) => x.type === 'inquiry_submitted' && x.ts >= launch)) assert.equal(typeof e.props.quiz, 'boolean');
+  const sent = events.filter((x) => x.type === 'inquiry_submitted' && x.ts >= launch);
+  for (const e of sent) assert.equal(typeof e.props.quiz, e.variant === scenario.shippedVariant ? 'boolean' : 'undefined', e.session);
 });

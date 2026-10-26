@@ -112,45 +112,50 @@ inq-0108,2026-08-07T16:25:55.000Z,baseline,soft,8,,,,,,,false,false
 inq-0110,2026-08-07T18:35:26.000Z,baseline,hard,6,,,,,,,false,false
 inq-0111,2026-08-11T12:31:38.000Z,baseline,soft,10,,,,,,,false,false
 inq-0113,2026-08-15T09:19:29.000Z,baseline,soft,20,,,,,,,false,false
-inq-0114,2026-08-20T17:20:43.000Z,format-quiz,soft,10,true,1,3,"Not decided yet, it could be several teams; Product managers",I don't know yet,I don't know yet,true,false
-inq-0117,2026-08-21T10:51:20.000Z,format-quiz,hard,12,false,,,,,,false,false
-inq-0116,2026-08-24T12:15:31.000Z,format-quiz,hard,30,false,,,,,,false,false
-inq-0115,2026-08-25T10:35:36.000Z,format-quiz,soft,10,false,,,,,,false,false
-inq-0118,2026-08-28T07:44:38.000Z,format-quiz,hard,8,false,,,,,,true,false
-inq-0121,2026-08-29T12:03:52.000Z,format-quiz,soft,20,false,,,,,,false,false
-inq-0119,2026-08-30T18:42:21.000Z,format-quiz,hard,12,false,,,,,,true,true
-inq-0120,2026-08-31T07:59:46.000Z,format-quiz,hard,12,false,,,,,,true,true
-inq-0125,2026-09-02T12:29:39.000Z,format-quiz,soft,25,false,,,,,,false,false
-inq-0129,2026-09-03T08:40:15.000Z,format-quiz,soft,30,false,,,,,,false,false
-inq-0122,2026-09-03T09:28:21.000Z,format-quiz,soft,20,true,3,1,People moving over from project management and consulting,Almost no hands-on AI experience,I don't know yet,false,false
-inq-0126,2026-09-03T10:30:37.000Z,format-quiz,soft,10,false,,,,,,false,false
-inq-0123,2026-09-03T14:36:59.000Z,format-quiz,soft,8,true,4,0,Product managers,"Tools are rolled out, but the actual work hasn't changed","Nothing yet, this is the first training",true,false
-inq-0128,2026-09-04T09:54:20.000Z,format-quiz,soft,30,true,3,1,"Not decided yet, it could be several teams",From never written a prompt to building their own agents,I don't know yet,true,true
-inq-0124,2026-09-04T17:54:30.000Z,format-quiz,soft,12,false,,,,,,false,false
-inq-0127,2026-09-06T10:38:32.000Z,format-quiz,hard,25,true,4,0,Product managers,"Tools are rolled out, but the actual work hasn't changed",A training after which daily work stayed the same,false,false
-inq-0132,2026-09-10T09:16:48.000Z,format-quiz,hard,20,false,,,,,,false,false
-inq-0133,2026-09-11T17:37:28.000Z,format-quiz,hard,30,false,,,,,,true,true
-inq-0134,2026-09-12T15:43:44.000Z,format-quiz,hard,6,false,,,,,,true,true
-inq-0130,2026-09-14T17:49:49.000Z,format-quiz,hard,15,true,2,1,UX people; Product managers,,I don't know yet,true,false
-inq-0131,2026-09-14T18:56:52.000Z,format-quiz,hard,20,true,4,0,People moving over from project management and consulting; Product managers,"Tools are rolled out, but the actual work hasn't changed","Developers got training, product people did not; A training after which daily work stayed the same",false,false
-inq-0136,2026-09-17T09:27:50.000Z,format-quiz,hard,8,false,,,,,,false,false
-inq-0135,2026-09-19T15:18:58.000Z,format-quiz,soft,6,false,,,,,,false,false
-inq-0137,2026-09-20T12:32:00.000Z,format-quiz,hard,12,true,4,0,Product managers; UX people,"Tools are rolled out, but the actual work hasn't changed; Some already use chat tools, some don't","Developers got training, product people did not",true,false
-inq-0138,2026-09-22T18:22:23.000Z,format-quiz,hard,25,false,,,,,,true,false
-inq-0140,2026-09-26T09:27:50.000Z,format-quiz,soft,15,false,,,,,,true,false
-inq-0139,2026-09-26T13:53:22.000Z,format-quiz,soft,6,false,,,,,,false,false
-inq-0144,2026-09-30T16:26:37.000Z,format-quiz,soft,8,true,3,1,People moving over from project management and consulting,Almost no hands-on AI experience,"Some went to an external course, mostly optional",true,false
-inq-0142,2026-10-02T08:39:41.000Z,format-quiz,soft,6,true,1,2,People moving over from project management and consulting,I don't know yet,,false,false
-inq-0149,2026-10-02T12:48:38.000Z,format-quiz,hard,20,true,3,1,People moving over from project management and consulting,"Tools are rolled out, but the actual work hasn't changed; From never written a prompt to building their own agents","Developers got training, product people did not; A training after which daily work stayed the same",false,false
-inq-0147,2026-10-02T16:09:29.000Z,format-quiz,hard,12,false,,,,,,false,false
-inq-0146,2026-10-02T18:24:44.000Z,format-quiz,hard,15,false,,,,,,true,false
-inq-0141,2026-10-03T18:29:59.000Z,format-quiz,soft,20,true,3,1,Product managers,"Some already use chat tools, some don't",A training after which daily work stayed the same,false,false
-inq-0143,2026-10-04T12:25:25.000Z,format-quiz,hard,8,false,,,,,,false,false
-inq-0145,2026-10-04T14:53:55.000Z,format-quiz,hard,12,true,3,1,Product owners,From never written a prompt to building their own agents,"Nothing yet, this is the first training",false,false
-inq-0148,2026-10-06T15:04:26.000Z,format-quiz,hard,6,true,4,0,Product managers,"Tools are rolled out, but the actual work hasn't changed",A training after which daily work stayed the same,true,true
-inq-0150,2026-10-06T16:40:28.000Z,format-quiz,soft,12,true,3,1,Product owners,"Some already use chat tools, some don't",I don't know yet,true,false
-inq-0151,2026-10-07T08:11:04.000Z,format-quiz,soft,20,false,,,,,,false,false
-inq-0155,2026-10-07T14:41:19.000Z,format-quiz,soft,10,false,,,,,,false,false
-inq-0152,2026-10-08T13:29:32.000Z,format-quiz,hard,15,false,,,,,,true,false
-inq-0153,2026-10-09T18:18:27.000Z,format-quiz,soft,15,true,3,1,"Not decided yet, it could be several teams","Some already use chat tools, some don't; Tools are rolled out, but the actual work hasn't changed",I don't know yet,false,false
-inq-0154,2026-10-12T08:21:56.000Z,format-quiz,soft,6,true,2,1,UX people; Product owners,Almost no hands-on AI experience,,false,false
+inq-0116,2026-08-19T10:02:50.000Z,format-quiz,soft,12,true,2,2,Product managers,I don't know yet,I don't know yet,true,false
+inq-0120,2026-08-20T17:30:27.000Z,format-quiz,soft,6,true,2,2,I don't know yet,I don't know yet,"Developers got training, product people did not",true,true
+inq-0118,2026-08-21T12:35:39.000Z,format-quiz,hard,10,true,4,0,Product managers; UX people,"Tools are rolled out, but the actual work hasn't changed",A training after which daily work stayed the same,false,false
+inq-0117,2026-08-23T13:08:28.000Z,format-quiz,hard,12,true,4,0,Product managers,"From never written a prompt to building their own agents; Tools are rolled out, but the actual work hasn't changed","Developers got training, product people did not; A training after which daily work stayed the same",false,false
+inq-0115,2026-08-23T14:38:33.000Z,format-quiz,soft,20,false,,,,,,false,false
+inq-0119,2026-08-23T18:25:02.000Z,format-quiz,soft,12,true,4,0,"Not decided yet, it could be several teams; People moving over from project management and consulting","From never written a prompt to building their own agents; Tools are rolled out, but the actual work hasn't changed",A training after which daily work stayed the same,true,false
+inq-0114,2026-08-24T12:50:31.000Z,format-quiz,hard,30,true,2,2,I don't know yet,Almost no hands-on AI experience,I don't know yet,true,false
+inq-0125,2026-08-27T15:17:52.000Z,baseline,soft,25,,,,,,,true,true
+inq-0123,2026-08-27T18:11:00.000Z,baseline,soft,25,,,,,,,false,false
+inq-0126,2026-08-30T09:15:25.000Z,baseline,hard,25,,,,,,,false,false
+inq-0121,2026-08-31T08:21:25.000Z,baseline,hard,8,,,,,,,true,false
+inq-0122,2026-08-31T17:50:28.000Z,baseline,soft,8,,,,,,,true,true
+inq-0124,2026-09-01T13:08:36.000Z,baseline,soft,8,,,,,,,false,false
+inq-0128,2026-09-07T11:33:28.000Z,format-quiz,hard,30,false,,,,,,false,false
+inq-0127,2026-09-08T08:00:04.000Z,format-quiz,hard,25,false,,,,,,false,false
+inq-0132,2026-09-09T07:15:54.000Z,baseline,soft,25,,,,,,,false,false
+inq-0131,2026-09-09T11:41:09.000Z,baseline,soft,30,,,,,,,true,true
+inq-0129,2026-09-09T13:18:23.000Z,baseline,soft,25,,,,,,,false,false
+inq-0133,2026-09-10T07:10:38.000Z,baseline,hard,15,,,,,,,false,false
+inq-0130,2026-09-10T09:33:38.000Z,baseline,hard,12,,,,,,,false,false
+inq-0135,2026-09-11T15:53:20.000Z,baseline,soft,30,,,,,,,false,false
+inq-0134,2026-09-14T09:49:02.000Z,baseline,soft,12,,,,,,,false,false
+inq-0137,2026-09-19T15:44:57.000Z,format-quiz,hard,30,false,,,,,,true,false
+inq-0142,2026-09-20T11:54:01.000Z,format-quiz,soft,12,false,,,,,,true,true
+inq-0136,2026-09-21T13:01:49.000Z,format-quiz,soft,12,true,3,1,Product managers,Almost no hands-on AI experience,I don't know yet,true,false
+inq-0138,2026-09-22T11:03:44.000Z,format-quiz,soft,6,true,3,1,"Product managers; Not decided yet, it could be several teams","Some already use chat tools, some don't",A training after which daily work stayed the same,true,false
+inq-0139,2026-09-22T11:29:11.000Z,format-quiz,soft,25,true,1,2,,I don't know yet,I don't know yet,false,false
+inq-0141,2026-09-22T15:28:58.000Z,format-quiz,soft,6,false,,,,,,false,false
+inq-0140,2026-09-22T16:54:31.000Z,format-quiz,soft,6,true,3,1,"Not decided yet, it could be several teams","Some already use chat tools, some don't","A training after which daily work stayed the same; Some went to an external course, mostly optional",false,false
+inq-0145,2026-09-23T11:05:17.000Z,baseline,hard,8,,,,,,,true,false
+inq-0144,2026-09-23T15:40:58.000Z,baseline,hard,12,,,,,,,true,true
+inq-0149,2026-09-24T13:19:56.000Z,baseline,soft,25,,,,,,,true,true
+inq-0143,2026-09-24T16:56:34.000Z,baseline,hard,20,,,,,,,false,false
+inq-0148,2026-09-25T09:00:53.000Z,baseline,soft,10,,,,,,,false,false
+inq-0146,2026-09-28T18:46:26.000Z,baseline,soft,8,,,,,,,false,false
+inq-0150,2026-09-29T08:57:25.000Z,baseline,soft,30,,,,,,,false,false
+inq-0147,2026-09-29T17:27:09.000Z,baseline,soft,15,,,,,,,false,false
+inq-0152,2026-10-01T13:05:53.000Z,format-quiz,soft,8,true,3,1,Product owners; Product managers,"Almost no hands-on AI experience; Some already use chat tools, some don't",I don't know yet,false,false
+inq-0157,2026-10-03T18:46:55.000Z,format-quiz,soft,12,true,4,0,Product managers; People moving over from project management and consulting,"Tools are rolled out, but the actual work hasn't changed","Nothing yet, this is the first training",false,false
+inq-0156,2026-10-04T14:10:41.000Z,format-quiz,soft,6,false,,,,,,false,false
+inq-0155,2026-10-05T09:19:51.000Z,format-quiz,soft,8,false,,,,,,true,false
+inq-0154,2026-10-05T11:51:13.000Z,format-quiz,hard,12,true,4,0,Product owners; UX people,"Tools are rolled out, but the actual work hasn't changed; Some already use chat tools, some don't","Some went to an external course, mostly optional; Developers got training, product people did not",false,false
+inq-0151,2026-10-05T11:58:05.000Z,format-quiz,hard,30,true,2,2,Product owners; Product managers,Almost no hands-on AI experience,I don't know yet,false,false
+inq-0153,2026-10-05T18:18:23.000Z,format-quiz,hard,12,true,3,1,Product owners; Product managers,"Tools are rolled out, but the actual work hasn't changed",I don't know yet,true,true
+inq-0158,2026-10-07T12:24:26.000Z,baseline,hard,30,,,,,,,true,false
+inq-0160,2026-10-07T18:27:41.000Z,baseline,hard,25,,,,,,,true,false
+inq-0159,2026-10-13T08:53:18.000Z,baseline,hard,30,,,,,,,false,false
