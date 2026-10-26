@@ -120,6 +120,40 @@ function startChart(summary) {
   return f;
 }
 
+// One bar per kind of week and per call record: share of recorded calls, with k of n written next to it.
+function callChart(summary) {
+  const cq = summary.callsQuality;
+  const f = figure(`Scoping calls, recorded from ${cq.recordFrom}: quiz weeks against off weeks and the weeks before launch`, summary.synthetic);
+  const groups = [['before', 'Before launch'], ['off', 'Off weeks'], ['quiz', 'Quiz weeks']];
+  const measures = [['fewBasics', 'Needed at most one of the four basics (success line: at least half in quiz weeks)'], ['formatSettled', 'Format settled in the call']];
+  const W = 840, rowH = 26, left = 150, right = 120, top = 8;
+  const height = top + measures.length * (groups.length * rowH + 34);
+  const s = svg('svg', { viewBox: `0 0 ${W} ${height}`, role: 'img', 'aria-label': 'Scoping call records by kind of week' });
+  const plotW = W - left - right;
+  let y = top;
+  for (const [key, label] of measures) {
+    s.append(svg('text', { x: 0, y: y + 14, 'font-weight': 600 }, label));
+    y += 22;
+    for (const [g, name] of groups) {
+      const k = cq[g][key], n = cq[g].n, share = n ? k / n : 0;
+      s.append(svg('text', { x: 0, y: y + 15 }, name));
+      s.append(svg('rect', { x: left, y: y + 3, width: plotW, height: rowH - 8, fill: 'none', class: 'axis', stroke: 'currentColor', 'stroke-opacity': 0.15 }));
+      const bar = svg('rect', { x: left, y: y + 3, width: plotW * share, height: rowH - 8, class: g === 'quiz' ? 'after' : 'before' });
+      bar.append(svg('title', {}, `${name}: ${k} of ${n}`));
+      s.append(bar);
+      s.append(svg('text', { x: left + plotW + 8, y: y + 15 }, `${k} of ${n} (${pct(n ? share : null)})`));
+      y += rowH;
+    }
+    if (key === 'fewBasics') {
+      const x = left + plotW * 0.5;
+      s.append(svg('line', { class: 'kill', x1: x, x2: x, y1: y - groups.length * rowH, y2: y }));
+    }
+    y += 12;
+  }
+  f.append(s, el('p', { class: 'note' }, 'Recorded by the person who ran each call: how many of the four basics (team, team size, AI level, earlier training) they still had to ask, and whether the format was settled. The dashed line marks half. About ten calls per kind of week, so one call moves a share by about ten points.'));
+  return f;
+}
+
 function weeklyTable(summary) {
   const f = figure('Weekly funnel', summary.synthetic);
   const det = el('details', { open: '' });
@@ -207,6 +241,6 @@ async function main() {
   if (!s.synthetic) document.getElementById('band').textContent = 'WARNING: data is not marked synthetic in scenario.json';
   lead.textContent = `From ${s.launchDate}, ${s.variant} ran in ${s.quiz.weeks} quiz weeks, alternating with ${s.off.weeks} off weeks on the baseline form. Inquiries started: ${s.quiz.started} in quiz weeks, ${s.off.started} in off weeks.`;
   root.append(el('p', { class: 'baseline' }, 'The test compares quiz weeks with off weeks after launch. The eight weeks before launch are context, and they set the kill line. The weekly charts and table show all 26 weeks before launch.'));
-  root.append(cardTable(s), startChart(s), rateChart(s), countsChart(s), weeklyTable(s));
+  root.append(cardTable(s), callChart(s), startChart(s), rateChart(s), countsChart(s), weeklyTable(s));
 }
 main();
