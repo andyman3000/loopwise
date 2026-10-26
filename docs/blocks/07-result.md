@@ -14,11 +14,12 @@ you may conclude, and what small numbers do not allow.
    ```
    If `demo` already exists, use `git switch demo`.
 2. The trainer shows the reference launch card, `discovery/test-cards/format-quiz.md`.
-   The dashboard at `http://localhost:3000/dashboard` shows the same counts as charts.
-   Before anything is counted, write down your prediction. Which lines of the card will be met?
-   The skill asks the trainer the same question first.
+   Before anything is counted, write down your decision rule in three short sentences: what result
+   would make you keep the quiz, change it, or take it back? The skill asks the trainer the same
+   question first.
 3. The trainer runs `/read-result`. It reads `shipped` from `site/config.json`. It counts events
-   before and after the launch. It writes the "Result" section of the launch card.
+   the way the card says: quiz weeks against off weeks, with the weeks before launch as context.
+   It writes the "Result" section of the launch card.
 4. Rerun two counts yourself. The Result section lists the command behind each number.
    Run each command in your terminal and compare the number.
    The quiz ran in every other week after launch, today's form in the weeks between.
@@ -28,8 +29,11 @@ you may conclude, and what small numbers do not allow.
    - **Counter metric:** of the visitors who start the form, how many send it, in the quiz weeks and
      in the off weeks (`inquiry_started` and `inquiry_submitted`).
    Together they show the trade-off: did the quiz bring more starts, and did it cost inquiries?
-5. Follow the trainer through the card, line by line: success line, usage, proxy, counter metric,
-   kill criterion. Which are met, not met, unclear? Where was your prediction wrong?
+5. Follow the trainer through the card, line by line: success line, adoption, proxy, call quality,
+   counter metric, kill criterion. Which are met, not met, unclear? Where does your rule point, and does it agree
+   with the skill's proposal?
+6. Only now open the dashboard at `http://localhost:3000/dashboard`. It shows the same counts as
+   charts, week by week.
 
 **Done when:** you are on `demo` and your two counts match the Result section.
 
