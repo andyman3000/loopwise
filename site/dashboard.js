@@ -93,7 +93,7 @@ function rateChart(summary) {
 }
 
 function startChart(summary) {
-  const f = figure('Weekly start rate (inquiry page visits that start the form), with baseline and success line', summary.synthetic);
+  const f = figure('Weekly start rate (inquiry page visits that start the form), quiz weeks and off weeks', summary.synthetic);
   const weeks = summary.weeks;
   const fr = frame(weeks, 1, 300, 'Weekly start rate with success line', summary.variant);
   const pts = weeks.map((w, i) => (w.startRate === null ? null : [fr.x(i), fr.y(w.startRate)]));
@@ -116,7 +116,7 @@ function startChart(summary) {
     fr.s.append(svg('line', { class: 'level', x1: fr.left + fr.step * fr.first, x2: fr.W - fr.right, y1: fr.y(v), y2: fr.y(v) }));
     fr.s.append(svg('text', { x: fr.W - fr.right - 4, y: fr.y(v) + dy, 'text-anchor': 'end' }, `${label} together ${pct(v)}`));
   }
-  f.append(fr.s, el('p', { class: 'note' }, 'Teal points: quiz weeks. Grey points after launch: off weeks with the baseline form. The success line compares the four quiz weeks with the four off weeks, together, not week by week.'));
+  f.append(fr.s, el('p', { class: 'note' }, 'Teal points: quiz weeks. Grey points after launch: off weeks with the baseline form. The card reads the start rate as a direction only: before launch, four-week blocks of the unchanged form swung by up to 12 points.'));
   return f;
 }
 
@@ -142,10 +142,10 @@ function weeklyTable(summary) {
 
 // The lines as written on discovery/test-cards/format-quiz.md.
 const CARD = {
-  success: 'Start rate in the quiz weeks is at least 5 percentage points above the start rate in the off weeks',
+  success: 'At least half of the scoping calls from quiz weeks need at most one of the four basics, and the start rate in quiz weeks is not below the off weeks (a direction only)',
   adoption: 'In the quiz weeks, at least a quarter of inquiry page visits come through the quiz, and at least half of the visits that start the quiz reach question 4',
   proxy: 'Call rate: sent inquiries that get a scoping call, quiz weeks against off weeks',
-  quality: 'Scoping calls that needed at most one of the four basics, and calls that settled the format, quiz weeks against off weeks',
+  quality: 'Format settled in the call, quiz weeks against off weeks, no threshold',
   counter: 'Submit rate: started forms that are sent, quiz weeks against off weeks',
   kill: 'The weekly submit rate falls more than a quarter below the baseline, below 43.5%, in two quiz weeks in a row',
 };
@@ -161,8 +161,8 @@ function cardTable(s) {
   const ctx = `before launch ${s.before.started} of ${s.before.views} (${pct(s.before.startRate)})`;
   const rows = [
     ['Success line', CARD.success,
-      `quiz weeks ${s.quiz.started} of ${s.quiz.views} (${pct(s.quiz.startRate)}); off weeks ${s.off.started} of ${s.off.views} (${pct(s.off.startRate)}); difference ${((s.quiz.startRate - s.off.startRate) * 100).toFixed(1)} points. Context: ${ctx}`,
-      `Sessions with inquiry_started divided by sessions with a page_view of the inquiry page. Quiz weeks: ${s.quiz.weeks} weeks in which the inquiry page was ${s.variant}. Off weeks: ${s.off.weeks} weeks with the baseline form. Before launch: the ${BASELINE_TEXT}, context only.`],
+      `at most one basic: quiz weeks ${cq.quiz.fewBasics} of ${cq.quiz.n}, off weeks ${cq.off.fewBasics} of ${cq.off.n}, before launch ${cq.before.fewBasics} of ${cq.before.n}. Start rate: quiz weeks ${s.quiz.started} of ${s.quiz.views} (${pct(s.quiz.startRate)}), off weeks ${s.off.started} of ${s.off.views} (${pct(s.off.startRate)}). Context: ${ctx}`,
+      `From call_basic_questions in inquiries.csv, recorded by the person who ran the call for every call from ${cq.recordFrom}. Start rate: sessions with inquiry_started divided by sessions with a page_view of the inquiry page, per kind of week. Four-week blocks of today's form swung by up to 12 points before launch, so the start rate shows a direction only.`],
     ['Adoption', CARD.adoption,
       `${u.viaQuiz} of ${u.views} visits came through the quiz (${pct(u.viaQuizShare)}); ${u.finishedQuiz} of ${u.startedQuiz} quiz starts reached question 4 (${pct(u.finishShare)})`,
       `A visit came through the quiz when it has inquiry_step_completed step 1 and a page_view of the inquiry page. Quiz starts include visits that left the quiz on the formats page. "I don't know yet" per question: ${unsure}.`],
@@ -170,8 +170,8 @@ function cardTable(s) {
       `quiz weeks ${kOfN(c.after)}; off weeks ${kOfN(c.off)}; context before launch ${kOfN(c.before)}`,
       `Inquiries with scoping_call_booked, out of all sent inquiries. Quiz weeks: ${s.variant} inquiries (${s.sent.quiz} through the quiz, ${s.sent.noQuiz} without). Off weeks: baseline-form inquiries sent after launch.`],
     ['Call quality', CARD.quality,
-      `at most one basic: quiz weeks ${cq.quiz.fewBasics} of ${cq.quiz.n}, off weeks ${cq.off.fewBasics} of ${cq.off.n}, before launch ${cq.before.fewBasics} of ${cq.before.n}; format settled: quiz weeks ${cq.quiz.formatSettled} of ${cq.quiz.n}, off weeks ${cq.off.formatSettled} of ${cq.off.n}, before launch ${cq.before.formatSettled} of ${cq.before.n}`,
-      `From call_basic_questions and call_format_settled in inquiries.csv, recorded by the person who ran the call for every call from ${cq.recordFrom}. Before launch: calls recorded in the weeks before the switch. The person recording sees the quiz answers in the message.`],
+      `format settled: quiz weeks ${cq.quiz.formatSettled} of ${cq.quiz.n}, off weeks ${cq.off.formatSettled} of ${cq.off.n}, before launch ${cq.before.formatSettled} of ${cq.before.n}`,
+      `From call_format_settled in inquiries.csv. The person recording sees the quiz answers in the message.`],
     ['Counter metric', CARD.counter,
       `quiz weeks ${s.quiz.submitted} of ${s.quiz.started} (${pct(s.quiz.rate)}); off weeks ${s.off.submitted} of ${s.off.started} (${pct(s.off.rate)}); context before launch ${s.before.submitted} of ${s.before.started} (${pct(s.before.rate)})`,
       `inquiry_submitted divided by inquiry_started, per kind of week.`],

@@ -4,8 +4,6 @@
 export const WEEK_MS = 7 * 86400000;
 export const KILL_FACTOR = 0.75; // "more than a quarter below the baseline rate"
 export const KILL_CONSECUTIVE = 2;
-// Start rate in quiz weeks at least this many points above the weeks without the quiz, as set on the launch card.
-export const SUCCESS_LINE_POINTS = 0.05;
 // The test card reads the baseline as the same eight weeks before the switch (weeks -8 to -1).
 export const BASELINE_WEEKS = 8;
 
@@ -232,7 +230,6 @@ export function summarize(events, inquiries, scenario) {
     quiz,
     off,
     kill,
-    successLinePoints: SUCCESS_LINE_POINTS,
     callsQuality,
     sent: sentByQuiz(inquiries, variant),
     calls,
