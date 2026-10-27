@@ -43,8 +43,8 @@ both settle where they differ and draw the conclusion. The conclusion and the de
 ## Steps
 
 1. **The numbers, then the human's reading.** Read `site/config.json` and the test card. Run
-   `npm run summary` and show its output unchanged. Point to `http://localhost:3000/dashboard` for the
-   same numbers as charts. Then ask, in these words: "Read the card against these numbers. For each
+   `npm run summary` for your own reading, but do not show its output in the chat. Point the human
+   to `http://localhost:3000/dashboard` (it needs `npm start`), where the same numbers are. Then ask, in these words: "Read the card against these numbers. For each
    line: met, not met or unclear, and why in a few words. Then: would you keep the variant, change it,
    or take it back?" Wait.
 2. **Our reading beside theirs.** Read each card line against the summary yourself: met, not met or
