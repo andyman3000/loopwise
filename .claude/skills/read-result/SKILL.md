@@ -26,9 +26,12 @@ both settle where they differ and draw the conclusion. The conclusion and the de
   `data/events.jsonl` or `data/inquiries.csv` in your own way. If a line of the test card has no
   number in the summary, say "not on the dashboard" and give a `node -e` command over `data/` that
   counts it, as written on the card.
-- **Take the lines from the test card**, word for word, with their section: success line, usage
-  hypothesis, proxy metric, call quality, counter metric, kill criterion. Read each against what the
-  card says, including what it says about the usual swing.
+- **Read only the lines that have a threshold, at most seven rows, better five.** A row is a line
+  the card sets a threshold for, so it can be met or not: each part of the success line, the usage
+  hypothesis as one row, and the kill criterion with its counter metric as one row. Lines without a
+  threshold (a proxy metric, a number the card only reports) get no row. Name them in one line under
+  the table as "also on the dashboard, no line to meet". More than seven rows: merge the parts of
+  one line into one row. Read each row against what the card says, including the usual swing.
 - **Three readings per line, in words:** met, not met, unclear. Unclear when the card itself says the
   line shows a direction only, or when the difference is a few cases.
 - **Say what the numbers cannot show:** small numbers per week, bookings that cannot be tied to the
@@ -47,18 +50,17 @@ both settle where they differ and draw the conclusion. The conclusion and the de
    to `http://localhost:3000/dashboard` (it needs `npm start`), where the same numbers are, and to the
    shipped page, so they can see what the numbers are about: the start address the spec names
    (`discovery/specs/<variant>.md`, "Tester starts at"), as a full link on `http://localhost:3000`.
-   Then show what the card assumed, one row per card line, in plain words with its threshold and
+   Then show what the card assumed, one row per line with a threshold, in plain words with its threshold and
    its comparison. No line numbers, no section names alone, no numbers from after launch:
 
    | What we assumed | Where on the dashboard | Your reading |
    |---|---|---|
    | <the card line as a sentence, for example "More visits that see the formats page open the inquiry page in quiz weeks than in any four weeks before launch (highest 16.9%) and than in off weeks"> | <the dashboard section that shows it> | met, not met or unclear? Why? |
 
-   Take the rows from the success line (one row per part), the usage hypothesis, the proxy metric,
-   call quality, the counter metric and the kill criterion. Then ask, in these words: "Fill in the
+   Take the rows as the rule "Read only the lines that have a threshold" says. Then ask, in these words: "Fill in the
    last column from the dashboard: met, not met or unclear, and why in a few words. Then: would you
    keep the variant, change it, or take it back?" Wait.
-2. **Our reading beside theirs.** Read each card line against the summary yourself: met, not met or
+2. **Our reading beside theirs.** Read each row against the summary yourself: met, not met or
    unclear, with the summary line it rests on. Show a table with both readings side by side. Below it,
    list only the lines where the two readings differ, one sentence each on why yours differs.
 3. **Settle the differences together.** Ask: "Where we differ, which reading holds, and why?" Take
