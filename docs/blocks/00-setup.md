@@ -38,10 +38,18 @@ You work in pairs for both days, on one laptop and one branch per pair.
    > Open http://localhost:3000/inquiry with the browser tool and tell me the heading of the page.
 
    It should answer "Inquiry". Then stop the server with `Ctrl+C`.
-5. Open [01-kpi-tree.md](01-kpi-tree.md).
+
+## One Claude Code session per skill
+
+Start a fresh Claude Code session before each skill. Type `/clear`, or quit Claude Code and start it
+again inside the `loopwise` folder. Each skill reads what it needs from the files. In one long
+session, Claude carries old answers into the next skill, and its answers get worse. Each block file
+reminds you at the step where a skill starts, and names the command that comes next.
 
 **Done when:** tests are green, the inquiry page opens, `/kpi-tree` shows up in Claude Code, and
 Claude Code read the inquiry page with the browser tool.
 
 If Claude Code lists no skills, it was started outside the `loopwise` folder. If the browser tool
 does not work, carry on: the skill then reads the page's HTML and says so. Tell the trainer.
+
+**Next:** wait for the room. Block 1 starts together: [01-kpi-tree.md](01-kpi-tree.md).

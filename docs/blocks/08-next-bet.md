@@ -17,10 +17,10 @@ next one. Watch for two things:
 
 ## Run it yourself afterwards (about 30 min)
 
-You need a Result section. Either run `/read-result` on your `demo` branch first (block 7,
-"Afterwards"), or start from the reference result: `git switch -c demo-result 07-result`.
+You need a Result section. Either continue on your `result` branch from block 7
+(`git switch result`), or start from the reference result: `git switch -c demo-result 07-result`.
 
-1. In Claude Code: `/next-bet`. Answer its first question yourself: what would you work on next?
+1. Start a fresh Claude Code session (`/clear`). Then `/next-bet`. Answer its first question yourself: what would you work on next?
 2. Read the proposal. Which new evidence does it use? Did the questions on the shipped page shape it?
 3. Decide the next opportunity. Fill `Next opportunity`, `Who` and `Date` at the end of
    `discovery/opportunity-comparison.md`.
@@ -33,3 +33,6 @@ You need a Result section. Either run `/read-result` on your `demo` branch first
 **Done when:** the KPI tree carries measured values and the next opportunity is chosen.
 
 **For the Abgleich:** compare your tree from block 1 with the one now. What changed?
+
+**Next:** in the workshop, after the demo, the last block is feedback:
+[09-feedback.md](09-feedback.md).

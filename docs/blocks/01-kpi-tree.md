@@ -8,7 +8,7 @@ would move.
 
 1. Read `product/strategy.md`. It is one page. Note the business goal and the path the academy works
    on this quarter. Unclear words such as "sponsor" or "scoping call" are in `product/glossary.md`.
-2. In Claude Code: `/kpi-tree`. It first asks you which steps a sponsor goes through from the website
+2. Start a fresh Claude Code session (`/clear`). Then `/kpi-tree`. It first asks you which steps a sponsor goes through from the website
    to a booking. Answer before it drafts. It then writes `discovery/kpi-tree.md` and draws it as
    `discovery/kpi-tree.html`.
 3. Open `discovery/kpi-tree.html` in your browser to see the tree. Compare it with your steps. Which step did you name that the tree does not have, and why?
@@ -23,3 +23,5 @@ would move.
 **Done when:** `discovery/kpi-tree.md` exists and you can say in one sentence what each driver counts.
 
 **For the Abgleich:** which steps did you name that the tree left out?
+
+**Next:** wait for the room. After the Abgleich, block 2 starts: [02-opportunities.md](02-opportunities.md).

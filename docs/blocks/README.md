@@ -19,6 +19,8 @@ the block is for, what you do step by step, and when you are done.
 ## The same four moves in every block
 
 - **Run the skill.** In Claude Code, inside the `loopwise` folder, type `/` and the skill name.
+  Start a fresh session before each skill: type `/clear` first. The skill does not say what comes
+  next; your block file does.
 - **Try first.** Before it drafts anything, the skill asks you one question about the step. Answer it
   yourself, in a sentence or two. Afterwards the output shows your answer next to its draft, under
   "Your first try". That comparison is where you learn the most.

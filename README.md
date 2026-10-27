@@ -32,6 +32,10 @@ All skills are in `.claude/skills/` from the start; `CLAUDE.md` lists them in ch
 at `00-start` and run the chain yourself. Each further tag is a reference state after one workshop
 block. If you decided differently, keep your own state or continue from the reference state.
 
+**One Claude Code session per skill.** Start a fresh session before each skill: type `/clear`, or
+quit Claude Code and start it again. Each skill reads what it needs from the files. In a long session,
+Claude carries old answers into the next skill. The block files say which command comes next.
+
 | Tag | State after the block |
 |---|---|
 | `00-start` | website in its before state, server, product context, material, all skills |
