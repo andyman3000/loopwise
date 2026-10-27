@@ -19,7 +19,11 @@ explained in each artefact that uses them.
 
 - **Format:** one thing a team can book, from a half-day workshop to several weeks of team coaching.
 - **In-house:** for one team inside one company, not an open seminar with strangers.
-- **Booking:** the sponsor confirms a format. Loopwise earns money on bookings.
+- **Booking:** the sponsor confirms a format. This happens after the scoping call, once sponsor and
+  Loopwise have settled which format fits. An inquiry alone books nothing. Loopwise earns money on
+  bookings.
+- **Pilot:** a first, limited run of a format with one team. It shows whether the format works
+  before more teams book it.
 - **Follow-up booking:** a customer who has booked once books again: more days, more teams.
 
 ## The path to a booking
