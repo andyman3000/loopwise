@@ -17,13 +17,12 @@ allow.
    If `demo` already exists, use `git switch demo`.
 2. The trainer shows the reference launch card, `discovery/test-cards/format-quiz.md`. The quiz ran
    in every other week after launch, today's form in the weeks between.
-3. Look at the numbers: run `npm start`, open `http://localhost:3000/dashboard`, and in a second
-   terminal run `npm run summary`. Both show the same numbers, counted by the same code.
-4. Write down your own reading before the skill says anything. For each line of the card: met, not
-   met or unclear, and why in a few words. Then: would you keep the quiz, change it, or take it back?
-5. The trainer runs `/read-result`. It shows the numbers and asks for a reading first; the trainer
-   answers with the room's. Then the skill sets its own reading beside it, line by line, and names
-   where the two differ.
+3. Open the numbers: run `npm start` and open `http://localhost:3000/dashboard`.
+4. The trainer runs `/read-result`. Before it says what any number means, it shows a table: what the
+   card assumed, one row per line, and where on the dashboard to look. Fill in the last column
+   yourself: met, not met or unclear, and why in a few words. Then: would you keep the quiz, change
+   it, or take it back? The trainer answers with the room's reading.
+5. The skill sets its own reading beside the room's, row by row, and names where the two differ.
 6. Settle the differences together: which reading holds, and why? Then the conclusion: keep, change
    or take back. The skill writes it in the trainer's words into the "Result" section of the card.
 
