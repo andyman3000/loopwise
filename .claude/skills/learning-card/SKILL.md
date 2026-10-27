@@ -33,6 +33,10 @@ The pair decides. This skill asks, quotes and writes; it decides nothing.
 - **No sign judged.** If every sign of the round is "cannot tell" or "unclear", say so in one line: "No sign could be judged in this round, so it cannot show whether the assumption holds." The pair still names one of the three outcomes; a person test is the usual next step.
 - **Hold observations against the signs, not against hopes.** For each sign on the prototype card, ask whether the watcher saw it. The pair answers; you do not.
 - **A seen rework sign is named.** If the pair says the assumption held while a sign that points to rework or drop was seen, quote that sign and ask once: "This sign was seen. Does it change your answer?" Write what they say. The same if the pair calls the result unclear and still moves on: quote the go-on line and ask once, "The go-on line asked for this. Did you see it?"
+- **Feedback on the pair's own answers.** These answers get feedback: what the tester did or said (step 2), why the assumption held or broke (step 4), and the sentence "From that we learned that ..." (step 5). Tell the pair in two or three short lines how strong the answer was: what was good, what was weak, and why. Name their words. Be honest and specific, never flattering. Say it in the chat; the card holds only the pair's words. The gut feeling, a skipped answer and the choice of outcome get no feedback.
+  - What the tester did or said: are these things a watcher saw or heard? Or guesses about what the tester felt?
+  - Held or broke: does the reason rest on the signs and the two lines? Or on how the pair hoped the test would go?
+  - We learned: is it something new about the sponsor or the assumption? Or does it repeat an observation, or name a solution?
 - **Decides nothing.** The pair names one of three outcomes and why: move on (with what changes before roll-out), another round (changed spec or the next idea from the intent), or kill. If they do not name one, the field stays `____ (human decides)`. Never suggest which one.
 - **Every claim quotes its source with location** (file and line). A citation into `discovery/` carries a short quote, so `npm run check` catches a line that moved; never a section name alone. No invented numbers: one tester is a pattern, not a rate.
 - **The label of a round.** Each round starts with one label line. If that round has its own cross-test file (`<variant>-cross.md` for round 1, `<variant>-cross-2.md` for round 2): "Tested with one person from another pair: a pattern, not a rate." Otherwise: "Pressure-tested, not validated: rests on persona runs, not on people."
@@ -43,13 +47,13 @@ The pair decides. This skill asks, quotes and writes; it decides nothing.
 
 0. **Try first.** Ask: "How did the test go, in a few words?" Wait.
 1. Read the prototype card and the user-test files. If the prototype card is missing, stop and say so. If neither `<variant>-cross.md` nor `<variant>-page.md` exists, ask which test happened.
-2. Ask: "What did the tester do or say? List it freely." Reflect it back as a short list. Ask: "Anything else, or shall we work with these?"
+2. Ask: "What did the tester do or say? List it freely." Reflect it back as a short list. Give the feedback on it (see Rules). Ask: "Anything else, or shall we work with these?"
 3. Quote the sign marks from `<variant>-cross.md` in one message and ask: "Do these marks stand?" Ask per sign only where a mark is missing. Without a cross test, quote the persona run's sign table instead.
-4. Quote the assumption and the two lines. Ask: "Against these lines, did the assumption hold, break, or is it unclear? Why?" If unclear: "What would you need to see to be sure?"
-5. Ask: "Finish the sentence: From that we learned that ..."
+4. Quote the assumption and the two lines. Ask: "Against these lines, did the assumption hold, break, or is it unclear? Why?" If unclear: "What would you need to see to be sure?" Give the feedback on the reason (see Rules).
+5. Ask: "Finish the sentence: From that we learned that ..." Give the feedback on the sentence (see Rules).
 6. Ask: "Which outcome: move on, another round, or kill? And why?" If move on: "What changes before roll-out?" If another round: "Changed spec, or the next idea from the intent?" Name the two other ideas from the intent, quoted.
 7. Ask who decided and the date.
-8. Show the card. Ask what is wrong. Correct it, then write the file. Tell the human the next step: move on, `/test-card <variant> launch`; another round, rebuild, then `/persona-walkthrough <variant> page` and this skill again; kill, the next idea starts with `/test-card <next-variant> prototype`.
+8. Show the card. Ask what is wrong. Correct it, then write the file. Then stop.
 
 ## Output template
 
