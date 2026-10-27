@@ -85,6 +85,24 @@ test('the quiz appears only after launch, on the shipped variant, and every inqu
   for (const e of sent) assert.equal(typeof e.props.quiz, e.variant === scenario.shippedVariant ? 'boolean' : 'undefined', e.session);
 });
 
+test('the quiz brings visits to the inquiry page that would have left: each sees the formats page, then the quiz, then the inquiry page', () => {
+  const events = fs.readFileSync(path.join(ROOT, 'data', 'events.jsonl'), 'utf8').trim().split('\n').map((l) => JSON.parse(l));
+  const bySession = {};
+  for (const e of events) (bySession[e.session] ??= []).push(e);
+  // Browsing sessions are numbered from browse.firstSessionNo; before the quiz none of them opened the inquiry page.
+  const first = scenario.browse.firstSessionNo;
+  const brought = Object.entries(bySession).filter(([s, es]) => Number(s.slice(2)) >= first && es.some((e) => e.type === 'page_view' && e.props.page === 'inquiry'));
+  assert.ok(brought.length > 0, 'no visit was brought by the quiz');
+  for (const [s, es] of brought) {
+    const types = es.map((e) => (e.type === 'page_view' ? e.props.page : e.type));
+    const fi = types.lastIndexOf('formats');
+    const ii = types.indexOf('inquiry');
+    assert.ok(fi >= 0 && fi < ii, s);
+    assert.deepEqual([...new Set(types.slice(fi + 1, ii))], ['inquiry_step_completed'], s);
+    assert.equal(es[ii].variant, scenario.shippedVariant, s);
+  }
+});
+
 test('a call is recorded only when it took place, and only from the record start on', () => {
   const lines = fs.readFileSync(path.join(ROOT, 'data', 'inquiries.csv'), 'utf8').trim().split('\n');
   const head = lines[0].split(',');

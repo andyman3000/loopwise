@@ -28,7 +28,7 @@ illustration of how a funnel is counted, never as evidence about real sponsors.
 A `session` is one visit. A visit can see several pages, one `page_view` each. A visit that opens
 the inquiry page first sees one to three of the home, formats and sponsor preparation pages.
 It opens the inquiry page once, as its last page view. Its form events happen there.
-Other visits see one to three of these pages and never reach the inquiry page.
+Other visits see one to three of these pages and do not open the inquiry page, except through the quiz (below).
 
 In a quiz week, a visit can take the quiz on the formats page. Each quiz question passed logs an
 `inquiry_step_completed` with `step` 1 to 4, `answered` and `unsure`. A visit that takes the quiz

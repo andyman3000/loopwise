@@ -30,7 +30,7 @@ function csvCell(v) {
 
 export function buildData(scenario) {
   const rnd = mulberry32(scenario.seed);
-  const pick = (arr) => arr[Math.floor(rnd() * arr.length)];
+  const pick = (arr, r = rnd) => arr[Math.floor(r() * arr.length)];
   const weighted = (obj, r = rnd) => {
     const u = r();
     let acc = 0;
@@ -139,10 +139,9 @@ export function buildData(scenario) {
   const formatsGiven = (inquires) => inquires
     ? (br.formatsShare * rWith) / br.reachRate
     : (br.formatsShare * (1 - rWith)) / (1 - br.reachRate);
-  // A visit that took the quiz saw the formats page last, right before the inquiry page.
-  const path = (inquires, quizLast = false) => {
+  const path = (inquires) => {
     const k = Number(weighted(br.pagesSeen, brnd));
-    const withFormats = quizLast || brnd() < formatsGiven(inquires);
+    const withFormats = brnd() < formatsGiven(inquires);
     for (;;) {
       const pages = [];
       for (let i = 0; i < k; i++) {
@@ -150,34 +149,95 @@ export function buildData(scenario) {
         do p = weighted(br.pages, brnd); while (p === pages[i - 1]);
         pages.push(p);
       }
-      if (quizLast && pages[pages.length - 1] !== 'formats') continue;
       if (pages.includes('formats') === withFormats) return pages;
     }
   };
   const gap = () => delay(br.minutesBetween[0] * 60, br.minutesBetween[1] * 60, brnd);
 
+  // From the inquiry page view on: start, send, scoping call, booking, follow-up.
+  // d draws whether the form is started and sent, r draws everything else.
+  const inquire = (s, t, variant, after, quizOn, type, quiz, d, r) => {
+    const st = quizOn ? scenario.steps.after : scenario.steps.before;
+    const startP = quizOn ? (quiz ? st.startGivenQuiz : st.startGivenNoQuiz) : st.startGivenView;
+    if (d() >= startP) return;
+    if (type === null) type = weighted(scenario.sponsorMix, r);
+    t += delay(5, 40, r);
+    emit(t, 'inquiry_started', variant, s, {});
+    if (d() >= st.submitGivenStart) return;
+
+    t += delay(60, 300, r);
+    const props = quizOn ? { quiz: Boolean(quiz) } : {};
+    emit(t, 'inquiry_submitted', variant, s, props);
+    const id = 'inq-' + String(++inquiryNo).padStart(4, '0');
+    const teamSize = pick(scenario.teamSizes, r);
+
+    let called = false;
+    let booked = false;
+    let callMs = null;
+    let bookMs = null;
+    let callRec = null;
+    const rate = (after ? scenario.scopingCallRate.after : scenario.scopingCallRate.before)[type];
+    if (r() < rate) {
+      const ct = t + delay(86400 + 3600, 3 * 86400 + 6 * 3600, r);
+      called = emit(ct, 'scoping_call_booked', variant, s, {});
+      if (called) callMs = ct;
+      if (called && cr && ct >= recordFrom) callRec = callRecord(type, quiz);
+      if (called && r() < scenario.bookingGivenCall[type]) {
+        const bt = ct + delay(5 * 86400, 20 * 86400, r);
+        booked = emit(bt, 'booking_confirmed', variant, s, {});
+        if (booked) bookMs = bt;
+        if (booked && r() < scenario.followup.answerRate) {
+          const ft = bt + scenario.followup.delayDaysAfterBooking * DAY + delay(0, 3 * 86400, r);
+          emit(ft, 'followup_answered', variant, s, { answer: weighted(scenario.followup.answers, r), weeks_after: 4 });
+        }
+      }
+    }
+    inquiries.push({
+      ms: t, id, variant, type, teamSize,
+      quiz: quizOn ? Boolean(quiz) : '',
+      quizAnswered: quiz ? quiz.filter((a) => a.answered).length : '',
+      quizUnsure: quiz ? quiz.filter((a) => a.unsure).length : '',
+      texts: quiz ? quizTexts(quiz, type) : { roles: '', stand: '', before: '' },
+      called, booked, callMs, bookMs, callRec,
+    });
+  };
+
   // In quiz weeks the shipped variant serves the formats page; home and sponsor preparation stay baseline.
+  // The browsing paths and their gaps are drawn the same with or without the quiz, so the quiz is the
+  // only thing that differs between a quiz week and an off week.
   const pageVariant = (p, quizOn) => (quizOn && p === 'formats' ? scenario.shippedVariant : scenario.baselineVariant);
   const browseWeek = (weekStart, inquiryVisits, quizOn) => {
     for (const v of inquiryVisits) {
-      const pages = path(true, Boolean(v.quiz));
+      // A visit that took the quiz goes from the formats page through the quiz to the inquiry page.
+      const pages = v.quiz ? v.pages.slice(0, v.pages.lastIndexOf('formats') + 1) : v.pages;
       let t = v.t;
-      const times = pages.map((p, i) => (t -= gap() + (i === 0 && v.quiz ? (QUIZ_STEPS + 1) * 30000 : 0))).reverse();
+      const times = pages.map((p, i) => (t -= v.gaps[i] + (i === 0 && v.quiz ? (QUIZ_STEPS + 1) * 30000 : 0))).reverse();
       pages.forEach((p, i) => emit(times[i], 'page_view', pageVariant(p, quizOn), v.s, { page: p }));
     }
     const others = Math.round((inquiryVisits.length * (1 - br.reachRate)) / br.reachRate * (1 + br.weeklyJitter * (2 * brnd() - 1)));
     for (let i = 0; i < others; i++) {
       const s = 's-' + String(++browseSessionNo).padStart(6, '0');
       let t = randomTime(weekStart, brnd);
+      let gone = false;
       path(false).forEach((p, j) => {
         if (j > 0) t += gap();
+        if (gone) return;
         emit(t, 'page_view', pageVariant(p, quizOn), s, { page: p });
-        // Some visits start the quiz on the formats page and leave it before the inquiry page.
-        if (quizOn && qz && p === 'formats' && qrnd() < qz.dropGivenFormatsVisit) {
-          const stop = Number(weighted(qz.dropAtStep, qrnd));
+        // A visit that would have left takes the quiz on the formats page. Some finish it and go on to
+        // the inquiry page, the others leave during the quiz.
+        if (quizOn && qz && p === 'formats' && qrnd() < qz.takeGivenFormats.leaving) {
+          gone = true;
           const type = weighted(scenario.sponsorMix, qrnd);
-          emitQuiz(t + (stop + 1) * 30000, pageVariant(p, quizOn), s, quizAnswers(type).slice(0, stop));
-          t += (stop + 1) * 30000;
+          const quiz = quizAnswers(type);
+          if (qrnd() < qz.finishGivenLeaving) {
+            const ti = t + (QUIZ_STEPS + 1) * 30000;
+            emitQuiz(ti, scenario.shippedVariant, s, quiz);
+            emit(ti, 'page_view', scenario.shippedVariant, s, { page: 'inquiry' });
+            inquire(s, ti, scenario.shippedVariant, true, true, type, quiz, qrnd, qrnd);
+          } else {
+            const stop = Number(weighted(qz.dropAtStep, qrnd));
+            emitQuiz(t + (stop + 1) * 30000, scenario.shippedVariant, s, quiz.slice(0, stop));
+          }
         }
       });
     }
@@ -205,67 +265,27 @@ export function buildData(scenario) {
     }
 
     const views = jitter(scenario.traffic.inquiryPageViewsPerWeek);
-    const st = quizOn ? scenario.steps.after : scenario.steps.before;
     const inquiryVisits = [];
     for (let i = 0; i < views; i++) {
       const s = 's-' + String(++sessionNo).padStart(6, '0');
-      let t = randomTime(weekStart);
+      const t = randomTime(weekStart);
+      // The pages before the inquiry page, drawn here so the quiz can depend on them.
+      const pages = br ? path(true) : null;
+      const gaps = pages ? pages.map(() => gap()) : null;
       let type = null;
       let quiz = null;
       if (after) {
         type = weighted(scenario.sponsorMix, qrnd);
-        if (quizOn && qrnd() < st.quizGivenView) {
+        // A visit that was going to the inquiry page anyway may take the quiz on the way, if it sees the formats page.
+        if (quizOn && (!pages || pages.includes('formats')) && qrnd() < qz.takeGivenFormats.inquiring) {
           quiz = quizAnswers(type);
           emitQuiz(t, variant, s, quiz);
         }
       }
       emit(t, 'page_view', variant, s, { page: 'inquiry' });
-      inquiryVisits.push({ s, t, quiz });
-      if (after) {
-        if (qrnd() >= (quizOn ? (quiz ? st.startGivenQuiz : st.startGivenNoQuiz) : st.startGivenView)) continue;
-      } else if (rnd() >= st.startGivenView) continue;
-      if (!after) type = weighted(scenario.sponsorMix);
-      t += delay(5, 40);
-      emit(t, 'inquiry_started', variant, s, {});
-      if (after) {
-        if (qrnd() >= st.submitGivenStart) continue;
-      } else if (rnd() >= st.submitGivenStart) continue;
-
-      t += delay(60, 300);
-      const props = quizOn ? { quiz: Boolean(quiz) } : {};
-      emit(t, 'inquiry_submitted', variant, s, props);
-      const id = 'inq-' + String(++inquiryNo).padStart(4, '0');
-      const teamSize = pick(scenario.teamSizes);
-
-      let called = false;
-      let booked = false;
-      let callMs = null;
-      let bookMs = null;
-      let callRec = null;
-      const rate = (after ? scenario.scopingCallRate.after : scenario.scopingCallRate.before)[type];
-      if (rnd() < rate) {
-        const ct = t + delay(86400 + 3600, 3 * 86400 + 6 * 3600);
-        called = emit(ct, 'scoping_call_booked', variant, s, {});
-        if (called) callMs = ct;
-        if (called && cr && ct >= recordFrom) callRec = callRecord(type, quiz);
-        if (called && rnd() < scenario.bookingGivenCall[type]) {
-          const bt = ct + delay(5 * 86400, 20 * 86400);
-          booked = emit(bt, 'booking_confirmed', variant, s, {});
-          if (booked) bookMs = bt;
-          if (booked && rnd() < scenario.followup.answerRate) {
-            const ft = bt + scenario.followup.delayDaysAfterBooking * DAY + delay(0, 3 * 86400);
-            emit(ft, 'followup_answered', variant, s, { answer: weighted(scenario.followup.answers), weeks_after: 4 });
-          }
-        }
-      }
-      inquiries.push({
-        ms: t, id, variant, type, teamSize,
-        quiz: quizOn ? Boolean(quiz) : '',
-        quizAnswered: quiz ? quiz.filter((a) => a.answered).length : '',
-        quizUnsure: quiz ? quiz.filter((a) => a.unsure).length : '',
-        texts: quiz ? quizTexts(quiz, type) : { roles: '', stand: '', before: '' },
-        called, booked, callMs, bookMs, callRec,
-      });
+      inquiryVisits.push({ s, t, quiz, pages, gaps });
+      if (after) inquire(s, t, variant, true, quizOn, type, quiz, qrnd, rnd);
+      else inquire(s, t, variant, false, false, null, null, rnd, rnd);
     }
     if (br) browseWeek(weekStart, inquiryVisits, quizOn);
   }

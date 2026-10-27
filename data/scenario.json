@@ -19,9 +19,8 @@
       "submitGivenStart": 0.54
     },
     "after": {
-      "quizGivenView": 0.4,
       "startGivenQuiz": 0.5,
-      "startGivenNoQuiz": 0.28,
+      "startGivenNoQuiz": 0.3,
       "submitGivenStart": 0.5
     }
   },
@@ -86,8 +85,8 @@
     ]
   },
   "quiz": {
-    "note": "After launch only, own seed, so the weeks before launch stay the baseline. unsure is the chance of 'I don't know yet' per question, by sponsor type. dropGivenFormatsVisit: visits that start the quiz on the formats page and leave before the inquiry page.",
-    "seed": 246,
+    "note": "After launch only, own seed, so the weeks before launch stay the baseline. unsure is the chance of 'I don't know yet' per question, by sponsor type. takeGivenFormats: chance that a visit on the formats page takes the quiz, for visits that were going to the inquiry page anyway and for visits that would have left. finishGivenLeaving: of the visits that would have left and took the quiz, the share that finishes it and opens the inquiry page; the others leave during the quiz, at dropAtStep.",
+    "seed": 374,
     "unsure": {
       "soft": [
         0.25,
@@ -103,13 +102,17 @@
       ]
     },
     "emptyGivenNotUnsure": 0.05,
-    "dropGivenFormatsVisit": 0.05,
+    "takeGivenFormats": {
+      "inquiring": 0.4,
+      "leaving": 0.15
+    },
+    "finishGivenLeaving": 0.6,
     "dropAtStep": {
       "1": 0.5,
       "2": 0.3,
       "3": 0.2
     },
-    "answerSeed": 6,
+    "answerSeed": 119,
     "twoAnswers": 0.35,
     "alone": [
       "Nothing yet, this is the first training"
