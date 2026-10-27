@@ -31,9 +31,10 @@ at a time and waits for you each time. You go first.
    here.
 5. **Prototype test card (15 min).** Start a fresh session (`/clear`). Then
    `/test-card <variant> prototype`, with the variant name from step 4. It writes
-   `discovery/test-cards/<variant>-prototype.md` in three sentences. We believe that <the
-   assumption>. To test that, we will <show a tester the page with a scenario and watch for signs>.
-   We are right if <go-on line>. A fourth line says when you rework or drop the idea.
+   `discovery/test-cards/<variant>-prototype.md` in the four lines of a test card. We believe
+   that <the assumption>. To verify that, we will <show a tester the page with a scenario>. And
+   measure <the signs the watcher looks for>. We are right if <go-on line>. One more line says when
+   you rework or drop the idea.
 6. **Own the card (10 min).** Read it as the tester will: does the scenario give away the
    assumption? Can you see each sign, or would you have to guess? Fill `Card owner`. Turn the two
    lines into your own words.
