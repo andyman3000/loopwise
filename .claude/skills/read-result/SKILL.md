@@ -38,6 +38,7 @@ both settle where they differ and draw the conclusion. The conclusion and the de
   website change, anything the card lists under "What we cannot see".
 - **`data/scenario.json` is off limits for outcomes.** Read it only to see whether the data is
   synthetic. Never read or quote expected results, rates or story beats from it.
+- **Feedback on the human's reading.** After step 2, tell the human in two or three short lines how strong their reading was: what was good, what was weak, and why. Judge it against how a result is read. Did they hold each row against its threshold and the usual swing on the card? Or against what they hoped? Did they call a few cases a result? Did they say what the numbers cannot show? Name their words. Be honest and specific, never flattering. A skipped reading gets no feedback. Never judge their keep, change or take back. Write the same lines under "Feedback on your reading" in the Result section.
 - **The decision is the human's.** Write the conclusion and the decision in the human's words, with
   the name and date they give. If they name none, the decision field stays `____ (human decides)`.
   Never suggest which of keep, change or take back to choose.
@@ -62,14 +63,13 @@ both settle where they differ and draw the conclusion. The conclusion and the de
    keep the variant, change it, or take it back?" Wait.
 2. **Our reading beside theirs.** Read each row against the summary yourself: met, not met or
    unclear, with the summary line it rests on. Show a table with both readings side by side. Below it,
-   list only the lines where the two readings differ, one sentence each on why yours differs.
+   list only the lines where the two readings differ, one sentence each on why yours differs. Then give the feedback on their reading (see Rules).
 3. **Settle the differences together.** Ask: "Where we differ, which reading holds, and why?" Take
    their answer for each line. If they keep their reading, write theirs as the agreed one and note
    yours in one line.
 4. **The conclusion.** Ask: "So: keep, change or take back, and why? Who decides, and on what date?"
    Write it in their words.
-5. **Write the Result section** with the template below. Then tell the human in one line that the next
-   step is `/next-bet`.
+5. **Write the Result section** with the template below. Then stop.
 
 ## Output template (the `## Result` section)
 
@@ -84,6 +84,8 @@ both settle where they differ and draw the conclusion. The conclusion and the de
 
 ### Your reading (before ours)
 <the human's answer to step 1, word for word>
+
+Feedback on your reading: <two or three short lines: what was strong, what was weak, and why>
 
 ### Line by line
 | What we assumed (from the card) | Your reading | Our reading | Agreed reading | Rests on (summary line) |
