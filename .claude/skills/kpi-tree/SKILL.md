@@ -22,6 +22,7 @@ Each link is a plain relationship: a product or a sum. This skill draws that tre
 - **Every branch the strategy names** goes into the tree. A branch the strategy parks keeps its name and the words "not this quarter", and gets no drivers.
 - **Quote the strategy** for the goal and each branch, with file and line. No quote, no branch.
 - **Try first, then compare.** Before you draft, ask the human: "Which steps does a sponsor go through from the website to a booking?" Wait for the answer and never invent it. Afterwards, fill "Your first try": their answer word for word, then at most two lines on where the tree differs. If they say skip, write "skipped". Do not shorten this step.
+- **Feedback on the first try.** After drawing, tell the human in two or three short lines how strong their answer was: what was good, what was weak, and why. Judge it against what a KPI tree needs. Are the steps things a sponsor does, or pages and features? Are they in the order a sponsor meets them? Can each step be counted? Does the path reach the booking? Name their words. Be honest and specific, never flattering. A skipped answer gets no feedback. Say it in the chat only: the drawing reads "Your first try", so the file keeps its template shape.
 - Keep the file short. If it does not fit on one screen, cut.
 
 ## Steps
@@ -33,7 +34,7 @@ Each link is a plain relationship: a product or a sum. This skill draws that tre
 4. For each driver, find the events in `data/events.jsonl` or the columns in `data/inquiries.csv` that measure it, and write the division (for example `inquiry_started` ÷ inquiry page visits). If none exists, write "no event yet".
 5. Write the branch formula: the goal of the branch as the product (or sum) of its drivers.
 6. Check: a newcomer can read each driver sentence and say what is counted and divided by what; no number from `data/` in the file, every driver has a measure or "no event yet", the parked branch has no drivers, the file fits on one screen.
-7. Draw it: run `npm run tree`. It writes `discovery/kpi-tree.html` from the Markdown. Never write or edit the HTML by hand; if the drawing is wrong, fix the Markdown and draw again. Tell the human to open the file in the browser.
+7. Draw it: run `npm run tree`. It writes `discovery/kpi-tree.html` from the Markdown. Never write or edit the HTML by hand; if the drawing is wrong, fix the Markdown and draw again. Tell the human to open the file in the browser. Give the feedback on the first try (see Rules).
 
 ## Output template (`discovery/kpi-tree.md`)
 
