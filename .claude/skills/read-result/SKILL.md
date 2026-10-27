@@ -44,7 +44,9 @@ both settle where they differ and draw the conclusion. The conclusion and the de
 
 1. **The numbers, then the human's reading.** Read `site/config.json` and the test card. Run
    `npm run summary` for your own reading, but do not show its output in the chat. Point the human
-   to `http://localhost:3000/dashboard` (it needs `npm start`), where the same numbers are.
+   to `http://localhost:3000/dashboard` (it needs `npm start`), where the same numbers are, and to the
+   shipped page, so they can see what the numbers are about: the start address the spec names
+   (`discovery/specs/<variant>.md`, "Tester starts at"), as a full link on `http://localhost:3000`.
    Then show what the card assumed, one row per card line, in plain words with its threshold and
    its comparison. No line numbers, no section names alone, no numbers from after launch:
 
