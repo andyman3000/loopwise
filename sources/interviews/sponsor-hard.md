@@ -1,6 +1,6 @@
 # Sponsor interview: hard sponsor
 
-- **Basis:** real conversations, anonymised composite
+- **Basis:** real conversations, anonymised composite; the follow-up conversation from line 59 on is synthetic
 - **Format:** one-on-one interview, excerpt
 - **Date:** Late summer
 - **Interviewee:** S, head of product, software company
@@ -53,3 +53,46 @@ Compliance-wise, we're standardising on one approved tool. Whatever gets built i
 **I:** And after the two days?
 
 **S:** Show me it works. Then we talk about more teams.
+
+---
+
+## Follow-up conversation
+
+- **Basis:** synthetic, written for the demo to fill gaps in the interview above; same interviewee, same voice, not taken from real conversations
+- **Format:** one-on-one interview, second conversation, excerpt
+
+**I:** A few follow-up questions. How big is the product organisation?
+
+**S:** About forty people. Six product teams, each with a product owner, most with a product manager, and a UX group of three that works across the teams. The two days I got approved are for one group of around fourteen, mixed from several teams.
+
+**I:** And the company?
+
+**S:** Software, mid-sized, a few hundred people. We sell to business customers. Engineering is about three times the size of product.
+
+**I:** Where do you stand with AI tools?
+
+**S:** Developers have had a coding assistant for a year, and they use it daily. Everyone else has the chat assistant. That's the one approved tool I mentioned. Product mostly uses it for texts and summaries.
+
+**I:** What started the search?
+
+**S:** The yearly planning. The CEO asked every department head for their AI plan. Engineering showed numbers from their delivery. I had a slide that said "licences rolled out". That was the moment. I got the two days approved in the same meeting, on condition that I report back after the quarter.
+
+**I:** How did you look for a provider?
+
+**S:** I asked around in my network first and got three names. Then I went through the websites in one evening. On each site I look for the same two things. Who have they done it with, and what changed afterwards?
+
+**I:** What did you find on ours?
+
+**S:** Your formats page lists five options with durations and audiences. Fine. But none of them tells me what is different four weeks later. I couldn't compare them on the thing I care about. Half day, two days, coaching: I can't tell which one gets me a result I can show. I left the page open in a tab and moved on to the next provider.
+
+**I:** Did you write to anyone?
+
+**S:** To the ones who had a reference I could check. A general form that asks "What do you need?", I don't fill in before I know the other side is serious. I'd rather send three precise questions by mail and see how they answer.
+
+**I:** What would make you book the scoping call?
+
+**S:** A comparable company I can call. And a sense that you'll help me define what we measure, because I can't do that alone. I said that last time.
+
+**I:** And your timeline?
+
+**S:** The two days have to happen this quarter. The report back is due at the next planning round. If I don't have a provider in a few weeks, it gets tight.

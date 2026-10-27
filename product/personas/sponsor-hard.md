@@ -71,7 +71,33 @@ Not a participant. Not hostile: approved a first step and wants it to work (`int
 - Whether access problems delay or prevent a booking. Not in the material.
 - Budget size. Not in the material, and we keep prices out of it.
 
+## Team, company and situation
+
+From the synthetic follow-up conversation (`interviews/sponsor-hard.md:61`).
+
+| Field | Value | Trace |
+|---|---|---|
+| Team | about forty in product: six product teams with product owners and product managers, three UX across teams | `interviews/sponsor-hard.md:66` |
+| Group booked first | around fourteen people, mixed from several teams | `interviews/sponsor-hard.md:66` |
+| Company | mid-sized software company, a few hundred people, sells to business customers | `interviews/sponsor-hard.md:70` |
+| AI tools | developers use a coding assistant daily; product uses the one approved chat assistant for texts and summaries | `interviews/sponsor-hard.md:74` |
+| Trigger | the CEO asked each department for an AI plan; product had only "licences rolled out" | `interviews/sponsor-hard.md:78` |
+| Timing | the two days happen this quarter; report back at the next planning round | `interviews/sponsor-hard.md:78`, `interviews/sponsor-hard.md:98` |
+
+## Needs before the scoping call
+
+- A comparable company to call (`interviews/sponsor-hard.md:94`).
+- Help defining what to measure, because "I can't do that alone" (`interviews/sponsor-hard.md:94`).
+- A provider within a few weeks, or the quarter gets tight (`interviews/sponsor-hard.md:98`).
+
+## On the website
+
+- Compares providers in one evening. Looks for who they worked with and what changed afterwards (`interviews/sponsor-hard.md:82`).
+- On the formats page, sees durations and audiences but nothing on what is different four weeks later. Cannot compare the formats on that (`interviews/sponsor-hard.md:86`).
+- Leaves the page open in a tab and moves on to the next provider (`interviews/sponsor-hard.md:86`).
+- Does not fill in a general "What do you need?" form before trusting the provider. Writes three precise questions by mail instead (`interviews/sponsor-hard.md:90`, `emails/inquiry-02.md:12`).
+
 ---
 
-**Last updated:** 2026-10-21
-**Status:** draft from one composite interview plus two synthetic inquiries
+**Last updated:** 2026-10-27
+**Status:** draft from one composite interview with a synthetic follow-up, plus two synthetic inquiries

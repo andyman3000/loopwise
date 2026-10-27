@@ -69,7 +69,32 @@ Not the budget holder (`interviews/sponsor-soft.md:71`). Not blocked by tool acc
 - Whether the team leads share the soft criteria or want hard ones. Not in the material.
 - Budget size and who pays. Not in the material.
 
+## Team, company and situation
+
+From the synthetic follow-up conversation (`interviews/sponsor-soft.md:77`).
+
+| Field | Value | Trace |
+|---|---|---|
+| Team | around thirty people in product and project roles, in five teams, each with its own lead | `interviews/sponsor-soft.md:82` |
+| Company | several thousand people, a services business; product work is internal platforms and a customer portal | `interviews/sponsor-soft.md:86` |
+| AI tools | chat assistant for everyone, coding assistant for developers, an internal AI community | `interviews/sponsor-soft.md:90` |
+| Trigger | the yearly feedback round: "we have the tools and don't know what to do with them" | `interviews/sponsor-soft.md:94` |
+| Timing | no hard date; wants a direction for a monthly team lead meeting, "not a contract" | `interviews/sponsor-soft.md:98` |
+
+## Needs from a first contact
+
+- Someone who asks the questions; she can describe people, not name a format (`interviews/sponsor-soft.md:114`).
+- One page to show the team leads afterwards (`interviews/sponsor-soft.md:114`).
+- Put off by a sales pitch, a budget question early on, or anything like the course they already had (`interviews/sponsor-soft.md:118`).
+
+## On the website
+
+- Goes to the formats first, expecting to find out what she needs there (`interviews/sponsor-soft.md:102`).
+- Sees five formats, finds each reasonable, cannot tell which one is her group. Closes the tab to think about it (`interviews/sponsor-soft.md:106`).
+- Comes back a week later, opens the inquiry form, stalls at "What do you need?" and closes it again (`interviews/sponsor-soft.md:110`).
+- Does not want to write "I don't know" to strangers (`interviews/sponsor-soft.md:110`).
+
 ---
 
-**Last updated:** 2026-10-21
-**Status:** draft from one composite interview plus three synthetic inquiries
+**Last updated:** 2026-10-27
+**Status:** draft from one composite interview with a synthetic follow-up, plus three synthetic inquiries

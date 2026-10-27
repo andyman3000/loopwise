@@ -1,6 +1,6 @@
 # Sponsor interview: soft sponsor
 
-- **Basis:** real conversations, anonymised composite
+- **Basis:** real conversations, anonymised composite; the follow-up conversation from line 75 on is synthetic
 - **Format:** one-on-one interview, excerpt
 - **Date:** Autumn
 - **Interviewee:** S (she/her), supports the move to AI for the product and project roles in a large organisation, together with the team leads; no line responsibility for anyone in the group
@@ -69,3 +69,50 @@ Those are very soft points, I know. It's not a hard return on investment. They c
 **I:** Who decides whether a pilot happens?
 
 **S:** The team leads carry the business responsibility for the area. I don't manage anyone. So for that, we need the others.
+
+---
+
+## Follow-up conversation
+
+- **Basis:** synthetic, written for the demo to fill gaps in the interview above; same interviewee, same voice, not taken from real conversations
+- **Format:** one-on-one interview, second conversation, excerpt
+
+**I:** Let me pick up a few things we skipped last time. How many people are we talking about?
+
+**S:** In the product and project roles, around thirty. They sit in five teams. Each team has its own lead, so that's five team leads I'd need on board.
+
+**I:** And the company around them?
+
+**S:** Large. Several thousand people, a services business with a lot of internal IT. Product work here is mostly internal platforms and the customer portal.
+
+**I:** Where does the company stand with AI tools?
+
+**S:** A chat assistant is rolled out for everyone, inside the office software and as a separate app. Developers have a coding assistant on top. There's an internal AI community with a monthly call. The tools are there. What's missing is what I told you last time.
+
+**I:** Why now? What made you start looking for someone?
+
+**S:** The yearly feedback round. The product and project people wrote, more or less in the same words, we have the tools and don't know what to do with them. One team lead forwarded it to me and asked, can you find something? I said yes before I knew what that something was.
+
+**I:** Is there a date attached?
+
+**S:** Not a hard one. The team leads meet once a month. I'd like to bring something to one of those meetings. A direction, not a contract.
+
+**I:** How did you search?
+
+**S:** A colleague sent me a few links, yours among them. I went to your formats first, because I thought that's where I'd find out what I need.
+
+**I:** And?
+
+**S:** Five formats. A half day, two days, a lab, coaching over several weeks, shadowing. Each one sounded reasonable. I sat there and thought, which of these is us? I couldn't tell. The page says the call shapes the real format. But I felt I should know roughly what I want before I call anyone. So I closed the tab and told myself I'd think about it.
+
+**I:** Did you come back?
+
+**S:** A week later, from the start page. I opened the inquiry form and got stuck on "What do you need?" That's exactly the question I can't answer. I didn't want to write "I don't know" to people I've never spoken to. I closed it again.
+
+**I:** What would you need from a first contact?
+
+**S:** Someone who asks me the questions. I can describe the people and what I hear from them. I can't translate that into a format. And afterwards I need something I can show the team leads, one page, in their language.
+
+**I:** What would put you off?
+
+**S:** A sales pitch. Or being asked for a budget in the first five minutes. I don't have one, the team leads do. And if it sounds like the course they already went to, I'm out.

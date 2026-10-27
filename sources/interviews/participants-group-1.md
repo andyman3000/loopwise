@@ -1,6 +1,6 @@
 # Participant group interview 1
 
-- **Basis:** real conversations, anonymised composite
+- **Basis:** real conversations, anonymised composite; the follow-up questions from line 71 on are synthetic
 - **Format:** group interview, excerpt
 - **Date:** Spring
 - **Participants:** P1, business analyst with product duties · P2, product owner · P3, product manager · P4, project lead, also requirements work
@@ -65,3 +65,36 @@
 **P4:** Something where I'm not worried that I stop thinking about the solution myself. It's faster, sure. But I do worry that I just type everything in, get the finished answer, glance at it and send it off.
 
 **I:** Thank you, that's very helpful.
+
+---
+
+## Follow-up questions
+
+- **Basis:** synthetic, written for the demo to fill gaps in the interview above; same participants, same voices, not taken from real conversations
+- **Format:** group interview, short follow-up, excerpt
+
+**I:** A few things I forgot to ask. How big are your teams, and what does the company look like?
+
+**P1:** We're seven in my team. Two product owners, me, a designer, three developers. The company is mid-sized, a few hundred people, software for business customers.
+
+**P3:** Bigger for me. Our product area has around twenty people in three teams. The company has a few thousand.
+
+**P2:** Everybody has the chat assistant. The developers got more on top. We got the licence and a page on the intranet.
+
+**I:** How did you hear you'd be going to the format?
+
+**P4:** An invitation from our lead, with a date and a link. That was it.
+
+**P2:** Same. The lead said, there's an AI training, two days, please block the time.
+
+**I:** Did you open the link?
+
+**P4:** Yes, the evening before. I wanted to know what I was in for. The site showed several formats, and I couldn't tell which one we had booked. Nothing told me what to prepare either, so I didn't.
+
+**P1:** I didn't open it. I figured the trainer would tell us on the day.
+
+**I:** What did you want to know before the day?
+
+**P4:** What the day looks like, and whether it's written for developers again. After the last one, that was my main worry.
+
+**P3:** Whether I should bring something of my own. Nobody said.

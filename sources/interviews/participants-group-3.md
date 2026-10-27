@@ -1,6 +1,6 @@
 # Participant group interview 3
 
-- **Basis:** real conversations, anonymised composite
+- **Basis:** real conversations, anonymised composite; the follow-up questions from line 69 on are synthetic
 - **Format:** group interview, excerpt
 - **Date:** Autumn
 - **Participants:** P1, analyst in an internal service team · P2, product manager · P3, product manager on the business side · P4, product specialist, day-to-day operations and projects · P5, product owner
@@ -63,3 +63,22 @@
 **P4:** A way to share the skills we create that actually works between us.
 
 **I:** Thank you all.
+
+---
+
+## Follow-up questions
+
+- **Basis:** synthetic, written for the demo to fill gaps in the interview above; same participants, same voices, not taken from real conversations
+- **Format:** group interview, short follow-up, excerpt
+
+**I:** How big are your teams, and the company?
+
+**P4:** My team is five people, all product specialists. The company is large, several thousand employees, with a lot of internal services.
+
+**P2:** I'm the product manager in a team of nine, mostly developers. We share one designer with another team.
+
+**I:** How did you end up in the format?
+
+**P5:** Our department head asked who was interested. I said yes because everyone around me talked about agents and I wasn't using any.
+
+**P1:** I was put on the list. I didn't mind, but I didn't choose it.
