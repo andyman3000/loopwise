@@ -20,6 +20,7 @@ decision.
 ## Rules
 
 - **Try first, then compare.** Before you draft, ask the human for what they would work on next, and why, before you read the new evidence. Point them to their opportunity tree in that first message: with `npm start` running, `http://localhost:3000/discovery/tree` shows the compared candidates linked to the business goal. Wait for the answer and never invent it. After drafting, fill the section "Your first try": their answer word for word, then two or three short lines on where your draft differs and why. If they say skip, write "skipped". This step is how participants learn the concept; do not shorten it.
+- **Feedback on the first try.** After drafting, tell the human in two or three short lines how strong their answer was: what was good, what was weak, and why. Judge the reason, never the opportunity they named. Does it rest on the result and the answers the variant collected? Or on what they wanted before the test? Is what they would work on a need, or a solution in disguise? Name their words. Be honest and specific, never flattering. A skipped answer gets no feedback. Write the same lines under "Feedback" in "Your first try (next bet)".
 - **Every claim quotes its source with location**: file and line or section. An answer the variant
   collected is quoted verbatim with its row in `data/inquiries.csv`. No quote, no claim.
 - **Do not invent numbers.** Only counted numbers: values from the Result section (copied, not
@@ -48,6 +49,7 @@ decision.
    "fits none". "I don't know yet" fits none. Quote each with its row. Count per opportunity.
 5. Compare: which opportunity does the evidence now point to, and how does that change the earlier
    comparison? Name counter-evidence and what one more source would settle.
+6. Write both files. Give the feedback on the first try (see Rules). Then stop.
 
 ## Output template, write 1: `discovery/kpi-tree.md`
 
@@ -61,6 +63,7 @@ decision.
 ```markdown
 ## Your first try (next bet)
 <the human's answer, word for word> · Where the draft differs: <two or three short lines>
+Feedback: <two or three short lines: what was strong, what was weak, and why>
 
 ## Status after <variant>, <YYYY-MM-DD>
 
