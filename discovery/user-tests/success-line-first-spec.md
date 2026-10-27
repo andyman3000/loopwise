@@ -1,7 +1,7 @@
 # Persona walkthrough: success-line-first, spec
 
 > **Pressure-tested, not validated.** The personas are built from the same sources as the opportunity.
-> Run by an agent (`persona-walkthrough`) on 2026-10-26. Not a decision.
+> Run by an agent (`persona-walkthrough`) on 2026-08-18. Not a decision.
 > Prototype card: `discovery/test-cards/success-line-first-prototype.md` · Met: `discovery/specs/success-line-first.md`, sections "What changes on the page" and "Fields and validation"
 > Material: personas are drafts from anonymised composite interviews and synthetic inquiries (`product/personas/sponsor-soft.md:6`, `product/personas/sponsor-hard.md:6`). This file repeats that label.
 

@@ -1,7 +1,7 @@
 # Prototype test card: success-line-first
 
 > **Pressure-tested, not validated.** The AI personas come from the same sources as the opportunity. Only the cross test with people tests from outside.
-> Assessment drafted by an agent on 2026-10-26, not a decision.
+> Assessment drafted by an agent on 2026-08-18, not a decision.
 > Card owner: ____ (human decides)
 > Intent: `discovery/intents/format-question.md` · Idea: I12 ("the inquiry page opens with the question "What should be different for your team in three months?", with example answers for both kinds of sponsor and a "don't know yet" box.", `discovery/intents/format-question.md:41`)
 > Material: interviews are anonymised composites; mails, inbox and data are synthetic (`discovery/intents/format-question.md:5`). This card repeats that label.

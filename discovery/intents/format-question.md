@@ -1,6 +1,6 @@
 # Intent: Sponsors who cannot say what to ask for or which format fits can still start an inquiry
 
-> Assessment by an agent (`intent-and-ideas`), not a decision. Date: 2026-10-25.
+> Assessment by an agent (`intent-and-ideas`), not a decision. Date: 2026-08-18.
 > Opportunity: C2, the sponsor does not know what to ask for, or which format fits, in discovery/opportunity-comparison.md · Decision: discovery/decisions/001-format-question.md
 > Material: interviews are anonymised composites; mails, inbox and data are synthetic. This file repeats that label.
 
@@ -61,7 +61,7 @@ No target here. Targets go on the test card.
 - Assumption we test first: A sponsor who is unsure about the format chooses the quiz, and can answer its questions on a page without a person.
 - Why this one first: "Find out, if this helps or if it annoys people. After all it takes up valuable time"
 - Variant name (lowercase with dashes): format-quiz
-- Who: Reference decision (replace with your own) · When: 2026-10-25
+- Who: Reference decision (replace with your own) · When: 2026-08-18
 
 ## Selection (human)
 
@@ -70,6 +70,6 @@ No target here. Targets go on the test card.
 - Assumption we test first: A sponsor who is shown example answers can say what should be different for the team after the training.
 - Why this one first: The quiz asked questions the sponsor came to us with. Examples to react to ask less of a sponsor who does not know yet (`discovery/decisions/002-format-quiz.md:55`).
 - Variant name (lowercase with dashes): success-line-first
-- Who: Reference decision (replace with your own) · When: 2026-10-26
+- Who: Reference decision (replace with your own) · When: 2026-08-18
 
 A second round adds a second "Selection (human)" below this one, with its own variant name.

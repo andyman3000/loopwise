@@ -1,6 +1,6 @@
 # Spec: success-line-first
 
-> Spec drafted by an agent (`variant-spec`) on 2026-10-26, before the build.
+> Spec drafted by an agent (`variant-spec`) on 2026-08-18, before the build.
 > **Variant:** `success-line-first` · Pages it changes: `inquiry.html` · Tester starts at `/inquiry.html?variant=success-line-first`
 > **Idea:** I12 in `discovery/intents/format-question.md` ("I12, the inquiry page opens with what should be different for the team", `discovery/intents/format-question.md:69`)
 > **Assumption under test:** "A sponsor who is shown example answers can say what should be different for the team after the training." (`discovery/test-cards/success-line-first-prototype.md:23`)
@@ -20,7 +20,7 @@ The page already exists. It was copied from an earlier build (`site/variants/suc
 
 ## What changes on the page
 
-Confirmed by the human on 2026-10-26 ("Yes, fine").
+Confirmed by the human on 2026-08-18 ("Yes, fine").
 
 **Inquiry page** (`site/variants/success-line-first/inquiry.html`)
 1. The page opens with the question: What should be different for your team in three months? The wording is the pair's, from idea I12 (`discovery/intents/format-question.md:41`). The contact form is hidden at this point (`site/variants/success-line-first/inquiry.html:56`).

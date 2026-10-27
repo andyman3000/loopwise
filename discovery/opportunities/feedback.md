@@ -1,6 +1,6 @@
 # Opportunities from feedback
 
-> Assessment by an agent (`opportunities-from-source` skill), not a decision. Date: 2026-10-24.
+> Assessment by an agent (`opportunities-from-source` skill), not a decision. Date: 2026-08-18.
 > Reads: sources/feedback/feedback-export.md, discovery/kpi-tree.md, product/personas/
 > Material: mixed. Free text is paraphrased from real feedback, an anonymised composite of two clients. All numbers and ratings in the export are invented. This file repeats that label and uses the free text only.
 

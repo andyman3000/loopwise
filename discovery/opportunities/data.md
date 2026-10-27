@@ -1,6 +1,6 @@
 # Opportunities from data
 
-> Assessment by an agent (`opportunities-from-source` skill), not a decision. Date: 2026-10-24.
+> Assessment by an agent (`opportunities-from-source` skill), not a decision. Date: 2026-08-18.
 > Reads: data/events.jsonl, data/inquiries.csv, data/README.md, discovery/kpi-tree.md, product/personas/
 > Material: synthetic. "Everything in this folder is synthetic." (data/README.md:3). This file repeats that label.
 

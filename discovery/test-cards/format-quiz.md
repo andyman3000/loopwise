@@ -1,11 +1,11 @@
 # Test card: format-quiz
 
-> Assessment drafted by an agent on 2026-10-26, not a decision.
+> Assessment drafted by an agent on 2026-08-18, not a decision.
 > Card owner: Reference decision (replace with your own)
 > Variant: `discovery/specs/format-quiz.md` · Intent: `discovery/intents/format-question.md` · Prototype test: `discovery/test-cards/format-quiz-prototype.md`, learning card `discovery/decisions/002-format-quiz.md`
 > KPI branch: inquiries that end in a booking ("Branch A: inquiries that end in a booking", `discovery/kpi-tree.md:18`)
 > Material: interviews are anonymised composites; mails, inbox and data are synthetic. The prototype tests rest on synthetic cross tests. This card repeats that label.
-> Data: 923 events in `data/events.jsonl` carry this variant (`grep -c '"variant":"format-quiz"' data/events.jsonl`). All of them are synthetic.
+> Data: on 2026-08-18, before launch, no event carries this variant. In this repo, `data/` already holds the eight weeks after launch: 950 events carry it (`grep -c '"variant":"format-quiz"' data/events.jsonl`). All of them are synthetic.
 
 A launch card says, before release, what must happen for the variant to count as working, and when to take it back.
 A proxy metric is a number we can see soon that we expect to move with the goal we cannot see yet.

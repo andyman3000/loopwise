@@ -1,6 +1,6 @@
 # Spec: format-quiz
 
-> Spec drafted by an agent (`variant-spec`) on 2026-10-25, before the build.
+> Spec drafted by an agent (`variant-spec`) on 2026-08-18, before the build.
 > **Variant:** `format-quiz` · Pages it changes: `formats.html`, `inquiry.html` · Tester starts at `/formats.html?variant=format-quiz`
 > **Idea:** I2 in `discovery/intents/format-question.md` ("I2, a small quiz next to the form", `discovery/intents/format-question.md:60`)
 > **Assumption under test:** "A sponsor who is unsure about the format chooses the quiz, and can answer its questions on a page without a person." (`discovery/test-cards/format-quiz-prototype.md:25`)
@@ -17,9 +17,9 @@ This spec covers only what the prototype test needs.
 
 ## What changes on the page
 
-Confirmed by the human on 2026-10-25 ("looks good"). Changed the same day after the persona walkthrough (`discovery/user-tests/format-quiz-spec.md`), at the human's request.
+Confirmed by the human on 2026-08-18 ("looks good"). Changed the same day after the persona walkthrough (`discovery/user-tests/format-quiz-spec.md`), at the human's request.
 
-**Round 2, changed on 2026-10-26** after two failed cross tests: the question about what should be different after the training is gone, and a line above the first question says open answers are fine. Both tests failed on that question, and the quiz tester stalled at questions the page gave no permission to leave open (`discovery/decisions/003-success-line-first.md`, `discovery/decisions/002-format-quiz.md`). Items 2, 4, 6 and 8 changed.
+**Round 2, changed on 2026-08-18** after two failed cross tests: the question about what should be different after the training is gone, and a line above the first question says open answers are fine. Both tests failed on that question, and the quiz tester stalled at questions the page gave no permission to leave open (`discovery/decisions/003-success-line-first.md`, `discovery/decisions/002-format-quiz.md`). Items 2, 4, 6 and 8 changed.
 
 **Formats page** (`site/variants/format-quiz/formats.html`)
 1. Below the lead line, a link reads: Unsure what to pick? Find out in a small quiz. The wording is the pair's own (`discovery/intents/format-question.md:37`). The format cards and the "Make an inquiry" button stay as today (`site/formats.html:22`, `site/formats.html:27`).

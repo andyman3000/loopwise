@@ -1,6 +1,6 @@
 # Opportunities from inbox
 
-> Assessment by an agent (`opportunities-from-source` skill), not a decision. Date: 2026-10-24.
+> Assessment by an agent (`opportunities-from-source` skill), not a decision. Date: 2026-08-18.
 > Reads: sources/inbox/inbox-export.md, discovery/kpi-tree.md, product/personas/
 > Material: synthetic, modelled on setup, access and scheduling issues seen in real trainings. This file repeats that label.
 

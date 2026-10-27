@@ -1,9 +1,9 @@
 # Persona walkthrough: format-quiz, spec
 
 > **Pressure-tested, not validated.** The personas are built from the same sources as the opportunity.
-> Run by an agent (`persona-walkthrough`) on 2026-10-25. Not a decision.
+> Run by an agent (`persona-walkthrough`) on 2026-08-18. Not a decision.
 > Prototype card: `discovery/test-cards/format-quiz-prototype.md` · Met: `discovery/specs/format-quiz.md`, sections "What changes on the page" and "Fields and validation"
-> The spec changed after this run (2026-10-25). The personas read the version committed as `block(05): spec for format-quiz`.
+> The spec changed after this run (2026-08-18). The personas read the version committed as `block(05): spec for format-quiz`.
 > Material: personas are drafts from anonymised composite interviews and synthetic inquiries (`product/personas/sponsor-soft.md:6`, `product/personas/sponsor-hard.md:6`). This file repeats that label.
 
 A persona is a written profile of a sponsor type, built from interviews and mails.

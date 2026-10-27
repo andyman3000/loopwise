@@ -1,6 +1,6 @@
 # Cross test: format-quiz, round 2
 
-> Notes by the watcher, Reference run (replace with your own), 2026-10-26. One tester from another pair, not the tester of round 1.
+> Notes by the watcher, Reference run (replace with your own), 2026-08-18. One tester from another pair, not the tester of round 1.
 > **Synthetic: written for the reference run. No test with a person took place.** The notes show what a passed cross test can look like. Replace them with your own notes from your own test.
 
 ## What the tester did and said

@@ -1,6 +1,6 @@
 # Opportunities from interviews
 
-> Assessment by an agent (`opportunities-from-source` skill), not a decision. Date: 2026-10-24.
+> Assessment by an agent (`opportunities-from-source` skill), not a decision. Date: 2026-08-18.
 > Reads: sources/interviews/participants-group-1.md, participants-group-2.md, participants-group-3.md, sponsor-soft.md, sponsor-hard.md, discovery/kpi-tree.md, product/personas/
 > Material: all five interviews are anonymised composites of real conversations. This file repeats that label.
 

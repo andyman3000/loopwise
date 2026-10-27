@@ -1,6 +1,6 @@
 # Opportunities from emails
 
-> Assessment by an agent (`opportunities-from-source` skill), not a decision. Date: 2026-10-24.
+> Assessment by an agent (`opportunities-from-source` skill), not a decision. Date: 2026-08-18.
 > Reads: sources/emails/inquiry-01.md to inquiry-06.md, discovery/kpi-tree.md, product/personas/
 > Material: all six mails are synthetic, modelled on real first-contact patterns. This file repeats that label.
 

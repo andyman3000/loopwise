@@ -4,7 +4,7 @@
 > Written by the `learning-card` skill from what the pair said. The material behind the prototype is synthetic or an anonymised composite: interviews are anonymised composites; mails, inbox and data are synthetic.
 > Rests on: `discovery/test-cards/format-quiz-prototype.md`, `discovery/user-tests/format-quiz-cross.md`, `discovery/user-tests/format-quiz-spec.md`
 
-## Round 1, 2026-10-26
+## Round 1, 2026-08-18
 
 > **Synthetic cross test: no test with a person took place.** The watcher's notes were written for the reference run, to show what a failed test looks like (`discovery/user-tests/format-quiz-cross.md:4`). In your own run, this line reads "Tested with one person from another pair: a pattern, not a rate."
 > Rests on: `discovery/test-cards/format-quiz-prototype.md`, `discovery/user-tests/format-quiz-cross.md`, `discovery/user-tests/format-quiz-spec.md`
@@ -58,9 +58,9 @@ The tester wanted the quiz but could not answer it alone. Examples to react to a
 Reference decision (replace with your own)
 
 ### When
-2026-10-26
+2026-08-18
 
-## Round 2, 2026-10-26
+## Round 2, 2026-08-18
 
 > **Synthetic cross test: no test with a person took place.** The watcher's notes were written for the reference run, to show what a passed test looks like (`discovery/user-tests/format-quiz-cross-2.md:4`). In your own run, this line reads "Tested with one person from another pair: a pattern, not a rate."
 > Rests on: `discovery/test-cards/format-quiz-prototype.md` (section "Round 2"), `discovery/user-tests/format-quiz-cross-2.md`
@@ -118,4 +118,4 @@ One tester went through all four questions without help and sent the inquiry. Th
 Reference decision (replace with your own)
 
 ### When
-2026-10-26
+2026-08-18

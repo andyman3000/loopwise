@@ -1,7 +1,7 @@
 # Prototype test card: format-quiz
 
 > **Pressure-tested, not validated.** The AI personas come from the same sources as the opportunity. Only the cross test with people tests from outside.
-> Assessment drafted by an agent on 2026-10-25, not a decision.
+> Assessment drafted by an agent on 2026-08-18, not a decision.
 > Card owner: ____ (human decides)
 > Intent: `discovery/intents/format-question.md` · Idea: I2 ("next to the form, a link "Unsure what to pick? Find out in a small quiz" opens a short quiz whose questions find out what the sponsor needs.", `discovery/intents/format-question.md:37`)
 > Material: interviews are anonymised composites; mails, inbox and data are synthetic (`discovery/intents/format-question.md:5`). This card repeats that label.
@@ -62,7 +62,7 @@ The tester passes the link. Or the tester stops at a question, asks the watcher,
 - The scenario fits both sponsors. The soft sponsor is an "influencer without budget authority" (`product/personas/sponsor-soft.md:5`). The hard sponsor "got a first step approved" (`product/personas/sponsor-hard.md:16`). Each persona keeps its own file in the persona runs.
 - Six of the seven signs have no line in a persona file. The persona runs can show stalls only, not these signs.
 
-## Round 2, 2026-10-26
+## Round 2, 2026-08-18
 
 The spec changed after two failed cross tests (`discovery/decisions/003-success-line-first.md`). The quiz has four questions, not five. A line above the first question says open answers are worked out in the scoping call. The assumption and the scenario stay. Two signs change, because "I don't know yet" is now an answer the page invites.
 
@@ -78,7 +78,7 @@ The spec changed after two failed cross tests (`discovery/decisions/003-success-
 | The tester asks for a call or a person instead of the quiz | rework or drop | only the cross test with people can test this |
 
 ### We are right if (go-on line), round 2
-The tester clicks the quiz link on their own, goes through all four questions without asking the watcher, and sends the inquiry. "I don't know yet" counts as an answer. (proposal) · Set on: 2026-10-26
+The tester clicks the quiz link on their own, goes through all four questions without asking the watcher, and sends the inquiry. "I don't know yet" counts as an answer. (proposal) · Set on: 2026-08-18
 
 ### We rework or drop the idea if (rework-or-drop line), round 2
-The tester passes the link, stops the quiz before the end, asks the watcher what a question means, or asks for a person instead. (proposal) · Set on: 2026-10-26
+The tester passes the link, stops the quiz before the end, asks the watcher what a question means, or asks for a person instead. (proposal) · Set on: 2026-08-18
