@@ -123,3 +123,39 @@ Thanks again, the feedback in the team was good. Now the question I keep asking 
 - status: open
 
 We are setting up a new product team, mostly people moving over from project management and consulting, some with almost no hands-on AI experience. I looked at your formats but cannot tell which one fits: the half-day workshop, the two days, or the longer team coaching. Is there a way to find out where the team stands before we decide? I would like to avoid booking the wrong thing.
+
+---
+
+## INB-011
+
+- received: week 0
+- from: team lead (sponsor)
+- channel: mail
+- subject: Too many options for us
+- status: open
+
+Hello, I spent some time on your formats page and came away more unsure than before. At least three of the formats could be us. We are nine people, about half have tried the AI tools a bit, the others not at all. I do not want to pick one just to have something to write in the form. I will come back to you once I have talked it through with my manager.
+
+---
+
+## INB-012
+
+- received: week 0
+- from: learning and development partner (sponsor)
+- channel: chat
+- subject: Difference between the lab and the two days?
+- status: open
+
+Hi, quick question from our learning team. A product director asked me to find a training for her people, and I have your formats page open right now. What is the difference between the two-day training and the lab? Both are two days for product people. And where does shadowing come in, instead or on top? I have to give her one recommendation, and at the moment I would be guessing. Can I talk to someone before I fill in anything?
+
+---
+
+## INB-013
+
+- received: week 0
+- from: product lead (sponsor)
+- channel: mail
+- subject: Picking this up again
+- status: open
+
+A few weeks ago I went through your formats and closed the page again. I did not know what to choose and did not want to commit to the wrong thing. My team still has the same problem, so here I am. I can tell you what my people do all day and where they get stuck with the AI tools. I cannot tell you whether that is a workshop or coaching. Is that enough to start with, or do I need to know the format first?
