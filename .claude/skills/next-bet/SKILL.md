@@ -19,7 +19,7 @@ decision.
 
 ## Rules
 
-- **Try first, then compare.** Before you draft, ask the human for what they would work on next, and why, before you read the new evidence. Wait for the answer and never invent it. After drafting, fill the section "Your first try": their answer word for word, then two or three short lines on where your draft differs and why. If they say skip, write "skipped". This step is how participants learn the concept; do not shorten it.
+- **Try first, then compare.** Before you draft, ask the human for what they would work on next, and why, before you read the new evidence. Point them to their opportunity tree in that first message: with `npm start` running, `http://localhost:3000/discovery/tree` shows the compared candidates linked to the business goal. Wait for the answer and never invent it. After drafting, fill the section "Your first try": their answer word for word, then two or three short lines on where your draft differs and why. If they say skip, write "skipped". This step is how participants learn the concept; do not shorten it.
 - **Every claim quotes its source with location**: file and line or section. An answer the variant
   collected is quoted verbatim with its row in `data/inquiries.csv`. No quote, no claim.
 - **Do not invent numbers.** Only counted numbers: values from the Result section (copied, not
@@ -37,7 +37,7 @@ decision.
 
 ## Steps
 
-0. **Try first.** Ask the human for what they would work on next, and why, before you read the new evidence. Wait for the answer before you read further or draft anything.
+0. **Try first.** Ask the human to open their opportunity tree (`npm start`, then `http://localhost:3000/discovery/tree`) and say what they would work on next, and why, before you read the new evidence. Wait for the answer before you read further or draft anything.
 1. Read the Result section. Copy the counted values and the weeks they cover.
 2. Read the KPI tree; find the branch the tested opportunity hangs on (quote it). Enter the values.
 3. Read the decision files for the tested opportunity: what it said would tip the decision. Check it.
