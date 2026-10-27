@@ -17,6 +17,7 @@ contrast" opportunities against each other, rather than judging one in isolation
 ## Rules
 
 - **Try first, then compare.** Before you draft, ask the human for which opportunity they favour right now, with a one-sentence reason. Point them to their opportunity map first: with `npm start` running, `http://localhost:3000/discovery/map` shows every opportunity by source and evidence. The challenger step then also attacks their favourite, if it differs from the candidate the comparison favours. Wait for the answer and never invent it. After drafting, fill the section "Your first try": their answer word for word, the candidate ID it matches ("Matches: C1", or "none"), then two or three short lines on where your draft differs and why. If they say skip, write "skipped". This step is how participants learn the concept; do not shorten it.
+- **Feedback on the first try.** After the comparison is written, tell the human in two or three short lines how strong their answer was: what was good, what was weak, and why. Judge the reason, never the favourite itself. Does the reason rest on evidence: independent sources, voices, where in the funnel? Or on a gut feeling, one vivid quote, or a solution the human already has in mind? Is their favourite a need or a solution in disguise? Name their words. Be honest and specific, never flattering. A skipped answer gets no feedback. Say it in the chat only: the tree page reads "Your first try", so the file keeps its template shape.
 - **Every claim quotes its source with location** (file and line or section). No quote, no claim.
   Open the cited file in `sources/` and check the quote is there. If it is not, say so in the line
   and do not use it.
@@ -130,7 +131,8 @@ contrast" opportunities against each other, rather than judging one in isolation
 7. **Send the human to the tree before they decide.** Your closing message always gives the link
    `http://localhost:3000/discovery/tree` (start the server with `npm start` if it is not running)
    and says to read the tree before filling "Chosen opportunity" and "We would switch if". Name the
-   one thing to look at first: the question on top and the steps where no candidate acts. Never
+   one thing to look at first: the question on top and the steps where no candidate acts. Give the
+   feedback on the first try (see Rules) in the same message. Never
    close without the link, also when the human asks for a summary in the chat. Then stop. Do not
    start an intent.
 
