@@ -17,18 +17,27 @@
     </nav>
   </header>
   <main>
-    <h1>Loopwise</h1>
-    <p class="lead">In-house formats for product teams: product managers, product owners, UX designers and consultants with product duties.</p>
+    <h1>In-house formats for product teams</h1>
+    <p class="lead">For product managers, product owners, UX designers and consultants with product duties.</p>
     <p>We run formats inside your company, from a half-day workshop to several weeks of team coaching. Topics include discovery, prioritisation and Agentic Product Management.</p>
-    <h2>How it works</h2>
-    <ol>
-      <li>You send an inquiry.</li>
-      <li>We clarify the format in a scoping call.</li>
-      <li>We prepare together: participant list, setup check, expectations survey. Four weeks after the format we follow up.</li>
-    </ol>
     <p class="actions"><a class="button" href="/inquiry.html">Make an inquiry</a> <a class="button secondary" href="/formats.html">See example formats</a></p>
+    <h2>How it works</h2>
+    <ol class="path">
+      <li><strong>You send an inquiry</strong><span>A short form. It does not book anything.</span></li>
+      <li><strong>We hold a scoping call</strong><span>Together we settle which format fits your team.</span></li>
+      <li class="path-booking"><strong>You book the format</strong><span>After the call, you confirm the format. That is the booking.</span></li>
+      <li><strong>We prepare together</strong><span>Participant list, setup check and expectations survey.</span></li>
+      <li><strong>We follow up after four weeks</strong><span>We ask what has changed in daily work.</span></li>
+    </ol>
   </main>
-  <footer class="site-footer">Loopwise is a fictional academy used for a demo.</footer>
+  <footer class="site-footer">
+    <p>Loopwise is a fictional academy used for a demo.</p>
+    <nav aria-label="Footer">
+      <a href="/formats.html">Formats</a>
+      <a href="/inquiry.html">Inquiry</a>
+      <a href="/sponsor-prep.html">Sponsor preparation</a>
+    </nav>
+  </footer>
   <script type="module">
     import { logEvent } from '/components/events.js';
     logEvent('page_view', { page: 'home' }, 'baseline');

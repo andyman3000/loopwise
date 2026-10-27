@@ -19,6 +19,8 @@
   <main>
     <h1>Inquiry</h1>
     <p class="lead">Tell us a little about you and what you need.</p>
+    <p>Sending this form books nothing. We reply within a few days to set up a scoping call.</p>
+    <div class="with-aside">
     <form id="inquiry-form" novalidate>
       <div class="field"><label for="name">Name</label><input id="name" name="name" autocomplete="name"><p class="error" data-error-for="name" hidden></p></div>
       <div class="field"><label for="company">Company</label><input id="company" name="company" autocomplete="organization"><p class="error" data-error-for="company" hidden></p></div>
@@ -28,8 +30,25 @@
       <p class="error" id="form-error" role="alert" hidden></p>
       <button class="button" type="submit">Send inquiry</button>
     </form>
+    <aside aria-labelledby="after-inquiry">
+      <h2 id="after-inquiry">What happens after you send it</h2>
+      <ol class="path compact">
+        <li><strong>You send this form</strong><span>It does not book anything.</span></li>
+        <li><strong>We hold a scoping call</strong><span>Together we settle which format fits your team.</span></li>
+        <li class="path-booking"><strong>You book the format</strong><span>After the call, you confirm the format. That is the booking.</span></li>
+        <li><strong>We prepare together</strong><span>The steps are on the <a href="/sponsor-prep.html">sponsor preparation page</a>.</span></li>
+      </ol>
+    </aside>
+    </div>
   </main>
-  <footer class="site-footer">Loopwise is a fictional academy used for a demo.</footer>
+  <footer class="site-footer">
+    <p>Loopwise is a fictional academy used for a demo.</p>
+    <nav aria-label="Footer">
+      <a href="/formats.html">Formats</a>
+      <a href="/inquiry.html">Inquiry</a>
+      <a href="/sponsor-prep.html">Sponsor preparation</a>
+    </nav>
+  </footer>
   <script type="module">
     import { initInquiryForm } from '/components/inquiry-form.js';
     import { logEvent } from '/components/events.js';
