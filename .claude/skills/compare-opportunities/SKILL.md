@@ -62,9 +62,11 @@ contrast" opportunities against each other, rather than judging one in isolation
    - **Keep** a candidate if it passes all three, judged after merging:
      - it is a need, not a solution in disguise (the need-or-solution test in Rules);
      - it sits on an active branch of `discovery/kpi-tree.md`. A side link that is only an
-       `[assumption: ...]` does not count: such a candidate drops with the reason "parked branch,
-       link to the active branch is an assumption";
+       `[assumption: ...]` does not count;
      - it is well supported, or partly supported in two or more independent source groups.
+   - **Strong, but parked:** a candidate that passes the first and third test but sits on a branch
+     that is not this quarter's is not dropped. List it under "Strong, but parked" with its branch
+     and its assessment, so the human sees how much evidence waits there and can bring it in.
    - **Show** every candidate that passes, each with one line on why, and any need you reworded
      under the need-or-solution test, with the wording you propose. Then show every opportunity
      that dropped out, each with its one-line reason, so the human can bring it back. If their
@@ -192,6 +194,8 @@ Branch: <Branch A: name> (<file:line>)
 ## Shortlist
 Confirmed by <name>, <date>: <candidates as confirmed, merges named>
 Proposed by the agent: <the proposal, or "confirmed as proposed">
+Strong, but parked:
+- <candidate, sources>: <branch>, <assessment> | none
 Dropped:
 - <ID, file>: <one-line reason>
 
