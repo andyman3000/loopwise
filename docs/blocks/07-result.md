@@ -11,6 +11,7 @@ allow.
 1. Commit your own work first. Then switch to the reference state of the demo:
    ```bash
    git add -A && git commit -m "my state before the demo"
+   git fetch --tags --force
    git switch -c demo 06-test-decision
    ```
    If `demo` already exists, use `git switch demo`.
