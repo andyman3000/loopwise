@@ -15,6 +15,7 @@ This file is an **assessment by an agent, not a decision**. Say so at the top of
 ## Rules
 
 - **Try first, then compare.** Before you draft, ask the human for the need behind one quote. Show one quote from the source with file:line, then ask: what need or pain sits behind it, and is what the person says a need or already a solution?. Wait for the answer and never invent it. After drafting, fill the section "Your first try": their answer word for word, then two or three short lines on where your draft differs and why. If they say skip, write "skipped". This step is how participants learn the concept; do not shorten it.
+- **Feedback on the first try.** Right after the human answers, tell them in two or three short lines how strong their answer was: what was good, what was weak, and why. Judge it against what an opportunity is. Did they name a need or a pain, or a solution in disguise (a page, a button, a field, a format)? Does the need stay close to the speaker's words, or read more into the quote than it says? Did they say correctly whether the quote itself is a need or a solution? For `data`, judge whether they read the count as where people drop out, not why. Name their words. Be honest and specific, never flattering. A skipped answer gets no feedback. Write the same lines under "Feedback" in "Your first try".
 - Every claim quotes its source with location: file and line (`sources/interviews/participants-group-1.md:24`). No quote, no claim. Quotes are verbatim and short (one sentence or less).
 - **Do not invent numbers.** Count only what is in the files: sources, items, distinct speakers. No scores, no probabilities, no totals, no "most users".
 - Phrase each opportunity as a need or pain, in the speaker's words where possible. If it names a button, page, field or format, it is a solution: put it under "Solution ideas heard".
@@ -38,7 +39,7 @@ This file is an **assessment by an agent, not a decision**. Say so at the top of
 ## Steps
 
 0a. **Offer the sources** (only if none was given). List every folder under `sources/` as it is on disk, never from memory: name, number of files, and what kind of material it is (the `Basis` line from the file headers, for example "anonymised composite" or "synthetic"). Mark empty folders as empty. Add `data` as the last row: "event log and inquiry export, synthetic (data/README.md), shows what people do, not why", with the time span from `data/README.md`. Ask which one to read, and wait.
-0. **Try first.** Read just enough of the source to pick one telling quote. Show it with file:line and ask: what need or pain sits behind it, and is it a need or already a solution? Wait for the answer before you draft anything.
+0. **Try first.** Read just enough of the source to pick one telling quote. Show it with file:line and ask: what need or pain sits behind it, and is it a need or already a solution? Wait for the answer before you draft anything. Then give the feedback on it (see Rules).
 1. Read the KPI tree, the personas, then every file of the source. Tell the human in three lines: which branches you map against, what the source holds (type, files, speakers), what is missing.
 2. Group quotes into opportunities by the merge rule above. There is no target count: a need with one voice stays its own opportunity, rated unsupported, and is never folded into a stronger one to make it count.
 3. For each: quotes with file:line, voices counted, KPI branch and driver from `discovery/kpi-tree.md` (the short name, for example "call rate") with the link (an `[assumption: ...]` if the tree does not state it), counter-evidence, gaps, assessment.
@@ -54,6 +55,7 @@ This file is an **assessment by an agent, not a decision**. Say so at the top of
 
 ## Your first try
 <the human's answer, word for word> · Where the draft differs: <two or three short lines>
+Feedback: <two or three short lines: what was strong, what was weak, and why>
 
 ## Source
 | File | Type | Speakers (role) | Basis line from the file |
