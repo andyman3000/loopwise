@@ -23,9 +23,14 @@ This file is an **assessment by an agent, not a decision**. Say so at the top of
 - **Map by where the need is met first, then check the active branch.** A need that is met after the booking (preparation, the day itself, the weeks after) sits mainly on the branch for that moment, even if it is parked; say so first. Then go through each driver of the active branch: could showing that this need is met change what a new sponsor reads, starts or books? If yes, add it as a side link with an `[assumption: ...]` saying how. If none fits, write "No side link" and why. Never move a need onto the active branch just because that branch is active.
 - **Merge only what is one need.** Put two quotes under one opportunity only if all three hold: the same role says them, at the same moment (before the booking, preparation, the day itself, the weeks after), about the same need. Sounding alike is not enough. If one test fails, they stay separate, and each says in one line which test failed ("Close to O2: same need, but sponsors before the booking, here participants after the day").
 - **Every merge shows its parts.** An opportunity built from more than one need as first heard gets a "Merged" line: what each part said and why it is one need. When in doubt, keep them apart: `compare-opportunities` can still put them side by side, but cannot split a merged one.
-- **Decoy-like findings:** loud, vivid or repeated themes that do not link to any KPI branch, or rest on one voice, or are solution requests in disguise, go under "Looks like an opportunity, but". Say honestly why.
+- **Decoy-like findings:** loud, vivid or repeated themes that do not link to any KPI branch, or are solution requests in disguise, go under "Looks like an opportunity, but". Say honestly why.
 - Counter-evidence from the same source is mandatory per opportunity. "None found in this source" is a valid answer; leaving it out is not.
 - Assessments in words on exactly three levels: **well supported**, **partly supported**, **unsupported**, each with reasoning, sources, counter-evidence, gaps.
+  The level rates the evidence only:
+  - **well supported:** three or more distinct voices who lived it;
+  - **partly supported:** two voices, or voices who only fear it or report it second-hand;
+  - **unsupported:** one voice.
+  The KPI branch never lowers the level. A need on a branch that is not this quarter's can be well supported. Whether the link to a driver is stated in the source or an assumption goes into the "KPI branch" line, not into the assessment.
 - If `discovery/kpi-tree.md` is missing, stop and say so: opportunities without a branch cannot be compared.
 - **Usage data shows where, never why.** When the source is `data`, write observations, not opportunities: a counted share at one step of the KPI tree, with the events divided. Each observation names the driver it sits on and which source groups could explain why. It becomes an opportunity only when a quote from another source gives the reason; this skill does not make that link for `data`. Counts are allowed here because they are counted from the files.
 - **Split each step by what came before it.** Where the data shows what a visit did before a step
@@ -102,4 +107,4 @@ Same header, "Your first try" and "Goes into comparison" as above. For try first
 
 Observations go into the comparison only together with an opportunity from another source.
 
-Then stop. Do not compare across sources; that is `compare-opportunities`.
+Then stop. Do not compare across sources.
