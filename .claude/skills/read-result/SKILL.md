@@ -44,9 +44,18 @@ both settle where they differ and draw the conclusion. The conclusion and the de
 
 1. **The numbers, then the human's reading.** Read `site/config.json` and the test card. Run
    `npm run summary` for your own reading, but do not show its output in the chat. Point the human
-   to `http://localhost:3000/dashboard` (it needs `npm start`), where the same numbers are. Then ask, in these words: "Read the card against these numbers. For each
-   line: met, not met or unclear, and why in a few words. Then: would you keep the variant, change it,
-   or take it back?" Wait.
+   to `http://localhost:3000/dashboard` (it needs `npm start`), where the same numbers are.
+   Then show what the card assumed, one row per card line, in plain words with its threshold and
+   its comparison. No line numbers, no section names alone, no numbers from after launch:
+
+   | What we assumed | Where on the dashboard | Your reading |
+   |---|---|---|
+   | <the card line as a sentence, for example "More visits that see the formats page open the inquiry page in quiz weeks than in any four weeks before launch (highest 16.9%) and than in off weeks"> | <the dashboard section that shows it> | met, not met or unclear? Why? |
+
+   Take the rows from the success line (one row per part), the usage hypothesis, the proxy metric,
+   call quality, the counter metric and the kill criterion. Then ask, in these words: "Fill in the
+   last column from the dashboard: met, not met or unclear, and why in a few words. Then: would you
+   keep the variant, change it, or take it back?" Wait.
 2. **Our reading beside theirs.** Read each card line against the summary yourself: met, not met or
    unclear, with the summary line it rests on. Show a table with both readings side by side. Below it,
    list only the lines where the two readings differ, one sentence each on why yours differs.
@@ -73,7 +82,7 @@ both settle where they differ and draw the conclusion. The conclusion and the de
 <the human's answer to step 1, word for word>
 
 ### Line by line
-| Line (quoted, section) | Your reading | Our reading | Agreed reading | Rests on (summary line) |
+| What we assumed (from the card) | Your reading | Our reading | Agreed reading | Rests on (summary line) |
 |---|---|---|---|---|
 
 ### What the numbers cannot show
