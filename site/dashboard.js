@@ -67,7 +67,7 @@ function countsChart(summary) {
 }
 
 function rateChart(summary) {
-  const f = figure('Weekly submit rate (started to sent), with baseline and kill line', summary.synthetic);
+  const f = figure('Weekly submit rate (started to sent), quiz weeks and off weeks, with the kill line', summary.synthetic);
   const weeks = summary.weeks;
   const fr = frame(weeks, 1, 300, 'Weekly completion rate with kill line', summary.variant);
   const pts = weeks.map((w, i) => (w.completionRate === null ? null : [fr.x(i), fr.y(w.completionRate)]));
@@ -88,7 +88,13 @@ function rateChart(summary) {
   fr.s.append(svg('text', { class: 'muted', x: bx + 4, y: fr.y(lvl) - 4 }, `baseline ${pct(lvl)}`));
   fr.s.append(svg('line', { class: 'kill', x1: fr.left + fr.step * fr.first, x2: fr.W - fr.right, y1: fr.y(line), y2: fr.y(line) }));
   fr.s.append(svg('text', { x: fr.W - fr.right - 4, y: fr.y(line) + 14, 'text-anchor': 'end' }, `kill line ${pct(line)} (a quarter below the baseline)`));
-  f.append(fr.s, el('p', { class: 'note' }, 'Higher is better. The card asks for two quiz weeks in a row below the dashed line; off weeks do not count. Weekly n is small (see n below each week), so single weeks swing widely.'));
+  const [hi, lo] = summary.quiz.rate >= summary.off.rate ? ['quiz', 'off'] : ['off', 'quiz'];
+  for (const [arm, dy] of [[hi, -6], [lo, 14]]) {
+    const v = summary[arm].rate;
+    fr.s.append(svg('line', { class: 'level', x1: fr.left + fr.step * fr.first, x2: fr.W - fr.right, y1: fr.y(v), y2: fr.y(v) }));
+    fr.s.append(svg('text', { x: fr.W - fr.right - 4, y: fr.y(v) + dy, 'text-anchor': 'end' }, `${arm === 'quiz' ? 'quiz weeks' : 'off weeks'} together ${pct(v)}`));
+  }
+  f.append(fr.s, el('p', { class: 'note' }, 'Higher is better. Teal points: quiz weeks. Grey points after launch: off weeks with the baseline form. The card asks for two quiz weeks in a row below the dashed line; off weeks do not count. Weekly n is small (see n below each week), so single weeks swing widely.'));
   return f;
 }
 
