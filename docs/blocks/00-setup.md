@@ -10,7 +10,7 @@ You work in pairs for both days, on one laptop and one branch per pair.
 1. Clone the repo and start your pair's branch from the start state. Use your two names:
    ```bash
    git clone <repo> loopwise && cd loopwise
-   git switch -c pair-<name>-<name> 00-start
+   git switch -c pair-<name>-<name> v2-00-start
    ```
 2. Check the website runs. Node 20 or newer, no `npm install` needed:
    ```bash

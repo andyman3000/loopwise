@@ -29,7 +29,7 @@ labels which of the two it is.
 Step-by-step instructions for every workshop block are in [docs/blocks/](docs/blocks/README.md).
 
 All skills are in `.claude/skills/` from the start; `CLAUDE.md` lists them in chain order. You start
-at `00-start` and run the chain yourself. Each further tag is a reference state after one workshop
+at `v2-00-start` and run the chain yourself. Each further tag is a reference state after one workshop
 block. If you decided differently, keep your own state or continue from the reference state.
 
 **One Claude Code session per skill.** Start a fresh session before each skill: type `/clear`, or
@@ -38,7 +38,7 @@ Claude carries old answers into the next skill. The block files say which comman
 
 | Tag | State after the block |
 |---|---|
-| `00-start` | website in its before state, server, product context, material, all skills |
+| `v2-00-start` | website in its before state, server, product context, material, all skills |
 | `01-kpi-tree` | KPI tree |
 | `02-opportunities` | opportunities per source group, selection still empty |
 | `03-opportunity-decision` | selection, opportunity comparison, decision 001 |

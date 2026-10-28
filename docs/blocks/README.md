@@ -5,7 +5,7 @@ the block is for, what you do step by step, and when you are done.
 
 | File | Block | Tag after the block |
 |---|---|---|
-| [00-setup.md](00-setup.md) | Setup | `00-start` |
+| [00-setup.md](00-setup.md) | Setup | `v2-00-start` |
 | [01-kpi-tree.md](01-kpi-tree.md) | KPI tree | `01-kpi-tree` |
 | [02-opportunities.md](02-opportunities.md) | Opportunities from sources | `02-opportunities` |
 | [03-opportunity-decision.md](03-opportunity-decision.md) | Compare opportunities and decide | `03-opportunity-decision` |
@@ -38,7 +38,7 @@ evidence map.
 
 ## Your pair's branch and the reference states
 
-You work as a pair on one branch, started from `00-start`. You keep your own opportunity and your
+You work as a pair on one branch, started from `v2-00-start`. You keep your own opportunity and your
 own variant to the end. After every block there is a reference state. If you are stuck or behind,
 continue from the reference state of the block you missed:
 
