@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { parseComparison, parseIntent, treePage } from '../lib/opportunity-tree.js';
+import { parseComparison, parseIntent, treePage, funnelBars, thousands } from '../lib/opportunity-tree.js';
 
 const MD = `# Opportunity comparison
 
@@ -208,4 +208,30 @@ test('every round marks its own idea, and an idea named in words only is not mar
   assert.match(html, /tested first: success-line-first/);
   assert.match(html, /tested in round 2: second-try/);
   assert.deepEqual(parseIntent(INTENT.replace('- Idea it comes from: I3', '- Idea it comes from: the call button')).tested, []);
+});
+
+const FUNNEL = MD.replace(/^- website visits:[\s\S]*?(?=\n## Candidates)/m, `- website visits: 3766 visits, the top of the funnel (data.md D1) · Candidates: none
+- reach rate: 3026 of 3766 visits never open the inquiry page (data.md D1) · Candidates: C2 (assumed)
+  - Data: of visits that see the formats page, 376 of 2291 open the inquiry page (data.md D2)
+- start rate: 546 of 740 inquiry page visits leave without starting the form (data.md D3) · Candidates: C2
+- submit rate: 81 of 194 started forms are not sent (data.md D4) · Candidates: C1
+`);
+
+test('the loss bars narrow down the funnel: each bar is as long as the visits that reach the step', () => {
+  const p = parseComparison(FUNNEL);
+  assert.deepEqual(funnelBars(p.drivers), [null, { reach: 100, lost: 80.4 }, { reach: 19.6, lost: 73.8 }, { reach: 5.2, lost: 41.8 }]);
+  const html = treePage(repo(FUNNEL));
+  const widths = [...html.matchAll(/class="bar" style="width:([\d.]+)%"/g)].map((m) => Number(m[1]));
+  assert.deepEqual(widths, [100, 19.6, 5.2]);
+  assert.ok(widths.every((w, i) => i === 0 || w < widths[i - 1]), 'every bar is shorter than the one above');
+});
+
+test('the counts under each step are labelled as counted data, with thousands separators', () => {
+  const html = treePage(repo(FUNNEL));
+  assert.match(html, /<b>Counted in the data:<\/b> 3,026 of 3,766 visits never open the inquiry page/);
+  assert.match(html, /<b>Counted in the data:<\/b> 3,766 visits, the top of the funnel/);
+  assert.match(html, /376 of 2,291 open/);
+  assert.match(html, /title="3,026 of 3,766 lost at this step"/);
+  assert.equal(thousands('on 2026-08-18, see a.md:1234 and D1234'), 'on 2026-08-18, see a.md:1234 and D1234');
+  assert.deepEqual(parseComparison(FUNNEL.replace('3026 of 3766', '3,026 of 3,766')).drivers[1].lost, 3026);
 });
