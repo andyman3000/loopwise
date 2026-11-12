@@ -63,3 +63,14 @@ test('the map marks what the files put into the comparison', () => {
   assert.equal((html.match(/class="in"/g) || []).length, 1);
   assert.match(html, /1 marked "in comparison"/);
 });
+
+test('each quote on a card links to its source file and line', () => {
+  const md = OPP.replace('  - "I have no idea." (sources/interviews/a.md:4, S, sponsor)', '  - "I have no idea." (sources/interviews/a.md:4, S, sponsor)\n  - "I sketched three ways." (sources/interviews/a.md:9, S, sponsor)\n  - "Seen in a mail." (site/inquiry.html:27)');
+  const [o1] = parseOpportunities(md);
+  assert.deepEqual(o1.quotes.map((q) => q.where), ['sources/interviews/a.md:4', 'sources/interviews/a.md:9', 'site/inquiry.html:27']);
+  const html = mapPage(repo(md));
+  assert.match(html, /&quot;I have no idea\.&quot;<small><a href="\/sources\/interviews\/a\.md#L4">sources\/interviews\/a\.md:4<\/a><\/small>/);
+  assert.match(html, /<summary>2 more quotes<\/summary>/);
+  assert.match(html, /<a href="\/sources\/interviews\/a\.md#L9">/);
+  assert.match(html, /<small>site\/inquiry\.html:27<\/small>/, 'a location outside sources/ stays plain text');
+});
