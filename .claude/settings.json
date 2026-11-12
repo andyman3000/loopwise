@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Edit(/discovery/**)",
+      "Edit(/site/variants/**)",
+      "Bash(npm run check)",
+      "Bash(npm test)",
+      "Bash(npm start)",
+      "Bash(npm run tree)",
+      "Bash(curl http://localhost:3000)",
+      "Bash(curl http://localhost:3000/*)",
+      "Bash(curl -s http://localhost:3000/*)",
+      "Bash(grep *)",
+      "Bash(ls *)",
+      "Bash(git status *)",
+      "Bash(git diff *)",
+      "Bash(git log *)"
+    ]
+  }
+}
