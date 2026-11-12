@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { parseComparison, parseIntent, treePage, funnelBars, thousands } from '../lib/opportunity-tree.js';
+import { parseComparison, parseIntent, treePage, funnelBars, thousands, namedDrivers } from '../lib/opportunity-tree.js';
 
 const MD = `# Opportunity comparison
 
@@ -234,4 +234,22 @@ test('the counts under each step are labelled as counted data, with thousands se
   assert.match(html, /title="3,026 of 3,766 lost at this step"/);
   assert.equal(thousands('on 2026-08-18, see a.md:1234 and D1234'), 'on 2026-08-18, see a.md:1234 and D1234');
   assert.deepEqual(parseComparison(FUNNEL.replace('3026 of 3766', '3,026 of 3,766')).drivers[1].lost, 3026);
+});
+
+test('an idea on the start rate links to the start rate only, never to the open rate it mentions', () => {
+  const md = MD.replace(/^- website visits:[\s\S]*?(?=\n## Candidates)/m, `- website visits: 100 visits, the top of the funnel (data.md D1) · Candidates: none
+- open rate: 80 of 100 visits never open the inquiry page (data.md D1) · Candidates: C2 (assumed)
+- start rate: 5 of 20 leave without starting (data.md D3) · Candidates: C2
+`);
+  const p = parseComparison(md);
+  assert.deepEqual(namedDrivers('start rate (`discovery/kpi-tree.md:21`), acts after the open rate', p.drivers), ['start rate']);
+  assert.deepEqual(namedDrivers('Start rate · open rate (`discovery/kpi-tree.md:20`)', p.drivers), ['open rate', 'start rate']);
+  assert.deepEqual(namedDrivers('form start rate', p.drivers), [], 'a name the tree does not have links to nothing');
+  const root = repo(md);
+  fs.mkdirSync(path.join(root, 'discovery', 'intents'));
+  fs.writeFileSync(path.join(root, 'discovery', 'intents', 'x.md'), INTENT.replace('| start rate |', '| start rate (`discovery/kpi-tree.md:21`), acts after the open rate |'));
+  const html = treePage(root);
+  const sol = html.match(/<button type="button" class="sol[^"]*"[^>]*data-key="discovery\/intents\/x.md#I2"[^>]*>/)[0];
+  assert.match(sol, /data-drivers="\[&quot;start rate&quot;\]"/);
+  assert.match(html, /JSON\.parse\(s\.dataset\.drivers\)/, 'the page script lights up the steps the server matched');
 });
