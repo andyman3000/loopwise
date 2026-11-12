@@ -27,7 +27,7 @@ contrast" opportunities against each other, rather than judging one in isolation
   strength, leverage and readability give the level, the reasoning, the sources, the
   counter-evidence and the gaps. The funnel line gives counts only, no level.
 - **Independent sources:** two quotes from the same interview or the same mail thread are one
-  source. Say whose voice it is (sponsor, participant, academy staff).
+  source. Say whose voice it is (sponsor, participant, developer, academy staff).
 - **Shortlist: the agent narrows, the human confirms.** Propose every candidate that passes the
   keep test, never pick one, and never cut a passing candidate to reach a number. Write "Goes into comparison" only after the human explicitly said yes to the
   shortlist or changed it, and write what they confirmed, not your proposal. A vague reply ("ok",
