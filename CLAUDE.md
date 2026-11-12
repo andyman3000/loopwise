@@ -12,7 +12,10 @@ Project preferences for Claude Code in the Loopwise demo repo.
 - [product/personas/](product/personas/): soft sponsor, hard sponsor, participant
 
 **Material (raw, never edited by skills):**
-- `sources/interviews/`: three participant group interviews, two sponsor interviews (anonymised composites)
+- `sources/interviews/`: three participant group interviews, two sponsor interviews and two participant
+  one-on-one interviews (anonymised composites); four sponsor, one participant and one developer
+  one-on-one interview (synthetic, built from patterns in real conversations). The developer is a voice
+  of its own, neither sponsor nor participant
 - `sources/emails/`: seven inquiry mails (synthetic)
 - `sources/feedback/`: one feedback export (mixed: paraphrased free text, invented ratings)
 - `sources/inbox/`: thirteen support requests (synthetic)
@@ -69,6 +72,7 @@ npm run tree    # draws discovery/kpi-tree.md as discovery/kpi-tree.html
 # http://localhost:3000/discovery shows the artefacts as readable pages, the KPI tree drawn
 # http://localhost:3000/discovery/map: every opportunity on an evidence map, filterable, read-only
 # http://localhost:3000/discovery/tree: the compared candidates linked to the business goal, read-only
+# http://localhost:3000/sources/<file>#L<n>: one file from sources/ with numbered lines, line n marked
 ```
 
 Node 20 or newer. No dependencies, no `npm install`. Keep it that way.
