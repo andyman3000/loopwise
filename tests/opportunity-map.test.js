@@ -110,6 +110,10 @@ const ROWS = `### O1: Direct
 - **KPI branch:** Branch A: inquiries that end in a booking, driver form length. [assumption: w]
 - **Voices:** 1 distinct speaker: developer. Second-hand: no.
 - **Assessment:** unsupported.
+
+### O7: Negated driver
+- **KPI branch:** no branch in the tree for the day itself. No side link. A new sponsor does not see it. No driver of Branch A fits.
+- **Assessment:** unsupported.
 `;
 
 test('the tree is read with its drivers in order and the first branch not parked as active', () => {
@@ -130,8 +134,10 @@ test('cards go to the row of their driver, by side link, to branch B, to no bran
     'booking rate': ['O2 side', 'O3 side'],
     'Branch A, driver not in the tree': ['O6'],
     'Branch B: follow-up bookings, not this quarter': ['O4'],
-    'No KPI branch': ['O5'],
+    'No KPI branch': ['O5', 'O7'],
   });
+  const o7 = parseOpportunities(ROWS)[6];
+  assert.deepEqual([o7.branch, o7.driver, o7.sideLink], ['', '', false], '"No driver of Branch A fits" names no branch and no driver');
   assert.deepEqual(unplaced.map((u) => [u.o.id, u.why]), [['O6', 'driver "form length" is not in the tree']]);
   const [, o2, o3, o4] = parseOpportunities(ROWS);
   assert.deepEqual([o2.branch, o3.branch, o4.branch, o4.sideLink], ['B', '', 'B', false], '"No side link to Branch A" is no side link');
