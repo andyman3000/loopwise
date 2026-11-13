@@ -172,7 +172,7 @@ Branch: <Branch A: name> (<file:line>)
   - Data: <only under a driver with an assumed link: the observation that suggests it, counted> (data.md D<n>)
 
 ## Candidates
-### C1: <need, in the sponsor's or participant's terms>
+### C1: "<the need, first person, as the opportunity files write it>" (<role>, <moment>)
 - **From:** <source IDs, merges named>
 - **Evidence:** <level>: <independent source groups, voices, observed or feared>
 - **Leverage:** <level>: <direct or indirect, can the website change it>
