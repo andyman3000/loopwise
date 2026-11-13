@@ -52,14 +52,14 @@ The KPI tree has a branch for the path to a booking (Branch A) and one for follo
 - **Gaps:** one sender only. The request does not say what the sponsor already knows about the team.
 - **Assessment:** unsupported. One voice. Two sponsors in the same source describe their team's level without trouble.
 
-### O3: "I feel I must name a format before I can ask." (sponsor, before booking)
+### O3: "I feel I must pick a format before I can send you an inquiry." (sponsor, before booking)
 - **Evidence:**
   - "I do not want to pick one just to have something to write in the form." (sources/inbox/inbox-export.md:137, team lead, sponsor)
   - "Can I talk to someone before I fill in anything?" (sources/inbox/inbox-export.md:149, learning and development partner, sponsor)
   - "Is that enough to start with, or do I need to know the format first?" (sources/inbox/inbox-export.md:161, product lead, sponsor)
 - **Voices:** 3 distinct speakers: sponsors. Second-hand: no.
 - **Merged:** no.
-- **Close to:** O1. Same role and same moment, but a different need. O1 is about knowing which format fits. O3 is about being allowed to ask before that is clear.
+- **Close to:** O1. Same role and same moment, but a different need. O1 is about knowing which format fits. O3 is about being able to send an inquiry before that is clear.
 - **KPI branch:** Branch A: more inquiries that end in a booking, driver start rate. Two sponsors name the form as the point where they stop (sources/inbox/inbox-export.md:137, sources/inbox/inbox-export.md:149).
 - **Counter-evidence in this source:** none found in this source.
 - **Gaps:** the inbox does not show whether the form asks for a format. The head of product wrote through the form channel (sources/inbox/inbox-export.md:121). It is unclear whether that was the inquiry form.
@@ -181,5 +181,5 @@ The KPI tree has a branch for the path to a booking (Branch A) and one for follo
 | Talk to a person before the form | "Can I talk to someone before I fill in anything?" (sources/inbox/inbox-export.md:149) | O3, O1 |
 
 ## Goes into comparison
-Goes into comparison: ____ (human confirms the shortlist in compare-opportunities)
-Decided by: ____ · Date: ____
+Goes into comparison: O1, together with inquiry-mails O1 and interviews O1 (C1); O3 (C2)
+Decided by: Product lead (Loopwise) · Date: 2026-08-18

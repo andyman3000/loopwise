@@ -137,5 +137,5 @@ Every mail is one sponsor, writing before any booking. No participant writes her
 | Trial accounts or an environment brought along | "Would participants work on their own laptops with a trial account, or do you bring an environment?" (sources/inquiry-mails/inquiry-05.md:16) | O5 |
 
 ## Goes into comparison
-Goes into comparison: ____ (human confirms the shortlist in compare-opportunities)
-Decided by: ____ · Date: ____
+Goes into comparison: O1, together with inbox O1 and interviews O1 (C1); O3, together with interviews O2 (C3); O2 (C4, added by the product lead)
+Decided by: Product lead (Loopwise) · Date: 2026-08-18
