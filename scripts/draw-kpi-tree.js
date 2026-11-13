@@ -1,6 +1,7 @@
 // Draws discovery/kpi-tree.md as a page: discovery/kpi-tree.html. Same look as the opportunity tree
-// at /discovery/tree: the business goal on top, the branches below, the drivers of each branch in a
-// row as steps, the branch formulas underneath. No dependencies.
+// at /discovery/tree: the business goal on top, the branches below, and under each active branch its
+// drivers as one chain joined by the operator of the branch formula (× or +), ending in its result,
+// so the picture is the formula. No dependencies.
 // Usage: node scripts/draw-kpi-tree.js [in.md] [out.html]
 import fs from 'node:fs';
 import path from 'node:path';
@@ -60,6 +61,21 @@ ${d.event ? `<span class="measured"><b>Measured:</b> ${code(d.event)}</span>` : 
 </div>`;
 }
 
+// "bookings = a × b × c" -> { result: 'bookings', op: '×' }. Without a formula: no operator, no result.
+export function readFormula(f) {
+  const m = (f || '').match(/^\s*(.+?)\s*=\s*(.+)$/);
+  if (!m) return { result: '', op: '' };
+  return { result: m[1], op: m[2].includes('+') && !m[2].includes('×') ? '+' : '×' };
+}
+
+function chain(b, formula) {
+  const { result, op } = readFormula(formula);
+  const parts = b.drivers.map((d, i) => driverNode(d, i, b.key));
+  const joined = op ? parts.join(`<span class="op" aria-label="${op === '×' ? 'times' : 'plus'}">${op}</span>`) : parts.join('');
+  const end = result ? `<span class="op" aria-label="equals">=</span><div class="node result"><span class="kind">Result</span>${esc(result)}</div>` : '';
+  return `<div class="chain" data-branch="${b.key}"${formula ? ` aria-label="${esc(formula)}"` : ''}>${joined}${end}</div>`;
+}
+
 export function drawTree(md) {
   const { items, formulas } = readTree(md);
   if (!items.length) throw new Error('no "## Tree" list found');
@@ -73,9 +89,8 @@ export function drawTree(md) {
 <svg aria-hidden="true"></svg>
 <div class="level"><div class="node goal"><span class="kind">Business goal</span>${esc(goal.title)}</div></div>
 <div class="level">${branches.map(branchNode).join('')}</div>
-${branches.filter((b) => b.drivers.length).map((b) => `<div class="drivers" style="--n:${b.drivers.length}">${b.drivers.map((d, i) => driverNode(d, i, b.key)).join('')}</div>`).join('\n')}
-</div>
-${formulas.length ? `<section class="formula" aria-label="How the branches work">${formulas.map((f) => `<div><code>${esc(f)}</code></div>`).join('')}</section>` : ''}`;
+${branches.filter((b) => b.drivers.length).map((b, i) => chain(b, formulas[i])).join('\n')}
+</div>`;
 }
 
 const EXTRA_CSS = `
@@ -84,8 +99,11 @@ const EXTRA_CSS = `
 .driver .measured{color:var(--muted);font-size:.75rem;line-height:1.35}
 .branch.parked{border-style:dashed;color:var(--muted);font-weight:500}
 .tree path.parked{stroke-dasharray:6 5}
-.formula{margin:2rem 0 1rem;display:grid;gap:.3rem}
-.formula code{font-size:.9rem}
+.chain{display:flex;flex-wrap:wrap;align-items:stretch;gap:.4rem;margin-top:2.6rem}
+.chain .driver{flex:1 1 0;min-width:7.5rem}
+.chain .op{align-self:center;font-size:1.4rem;font-weight:600;color:var(--muted);padding:0 .1rem}
+.chain .result{align-self:center;font-weight:650}
+.chain .result .kind{display:block}
 `;
 
 // Lines are drawn after layout, so they follow the boxes at any width.
@@ -104,9 +122,9 @@ function draw() {
   const goal = tree.querySelector('.goal');
   let out = '';
   for (const b of tree.querySelectorAll('.branch')) out += curve(pt(goal, 'bottom'), pt(b, 'top'), b.classList.contains('parked') ? 'parked' : '');
-  for (const d of tree.querySelectorAll('.driver')) {
-    const b = tree.querySelector('.branch[data-key="' + d.dataset.branch + '"]');
-    if (b) out += curve(pt(b, 'bottom'), pt(d, 'top'), '');
+  for (const c of tree.querySelectorAll('.chain')) {
+    const b = tree.querySelector('.branch[data-key="' + c.dataset.branch + '"]');
+    if (b) out += curve(pt(b, 'bottom'), pt(c, 'top'), '');
   }
   svg.innerHTML = out;
 }

@@ -106,8 +106,11 @@ blockquote small{display:block;font-size:.72rem}
 .driver .measured{color:var(--muted);font-size:.75rem;line-height:1.35}
 .branch.parked{border-style:dashed;color:var(--muted);font-weight:500}
 .tree path.parked{stroke-dasharray:6 5}
-.formula{margin:2rem 0 1rem;display:grid;gap:.3rem}
-.formula code{font-size:.9rem}
+.chain{display:flex;flex-wrap:wrap;align-items:stretch;gap:.4rem;margin-top:2.6rem}
+.chain .driver{flex:1 1 0;min-width:7.5rem}
+.chain .op{align-self:center;font-size:1.4rem;font-weight:600;color:var(--muted);padding:0 .1rem}
+.chain .result{align-self:center;font-weight:650}
+.chain .result .kind{display:block}
 </style>
 </head>
 <body>
@@ -123,33 +126,32 @@ blockquote small{display:block;font-size:.72rem}
 <svg aria-hidden="true"></svg>
 <div class="level"><div class="node goal"><span class="kind">Business goal</span>more booked in-house workshops per quarter</div></div>
 <div class="level"><div class="node branch" data-key="A"><span class="kind">KPI branch A</span>more inquiries that end in a booking</div><div class="node branch parked" data-key="B"><span class="kind">KPI branch B · not this quarter</span>follow-up bookings</div></div>
-<div class="drivers" style="--n:6"><div class="node driver" data-branch="A">
+<div class="chain" data-branch="A" aria-label="bookings = website visits × reach rate × start rate × submit rate × call rate × booking rate"><div class="node driver" data-branch="A">
 <span class="step">Step 1</span><span class="name">website visits</span>
 <span class="what">number of visits to any page of the website</span>
 <span class="measured"><b>Measured:</b> visits with a <code>page_view</code></span>
-</div><div class="node driver" data-branch="A">
+</div><span class="op" aria-label="times">×</span><div class="node driver" data-branch="A">
 <span class="step">Step 2</span><span class="name">reach rate</span>
 <span class="what">percentage of website visits that open the inquiry page</span>
 <span class="measured"><b>Measured:</b> visits with a <code>page_view</code> of the inquiry page ÷ all visits</span>
-</div><div class="node driver" data-branch="A">
+</div><span class="op" aria-label="times">×</span><div class="node driver" data-branch="A">
 <span class="step">Step 3</span><span class="name">start rate</span>
 <span class="what">percentage of inquiry page visits that start the form</span>
 <span class="measured"><b>Measured:</b> <code>inquiry_started</code> ÷ inquiry page visits</span>
-</div><div class="node driver" data-branch="A">
+</div><span class="op" aria-label="times">×</span><div class="node driver" data-branch="A">
 <span class="step">Step 4</span><span class="name">submit rate</span>
 <span class="what">percentage of started forms that are sent</span>
 <span class="measured"><b>Measured:</b> <code>inquiry_submitted</code> ÷ <code>inquiry_started</code></span>
-</div><div class="node driver" data-branch="A">
+</div><span class="op" aria-label="times">×</span><div class="node driver" data-branch="A">
 <span class="step">Step 5</span><span class="name">call rate</span>
 <span class="what">percentage of sent inquiries that get a scoping call</span>
 <span class="measured"><b>Measured:</b> <code>scoping_call_booked</code> ÷ <code>inquiry_submitted</code></span>
-</div><div class="node driver" data-branch="A">
+</div><span class="op" aria-label="times">×</span><div class="node driver" data-branch="A">
 <span class="step">Step 6</span><span class="name">booking rate</span>
 <span class="what">percentage of scoping calls that end in a booking</span>
 <span class="measured"><b>Measured:</b> <code>booking_confirmed</code> ÷ <code>scoping_call_booked</code></span>
-</div></div>
+</div><span class="op" aria-label="equals">=</span><div class="node result"><span class="kind">Result</span>bookings</div></div>
 </div>
-<section class="formula" aria-label="How the branches work"><div><code>bookings = website visits × reach rate × start rate × submit rate × call rate × booking rate</code></div></section>
 <script>
 const tree = document.querySelector('.tree');
 const svg = tree.querySelector('svg');
@@ -165,9 +167,9 @@ function draw() {
   const goal = tree.querySelector('.goal');
   let out = '';
   for (const b of tree.querySelectorAll('.branch')) out += curve(pt(goal, 'bottom'), pt(b, 'top'), b.classList.contains('parked') ? 'parked' : '');
-  for (const d of tree.querySelectorAll('.driver')) {
-    const b = tree.querySelector('.branch[data-key="' + d.dataset.branch + '"]');
-    if (b) out += curve(pt(b, 'bottom'), pt(d, 'top'), '');
+  for (const c of tree.querySelectorAll('.chain')) {
+    const b = tree.querySelector('.branch[data-key="' + c.dataset.branch + '"]');
+    if (b) out += curve(pt(b, 'bottom'), pt(c, 'top'), '');
   }
   svg.innerHTML = out;
 }
