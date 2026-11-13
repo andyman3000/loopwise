@@ -49,7 +49,7 @@ loopwise/
   README.md  CLAUDE.md  package.json  server.js
   site/            pages, components/, config.json   (variants/ appears once variants are built)
   lib/             discovery-view.js: renders discovery/ at /discovery
-                   opportunity-map.js: /discovery/map, opportunities by source and evidence
+                   opportunity-map.js: /discovery/map, opportunities in rows by KPI driver
                    opportunity-tree.js: /discovery/tree, the comparison drawn as an opportunity tree
   data/            scenario.json, events.jsonl, inquiries.csv   (synthetic baseline, 26 weeks)
   tests/

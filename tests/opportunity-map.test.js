@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { parseOpportunities, parseSelection, mapPage } from '../lib/opportunity-map.js';
+import { parseOpportunities, parseSelection, mapPage, readTree, assignRows } from '../lib/opportunity-map.js';
 
 const OPP = `# Opportunities: interviews
 
@@ -27,12 +27,23 @@ Goes into comparison: ____ (human decides)
 Decided by: ____ · Date: ____
 `;
 
+const TREE = `## Tree
+- Business goal: more booked workshops (x:8)
+  - Branch A: inquiries that end in a booking (x:1)
+    - start rate: percentage of inquiry page visits that start the form · measured: \`inquiry_started\`
+    - submit rate: percentage of started forms that are sent · measured: \`inquiry_submitted\`
+    - booking rate: percentage of scoping calls that end in a booking · measured: \`booking_confirmed\`
+  - Branch B: follow-up bookings, not this quarter (x:2)
+
+## How branch A works
+`;
+
 function repo(md = OPP) {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'loopwise-map-'));
   fs.mkdirSync(path.join(root, 'discovery', 'opportunities'), { recursive: true });
   fs.writeFileSync(path.join(root, 'discovery', 'opportunities', 'interviews.md'), md);
   fs.writeFileSync(path.join(root, 'discovery', 'opportunities', 'data.md'), '# Observations\n');
-  fs.writeFileSync(path.join(root, 'discovery', 'kpi-tree.md'), '- Branch A: inquiries that end in a booking (x:1)\n- Branch B: follow-up bookings, not this quarter (x:2)\n');
+  fs.writeFileSync(path.join(root, 'discovery', 'kpi-tree.md'), TREE);
   return root;
 }
 
@@ -53,7 +64,7 @@ test('the map shows a card per opportunity, branch names from the KPI tree, and 
   const html = mapPage(repo());
   assert.equal((html.match(/<article class="card/g) || []).length, 2);
   assert.match(html, /A: inquiries that end in a booking/);
-  assert.match(html, /side link to A, driver booking rate/);
+  assert.match(html, /<span class="badge side">side link<\/span>/);
   assert.match(html, /Nothing is in the comparison yet/);
   assert.doesNotMatch(html, /data\.md|<form|\/api\//);
 });
@@ -73,4 +84,70 @@ test('each quote on a card links to its source file and line', () => {
   assert.match(html, /<summary>2 more quotes<\/summary>/);
   assert.match(html, /<a href="\/sources\/interviews\/a\.md#L9">/);
   assert.match(html, /<small>site\/inquiry\.html:27<\/small>/, 'a location outside sources/ stays plain text');
+});
+
+const ROWS = `### O1: Direct
+- **KPI branch:** Branch A: inquiries that end in a booking, driver submit rate. [assumption: x]
+- **Assessment:** partly supported.
+
+### O2: Side link from B
+- **KPI branch:** the need is met after the format. So it sits mainly on Branch B. Side link: Branch A, driver booking rate [assumption: y].
+- **Assessment:** well supported.
+
+### O3: Side link without a branch
+- **KPI branch:** no branch in the tree for preparation. Side link to Branch A, driver booking rate [assumption: z].
+- **Assessment:** unsupported.
+
+### O4: B only
+- **KPI branch:** Branch B: follow-up bookings, parked this quarter. No side link to Branch A. The tree names no driver.
+- **Assessment:** unsupported.
+
+### O5: Nothing
+- **KPI branch:** no branch in the tree for preparation. No side link.
+- **Assessment:** unsupported.
+
+### O6: Unknown driver
+- **KPI branch:** Branch A: inquiries that end in a booking, driver form length. [assumption: w]
+- **Voices:** 1 distinct speaker: developer. Second-hand: no.
+- **Assessment:** unsupported.
+`;
+
+test('the tree is read with its drivers in order and the first branch not parked as active', () => {
+  const tree = readTree(repo());
+  assert.deepEqual(tree.branches.map((b) => [b.id, b.drivers.map((d) => d.name)]), [['A', ['start rate', 'submit rate', 'booking rate']], ['B', []]]);
+  assert.equal(tree.active.id, 'A');
+  assert.equal(tree.active.drivers[0].sentence, 'percentage of inquiry page visits that start the form');
+});
+
+test('cards go to the row of their driver, by side link, to branch B, to no branch, or to the catch-all for an unknown driver', () => {
+  const root = repo(ROWS);
+  const entries = parseOpportunities(ROWS).map((o) => ({ source: 'interviews', o }));
+  const { rows, unplaced } = assignRows(entries, readTree(root));
+  const at = Object.fromEntries(rows.map((r) => [r.title, r.cards.map((c) => c.o.id + (c.side ? ' side' : ''))]));
+  assert.deepEqual(at, {
+    'start rate': [],
+    'submit rate': ['O1'],
+    'booking rate': ['O2 side', 'O3 side'],
+    'Branch A, driver not in the tree': ['O6'],
+    'Branch B: follow-up bookings, not this quarter': ['O4'],
+    'No KPI branch': ['O5'],
+  });
+  assert.deepEqual(unplaced.map((u) => [u.o.id, u.why]), [['O6', 'driver "form length" is not in the tree']]);
+  const [, o2, o3, o4] = parseOpportunities(ROWS);
+  assert.deepEqual([o2.branch, o3.branch, o4.branch, o4.sideLink], ['B', '', 'B', false], '"No side link to Branch A" is no side link');
+  assert.deepEqual(parseOpportunities(ROWS)[5].speakers, ['developer']);
+});
+
+test('rows follow the tree, empty steps still show, the Branch A catch-all only when used', () => {
+  const html = mapPage(repo());
+  const heads = [...html.matchAll(/<h2>(?:<span class="step">\d+<\/span>)?([^<]+)<span/g)].map((m) => m[1]);
+  assert.deepEqual(heads, ['start rate', 'submit rate', 'booking rate', 'Branch B: follow-up bookings, not this quarter', 'No KPI branch']);
+  assert.match(html, /percentage of inquiry page visits that start the form/);
+  assert.equal((html.match(/No opportunity names this step\./g) || []).length, 1, 'start rate has no card');
+  assert.match(html, /No opportunity sits here\./);
+  assert.match(html, /Each row is one step of Branch A of the KPI tree/);
+  assert.match(html, /data-value="developer"/);
+  const booking = html.split('data-row="driver:booking rate"')[1].split('<section')[0];
+  assert.match(booking, /class="card well side"/);
+  assert.match(booking, /<span class="badge parked">B: follow-up bookings, not this quarter<\/span>/, 'a side-link card keeps its parked badge');
 });
