@@ -43,9 +43,9 @@ decision.
 2. Read the KPI tree; find the branch the tested opportunity hangs on (quote it). Enter the values.
 3. Read the decision files for the tested opportunity: what it said would tip the decision. Check it.
 4. Read every answer the shipped variant collected in `data/inquiries.csv`: the columns beyond `id`,
-   `submitted_at`, `variant`, `sponsor_type`, `team_size`, `scoping_call_booked` and
-   `booking_confirmed`, in the variant's rows. An answer can be a sentence the sponsor wrote or an option
-   the sponsor ticked. Sort each into the opportunities in `discovery/opportunities/` it describes, or
+   `submitted_at`, `variant`, `buyer_type`, `team_size`, `scoping_call_booked` and
+   `booking_confirmed`, in the variant's rows. An answer can be a sentence the buyer wrote or an option
+   the buyer ticked. Sort each into the opportunities in `discovery/opportunities/` it describes, or
    "fits none". "I don't know yet" fits none. Quote each with its row. Count per opportunity.
 5. Compare: which opportunity does the evidence now point to, and how does that change the earlier
    comparison? Name counter-evidence and what one more source would settle.

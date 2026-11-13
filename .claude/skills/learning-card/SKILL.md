@@ -10,7 +10,7 @@ if the cross test dropped. Also after a second round, to update the card.
 **Input:** the variant name. If missing, ask.
 **Reads:** `discovery/test-cards/<variant>-prototype.md` (the assumption, the signs, the two lines);
 `discovery/user-tests/<variant>-cross.md` (the watcher's notes from the cross test), `<variant>-spec.md` and `<variant>-page.md` if they exist; `discovery/specs/<variant>.md` (section "Invented lines on the page");
-`product/personas/sponsor-soft.md`, `product/personas/sponsor-hard.md`;
+`product/personas/buyer-soft.md`, `product/personas/buyer-hard.md`;
 `discovery/intents/<opportunity>.md` (the other two ideas).
 **Writes:** `discovery/decisions/<nnn>-<variant>.md`. If a file for this variant exists, add a dated
 round below the last one, with all its sections, its own decision, Who and When included; never
@@ -36,7 +36,7 @@ The pair decides. This skill asks, quotes and writes; it decides nothing.
 - **Feedback on the pair's own answers.** These answers get feedback: what the tester did or said (step 2), why the assumption held or broke (step 4), and the sentence "From that we learned that ..." (step 5). Tell the pair in two or three short lines how strong the answer was: what was good, what was weak, and why. Name their words. Be honest and specific, never flattering. Say it in the chat; the card holds only the pair's words. The gut feeling, a skipped answer and the choice of outcome get no feedback.
   - What the tester did or said: are these things a watcher saw or heard? Or guesses about what the tester felt?
   - Held or broke: does the reason rest on the signs and the two lines? Or on how the pair hoped the test would go?
-  - We learned: is it something new about the sponsor or the assumption? Or does it repeat an observation, or name a solution?
+  - We learned: is it something new about the buyer or the assumption? Or does it repeat an observation, or name a solution?
 - **Decides nothing.** The pair names one of three outcomes and why: move on (with what changes before roll-out), another round (changed spec or the next idea from the intent), or kill. If they do not name one, the field stays `____ (human decides)`. Never suggest which one.
 - **Every claim quotes its source with location** (file and line). A citation into `discovery/` carries a short quote, so `npm run check` catches a line that moved; never a section name alone. No invented numbers: one tester is a pattern, not a rate.
 - **The label of a round.** Each round starts with one label line. If that round has its own cross-test file (`<variant>-cross.md` for round 1, `<variant>-cross-2.md` for round 2): "Tested with one person from another pair: a pattern, not a rate." Otherwise: "Pressure-tested, not validated: rests on persona runs, not on people."

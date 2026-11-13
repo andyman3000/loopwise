@@ -23,10 +23,10 @@ A spec is the hand-over to the build: precise enough that Claude Code can build 
 - **Name what changes on the page by mechanism:** fields, order, wording, what happens on submit.
 - **Events come from this list only:** `page_view`, `inquiry_started`, `inquiry_step_completed`, `inquiry_submitted`, `success_line_filled`, `scoping_call_booked`, `booking_confirmed`, `followup_answered`. For each, say when it fires and which props it carries. The prototype test does not read them. If the variant needs something no event covers, say so under "What we cannot see".
 - **A page may keep the form, change it, or replace it.** A page that books a call instead of sending an inquiry logs `scoping_call_booked` (`site/components/events.js:8`) and sends nothing to `/api/inquiry`; the rest of this rule then does not apply. The spec says which of the two the page does.
-- **If the page sends an inquiry, fields go to the server as top-level scalars** (string, number, boolean) in the `POST /api/inquiry` body. The server stores any such field by rule (at most 20, strings up to 300 characters) and drops objects and arrays. It cuts a longer string without a warning, so every new text field gets `maxlength="300"`. Name every field. Core validation still applies on top: name, company, a valid email, and `message` of at least 10 characters (`site/components/inquiry-form.js:4`). An inquiry that drops one of these fails on send, so a page that sends one keeps all four. The message field may get a new label, or be filled from what the sponsor ticks or types: text built from the sponsor's own choices counts as their answer. Never fill it with fixed text that is the same whatever the sponsor does: every record would carry the same fake answer. Every new field sits inside the `<form>` element, or it is not sent.
+- **If the page sends an inquiry, fields go to the server as top-level scalars** (string, number, boolean) in the `POST /api/inquiry` body. The server stores any such field by rule (at most 20, strings up to 300 characters) and drops objects and arrays. It cuts a longer string without a warning, so every new text field gets `maxlength="300"`. Name every field. Core validation still applies on top: name, company, a valid email, and `message` of at least 10 characters (`site/components/inquiry-form.js:4`). An inquiry that drops one of these fails on send, so a page that sends one keeps all four. The message field may get a new label, or be filled from what the buyer ticks or types: text built from the buyer's own choices counts as their answer. Never fill it with fixed text that is the same whatever the buyer does: every record would carry the same fake answer. Every new field sits inside the `<form>` element, or it is not sent.
 - **After the send.** The page redirects to `/confirmation.html`, which says the academy gets in touch "within a few days" to book a scoping call. If the variant promises something else (a call back, a time), say so under "Open points for the human".
 - **Where it lives:** a variant can replace any page (`README.md:68`). It holds one file per page it changes, named like the page: `site/variants/<variant>/inquiry.html`, `formats.html`, or `index.html` for home. Each is served at `/<page>?variant=<variant>` once the name is listed under `variants` in `site/config.json`. Pages the variant does not hold stay the baseline, and the server keeps `?variant=` on links between pages. Do not set `shipped`; that is a human decision after the launch card. The spec names every page it changes and the page the tester starts on.
-- **Wording shown to sponsors that comes from the material is marked** with its source, and any invented line is marked as invented. List every invented line in the section "Invented lines on the page". Wording adapted from a source is written as the label, then "adapted from `<file>:<line>`", without quote marks around the label: `npm run check` reads a quote followed by a citation as word for word.
+- **Wording shown to buyers that comes from the material is marked** with its source, and any invented line is marked as invented. List every invented line in the section "Invented lines on the page". Wording adapted from a source is written as the label, then "adapted from `<file>:<line>`", without quote marks around the label: `npm run check` reads a quote followed by a citation as word for word.
 - Respect `product/constraints.md`. If the idea and a constraint disagree, name the conflict and stop at that point; do not resolve it.
 - **This file is a spec drafted by an agent.** The human reads it before the build. Open points stay open.
 
@@ -54,7 +54,7 @@ A spec is the hand-over to the build: precise enough that Claude Code can build 
 Feedback: <two or three short lines: what was strong, what was weak, and why>
 
 ## What changes on the page
-<step by step, what the sponsor sees and does, in order>
+<step by step, what the buyer sees and does, in order>
 
 ## Where the watcher sees each sign
 | Sign (from the prototype card) | Element on the page |
@@ -78,7 +78,7 @@ Feedback: <two or three short lines: what was strong, what was weak, and why>
 - <what this variant changes that no event measures>
 
 ## Invented lines on the page
-| Line the sponsor sees | Who could confirm it |
+| Line the buyer sees | Who could confirm it |
 |---|---|
 
 ## Out of scope for the prototype

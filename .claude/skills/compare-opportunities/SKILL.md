@@ -27,7 +27,7 @@ contrast" opportunities against each other, rather than judging one in isolation
   strength, leverage and readability give the level, the reasoning, the sources, the
   counter-evidence and the gaps. The funnel line gives counts only, no level.
 - **Independent sources:** two quotes from the same interview or the same mail thread are one
-  source. Say whose voice it is (sponsor, participant, developer, academy staff).
+  source. Say whose voice it is (buyer, participant, developer, academy staff).
 - **Shortlist: the agent narrows, the human confirms.** Propose every candidate that passes the
   keep test, never pick one, and never cut a passing candidate to reach a number. Write "Goes into comparison" only after the human explicitly said yes to the
   shortlist or changed it, and write what they confirmed, not your proposal. A vague reply ("ok",
@@ -56,7 +56,7 @@ contrast" opportunities against each other, rather than judging one in isolation
 1. **Shortlist.** Read all opportunity files and the KPI tree. If a "Goes into comparison" line is
    already filled, show it and ask whether it still holds; otherwise propose:
    - **Merge** the same need found in several source files into one candidate, naming every source
-     and ID ("inquiry-mails O1 + interviews O1 + inbox O1"). Merge only when the role (sponsor or
+     and ID ("inquiry-mails O1 + interviews O1 + inbox O1"). Merge only when the role (buyer or
      participant) and the moment (before the booking or after the training) are the same. Needs that
      differ in either stay apart; name them as related.
    - **Keep** a candidate if it passes all three, judged after merging:
@@ -101,8 +101,8 @@ contrast" opportunities against each other, rather than judging one in isolation
 3. Name the candidate the comparison appears to favour, as "Appears favoured: <ID>, because <one
    line>". This is a reading of the comparison, not a choice.
 4. **Challenger.** You are a challenger. Your job is to find out early whether the favoured row is a
-   bad bet. Be specific to the material: "what about other sponsors?" is useless, "the format
-   question appears in one sponsor's interview only, `sources/interviews/...`, section 4" is useful.
+   bad bet. Be specific to the material: "what about other buyers?" is useless, "the format
+   question appears in one buyer's interview only, `sources/interviews/...`, section 4" is useful.
    - Search `sources/` for counter-evidence to the favoured row. Quote it.
    - Run the need-or-solution test again on the favoured row, harder: does its strongest quote ask
      for a thing rather than describe a problem? Quote it.
@@ -217,5 +217,5 @@ Dropped:
 ## Decision (human)
 
 Chosen opportunity: ____ (human decides)
-We would switch if: ____ (a finding, and the candidate you would switch to, for example "call notes show sponsors settle the format in five minutes: then C3")
+We would switch if: ____ (a finding, and the candidate you would switch to, for example "call notes show buyers settle the format in five minutes: then C3")
 ```
