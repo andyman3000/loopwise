@@ -256,33 +256,27 @@ test('an idea on the start rate links to the start rate only, never to the open 
 });
 
 test('the overview card shows evidence counts and the lever, the details come only on zoom', () => {
-  const md = MD.replace('well supported: 2 source groups', 'well supported: 2 source groups, 5 sponsors, all in that situation now')
+  const md = MD.replace('well supported: 2 source groups', 'well supported: 2 source groups, 5 buyers, all in that situation now')
     .replace('- **Leverage:** partly supported: indirect', '- **Leverage:** partly supported: indirect')
     .replace('## Evidence\n### C1: Sponsor fears the fade\n- **Evidence strength:** long text', '## Evidence\n### C1: Sponsor fears the fade\n- **Evidence strength:** long text\n- **Gaps and uncertainty:** what the people above ask for');
   const p = parseComparison(md);
-  assert.equal(p.candidates[0].evidence.counts, '5 sponsors · 2 source groups');
+  assert.equal(p.candidates[0].evidence.counts, '5 buyers · 2 source groups');
   assert.equal(p.candidates[0].leverage.level, 'partly supported');
   assert.equal(p.candidates[0].gap, 'what the people above ask for');
   assert.deepEqual(p.candidates[0].sources, [{ group: 'interviews', id: 'O3' }]);
   const html = treePage(repo(md));
   const card = html.match(/<article class="card[^"]*"[^>]*data-id="C1"[\s\S]*?<\/article>/)[0];
   const [summary, details] = card.split('<div class="more">');
-  assert.match(summary, /<span class="pill well tip" data-tip="5 sponsors · 2 source groups">well supported<\/span>/, 'the counts show on hover');
+  assert.match(summary, /<span class="pill well tip" data-tip="5 buyers · 2 source groups: interviews">well supported<\/span>/, 'the counts show on hover');
   assert.match(summary, /<b>booking rate<\/b> <span class="pill partly tip" data-tip="3 of 5 lost here">partly supported<\/span>/);
   assert.match(summary, />Details<\/button>/);
   assert.doesNotMatch(summary, /Wins on|Strongest quote|8 weeks|lost here</, 'the overview shows the two labels only');
-  assert.match(details, /<div class="part x"><h3>Read more/, 'links and reasoning are for the Details view only');
+  assert.match(details, /<div class="part x go">/, 'the link and the reasoning are for the Details view only');
   assert.match(details, /Can we see a change in 8 weeks\? <span class="pill un">no<\/span>/);
   assert.match(details, /how often the event that would show the change is counted/);
+  assert.equal((details.match(/<a /g) || []).length, 1, 'the Details view has one link only');
+  assert.match(details, /href="\/discovery\/opportunity-comparison.md#evidence-C1">All details of C1/);
   assert.match(details, /<h3>Open gap<\/h3>what the people above ask for/);
-  assert.match(details, /href="\/sources\/interviews\/a.md#L3"/, 'the quote opens its source line');
-});
-
-test('a candidate links to its opportunity entries and to its full assessment', () => {
-  const html = treePage(repo(MD.replace('- **From:** inquiry-mails O1', '- **From:** inquiry-mails O1 + inbox O3')));
-  assert.match(html, /href="\/discovery\/opportunities\/inquiry-mails.md#O1"/);
-  assert.match(html, /href="\/discovery\/opportunities\/inbox.md#O3"/);
-  assert.match(html, /href="\/discovery\/opportunity-comparison.md#evidence-C2"/);
 });
 
 test('every step, candidate and idea is a place the keys and the hash can jump to', () => {
@@ -295,4 +289,24 @@ test('every step, candidate and idea is a place the keys and the hash can jump t
   assert.match(html, /data-v="C1">C1<kbd>1<\/kbd>/);
   for (const k of ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Escape']) assert.match(html, new RegExp(k), `the page script handles ${k}`);
   assert.match(html, /max-width: 48rem/, 'a narrow screen gets one scrolling page instead of the camera');
+});
+
+test('the Details view names each source group the need comes from, with the people who say it there', () => {
+  const root = repo(MD.replace('- **From:** interviews O3', '- **From:** interviews O3 + inbox O1')
+    .replace('well supported: 2 source groups', 'well supported: 2 source groups, 5 buyers, each about their own situation'));
+  fs.mkdirSync(path.join(root, 'discovery', 'opportunities'));
+  fs.writeFileSync(path.join(root, 'discovery', 'opportunities', 'interviews.md'), `## Opportunities
+
+### O3: "Everything was as before." (sponsor, after the training)
+- **Evidence:**
+  - "Everything was as before." (\`sources/interviews/a.md:3\`, Carla, sponsor)
+- **Voices:** 2 distinct speakers: buyers. Second-hand: no.
+- **Assessment:** partly supported. Two buyers.
+`);
+  const html = treePage(root);
+  const card = html.match(/<article class="card[^"]*"[^>]*data-id="C1"[\s\S]*?<\/article>/)[0];
+  assert.match(card, /data-tip="5 buyers · 2 source groups: interviews, support requests"/, 'the hover names the groups');
+  assert.match(card, /<b class="line">5 voices from 2 sources back this up:<\/b><ol class="voices"><li><b>Interviews \(2\):<\/b> <q>Everything was as before\.<\/q><\/li><li><b>Support requests:<\/b><\/li><\/ol>/, 'one quote per source; a missing file still names its source');
+  assert.match(card, /<span class="basis">Each about their own situation\.<\/span>/);
+  assert.doesNotMatch(card, /sources\/interviews\/a.md/, 'no source paths in the Details view');
 });
