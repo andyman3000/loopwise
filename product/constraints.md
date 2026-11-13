@@ -4,7 +4,7 @@ Hard limits for every artefact and every change in this repo.
 
 ## Data and prices
 
-- **No prices**, not on the website and not in data. Sponsors do ask for them ("do you have a price
+- **No prices**, not on the website and not in data. Buyers do ask for them ("do you have a price
   list", `sources/inquiry-mails/inquiry-03.md:12`); the answer goes through the scoping call.
 - **All data is synthetic or an anonymised composite**, and each file says which in its header
   (for example `sources/interviews/sponsor-sabine.md:3`, `sources/inquiry-mails/inquiry-01.md:3`,
@@ -20,7 +20,7 @@ Hard limits for every artefact and every change in this repo.
 
 ## Tool access on the customer side
 
-Sponsors often cannot change tool access before a format, and we plan around that:
+Buyers often cannot change tool access before a format, and we plan around that:
 
 - IT has not approved the tool, data protection reviews take months (`sources/inquiry-mails/inquiry-05.md:14`).
 - Approval pending with IT, no answer expected before the workshop (`sources/inbox/inbox-export.md:53`).
@@ -54,7 +54,7 @@ constraint to plan for, not the problem we exist for.
 
 ## What the website can reach
 
-- **Can reach:** the inquiry, the scoping call booking, and the sponsor preparation around a format:
-  participant list, setup check, expectations survey, follow-up after four weeks (`site/sponsor-prep.html`).
+- **Can reach:** the inquiry, the scoping call booking, and the buyer preparation around a format:
+  participant list, setup check, expectations survey, follow-up after four weeks (`site/buyer-prep.html`).
 - **Cannot reach:** the training itself, what happens in the room, and whether participants use it
   in their work afterwards. The website can ask about that in the follow-up; it cannot cause it.

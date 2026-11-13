@@ -1,9 +1,9 @@
-# Persona: the soft sponsor
+# Persona: the soft buyer
 
 > "Tell me what's on the menu and I'll react to it." (`interviews/sponsor-carla.md:125`)
 
-**Persona type:** sponsor, does not decide alone and has no budget settled at first contact (she/her)
-**Basis:** three synthetic one-on-one sponsor interviews, built from patterns in real conversations (`interviews/sponsor-carla.md:3`, `interviews/sponsor-sabine.md:3`, `interviews/sponsor-ines.md:3`). Each line cites the interview it rests on. Traces are relative to `sources/`.
+**Persona type:** buyer, does not decide alone and has no budget settled at first contact (she/her)
+**Basis:** three synthetic one-on-one buyer interviews, built from patterns in real conversations (`interviews/sponsor-carla.md:3`, `interviews/sponsor-sabine.md:3`, `interviews/sponsor-ines.md:3`). Each line cites the interview it rests on. Traces are relative to `sources/`.
 
 ---
 
@@ -58,19 +58,19 @@
 - Budget, but "no clear idea what to ask for" (`inquiry-mails/inquiry-03.md:14`).
 - Cannot tell which format fits a new team (`inbox/inbox-export.md:125`).
 
-## What the soft sponsor is NOT
+## What the soft buyer is NOT
 
 Not the one who decides alone (`interviews/sponsor-carla.md:153`). Not a participant.
 
 ## What we do not know yet
 
-- Whether this sponsor can write a success line when given examples. No source tests it.
+- Whether this buyer can write a success line when given examples. No source tests it.
 - Whether the colleagues she takes it to want soft or hard criteria. Not in the material.
 - Budget size and who pays. Not in the material.
 
 ## Team, company and situation
 
-From the synthetic sponsor interviews (`interviews/sponsor-carla.md:3`, `interviews/sponsor-sabine.md:3`).
+From the synthetic buyer interviews (`interviews/sponsor-carla.md:3`, `interviews/sponsor-sabine.md:3`).
 
 | Field | Value | Trace |
 |---|---|---|
@@ -96,4 +96,4 @@ From the synthetic sponsor interviews (`interviews/sponsor-carla.md:3`, `intervi
 ---
 
 **Last updated:** 2026-11-13
-**Status:** draft from three synthetic sponsor interviews, plus synthetic inquiries and inbox entries
+**Status:** draft from three synthetic buyer interviews, plus synthetic inquiries and inbox entries

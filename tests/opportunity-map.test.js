@@ -7,10 +7,10 @@ import { parseOpportunities, parseSelection, mapPage, readTree, assignRows } fro
 
 const OPP = `# Opportunities: interviews
 
-### O1: Sponsors do not know which format fits
+### O1: Buyers do not know which format fits
 - **Evidence:**
-  - "I have no idea." (sources/interviews/a.md:4, S, sponsor)
-- **Voices:** 1 distinct speaker: sponsor. Second-hand: yes, she reports what participants said.
+  - "I have no idea." (sources/interviews/a.md:4, S, buyer)
+- **Voices:** 1 distinct speaker: buyer. Second-hand: yes, she reports what participants said.
 - **KPI branch:** Branch A: inquiries that end in a booking, driver submit rate. [assumption: x]
 - **Assessment:** partly supported. One voice.
 
@@ -50,7 +50,7 @@ function repo(md = OPP) {
 test('opportunities are parsed with level, voices, speakers and branch', () => {
   const [o1, o2, more] = parseOpportunities(OPP);
   assert.equal(more, undefined);
-  assert.deepEqual([o1.id, o1.level, o1.voices, o1.speakers, o1.branch, o1.driver, o1.secondHand], ['O1', 'partly supported', 1, ['sponsor'], 'A', 'submit rate', true]);
+  assert.deepEqual([o1.id, o1.level, o1.voices, o1.speakers, o1.branch, o1.driver, o1.secondHand], ['O1', 'partly supported', 1, ['buyer'], 'A', 'submit rate', true]);
   assert.deepEqual([o2.level, o2.speakers, o2.branch, o2.sideLink], ['well supported', ['participant'], 'B', true]);
   assert.equal(o1.quote.where, 'sources/interviews/a.md:4');
 });
@@ -76,7 +76,7 @@ test('the map marks what the files put into the comparison', () => {
 });
 
 test('each quote on a card links to its source file and line', () => {
-  const md = OPP.replace('  - "I have no idea." (sources/interviews/a.md:4, S, sponsor)', '  - "I have no idea." (sources/interviews/a.md:4, S, sponsor)\n  - "I sketched three ways." (sources/interviews/a.md:9, S, sponsor)\n  - "Seen in a mail." (site/inquiry.html:27)');
+  const md = OPP.replace('  - "I have no idea." (sources/interviews/a.md:4, S, buyer)', '  - "I have no idea." (sources/interviews/a.md:4, S, buyer)\n  - "I sketched three ways." (sources/interviews/a.md:9, S, buyer)\n  - "Seen in a mail." (site/inquiry.html:27)');
   const [o1] = parseOpportunities(md);
   assert.deepEqual(o1.quotes.map((q) => q.where), ['sources/interviews/a.md:4', 'sources/interviews/a.md:9', 'site/inquiry.html:27']);
   const html = mapPage(repo(md));
@@ -112,7 +112,7 @@ const ROWS = `### O1: Direct
 - **Assessment:** unsupported.
 
 ### O7: Negated driver
-- **KPI branch:** no branch in the tree for the day itself. No side link. A new sponsor does not see it. No driver of Branch A fits.
+- **KPI branch:** no branch in the tree for the day itself. No side link. A new buyer does not see it. No driver of Branch A fits.
 - **Assessment:** unsupported.
 `;
 
@@ -159,12 +159,12 @@ test('rows follow the tree, empty steps still show, the Branch A catch-all only 
 });
 
 test('a first-person heading shows the statement on the card, with role and moment below it', () => {
-  const md = OPP.replace('### O1: Sponsors do not know which format fits', '### O1: "I don\'t know which format to ask for." (sponsor, before booking)');
+  const md = OPP.replace('### O1: Buyers do not know which format fits', '### O1: "I don\'t know which format to ask for." (buyer, before booking)');
   const [o1] = parseOpportunities(md);
-  assert.deepEqual([o1.id, o1.statement, o1.context], ['O1', "I don't know which format to ask for.", 'sponsor, before booking']);
-  assert.equal(o1.title, '"I don\'t know which format to ask for." (sponsor, before booking)');
+  assert.deepEqual([o1.id, o1.statement, o1.context], ['O1', "I don't know which format to ask for.", 'buyer, before booking']);
+  assert.equal(o1.title, '"I don\'t know which format to ask for." (buyer, before booking)');
   const html = mapPage(repo(md));
-  assert.match(html, /&ldquo;I don't know which format to ask for\.&rdquo;<span class="ctx">sponsor, before booking<\/span>/);
+  assert.match(html, /&ldquo;I don't know which format to ask for\.&rdquo;<span class="ctx">buyer, before booking<\/span>/);
   const [, o2] = parseOpportunities(md);
   assert.deepEqual([o2.statement, o2.context], ['Participants lose it after a week', '']);
 });

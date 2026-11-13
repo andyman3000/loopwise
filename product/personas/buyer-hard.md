@@ -1,9 +1,9 @@
-# Persona: the hard sponsor
+# Persona: the hard buyer
 
 > "Whether they use what they learned in a normal week, and whether they show the person next to them." (`interviews/sponsor-thomas.md:89`)
 
-**Persona type:** sponsor, budget holder
-**Basis:** two synthetic one-on-one sponsor interviews, built from patterns in real conversations (`interviews/sponsor-thomas.md:3`, `interviews/sponsor-mehmet.md:3`). Each line cites the interview it rests on. Traces are relative to `sources/`.
+**Persona type:** buyer, budget holder
+**Basis:** two synthetic one-on-one buyer interviews, built from patterns in real conversations (`interviews/sponsor-thomas.md:3`, `interviews/sponsor-mehmet.md:3`). Each line cites the interview it rests on. Traces are relative to `sources/`.
 
 ---
 
@@ -61,19 +61,19 @@
 - A first training did not stick; "how would I know after a quarter that this time it stuck?" (`inquiry-mails/inquiry-04.md:14`, `:18`).
 - Also unsure of the format: workshop, longer accompaniment or something else (`inquiry-mails/inquiry-02.md:21`, `inquiry-mails/inquiry-04.md:18`).
 
-## What the hard sponsor is NOT
+## What the hard buyer is NOT
 
 Not a participant. Not hostile: approved a first step and is fine with small gains (`interviews/sponsor-mehmet.md:37`, `interviews/sponsor-thomas.md:85`). Not someone with a product measure in place (`interviews/sponsor-mehmet.md:93`), though one names cycle time (`interviews/sponsor-thomas.md:89`).
 
 ## What we do not know yet
 
-- Which measure would satisfy this sponsor and the boss. A head of engineering asks which metrics would show the new process is used (`interviews/sponsor-mehmet.md:173`); no source answers it.
+- Which measure would satisfy this buyer and the boss. A head of engineering asks which metrics would show the new process is used (`interviews/sponsor-mehmet.md:173`); no source answers it.
 - Whether access problems delay or prevent a booking. Not in the material.
 - Budget size. Not in the material, and we keep prices out of it.
 
 ## Team, company and situation
 
-From the synthetic sponsor interviews (`interviews/sponsor-thomas.md:3`, `interviews/sponsor-mehmet.md:3`).
+From the synthetic buyer interviews (`interviews/sponsor-thomas.md:3`, `interviews/sponsor-mehmet.md:3`).
 
 | Field | Value | Trace |
 |---|---|---|
@@ -98,4 +98,4 @@ From the synthetic sponsor interviews (`interviews/sponsor-thomas.md:3`, `interv
 ---
 
 **Last updated:** 2026-11-13
-**Status:** draft from two synthetic sponsor interviews, plus two synthetic inquiries
+**Status:** draft from two synthetic buyer interviews, plus two synthetic inquiries

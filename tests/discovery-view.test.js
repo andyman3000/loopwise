@@ -6,10 +6,10 @@ import path from 'node:path';
 import { renderMarkdown, discoveryPage } from '../lib/discovery-view.js';
 
 test('a nested list under "## Tree" is drawn as a tree, assumptions as notes', () => {
-  const html = renderMarkdown('## Tree\n- Business goal: more days\n  - Branch A: new\n    - inquiries · measured: not measured yet\n    - Assumption: sponsors book more\n');
+  const html = renderMarkdown('## Tree\n- Business goal: more days\n  - Branch A: new\n    - inquiries · measured: not measured yet\n    - Assumption: buyers book more\n');
   assert.match(html, /class="tree"/);
   assert.match(html, /node level-0">Business goal: more days/);
-  assert.match(html, /node assumption"><span class="tag">assumption<\/span> sponsors book more/);
+  assert.match(html, /node assumption"><span class="tag">assumption<\/span> buyers book more/);
   assert.match(html, /class="measured">measured: not measured yet/);
 });
 

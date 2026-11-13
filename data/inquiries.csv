@@ -1,4 +1,4 @@
-id,submitted_at,variant,sponsor_type,team_size,scoping_call_booked,booking_confirmed
+id,submitted_at,variant,buyer_type,team_size,scoping_call_booked,booking_confirmed
 inq-0004,2026-02-19T11:58:35.000Z,baseline,soft,10,false,false
 inq-0002,2026-02-20T10:29:57.000Z,baseline,hard,25,false,false
 inq-0001,2026-02-20T15:44:25.000Z,baseline,soft,15,false,false

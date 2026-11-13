@@ -1,6 +1,6 @@
 {
   "synthetic": true,
-  "note": "SYNTHETIC. Every file in data/ is generated from this scenario with fixed seeds. No real visitor, sponsor, company or booking exists behind any row. This is the baseline export: 26 weeks of the current inquiry form, taken on launch day. All knobs, browsing paths included, are scenario design, not findings.",
+  "note": "SYNTHETIC. Every file in data/ is generated from this scenario with fixed seeds. No real visitor, buyer, company or booking exists behind any row. This is the baseline export: 26 weeks of the current inquiry form, taken on launch day. All knobs, browsing paths included, are scenario design, not findings.",
   "seed": 33,
   "launchDate": "2026-08-19",
   "weeksBefore": 26,
@@ -16,7 +16,7 @@
       "submitGivenStart": 0.54
     }
   },
-  "sponsorMix": {
+  "buyerMix": {
     "soft": 0.55,
     "hard": 0.45
   },
@@ -63,7 +63,7 @@
     "pages": {
       "home": 0.35,
       "formats": 0.45,
-      "sponsor-prep": 0.2
+      "buyer-prep": 0.2
     },
     "formatsShare": 0.6,
     "formatsReachFactor": 0.67,

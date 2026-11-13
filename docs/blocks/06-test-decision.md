@@ -6,7 +6,7 @@ another round, or kill. That decision is your learning card, decision 002.
 
 ## 6a: Cross test and learning card (about 65 min)
 
-1. **Set up the ring (3 min).** One person of each pair goes to the next pair and plays the sponsor
+1. **Set up the ring (3 min).** One person of each pair goes to the next pair and plays the buyer
    there. The other stays and watches their own page. On your laptop: `npm start`, open
    the start page from the spec, for example `http://localhost:3000/inquiry?variant=<variant>`, and open your prototype card next to it.
 2. **Test (20 min).** Give the tester only the "Test scenario" from your card: the situation and the
@@ -41,7 +41,7 @@ another round, or kill. That decision is your learning card, decision 002.
 
 **If the cross test drops** (no tester, or no page on the other side): start a fresh session
 (`/clear`), then run `/persona-walkthrough <variant> page` on your own page. It opens the page with
-the browser tool and plays both sponsors. Then start a fresh session again and run
+the browser tool and plays both buyers. Then start a fresh session again and run
 `/learning-card <variant>`. The card then says "pressure-tested, not validated". The personas come
 from the same sources as your opportunity.
 

@@ -3,7 +3,7 @@
 > "Same company, people who've worked together for years, and nowhere near the same starting point." (`interviews/participant-francoise.md:49`)
 
 **Persona type:** primary user of the format, not the buyer
-**Basis:** three synthetic one-on-one participant interviews, built from patterns in real conversations, one feedback export with paraphrased free text (ratings invented, not used here), synthetic inbox entries, and what sponsors say about their groups. Traces are relative to `sources/`.
+**Basis:** three synthetic one-on-one participant interviews, built from patterns in real conversations, one feedback export with paraphrased free text (ratings invented, not used here), synthetic inbox entries, and what buyers say about their groups. Traces are relative to `sources/`.
 
 ---
 
@@ -12,7 +12,7 @@
 | Field | Value | Trace |
 |---|---|---|
 | Role | product owner, project and requirements lead, product manager, business analyst | `interviews/participant-francoise.md:6`, `interviews/participant-rasmus.md:6`, `interviews/participant-jannik.md:6`, `interviews/sponsor-thomas.md:17` |
-| Org context | member of a product team the sponsor books for | `inquiry-mails/inquiry-06.md:12`, `interviews/participant-francoise.md:29` |
+| Org context | member of a product team the buyer books for | `inquiry-mails/inquiry-06.md:12`, `interviews/participant-francoise.md:29` |
 | Technical level | mixed despite the same title (see below) | `interviews/participant-francoise.md:49`, `interviews/sponsor-sabine.md:69` |
 | Team | around five developers, a designer and the product person; up to ten people | `interviews/participant-francoise.md:25`, `interviews/participant-rasmus.md:39`, `interviews/participant-jannik.md:105` |
 | Company | retailers with many stores | `interviews/participant-francoise.md:6`, `interviews/participant-jannik.md:6` |
@@ -25,7 +25,7 @@ In the three one-on-one interviews, one participant uses AI for most of the work
 (`interviews/participant-rasmus.md:79`), and one had hardly opened the chat tool
 (`interviews/participant-francoise.md:37`). In one workshop's opening round, the range went from an
 architect with his own agent routine to people who had never worked with any of this
-(`interviews/participant-francoise.md:41`, `interviews/participant-francoise.md:45`). Sponsors see the
+(`interviews/participant-francoise.md:41`, `interviews/participant-francoise.md:45`). Buyers see the
 same spread (`interviews/sponsor-thomas.md:121`, `interviews/sponsor-sabine.md:69`, `inquiry-mails/inquiry-06.md:14`).
 
 ## Goals
@@ -54,7 +54,7 @@ same spread (`interviews/sponsor-thomas.md:121`, `interviews/sponsor-sabine.md:6
 ## How they decide
 
 They do not book. Their own test is whether they open the assistant for the next task
-(`feedback/feedback-export.md:45`). What they tell the sponsor afterwards is what the sponsor hears
+(`feedback/feedback-export.md:45`). What they tell the buyer afterwards is what the buyer hears
 (`interviews/sponsor-sabine.md:185`).
 
 ## How they arrive
@@ -87,7 +87,7 @@ Not the buyer (`interviews/participant-francoise.md:29`, `interviews/participant
 ---
 
 **Last updated:** 2026-11-13
-**Status:** draft from three synthetic one-on-one interviews, one feedback export, synthetic inbox, and sponsors' accounts of their groups
+**Status:** draft from three synthetic one-on-one interviews, one feedback export, synthetic inbox, and buyers' accounts of their groups
 
 ---
 

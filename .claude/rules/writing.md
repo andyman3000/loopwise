@@ -6,8 +6,8 @@ Each sentence must make sense on first reading, without the files around it.
 ## Say the full thing
 - No coined labels. Do not invent a short name for an idea and reuse it.
   Write what people said or did, every time.
-  - Not: "sponsors who don't book name the fade, not the format"
-  - But: "sponsors who don't book are worried the training won't last,
+  - Not: "buyers who don't book name the fade, not the format"
+  - But: "buyers who don't book are worried the training won't last,
     not unsure about the format"
 - Terms from `product/glossary.md` and the product terms named under
   "Audience and Language" in `CLAUDE.md` are allowed. Nothing else gets a label.
@@ -18,7 +18,7 @@ Each sentence must make sense on first reading, without the files around it.
 - No noun stacks. At most two nouns in a row.
   Not "booking rate link", but "whether this changes the booking rate".
 - A person or a system is the subject. Not "the quote carries" or
-  "the data says", but "the sponsor says" or "12 of 40 visits end here".
+  "the data says", but "the buyer says" or "12 of 40 visits end here".
 - Every verb names its object or person, unless the sentence leaves no
   doubt. Not "before I can ask", but "before I can send you an inquiry".
 

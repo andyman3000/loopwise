@@ -24,14 +24,14 @@ Feedback:
 ## Observations
 
 How a visit is counted: one `session` is one visit (data/README.md).
-A visit that opens the inquiry page first sees one to three of the home, formats and sponsor preparation pages (data/README.md).
+A visit that opens the inquiry page first sees one to three of the home, formats and buyer preparation pages (data/README.md).
 So every split below compares visits that saw a page with visits that did not.
 The numbers are small. A gap of a few visits can come from chance.
 
 ### D1: 3766 visits came to the website in 26 weeks
 - **Count:** 3766 visits with a `page_view` (data/events.jsonl, 2026-02-18 to 2026-08-18, synthetic)
 - **Driver:** website visits
-- **Why:** unknown from this data. Could be explained by: `sources/interviews` and `sources/inquiry-mails` (how sponsors say they found the academy).
+- **Why:** unknown from this data. Could be explained by: `sources/interviews` and `sources/inquiry-mails` (how buyers say they found the academy).
 
 ### D2: 3026 of 3766 visits never open the inquiry page
 - **Count:** 740 of 3766 visits open the inquiry page (19.6 percent). 3026 visits never do (`page_view` of the inquiry page ÷ all visits with a `page_view`, data/events.jsonl, 2026-02-18 to 2026-08-18, synthetic)
@@ -41,11 +41,11 @@ The numbers are small. A gap of a few visits can come from chance.
   |---|---|---|
   | home | 435 of 2054 (21.2 percent) | 305 of 1712 (17.8 percent) |
   | formats | 376 of 2291 (16.4 percent) | 364 of 1475 (24.7 percent) |
-  | sponsor preparation | 334 of 1527 (21.9 percent) | 406 of 2239 (18.1 percent) |
+  | buyer preparation | 334 of 1527 (21.9 percent) | 406 of 2239 (18.1 percent) |
 
   Visits that saw the formats page open the inquiry page less often than visits that did not.
 - **Driver:** reach rate
-- **Why:** unknown from this data. Could be explained by: `sources/interviews` (what sponsors look for before they contact an academy), `sources/inquiry-mails` (what people write instead of using the form).
+- **Why:** unknown from this data. Could be explained by: `sources/interviews` (what buyers look for before they contact an academy), `sources/inquiry-mails` (what people write instead of using the form).
 
 ### D3: 546 of 740 inquiry page visits never start the form
 - **Count:** 194 of 740 inquiry page visits start the form (26.2 percent). 546 do not (`inquiry_started` ÷ `page_view` of the inquiry page, data/events.jsonl, 2026-02-19 to 2026-08-18, synthetic)
@@ -55,11 +55,11 @@ The numbers are small. A gap of a few visits can come from chance.
   |---|---|---|
   | home | 112 of 435 (25.7 percent) | 82 of 305 (26.9 percent) |
   | formats | 104 of 376 (27.7 percent) | 90 of 364 (24.7 percent) |
-  | sponsor preparation | 88 of 334 (26.3 percent) | 106 of 406 (26.1 percent) |
+  | buyer preparation | 88 of 334 (26.3 percent) | 106 of 406 (26.1 percent) |
 
   The pages seen before make little difference at this step.
 - **Driver:** start rate
-- **Why:** unknown from this data. Could be explained by: `sources/interviews` (what sponsors need to know before they ask), `sources/inbox` (questions about the inquiry page).
+- **Why:** unknown from this data. Could be explained by: `sources/interviews` (what buyers need to know before they ask), `sources/inbox` (questions about the inquiry page).
 
 ### D4: 81 of 194 started forms are never sent
 - **Count:** 113 of 194 started forms are sent (58.2 percent). 81 are not (`inquiry_submitted` ÷ `inquiry_started`, data/events.jsonl, 2026-02-19 to 2026-08-18, synthetic)
@@ -69,12 +69,12 @@ The numbers are small. A gap of a few visits can come from chance.
   |---|---|---|
   | home | 66 of 112 (58.9 percent) | 47 of 82 (57.3 percent) |
   | formats | 62 of 104 (59.6 percent) | 51 of 90 (56.7 percent) |
-  | sponsor preparation | 51 of 88 (58.0 percent) | 62 of 106 (58.5 percent) |
+  | buyer preparation | 51 of 88 (58.0 percent) | 62 of 106 (58.5 percent) |
 
   The pages seen before make little difference at this step.
   The data has no `inquiry_step_completed` event, so it cannot show where inside the form people stop.
 - **Driver:** submit rate
-- **Why:** unknown from this data. Could be explained by: `sources/inbox` (support requests about the form), `sources/inquiry-mails` (inquiries sent by mail instead), `sources/interviews` (what sponsors cannot answer yet when they inquire).
+- **Why:** unknown from this data. Could be explained by: `sources/inbox` (support requests about the form), `sources/inquiry-mails` (inquiries sent by mail instead), `sources/interviews` (what buyers cannot answer yet when they inquire).
 
 ### D5: 58 of 113 sent inquiries get no scoping call
 - **Count:** 55 of 113 sent inquiries get a scoping call (48.7 percent). 58 do not (`scoping_call_booked` ÷ `inquiry_submitted`, data/events.jsonl, 2026-02-19 to 2026-08-15, synthetic). data/inquiries.csv shows the same 55 of 113.
@@ -84,12 +84,12 @@ The numbers are small. A gap of a few visits can come from chance.
   |---|---|---|
   | home | 35 of 66 (53.0 percent) | 20 of 47 (42.6 percent) |
   | formats | 26 of 62 (41.9 percent) | 29 of 51 (56.9 percent) |
-  | sponsor preparation | 27 of 51 (52.9 percent) | 28 of 62 (45.2 percent) |
+  | buyer preparation | 27 of 51 (52.9 percent) | 28 of 62 (45.2 percent) |
 
   Inquiries from visits that saw the formats page get a scoping call less often.
   The export shows the state on 2026-08-18 (data/README.md). The last scoping call is on 2026-08-09. Two inquiries came after it and have no call yet.
 - **Driver:** call rate
-- **Why:** unknown from this data. Could be explained by: `sources/inquiry-mails` (what the inquiry says and how the academy answers), `sources/interviews` (why a sponsor does or does not take the call).
+- **Why:** unknown from this data. Could be explained by: `sources/inquiry-mails` (what the inquiry says and how the academy answers), `sources/interviews` (why a buyer does or does not take the call).
 
 ### D6: 32 of 55 scoping calls end without a booking
 - **Count:** 23 of 55 scoping calls end in a booking (41.8 percent). 32 do not (`booking_confirmed` ÷ `scoping_call_booked`, data/events.jsonl, 2026-02-23 to 2026-08-18, synthetic). data/inquiries.csv shows the same 23.
@@ -99,13 +99,13 @@ The numbers are small. A gap of a few visits can come from chance.
   |---|---|---|
   | home | 13 of 35 (37.1 percent) | 10 of 20 (50.0 percent) |
   | formats | 13 of 26 (50.0 percent) | 10 of 29 (34.5 percent) |
-  | sponsor preparation | 8 of 27 (29.6 percent) | 15 of 28 (53.6 percent) |
+  | buyer preparation | 8 of 27 (29.6 percent) | 15 of 28 (53.6 percent) |
 
-  Calls from visits that saw the sponsor preparation page end in a booking less often.
+  Calls from visits that saw the buyer preparation page end in a booking less often.
   Calls from visits that saw the formats page end in a booking more often.
   The export shows the state on 2026-08-18. Recent calls may still turn into bookings.
 - **Driver:** booking rate
-- **Why:** unknown from this data. Could be explained by: `sources/interviews` (what sponsors need to decide after the call), `sources/feedback` (what booked sponsors say about the result).
+- **Why:** unknown from this data. Could be explained by: `sources/interviews` (what buyers need to decide after the call), `sources/feedback` (what booked buyers say about the result).
 
 Observations go into the comparison only together with an opportunity from another source.
 

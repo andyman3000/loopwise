@@ -7,14 +7,14 @@ Project preferences for Claude Code in the Loopwise demo repo.
 **Product context (read before any discovery work):**
 - [product/vision.md](product/vision.md): who we serve, what we believe, what we are not
 - [product/strategy.md](product/strategy.md): business goal, the one path we work on this quarter, what we do not do
-- [product/glossary.md](product/glossary.md): Loopwise words in plain English (sponsor, participant, format, scoping call, ...)
+- [product/glossary.md](product/glossary.md): Loopwise words in plain English (buyer, participant, format, scoping call, ...)
 - [product/constraints.md](product/constraints.md): hard limits on data, tech, measurement and material
-- [product/personas/](product/personas/): soft sponsor, hard sponsor, participant
+- [product/personas/](product/personas/): soft buyer, hard buyer, participant
 
 **Material (raw, never edited by skills):**
-- `sources/interviews/`: five sponsor, three participant and one developer one-on-one interview
+- `sources/interviews/`: five buyer, three participant and one developer one-on-one interview
   (synthetic, built from patterns in real conversations). The developer is a voice of its own,
-  neither sponsor nor participant
+  neither buyer nor participant
 - `sources/inquiry-mails/`: seven free-text inquiry mails sent outside the website form (synthetic;
   form submissions are in `data/inquiries.csv`)
 - `sources/feedback/`: one feedback export (mixed: paraphrased free text, invented ratings)
@@ -31,15 +31,15 @@ Project preferences for Claude Code in the Loopwise demo repo.
 
 Loopwise offers in-house formats for product teams (product managers, product owners, UX and
 consultants with product duties), from a half-day workshop to multi-week team coaching, including
-Agentic Product Management. A sponsor in the customer company inquires through the website, settles
+Agentic Product Management. A buyer in the customer company inquires through the website, settles
 the format in a scoping call, and then prepares it with the academy: participant list, setup check,
 expectations survey, follow-up. The academy earns money on booked workshops. This quarter it works
 on one path: more inquiries that end in a booking (`product/strategy.md`).
 
 | Persona | Role | Focus |
 |---|---|---|
-| [Soft sponsor](product/personas/sponsor-soft.md) | leads product people, does not decide alone, no budget settled at first contact | cannot name a success line, does not know the format |
-| [Hard sponsor](product/personas/sponsor-hard.md) | product lead with budget | wants proof of effect before booking more |
+| [Soft buyer](product/personas/buyer-soft.md) | leads product people, does not decide alone, no budget settled at first contact | cannot name a success line, does not know the format |
+| [Hard buyer](product/personas/buyer-hard.md) | product lead with budget | wants proof of effect before booking more |
 | [Participant](product/personas/participant.md) | PM, PO, BA, UX | same title, very mixed level |
 
 ## Repo layout
@@ -81,7 +81,7 @@ Node 20 or newer. No dependencies, no `npm install`. Keep it that way.
 
 # Scope (Quick Reference)
 
-**This repo owns:** the website (inquiry, formats, sponsor preparation), the
+**This repo owns:** the website (inquiry, formats, buyer preparation), the
 product context, the discovery artefacts and the decisions taken on them.
 
 **This repo does NOT own:**
@@ -185,3 +185,4 @@ pair's own words, and leaves the decision empty if the pair names none.
 |---|---|---|
 | 2026-10-21 | product team | Initial version |
 | 2026-10-24 | product team | Training start state: `variant-spec` skill added, only what exists at the start is described |
+| 2026-11-13 | product team | The word "sponsor" became "buyer", outside quotes from sources and source file names |

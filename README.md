@@ -70,7 +70,7 @@ your own run, you are the decider.
 
 ## Where the pages are
 
-- `/` home, `/formats.html`, `/inquiry` (the form), `/confirmation.html`, `/sponsor-prep.html`
+- `/` home, `/formats.html`, `/inquiry` (the form), `/confirmation.html`, `/buyer-prep.html`
 - A variant can replace any page. It holds a file with the page's name:
   `site/variants/<name>/inquiry.html`, `formats.html`, or `index.html` for home.
 - `/<page>?variant=<name>` serves the variant's version of that page if `<name>` is listed in

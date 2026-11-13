@@ -28,7 +28,7 @@ Feedback:
 
 The form is anonymous (`sources/feedback/feedback-export.md:6`). [assumption: one respondent number is one person, so R03 on two lines is one voice.]
 The rating table is not used as evidence, because the ratings are invented (`product/constraints.md:12`).
-The source has no sponsor voice. All needs below are heard from participants only.
+The source has no buyer voice. All needs below are heard from participants only.
 
 ## Opportunities
 
@@ -40,7 +40,7 @@ The source has no sponsor voice. All needs below are heard from participants onl
 - **Voices:** 3 distinct speakers: participants. Second-hand: no.
 - **Merged:** yes. R01 knows what is possible, not what to do. R02 cannot see where it fits in a busy week. R03 wants a direction for daily use. All three are participants, after the day, unsure how it fits their own work.
 - **Close to:** O3. Same role and moment, but O3 is about missing next steps and expected results, not about where the work fits.
-- **KPI branch:** The need is met after the day, so it sits on Branch B: follow-up bookings, not this quarter (`discovery/kpi-tree.md:25`). The tree names no driver under Branch B. [assumption: participants who use it in their week make a follow-up booking likelier.] Side link to Branch A, driver booking rate. [assumption: a sponsor who worries about the week after (`product/personas/sponsor-hard.md:54`) books more often when the site shows how participants carry it into daily work.] No side link to the other Branch A drivers: this source holds no sponsor, so it says nothing about visits, starts or calls.
+- **KPI branch:** The need is met after the day, so it sits on Branch B: follow-up bookings, not this quarter (`discovery/kpi-tree.md:25`). The tree names no driver under Branch B. [assumption: participants who use it in their week make a follow-up booking likelier.] Side link to Branch A, driver booking rate. [assumption: a buyer who worries about the week after (`product/personas/buyer-hard.md:54`) books more often when the site shows how participants carry it into daily work.] No side link to the other Branch A drivers: this source holds no buyer, so it says nothing about visits, starts or calls.
 - **Counter-evidence in this source:** "This time I have a good feeling I will build it into my daily work." (`sources/feedback/feedback-export.md:45`). "That one I will keep using." (`sources/feedback/feedback-export.md:46`). "I connected it to our ticket tool to break concepts down into tickets faster." (`sources/feedback/feedback-export.md:47`)
 - **Gaps:** The answers were written at the end of day 2. No source says what these people did in the weeks after. The text is paraphrased.
 - **Assessment:** well supported. Three participants say it about their own work. Three other participants already see where it fits, so it is not true for all.
@@ -52,7 +52,7 @@ The source has no sponsor voice. All needs below are heard from participants onl
 - **Voices:** 2 distinct speakers: participants. Second-hand: no. Both speak from earlier trainings, not from this one.
 - **Merged:** yes. R02 drops methods under pressure. R08 carries on as before after workshops. Both are participants, after a training, losing what they learned.
 - **Close to:** O1. Same role and moment, but O1 is not knowing where it fits. Here the participants know old habits come back.
-- **KPI branch:** Branch B: follow-up bookings, not this quarter (`discovery/kpi-tree.md:25`). No driver in the tree. [assumption: a group that keeps the new habits makes a follow-up booking likelier.] Side link to Branch A, driver booking rate. [assumption: a sponsor who fears people slide back (`product/personas/sponsor-hard.md:39`) books more often when the site shows how the training lasts.]
+- **KPI branch:** Branch B: follow-up bookings, not this quarter (`discovery/kpi-tree.md:25`). No driver in the tree. [assumption: a group that keeps the new habits makes a follow-up booking likelier.] Side link to Branch A, driver booking rate. [assumption: a buyer who fears people slide back (`product/personas/buyer-hard.md:39`) books more often when the site shows how the training lasts.]
 - **Counter-evidence in this source:** "This time I have a good feeling I will build it into my daily work." (`sources/feedback/feedback-export.md:45`). The same participant who fears it expects it to go better this time.
 - **Gaps:** Both voices describe earlier trainings. No line says whether this training stuck.
 - **Assessment:** partly supported. Two participants, and both speak of a pattern from other trainings, not of this one.
@@ -64,9 +64,9 @@ The source has no sponsor voice. All needs below are heard from participants onl
 - **Voices:** 2 distinct speakers: participants. Second-hand: no.
 - **Merged:** yes. R05 does not know the next steps. R06 wants next steps assigned and a way to improve after. Both are participants, after the day, missing direction on what comes next.
 - **Close to:** O1 (see there). O4: same moment, but O4 asks for support while trying, not for the next steps. O16: same role and moment, but a different need: what results are expected, not what to do next.
-- **KPI branch:** Branch B: follow-up bookings, not this quarter (`discovery/kpi-tree.md:25`). No driver in the tree. [assumption: participants who know their next steps keep going, and the sponsor sees it.] Side link to Branch A, driver booking rate. [assumption: a hard sponsor who wants follow-up after the days (`product/personas/sponsor-hard.md:35`) books more often when the site shows what comes after the training.]
+- **KPI branch:** Branch B: follow-up bookings, not this quarter (`discovery/kpi-tree.md:25`). No driver in the tree. [assumption: participants who know their next steps keep going, and the buyer sees it.] Side link to Branch A, driver booking rate. [assumption: a hard buyer who wants follow-up after the days (`product/personas/buyer-hard.md:35`) books more often when the site shows what comes after the training.]
 - **Counter-evidence in this source:** "Next week I will start on one concrete task of mine" (`sources/feedback/feedback-export.md:44`). This participant set their own next step.
-- **Gaps:** It is unclear who should set the next steps: the sponsor, the group or the academy. The source does not say.
+- **Gaps:** It is unclear who should set the next steps: the buyer, the group or the academy. The source does not say.
 - **Assessment:** partly supported. Two participants say it.
 
 ### O4: "I want support again once I've tried it on my task." (participant, the weeks after)
@@ -75,7 +75,7 @@ The source has no sponsor voice. All needs below are heard from participants onl
 - **Voices:** 1 speaker: participant. Second-hand: no.
 - **Merged:** no.
 - **Close to:** O3. Same role and moment, but a different need: help while doing it, not knowing what to do.
-- **KPI branch:** Branch B: follow-up bookings, not this quarter (`discovery/kpi-tree.md:25`). No driver in the tree. [assumption: a second meeting is a follow-up booking.] Side link to Branch A, driver booking rate. [assumption: a sponsor who wants short check-ins afterwards (`product/personas/sponsor-hard.md:35`) books more often when the site offers them.]
+- **KPI branch:** Branch B: follow-up bookings, not this quarter (`discovery/kpi-tree.md:25`). No driver in the tree. [assumption: a second meeting is a follow-up booking.] Side link to Branch A, driver booking rate. [assumption: a buyer who wants short check-ins afterwards (`product/personas/buyer-hard.md:35`) books more often when the site offers them.]
 - **Counter-evidence in this source:** none found in this source.
 - **Gaps:** One voice. The speaker wrote it while "too tired to judge" (`sources/feedback/feedback-export.md:44`).
 - **Assessment:** unsupported. One participant.
@@ -87,9 +87,9 @@ The source has no sponsor voice. All needs below are heard from participants onl
 - **Voices:** 2 distinct speakers: participants. Second-hand: no.
 - **Merged:** yes. R01 did not know what to expect or what the assistant does. R15 had no schedule and no goal for the day. Both are participants, at the start of the day, not knowing what the day holds.
 - **Close to:** O6. Same role, but O6 is falling behind later in the day, not at the start.
-- **KPI branch:** The need is met in preparation or at the start of the day. No branch in the tree covers that. The nearest is Branch B: follow-up bookings, not this quarter (`discovery/kpi-tree.md:25`). [assumption: a day that starts well makes a follow-up booking likelier.] No side link: this source shows participants unsure about the day, not sponsors unsure before booking.
+- **KPI branch:** The need is met in preparation or at the start of the day. No branch in the tree covers that. The nearest is Branch B: follow-up bookings, not this quarter (`discovery/kpi-tree.md:25`). [assumption: a day that starts well makes a follow-up booking likelier.] No side link: this source shows participants unsure about the day, not buyers unsure before booking.
 - **Counter-evidence in this source:** none found in this source.
-- **Gaps:** Unclear if the participants got an agenda before the day. The expectations survey in sponsor preparation might cover it; this source does not say.
+- **Gaps:** Unclear if the participants got an agenda before the day. The expectations survey in buyer preparation might cover it; this source does not say.
 - **Assessment:** partly supported. Two participants.
 
 ### O6: "I can't keep up during the day." (participant, the day itself)
@@ -100,7 +100,7 @@ The source has no sponsor voice. All needs below are heard from participants onl
 - **Voices:** 3 distinct speakers: participants. Second-hand: no.
 - **Merged:** yes. R09 fell behind on day 1. R17 came with no background and feared it was too much. R18 got lost in one exercise. All three are participants, during the day, unable to keep up for a while.
 - **Close to:** O7. Same role and moment, but O7 is about taking part remotely. O5: same role, but at the start, not during the day.
-- **KPI branch:** The need is met on the day itself. No branch in the tree covers that. The nearest is Branch B: follow-up bookings, not this quarter (`discovery/kpi-tree.md:25`). [assumption: participants who keep up make a follow-up booking likelier.] Side link to Branch A, driver booking rate. [assumption: a soft sponsor who wants nobody to fall behind (`product/personas/sponsor-soft.md:30`) books more often when the site shows how mixed levels are handled.]
+- **KPI branch:** The need is met on the day itself. No branch in the tree covers that. The nearest is Branch B: follow-up bookings, not this quarter (`discovery/kpi-tree.md:25`). [assumption: participants who keep up make a follow-up booking likelier.] Side link to Branch A, driver booking rate. [assumption: a soft buyer who wants nobody to fall behind (`product/personas/buyer-soft.md:30`) books more often when the site shows how mixed levels are handled.]
 - **Counter-evidence in this source:** "Quick pace, but okay." (`sources/feedback/feedback-export.md:56`). "everyone ended the day with a working prototype." (`sources/feedback/feedback-export.md:65`). Two of the three caught up: "That one I will keep using." (`sources/feedback/feedback-export.md:46`), "Being guided one to one on the second day is what saved it for me." (`sources/feedback/feedback-export.md:54`)
 - **Gaps:** The pace ratings would help here, but they are invented and not used.
 - **Assessment:** well supported. Three participants lived it, though two caught up by the end.
@@ -112,7 +112,7 @@ The source has no sponsor voice. All needs below are heard from participants onl
 - **Voices:** 2 distinct speakers: participants. Second-hand: no.
 - **Merged:** yes. R14 got distracted at home. R16 could not watch a screen and work at once. Both are participants, on the day, taking part remotely.
 - **Close to:** O6 (see there).
-- **KPI branch:** The need is met on the day itself. No branch in the tree covers that. The nearest is Branch B: follow-up bookings, not this quarter (`discovery/kpi-tree.md:25`). [assumption: a remote day that works makes a follow-up booking likelier.] No side link: no sponsor line in the personas asks about remote attendance.
+- **KPI branch:** The need is met on the day itself. No branch in the tree covers that. The nearest is Branch B: follow-up bookings, not this quarter (`discovery/kpi-tree.md:25`). [assumption: a remote day that works makes a follow-up booking likelier.] No side link: no buyer line in the personas asks about remote attendance.
 - **Counter-evidence in this source:** none found in this source.
 - **Gaps:** The source does not say how many joined remotely.
 - **Assessment:** partly supported. Two participants.
@@ -124,7 +124,7 @@ The source has no sponsor voice. All needs below are heard from participants onl
 - **Voices:** 2 distinct speakers: participants. Second-hand: no.
 - **Merged:** yes. R14 installed the editor the day before. R21 needed more laptop memory first. Both are participants, in preparation, with a setup that was late or blocked.
 - **Close to:** O9. Same role, but O9 happens during the exercises, not before.
-- **KPI branch:** The need is met in preparation, at the setup check (`product/glossary.md:40`). No branch in the tree covers preparation. The nearest is Branch B: follow-up bookings, not this quarter (`discovery/kpi-tree.md:25`). [assumption: a smooth setup makes a follow-up booking likelier.] No side link: setup trouble starts after the booking, and no sponsor in this source raises it.
+- **KPI branch:** The need is met in preparation, at the setup check (`product/glossary.md:40`). No branch in the tree covers preparation. The nearest is Branch B: follow-up bookings, not this quarter (`discovery/kpi-tree.md:25`). [assumption: a smooth setup makes a follow-up booking likelier.] No side link: setup trouble starts after the booking, and no buyer in this source raises it.
 - **Counter-evidence in this source:** none found in this source.
 - **Gaps:** R14 does not say if installing the day before caused trouble.
 - **Assessment:** partly supported. Two participants.
@@ -136,7 +136,7 @@ The source has no sponsor voice. All needs below are heard from participants onl
 - **Voices:** 2 distinct speakers: participants. Second-hand: no.
 - **Merged:** yes. R06 needed an extra login and forms did not submit. R03 found file sharing slow. Both are participants, during the exercises, slowed down by tools.
 - **Close to:** O8 (see there).
-- **KPI branch:** The need is met on the day itself. No branch in the tree covers that. The nearest is Branch B: follow-up bookings, not this quarter (`discovery/kpi-tree.md:25`). [assumption: exercises that run smoothly make a follow-up booking likelier.] No side link: no sponsor line in the personas asks about tools in the exercises.
+- **KPI branch:** The need is met on the day itself. No branch in the tree covers that. The nearest is Branch B: follow-up bookings, not this quarter (`discovery/kpi-tree.md:25`). [assumption: exercises that run smoothly make a follow-up booking likelier.] No side link: no buyer line in the personas asks about tools in the exercises.
 - **Counter-evidence in this source:** "It worked well enough for one day." (`sources/feedback/feedback-export.md:59`)
 - **Gaps:** Unclear how much time was lost.
 - **Assessment:** partly supported. Two participants, and one of them calls it good enough.
@@ -147,7 +147,7 @@ The source has no sponsor voice. All needs below are heard from participants onl
 - **Voices:** 1 speaker: participant. Second-hand: no.
 - **Merged:** no.
 - **Close to:** O1. Same role and need, but a different moment: R04 asks for it in the training itself, O1 is about the weeks after.
-- **KPI branch:** The need is met on the day itself. No branch in the tree covers that. The nearest is Branch B: follow-up bookings, not this quarter (`discovery/kpi-tree.md:25`). [assumption: work on real features makes a follow-up booking likelier.] Side link to Branch A, driver booking rate. [assumption: a hard sponsor who dislikes a narrow list of use cases (`product/personas/sponsor-hard.md:40`) books more often when the site shows work on the team's own features.]
+- **KPI branch:** The need is met on the day itself. No branch in the tree covers that. The nearest is Branch B: follow-up bookings, not this quarter (`discovery/kpi-tree.md:25`). [assumption: work on real features makes a follow-up booking likelier.] Side link to Branch A, driver booking rate. [assumption: a hard buyer who dislikes a narrow list of use cases (`product/personas/buyer-hard.md:40`) books more often when the site shows work on the team's own features.]
 - **Counter-evidence in this source:** "everyone ended the day with a working prototype." (`sources/feedback/feedback-export.md:65`), said by the same participant.
 - **Gaps:** One voice.
 - **Assessment:** unsupported. One participant.
@@ -158,7 +158,7 @@ The source has no sponsor voice. All needs below are heard from participants onl
 - **Voices:** 1 speaker: participant. Second-hand: no.
 - **Merged:** no.
 - **Close to:** O12. Same role, but O12 may be about the day itself. R20 does not say when the slides fell short.
-- **KPI branch:** The need is met after the day, so it sits on Branch B: follow-up bookings, not this quarter (`discovery/kpi-tree.md:25`). [assumption: material to reread helps participants keep going.] No side link: no sponsor line in the personas asks about material afterwards.
+- **KPI branch:** The need is met after the day, so it sits on Branch B: follow-up bookings, not this quarter (`discovery/kpi-tree.md:25`). [assumption: material to reread helps participants keep going.] No side link: no buyer line in the personas asks about material afterwards.
 - **Counter-evidence in this source:** "I will go through every single prompt afterwards." (`sources/feedback/feedback-export.md:50`). One participant already has material to go back to.
 - **Gaps:** One voice.
 - **Assessment:** unsupported. One participant.
@@ -169,7 +169,7 @@ The source has no sponsor voice. All needs below are heard from participants onl
 - **Voices:** 1 speaker: participant. Second-hand: no.
 - **Merged:** no.
 - **Close to:** O11 (see there).
-- **KPI branch:** The need is met on the day itself or after. No branch in the tree covers the day. The nearest is Branch B: follow-up bookings, not this quarter (`discovery/kpi-tree.md:25`). No side link: no sponsor line in the personas asks about slides.
+- **KPI branch:** The need is met on the day itself or after. No branch in the tree covers the day. The nearest is Branch B: follow-up bookings, not this quarter (`discovery/kpi-tree.md:25`). No side link: no buyer line in the personas asks about slides.
 - **Counter-evidence in this source:** none found in this source.
 - **Gaps:** One voice. Unclear if this is about following the day or rereading later.
 - **Assessment:** unsupported. One participant.
@@ -180,7 +180,7 @@ The source has no sponsor voice. All needs below are heard from participants onl
 - **Voices:** 1 speaker: participant. Second-hand: no.
 - **Merged:** no.
 - **Close to:** O14. Same role and moment, but R20 does not say the long document was written by AI.
-- **KPI branch:** The need is met on the day itself and in daily work after. No branch in the tree covers the day. The nearest is Branch B: follow-up bookings, not this quarter (`discovery/kpi-tree.md:25`). No side link: no sponsor line in the personas asks about this.
+- **KPI branch:** The need is met on the day itself and in daily work after. No branch in the tree covers the day. The nearest is Branch B: follow-up bookings, not this quarter (`discovery/kpi-tree.md:25`). No side link: no buyer line in the personas asks about this.
 - **Counter-evidence in this source:** none found in this source.
 - **Gaps:** One voice. The participant persona has a similar line from an interview, but that is another source group.
 - **Assessment:** unsupported. One participant.
@@ -191,7 +191,7 @@ The source has no sponsor voice. All needs below are heard from participants onl
 - **Voices:** 1 speaker: participant. Second-hand: no.
 - **Merged:** no.
 - **Close to:** O13 (see there).
-- **KPI branch:** The need is met on the day itself. No branch in the tree covers that. The nearest is Branch B: follow-up bookings, not this quarter (`discovery/kpi-tree.md:25`). No side link: no sponsor line in the personas asks about this.
+- **KPI branch:** The need is met on the day itself. No branch in the tree covers that. The nearest is Branch B: follow-up bookings, not this quarter (`discovery/kpi-tree.md:25`). No side link: no buyer line in the personas asks about this.
 - **Counter-evidence in this source:** none found in this source.
 - **Gaps:** One voice. The line does not say why the document grew, or why that hurt.
 - **Assessment:** unsupported. One participant.
@@ -213,9 +213,9 @@ The source has no sponsor voice. All needs below are heard from participants onl
 - **Voices:** 1 speaker: participant. Second-hand: no.
 - **Merged:** no.
 - **Close to:** O3. Same role and moment, but a different need: what results are expected, not what to do next.
-- **KPI branch:** Branch B: follow-up bookings, not this quarter (`discovery/kpi-tree.md:25`). No driver in the tree. [assumption: participants who know their next steps keep going, and the sponsor sees it.] Side link to Branch A, driver booking rate. [assumption: a hard sponsor who wants follow-up after the days (`product/personas/sponsor-hard.md:35`) books more often when the site shows what comes after the training.]
+- **KPI branch:** Branch B: follow-up bookings, not this quarter (`discovery/kpi-tree.md:25`). No driver in the tree. [assumption: participants who know their next steps keep going, and the buyer sees it.] Side link to Branch A, driver booking rate. [assumption: a hard buyer who wants follow-up after the days (`product/personas/buyer-hard.md:35`) books more often when the site shows what comes after the training.]
 - **Counter-evidence in this source:** none found in this source.
-- **Gaps:** One voice. It is unclear who should set the expected results: the sponsor, the group or the academy. The source does not say.
+- **Gaps:** One voice. It is unclear who should set the expected results: the buyer, the group or the academy. The source does not say.
 - **Assessment:** unsupported. One participant.
 
 ## Looks like an opportunity, but

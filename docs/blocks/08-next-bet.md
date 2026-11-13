@@ -11,7 +11,7 @@ Then it enters the measured values in `discovery/kpi-tree.md`. It appends a sect
 `discovery/opportunity-comparison.md`: the status of the tested opportunity and a proposal for the
 next one. Watch for two things:
 
-- which new evidence it uses. The reference quiz stores what each sponsor ticked, so the new
+- which new evidence it uses. The reference quiz stores what each buyer ticked, so the new
   evidence is shaped by the quiz's questions.
 - the field `Next opportunity` stays empty: a human decides.
 

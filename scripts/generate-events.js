@@ -26,8 +26,8 @@ export function mulberry32(seed) {
   };
 }
 
-export const CSV_HEADER = 'id,submitted_at,variant,sponsor_type,team_size,success_line_choice,success_line_text,scoping_call_booked,booking_confirmed';
-export const BASELINE_CSV_HEADER = 'id,submitted_at,variant,sponsor_type,team_size,scoping_call_booked,booking_confirmed';
+export const CSV_HEADER = 'id,submitted_at,variant,buyer_type,team_size,success_line_choice,success_line_text,scoping_call_booked,booking_confirmed';
+export const BASELINE_CSV_HEADER = 'id,submitted_at,variant,buyer_type,team_size,scoping_call_booked,booking_confirmed';
 
 function csvCell(v) {
   const s = String(v);
@@ -151,7 +151,7 @@ export function buildData(scenario) {
     for (let i = 0; i < others; i++) {
       const s = 's-' + String(++sessionNo).padStart(6, '0');
       const t = randomTime(weekStart);
-      const page = pick(['home', 'formats', 'sponsor-prep']);
+      const page = pick(['home', 'formats', 'buyer-prep']);
       if (!br) emit(t, 'page_view', scenario.baselineVariant, s, { page });
     }
 
@@ -164,7 +164,7 @@ export function buildData(scenario) {
       emit(t, 'page_view', variant, s, { page: 'inquiry' });
       inquiryVisits.push({ s, t });
       if (rnd() >= st.startGivenView) continue;
-      const type = weighted(scenario.sponsorMix);
+      const type = weighted(scenario.buyerMix);
       t += delay(5, 40);
       emit(t, 'inquiry_started', variant, s, {});
       let line = null;
