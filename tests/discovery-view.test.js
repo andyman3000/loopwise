@@ -61,3 +61,11 @@ test('discoveryPage lists the drawn pages: a link once the artefact exists, a no
   assert.equal(drawn.status, 200);
   assert.equal(drawn.html, '<!doctype html><title>drawn</title>');
 });
+
+test('a heading that starts with an ID gets it as anchor, a repeated ID gets its section first', async () => {
+  const { renderMarkdown } = await import('../lib/discovery-view.js');
+  const html = renderMarkdown('## Candidates\n### C1: a need\n## Evidence\n### C1: a need\n### Plain heading\n');
+  assert.match(html, /<h3 id="C1">C1: a need<\/h3>/);
+  assert.match(html, /<h3 id="evidence-C1">C1: a need<\/h3>/);
+  assert.match(html, /<h3>Plain heading<\/h3>/);
+});

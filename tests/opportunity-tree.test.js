@@ -84,11 +84,11 @@ test('the comparison is parsed into goal, drivers in order, candidates and their
 
 test('the page draws one card per candidate, marks the gap, the favourite and the first try', () => {
   const html = treePage(repo(MD));
-  assert.equal((html.match(/<button type="button" class="card/g) || []).length, 2);
+  assert.equal((html.match(/<article class="card/g) || []).length, 2);
   assert.equal((html.match(/class="node driver/g) || []).length, 4);
   assert.equal((html.match(/No candidate acts here/g) || []).length, 1, 'start rate is a gap, website visits is not');
   assert.match(html, /comparison favours/);
-  assert.match(html, /Data behind the dashed link:<\/b> visits with a formats view/);
+  assert.match(html, /<h3>Data behind the dashed link<\/h3>visits with a formats view/);
   assert.match(html, /your first try/);
   assert.match(html, /Open\. You fill "Chosen opportunity"/);
   assert.match(html, /&lt;unclear&gt; driver/);
@@ -147,11 +147,11 @@ test('the tree draws the ideas under their opportunity and marks the one tested 
   fs.writeFileSync(path.join(root, 'discovery', 'intents', 'x.md'), INTENT);
   fs.writeFileSync(path.join(root, 'discovery', 'intents', 'other.md'), INTENT.replace('Opportunity: C2', 'Opportunity: C9'));
   const html = treePage(root);
-  assert.equal((html.match(/<button type="button" class="sol/g) || []).length, 3, 'C9 is not on the tree, so its ideas are left out');
+  assert.equal((html.match(/<article class="sol/g) || []).length, 3, 'C9 is not on the tree, so its ideas are left out');
   assert.equal((html.match(/data-parent="C2"/g) || []).length, 3);
   assert.match(html, /tested first: success-line-first/);
   assert.match(html, /href="\/discovery\/intents\/x.md"/);
-  assert.doesNotMatch(treePage(repo(MD)), /class="sol/);
+  assert.doesNotMatch(treePage(repo(MD)), /<article class="sol/);
 });
 
 test('right after the first step, ideas without an assumption are drawn, with no level pill', () => {
@@ -180,7 +180,7 @@ test('right after the first step, ideas without an assumption are drawn, with no
   fs.mkdirSync(path.join(root, 'discovery', 'intents'));
   fs.writeFileSync(path.join(root, 'discovery', 'intents', 'x.md'), early);
   const html = treePage(root);
-  assert.equal((html.match(/<button type="button" class="sol/g) || []).length, 5);
+  assert.equal((html.match(/<article class="sol/g) || []).length, 5);
   assert.doesNotMatch(html, /Critical assumption:|not given/);
   assert.match(html, /class="tag you">the pair/);
 });
@@ -190,7 +190,7 @@ test('an idea that moves two drivers shows a chip for each, and the page lights 
   fs.mkdirSync(path.join(root, 'discovery', 'intents'));
   fs.writeFileSync(path.join(root, 'discovery', 'intents', 'x.md'), INTENT.replace('| start rate |', '| start rate (`discovery/kpi-tree.md:21`) · submit rate (`discovery/kpi-tree.md:22`) |'));
   const html = treePage(root);
-  const sol = html.match(/<button type="button" class="sol[^"]*"[^>]*data-driver="start rate[\s\S]*?<\/button>/)[0];
+  const sol = html.match(/<article class="sol[^"]*"[^>]*data-driver="start rate[\s\S]*?<\/article>/)[0];
   assert.equal((sol.match(/class="chip"/g) || []).length, 2);
   assert.match(sol, /<span class="chip">start rate<\/span><span class="chip">submit rate<\/span>/);
   assert.match(html, /drivers\.filter\(/, 'the page script lights up all named drivers, not the first');
@@ -217,13 +217,14 @@ const FUNNEL = MD.replace(/^- website visits:[\s\S]*?(?=\n## Candidates)/m, `- w
 - submit rate: 81 of 194 started forms are not sent (data.md D4) · Candidates: C1
 `);
 
-test('the loss bars narrow down the funnel: each bar is as long as the visits that reach the step', () => {
+test('each bar shows how many of the people on a step go on, so every step can be read', () => {
   const p = parseComparison(FUNNEL);
-  assert.deepEqual(funnelBars(p.drivers), [null, { reach: 100, lost: 80.4 }, { reach: 19.6, lost: 73.8 }, { reach: 5.2, lost: 41.8 }]);
+  assert.deepEqual(funnelBars(p.drivers), [null, { go: 740, of: 3766, share: 19.6 }, { go: 194, of: 740, share: 26.2 }, { go: 113, of: 194, share: 58.2 }]);
   const html = treePage(repo(FUNNEL));
-  const widths = [...html.matchAll(/class="bar" style="width:([\d.]+)%"/g)].map((m) => Number(m[1]));
-  assert.deepEqual(widths, [100, 19.6, 5.2]);
-  assert.ok(widths.every((w, i) => i === 0 || w < widths[i - 1]), 'every bar is shorter than the one above');
+  const widths = [...html.matchAll(/class="bar"[^>]*><i style="width:([\d.]+)%"/g)].map((m) => Number(m[1]));
+  assert.deepEqual(widths, [19.6, 26.2, 58.2], 'measured against the step itself, not the top of the funnel');
+  assert.match(html, /<span class="big">740 <small>of 3,766 go on<\/small>/);
+  assert.match(html, /<span class="big">3,766 <small>visits, the top of the funnel<\/small>/, 'the first step shows its count without the citation');
 });
 
 test('the counts under each step are labelled as counted data, with thousands separators', () => {
@@ -249,7 +250,49 @@ test('an idea on the start rate links to the start rate only, never to the open 
   fs.mkdirSync(path.join(root, 'discovery', 'intents'));
   fs.writeFileSync(path.join(root, 'discovery', 'intents', 'x.md'), INTENT.replace('| start rate |', '| start rate (`discovery/kpi-tree.md:21`), acts after the open rate |'));
   const html = treePage(root);
-  const sol = html.match(/<button type="button" class="sol[^"]*"[^>]*data-key="discovery\/intents\/x.md#I2"[^>]*>/)[0];
+  const sol = html.match(/<article class="sol[^"]*"[^>]*data-key="discovery\/intents\/x.md#I2"[^>]*>/)[0];
   assert.match(sol, /data-drivers="\[&quot;start rate&quot;\]"/);
   assert.match(html, /JSON\.parse\(s\.dataset\.drivers\)/, 'the page script lights up the steps the server matched');
+});
+
+test('the overview card shows evidence counts and the lever, the details come only on zoom', () => {
+  const md = MD.replace('well supported: 2 source groups', 'well supported: 2 source groups, 5 sponsors, all in that situation now')
+    .replace('- **Leverage:** partly supported: indirect', '- **Leverage:** partly supported: indirect')
+    .replace('## Evidence\n### C1: Sponsor fears the fade\n- **Evidence strength:** long text', '## Evidence\n### C1: Sponsor fears the fade\n- **Evidence strength:** long text\n- **Gaps and uncertainty:** what the people above ask for');
+  const p = parseComparison(md);
+  assert.equal(p.candidates[0].evidence.counts, '5 sponsors · 2 source groups');
+  assert.equal(p.candidates[0].leverage.level, 'partly supported');
+  assert.equal(p.candidates[0].gap, 'what the people above ask for');
+  assert.deepEqual(p.candidates[0].sources, [{ group: 'interviews', id: 'O3' }]);
+  const html = treePage(repo(md));
+  const card = html.match(/<article class="card[^"]*"[^>]*data-id="C1"[\s\S]*?<\/article>/)[0];
+  const [summary, details] = card.split('<div class="more">');
+  assert.match(summary, /<span class="pill well tip" data-tip="5 sponsors · 2 source groups">well supported<\/span>/, 'the counts show on hover');
+  assert.match(summary, /<b>booking rate<\/b> <span class="pill partly tip" data-tip="3 of 5 lost here">partly supported<\/span>/);
+  assert.match(summary, />Details<\/button>/);
+  assert.doesNotMatch(summary, /Wins on|Strongest quote|8 weeks|lost here</, 'the overview shows the two labels only');
+  assert.match(details, /<div class="part x"><h3>Read more/, 'links and reasoning are for the Details view only');
+  assert.match(details, /Can we see a change in 8 weeks\? <span class="pill un">no<\/span>/);
+  assert.match(details, /how often the event that would show the change is counted/);
+  assert.match(details, /<h3>Open gap<\/h3>what the people above ask for/);
+  assert.match(details, /href="\/sources\/interviews\/a.md#L3"/, 'the quote opens its source line');
+});
+
+test('a candidate links to its opportunity entries and to its full assessment', () => {
+  const html = treePage(repo(MD.replace('- **From:** inquiry-mails O1', '- **From:** inquiry-mails O1 + inbox O3')));
+  assert.match(html, /href="\/discovery\/opportunities\/inquiry-mails.md#O1"/);
+  assert.match(html, /href="\/discovery\/opportunities\/inbox.md#O3"/);
+  assert.match(html, /href="\/discovery\/opportunity-comparison.md#evidence-C2"/);
+});
+
+test('every step, candidate and idea is a place the keys and the hash can jump to', () => {
+  const root = repo(MD);
+  fs.mkdirSync(path.join(root, 'discovery', 'intents'));
+  fs.writeFileSync(path.join(root, 'discovery', 'intents', 'x.md'), INTENT);
+  const html = treePage(root);
+  const views = [...html.matchAll(/<(?:div|article|section) [^>]*data-view="([^"]+)"/g)].map((m) => m[1]);
+  assert.deepEqual(views, ['S1', 'S2', 'S3', 'S4', 'C1', 'C2', 'C2-I1', 'C2-I2', 'C2-I3', 'decision']);
+  assert.match(html, /data-v="C1">C1<kbd>1<\/kbd>/);
+  for (const k of ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Escape']) assert.match(html, new RegExp(k), `the page script handles ${k}`);
+  assert.match(html, /max-width: 48rem/, 'a narrow screen gets one scrolling page instead of the camera');
 });
