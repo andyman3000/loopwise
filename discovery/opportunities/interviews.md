@@ -100,7 +100,7 @@ Missing: no buyer speaks about the website. Only one buyer (Carla) speaks before
 - **Voices:** 3 distinct speakers: buyers. Second-hand: yes, Mehmet's head of engineering and Ines's advisor. All three buyers only fear it. None of them has seen it after a Loopwise format.
 - **Merged:** yes. Mehmet fears the Monday after. Thomas fears AI gets filed away. Ines fears a day of listening changes nothing. All three are buyers, before the format, about the weeks after.
 - **Close to:** O5. Same buyers, same moment. O5 is pressure from above for a fast effect, a different need.
-- **KPI branch:** the need is met in the weeks after the format. So it sits mainly on Branch B, parked. Side link: Branch A, driver booking rate [assumption: a buyer who sees how the effect is checked later books more readily]. The hard buyer persona wants proof of effect before booking more (`product/glossary.md:12`).
+- **KPI branch:** the need is met in the weeks after the format. So it sits mainly on Branch B, parked. Side link: Branch A, driver booking rate [assumption: a buyer who sees how the effect is checked later books more readily]. The persona of the buyer with budget wants proof of effect before booking more (`product/glossary.md:12`).
 - **Counter-evidence in this source:** "We booked another round." (`sources/interviews/sponsor-sabine.md:173`). Sabine names no fade after the first run.
 - **Gaps:** no buyer in this source reports the weeks after a Loopwise format. Françoise is the only voice after a format (O10).
 - **Assessment:** partly supported. Three buyers only fear it. Two of the accounts are partly second-hand.
@@ -240,7 +240,7 @@ Missing: no buyer speaks about the website. Only one buyer (Carla) speaks before
 - **Close to:** none
 - **KPI branch:** the need is met after the format. So it sits mainly on Branch B. No side link: Thomas asks for it after booking, and no driver of Branch A shows it.
 - **Counter-evidence in this source:** none found in this source
-- **Gaps:** one buyer. The hard buyer persona lists it as a need before the call (`product/personas/buyer-hard.md:90`), but this source has it only after booking.
+- **Gaps:** one buyer. The persona of the buyer with budget lists it as a need before the call (`product/personas/buyer-with-budget.md:90`), but this source has it only after booking.
 - **Assessment:** unsupported. One voice.
 
 ### O16: "I don't know how many events we need." (buyer, before booking)

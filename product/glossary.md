@@ -7,10 +7,10 @@ explained in each artefact that uses them.
 
 - **Buyer:** the person in the customer company who wants the format for their team.
   Two kinds:
-  - **Soft buyer:** leads product people and wants the move to AI, but does not decide alone and
-    has no budget settled at first contact (`product/personas/buyer-soft.md`).
-  - **Hard buyer:** product lead with budget, wants proof of effect before booking more
-    (`product/personas/buyer-hard.md`).
+  - **Buyer without budget:** leads product people and wants the move to AI, but does not decide alone and
+    has no budget settled at first contact (`product/personas/buyer-without-budget.md`).
+  - **Buyer with budget:** product lead with budget, wants proof of effect before booking more
+    (`product/personas/buyer-with-budget.md`).
 - **Participant:** a product manager, product owner, UX person or consultant who takes part in the
   format. The user, not the buyer (`product/personas/participant.md`).
 - **Loopwise, the academy:** the fictional company that runs the formats and the website.

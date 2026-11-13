@@ -1,4 +1,4 @@
-# Persona: the soft buyer
+# Persona: the buyer without budget
 
 > "Tell me what's on the menu and I'll react to it." (`interviews/sponsor-carla.md:125`)
 
@@ -58,7 +58,7 @@
 - Budget, but "no clear idea what to ask for" (`inquiry-mails/inquiry-03.md:14`).
 - Cannot tell which format fits a new team (`inbox/inbox-export.md:125`).
 
-## What the soft buyer is NOT
+## What the buyer without budget is NOT
 
 Not the one who decides alone (`interviews/sponsor-carla.md:153`). Not a participant.
 

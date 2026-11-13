@@ -1,4 +1,4 @@
-# Persona: the hard buyer
+# Persona: the buyer with budget
 
 > "Whether they use what they learned in a normal week, and whether they show the person next to them." (`interviews/sponsor-thomas.md:89`)
 
@@ -61,7 +61,7 @@
 - A first training did not stick; "how would I know after a quarter that this time it stuck?" (`inquiry-mails/inquiry-04.md:14`, `:18`).
 - Also unsure of the format: workshop, longer accompaniment or something else (`inquiry-mails/inquiry-02.md:21`, `inquiry-mails/inquiry-04.md:18`).
 
-## What the hard buyer is NOT
+## What the buyer with budget is NOT
 
 Not a participant. Not hostile: approved a first step and is fine with small gains (`interviews/sponsor-mehmet.md:37`, `interviews/sponsor-thomas.md:85`). Not someone with a product measure in place (`interviews/sponsor-mehmet.md:93`), though one names cycle time (`interviews/sponsor-thomas.md:89`).
 

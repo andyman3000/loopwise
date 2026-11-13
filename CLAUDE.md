@@ -9,7 +9,7 @@ Project preferences for Claude Code in the Loopwise demo repo.
 - [product/strategy.md](product/strategy.md): business goal, the one path we work on this quarter, what we do not do
 - [product/glossary.md](product/glossary.md): Loopwise words in plain English (buyer, participant, format, scoping call, ...)
 - [product/constraints.md](product/constraints.md): hard limits on data, tech, measurement and material
-- [product/personas/](product/personas/): soft buyer, hard buyer, participant
+- [product/personas/](product/personas/): buyer without budget, buyer with budget, participant
 
 **Material (raw, never edited by skills):**
 - `sources/interviews/`: five buyer, three participant and one developer one-on-one interview
@@ -38,8 +38,8 @@ on one path: more inquiries that end in a booking (`product/strategy.md`).
 
 | Persona | Role | Focus |
 |---|---|---|
-| [Soft buyer](product/personas/buyer-soft.md) | leads product people, does not decide alone, no budget settled at first contact | cannot name a success line, does not know the format |
-| [Hard buyer](product/personas/buyer-hard.md) | product lead with budget | wants proof of effect before booking more |
+| [Buyer without budget](product/personas/buyer-without-budget.md) | leads product people, does not decide alone, no budget settled at first contact | cannot name a success line, does not know the format |
+| [Buyer with budget](product/personas/buyer-with-budget.md) | product lead with budget | wants proof of effect before booking more |
 | [Participant](product/personas/participant.md) | PM, PO, BA, UX | same title, very mixed level |
 
 ## Repo layout

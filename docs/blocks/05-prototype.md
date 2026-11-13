@@ -13,9 +13,10 @@ Code builds the page. On Tuesday a person from another pair tests it.
    that touches a sign before you build.
 2. **Persona reads the spec (15 min).** Start a fresh session (`/clear`). Then
    `/persona-walkthrough <variant> spec`. It first asks where
-   you expect the personas to stall. Then it plays the soft and the hard buyer through your
-   scenario and writes `discovery/user-tests/<variant>-spec.md`. Every reaction quotes the persona
-   file. A persona cannot tell you what its file has no source for; the file says where.
+   you expect the personas to stall. Then it plays the buyer without budget and the buyer
+   with budget through your scenario and writes `discovery/user-tests/<variant>-spec.md`.
+   Every reaction quotes the persona file. A persona cannot tell you what its file has no
+   source for; the file says where.
 3. **Change the spec (10 min).** Pick at most two findings and change the spec. You decide; the
    persona run only proposes. Then check "Where the watcher sees each sign" still has a place for
    every sign.
