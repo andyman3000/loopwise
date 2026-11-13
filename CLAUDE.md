@@ -15,7 +15,8 @@ Project preferences for Claude Code in the Loopwise demo repo.
 - `sources/interviews/`: five sponsor, three participant and one developer one-on-one interview
   (synthetic, built from patterns in real conversations). The developer is a voice of its own,
   neither sponsor nor participant
-- `sources/emails/`: seven inquiry mails (synthetic)
+- `sources/inquiry-mails/`: seven free-text inquiry mails sent outside the website form (synthetic;
+  form submissions are in `data/inquiries.csv`)
 - `sources/feedback/`: one feedback export (mixed: paraphrased free text, invented ratings)
 - `sources/inbox/`: thirteen support requests (synthetic)
 - `data/`: 26 weeks of synthetic baseline data (event log, inquiry export) up to 2026-08-18,
@@ -53,7 +54,7 @@ loopwise/
   data/            scenario.json, events.jsonl, inquiries.csv   (synthetic baseline, 26 weeks)
   tests/
   product/         vision.md, strategy.md, constraints.md, personas/
-  sources/         interviews/, emails/, feedback/, inbox/
+  sources/         interviews/, inquiry-mails/, feedback/, inbox/
   docs/blocks/     step-by-step instructions per workshop block
   discovery/       kpi-tree.md, opportunities/, intents/, specs/,
                    test-cards/, decisions/, user-tests/

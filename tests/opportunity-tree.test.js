@@ -43,7 +43,7 @@ Branch: Branch A: inquiries that end in a booking (product/strategy.md:12)
 - **Strongest quote:** "Everything was as before." (sources/interviews/a.md:3)
 
 ### C2: Sponsor does not know what to ask for
-- **From:** emails O1
+- **From:** inquiry-mails O1
 - **Evidence:** partly supported: 1 group
 - **Readable from today's data in 8 weeks:** partly supported: \`scoping_call_booked\`
 - **Wins on:** reach

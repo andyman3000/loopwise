@@ -22,10 +22,10 @@ scoping calls booked; bookings confirmed. [assumption: sponsors who can name a s
 
 Sponsors often come without knowing what they want:
 
-- They ask for "something with AI" for the team (`sources/emails/inquiry-03.md:14`).
+- They ask for "something with AI" for the team (`sources/inquiry-mails/inquiry-03.md:14`).
 - Before booking, sponsors often cannot say which format they need
   (`sources/interviews/sponsor-ines.md:49`, `sources/interviews/sponsor-carla.md:141`) or how they
-  would recognise success (`sources/emails/inquiry-03.md:14`, `sources/emails/inquiry-04.md:18`).
+  would recognise success (`sources/inquiry-mails/inquiry-03.md:14`, `sources/inquiry-mails/inquiry-04.md:18`).
 
 A scoping call with a sponsor who cannot say what success looks like often ends without a booking.
 [assumption: the call fails for this reason; `data/` shows how many calls end without a booking, not

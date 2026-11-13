@@ -54,8 +54,8 @@
 
 ## Where the same pattern shows up
 
-- Not sure what is needed; cannot tell what workshop versus team coaching would mean (`emails/inquiry-01.md:14`, `:16`).
-- Budget, but "no clear idea what to ask for" (`emails/inquiry-03.md:14`).
+- Not sure what is needed; cannot tell what workshop versus team coaching would mean (`inquiry-mails/inquiry-01.md:14`, `:16`).
+- Budget, but "no clear idea what to ask for" (`inquiry-mails/inquiry-03.md:14`).
 - Cannot tell which format fits a new team (`inbox/inbox-export.md:125`).
 
 ## What the soft sponsor is NOT
@@ -89,9 +89,9 @@ From the synthetic sponsor interviews (`interviews/sponsor-carla.md:3`, `intervi
 ## On the website
 
 - Looks at the formats and cannot tell which one fits (`inbox/inbox-export.md:125`, `inbox/inbox-export.md:137`).
-- Finds each format reasonable on its own, cannot tell which one is her group (`emails/inquiry-07.md:16`).
-- Keeps the formats page open for weeks, or closes it and comes back later (`emails/inquiry-07.md:12`, `inbox/inbox-export.md:161`).
-- Does not want to send the form with a guess in it (`emails/inquiry-07.md:18`, `inbox/inbox-export.md:137`).
+- Finds each format reasonable on its own, cannot tell which one is her group (`inquiry-mails/inquiry-07.md:16`).
+- Keeps the formats page open for weeks, or closes it and comes back later (`inquiry-mails/inquiry-07.md:12`, `inbox/inbox-export.md:161`).
+- Does not want to send the form with a guess in it (`inquiry-mails/inquiry-07.md:18`, `inbox/inbox-export.md:137`).
 
 ---
 

@@ -11,8 +11,8 @@ time, each with a quote, its location and counter-evidence. Needs, not solutions
    - Does every opportunity quote the source with file and line? Open two of them and check.
    - Is anything a solution in disguise ("they need a dashboard")?
    - How many different voices carry each opportunity, and does the file say so?
-3. Run it again for the other source groups as time allows: `emails`, `feedback`, `inbox`. Type
-   `/clear` before each run, then for example `/opportunities-from-source sources/emails`. The last
+3. Run it again for the other source groups as time allows: `inquiry-mails`, `feedback`, `inbox`. Type
+   `/clear` before each run, then for example `/opportunities-from-source sources/inquiry-mails`. The last
    row, `data`, is the usage data: it gives observations (where people drop out), not opportunities.
    Which source group could tell you why? The reference state `v2-02-opportunities` has all five files, `data.md` included.
 4. Leave "Goes into comparison" empty for now. You fill it at the start of block 3.

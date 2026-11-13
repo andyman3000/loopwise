@@ -5,9 +5,9 @@ Hard limits for every artefact and every change in this repo.
 ## Data and prices
 
 - **No prices**, not on the website and not in data. Sponsors do ask for them ("do you have a price
-  list", `sources/emails/inquiry-03.md:12`); the answer goes through the scoping call.
+  list", `sources/inquiry-mails/inquiry-03.md:12`); the answer goes through the scoping call.
 - **All data is synthetic or an anonymised composite**, and each file says which in its header
-  (for example `sources/interviews/sponsor-sabine.md:3`, `sources/emails/inquiry-01.md:3`,
+  (for example `sources/interviews/sponsor-sabine.md:3`, `sources/inquiry-mails/inquiry-01.md:3`,
   `sources/inbox/inbox-export.md:3`).
 - **Feedback ratings are invented** (`sources/feedback/feedback-export.md:3`, `:23`). Free-text
   answers may be quoted; the rating table is never used as evidence.
@@ -22,7 +22,7 @@ Hard limits for every artefact and every change in this repo.
 
 Sponsors often cannot change tool access before a format, and we plan around that:
 
-- IT has not approved the tool, data protection reviews take months (`sources/emails/inquiry-05.md:14`).
+- IT has not approved the tool, data protection reviews take months (`sources/inquiry-mails/inquiry-05.md:14`).
 - Approval pending with IT, no answer expected before the workshop (`sources/inbox/inbox-export.md:53`).
 - No admin rights on managed laptops, in the room (`sources/inbox/inbox-export.md:77`).
 - One of the trainer's tools cleared, the others not; what people may put into it still open with

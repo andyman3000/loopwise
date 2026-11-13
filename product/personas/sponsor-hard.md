@@ -43,8 +43,8 @@
 
 ## How they decide
 
-- Wants to speak to a comparable reference before a call (`emails/inquiry-02.md:18`).
-- Has to take it to the boss (`emails/inquiry-02.md:21`, `interviews/sponsor-mehmet.md:29`).
+- Wants to speak to a comparable reference before a call (`inquiry-mails/inquiry-02.md:18`).
+- Has to take it to the boss (`inquiry-mails/inquiry-02.md:21`, `interviews/sponsor-mehmet.md:29`).
 - Has no measure in place: "We don't really have product KPIs anyone steers by." (`interviews/sponsor-mehmet.md:93`)
 - Next step depends on how the first one goes (`interviews/sponsor-mehmet.md:37`).
 
@@ -57,9 +57,9 @@
 
 ## Where the same pattern shows up
 
-- Asks for references and how success is measured before a call; "the team liked it" will not be enough for the boss (`emails/inquiry-02.md:18`, `:19`, `:21`).
-- A first training did not stick; "how would I know after a quarter that this time it stuck?" (`emails/inquiry-04.md:14`, `:18`).
-- Also unsure of the format: workshop, longer accompaniment or something else (`emails/inquiry-02.md:21`, `emails/inquiry-04.md:18`).
+- Asks for references and how success is measured before a call; "the team liked it" will not be enough for the boss (`inquiry-mails/inquiry-02.md:18`, `:19`, `:21`).
+- A first training did not stick; "how would I know after a quarter that this time it stuck?" (`inquiry-mails/inquiry-04.md:14`, `:18`).
+- Also unsure of the format: workshop, longer accompaniment or something else (`inquiry-mails/inquiry-02.md:21`, `inquiry-mails/inquiry-04.md:18`).
 
 ## What the hard sponsor is NOT
 
@@ -86,14 +86,14 @@ From the synthetic sponsor interviews (`interviews/sponsor-thomas.md:3`, `interv
 
 ## Needs before the scoping call
 
-- A comparable company to call (`emails/inquiry-02.md:18`).
+- A comparable company to call (`inquiry-mails/inquiry-02.md:18`).
 - An honest outside read of how mature product management is (`interviews/sponsor-thomas.md:189`).
 - Follow-up work after the two days, though nothing is commissioned yet (`interviews/sponsor-mehmet.md:181`).
 
 ## On the website
 
-- Compares many offers and finds they all look the same on paper. Looks for evidence that work changes months later (`emails/inquiry-02.md:14`).
-- Wants written answers before setting up a call. Writes three precise questions by mail (`emails/inquiry-02.md:12`, `:17`, `:18`, `:19`).
+- Compares many offers and finds they all look the same on paper. Looks for evidence that work changes months later (`inquiry-mails/inquiry-02.md:14`).
+- Wants written answers before setting up a call. Writes three precise questions by mail (`inquiry-mails/inquiry-02.md:12`, `:17`, `:18`, `:19`).
 
 ---
 

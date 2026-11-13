@@ -7,17 +7,17 @@ paraphrased free text).
 
 Product teams in companies: product managers, product owners, UX and consultants with product
 duties, booked in-house by a sponsor who wants "something with AI" for the team
-(`sources/emails/inquiry-03.md:14`). Two people matter in every booking: the sponsor who decides, and
+(`sources/inquiry-mails/inquiry-03.md:14`). Two people matter in every booking: the sponsor who decides, and
 the participants who have to make it work in their own week.
 
 ## The problem we exist for
 
 Trainings end and nothing changes. A sponsor puts it as "Feedback on the days themselves was fine.
-But when I asked around a few weeks later, almost nobody was using any of it" (`sources/emails/inquiry-04.md:14`).
+But when I asked around a few weeks later, almost nobody was using any of it" (`sources/inquiry-mails/inquiry-04.md:14`).
 Participants know what the tools can do, "but not what to do with them in their own work"
-(`sources/emails/inquiry-04.md:14`). And before booking, sponsors often cannot say which format they
+(`sources/inquiry-mails/inquiry-04.md:14`). And before booking, sponsors often cannot say which format they
 need (`sources/interviews/sponsor-ines.md:49`, `sources/interviews/sponsor-carla.md:141`) or how they
-would recognise success (`sources/emails/inquiry-03.md:14`, `sources/emails/inquiry-04.md:18`).
+would recognise success (`sources/inquiry-mails/inquiry-03.md:14`, `sources/inquiry-mails/inquiry-04.md:18`).
 
 ## What we believe
 

@@ -12,7 +12,7 @@
 | Field | Value | Trace |
 |---|---|---|
 | Role | product owner, project and requirements lead, product manager, business analyst | `interviews/participant-francoise.md:6`, `interviews/participant-rasmus.md:6`, `interviews/participant-jannik.md:6`, `interviews/sponsor-thomas.md:17` |
-| Org context | member of a product team the sponsor books for | `emails/inquiry-06.md:12`, `interviews/participant-francoise.md:29` |
+| Org context | member of a product team the sponsor books for | `inquiry-mails/inquiry-06.md:12`, `interviews/participant-francoise.md:29` |
 | Technical level | mixed despite the same title (see below) | `interviews/participant-francoise.md:49`, `interviews/sponsor-sabine.md:69` |
 | Team | around five developers, a designer and the product person; up to ten people | `interviews/participant-francoise.md:25`, `interviews/participant-rasmus.md:39`, `interviews/participant-jannik.md:105` |
 | Company | retailers with many stores | `interviews/participant-francoise.md:6`, `interviews/participant-jannik.md:6` |
@@ -26,7 +26,7 @@ In the three one-on-one interviews, one participant uses AI for most of the work
 (`interviews/participant-francoise.md:37`). In one workshop's opening round, the range went from an
 architect with his own agent routine to people who had never worked with any of this
 (`interviews/participant-francoise.md:41`, `interviews/participant-francoise.md:45`). Sponsors see the
-same spread (`interviews/sponsor-thomas.md:121`, `interviews/sponsor-sabine.md:69`, `emails/inquiry-06.md:14`).
+same spread (`interviews/sponsor-thomas.md:121`, `interviews/sponsor-sabine.md:69`, `inquiry-mails/inquiry-06.md:14`).
 
 ## Goals
 
