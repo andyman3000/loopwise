@@ -12,10 +12,9 @@ Project preferences for Claude Code in the Loopwise demo repo.
 - [product/personas/](product/personas/): soft sponsor, hard sponsor, participant
 
 **Material (raw, never edited by skills):**
-- `sources/interviews/`: three participant group interviews, two sponsor interviews and two participant
-  one-on-one interviews (anonymised composites); four sponsor, one participant and one developer
-  one-on-one interview (synthetic, built from patterns in real conversations). The developer is a voice
-  of its own, neither sponsor nor participant
+- `sources/interviews/`: five sponsor, three participant and one developer one-on-one interview
+  (synthetic, built from patterns in real conversations). The developer is a voice of its own,
+  neither sponsor nor participant
 - `sources/emails/`: seven inquiry mails (synthetic)
 - `sources/feedback/`: one feedback export (mixed: paraphrased free text, invented ratings)
 - `sources/inbox/`: thirteen support requests (synthetic)
@@ -38,8 +37,8 @@ on one path: more inquiries that end in a booking (`product/strategy.md`).
 
 | Persona | Role | Focus |
 |---|---|---|
-| [Soft sponsor](product/personas/sponsor-soft.md) | supports the AI move, no budget or line authority | names only soft success signals, does not know the format |
-| [Hard sponsor](product/personas/sponsor-hard.md) | head of product with budget | wants proof of effect before booking more |
+| [Soft sponsor](product/personas/sponsor-soft.md) | leads product people, does not decide alone, no budget settled at first contact | cannot name a success line, does not know the format |
+| [Hard sponsor](product/personas/sponsor-hard.md) | product lead with budget | wants proof of effect before booking more |
 | [Participant](product/personas/participant.md) | PM, PO, BA, UX | same title, very mixed level |
 
 ## Repo layout
@@ -112,7 +111,7 @@ The trainer changes this one line per cohort, for example to `product managers`.
 
 - **English** in every file.
 - **Every claim in an artefact quotes its source with location**: file and line, for example
-  `sources/interviews/sponsor-soft.md:49`. No quote, no claim. This includes statements about
+  `sources/interviews/sponsor-carla.md:125`. No quote, no claim. This includes statements about
   rules, limits and strategy ("prices stay off the website"): cite the line in `product/` that says
   it, for example `product/constraints.md:7`, never "by rule" or a section name alone.
 - **Only counted numbers.** A number appears only if it is counted from a file in `sources/` or
