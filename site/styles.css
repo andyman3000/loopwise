@@ -108,6 +108,37 @@ form>.button,form>button{margin-top:.25rem}
   .path:not(.compact)>li:last-child::after{right:auto;width:calc(1rem + var(--dot) / 2)}
 }
 
+/* Home page: the hero with the small agent character. Colours follow the theme tokens. */
+.hero{display:grid;gap:1rem 2.5rem;align-items:center}
+.hero h1{margin-top:0}
+.eyebrow{margin:0 0 .6rem;color:var(--accent);font-weight:650;font-size:.95rem;letter-spacing:.02em}
+.agent{width:min(15rem,60vw);height:auto;justify-self:center;overflow:visible}
+@media (min-width:56em){.hero{grid-template-columns:minmax(0,1fr) 17rem}.agent{width:100%}}
+@media (max-width:55.99em){.agent{order:-1;width:9rem;justify-self:start}}
+.agent-head,.agent-foot{fill:var(--card);stroke:var(--fg);stroke-width:4}
+.agent-body{fill:var(--accent);stroke:var(--fg);stroke-width:4}
+.agent-face{fill:var(--accent-soft)}
+.agent-eye,.agent-smile{fill:var(--fg)}
+.agent-smile{fill:none;stroke:var(--fg);stroke-width:4;stroke-linecap:round}
+.agent-glint{fill:var(--card)}
+.agent-cheek{fill:#f29b8f;opacity:.55}
+.agent-line{fill:none;stroke:var(--fg);stroke-width:4;stroke-linecap:round}
+.agent-light{fill:var(--accent);stroke:var(--fg);stroke-width:4}
+.agent-logo{fill:none;stroke:var(--accent-fg);stroke-width:3.4}
+.agent-shadow{fill:var(--fg);opacity:.08}
+.agent-wave{transform-origin:136px 156px;transform-box:view-box}
+.agent-eyes{transform-origin:100px 86px;transform-box:view-box}
+@media (prefers-reduced-motion:no-preference){
+  .agent-bob{animation:agent-bob 3.2s ease-in-out infinite}
+  .agent-wave{animation:agent-wave 3.2s ease-in-out infinite}
+  .agent-eyes{animation:agent-blink 5s infinite}
+  .agent-light{animation:agent-glow 2.4s ease-in-out infinite}
+}
+@keyframes agent-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes agent-wave{0%,55%,100%{transform:rotate(0)}65%{transform:rotate(-14deg)}75%{transform:rotate(8deg)}85%{transform:rotate(-14deg)}}
+@keyframes agent-blink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+@keyframes agent-glow{0%,100%{opacity:1}50%{opacity:.45}}
+
 /* Footer */
 .site-footer{display:flex;flex-wrap:wrap;gap:.75rem 2rem;align-items:center;justify-content:space-between;
   padding:1.5rem max(16px,calc((100% - var(--wide)) / 2)) 2rem;border-top:1px solid var(--line);background:var(--card);color:var(--muted);font-size:.9rem}
