@@ -9,7 +9,7 @@ A KPI branch is one way the business goal can grow (`discovery/kpi-tree.md:6`).
 A driver is something people do that can be counted and that moves a branch (`discovery/kpi-tree.md:7`).
 
 ## Your first try
-"I dont know how much this costs, clear solution: aks for a price on the website" · Where the draft differs: the draft also files the price list as a solution idea. It does not make cost the need. The same mail says "I have budget for training this year but no clear idea what to ask for" (`sources/inquiry-mails/inquiry-03.md:14`). So the draft puts this sponsor under O1 (cannot tell which format fits) and O7 (does not know what result to expect).
+"I dont know how much this costs, clear solution: aks for a price on the website" · Where the draft differs: the draft also files the price list as a solution idea. It does not make cost the need. The same mail says "I have budget for training this year but no clear idea what to ask for" (`sources/inquiry-mails/inquiry-03.md:14`). So the draft puts this sponsor under O1 ("I can't tell which format fits my group") and O7 ("I don't know what result to expect at the end").
 
 Feedback: The strong part is the label. A price list is a request for a solution, and the answer says so. The weak part is the need. "I don't know how much this costs" repeats the word "price" from the quote and goes no deeper. Two lines further down, the sponsor says the budget is there and the open question is what to ask for. A need read from the quote alone missed that line.
 
@@ -27,7 +27,7 @@ Feedback: The strong part is the label. A price list is a request for a solution
 Every mail is one sponsor, writing before any booking. No participant writes here.
 
 ## Opportunities
-### O1: Sponsors cannot tell which format fits their group
+### O1: "I can't tell which format fits my group." (sponsor, before booking)
 - **Evidence:**
   - "Side by side, I can't tell which one is us." (sources/inquiry-mails/inquiry-07.md:16, Head of Product Operations, sponsor)
   - "I didn't want to send your form with a guess in it, so I am writing instead." (sources/inquiry-mails/inquiry-07.md:18, Head of Product Operations, sponsor)
@@ -43,7 +43,7 @@ Every mail is one sponsor, writing before any booking. No participant writes her
 - **Gaps:** All seven mails arrived. Sponsors who gave up without writing are not in this source.
 - **Assessment:** well supported. Five sponsors say it in their own situation. Two other sponsors already know their format.
 
-### O2: Sponsors want proof that people work differently months later, before they commit
+### O2: "I want proof people work differently months later." (sponsor, before booking)
 - **Evidence:**
   - "What I have not seen is evidence that any of it changes how people actually work three months later." (sources/inquiry-mails/inquiry-02.md:14, VP Product, sponsor)
   - "How do you measure whether it worked?" (sources/inquiry-mails/inquiry-02.md:19, VP Product, sponsor)
@@ -57,7 +57,7 @@ Every mail is one sponsor, writing before any booking. No participant writes her
 - **Gaps:** No mail says what proof would be enough.
 - **Assessment:** partly supported. Two sponsors, one of whom lived it. Five mails are silent on proof.
 
-### O3: Sponsors have to take a proposal to their manager
+### O3: "I need something to take to my manager." (sponsor, before booking)
 - **Evidence:**
   - "Could you send me some information so I can forward it internally?" (sources/inquiry-mails/inquiry-01.md:18, Director Digital Products, sponsor)
   - "I will have to take this to my boss, and" (sources/inquiry-mails/inquiry-02.md:21, VP Product, sponsor)
@@ -70,7 +70,7 @@ Every mail is one sponsor, writing before any booking. No participant writes her
 - **Gaps:** No mail says what the manager wants to see.
 - **Assessment:** well supported. Three sponsors are in this situation now.
 
-### O4: Sponsors fear a mixed group leaves some people bored and others lost
+### O4: "I'm afraid some will be bored and others lost." (sponsor, before booking)
 - **Evidence:**
   - "I am worried that one group will be bored and the other lost." (sources/inquiry-mails/inquiry-06.md:14, Head of Product and UX, sponsor)
   - "Some of them already use chat tools, some don't." (sources/inquiry-mails/inquiry-01.md:14, Director Digital Products, sponsor)
@@ -83,7 +83,7 @@ Every mail is one sponsor, writing before any booking. No participant writes her
 - **Gaps:** Two of the three sponsors state the mix as a fact, not a problem.
 - **Assessment:** partly supported. Three sponsors describe the mix. Only one fears the effect.
 
-### O5: A sponsor needs to know before booking whether the format works with the tools IT allows
+### O5: "I don't know if our IT allows the tools you use." (sponsor, before booking)
 - **Evidence:**
   - "our IT has not approved the AI tool you seem to use in your sessions yet." (sources/inquiry-mails/inquiry-05.md:14, Senior Product Owner, sponsor)
   - "I would rather know this now than discover it on the morning of the training." (sources/inquiry-mails/inquiry-05.md:18, Senior Product Owner, sponsor)
@@ -95,7 +95,7 @@ Every mail is one sponsor, writing before any booking. No participant writes her
 - **Gaps:** One mail. Whether tool limits stop bookings is not in this source.
 - **Assessment:** unsupported. One sponsor.
 
-### O6: Sponsors want people to use it in their own work afterwards, not only know the tools
+### O6: "I want my people to use it in their own work." (sponsor, the weeks after)
 - **Evidence:**
   - "People said they now know what the tools can do, but not what to do with them in their own work." (sources/inquiry-mails/inquiry-04.md:14, Head of Product Management, sponsor)
   - "Ideally everyone leaves with something they can use in their own product work the week after." (sources/inquiry-mails/inquiry-06.md:18, Head of Product and UX, sponsor)
@@ -107,7 +107,7 @@ Every mail is one sponsor, writing before any booking. No participant writes her
 - **Gaps:** The participants' words are second-hand. No participant writes in this source.
 - **Assessment:** partly supported. Two sponsors, one part second-hand.
 
-### O7: A sponsor does not know what result to expect at the end
+### O7: "I don't know what result to expect at the end." (sponsor, before booking)
 - **Evidence:**
   - "I genuinely don't know what makes sense, or what I should even expect at the end of it." (sources/inquiry-mails/inquiry-03.md:14, Team Lead Product, sponsor)
 - **Voices:** 1 distinct speaker: sponsor (inquiry-03). Second-hand: no

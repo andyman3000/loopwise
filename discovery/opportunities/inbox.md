@@ -9,7 +9,7 @@ A KPI branch is one way the business goal can grow, as drawn in `discovery/kpi-t
 A driver is a step people take that can be counted, and that moves a branch.
 
 ## Your first try
-"I am unsure how far stretched the AI capabilities in my team really go - indirect ask for a solution, e.g. a self grader, self assesment" · Where the draft differs: the draft keeps this need as O2, rated unsupported. Only one sender says it. The draft puts a different need first, O1: four sponsors cannot tell which format fits their group. Two of them know their team's level and still cannot choose.
+"I am unsure how far stretched the AI capabilities in my team really go - indirect ask for a solution, e.g. a self grader, self assesment" · Where the draft differs: the draft keeps this need as O2, rated unsupported. Only one sender says it. The draft puts a different need first, O1: "I can't tell which format fits my group." Four sponsors have this need. Two of them know their team's level and still cannot choose.
 
 Feedback: Strong: you named a pain from the sponsor's side, not a feature. You saw that the quote is a solution request in disguise. Weak: you stopped at the team's level. The same request says the sponsor wants "to avoid booking the wrong thing". Knowing the level is a step toward that, not the end. "Self grader" is your own solution idea. Keep it under solution ideas, out of the need.
 
@@ -24,7 +24,7 @@ The KPI tree has a branch for the path to a booking (Branch A) and one for follo
 
 ## Opportunities
 
-### O1: Sponsors cannot tell which format fits their group
+### O1: "I can't tell which format fits my group." (sponsor, before booking)
 - **Evidence:**
   - "I looked at your formats but cannot tell which one fits" (sources/inbox/inbox-export.md:125, head of product, sponsor)
   - "I would like to avoid booking the wrong thing." (sources/inbox/inbox-export.md:125, head of product, sponsor)
@@ -40,7 +40,7 @@ The KPI tree has a branch for the path to a booking (Branch A) and one for follo
 - **Gaps:** the inbox does not show what the formats page says. No sender says which part of it confused them.
 - **Assessment:** well supported. Four sponsors say it in their own words, before booking. Each lived it on the formats page.
 
-### O2: Sponsors do not know how far their team's AI skills go
+### O2: "I don't know how far my team's AI skills go." (sponsor, before booking)
 - **Evidence:**
   - "Is there a way to find out where the team stands before we decide?" (sources/inbox/inbox-export.md:125, head of product, sponsor)
   - "some with almost no hands-on AI experience" (sources/inbox/inbox-export.md:125, head of product, sponsor)
@@ -52,7 +52,7 @@ The KPI tree has a branch for the path to a booking (Branch A) and one for follo
 - **Gaps:** one sender only. The request does not say what the sponsor already knows about the team.
 - **Assessment:** unsupported. One voice. Two sponsors in the same source describe their team's level without trouble.
 
-### O3: Sponsors feel they must name a format before they can ask at all
+### O3: "I feel I must name a format before I can ask." (sponsor, before booking)
 - **Evidence:**
   - "I do not want to pick one just to have something to write in the form." (sources/inbox/inbox-export.md:137, team lead, sponsor)
   - "Can I talk to someone before I fill in anything?" (sources/inbox/inbox-export.md:149, learning and development partner, sponsor)
@@ -65,20 +65,18 @@ The KPI tree has a branch for the path to a booking (Branch A) and one for follo
 - **Gaps:** the inbox does not show whether the form asks for a format. The head of product wrote through the form channel (sources/inbox/inbox-export.md:121). It is unclear whether that was the inquiry form.
 - **Assessment:** well supported. Three sponsors say they hold back before the form. Each lived it.
 
-### O4: Sponsors need to change the date or the group after booking
+### O4: "I need to move the dates after booking." (sponsor, preparation)
 - **Evidence:**
   - "Is there any chance to move both workshop days by two weeks?" (sources/inbox/inbox-export.md:17, team lead, sponsor)
-  - "One of the new people only joins on day two because of a conflict on day one." (sources/inbox/inbox-export.md:41, team lead, sponsor)
-  - "Does that still work for the exercises, or does she miss too much?" (sources/inbox/inbox-export.md:41, team lead, sponsor)
-- **Voices:** 2 distinct speakers: sponsors. Second-hand: no.
-- **Merged:** yes. One sponsor needs to move the dates because of a release. The other changes who takes part. Both are sponsors during preparation. Both need the booked format to follow changes in the group, so it is one need.
-- **Close to:** O9. Same role, but there the sponsor plans a session after the day.
+- **Voices:** 1 distinct speaker: sponsor. Second-hand: no.
+- **Merged:** no.
+- **Close to:** O11. Same role and moment, but a different need: new dates here, a changed group there. O9: same role, but there the sponsor plans a session after the day.
 - **KPI branch:** no branch in the tree for preparation. Side link to Branch A, driver booking rate [assumption: a new sponsor who sees that dates and group can change finds the booking less risky]. One sponsor fears committing to the wrong thing (sources/inbox/inbox-export.md:161).
 - **Counter-evidence in this source:** none found in this source.
-- **Gaps:** both requests are closed. The export does not say what Loopwise offered.
-- **Assessment:** partly supported. Two voices who lived it.
+- **Gaps:** the request is closed. The export does not say what Loopwise offered.
+- **Assessment:** unsupported. One voice.
 
-### O5: Sponsors cannot get the AI tool approved by their IT in time
+### O5: "I can't get the AI tool approved by IT in time." (sponsor, preparation)
 - **Evidence:**
   - "Our IT has not yet approved the AI tool for use on company laptops." (sources/inbox/inbox-export.md:53, department head, sponsor)
   - "I do not want to postpone again." (sources/inbox/inbox-export.md:53, department head, sponsor)
@@ -90,7 +88,7 @@ The KPI tree has a branch for the path to a booking (Branch A) and one for follo
 - **Gaps:** one sender. The word "again" hints at an earlier delay. The export does not show it.
 - **Assessment:** unsupported. One voice.
 
-### O6: Participants cannot get the tool running when the workshop starts
+### O6: "I can't get the tool running when the workshop starts." (participant, the day itself)
 - **Evidence:**
   - "My laptop is managed by IT and I cannot elevate." (sources/inbox/inbox-export.md:77, business analyst, participant)
   - "We are losing time." (sources/inbox/inbox-export.md:77, business analyst, participant)
@@ -104,7 +102,7 @@ The KPI tree has a branch for the path to a booking (Branch A) and one for follo
 - **Gaps:** the export does not say how long each participant was blocked.
 - **Assessment:** partly supported. Two voices who lived it, plus a second-hand report of two more.
 
-### O7: Participants want to know if they can work on a real task that is partly confidential
+### O7: "I don't know if I may bring my partly confidential task." (participant, preparation)
 - **Evidence:**
   - "Should I bring a real task from my backlog, or will you provide exercises?" (sources/inbox/inbox-export.md:29, product owner, participant)
   - "parts of it are confidential" (sources/inbox/inbox-export.md:29, product owner, participant)
@@ -116,7 +114,7 @@ The KPI tree has a branch for the path to a booking (Branch A) and one for follo
 - **Gaps:** one sender. The export does not say what Loopwise answered.
 - **Assessment:** unsupported. One voice.
 
-### O8: Participants want to know what else to prepare besides the setup
+### O8: "I want to know what else to prepare besides the setup." (participant, preparation)
 - **Evidence:**
   - "Anything else we should prepare apart from the setup checklist?" (sources/inbox/inbox-export.md:65, product manager, participant)
 - **Voices:** 1 distinct speaker: participant. Second-hand: no.
@@ -127,7 +125,7 @@ The KPI tree has a branch for the path to a booking (Branch A) and one for follo
 - **Gaps:** one short question. The participant names no pain.
 - **Assessment:** unsupported. One voice.
 
-### O9: Sponsors cannot fit the follow-up session in while it is still useful
+### O9: "I don't know if a later follow-up is still useful." (sponsor, the weeks after)
 - **Evidence:**
   - "Could we do it in about six weeks, ideally as a half day online?" (sources/inbox/inbox-export.md:101, team lead, sponsor)
   - "If that is too late to be useful, tell me" (sources/inbox/inbox-export.md:101, team lead, sponsor)
@@ -139,7 +137,7 @@ The KPI tree has a branch for the path to a booking (Branch A) and one for follo
 - **Gaps:** one sender. The export does not say whether six weeks is too late.
 - **Assessment:** unsupported. One voice.
 
-### O10: Sponsors see their group slip back into old routines after the training
+### O10: "I see my people slipping back into old routines." (sponsor, the weeks after)
 - **Evidence:**
   - "I can already see people slipping back into their old routines once the backlog hits." (sources/inbox/inbox-export.md:113, department head, sponsor)
   - "A few have built something in the workshop, but not on their actual tasks yet." (sources/inbox/inbox-export.md:113, department head, sponsor)
@@ -151,6 +149,18 @@ The KPI tree has a branch for the path to a booking (Branch A) and one for follo
 - **Gaps:** one sender. The request comes one week after the training, too early to see lasting change.
 - **Assessment:** unsupported. One voice, partly reporting what others do.
 
+### O11: "I need to change who takes part after booking." (sponsor, preparation)
+- **Evidence:**
+  - "One of the new people only joins on day two because of a conflict on day one." (sources/inbox/inbox-export.md:41, team lead, sponsor)
+  - "Does that still work for the exercises, or does she miss too much?" (sources/inbox/inbox-export.md:41, team lead, sponsor)
+- **Voices:** 1 distinct speaker: sponsor. Second-hand: no.
+- **Merged:** no.
+- **Close to:** O4. Same role and moment, but a different need: a changed group here, new dates there. O9: same role, but there the sponsor plans a session after the day.
+- **KPI branch:** no branch in the tree for preparation. Side link to Branch A, driver booking rate [assumption: a new sponsor who sees that dates and group can change finds the booking less risky]. One sponsor fears committing to the wrong thing (sources/inbox/inbox-export.md:161).
+- **Counter-evidence in this source:** none found in this source.
+- **Gaps:** the request is closed. The export does not say what Loopwise offered.
+- **Assessment:** unsupported. One voice.
+
 ## Looks like an opportunity, but
 | Finding | Quote and location | Why it is not one (yet) |
 |---|---|---|
@@ -161,7 +171,7 @@ The KPI tree has a branch for the path to a booking (Branch A) and one for follo
 | Idea | Quote and location | Opportunity it might serve |
 |---|---|---|
 | Split the two days | "we could also split it and do day one as planned and day two later" (sources/inbox/inbox-export.md:17) | O4 |
-| Send setup steps to new people directly | "Please also send the setup instructions to the three new people directly." (sources/inbox/inbox-export.md:41) | O4, O6 |
+| Send setup steps to new people directly | "Please also send the setup instructions to the three new people directly." (sources/inbox/inbox-export.md:41) | O11, O6 |
 | Browser accounts on private devices | "browser accounts on private devices" (sources/inbox/inbox-export.md:53) | O5 |
 | Install without admin rights, or IT on site | "Is there a way to install without admin rights, or can someone from IT come over?" (sources/inbox/inbox-export.md:77) | O6 |
 | Send the setup steps again | "Can you send me the steps again so I can catch up during the break?" (sources/inbox/inbox-export.md:89) | O6 |

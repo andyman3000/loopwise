@@ -12,8 +12,9 @@ Counter-evidence is a line in the same source that speaks against the opportunit
 ## Your first try
 "I dont know how to integrate this in my daily life after the training finishes" · Where the draft differs:
 - The draft splits this pain into two needs.
-- O1: participants cannot place where the training fits in a normal work week.
-- O3: participants miss the next steps, and what results are expected of them. The quote you saw sits here.
+- O1: "I can't see where this fits in my normal work week."
+- O3: "I don't know my next steps after the training." The first half of the quote you saw sits here.
+- O16: "I don't know what results are expected of me." The second half of that quote sits here.
 
 Feedback:
 - Strong: you named a pain, not a page or a button. You placed it after the training, where the speaker placed it.
@@ -31,7 +32,7 @@ The source has no sponsor voice. All needs below are heard from participants onl
 
 ## Opportunities
 
-### O1: Participants cannot place where the training fits in their normal work week
+### O1: "I can't see where this fits in my normal work week." (participant, the weeks after)
 - **Evidence:**
   - "Now I have an idea of what I could do with it, but not yet of what I will do with it." (`sources/feedback/feedback-export.md:37`, R01, participant)
   - "so I could not really place yet where this fits" (`sources/feedback/feedback-export.md:38`, R02, participant)
@@ -44,7 +45,7 @@ The source has no sponsor voice. All needs below are heard from participants onl
 - **Gaps:** The answers were written at the end of day 2. No source says what these people did in the weeks after. The text is paraphrased.
 - **Assessment:** well supported. Three participants say it about their own work. Three other participants already see where it fits, so it is not true for all.
 
-### O2: Participants fear they slip back into old habits after a training
+### O2: "I'm afraid I slip back into old habits after a training." (participant, the weeks after)
 - **Evidence:**
   - "Methods from trainings are the first thing to go when the pressure is on" (`sources/feedback/feedback-export.md:38`, R02, participant)
   - "After most workshops I think it was nice and then carry on exactly as before." (`sources/feedback/feedback-export.md:45`, R08, participant)
@@ -56,19 +57,19 @@ The source has no sponsor voice. All needs below are heard from participants onl
 - **Gaps:** Both voices describe earlier trainings. No line says whether this training stuck.
 - **Assessment:** partly supported. Two participants, and both speak of a pattern from other trainings, not of this one.
 
-### O3: Participants miss the next steps after the training, and what results are expected
+### O3: "I don't know my next steps after the training." (participant, the weeks after)
 - **Evidence:**
-  - "What are the next steps and what results are we expected to get?" (`sources/feedback/feedback-export.md:42`, R05, participant)
+  - "What are the next steps" (`sources/feedback/feedback-export.md:42`, R05, participant)
   - "Assigned next steps, and a way to improve the process bit by bit after the training." (`sources/feedback/feedback-export.md:43`, R06, participant)
 - **Voices:** 2 distinct speakers: participants. Second-hand: no.
-- **Merged:** yes. R05 does not know the next steps or the expected results. R06 wants next steps assigned and a way to improve after. Both are participants, after the day, missing direction on what comes next.
-- **Close to:** O1 (see there). O4: same moment, but O4 asks for support while trying, not for the next steps.
+- **Merged:** yes. R05 does not know the next steps. R06 wants next steps assigned and a way to improve after. Both are participants, after the day, missing direction on what comes next.
+- **Close to:** O1 (see there). O4: same moment, but O4 asks for support while trying, not for the next steps. O16: same role and moment, but a different need: what results are expected, not what to do next.
 - **KPI branch:** Branch B: follow-up bookings, not this quarter (`discovery/kpi-tree.md:25`). No driver in the tree. [assumption: participants who know their next steps keep going, and the sponsor sees it.] Side link to Branch A, driver booking rate. [assumption: a hard sponsor who wants follow-up after the days (`product/personas/sponsor-hard.md:35`) books more often when the site shows what comes after the training.]
 - **Counter-evidence in this source:** "Next week I will start on one concrete task of mine" (`sources/feedback/feedback-export.md:44`). This participant set their own next step.
 - **Gaps:** It is unclear who should set the next steps: the sponsor, the group or the academy. The source does not say.
 - **Assessment:** partly supported. Two participants say it.
 
-### O4: Participants want support again once they have tried it on their own task
+### O4: "I want support again once I've tried it on my task." (participant, the weeks after)
 - **Evidence:**
   - "it would help to meet again once I have made some progress" (`sources/feedback/feedback-export.md:44`, R07, participant)
 - **Voices:** 1 speaker: participant. Second-hand: no.
@@ -79,7 +80,7 @@ The source has no sponsor voice. All needs below are heard from participants onl
 - **Gaps:** One voice. The speaker wrote it while "too tired to judge" (`sources/feedback/feedback-export.md:44`).
 - **Assessment:** unsupported. One participant.
 
-### O5: Participants arrive without knowing what to expect from the day
+### O5: "I don't know what to expect from the day." (participant, the day itself)
 - **Evidence:**
   - "I came in not knowing what to expect and first had to work out what the assistant even does." (`sources/feedback/feedback-export.md:37`, R01, participant)
   - "A bit lost at the start: no schedule and no concrete goal for the day." (`sources/feedback/feedback-export.md:52`, R15, participant)
@@ -91,7 +92,7 @@ The source has no sponsor voice. All needs below are heard from participants onl
 - **Gaps:** Unclear if the participants got an agenda before the day. The expectations survey in sponsor preparation might cover it; this source does not say.
 - **Assessment:** partly supported. Two participants.
 
-### O6: Participants fall behind or lose the thread during the day
+### O6: "I can't keep up during the day." (participant, the day itself)
 - **Evidence:**
   - "I fell behind on day 1" (`sources/feedback/feedback-export.md:46`, R09, participant)
   - "I walked in with no background at all and thought it would be far too much." (`sources/feedback/feedback-export.md:54`, R17, participant)
@@ -104,7 +105,7 @@ The source has no sponsor voice. All needs below are heard from participants onl
 - **Gaps:** The pace ratings would help here, but they are invented and not used.
 - **Assessment:** well supported. Three participants lived it, though two caught up by the end.
 
-### O7: Taking part remotely is harder than being in the room
+### O7: "I can't focus as well when I join remotely." (participant, the day itself)
 - **Evidence:**
   - "at home I got distracted more easily than I would in a room" (`sources/feedback/feedback-export.md:51`, R14, participant)
   - "Watching someone's screen and doing my own work at the same time did not work for me remotely." (`sources/feedback/feedback-export.md:53`, R16, participant)
@@ -116,7 +117,7 @@ The source has no sponsor voice. All needs below are heard from participants onl
 - **Gaps:** The source does not say how many joined remotely.
 - **Assessment:** partly supported. Two participants.
 
-### O8: The setup is not ready before the first session
+### O8: "My setup isn't ready before the first session." (participant, preparation)
 - **Evidence:**
   - "I installed the code editor for the first time the day before." (`sources/feedback/feedback-export.md:51`, R14, participant)
   - "I had to request more memory for my laptop before the setup would run." (`sources/feedback/feedback-export.md:58`, R21, participant)
@@ -128,7 +129,7 @@ The source has no sponsor voice. All needs below are heard from participants onl
 - **Gaps:** R14 does not say if installing the day before caused trouble.
 - **Assessment:** partly supported. Two participants.
 
-### O9: Tools fail or slow down the exercises
+### O9: "The tools get in my way during exercises." (participant, the day itself)
 - **Evidence:**
   - "The click prototype needed a separate login first, and the forms in our local HTML files did not submit in the browser." (`sources/feedback/feedback-export.md:60`, R06, participant)
   - "Sharing files through the company drive was slow" (`sources/feedback/feedback-export.md:59`, R03, participant)
@@ -140,7 +141,7 @@ The source has no sponsor voice. All needs below are heard from participants onl
 - **Gaps:** Unclear how much time was lost.
 - **Assessment:** partly supported. Two participants, and one of them calls it good enough.
 
-### O10: Participants want to see it used on features from their own roadmap
+### O10: "I want to try it on features from our own roadmap." (participant, the day itself)
 - **Evidence:**
   - "Show us how to apply this, or part of it, to features that are actually on our roadmap." (`sources/feedback/feedback-export.md:41`, R04, participant)
 - **Voices:** 1 speaker: participant. Second-hand: no.
@@ -151,7 +152,7 @@ The source has no sponsor voice. All needs below are heard from participants onl
 - **Gaps:** One voice.
 - **Assessment:** unsupported. One participant.
 
-### O11: Participants need something to reread when they start on their own
+### O11: "I need something to reread when I start alone." (participant, the weeks after)
 - **Evidence:**
   - "I need the slides afterwards to reread them once I actually start." (`sources/feedback/feedback-export.md:56`, R19, participant)
 - **Voices:** 1 speaker: participant. Second-hand: no.
@@ -162,7 +163,7 @@ The source has no sponsor voice. All needs below are heard from participants onl
 - **Gaps:** One voice.
 - **Assessment:** unsupported. One participant.
 
-### O12: The slides do not explain enough
+### O12: "I need the slides to explain more." (participant, the day itself or the weeks after)
 - **Evidence:**
   - "The slides were very short, they could explain more." (`sources/feedback/feedback-export.md:57`, R20, participant)
 - **Voices:** 1 speaker: participant. Second-hand: no.
@@ -173,7 +174,7 @@ The source has no sponsor voice. All needs below are heard from participants onl
 - **Gaps:** One voice. Unclear if this is about following the day or rereading later.
 - **Assessment:** unsupported. One participant.
 
-### O13: Participants get more AI-written text than they can read
+### O13: "I get more AI-written text than I can read." (participant, the day itself)
 - **Evidence:**
   - "Too much AI-generated text to read. I worry about drowning in it." (`sources/feedback/feedback-export.md:62`, R15, participant)
 - **Voices:** 1 speaker: participant. Second-hand: no.
@@ -184,7 +185,7 @@ The source has no sponsor voice. All needs below are heard from participants onl
 - **Gaps:** One voice. The participant persona has a similar line from an interview, but that is another source group.
 - **Assessment:** unsupported. One participant.
 
-### O14: The group's main document grew too long
+### O14: "Our main document grew far too long." (participant, the day itself)
 - **Evidence:**
   - "Our main document grew far too long." (`sources/feedback/feedback-export.md:63`, R20, participant)
 - **Voices:** 1 speaker: participant. Second-hand: no.
@@ -195,7 +196,7 @@ The source has no sponsor voice. All needs below are heard from participants onl
 - **Gaps:** One voice. The line does not say why the document grew, or why that hurt.
 - **Assessment:** unsupported. One participant.
 
-### O15: The room was too loud to read
+### O15: "The room was too loud for me to read." (participant, the day itself)
 - **Evidence:**
   - "Too loud in the room, reading was hard." (`sources/feedback/feedback-export.md:64`, R05, participant)
 - **Voices:** 1 speaker: participant. Second-hand: no.
@@ -204,6 +205,17 @@ The source has no sponsor voice. All needs below are heard from participants onl
 - **KPI branch:** The need is met on the day itself, by the room. No branch in the tree covers that. The nearest is Branch B: follow-up bookings, not this quarter (`discovery/kpi-tree.md:25`). No side link: the room is set up after the booking.
 - **Counter-evidence in this source:** none found in this source.
 - **Gaps:** One voice.
+- **Assessment:** unsupported. One participant.
+
+### O16: "I don't know what results are expected of me." (participant, the weeks after)
+- **Evidence:**
+  - "what results are we expected to get?" (`sources/feedback/feedback-export.md:42`, R05, participant)
+- **Voices:** 1 speaker: participant. Second-hand: no.
+- **Merged:** no.
+- **Close to:** O3. Same role and moment, but a different need: what results are expected, not what to do next.
+- **KPI branch:** Branch B: follow-up bookings, not this quarter (`discovery/kpi-tree.md:25`). No driver in the tree. [assumption: participants who know their next steps keep going, and the sponsor sees it.] Side link to Branch A, driver booking rate. [assumption: a hard sponsor who wants follow-up after the days (`product/personas/sponsor-hard.md:35`) books more often when the site shows what comes after the training.]
+- **Counter-evidence in this source:** none found in this source.
+- **Gaps:** One voice. It is unclear who should set the expected results: the sponsor, the group or the academy. The source does not say.
 - **Assessment:** unsupported. One participant.
 
 ## Looks like an opportunity, but

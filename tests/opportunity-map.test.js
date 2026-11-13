@@ -157,3 +157,14 @@ test('rows follow the tree, empty steps still show, the Branch A catch-all only 
   assert.match(booking, /class="card well side"/);
   assert.match(booking, /<span class="badge parked">B: follow-up bookings, not this quarter<\/span>/, 'a side-link card keeps its parked badge');
 });
+
+test('a first-person heading shows the statement on the card, with role and moment below it', () => {
+  const md = OPP.replace('### O1: Sponsors do not know which format fits', '### O1: "I don\'t know which format to ask for." (sponsor, before booking)');
+  const [o1] = parseOpportunities(md);
+  assert.deepEqual([o1.id, o1.statement, o1.context], ['O1', "I don't know which format to ask for.", 'sponsor, before booking']);
+  assert.equal(o1.title, '"I don\'t know which format to ask for." (sponsor, before booking)');
+  const html = mapPage(repo(md));
+  assert.match(html, /&ldquo;I don't know which format to ask for\.&rdquo;<span class="ctx">sponsor, before booking<\/span>/);
+  const [, o2] = parseOpportunities(md);
+  assert.deepEqual([o2.statement, o2.context], ['Participants lose it after a week', '']);
+});

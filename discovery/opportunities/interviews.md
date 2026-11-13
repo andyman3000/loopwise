@@ -49,22 +49,20 @@ Missing: no sponsor speaks about the website. Only one sponsor (Carla) speaks be
 
 ## Opportunities
 
-### O1: At first contact, sponsors do not know which format, how many parts or how long
+### O1: "I don't know which format to ask for." (sponsor, before booking)
 - **Evidence:**
   - "Tell me what's on the menu and I'll react to it." (`sources/interviews/sponsor-carla.md:125`, Carla, sponsor)
   - "And between the two directions you described I haven't decided either, so that's open as well." (`sources/interviews/sponsor-carla.md:141`, Carla, sponsor)
-  - "One event or three, and in what order, that was the question I brought" (`sources/interviews/sponsor-ines.md:49`, Ines, sponsor)
   - "What to buy to fix it, no." (`sources/interviews/sponsor-ines.md:53`, Ines, sponsor)
-  - "whether we were talking about full days or a few hours each" (`sources/interviews/sponsor-ines.md:129`, Ines, sponsor)
 - **Voices:** 2 distinct speakers: sponsors. Second-hand: no. Carla speaks before booking. Ines looks back on her first call.
-- **Merged:** yes. Carla does not know which direction fits. Ines does not know how many events or how long. Both are sponsors before the booking, unsure what to ask for.
-- **Close to:** none
+- **Merged:** yes. Carla does not know which direction fits. Ines does not know what to buy. Both are sponsors before the booking, unsure which format to ask for.
+- **Close to:** O16 and O17. Same role and moment, but a different need: which format here, how many events in O16, how long in O17.
 - **KPI branch:** Branch A, driver submit rate [assumption: a sponsor who cannot name a format hesitates to send the form]. Also driver booking rate [assumption: a call that leaves the format open ends without a booking more often].
 - **Counter-evidence in this source:** "The two days, those we settled almost in the first week, the dates too." (`sources/interviews/sponsor-thomas.md:21`). "The shape I knew." (`sources/interviews/sponsor-mehmet.md:29`)
 - **Gaps:** no sponsor says how this felt on the website. Ines booked in the end, after several scoping calls.
 - **Assessment:** partly supported. Two sponsors lived it. Two other sponsors knew the shape early.
 
-### O2: Sponsors do not decide alone and need something to take to colleagues or the boss
+### O2: "I need something to show the people who decide with me." (sponsor, before booking)
 - **Evidence:**
   - "I'll take this to two colleagues and talk it through with them." (`sources/interviews/sponsor-carla.md:153`, Carla, sponsor)
   - "Sure, why not. Send them over." (`sources/interviews/sponsor-carla.md:157`, Carla, sponsor, on example agendas)
@@ -78,7 +76,7 @@ Missing: no sponsor speaks about the website. Only one sponsor (Carla) speaks be
 - **Gaps:** no source says what the colleagues or the boss ask for. Carla takes example agendas; whether they help is unknown.
 - **Assessment:** partly supported. Two sponsors lived it before booking.
 
-### O3: Sponsors cannot say how they would know the format worked for their group
+### O3: "I can't say how I'd know the format worked." (sponsor, preparation)
 - **Evidence:**
   - "Then you'd have got a shrug." (`sources/interviews/sponsor-sabine.md:53`, Sabine, sponsor)
   - "Not one I'd sign." (`sources/interviews/sponsor-ines.md:73`, Ines, sponsor)
@@ -92,7 +90,7 @@ Missing: no sponsor speaks about the website. Only one sponsor (Carla) speaks be
 - **Gaps:** no sponsor in this source tried to write a success line in the inquiry. Sabine booked a second group without one (`sources/interviews/sponsor-sabine.md:173`).
 - **Assessment:** partly supported. Two sponsors lived it, one more is second-hand. One sponsor can name a number.
 
-### O4: Sponsors fear their people slide back into old habits after the format
+### O4: "I'm afraid my people slip back into old habits afterwards." (sponsor, preparation)
 - **Evidence:**
   - "What worries me is the Monday after, and the one after that" (`sources/interviews/sponsor-mehmet.md:169`, Mehmet, sponsor)
   - "people do a session like this and then slide back into their old habits" (`sources/interviews/sponsor-mehmet.md:173`, Mehmet, sponsor, reporting his head of engineering)
@@ -107,7 +105,7 @@ Missing: no sponsor speaks about the website. Only one sponsor (Carla) speaks be
 - **Gaps:** no sponsor in this source reports the weeks after a Loopwise format. Françoise is the only voice after a format (O10).
 - **Assessment:** partly supported. Three sponsors only fear it. Two of the accounts are partly second-hand.
 
-### O5: Sponsors face pressure from above to show a fast effect right after the format
+### O5: "I'm under pressure to show an effect right after." (sponsor, preparation)
 - **Evidence:**
   - "At the top of the company the expectation is now: much faster, soon." (`sources/interviews/sponsor-mehmet.md:73`, Mehmet, sponsor)
   - "management expects a big jump in efficiency right after the workshop" (`sources/interviews/sponsor-thomas.md:101`, Thomas, sponsor, reporting the AI programme lead)
@@ -120,7 +118,7 @@ Missing: no sponsor speaks about the website. Only one sponsor (Carla) speaks be
 - **Gaps:** both sponsors had booked already. No source says whether this pressure slows a booking.
 - **Assessment:** partly supported. Two sponsors, one partly second-hand. Both sponsors also play the expectation down.
 
-### O6: In preparation, sponsors cannot tell how to set up the days for a group at very different levels
+### O6: "I don't know how the days can suit such mixed levels." (sponsor, preparation)
 - **Evidence:**
   - "whether the ones who were further ahead would get anything out of it" (`sources/interviews/sponsor-sabine.md:153`, Sabine, sponsor)
   - "Whatever level the two days aim at, it won't suit everybody in there." (`sources/interviews/sponsor-thomas.md:121`, Thomas, sponsor)
@@ -133,7 +131,7 @@ Missing: no sponsor speaks about the website. Only one sponsor (Carla) speaks be
 - **Gaps:** Thomas mixed the levels on purpose (`sources/interviews/sponsor-thomas.md:125`). He wants the mix, but not one level for all.
 - **Assessment:** partly supported. Two sponsors lived it, one is second-hand. Two sponsors worry less.
 
-### O7: Before booking, a sponsor cannot tell whether to mix or split a group at different levels
+### O7: "I can't tell whether to mix or split my group." (sponsor, before booking)
 - **Evidence:**
   - "would you mix everyone and hope the quick ones pull the others along?" (`sources/interviews/sponsor-carla.md:137`, Carla, sponsor)
 - **Voices:** 1 distinct speaker: sponsor. Second-hand: no.
@@ -144,7 +142,7 @@ Missing: no sponsor speaks about the website. Only one sponsor (Carla) speaks be
 - **Gaps:** one sponsor before booking. No source says whether the answer changes the booking.
 - **Assessment:** unsupported. One voice.
 
-### O8: A sponsor worries that people who are behind will not dare to ask and will drift
+### O8: "I'm afraid people who are behind won't dare to ask." (sponsor, before booking)
 - **Evidence:**
   - "That some people fall behind and don't dare to ask, and then they just drift." (`sources/interviews/sponsor-carla.md:133`, Carla, sponsor)
   - "I think a lot of them simply have no idea where they stand." (`sources/interviews/sponsor-carla.md:85`, Carla, sponsor)
@@ -157,7 +155,7 @@ Missing: no sponsor speaks about the website. Only one sponsor (Carla) speaks be
 - **Gaps:** no product owner from Carla's group speaks in this source.
 - **Assessment:** unsupported. One voice, second-hand and a fear.
 
-### O9: On the day, a participant with the least experience loses track and does not trust her own work
+### O9: "I don't understand what I built, so I can't trust it." (participant, the day itself)
 - **Evidence:**
   - "with no idea what any of it did" (`sources/interviews/participant-francoise.md:101`, Françoise, participant)
   - "I just didn't trust any of it." (`sources/interviews/participant-francoise.md:109`, Françoise, participant)
@@ -171,7 +169,7 @@ Missing: no sponsor speaks about the website. Only one sponsor (Carla) speaks be
 - **Gaps:** one participant after a format. No other participant speaks about a Loopwise day.
 - **Assessment:** unsupported. One voice.
 
-### O10: After the format, a participant cannot see herself setting it up alone at her desk
+### O10: "I can't see myself setting it up alone at my desk." (participant, the weeks after)
 - **Evidence:**
   - "If it's just me and the agent, I'll get to the first message I don't understand and stop there." (`sources/interviews/participant-francoise.md:125`, Françoise, participant)
   - "At my desk there isn't." (`sources/interviews/participant-francoise.md:133`, Françoise, participant)
@@ -184,7 +182,7 @@ Missing: no sponsor speaks about the website. Only one sponsor (Carla) speaks be
 - **Gaps:** Françoise speaks a few days after the format. She predicts; she has not tried it alone yet.
 - **Assessment:** unsupported. One voice, and a prediction.
 
-### O11: In preparation, a sponsor cannot answer what participants may install, open or use
+### O11: "I can't answer which tools my people are allowed to use." (sponsor, preparation)
 - **Evidence:**
   - "A good part of those I couldn't answer." (`sources/interviews/sponsor-sabine.md:77`, Sabine, sponsor)
   - "And of the tools you work with, exactly one is cleared" (`sources/interviews/sponsor-sabine.md:81`, Sabine, sponsor)
@@ -198,7 +196,7 @@ Missing: no sponsor speaks about the website. Only one sponsor (Carla) speaks be
 - **Gaps:** one sponsor. Participants' view of setup is in Françoise's interview, without a complaint (`sources/interviews/participant-francoise.md:37`).
 - **Assessment:** unsupported. One voice.
 
-### O12: Before booking, a sponsor cannot tell whether her company's security rules allow the tools a format needs
+### O12: "I don't know if our security rules allow the tools." (sponsor, before booking)
 - **Evidence:**
   - "until the security side is sorted, I wouldn't want a training built on that tool." (`sources/interviews/sponsor-carla.md:133`, Carla, sponsor)
 - **Voices:** 1 distinct speaker: sponsor. Second-hand: no.
@@ -209,7 +207,7 @@ Missing: no sponsor speaks about the website. Only one sponsor (Carla) speaks be
 - **Gaps:** Carla does not know the security concerns in detail (`sources/interviews/sponsor-carla.md:137`).
 - **Assessment:** unsupported. One voice.
 
-### O13: In preparation, a sponsor gets more moving documents than he can work through
+### O13: "I get more changing documents than I can work through." (sponsor, preparation)
 - **Evidence:**
   - "Every evening there was another long document, and each one assumed I'd already worked through the one before." (`sources/interviews/sponsor-mehmet.md:141`, Mehmet, sponsor)
   - "either a few pieces stop moving so I can build on them, or someone takes part of the work off me." (`sources/interviews/sponsor-mehmet.md:141`, Mehmet, sponsor)
@@ -221,7 +219,7 @@ Missing: no sponsor speaks about the website. Only one sponsor (Carla) speaks be
 - **Gaps:** one sponsor, days before the format.
 - **Assessment:** unsupported. One voice.
 
-### O14: In preparation, a sponsor struggles to find a real open problem that is still current on the day
+### O14: "I can't find a real problem that will still be current." (sponsor, preparation)
 - **Evidence:**
   - "I thought I was bringing a good example and it was the wrong kind." (`sources/interviews/sponsor-ines.md:113`, Ines, sponsor)
   - "If I pick something now, by the workshop it may be old news." (`sources/interviews/sponsor-ines.md:117`, Ines, sponsor)
@@ -233,7 +231,7 @@ Missing: no sponsor speaks about the website. Only one sponsor (Carla) speaks be
 - **Gaps:** one sponsor.
 - **Assessment:** unsupported. One voice.
 
-### O15: After the format, a sponsor wants to know how mature his product people really are
+### O15: "I want to know how mature my product people really are." (sponsor, the weeks after)
 - **Evidence:**
   - "How mature is our product management really, and how ready are we for agent-based work." (`sources/interviews/sponsor-thomas.md:189`, Thomas, sponsor)
   - "one result I'd value from the two days is a list" (`sources/interviews/sponsor-thomas.md:141`, Thomas, sponsor)
@@ -244,6 +242,28 @@ Missing: no sponsor speaks about the website. Only one sponsor (Carla) speaks be
 - **Counter-evidence in this source:** none found in this source
 - **Gaps:** one sponsor. The hard sponsor persona lists it as a need before the call (`product/personas/sponsor-hard.md:90`), but this source has it only after booking.
 - **Assessment:** unsupported. One voice.
+
+### O16: "I don't know how many events we need." (sponsor, before booking)
+- **Evidence:**
+  - "One event or three, and in what order, that was the question I brought" (`sources/interviews/sponsor-ines.md:49`, Ines, sponsor)
+- **Voices:** 1 distinct speaker: sponsor. Second-hand: no. Ines looks back on her first call.
+- **Merged:** no
+- **Close to:** O1 and O17. Same role and moment, but a different need: how many events here, which format in O1, how long in O17.
+- **KPI branch:** Branch A, driver submit rate [assumption: a sponsor who cannot name a format hesitates to send the form]. Also driver booking rate [assumption: a call that leaves the format open ends without a booking more often].
+- **Counter-evidence in this source:** "The two days, those we settled almost in the first week, the dates too." (`sources/interviews/sponsor-thomas.md:21`). "The shape I knew." (`sources/interviews/sponsor-mehmet.md:29`)
+- **Gaps:** no sponsor says how this felt on the website. Ines booked in the end, after several scoping calls.
+- **Assessment:** unsupported. One voice. Two other sponsors knew the shape early.
+
+### O17: "I don't know if we need full days or a few hours." (sponsor, before booking)
+- **Evidence:**
+  - "whether we were talking about full days or a few hours each" (`sources/interviews/sponsor-ines.md:129`, Ines, sponsor)
+- **Voices:** 1 distinct speaker: sponsor. Second-hand: no. Ines looks back on her first call.
+- **Merged:** no
+- **Close to:** O1 and O16. Same role and moment, but a different need: how long here, which format in O1, how many events in O16.
+- **KPI branch:** Branch A, driver submit rate [assumption: a sponsor who cannot name a format hesitates to send the form]. Also driver booking rate [assumption: a call that leaves the format open ends without a booking more often].
+- **Counter-evidence in this source:** "The two days, those we settled almost in the first week, the dates too." (`sources/interviews/sponsor-thomas.md:21`). "The shape I knew." (`sources/interviews/sponsor-mehmet.md:29`)
+- **Gaps:** no sponsor says how this felt on the website. Ines booked in the end, after several scoping calls.
+- **Assessment:** unsupported. One voice. Two other sponsors knew the shape early.
 
 ## Looks like an opportunity, but
 
