@@ -172,5 +172,5 @@ Dropped:
 
 ## Decision (human)
 
-Chosen opportunity: ____
-We would switch if: ____
+Chosen opportunity: C1: "I can't tell which format fits my group." Chosen by Product lead (Loopwise), 2026-08-18. The product lead's words: "C1 because the evidence is very good and it affects a step very early in the funnel."
+We would switch if: the product lead's words, 2026-08-18: "We would switch if we learn that the real problem is not that people dont know which format to pick, but if they dont book because we cannot convince them enough, that our training is really different"
