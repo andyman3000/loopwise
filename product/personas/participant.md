@@ -93,43 +93,43 @@ Not the buyer (`interviews/sponsor-soft.md:71`, `interviews/sponsor-hard.md:13`)
 
 ## Added from two one-on-one interviews (2026-11-12)
 
-**Basis:** two anonymised composite one-on-one interviews, `interviews/participant-interview-1.md` and `interviews/participant-interview-2.md`. Both participants work on the requirements side of a product team and have no line responsibility (`interviews/participant-interview-1.md:6`, `interviews/participant-interview-2.md:6`). The lines above stay as they were.
+**Basis:** two one-on-one interviews, synthetic, built from patterns in real conversations: `sources/interviews/participant-rasmus.md` and `sources/interviews/participant-jannik.md`. Both participants work at the same grocery retailer, in different product teams (`sources/interviews/participant-rasmus.md:6`, `sources/interviews/participant-jannik.md:6`, `sources/interviews/participant-jannik.md:29`). Both are on the requirements side and have no line responsibility (`sources/interviews/participant-rasmus.md:6`, `sources/interviews/participant-rasmus.md:19`, `sources/interviews/participant-jannik.md:6`, `sources/interviews/participant-jannik.md:21`). The lines above stay as they were.
 
 ### How far each one got with AI
 
-- One participant uses only the AI built into the office tools. The participant calls that too little (`interviews/participant-interview-1.md:53`).
-- When this participant tries more, the AI returns too much text to check. The participant then writes it alone (`interviews/participant-interview-1.md:57`).
-- The other participant uses AI for almost everything (`interviews/participant-interview-2.md:33`).
-- This participant answers recurring questions with AI in a minute instead of an hour (`interviews/participant-interview-2.md:49`).
-- This participant also turns half a day of workshop notes into tickets in minutes (`interviews/participant-interview-2.md:53`).
+- One participant uses only the AI built into the office tools. The participant calls that too little (`sources/interviews/participant-rasmus.md:79`).
+- When this participant tries more, the AI returns too much text to check. The participant then writes it alone (`sources/interviews/participant-rasmus.md:83`).
+- The other participant uses AI for almost everything (`sources/interviews/participant-jannik.md:53`).
+- This participant answers recurring questions with AI in a minute instead of an hour (`sources/interviews/participant-jannik.md:77`).
+- This participant also turns half a day of workshop notes into tickets in minutes (`sources/interviews/participant-jannik.md:81`).
 
 ### Each person works with AI alone
 
-- Everyone has their own account and builds their own helpers (`interviews/participant-interview-2.md:33`).
-- Sharing a working helper with the team is hard, because someone has to keep it current (`interviews/participant-interview-2.md:33`).
-- Everyone keeps their own notes for the AI. The participant wants the team to use AI together (`interviews/participant-interview-2.md:61`).
+- Everyone has their own account and builds their own helpers (`sources/interviews/participant-jannik.md:57`).
+- Sharing a working helper with the team is hard, because someone has to keep it current (`sources/interviews/participant-jannik.md:57`, `sources/interviews/participant-jannik.md:61`).
+- Everyone keeps their own notes for the AI. The participant wants the team to use AI together (`sources/interviews/participant-jannik.md:93`).
 
 ### The developers' agent setup stops at the developers
 
-- One participant was shown the setup once. Using it makes no sense to the participant, because every change waits for a developer review (`interviews/participant-interview-1.md:21`, `interviews/participant-interview-1.md:25`).
-- The other participant has never used it. AI only comes in once a developer has a refined ticket (`interviews/participant-interview-2.md:17`, `interviews/participant-interview-2.md:21`).
-- This participant wants to ask the AI earlier, at the idea stage (`interviews/participant-interview-2.md:25`).
-- This participant thinks the setup does not know the business goals (`interviews/participant-interview-2.md:69`).
+- One participant was shown the setup once. Using it makes no sense to the participant, because every change waits for a developer review (`sources/interviews/participant-rasmus.md:27`, `sources/interviews/participant-rasmus.md:31`).
+- The other participant has never used it. AI only comes in once a developer has a refined ticket (`sources/interviews/participant-jannik.md:29`, `sources/interviews/participant-jannik.md:33`).
+- This participant wants to ask the AI earlier, at the idea stage (`sources/interviews/participant-jannik.md:37`).
+- This participant thinks the setup does not know the business goals (`sources/interviews/participant-jannik.md:101`).
 
 ### Trouble before the build
 
-- The team often spends half an hour on one ticket and does not agree (`interviews/participant-interview-1.md:41`).
-- People join without the knowledge from user tests. Tickets stay thin, and the team has built the wrong thing (`interviews/participant-interview-1.md:45`).
-- The participant wants to write the spec once, together with developers, design and the people asking (`interviews/participant-interview-1.md:49`).
-- In the other team, ten people talk through ten tickets and nobody writes anything down (`interviews/participant-interview-2.md:73`).
+- The team often spends half an hour on one ticket and does not agree (`sources/interviews/participant-rasmus.md:55`).
+- People join without the knowledge from user tests. Tickets stay thin, and the team has built the wrong thing (`sources/interviews/participant-rasmus.md:59`).
+- The participant wants to write the spec once, together with developers, design and the people asking (`sources/interviews/participant-rasmus.md:71`).
+- In this participant's own team, ten people go through ten tickets in one refinement and nobody writes anything down (`sources/interviews/participant-jannik.md:105`).
 
 ### Counter-evidence to keep in view
 
-- One participant does use AI every day and saves time with it (`interviews/participant-interview-2.md:49`, `interviews/participant-interview-2.md:53`).
-- This participant chooses not to let AI write production code. The reason is a failed attempt without tests, not missing access (`interviews/participant-interview-2.md:37`).
+- One participant does use AI often and saves time with it (`sources/interviews/participant-jannik.md:53`, `sources/interviews/participant-jannik.md:77`, `sources/interviews/participant-jannik.md:81`).
+- This participant chooses not to let AI write production code. The reason is a failed attempt without tests, not missing access (`sources/interviews/participant-jannik.md:65`).
 
 ### What we do not know yet
 
-- Both interviews end with the participant unsure what the talk was for (`interviews/participant-interview-1.md:65`, `interviews/participant-interview-2.md:77`). What they said may follow what they thought the interviewer wanted.
+- Both interviews end with the participant unsure what the talk was for (`sources/interviews/participant-rasmus.md:103`, `sources/interviews/participant-rasmus.md:107`, `sources/interviews/participant-jannik.md:109`). What they said may follow what they thought the interviewer wanted.
 - [assumption: both participants were picked because they are open to AI. Participants who doubt AI are missing from the one-on-one interviews.]
 - Two interviews describe two people, not a spread across a booked group.
