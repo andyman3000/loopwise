@@ -53,11 +53,14 @@ function describe(text) {
   return { letter: head && head[2] ? head[2].toUpperCase() : '', name, title, event, parked };
 }
 
+// A count ("number of ...") is how many enter the path; every other driver is a rate of the step
+// before. The two look different. "Measured" folds away so the boxes stay short; a click opens it.
 function driverNode(d, i, branch) {
-  return `<div class="node driver" data-branch="${branch}">
-<span class="step">Step ${i + 1}</span><span class="name">${esc(d.name || d.title)}</span>
+  const count = /^number of\b/i.test(d.title);
+  return `<div class="node driver${count ? ' count' : ''}" data-branch="${branch}">
+<span class="step">Step ${i + 1} · ${count ? 'count' : 'rate'}</span><span class="name">${esc(d.name || d.title)}</span>
 ${d.name ? `<span class="what">${esc(d.title)}</span>` : ''}
-${d.event ? `<span class="measured"><b>Measured:</b> ${code(d.event)}</span>` : ''}
+${d.event ? `<details class="measured"><summary>Measured</summary>${code(d.event)}</details>` : ''}
 </div>`;
 }
 
@@ -96,7 +99,9 @@ ${branches.filter((b) => b.drivers.length).map((b, i) => chain(b, formulas[i])).
 const EXTRA_CSS = `
 .driver{cursor:default}
 .driver .what{line-height:1.3}
-.driver .measured{color:var(--muted);font-size:.75rem;line-height:1.35}
+.driver .measured{color:var(--muted);font-size:.75rem;line-height:1.35;margin-top:auto}
+.driver .measured summary{cursor:pointer;font-weight:600}
+.driver.count{background:var(--line);border-width:2px}
 .branch.parked{border-style:dashed;color:var(--muted);font-weight:500}
 .tree path.parked{stroke-dasharray:6 5}
 .chain{display:flex;flex-wrap:wrap;align-items:stretch;gap:.4rem;margin-top:2.6rem}
@@ -154,7 +159,7 @@ ${firstTry.text ? `<section class="decide" aria-label="Your first try">
 <div class="row"><b>Your first try</b><span>${esc(firstTry.text)}</span></div>
 ${firstTry.differs.length ? `<div class="row"><b>Where the tree differs</b><span>${firstTry.differs.map(code).join('<br>')}</span></div>` : ''}
 </section>` : ''}
-<div class="legend" aria-label="Legend"><span>Each step is a count or a rate of the step before it.</span><span><i class="sw d"></i>a branch the strategy parks this quarter</span></div>
+<div class="legend" aria-label="Legend"><span>The first step counts who enters the path (filled box); every later step is a rate of the step before it. Click Measured to see the events.</span><span><i class="sw d"></i>a branch the strategy parks this quarter</span></div>
 ${tree}
 <script>${CLIENT}</script>
 </main>
