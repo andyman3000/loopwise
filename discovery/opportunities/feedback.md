@@ -51,7 +51,7 @@ The source has no sponsor voice. All needs below are heard from participants onl
 - **Voices:** 2 distinct speakers: participants. Second-hand: no. Both speak from earlier trainings, not from this one.
 - **Merged:** yes. R02 drops methods under pressure. R08 carries on as before after workshops. Both are participants, after a training, losing what they learned.
 - **Close to:** O1. Same role and moment, but O1 is not knowing where it fits. Here the participants know old habits come back.
-- **KPI branch:** Branch B: follow-up bookings, not this quarter (`discovery/kpi-tree.md:25`). No driver in the tree. [assumption: a team that keeps the new habits makes a follow-up booking likelier.] Side link to Branch A, driver booking rate. [assumption: a sponsor who fears people slide back (`product/personas/sponsor-hard.md:39`) books more often when the site shows how the training lasts.]
+- **KPI branch:** Branch B: follow-up bookings, not this quarter (`discovery/kpi-tree.md:25`). No driver in the tree. [assumption: a group that keeps the new habits makes a follow-up booking likelier.] Side link to Branch A, driver booking rate. [assumption: a sponsor who fears people slide back (`product/personas/sponsor-hard.md:39`) books more often when the site shows how the training lasts.]
 - **Counter-evidence in this source:** "This time I have a good feeling I will build it into my daily work." (`sources/feedback/feedback-export.md:45`). The same participant who fears it expects it to go better this time.
 - **Gaps:** Both voices describe earlier trainings. No line says whether this training stuck.
 - **Assessment:** partly supported. Two participants, and both speak of a pattern from other trainings, not of this one.
@@ -65,7 +65,7 @@ The source has no sponsor voice. All needs below are heard from participants onl
 - **Close to:** O1 (see there). O4: same moment, but O4 asks for support while trying, not for the next steps.
 - **KPI branch:** Branch B: follow-up bookings, not this quarter (`discovery/kpi-tree.md:25`). No driver in the tree. [assumption: participants who know their next steps keep going, and the sponsor sees it.] Side link to Branch A, driver booking rate. [assumption: a hard sponsor who wants follow-up after the days (`product/personas/sponsor-hard.md:35`) books more often when the site shows what comes after the training.]
 - **Counter-evidence in this source:** "Next week I will start on one concrete task of mine" (`sources/feedback/feedback-export.md:44`). This participant set their own next step.
-- **Gaps:** It is unclear who should set the next steps: the sponsor, the team or the academy. The source does not say.
+- **Gaps:** It is unclear who should set the next steps: the sponsor, the group or the academy. The source does not say.
 - **Assessment:** partly supported. Two participants say it.
 
 ### O4: Participants want support again once they have tried it on their own task
@@ -184,7 +184,7 @@ The source has no sponsor voice. All needs below are heard from participants onl
 - **Gaps:** One voice. The participant persona has a similar line from an interview, but that is another source group.
 - **Assessment:** unsupported. One participant.
 
-### O14: The team's main document grew too long
+### O14: The group's main document grew too long
 - **Evidence:**
   - "Our main document grew far too long." (`sources/feedback/feedback-export.md:63`, R20, participant)
 - **Voices:** 1 speaker: participant. Second-hand: no.

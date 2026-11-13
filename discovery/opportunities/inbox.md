@@ -9,7 +9,7 @@ A KPI branch is one way the business goal can grow, as drawn in `discovery/kpi-t
 A driver is a step people take that can be counted, and that moves a branch.
 
 ## Your first try
-"I am unsure how far stretched the AI capabilities in my team really go - indirect ask for a solution, e.g. a self grader, self assesment" · Where the draft differs: the draft keeps this need as O2, rated unsupported. Only one sender says it. The draft puts a different need first, O1: four sponsors cannot tell which format fits their team. Two of them know their team's level and still cannot choose.
+"I am unsure how far stretched the AI capabilities in my team really go - indirect ask for a solution, e.g. a self grader, self assesment" · Where the draft differs: the draft keeps this need as O2, rated unsupported. Only one sender says it. The draft puts a different need first, O1: four sponsors cannot tell which format fits their group. Two of them know their team's level and still cannot choose.
 
 Feedback: Strong: you named a pain from the sponsor's side, not a feature. You saw that the quote is a solution request in disguise. Weak: you stopped at the team's level. The same request says the sponsor wants "to avoid booking the wrong thing". Knowing the level is a step toward that, not the end. "Self grader" is your own solution idea. Keep it under solution ideas, out of the need.
 
@@ -20,11 +20,11 @@ Feedback: Strong: you named a pain from the sponsor's side, not a feature. You s
 
 [assumption: each request comes from a different person. The export names roles, not people.]
 
-The KPI tree has a branch for the path to a booking (Branch A) and one for follow-up bookings (Branch B, parked). It has no branch for the preparation or the day itself. Nine of the 13 requests come from teams that already booked.
+The KPI tree has a branch for the path to a booking (Branch A) and one for follow-up bookings (Branch B, parked). It has no branch for the preparation or the day itself. Nine of the 13 requests come from groups that already booked.
 
 ## Opportunities
 
-### O1: Sponsors cannot tell which format fits their team
+### O1: Sponsors cannot tell which format fits their group
 - **Evidence:**
   - "I looked at your formats but cannot tell which one fits" (sources/inbox/inbox-export.md:125, head of product, sponsor)
   - "I would like to avoid booking the wrong thing." (sources/inbox/inbox-export.md:125, head of product, sponsor)
@@ -71,7 +71,7 @@ The KPI tree has a branch for the path to a booking (Branch A) and one for follo
   - "One of the new people only joins on day two because of a conflict on day one." (sources/inbox/inbox-export.md:41, team lead, sponsor)
   - "Does that still work for the exercises, or does she miss too much?" (sources/inbox/inbox-export.md:41, team lead, sponsor)
 - **Voices:** 2 distinct speakers: sponsors. Second-hand: no.
-- **Merged:** yes. One sponsor needs to move the dates because of a release. The other changes who takes part. Both are sponsors during preparation. Both need the booked format to follow changes in the team, so it is one need.
+- **Merged:** yes. One sponsor needs to move the dates because of a release. The other changes who takes part. Both are sponsors during preparation. Both need the booked format to follow changes in the group, so it is one need.
 - **Close to:** O9. Same role, but there the sponsor plans a session after the day.
 - **KPI branch:** no branch in the tree for preparation. Side link to Branch A, driver booking rate [assumption: a new sponsor who sees that dates and group can change finds the booking less risky]. One sponsor fears committing to the wrong thing (sources/inbox/inbox-export.md:161).
 - **Counter-evidence in this source:** none found in this source.
@@ -139,11 +139,11 @@ The KPI tree has a branch for the path to a booking (Branch A) and one for follo
 - **Gaps:** one sender. The export does not say whether six weeks is too late.
 - **Assessment:** unsupported. One voice.
 
-### O10: Sponsors see their team slip back into old routines after the training
+### O10: Sponsors see their group slip back into old routines after the training
 - **Evidence:**
   - "I can already see people slipping back into their old routines once the backlog hits." (sources/inbox/inbox-export.md:113, department head, sponsor)
   - "A few have built something in the workshop, but not on their actual tasks yet." (sources/inbox/inbox-export.md:113, department head, sponsor)
-- **Voices:** 1 distinct speaker: sponsor. Second-hand: partly. The sponsor reports what the team does.
+- **Voices:** 1 distinct speaker: sponsor. Second-hand: partly. The sponsor reports what the group does.
 - **Merged:** no.
 - **Close to:** O9 (see there).
 - **KPI branch:** Branch B: follow-up bookings, parked this quarter. The sponsor asks for help after the training (sources/inbox/inbox-export.md:113). Side link to Branch A, driver booking rate [assumption: a new sponsor who sees that use lasts after the day books sooner].

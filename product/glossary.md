@@ -18,6 +18,7 @@ explained in each artefact that uses them.
 ## What Loopwise sells
 
 - **Format:** one thing a team can book, from a half-day workshop to several weeks of team coaching.
+- **Group:** the participants of one booking. They can come from several teams.
 - **In-house:** for one team inside one company, not an open seminar with strangers.
 - **Booking:** the sponsor confirms a format. This happens after the scoping call, once sponsor and
   Loopwise have settled which format fits. An inquiry alone books nothing. Loopwise earns money on
