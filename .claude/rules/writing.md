@@ -19,6 +19,8 @@ Each sentence must make sense on first reading, without the files around it.
   Not "booking rate link", but "whether this changes the booking rate".
 - A person or a system is the subject. Not "the quote carries" or
   "the data says", but "the sponsor says" or "12 of 40 visits end here".
+- Every verb names its object or person, unless the sentence leaves no
+  doubt. Not "before I can ask", but "before I can send you an inquiry".
 
 ## Sentences
 - Under 15 words. One idea per sentence.
