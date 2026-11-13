@@ -41,24 +41,24 @@ Claude carries old answers into the next skill. The block files say which comman
 | Tag | State after the block |
 |---|---|
 | `v2-00-start` | website in its before state, server, product context, material, all skills |
-| `01-kpi-tree` | KPI tree |
-| `02-opportunities` | opportunities per source group, selection still empty |
-| `03-opportunity-decision` | selection, opportunity comparison, decision 001 |
-| `04-test-card` | intent with 3 to 5 ideas and the idea tested first, prototype test card |
-| `05-prototype` | spec, persona run on the spec, built variant under `site/variants/` |
-| `06-test-decision` | learning cards as decisions 002 (the shipped variant, in two rounds) and 003 (a dropped variant), reference launch card, shipped variant, synthetic data and dashboard |
-| `07-result` | result section of the shipped variant's test card |
-| `08-next-bet` | measured values in the KPI tree, next opportunity |
+| `v2-01-kpi-tree` | KPI tree |
+| `v2-02-opportunities` | opportunities per source group, selection still empty |
+| `v2-03-opportunity-decision` | selection, opportunity comparison, decision 001 |
+| `v2-04-test-card` | intent with 3 to 5 ideas and the idea tested first, prototype test card |
+| `v2-05-prototype` | spec, persona run on the spec, built variant under `site/variants/` |
+| `v2-06-test-decision` | learning cards as decisions 002 (the shipped variant, in two rounds) and 003 (a dropped variant), reference launch card, shipped variant, synthetic data and dashboard |
+| `v2-07-result` | result section of the shipped variant's test card |
+| `v2-08-next-bet` | measured values in the KPI tree, next opportunity |
 
 **Each pair keeps its own opportunity and variant to the end.** One switch is planned, and it is
-optional: to `06-test-decision` for the demo, because that is where the data arrive. The synthetic
+optional: to `v2-06-test-decision` for the demo, because that is where the data arrive. The synthetic
 data fit only the reference variant, so a pair's own launch card cannot be read against them. The
 other tags are fallbacks. Tags are added block by block; `git tag` lists the ones that exist.
 
 ```bash
 git tag                                # list the tags
-git checkout 04-test-card                  # read-only look at a state
-git switch -c demo 06-test-decision        # or: continue on a branch from it (recommended)
+git checkout v2-04-test-card                  # read-only look at a state
+git switch -c demo v2-06-test-decision        # or: continue on a branch from it (recommended)
 ```
 
 **Dates.** The reference states follow a fictional timeline: the shipped variant launches on

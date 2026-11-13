@@ -13,7 +13,7 @@ allow.
    ```bash
    git add -A && git commit -m "my state before the demo"
    git fetch --tags --force
-   git switch -c result 06-test-decision
+   git switch -c result v2-06-test-decision
    ```
 2. The trainer shows the reference launch card, `discovery/test-cards/format-quiz.md`. The quiz ran
    in every other week after launch, today's form in the weeks between.

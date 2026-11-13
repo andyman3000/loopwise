@@ -18,7 +18,7 @@ next one. Watch for two things:
 ## Run it yourself afterwards (about 30 min)
 
 You need a Result section. Either continue on your `result` branch from block 7
-(`git switch result`), or start from the reference result: `git switch -c demo-result 07-result`.
+(`git switch result`), or start from the reference result: `git switch -c demo-result v2-07-result`.
 
 1. Start a fresh Claude Code session (`/clear`). Then `/next-bet`. Answer its first question yourself: what would you work on next?
 2. Read the proposal. Which new evidence does it use? Did the questions on the shipped page shape it?
