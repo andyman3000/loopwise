@@ -10,7 +10,7 @@ if the cross test dropped. Also after a second round, to update the card.
 **Input:** the variant name. If missing, ask.
 **Reads:** `discovery/test-cards/<variant>-prototype.md` (the assumption, the signs, the two lines);
 `discovery/user-tests/<variant>-cross.md` (the watcher's notes from the cross test), `<variant>-spec.md` and `<variant>-page.md` if they exist; `discovery/specs/<variant>.md` (section "Invented lines on the page");
-`product/personas/buyer-soft.md`, `product/personas/buyer-hard.md`;
+`product/personas/buyer-without-budget.md`, `product/personas/buyer-with-budget.md`;
 `discovery/intents/<opportunity>.md` (the other two ideas).
 **Writes:** `discovery/decisions/<nnn>-<variant>.md`. If a file for this variant exists, add a dated
 round below the last one, with all its sections, its own decision, Who and When included; never
