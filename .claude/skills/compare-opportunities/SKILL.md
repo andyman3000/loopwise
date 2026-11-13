@@ -56,7 +56,7 @@ contrast" opportunities against each other, rather than judging one in isolation
 1. **Shortlist.** Read all opportunity files and the KPI tree. If a "Goes into comparison" line is
    already filled, show it and ask whether it still holds; otherwise propose:
    - **Merge** the same need found in several source files into one candidate, naming every source
-     and ID ("emails O1 + interviews O1 + inbox O1"). Merge only when the role (sponsor or
+     and ID ("inquiry-mails O1 + interviews O1 + inbox O1"). Merge only when the role (sponsor or
      participant) and the moment (before the booking or after the training) are the same. Needs that
      differ in either stay apart; name them as related.
    - **Keep** a candidate if it passes all three, judged after merging:

@@ -5,7 +5,7 @@ description: Find opportunities (customer needs or pains, never solutions) in on
 
 # opportunities-from-source
 
-- **When:** after `kpi-tree`, once per source group (`sources/interviews`, `sources/emails`, `sources/feedback`, `sources/inbox`, and `data`).
+- **When:** after `kpi-tree`, once per source group (`sources/interviews`, `sources/inquiry-mails`, `sources/feedback`, `sources/inbox`, and `data`).
 - **Input:** one folder or file under `sources/`, or `data`. If none is given, offer every source group first (step 0a), then wait.
 - **Reads:** that source, `discovery/kpi-tree.md`, `product/personas/`.
 - **Writes:** `discovery/opportunities/<source-group>.md` (for example `interviews.md`, or `data.md` for the usage data).
