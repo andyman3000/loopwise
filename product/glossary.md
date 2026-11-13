@@ -7,9 +7,9 @@ explained in each artefact that uses them.
 
 - **Sponsor:** the person in the customer company who wants the format for their team. The buyer.
   Two kinds:
-  - **Soft sponsor:** supports the move to AI, but has no budget and no line authority
-    (`product/personas/sponsor-soft.md`).
-  - **Hard sponsor:** head of product with budget, wants proof of effect before booking more
+  - **Soft sponsor:** leads product people and wants the move to AI, but does not decide alone and
+    has no budget settled at first contact (`product/personas/sponsor-soft.md`).
+  - **Hard sponsor:** product lead with budget, wants proof of effect before booking more
     (`product/personas/sponsor-hard.md`).
 - **Participant:** a product manager, product owner, UX person or consultant who takes part in the
   format. The user, not the buyer (`product/personas/participant.md`).

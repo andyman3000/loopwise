@@ -1,9 +1,9 @@
 # Persona: the soft sponsor
 
-> "Whether it's a four-hour workshop or someone who works alongside a team for a while, I don't know." (`interviews/sponsor-soft.md:49`)
+> "Tell me what's on the menu and I'll react to it." (`interviews/sponsor-carla.md:125`)
 
-**Persona type:** sponsor, influencer without budget authority (she/her)
-**Basis:** anonymised composite interview (`interviews/sponsor-soft.md:3`). Traces are relative to `sources/`.
+**Persona type:** sponsor, does not decide alone and has no budget settled at first contact (she/her)
+**Basis:** three synthetic one-on-one sponsor interviews, built from patterns in real conversations (`interviews/sponsor-carla.md:3`, `interviews/sponsor-sabine.md:3`, `interviews/sponsor-ines.md:3`). Each line cites the interview it rests on. Traces are relative to `sources/`.
 
 ---
 
@@ -11,47 +11,46 @@
 
 | Field | Value | Trace |
 |---|---|---|
-| Role | supports the move to AI for product and project roles, together with the team leads | `interviews/sponsor-soft.md:6`, `:13` |
-| Company | large organisation | `interviews/sponsor-soft.md:6` |
-| Org context | no line responsibility; team leads carry the business responsibility | `interviews/sponsor-soft.md:6`, `:71` |
-| Tool access in the company | plentiful: "everyone gets access" | `interviews/sponsor-soft.md:41` |
+| Role | leads product people and looks for an AI format for them | `interviews/sponsor-carla.md:25`, `:121` |
+| Company | from a retailer with stores and an online shop to a service provider of about thirty-five people | `interviews/sponsor-carla.md:6`, `interviews/sponsor-ines.md:21` |
+| Org context | talks it through with colleagues before deciding, or organises a group a colleague set up; budget not settled at first contact | `interviews/sponsor-carla.md:153`, `interviews/sponsor-sabine.md:25`, `interviews/sponsor-ines.md:137` |
+| Tool access in the company | partly in the way: one of the trainer's tools cleared, or access taken away again | `interviews/sponsor-sabine.md:81`, `interviews/sponsor-carla.md:133` |
 
 ## Context
 
-- Leadership gave everyone the tools and said, go and use them (`interviews/sponsor-soft.md:13`).
-- Developers enable themselves; product and project people ask what they are supposed to do with it (`interviews/sponsor-soft.md:17`).
-- All of the group went to an external course at some point, mostly optional (`interviews/sponsor-soft.md:21`).
-- Asked for people with at least a basics course; several turned up who hadn't (`interviews/sponsor-soft.md:45`).
-- Same job title, very different work underneath; levels range from a former developer to people using only built-in AI (`interviews/sponsor-soft.md:45`).
-- Teams differ too: some still experiment as they go, others have a few shared helpers (`interviews/sponsor-soft.md:45`).
+- The company's AI offers are aimed at developers; product owners get lumped in with them (`interviews/sponsor-carla.md:93`).
+- Some teams work with agents every day, others are roughly where they were a year ago (`interviews/sponsor-carla.md:33`).
+- Many product owners are not developers. They came from customer service, project management or logistics (`interviews/sponsor-carla.md:93`).
+- The group ranges from people who asked a chat assistant something twice to people who already run the coding agent (`interviews/sponsor-sabine.md:69`).
+- Teams differ too, according to her advisor: one works freely with the agents, the other built a set of shared skills (`interviews/sponsor-ines.md:97`).
 
 ## Goals
 
-- People say "this helps me, here's where I used it" (`interviews/sponsor-soft.md:61`).
-- Other teams come over on their own and ask to have a look (`interviews/sponsor-soft.md:61`).
-- A pilot that shows whether people can carry on by themselves; if it works, "we call it a method and multiply it" (`interviews/sponsor-soft.md:67`).
+- Product owners are ready before the change reaches their desks, not "standing there surprised" (`interviews/sponsor-carla.md:121`).
+- Nobody falls behind and drifts without daring to ask (`interviews/sponsor-carla.md:133`).
+- Teams take over part of the product work: "what the client actually needs, what comes first" (`interviews/sponsor-ines.md:29`).
 
 ## Frustrations
 
-- **Knowledge without doing.** "In theory the knowledge should be there. The doing isn't." (`interviews/sponsor-soft.md:21`)
-- **Own helplessness.** Can point developers in a direction, not the others: "It's one big question mark." (`interviews/sponsor-soft.md:33`)
-- **Another training.** Does not want four hours of talk, agents built on stage, or starting again with what a language model is (`interviews/sponsor-soft.md:37`).
+- **Knowledge without doing.** Her advisor fears a developer "tells everyone the workshop was great, and never uses a single one" (`interviews/sponsor-ines.md:153`).
+- **Own lag.** "it's the leadership layer, not the teams. Me included." (`interviews/sponsor-carla.md:45`)
+- **Another training.** Does not want a day of only listening (`interviews/sponsor-ines.md:149`).
 
 ## How they decide
 
-- Does not decide alone: the team leads are needed for a pilot (`interviews/sponsor-soft.md:71`).
-- Does not know the format or how many pieces it has (`interviews/sponsor-soft.md:49`).
-- Sketched three slices (by role, by team, by project) and picked none, on purpose (`interviews/sponsor-soft.md:53`, `:57`).
-- Success is soft and personal to others: "For me, nothing at first. It's for them." (`interviews/sponsor-soft.md:61`)
-- No timeline (`interviews/sponsor-soft.md:67`).
-- Evidence comes from conversations, not measurement (`interviews/sponsor-soft.md:25`).
+- Does not decide alone: "I'll take this to two colleagues and talk it through with them." (`interviews/sponsor-carla.md:153`)
+- Does not know the format or how many pieces it has (`interviews/sponsor-ines.md:49`, `interviews/sponsor-carla.md:141`).
+- Asks whether to mix the group or split it by level, and leaves it open (`interviews/sponsor-carla.md:137`, `:141`).
+- Cannot name a success line for the group: "Then you'd have got a shrug." (`interviews/sponsor-sabine.md:53`)
+- No timeline: "No rush, though." (`interviews/sponsor-carla.md:153`)
+- Evidence comes from impressions, not measurement (`interviews/sponsor-carla.md:93`).
 
 ## What they say
 
-- "In theory the knowledge should be there. The doing isn't." (`interviews/sponsor-soft.md:21`)
-- "I have no idea." (`interviews/sponsor-soft.md:49`)
-- "Those are very soft points, I know. It's not a hard return on investment." (`interviews/sponsor-soft.md:63`)
-- "I don't have a timeline." (`interviews/sponsor-soft.md:67`)
+- "What to buy to fix it, no." (`interviews/sponsor-ines.md:53`)
+- "Not one I'd sign." (`interviews/sponsor-ines.md:73`)
+- "it's only a feeling, I haven't measured anything" (`interviews/sponsor-carla.md:93`)
+- "The rest of the year is full, nothing will happen before the holidays." (`interviews/sponsor-carla.md:153`)
 
 ## Where the same pattern shows up
 
@@ -61,40 +60,40 @@
 
 ## What the soft sponsor is NOT
 
-Not the budget holder (`interviews/sponsor-soft.md:71`). Not blocked by tool access (`interviews/sponsor-soft.md:41`). Not a participant.
+Not the one who decides alone (`interviews/sponsor-carla.md:153`). Not a participant.
 
 ## What we do not know yet
 
 - Whether this sponsor can write a success line when given examples. No source tests it.
-- Whether the team leads share the soft criteria or want hard ones. Not in the material.
+- Whether the colleagues she takes it to want soft or hard criteria. Not in the material.
 - Budget size and who pays. Not in the material.
 
 ## Team, company and situation
 
-From the synthetic follow-up conversation (`interviews/sponsor-soft.md:77`).
+From the synthetic sponsor interviews (`interviews/sponsor-carla.md:3`, `interviews/sponsor-sabine.md:3`).
 
 | Field | Value | Trace |
 |---|---|---|
-| Team | around thirty people in product and project roles, in five teams, each with its own lead | `interviews/sponsor-soft.md:82` |
-| Company | several thousand people, a services business; product work is internal platforms and a customer portal | `interviews/sponsor-soft.md:86` |
-| AI tools | chat assistant for everyone, coding assistant for developers, an internal AI community | `interviews/sponsor-soft.md:90` |
-| Trigger | the yearly feedback round: "we have the tools and don't know what to do with them" | `interviews/sponsor-soft.md:94` |
-| Timing | no hard date; wants a direction for a monthly team lead meeting, "not a contract" | `interviews/sponsor-soft.md:98` |
+| Team | product owners spread over the online shop and the store systems, each with a business counterpart | `interviews/sponsor-carla.md:25` |
+| Company | a premium home and living retailer with stores and a large online shop | `interviews/sponsor-carla.md:6` |
+| AI tools | a chat assistant for everyone; the coding agent cleared or withdrawn depending on the company | `interviews/sponsor-sabine.md:85`, `interviews/sponsor-sabine.md:81`, `interviews/sponsor-carla.md:133` |
+| Trigger | "the real shake-up is still ahead of us" | `interviews/sponsor-carla.md:121` |
+| Timing | no date; nothing before the holidays | `interviews/sponsor-carla.md:153` |
 
 ## Needs from a first contact
 
-- Someone who asks the questions; she can describe people, not name a format (`interviews/sponsor-soft.md:114`).
-- One page to show the team leads afterwards (`interviews/sponsor-soft.md:114`).
-- Put off by a sales pitch, a budget question early on, or anything like the course they already had (`interviews/sponsor-soft.md:118`).
+- Options to react to; she can describe what hurts, not name a format (`interviews/sponsor-carla.md:125`, `interviews/sponsor-ines.md:53`).
+- Example agendas to show the colleagues she talks to (`interviews/sponsor-carla.md:155`, `:157`).
+- Someone from outside, so people find it easier to say they have never done this (`interviews/sponsor-carla.md:89`).
 
 ## On the website
 
-- Goes to the formats first, expecting to find out what she needs there (`interviews/sponsor-soft.md:102`).
-- Sees five formats, finds each reasonable, cannot tell which one is her group. Closes the tab to think about it (`interviews/sponsor-soft.md:106`).
-- Comes back a week later, opens the inquiry form, stalls at "What do you need?" and closes it again (`interviews/sponsor-soft.md:110`).
-- Does not want to write "I don't know" to strangers (`interviews/sponsor-soft.md:110`).
+- Looks at the formats and cannot tell which one fits (`inbox/inbox-export.md:125`, `inbox/inbox-export.md:137`).
+- Finds each format reasonable on its own, cannot tell which one is her group (`emails/inquiry-07.md:16`).
+- Keeps the formats page open for weeks, or closes it and comes back later (`emails/inquiry-07.md:12`, `inbox/inbox-export.md:161`).
+- Does not want to send the form with a guess in it (`emails/inquiry-07.md:18`, `inbox/inbox-export.md:137`).
 
 ---
 
-**Last updated:** 2026-10-27
-**Status:** draft from one composite interview with a synthetic follow-up, plus three synthetic inquiries
+**Last updated:** 2026-11-13
+**Status:** draft from three synthetic sponsor interviews, plus synthetic inquiries and inbox entries
