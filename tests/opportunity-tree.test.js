@@ -164,7 +164,7 @@ test('right after the first step, ideas without an assumption are drawn, with no
 | Idea | From | Driver | Critical assumption | Level |
 |---|---|---|---|---|
 | I1: a call request instead of the form | the pair | call rate | | |
-| I2: a format quiz | the pair | start rate | | |
+| I2: a format quiz | the team | start rate | | |
 | I3: case stories | another domain | reach rate | | |
 | I4: one question first | turned around | start rate | | |
 | I5: a chat | today's page, changed | start rate | | |
@@ -183,6 +183,7 @@ test('right after the first step, ideas without an assumption are drawn, with no
   assert.equal((html.match(/<article class="sol/g) || []).length, 5);
   assert.doesNotMatch(html, /Critical assumption:|not given/);
   assert.match(html, /class="tag you">the pair/);
+  assert.match(html, /class="tag you">the team/);
 });
 
 test('an idea that moves two drivers shows a chip for each, and the page lights up every driver it names', () => {
