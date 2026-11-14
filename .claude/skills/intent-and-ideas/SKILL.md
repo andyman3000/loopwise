@@ -23,6 +23,12 @@ idea fails, however well it is built.
 
 ## Rules
 
+- **The intent file reads on its own.** People read it as a communication tool. Agents read it as context for the prototype and later the implementation. A person or an agent with no other file open must be able to say what should change, for whom, where on the site, and how it would show in the data.
+  - Explain every term in plain words the first time it appears: opportunity, KPI branch, driver, scoping call, format. Never a bare "Branch A" or "start rate": say what the branch or driver means in the same sentence.
+  - Never a bare event name. Say what the site counts, in words, then add the event name, for example "visits that start filling in the form (`inquiry_started`)".
+  - Every number says what it counts, over which period, and that the data is synthetic when it is.
+  - Quotes appear in full, never only as a pointer. Name who said it, for example "one buyer writes".
+  - Links to other files in `discovery/` are welcome for further reading. The intent never needs them to be understood.
 - **One question per message.** Each step ends with one question to the pair; step 1 asks up to three, one at a time. Wait for the answer. A vague reply ("go on", "ok", "you choose") gets one more ask; if it stays vague, carry on and note "the pair added none".
 - **Write the file after every step**, then tell the pair to reload `http://localhost:3000/discovery/tree`. The tree draws every row of "Solution ideas" under the opportunity.
 - **No judging in steps 1 and 2.** No levels, no "this would not work", no constraint checks. Every idea goes in the table. The feedback on the pair's list judges how the ideas are named and how varied they are, never whether one would work. An idea may change any page of the website. If it changes another page than the inquiry page, name the page after the idea, for example "(formats page)".
@@ -31,7 +37,7 @@ idea fails, however well it is built.
 - **Boundaries apply from step 3 on.** They come from `product/constraints.md`: no prices (`product/constraints.md:7`); the website reaches the inquiry and the scoping call booking, not the training itself (`product/constraints.md:55`). An idea may change the form, replace it, or replace it with booking a call. Which fields a page sends is not settled here.
 - **Every claim quotes its source with location** (file and line). Evidence levels in words: well supported, partly supported, unsupported. Only counted numbers.
 - **Feedback on the pair's own answers.** These answers get feedback: the corrections to the intent, the pair's own ideas, and why they test one idea first. Tell the pair in two or three short lines how strong the answer was: what was good, what was weak, and why. Name their words. Be honest and specific, never flattering. Say it in the chat; it does not go into the file. A plain "yes" to the draft, a skipped answer, and the choice of a part or an idea get no feedback.
-  - Intent corrections: is the problem still a need, or did a correction turn it into a solution? Does the desired outcome still name a driver and an event that can be counted?
+  - Intent corrections: is the problem still a need, or did a correction turn it into a solution? Does the desired outcome still name a driver and an event that can be counted? Does the file still read on its own?
   - Own ideas: judge the list as a whole, never one idea's chance to work. Are the ideas named by what the buyer sees or does on the page, or by strategy? Do they use different mechanisms, or all the same one?
   - Why this idea first: does the reason name the assumption that would hurt most if wrong, or one with no source? Or does it name how much the pair likes the idea? Judge the reason, never the idea they chose.
 - **The pair picks.** The skill never suggests which ideas to keep or which to test first. Selection fields stay `____ (human decides)` until the pair fills them.
@@ -41,7 +47,7 @@ idea fails, however well it is built.
 
 1. **The intent, then your ideas** (about 15 min). Read the decision record; if it is missing or names a different opportunity, say so and stop. Name the opportunity in one line with its strongest quote. Ask the pair to start `npm start` in a second terminal if it is not running.
    **First check whether the opportunity holds two needs.** It does if its name joins two needs with "or", or if the comparison puts it on drivers far apart in the funnel. If so, show each part in one line with one quote and its file and line. Ask: "Which part do you work on?" Wait for the answer. Do not suggest a part. Write the answer in the pair's words into "Part we work on" under "Selection (human)". A pair that wants both writes "both". If the opportunity holds one need, write "the whole opportunity" there.
-   **Then draft the intent** for the part the pair named, from the decision record, the comparison and `discovery/kpi-tree.md`: the title, "Problem", "Desired outcome", "For whom and where" and "Open questions". Mark the five "(draft)". The title says what should change, for whom ("Buyers can say before the call what should be different afterwards"), never the opportunity's name. The desired outcome names the KPI branch, the driver and the event that would show it, each with its line, and today's counted value; it sets no target. Open questions come from "Gaps and uncertainty" and "Could not check" in the comparison, each with who can answer it and what it blocks. Write the file. Ask: "Is this the change you want? Correct anything." Put the pair's corrections in and remove "(draft)" from what they confirmed. If they corrected something, give the feedback on their correction (see Rules).
+   **Then draft the intent** for the part the pair named, from the decision record, the comparison and `discovery/kpi-tree.md`: the title, "Problem", "Desired outcome", "For whom and where" and "Open questions". Mark the five "(draft)". The title says what should change, for whom ("Buyers can say before the call what should be different afterwards"), never the opportunity's name. The desired outcome says in plain words who does what more often, then what the site counts to show it, then today's counted value with its period. It names the KPI branch, the driver and the event, each explained in words and cited with its line (see "The intent file reads on its own"). It sets no target. Before writing the file, read it as someone who has only this file open. Open questions come from "Gaps and uncertainty" and "Could not check" in the comparison, each with who can answer it and what it blocks. Write the file. Ask: "Is this the change you want? Correct anything." Put the pair's corrections in and remove "(draft)" from what they confirmed. If they corrected something, give the feedback on their correction (see Rules).
    Then ask: "List as many ways as you can to change the website for this, on the inquiry page or any page before it, one line each. Wild ones too." Ask "What else?" once. Write the file: each idea a row, From "the pair", with its driver. Point to the tree. Give the feedback on the list of ideas (see Rules), in the same message.
 2. **More ideas from other angles** (about 5 min). Add five or six ideas in one message, each from a different angle, and say the angle in the From column:
    - "today's page, changed": take `site/inquiry.html` or `site/formats.html` and swap, cut, reorder or combine one element.
@@ -62,12 +68,19 @@ idea fails, however well it is built.
 
 An intent says what should change, for whom, and why, before anyone picks a solution.
 A critical assumption is the one thing that must be true for an idea to work.
+<one plain sentence for each further term the file uses: opportunity, KPI branch, driver, scoping call, format>
+
+This file reads on its own. Links to other files are for further reading.
 
 ## Problem (draft)
-<the part of the opportunity we work on, in two or three sentences, with the strongest quote and its file and line>
+<the part of the opportunity we work on, in two or three sentences, with the strongest quote in full, who said it, and its file and line>
 
 ## Desired outcome (draft)
-<who is better off, and how> · KPI branch and driver (`discovery/kpi-tree.md:<line>`) · the event that would show it, with today's counted value (`<file>:<line>`). No target here.
+<who does what more often, in plain words>
+- How the site counts it: <what is counted, in words> (`<event>`). This step is the driver <driver name> (`discovery/kpi-tree.md:<line>`).
+- Why it matters: <the KPI branch in words> (`discovery/kpi-tree.md:<line>`).
+- Today: <counted value, period, synthetic or not> (`<file>:<line>`).
+- No target here.
 
 ## For whom and where (draft)
 - Who: <buyer types or personas, with `product/personas/<file>.md`>
