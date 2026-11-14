@@ -69,3 +69,32 @@ test('a heading that starts with an ID gets it as anchor, a repeated ID gets its
   assert.match(html, /<h3 id="evidence-C1">C1: a need<\/h3>/);
   assert.match(html, /<h3>Plain heading<\/h3>/);
 });
+
+test('citation links in an artefact open the line view and other discovery pages from the rendered page', async () => {
+  const { sourcePage } = await import('../lib/source-view.js');
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'loopwise-links-'));
+  for (const [p, body] of Object.entries({
+    'sources/inquiry-mails/m.md': 'a\nb\n',
+    'product/glossary.md': 'g\n',
+    'site/formats.html': '<h1>F</h1>\n',
+    'discovery/opportunity-comparison.md': '# C\n',
+    'discovery/intents/x.md': '# X\n\n| Idea | Driver |\n|---|---|\n| I1: a | start rate ([discovery/kpi-tree.md:21](../kpi-tree.md#L21)) |\n\n"b" ([sources/inquiry-mails/m.md:2](../../sources/inquiry-mails/m.md#L2)), [product/glossary.md:1](../../product/glossary.md#L1), [site/formats.html:1](../../site/formats.html#L1), [discovery/opportunity-comparison.md](../opportunity-comparison.md).\n',
+  })) {
+    fs.mkdirSync(path.dirname(path.join(root, p)), { recursive: true });
+    fs.writeFileSync(path.join(root, p), body);
+  }
+  const pageUrl = 'http://localhost/discovery/intents/x.md';
+  const html = discoveryPage(root, new URL(pageUrl).pathname).html;
+  const hrefs = [...html.matchAll(/<a href="([^"]+)">([^<]+)<\/a>/g)].filter((m) => m[1].startsWith('.'));
+  assert.deepEqual(hrefs.map((m) => m[2]), ['discovery/kpi-tree.md:21', 'sources/inquiry-mails/m.md:2', 'product/glossary.md:1', 'site/formats.html:1', 'discovery/opportunity-comparison.md']);
+  const opened = hrefs.map((m) => new URL(m[1], pageUrl)).map((u) => u.pathname + u.hash);
+  assert.deepEqual(opened, ['/discovery/kpi-tree.md#L21', '/sources/inquiry-mails/m.md#L2', '/product/glossary.md#L1', '/site/formats.html#L1', '/discovery/opportunity-comparison.md']);
+  // Each target is served: the line views have the line's anchor, the discovery page renders.
+  for (const [p, line] of [['/sources/inquiry-mails/m.md', 'L2'], ['/product/glossary.md', 'L1'], ['/site/formats.html', 'L1']]) {
+    const r = sourcePage(root, p);
+    assert.equal(r.status, 200, p);
+    assert.match(r.html, new RegExp(`id="${line}"`));
+  }
+  assert.equal(discoveryPage(root, '/discovery/opportunity-comparison.md').status, 200);
+  assert.equal(sourcePage(root, '/product/..%2Fsecret.md').status, 404);
+});

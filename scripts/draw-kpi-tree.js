@@ -9,6 +9,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseList } from '../lib/discovery-view.js';
 import { PAGE_CSS } from '../lib/opportunity-tree.js';
+import { linkText } from '../lib/source-view.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -27,6 +28,7 @@ function section(md, test) {
 }
 
 export function readTree(md) {
+  md = linkText(md);
   const items = parseList(section(md, (h) => h === 'tree').filter((l) => /^\s*[-*]\s+/.test(l) || /^\s+\S/.test(l)));
   const formulas = section(md, (h) => h.startsWith('how branch')).map((l) => l.trim()).filter((l) => l.includes('='));
   const first = section(md, (h) => h === 'your first try');

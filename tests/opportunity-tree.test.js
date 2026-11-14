@@ -310,3 +310,15 @@ test('the Details view names each source group the need comes from, with the peo
   assert.match(card, /<span class="basis">Each about their own situation\.<\/span>/);
   assert.doesNotMatch(card, /sources\/interviews\/a.md/, 'no source paths in the Details view');
 });
+
+test('citations written as Markdown links parse like bare ones in intents, opportunities and the KPI tree', async () => {
+  const { parseOpportunities } = await import('../lib/opportunity-map.js');
+  const { drawPage } = await import('../scripts/draw-kpi-tree.js');
+  const intent = parseIntent('# Intent: x\n\n> Opportunity: C1, "x", in [discovery/opportunity-comparison.md](../opportunity-comparison.md)\n\n## Solution ideas\n\n| Idea | From | Driver | Critical assumption | Level |\n|---|---|---|---|---|\n| I1: a guide | the pair | start rate ([discovery/kpi-tree.md:21](../kpi-tree.md#L21)) | | |\n');
+  assert.equal(intent.candidate, 'C1');
+  assert.deepEqual(namedDrivers(intent.ideas[0].driver, [{ name: 'start rate' }, { name: 'submit rate' }]), ['start rate']);
+  const [o] = parseOpportunities('### O1: "I cannot choose."\n- **Evidence:**\n  - "Side by side." ([sources/inquiry-mails/m.md:16](../../sources/inquiry-mails/m.md#L16), S, buyer)\n');
+  assert.equal(o.quote.where, 'sources/inquiry-mails/m.md:16');
+  const html = drawPage('# KPI tree\n\n## Tree\n- Business goal: more bookings ([product/strategy.md:8](../product/strategy.md#L8))\n  - Branch A: inquiries ([product/strategy.md:12](../product/strategy.md#L12))\n    - start rate: share that starts · measured: no\n');
+  assert.doesNotMatch(html, /strategy\.md/);
+});
