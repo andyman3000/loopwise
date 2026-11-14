@@ -12,5 +12,10 @@ export default function handler(req, res) {
     url.searchParams.delete('__path');
     req.url = '/' + original.replace(/^\/+/, '') + url.search;
   }
+  // Hosted version shows the website pages only; the workshop artefacts stay local.
+  if (/^\/(discovery|sources)(\/|$)/.test(new URL(req.url, 'http://localhost').pathname)) {
+    res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
+    return res.end('Not found');
+  }
   return handle(req, res);
 }
