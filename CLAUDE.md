@@ -67,12 +67,13 @@ loopwise/
 ```bash
 npm start   # http://localhost:3000, PORT overrides
 npm test    # node --test
-npm run check   # citations point at real lines, quotes match, event names from the list
+npm run check   # citations (bare or as links) point at real lines, quotes match, event names from the list
 npm run tree    # draws discovery/kpi-tree.md as discovery/kpi-tree.html
 # http://localhost:3000/discovery shows the artefacts as readable pages, the KPI tree drawn
 # http://localhost:3000/discovery/map: every opportunity on an evidence map, filterable, read-only
 # http://localhost:3000/discovery/tree: the compared candidates linked to the business goal, read-only
 # http://localhost:3000/sources/<file>#L<n>: one file from sources/ with numbered lines, line n marked
+#   (/product/<file>#L<n> and /site/<file>#L<n> the same, so citation links in /discovery open)
 ```
 
 Node 20 or newer. No dependencies, no `npm install`. Keep it that way.
@@ -115,6 +116,12 @@ The trainer changes this one line per cohort, for example to `product managers`.
   `sources/interviews/sponsor-carla.md:125`. No quote, no claim. This includes statements about
   rules, limits and strategy ("prices stay off the website"): cite the line in `product/` that says
   it, for example `product/constraints.md:7`, never "by rule" or a section name alone.
+  Every citation is a relative Markdown link whose text stays `file:line`, so a reader in a
+  Markdown preview opens it with one click. The path is relative to the artefact's own folder, a
+  line is the fragment `#L<line>`, and a file without a line links to the file. From
+  `discovery/intents/x.md`:
+  `[sources/inquiry-mails/inquiry-07.md:16](../../sources/inquiry-mails/inquiry-07.md#L16)`.
+  `npm run check` reads both forms and flags a link whose target or line differs from its text.
 - **Only counted numbers.** A number appears only if it is counted from a file in `sources/` or
   `data/`. No scores, no probabilities, no estimated totals, no invented targets.
 - **Assessments on three levels, in words:** well supported, partly supported, unsupported. Each

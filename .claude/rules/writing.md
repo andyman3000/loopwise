@@ -37,6 +37,20 @@ Each sentence must make sense on first reading, without the files around it.
 - "Nobody", "nothing", "everyone": name the group. "No respondent reports".
 - Stance adverbs: genuinely, quietly, deliberately, plainly.
 
+## Citations are links
+Every reference in an artefact is a clickable Markdown link.
+A reader in a Markdown preview then opens it with one click.
+- The link text stays `file:line`, the path from the repo root.
+- The target is the same file, relative to the artefact's own folder.
+- A line becomes the fragment `#L<line>`. A range `:12-14` links to `#L12`.
+- A file without a line links to the file, with no fragment.
+- From `discovery/intents/x.md`, a mail line is
+  `[sources/inquiry-mails/inquiry-07.md:16](../../sources/inquiry-mails/inquiry-07.md#L16)`.
+- From the same file, the comparison is
+  `[discovery/opportunity-comparison.md](../opportunity-comparison.md)`.
+- No backticks inside the link text. `npm run check` flags a link
+  whose target or line differs from its text.
+
 ## Before saving
 Read each sentence as someone who opened only this file.
 If a phrase needs another file or the chat to make sense, rewrite it.
