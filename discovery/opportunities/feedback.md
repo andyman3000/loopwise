@@ -239,5 +239,5 @@ The source has no buyer voice. All needs below are heard from participants only.
 | Slides to take home | "I need the slides afterwards" ([sources/feedback/feedback-export.md:56](../../sources/feedback/feedback-export.md#L56)) | O11 |
 
 ## Goes into comparison
-Goes into comparison: none
-Decided by: Product lead (Loopwise) · Date: 2026-08-18
+Goes into comparison: ____ (human confirms the shortlist in compare-opportunities)
+Decided by: ____ · Date: ____

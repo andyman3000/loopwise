@@ -292,5 +292,5 @@ Missing: no buyer speaks about the website. Only one buyer (Carla) speaks before
 | A setup checklist for new participants | "I'll put together the checklist for the new people again, what to install and how to log in" ([sources/interviews/sponsor-sabine.md:193](../../sources/interviews/sponsor-sabine.md#L193)) | O11 |
 
 ## Goes into comparison
-Goes into comparison: O1, together with inquiry-mails O1 and inbox O1 (C1); O2, together with inquiry-mails O3 (C3)
-Decided by: Product lead (Loopwise) · Date: 2026-08-18
+Goes into comparison: ____ (human confirms the shortlist in compare-opportunities)
+Decided by: ____ · Date: ____

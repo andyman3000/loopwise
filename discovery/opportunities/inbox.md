@@ -181,5 +181,5 @@ The KPI tree has a branch for the path to a booking (Branch A) and one for follo
 | Talk to a person before the form | "Can I talk to someone before I fill in anything?" ([sources/inbox/inbox-export.md:149](../../sources/inbox/inbox-export.md#L149)) | O3, O1 |
 
 ## Goes into comparison
-Goes into comparison: O1, together with inquiry-mails O1 and interviews O1 (C1); O3 (C2)
-Decided by: Product lead (Loopwise) · Date: 2026-08-18
+Goes into comparison: ____ (human confirms the shortlist in compare-opportunities)
+Decided by: ____ · Date: ____
