@@ -1,0 +1,5 @@
+# Kept off Vercel's servers: skills, rules and agent settings stay local and in git.
+.claude/
+.obsidian/
+tests/
+data/

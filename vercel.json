@@ -1,0 +1,10 @@
+{
+  "functions": {
+    "api/index.js": {
+      "includeFiles": "{server.js,lib/**,site/**,discovery/**,product/**,sources/**}"
+    }
+  },
+  "rewrites": [
+    { "source": "/:path*", "destination": "/api?__path=:path*" }
+  ]
+}
