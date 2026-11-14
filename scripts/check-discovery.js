@@ -28,7 +28,7 @@ function walk(dir, out = []) {
 const norm = (s) => s.toLowerCase().replace(/[‘’]/g, "'").replace(/[“”]/g, '"')
   .replace(/\*\*|`/g, '').replace(/\s+/g, ' ').trim();
 
-function resolve(root, fromFile, ref, byName) {
+export function resolve(root, fromFile, ref, byName) {
   for (const c of [path.join(root, ref), path.join(root, 'sources', ref), path.join(path.dirname(fromFile), ref)]) {
     if (fs.existsSync(c) && fs.statSync(c).isFile()) return c;
   }
@@ -48,8 +48,10 @@ function allFiles(dir, out = []) {
 
 // A Markdown link whose text is a citation: [sources/x.md:16](../../sources/x.md#L16), or a file
 // without a line: [site/formats.html](../../site/formats.html).
-const LINK = /\[([^\]\n]+)\]\(([^)\s]+)\)/g;
-const LINK_TEXT = /^`?([\w][\w./-]*\.(?:md|csv|jsonl|json|html|js))(?::(\d+)(?:-(\d+))?)?`?$/;
+export const LINK = /\[([^[\]\n]+)\]\(([^)\s]+)\)/g;
+// A cited path: a file name with one of these extensions, with or without folders.
+export const PATH = '[\\w][\\w./-]*\\.(?:md|csv|jsonl|json|html|js)';
+export const LINK_TEXT = new RegExp(`^\`?(${PATH})(?::(\\d+)(?:-(\\d+))?)?\`?$`);
 
 // Checks each citation link on one line against its own text. Returns the problems found.
 function checkLinks(root, file, text, where, byName) {
@@ -75,8 +77,20 @@ function checkLinks(root, file, text, where, byName) {
   return { errors, links };
 }
 
+// Every file in sources/, discovery/ and product/ by its base name, for bare file names.
+export function nameIndex(root) {
+  const byName = new Map();
+  for (const f of ['sources', 'discovery', 'product'].flatMap((d) => allFiles(path.join(root, d)))) {
+    byName.set(path.basename(f), [...(byName.get(path.basename(f)) || []), f]);
+  }
+  return byName;
+}
+
+// A line number on its own after a full citation on the same line: `:4`, `:4-6`.
+export const SHORT = /(?<![\w.])`?:(\d+)(?:-(\d+))?`?/g;
+
 // Finds citations in one line of text: `path.ext:12`, `path.ext:12-14`, `path.ext`, line 12, lines 12 to 14.
-const CITE = /`?([\w][\w./-]*\.(?:md|csv|jsonl|json|html|js))`?(?::(\d+)(?:-(\d+))?|`?,? lines? (\d+)(?: (?:to|-) (\d+))?)/g;
+export const CITE = new RegExp(`\`?(${PATH})\`?(?::(\\d+)(?:-(\\d+))?|\`?,? lines? (\\d+)(?: (?:to|-) (\\d+))?)`, 'g');
 
 export function check(root) {
   const errors = [];
@@ -86,10 +100,7 @@ export function check(root) {
   // Column names of data/*.csv look like events (`success_line_text`) but are not.
   const columns = new Set(allFiles(path.join(root, 'data')).filter((f) => f.endsWith('.csv'))
     .flatMap((f) => fs.readFileSync(f, 'utf8').split('\n')[0].split(',').map((c) => c.trim())));
-  const byName = new Map();
-  for (const f of ['sources', 'discovery', 'product'].flatMap((d) => allFiles(path.join(root, d)))) {
-    byName.set(path.basename(f), [...(byName.get(path.basename(f)) || []), f]);
-  }
+  const byName = nameIndex(root);
 
   for (const file of SCAN.flatMap((d) => walk(path.join(root, d)))) {
     const rel = path.relative(root, file);
@@ -108,7 +119,7 @@ export function check(root) {
       const spans = [];
       let last = null;
       const refs = [...text.matchAll(CITE)].map((m) => ({ m, kind: 'full' }))
-        .concat([...text.matchAll(/(?<![\w.])`?:(\d+)(?:-(\d+))?`?/g)].map((m) => ({ m, kind: 'short' })))
+        .concat([...text.matchAll(SHORT)].map((m) => ({ m, kind: 'short' })))
         .sort((x, y) => x.m.index - y.m.index);
       for (const { m, kind } of refs) {
         let target, from, to;
