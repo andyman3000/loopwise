@@ -67,8 +67,10 @@ function checkLinks(root, file, text, where, byName) {
     // A missing file with a line is reported by the citation check; without a line it is reported here.
     if (!named) { if (!t[2]) errors.push(`${where}: link text names missing file ${t[1]}`); continue; }
     if (target !== named) { errors.push(`${where}: link for ${m[1]} leads to ${path.relative(root, target)}, not ${path.relative(root, named)}`); continue; }
-    const want = t[2] ? [`L${t[2]}`, ...(t[3] ? [`L${t[2]}-L${t[3]}`] : [])] : [''];
-    if (!want.includes(fragment)) errors.push(`${where}: link for ${m[1]} ends in ${fragment ? '#' + fragment : 'no line'}, expected ${want[0] ? '#' + want[0] : 'no line'}`);
+    // With a line: #L<line> (or #L12-L14 for a range). Without one: no line fragment; a section
+    // anchor such as #result is fine.
+    const want = t[2] ? [`L${t[2]}`, ...(t[3] ? [`L${t[2]}-L${t[3]}`] : [])] : null;
+    if (want ? !want.includes(fragment) : /^L\d/.test(fragment)) errors.push(`${where}: link for ${m[1]} ends in ${fragment ? '#' + fragment : 'no line'}, expected ${want ? '#' + want[0] : 'no line'}`);
   }
   return { errors, links };
 }

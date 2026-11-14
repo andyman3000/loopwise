@@ -66,7 +66,7 @@ test('a citation written as a Markdown link reads like the bare form, quotes inc
       'Claim "no idea which format fits" ([sources/interviews/a.md:3](../../sources/interviews/a.md#L3), [sources/interviews/a.md:4](../../sources/interviews/a.md#L4)).',
       'After ([sources/interviews/a.md:3](../../sources/interviews/a.md#L3), "no idea which format fits").',
       'Range ([sources/interviews/a.md:3-4](../../sources/interviews/a.md#L3)) and ([sources/interviews/a.md:3-4](../../sources/interviews/a.md#L3-L4)).',
-      'File only: [site/formats.html](../../site/formats.html), [discovery/kpi-tree.md](../kpi-tree.md).',
+      'File only: [site/formats.html](../../site/formats.html), [discovery/kpi-tree.md](../kpi-tree.md#result).',
       'Not a citation: [the tree](/discovery/tree).',
     ].join('\n'),
   });
