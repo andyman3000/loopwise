@@ -21,6 +21,13 @@ A learning card (Osterwalder, Strategyzer) records what a test showed: we believ
 learned, therefore we will. Here it is also the decision record for what happens to the variant.
 The pair decides. This skill asks, quotes and writes; it decides nothing.
 
+**Setting.** Read the `Setting:` line in `CLAUDE.md`. No line means `workshop`.
+- `workshop`: one tester from another pair tried the page (the cross test). Notes are in
+  `<variant>-cross.md`, as below.
+- `team`: the team tested the page with people it recruited. Read "the pair" in this skill as
+  "the team", and "the cross test" as "the test with people". The rules under "Setting `team`"
+  replace the notes file, the sign marks and the label of a round.
+
 ## Rules
 
 - **One question at a time.** Wait for the answer before the next one. At most five sentences per turn. No emojis.
@@ -43,10 +50,36 @@ The pair decides. This skill asks, quotes and writes; it decides nothing.
 - **Changes on other pages.** A change the pair names for roll-out may sit on any page. Name the page, and write the change as said.
 - **Invented lines.** If the outcome is move on, ask: "Which lines on the page are invented, and who confirms them before roll-out?" Quote the spec's "Invented lines on the page". Write the answer under "Therefore we will".
 
+### Setting `team`
+
+- **One notes file per tester.** Round 1: `discovery/user-tests/<variant>-tester-<n>.md`, numbered
+  from 1. Round 2: `<variant>-2-tester-<n>.md`. If a tester's notes are missing, ask the team to
+  write them first, in this format, and wait:
+  ```markdown
+  # Test with people: <variant>, tester <n>
+
+  > Notes by the watcher, <name>, <date>. Tester: <role, and how they meet the card's criteria>. No real names.
+
+  ## What the tester did and said
+  - <one line per thing the watcher saw or heard, words in quotes, word for word>
+
+  ## Signs from the card
+  - <sign>: seen / not seen / unclear
+  ```
+- **Planned against done.** Read the planned number from "How many" in the card's "Testers"
+  section. Count the notes files of the round. A tester whose notes say they had no real case does
+  not count; name them in one line.
+- **Signs per tester, then counted.** Quote the marks from all notes files in one table, one column
+  per tester. Ask: "Do these marks stand?" Then count per sign, for example "seen by 3 of 4". If a
+  line on the card counts testers, hold the count against it.
+- **The label of a round** in setting `team`: "Tested with <done> of <planned> people: a pattern,
+  not a rate." If no tester counts, use the persona label below.
+- **Step 2 asks across testers:** "What did the testers do or say? List it freely, per tester."
+
 ## Steps
 
 0. **Try first.** Ask: "How did the test go, in a few words?" Wait.
-1. Read the prototype card and the user-test files. If the prototype card is missing, stop and say so. If neither `<variant>-cross.md` nor `<variant>-page.md` exists, ask which test happened.
+1. Read the prototype card and the user-test files. If the prototype card is missing, stop and say so. If neither `<variant>-cross.md` nor `<variant>-page.md` exists, ask which test happened. In setting `team`, read `<variant>-tester-<n>.md` in place of `<variant>-cross.md`.
 2. Ask: "What did the tester do or say? List it freely." Reflect it back as a short list. Give the feedback on it (see Rules). Ask: "Anything else, or shall we work with these?"
 3. Quote the sign marks from `<variant>-cross.md` in one message and ask: "Do these marks stand?" Ask per sign only where a mark is missing. Without a cross test, quote the persona run's sign table instead.
 4. Quote the assumption and the two lines. Ask: "Against these lines, did the assumption hold, break, or is it unclear? Why?" If unclear: "What would you need to see to be sure?" Give the feedback on the reason (see Rules).
@@ -82,6 +115,10 @@ The pair decides. This skill asks, quotes and writes; it decides nothing.
 | Sign (from the card) | Points to | Seen? |
 |---|---|---|
 | <sign> | go on / rework or drop | seen / not seen / unclear |
+
+<setting `team`: one column per tester instead of "Seen?", then "Seen by" with the count, for example "3 of 4">
+<setting `team`: "Planned: <n> testers. Tested: <done>. Not counted: <tester, reason, or none>.">
+<setting `team`: observations quote `discovery/user-tests/<variant>-tester-<n>.md` with line>
 
 Against the lines: <held / broke / unclear, and why, in the pair's words>
 
