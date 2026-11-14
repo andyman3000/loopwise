@@ -251,3 +251,17 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
     console.log(`Loopwise running at http://localhost:${port}/`);
   });
 }
+
+// Vercel entry point: Vercel imports this file and calls the default export per request. The
+// hosted version shows the website pages only; the workshop artefacts stay local. Vercel's
+// filesystem is read-only except /tmp, so form entries go there and do not persist.
+let hosted;
+export default function vercelHandler(req, res) {
+  process.env.LOOPWISE_DATA_DIR ||= '/tmp/loopwise-data';
+  hosted ||= createServer().listeners('request')[0];
+  if (/^\/(discovery|sources)(\/|$)/.test(new URL(req.url, 'http://localhost').pathname)) {
+    res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
+    return res.end('Not found');
+  }
+  return hosted(req, res);
+}

@@ -5,3 +5,4 @@ CLAUDE.local.md
 .claude/settings.local.json
 .playwright-mcp/
 .obsidian/
+.vercel
