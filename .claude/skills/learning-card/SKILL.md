@@ -27,7 +27,7 @@ The pair decides. This skill asks, quotes and writes; it decides nothing.
 - **Try first is the gut feeling.** The first question is always: "How did the test go, in a few words?" Never start with analysis. A vague reply ("go on", "ok") gets one more ask; if it stays vague, write "skipped". "skip" is written as "skipped".
 - **Never ask for what the files hold.** Quote the assumption, the signs and the lines from the prototype card. Do not ask the pair to repeat them.
 - **Write only what the pair says.** Observations, the learning and the decision are the pair's words, shortened at most. If an answer is vague, ask one follow-up. If it stays vague, write it as said and mark it "[vague: the pair did not say more]".
-- **Observations from people and from personas stay apart.** A cross-test observation quotes the watcher's notes with file and line (`discovery/user-tests/<variant>-cross.md:<line>`). If the cross test happened but the notes file is missing, ask the pair to write it first (block 6a says how) and wait. A persona observation quotes the walkthrough file and the persona-file line it rests on (`product/personas/<file>:<line>`). A persona action with no persona-file line behind it is not an observation and is left out.
+- **Observations from people and from personas stay apart.** A cross-test observation quotes the watcher's notes with file and line ([discovery/user-tests/<variant>-cross.md:<line>](../user-tests/<variant>-cross.md#L<line>)). If the cross test happened but the notes file is missing, ask the pair to write it first (block 6a says how) and wait. A persona observation quotes the walkthrough file and the persona-file line it rests on ([product/personas/<file>:<line>](../../product/personas/<file>#L<line>)). A persona action with no persona-file line behind it is not an observation and is left out.
 - **One round, one set of files.** Round 1 reads `<variant>-cross.md`, `<variant>-page.md` and the card's first section. Round 2 reads `<variant>-cross-2.md` and `<variant>-page-2.md` and the card's "Round 2" section. Never quote an earlier round's test as evidence for a later round.
 - **A test that does not count.** If the watcher's notes say the tester had no real case the scenario asked for, write at the top of the round: "This test does not count: the tester had no such case (`<notes file>:<line>`)." Ask the pair for another tester, or for `/persona-walkthrough <variant> page`, before the outcome. If the pair still chooses move on, advise against it once, plainly: "I advise against moving on. No counted test shows the assumption holds, so the launch card would rest on a guess." Then write their choice, and add under "Why": "Moved on without a counted test, against the skill's advice." Do not ask again.
 - **No sign judged.** If every sign of the round is "cannot tell" or "unclear", say so in one line: "No sign could be judged in this round, so it cannot show whether the assumption holds." The pair still names one of the three outcomes; a person test is the usual next step.
@@ -38,7 +38,7 @@ The pair decides. This skill asks, quotes and writes; it decides nothing.
   - Held or broke: does the reason rest on the signs and the two lines? Or on how the pair hoped the test would go?
   - We learned: is it something new about the buyer or the assumption? Or does it repeat an observation, or name a solution?
 - **Decides nothing.** The pair names one of three outcomes and why: move on (with what changes before roll-out), another round (changed spec or the next idea from the intent), or kill. If they do not name one, the field stays `____ (human decides)`. Never suggest which one.
-- **Every claim quotes its source with location** (file and line). A citation into `discovery/` carries a short quote, so `npm run check` catches a line that moved; never a section name alone. No invented numbers: one tester is a pattern, not a rate.
+- **Every claim quotes its source with location** (file and line). Each citation is a Markdown link: `[<file>:<line>](<path from this file>#L<line>)` (`.claude/rules/writing.md`, "Citations are links"). A citation into `discovery/` carries a short quote, so `npm run check` catches a line that moved; never a section name alone. No invented numbers: one tester is a pattern, not a rate.
 - **The label of a round.** Each round starts with one label line. If that round has its own cross-test file (`<variant>-cross.md` for round 1, `<variant>-cross-2.md` for round 2): "Tested with one person from another pair: a pattern, not a rate." Otherwise: "Pressure-tested, not validated: rests on persona runs, not on people."
 - **Changes on other pages.** A change the pair names for roll-out may sit on any page. Name the page, and write the change as said.
 - **Invented lines.** If the outcome is move on, ask: "Which lines on the page are invented, and who confirms them before roll-out?" Quote the spec's "Invented lines on the page". Write the answer under "Therefore we will".
@@ -73,11 +73,11 @@ The pair decides. This skill asks, quotes and writes; it decides nothing.
 <gut feeling, word for word>
 
 ### We believed
-"<assumption, quoted>" (`discovery/test-cards/<variant>-prototype.md:<line>`)
+"<assumption, quoted>" ([discovery/test-cards/<variant>-prototype.md:<line>](../test-cards/<variant>-prototype.md#L<line>))
 
 ### We observed
-- <cross test: "<what the tester did or said>" (`discovery/user-tests/<variant>-cross.md:<line>`)>
-- <persona: "<quote>" (`discovery/user-tests/<file>:<line>`), resting on `product/personas/<file>:<line>`>
+- <cross test: "<what the tester did or said>" ([discovery/user-tests/<variant>-cross.md:<line>](../user-tests/<variant>-cross.md#L<line>))>
+- <persona: "<quote>" ([discovery/user-tests/<file>:<line>](../user-tests/<file>#L<line>)), resting on [product/personas/<file>:<line>](../../product/personas/<file>#L<line>)>
 
 | Sign (from the card) | Points to | Seen? |
 |---|---|---|

@@ -16,7 +16,7 @@ A spec is the hand-over to the build: precise enough that Claude Code can build 
 
 - **Try first, then compare.** Before you draft, ask the human: "What is the smallest page that lets a tester hit the assumption?" Wait for the answer and never invent it. A vague reply ("go on", "ok") is not an answer: ask once more, and if it stays vague, write "skipped". After drafting, fill the section "Your first try": their answer word for word, then two or three short lines on where your draft differs and why. If they say skip, write "skipped". This step is how participants learn the concept; do not shorten it.
 - **Feedback on the first try.** After drafting, tell the human in two or three short lines how strong their answer was: what was good, what was weak, and why. Judge it against what this spec needs. Is it the smallest page, or a full feature? Does it let a tester meet the assumption? Can the watcher see every sign on the prototype card on it? Name their words. Be honest and specific, never flattering. A skipped answer gets no feedback. Write the same lines under "Feedback" in "Your first try".
-- **Every claim quotes its source with location** (file and line). No quote, no claim.
+- **Every claim quotes its source with location** (file and line). No quote, no claim. Each citation is a Markdown link: `[<file>:<line>](<path from this file>#L<line>)` (`.claude/rules/writing.md`, "Citations are links").
 - **Do not invent numbers.** No targets, no thresholds, no expected rates; those belong in the test card.
 - **No line on the page says what a go-on sign listens for.** A tester who reads such a line back shows nothing.
 - **Every sign on the prototype card needs something on the page.** For each sign, name the element where the watcher can see it, and check it can happen on every path through the page. If a sign has no element, or a path skips it, say so under "Open points for the human".
@@ -46,7 +46,7 @@ A spec is the hand-over to the build: precise enough that Claude Code can build 
 > Spec drafted by an agent (`variant-spec`) on <YYYY-MM-DD>, before the build.
 > **Variant:** `<variant>` · Pages it changes: <page files> · Tester starts at `/<page>?variant=<variant>`
 > **Idea:** <I-number> in `discovery/intents/<opportunity>.md` ("<idea line, quoted>")
-> **Assumption under test:** "<quoted>" (`discovery/test-cards/<variant>-prototype.md:<line>`)
+> **Assumption under test:** "<quoted>" ([discovery/test-cards/<variant>-prototype.md:<line>](../test-cards/<variant>-prototype.md#L<line>))
 > **Label:** <synthetic or composite, repeated from the material the intent rests on>
 
 ## Your first try

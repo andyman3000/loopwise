@@ -18,7 +18,7 @@ contrast" opportunities against each other, rather than judging one in isolation
 
 - **Try first, then compare.** Before you draft, ask the human for which opportunity they favour right now, with a one-sentence reason. Point them to their opportunity map first: with `npm start` running, `http://localhost:3000/discovery/map` shows every opportunity by source and evidence. The challenger step then also attacks their favourite, if it differs from the candidate the comparison favours. Wait for the answer and never invent it. After drafting, fill the section "Your first try": their answer word for word, the candidate ID it matches ("Matches: C1", or "none"), then two or three short lines on where your draft differs and why. If they say skip, write "skipped". This step is how participants learn the concept; do not shorten it.
 - **Feedback on the first try.** After the comparison is written, tell the human in two or three short lines how strong their answer was: what was good, what was weak, and why. Judge the reason, never the favourite itself. Does the reason rest on evidence: independent sources, voices, where in the funnel? Or on a gut feeling, one vivid quote, or a solution the human already has in mind? Is their favourite a need or a solution in disguise? Name their words. Be honest and specific, never flattering. A skipped answer gets no feedback. Say it in the chat only: the tree page reads "Your first try", so the file keeps its template shape.
-- **Every claim quotes its source with location** (file and line or section). No quote, no claim.
+- **Every claim quotes its source with location** (file and line or section). No quote, no claim. Each citation is a Markdown link: `[<file>:<line>](<path from this file>#L<line>)` (`.claude/rules/writing.md`, "Citations are links").
   Open the cited file in `sources/` and check the quote is there. If it is not, say so in the line
   and do not use it.
 - **Do not invent numbers.** Only counted numbers: independent sources, voices, events in a log.
@@ -166,8 +166,8 @@ Where the draft differs:
 - <two or three short lines>
 
 ## Tree
-Outcome: <business goal> (<file:line>)
-Branch: <Branch A: name> (<file:line>)
+Outcome: <business goal> ([<file>:<line>](../<file>#L<line>))
+Branch: <Branch A: name> ([<file>:<line>](../<file>#L<line>))
 - <driver>: <lost> of <reached> <what> (data.md D<n>) · Candidates: <IDs, "(assumed)" after a driver only the comparison adds, or "none">
   - Data: <only under a driver with an assumed link: the observation that suggests it, counted> (data.md D<n>)
 
@@ -180,11 +180,11 @@ Branch: <Branch A: name> (<file:line>)
 - **Readable from today's data in 8 weeks:** <level>: <event, events over the data span>; also <a signal on another branch that measures the need: event, count, delay>, if any
 - **Wins on:** <one line>
 - **Loses on:** <one line>
-- **Strongest quote:** "<quote>" (<file:line>)
+- **Strongest quote:** "<quote>" ([<file>:<line>](../<file>#L<line>))
 
 ## Evidence
 ### C1: <name>
-- **Evidence strength:** <reasoning, quotes with file and line, counter-evidence, gaps>
+- **Evidence strength:** <reasoning, quotes with file and line as links, counter-evidence, gaps>
 - **Leverage:** <KPI branch, direct or indirect, reasoning, source>
 - **Where in the funnel:** <driver: lost there, counted> · <of those reaching it, how many book> (data.md D-number)
 - **Need or solution:** <two solutions that would each meet it, or the need underneath with its quote>
@@ -202,15 +202,15 @@ Dropped:
 ## Challenger (on the favoured row)
 
 **Counter-evidence to <favoured>:**
-- "<quote>" (<file, line or section>): <why it cuts against>
+- "<quote>" ([<file>:<line>](../<file>#L<line>), or [<file>](../<file>) and a section): <why it cuts against>
 
 **Leading questions:**
-- <ID>: "<interviewer question>" (<file:line>) before "<quote>": <asked for exactly this, or open>
+- <ID>: "<interviewer question>" ([<file>:<line>](../<file>#L<line>)) before "<quote>": <asked for exactly this, or open>
 
 **Wins on, loses on:** <reach or closeness to a booking, with the counts>
 
 **What would make another candidate the better choice:**
-- "<quote>" (<file, line or section>): <what it would take>
+- "<quote>" ([<file>:<line>](../<file>#L<line>), or [<file>](../<file>) and a section): <what it would take>
 
 **Could not check:** <item, who could answer>
 

@@ -33,9 +33,9 @@ idea fails, however well it is built.
 - **Write the file after every step**, then tell the pair to reload `http://localhost:3000/discovery/tree`. The tree draws every row of "Solution ideas" under the opportunity.
 - **No judging in steps 1 and 2.** No levels, no "this would not work", no constraint checks. Every idea goes in the table. The feedback on the pair's list judges how the ideas are named and how varied they are, never whether one would work. An idea may change any page of the website. If it changes another page than the inquiry page, name the page after the idea, for example "(formats page)".
 - **Ideas are named by mechanism:** what the buyer sees or does on the page ("one question before the form", "calendar link after three case stories"), not by strategy ("reduce friction"). If the pair names a feature without a page change ("a trust badge"), ask once: "What would the buyer see on the page?"
-- **Driver from step 1 on.** Each idea gets the driver it moves, named as in `discovery/kpi-tree.md`, with its line. This is a lookup, not a judgement. An idea that moves more than one driver lists each, with its line, separated by " · ", for example "start rate (`discovery/kpi-tree.md:21`) · submit rate (`discovery/kpi-tree.md:22`)". The tree lights up every driver listed. If no driver fits, write "no driver".
+- **Driver from step 1 on.** Each idea gets the driver it moves, named as in `discovery/kpi-tree.md`, with its line. This is a lookup, not a judgement. An idea that moves more than one driver lists each, with its line, separated by " · ", for example "start rate ([discovery/kpi-tree.md:21](../kpi-tree.md#L21)) · submit rate ([discovery/kpi-tree.md:22](../kpi-tree.md#L22))". The tree lights up every driver listed. If no driver fits, write "no driver".
 - **Boundaries apply from step 3 on.** They come from `product/constraints.md`: no prices (`product/constraints.md:7`); the website reaches the inquiry and the scoping call booking, not the training itself (`product/constraints.md:55`). An idea may change the form, replace it, or replace it with booking a call. Which fields a page sends is not settled here.
-- **Every claim quotes its source with location** (file and line). Evidence levels in words: well supported, partly supported, unsupported. Only counted numbers.
+- **Every claim quotes its source with location** (file and line). Each citation is a Markdown link from this file: `[sources/inquiry-mails/inquiry-07.md:16](../../sources/inquiry-mails/inquiry-07.md#L16)`, `[discovery/kpi-tree.md:21](../kpi-tree.md#L21)`; a file without a line links to the file (`.claude/rules/writing.md`, "Citations are links"). Evidence levels in words: well supported, partly supported, unsupported. Only counted numbers.
 - **Feedback on the pair's own answers.** These answers get feedback: the corrections to the intent, the pair's own ideas, and why they test one idea first. Tell the pair in two or three short lines how strong the answer was: what was good, what was weak, and why. Name their words. Be honest and specific, never flattering. Say it in the chat; it does not go into the file. A plain "yes" to the draft, a skipped answer, and the choice of a part or an idea get no feedback.
   - Intent corrections: is the problem still a need, or did a correction turn it into a solution? Does the desired outcome still name a driver and an event that can be counted? Does the file still read on its own?
   - Own ideas: judge the list as a whole, never one idea's chance to work. Are the ideas named by what the buyer sees or does on the page, or by strategy? Do they use different mechanisms, or all the same one?
@@ -63,7 +63,7 @@ idea fails, however well it is built.
 # Intent: <what should change, for whom, in words> (draft)
 
 > Assessment by an agent (`intent-and-ideas`), not a decision. Date: YYYY-MM-DD.
-> Opportunity: <C-id>, <name>, in discovery/opportunity-comparison.md · Decision: discovery/decisions/<file>.md
+> Opportunity: <C-id>, <name>, in [discovery/opportunity-comparison.md](../opportunity-comparison.md) · Decision: [discovery/decisions/<file>.md](../decisions/<file>.md)
 > Material: <synthetic or composite, repeated from the material the opportunity rests on>
 
 An intent says what should change, for whom, and why, before anyone picks a solution.
@@ -73,18 +73,18 @@ A critical assumption is the one thing that must be true for an idea to work.
 This file reads on its own. Links to other files are for further reading.
 
 ## Problem (draft)
-<the part of the opportunity we work on, in two or three sentences, with the strongest quote in full, who said it, and its file and line>
+<the part of the opportunity we work on, in two or three sentences, with the strongest quote in full, who said it, and its file and line as a link>
 
 ## Desired outcome (draft)
 <who does what more often, in plain words>
-- How the site counts it: <what is counted, in words> (`<event>`). This step is the driver <driver name> (`discovery/kpi-tree.md:<line>`).
-- Why it matters: <the KPI branch in words> (`discovery/kpi-tree.md:<line>`).
-- Today: <counted value, period, synthetic or not> (`<file>:<line>`).
+- How the site counts it: <what is counted, in words> (`<event>`). This step is the driver <driver name> ([discovery/kpi-tree.md:<line>](../kpi-tree.md#L<line>)).
+- Why it matters: <the KPI branch in words> ([discovery/kpi-tree.md:<line>](../kpi-tree.md#L<line>)).
+- Today: <counted value, period, synthetic or not> ([<file>:<line>](../../<file>#L<line>)).
 - No target here.
 
 ## For whom and where (draft)
-- Who: <buyer types or personas, with `product/personas/<file>.md`>
-- Pages the ideas may change: <pages in `site/`>
+- Who: <buyer types or personas, with [product/personas/<file>.md](../../product/personas/<file>.md)>
+- Pages the ideas may change: <pages in `site/`, each as a link such as [site/inquiry.html](../../site/inquiry.html)>
 
 ## Open questions (draft)
 - <question> · who can answer: <role> · blocks: the prototype / the launch / later
@@ -93,10 +93,10 @@ This file reads on its own. Links to other files are for further reading.
 
 | Idea | From | Driver | Critical assumption | Level |
 |---|---|---|---|---|
-| I1: <idea, by mechanism> | the pair | <driver> (`discovery/kpi-tree.md:<line>`) | <empty until step 3> | <empty until step 3, then level and source> |
+| I1: <idea, by mechanism> | the pair | <driver> ([discovery/kpi-tree.md:<line>](../kpi-tree.md#L<line>)) | <empty until step 3> | <empty until step 3, then level and source> |
 
 ## Boundaries
-- <constraint> (`<file>:<line>`)
+- <constraint> ([<file>:<line>](../../<file>#L<line>))
 
 ## Ideas not picked
 - I<n>: <idea> · <from>

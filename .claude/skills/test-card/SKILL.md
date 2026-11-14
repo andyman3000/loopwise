@@ -20,7 +20,7 @@ This is an assessment drafted by an agent, not a decision. A human owns the card
 
 ## Rules for both modes
 
-- **Every claim quotes its source with location** (file and line). No quote, no claim.
+- **Every claim quotes its source with location** (file and line). No quote, no claim. Each citation is a Markdown link: `[<file>:<line>](<path from this file>#L<line>)` (`.claude/rules/writing.md`, "Citations are links").
 - **Do not invent numbers.** Evidence uses only counted numbers: sources, voices, events in the log. No scores, no probabilities, no totals.
 - **Evidence levels in words:** **well supported**, **partly supported** or **unsupported**, with reasoning, sources, counter-evidence and gaps.
 - **Repeat the material label:** the sources are synthetic or anonymised composites; the card says so in its header.
@@ -83,7 +83,7 @@ Under the four lines: **We rework or drop the idea if** <rework-or-drop line>.
 Feedback: <two or three short lines: what was strong, what was weak, and why>
 
 ## We believe that (the assumption we test)
-"<assumption, quoted from Selection (human)>" (`discovery/intents/<opportunity>.md:<line>`)
+"<assumption, quoted from Selection (human)>" ([discovery/intents/<opportunity>.md:<line>](../intents/<opportunity>.md#L<line>))
 Level in the intent: <level, quoted>
 
 ## To verify that, we will
@@ -99,7 +99,7 @@ Show one tester from another pair the page `/<page>?variant=<variant>`. The test
 ## And measure (the signs the watcher looks for)
 | Sign (what the watcher sees or hears) | Points to | Can a persona show it? |
 |---|---|---|
-| <sign> | go on | <"yes: <quote>" (`product/personas/<file>:<line>`), or "only the cross test with people can test this"> |
+| <sign> | go on | <"yes: <quote>" ([product/personas/<file>:<line>](../../product/personas/<file>#L<line>)), or "only the cross test with people can test this"> |
 | <sign> | rework or drop | ... |
 
 ## We are right if (go-on line)
@@ -156,7 +156,7 @@ follows under the four lines: we take it back if.
 > Assessment drafted by an agent on <YYYY-MM-DD>, not a decision.
 > Card owner: ____ (human decides)
 > Variant: `discovery/specs/<variant>.md` · Intent: `discovery/intents/<opportunity>.md` · Prototype test: `discovery/test-cards/<variant>-prototype.md`, learning card `discovery/decisions/<nnn>-<variant>.md` (or "none")
-> KPI branch: <branch> ("<quote>", `discovery/kpi-tree.md:<line>`)
+> KPI branch: <branch> ("<quote>", [discovery/kpi-tree.md:<line>](../kpi-tree.md#L<line>))
 > Material: <synthetic or composite, repeated>
 > Data: <n> events in `data/events.jsonl` carry this variant <(command)>
 
@@ -180,7 +180,7 @@ Each line repeats a field below in one sentence. If a field changes, this sectio
 ## Critical assumptions
 1. **<assumption>**: <well supported | partly supported | unsupported>
    - Reasoning: <why this level>
-   - Sources: "<quote>" (`<file>:<line>`)
+   - Sources: "<quote>" ([<file>:<line>](../../<file>#L<line>))
    - Prototype test: <what the learning card says about it, quoted, or "not tested">
    - Counter-evidence: <quote with location, or "none found in sources/">
    - Gap: <what nobody has checked yet, who could>

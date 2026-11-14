@@ -16,7 +16,7 @@ This file is an **assessment by an agent, not a decision**. Say so at the top of
 
 - **Try first, then compare.** Before you draft, ask the human for the need behind one quote. Show one quote from the source with file:line, then ask: what need or pain sits behind it, and is what the person says a need or already a solution?. Wait for the answer and never invent it. After drafting, fill the section "Your first try": their answer word for word, then two or three short lines on where your draft differs and why. If they say skip, write "skipped". This step is how participants learn the concept; do not shorten it.
 - **Feedback on the first try.** Right after the human answers, tell them in two or three short lines how strong their answer was: what was good, what was weak, and why. Judge it against what an opportunity is. Did they name a need or a pain, or a solution in disguise (a page, a button, a field, a format)? Does the need stay close to the speaker's words, or read more into the quote than it says? Did they say correctly whether the quote itself is a need or a solution? For `data`, judge whether they read the count as where people drop out, not why. Name their words. Be honest and specific, never flattering. A skipped answer gets no feedback. Write the same lines under "Feedback" in "Your first try".
-- Every claim quotes its source with location: file and line (`sources/interviews/sponsor-carla.md:33`). No quote, no claim. Quotes are verbatim and short (one sentence or less).
+- Every claim quotes its source with location: file and line, written as a Markdown link from this file: `[sources/interviews/sponsor-carla.md:33](../../sources/interviews/sponsor-carla.md#L33)` (`.claude/rules/writing.md`, "Citations are links"). No quote, no claim. Quotes are verbatim and short (one sentence or less).
 - **Do not invent numbers.** Count only what is in the files: sources, items, distinct speakers. No scores, no probabilities, no totals, no "most users".
 - **The heading is the opportunity statement, in the first person.** Write it the way the speaker would say it: "I want", "I need", "I wish", "I'm trying to", "I can't", "I don't know". Teresa Torres, Product Talk (https://www.producttalk.org/2021/03/no-single-right-way-2/): "I actually encourage teams to write their opportunities like, “I want,” “I need,” “I wish,” “I hope,” “I'm trying to,”". Her test: a business need in disguise fails, because no customer would say it ("no customer would ever say, “I wish I spent more money with Amazon.”").
   - After the quoted statement, role and moment in brackets. The moment is one of those in the merge rule: before booking, preparation, the day itself, the weeks after. `### O1: "I don't know which format to ask for." (buyer, before booking)`
@@ -64,7 +64,7 @@ This file is an **assessment by an agent, not a decision**. Say so at the top of
 # Opportunities from <source-group>
 
 > Assessment by an agent (`opportunities-from-source` skill), not a decision. Date: YYYY-MM-DD.
-> Reads: <files>, discovery/kpi-tree.md, product/personas/
+> Reads: <files, each as a link>, [discovery/kpi-tree.md](../kpi-tree.md), product/personas/
 
 ## Your first try
 <the human's answer, word for word> · Where the draft differs: <two or three short lines>
@@ -77,12 +77,12 @@ Feedback: <two or three short lines: what was strong, what was weak, and why>
 ## Opportunities
 ### O1: "<the need, as the speaker would say it, first person>" (<role>, <moment>)
 - **Evidence:**
-  - "<short verbatim quote>" (<file>:<line>, <speaker>, <role>)
+  - "<short verbatim quote>" ([<file>:<line>](../../<file>#L<line>), <speaker>, <role>)
 - **Voices:** <n> distinct speakers: <roles>. Second-hand: <yes/no, which>
 - **Merged:** no | yes: <each part in a few words, and why it is one need>
 - **Close to:** <O-number and the test that keeps it apart> | none
 - **KPI branch:** <Branch X: name>, driver <short name from the tree> because ... [assumption: ...]
-- **Counter-evidence in this source:** "<quote>" (<file>:<line>) | none found in this source
+- **Counter-evidence in this source:** "<quote>" ([<file>:<line>](../../<file>#L<line>)) | none found in this source
 - **Gaps:** ...
 - **Assessment:** well supported | partly supported | unsupported. <reasoning>
 
