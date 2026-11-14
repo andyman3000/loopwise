@@ -4,3 +4,4 @@ data/*-live.jsonl
 CLAUDE.local.md
 .claude/settings.local.json
 .playwright-mcp/
+.obsidian/
