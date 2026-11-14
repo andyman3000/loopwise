@@ -21,6 +21,10 @@ tend to be obvious or average, so the pair always goes first.
 **A critical assumption** is the one thing that must be true for an idea to work. If it is false, the
 idea fails, however well it is built.
 
+**Setting.** Read the `Setting:` line in `CLAUDE.md`. No line means `workshop`. In `team`, read
+"the pair" in this skill as "the team", and write "the team" in the From column for the human's
+ideas. Do not show the time hints ("about 15 min") to the team.
+
 ## Rules
 
 - **The intent file reads on its own.** People read it as a communication tool. Agents read it as context for the prototype and later the implementation. A person or an agent with no other file open must be able to say what should change, for whom, where on the site, and how it would show in the data.
