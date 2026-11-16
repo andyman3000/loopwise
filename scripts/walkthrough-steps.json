@@ -1,5 +1,6 @@
 {
-  "about": "The steps of the discovery run, in order. npm run walkthrough draws each commit into walkthrough/. label: the button; title: the heading (default: label). group: the button group (default: variant, else The run). view: kpi = the KPI tree drawing, map = the opportunity map, tree = the opportunity tree (default).",
+  "about": "The steps of the discovery run, in order. npm run walkthrough draws each commit into walkthrough/. label: the button; title: the heading (default: label). group: the button group (default: variant, else The run). view: kpi = the KPI tree drawing, map = the opportunity map, tree = the opportunity tree (default). parallel: variants built at the same time; their steps are drawn one variant after the other, each other variant held at its state before or after its own steps.",
+  "parallel": ["call-slot", "short-form"],
   "steps": [
     {"label": "KPI tree", "skill": "kpi-tree", "commit": "fbf1878", "view": "kpi"},
     {"label": "Opportunities", "title": "Opportunities from the sources", "skill": "opportunities-from-source", "commit": "80d800c", "view": "map"},

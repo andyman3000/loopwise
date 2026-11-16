@@ -25,7 +25,24 @@ const VIEWS = {
 // Pages that render but show only the "nothing to draw" text count as not rendered.
 const EMPTY = /No comparison yet|has no "Tree" or "Candidates" section/;
 
-function snapshot(step) {
+// Variants built at the same time are drawn one after the other, in the order of the step list.
+// While a variant's steps run, a variant listed after it shows as it stood before the first of
+// them, and a variant listed before it shows as it stood after its own last step.
+const variantFile = (f, v) => f.startsWith(`site/variants/${v}/`) || f === `site/variants/${v}`
+  || ['test-cards', 'specs', 'user-tests'].some((d) => f.startsWith(`discovery/${d}/${v}.`) || f.startsWith(`discovery/${d}/${v}-`))
+  || new RegExp(`^discovery/decisions/\\d{3}-${v.replace(/[^a-z0-9-]/g, '')}\\.md$`).test(f);
+function others(steps, i, parallel) {
+  const v = steps[i].variant;
+  if (!parallel.includes(v)) return {};
+  const at = (w) => steps.map((s, k) => (s.variant === w ? k : -1)).filter((k) => k >= 0);
+  const firstParallel = Math.min(...parallel.flatMap(at));
+  return Object.fromEntries(parallel.filter((w) => w !== v && at(w).length).map((w) => {
+    const ks = at(w);
+    return [w, ks[0] < i ? steps[ks[ks.length - 1]].commit : steps[firstParallel - 1].commit];
+  }));
+}
+
+function snapshot(step, swap = {}) {
   const sha = git('rev-parse', '--verify', `${step.commit}^{commit}`);
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'loopwise-walkthrough-'));
   try {
@@ -34,6 +51,15 @@ function snapshot(step) {
     const dir = path.join(tmp, 'root');
     fs.mkdirSync(dir);
     execFileSync('tar', ['-xf', tar, '-C', dir]);
+    for (const [v, ref] of Object.entries(swap)) {
+      for (const f of git('ls-tree', '-r', '--name-only', sha).split('\n').filter((f) => variantFile(f, v))) fs.rmSync(path.join(dir, f), { force: true });
+      fs.rmSync(path.join(dir, 'site', 'variants', v), { recursive: true, force: true });
+      const files = git('ls-tree', '-r', '--name-only', ref).split('\n').filter((f) => variantFile(f, v));
+      if (!files.length) continue;
+      const part = path.join(tmp, `${v}.tar`);
+      git('archive', '--format=tar', '-o', part, ref, '--', ...files);
+      execFileSync('tar', ['-xf', part, '-C', dir]);
+    }
     const html = (VIEWS[step.view || 'tree'] || VIEWS.tree)(dir);
     if (EMPTY.test(html)) throw new Error('the page shows no tree for this commit');
     // The files this step wrote, so the header can name them even where the tree draws no mark.
@@ -129,7 +155,7 @@ function indexPage(steps) {
 <script>${CLIENT}</script></body></html>`;
 }
 
-const { steps } = JSON.parse(fs.readFileSync(path.join(ROOT, 'scripts', 'walkthrough-steps.json'), 'utf8'));
+const { steps, parallel = [] } = JSON.parse(fs.readFileSync(path.join(ROOT, 'scripts', 'walkthrough-steps.json'), 'utf8'));
 fs.rmSync(OUT, { recursive: true, force: true });
 fs.mkdirSync(OUT, { recursive: true });
 const done = [];
@@ -137,7 +163,7 @@ const failed = [];
 steps.forEach((step, i) => {
   const file = `step-${String(i + 1).padStart(2, '0')}.html`;
   try {
-    const { sha, html, date, wrote } = snapshot(step);
+    const { sha, html, date, wrote } = snapshot(step, others(steps, i, parallel));
     fs.writeFileSync(path.join(OUT, file), html);
     const prev = done[done.length - 1];
     done.push({ ...step, sha, date, wrote, file, same: prev && prev.html === html ? done.length : 0, html });
