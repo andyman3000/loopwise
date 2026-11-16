@@ -210,6 +210,14 @@ export function createServer() {
       res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
       return res.end(req.method === 'HEAD' ? undefined : mapPage(process.env.LOOPWISE_ROOT || ROOT));
     }
+    // The walkthrough: static snapshots of the tree, one per skill step, drawn by npm run walkthrough.
+    const walk = pathname.match(/^\/discovery\/walkthrough(?:\/(index\.html|step-\d+\.html)?)?$/);
+    if (walk) {
+      const file = path.join(ROOT, 'walkthrough', walk[1] || 'index.html');
+      if (!fs.existsSync(file)) return notFound();
+      res.writeHead(200, { 'Content-Type': TYPES['.html'] });
+      return res.end(req.method === 'HEAD' ? undefined : fs.readFileSync(file));
+    }
     if (pathname === '/discovery/tree') {
       res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
       return res.end(req.method === 'HEAD' ? undefined : treePage(process.env.LOOPWISE_ROOT || ROOT));

@@ -1,0 +1,42 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Discovery walkthrough</title><style>
+:root{--bg:#faf8f4;--fg:#22262b;--muted:#5b636c;--accent:#2f5d62;--accent-fg:#fff;--line:#c9c3b8;--card:#fff;--chip:#efebe4}
+@media (prefers-color-scheme:dark){:root{--bg:#1b1e21;--fg:#e8e6e1;--muted:#a3a8ad;--accent:#7fb3b8;--accent-fg:#10201f;--line:#4a5056;--card:#23272b;--chip:#2c3135}}
+*{box-sizing:border-box}html,body{margin:0;height:100%}
+body{background:var(--bg);color:var(--fg);font:18px/1.35 system-ui,-apple-system,sans-serif;display:flex;flex-direction:column;overflow:hidden}
+header{padding:12px 20px 10px;border-bottom:2px solid var(--line);background:var(--card)}
+#now{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:10px}
+#now .n{font-size:22px;font-weight:700;color:var(--muted)}
+#now h1{font-size:30px;line-height:1.15;margin:0}
+#now .meta{font-size:17px;color:var(--muted)}
+#now code{font-size:16px;background:var(--chip);padding:1px 6px;border-radius:4px}
+.steps{display:grid;grid-template-columns:max-content 1fr;gap:6px 12px;align-items:center}
+.steps .var{font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);white-space:nowrap}
+.steps .row{display:flex;gap:8px;flex-wrap:wrap}
+.steps button{font:inherit;font-size:17px;font-weight:600;background:var(--bg);color:var(--fg);border:2px solid var(--line);border-radius:10px;
+padding:8px 12px;cursor:pointer;white-space:nowrap;display:flex;gap:8px;align-items:center}
+.steps button b{font-size:15px;color:var(--muted)}
+.steps button[aria-current=step]{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+.steps button[aria-current=step] b{color:var(--accent-fg)}
+.steps button:focus-visible{outline:3px solid var(--fg);outline-offset:2px}
+main{flex:1;position:relative}
+iframe{position:absolute;inset:0;width:100%;height:100%;border:0;visibility:hidden}
+iframe.on{visibility:visible}
+.help{font-size:14px;color:var(--muted);margin-top:6px}</style></head><body>
+<header><div id="now" aria-live="polite"></div><nav class="steps" aria-label="Steps"><span class="var">The run</span><div class="row"><button type="button" data-head="&lt;span class=&quot;n&quot;&gt;1 / 11&lt;/span&gt;&lt;h1&gt;KPI tree&lt;/h1&gt;&lt;span class=&quot;meta&quot;&gt;skill &lt;code&gt;kpi-tree&lt;/code&gt; · commit &lt;code&gt;fbf1878&lt;/code&gt; · 2026-11-13 09:48&lt;/span&gt;"><b>1</b>KPI tree</button><button type="button" data-head="&lt;span class=&quot;n&quot;&gt;2 / 11&lt;/span&gt;&lt;h1&gt;Opportunities from the sources&lt;/h1&gt;&lt;span class=&quot;meta&quot;&gt;skill &lt;code&gt;opportunities-from-source&lt;/code&gt; · commit &lt;code&gt;d8b7bf9&lt;/code&gt; · 2026-11-13 10:05&lt;/span&gt;"><b>2</b>Opportunities from the sources</button><button type="button" data-head="&lt;span class=&quot;n&quot;&gt;3 / 11&lt;/span&gt;&lt;h1&gt;Opportunity comparison&lt;/h1&gt;&lt;span class=&quot;meta&quot;&gt;skill &lt;code&gt;compare-opportunities&lt;/code&gt; · commit &lt;code&gt;defab49&lt;/code&gt; · 2026-11-13 13:13&lt;/span&gt;"><b>3</b>Opportunity comparison</button><button type="button" data-head="&lt;span class=&quot;n&quot;&gt;4 / 11&lt;/span&gt;&lt;h1&gt;Decision 001: C1 chosen (gate 1)&lt;/h1&gt;&lt;span class=&quot;meta&quot;&gt;skill &lt;code&gt;decision&lt;/code&gt; · commit &lt;code&gt;9f77e7a&lt;/code&gt; · 2026-11-13 22:09&lt;/span&gt;"><b>4</b>Decision 001: C1 chosen (gate 1)</button><button type="button" data-head="&lt;span class=&quot;n&quot;&gt;5 / 11&lt;/span&gt;&lt;h1&gt;Intent and ideas, format-quiz first&lt;/h1&gt;&lt;span class=&quot;meta&quot;&gt;skill &lt;code&gt;intent-and-ideas&lt;/code&gt; · commit &lt;code&gt;9274e98&lt;/code&gt; · 2026-11-14 14:22&lt;/span&gt;"><b>5</b>Intent and ideas, format-quiz first</button></div><span class="var">format-quiz</span><div class="row"><button type="button" data-head="&lt;span class=&quot;n&quot;&gt;6 / 11&lt;/span&gt;&lt;h1&gt;format-quiz: Prototype test card&lt;/h1&gt;&lt;span class=&quot;meta&quot;&gt;skill &lt;code&gt;test-card format-quiz prototype&lt;/code&gt; · commit &lt;code&gt;5adde3a&lt;/code&gt; · 2026-11-15 14:25&lt;/span&gt;"><b>6</b>Prototype test card</button><button type="button" data-head="&lt;span class=&quot;n&quot;&gt;7 / 11&lt;/span&gt;&lt;h1&gt;format-quiz: Spec&lt;/h1&gt;&lt;span class=&quot;meta&quot;&gt;skill &lt;code&gt;variant-spec format-quiz&lt;/code&gt; · commit &lt;code&gt;72d2430&lt;/code&gt; · 2026-11-16 14:46&lt;/span&gt;"><b>7</b>Spec</button><button type="button" data-head="&lt;span class=&quot;n&quot;&gt;8 / 11&lt;/span&gt;&lt;h1&gt;format-quiz: Persona walkthrough on the spec&lt;/h1&gt;&lt;span class=&quot;meta&quot;&gt;skill &lt;code&gt;persona-walkthrough format-quiz spec&lt;/code&gt; · commit &lt;code&gt;6c2f21f&lt;/code&gt; · 2026-11-16 14:46&lt;/span&gt;"><b>8</b>Persona walkthrough on the spec</button><button type="button" data-head="&lt;span class=&quot;n&quot;&gt;9 / 11&lt;/span&gt;&lt;h1&gt;format-quiz: Spec cut to learn mode, persona run 2&lt;/h1&gt;&lt;span class=&quot;meta&quot;&gt;skill &lt;code&gt;variant-spec format-quiz learn&lt;/code&gt; · commit &lt;code&gt;c49a969&lt;/code&gt; · 2026-11-16 15:52&lt;/span&gt;"><b>9</b>Spec cut to learn mode, persona run 2</button><button type="button" data-head="&lt;span class=&quot;n&quot;&gt;10 / 11&lt;/span&gt;&lt;h1&gt;format-quiz: Page built&lt;/h1&gt;&lt;span class=&quot;meta&quot;&gt;skill &lt;code&gt;build&lt;/code&gt; · commit &lt;code&gt;3046cfc&lt;/code&gt; · 2026-11-16 16:37&lt;/span&gt;"><b>10</b>Page built</button></div><span class="var">Next ideas</span><div class="row"><button type="button" data-head="&lt;span class=&quot;n&quot;&gt;11 / 11&lt;/span&gt;&lt;h1&gt;Two more ideas picked: call-slot and short-form&lt;/h1&gt;&lt;span class=&quot;meta&quot;&gt;skill &lt;code&gt;intent-and-ideas&lt;/code&gt; · commit &lt;code&gt;c60df69&lt;/code&gt; · 2026-11-16 19:28&lt;/span&gt;"><b>11</b>Two more ideas picked: call-slot and short-form</button></div></nav>
+<div class="help">← → or Page Up / Page Down: step · click into the tree to zoom, as on /discovery/tree</div></header>
+<main><iframe src="/discovery/walkthrough/step-01.html" title="Step 1: KPI tree"></iframe><iframe src="/discovery/walkthrough/step-02.html" title="Step 2: Opportunities from the sources"></iframe><iframe src="/discovery/walkthrough/step-03.html" title="Step 3: Opportunity comparison"></iframe><iframe src="/discovery/walkthrough/step-04.html" title="Step 4: Decision 001: C1 chosen (gate 1)"></iframe><iframe src="/discovery/walkthrough/step-05.html" title="Step 5: Intent and ideas, format-quiz first"></iframe><iframe src="/discovery/walkthrough/step-06.html" title="Step 6: Prototype test card"></iframe><iframe src="/discovery/walkthrough/step-07.html" title="Step 7: Spec"></iframe><iframe src="/discovery/walkthrough/step-08.html" title="Step 8: Persona walkthrough on the spec"></iframe><iframe src="/discovery/walkthrough/step-09.html" title="Step 9: Spec cut to learn mode, persona run 2"></iframe><iframe src="/discovery/walkthrough/step-10.html" title="Step 10: Page built"></iframe><iframe src="/discovery/walkthrough/step-11.html" title="Step 11: Two more ideas picked: call-slot and short-form"></iframe></main>
+<script>
+const frames=[...document.querySelectorAll('iframe')],btns=[...document.querySelectorAll('.steps button')];
+const head=document.getElementById('now');let cur=0;
+function show(i){cur=Math.max(0,Math.min(frames.length-1,i));
+frames.forEach((f,k)=>f.classList.toggle('on',k===cur));btns.forEach((b,k)=>b.setAttribute('aria-current',k===cur?'step':'false'));
+head.innerHTML=btns[cur].dataset.head;btns[cur].scrollIntoView({block:'nearest',inline:'nearest'});
+try{history.replaceState(null,'','#'+(cur+1))}catch(e){}}
+btns.forEach((b,k)=>b.addEventListener('click',()=>show(k)));
+function key(e){if(e.key==='PageDown')return show(cur+1),e.preventDefault();if(e.key==='PageUp')return show(cur-1),e.preventDefault();
+if(e.currentTarget!==window)return;if(e.key==='ArrowRight')show(cur+1),e.preventDefault();else if(e.key==='ArrowLeft')show(cur-1),e.preventDefault();
+else if(e.key==='Home')show(0);else if(e.key==='End')show(frames.length-1);}
+window.addEventListener('keydown',key);
+frames.forEach((f)=>f.addEventListener('load',()=>{try{f.contentWindow.addEventListener('keydown',key)}catch(e){}}));
+show((parseInt(location.hash.slice(1),10)||1)-1);</script></body></html>
