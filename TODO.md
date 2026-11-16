@@ -34,3 +34,17 @@ Open work on this repo that is not part of a workshop block.
   prototype card changed after the build. Open: is the spec, the page or the prototype card the
   reference for the test? Who checks before the test that the three still fit? Is a check like
   `npm run check` possible, for example one that lists every sign without an element on the page?
+- **Make "hurts most if wrong" concrete when the pair picks the idea to test first.** Step 4 of
+  `intent-and-ideas` asks for "the one whose assumption would hurt most if wrong, or has no
+  source", but does not say what "hurt" means. So the three reasons in
+  `discovery/intents/format-fit.md` name effort ("A good quiz is hard to design right") or
+  contrast ("The furthest from the quiz", "The opposite of the quiz"), and the skill's feedback
+  does not catch it. With building cheap, effort is the wrong measure. Proposal: step 4 asks two
+  questions, and the feedback rule (`SKILL.md:46`) checks the reason against them: if we ship this
+  and it is wrong, what breaks, and for whom? How soon would the numbers show it, or would being
+  wrong look like a win? Example: `short-form` raises start and submit rate almost by
+  construction, while the loss (scoping calls with no context) shows only further down the tree;
+  its own card says the test cannot show "whether the scoping call still works"
+  (`discovery/test-cards/short-form-prototype.md:86`). No new field, no score column. Not before
+  the talk on 2026-11-17: the demo's selections come from the current skill. Raised on
+  2026-11-16, while preparing the talk.
