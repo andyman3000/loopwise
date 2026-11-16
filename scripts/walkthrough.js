@@ -36,7 +36,10 @@ function snapshot(step) {
     execFileSync('tar', ['-xf', tar, '-C', dir]);
     const html = (VIEWS[step.view || 'tree'] || VIEWS.tree)(dir);
     if (EMPTY.test(html)) throw new Error('the page shows no tree for this commit');
-    return { sha, html, date: git('show', '-s', '--format=%ad', '--date=format:%Y-%m-%d %H:%M', sha) };
+    // The files this step wrote, so the header can name them even where the tree draws no mark.
+    const wrote = git('diff-tree', '--root', '--no-commit-id', '--name-only', '-r', sha).split('\n')
+      .filter((f) => (f.startsWith('discovery/') && !f.endsWith('.html')) || f.startsWith('site/variants/'));
+    return { sha, html, wrote, date: git('show', '-s', '--format=%ad', '--date=format:%Y-%m-%d %H:%M', sha) };
   } finally {
     fs.rmSync(tmp, { recursive: true, force: true });
   }
@@ -64,17 +67,19 @@ const CSS = `
 @media (prefers-color-scheme:dark){:root{--bg:#1b1e21;--fg:#e8e6e1;--muted:#a3a8ad;--accent:#7fb3b8;--accent-fg:#10201f;--line:#4a5056;--card:#23272b;--chip:#2c3135}}
 *{box-sizing:border-box}html,body{margin:0;height:100%}
 body{background:var(--bg);color:var(--fg);font:18px/1.35 system-ui,-apple-system,sans-serif;display:flex;flex-direction:column;overflow:hidden}
-header{padding:12px 20px 10px;border-bottom:2px solid var(--line);background:var(--card)}
-#now{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:10px}
+header{padding:10px 20px 8px;border-bottom:2px solid var(--line);background:var(--card)}
+#now{display:flex;align-items:baseline;gap:6px 16px;flex-wrap:wrap;margin-bottom:8px}
 #now .n{font-size:22px;font-weight:700;color:var(--muted)}
 #now h1{font-size:30px;line-height:1.15;margin:0}
 #now .meta{font-size:17px;color:var(--muted)}
+#now .wrote{flex-basis:100%;font-size:16px;color:var(--muted)}
+#now .wrote b{color:var(--fg);font-weight:600}
 #now code{font-size:16px;background:var(--chip);padding:1px 6px;border-radius:4px}
-.steps{display:grid;grid-template-columns:max-content 1fr;gap:6px 12px;align-items:center}
-.steps .var{font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);white-space:nowrap}
-.steps .row{display:flex;gap:8px;flex-wrap:wrap}
+.steps{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center}
+.steps .grp{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.steps .var{font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);white-space:nowrap;margin-right:2px}
 .steps button{font:inherit;font-size:17px;font-weight:600;background:var(--bg);color:var(--fg);border:2px solid var(--line);border-radius:10px;
-padding:8px 12px;cursor:pointer;white-space:nowrap;display:flex;gap:8px;align-items:center}
+padding:6px 10px;cursor:pointer;white-space:nowrap;display:flex;gap:8px;align-items:center}
 .steps button b{font-size:15px;color:var(--muted)}
 .steps button[aria-current=step]{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
 .steps button[aria-current=step] b{color:var(--accent-fg)}
@@ -90,11 +95,13 @@ function indexPage(steps) {
   steps.forEach((s, i) => {
     const group = s.group || s.variant || 'The run';
     if (!rows.length || rows[rows.length - 1].group !== group) rows.push({ group, buttons: [] });
-    const head = `<span class="n">${i + 1} / ${steps.length}</span><h1>${esc(s.variant ? `${s.variant}: ${s.label}` : s.label)}</h1>`
-      + `<span class="meta">${s.skill ? `skill <code>${esc(s.skill)}</code> · ` : ''}commit <code>${esc(s.sha.slice(0, 7))}</code> · ${esc(s.date)}</span>`;
+    const head = `<span class="n">${i + 1} / ${steps.length}</span><h1>${esc((s.variant ? `${s.variant}: ` : '') + (s.title || s.label))}</h1>`
+      + `<span class="meta">${s.skill ? `skill <code>${esc(s.skill)}</code> · ` : ''}commit <code>${esc(s.sha.slice(0, 7))}</code> · ${esc(s.date)}</span>`
+      + `<span class="wrote">${s.wrote.length ? `Wrote ${s.wrote.map((f) => `<code>${esc(f)}</code>`).join(' ')}` : ''}`
+      + `${s.same ? ` · <b>The tree looks as in step ${s.same}: it draws no mark for this file.</b>` : ''}</span>`;
     rows[rows.length - 1].buttons.push(`<button type="button" data-head="${esc(head)}"><b>${i + 1}</b>${esc(s.label)}</button>`);
   });
-  const buttons = rows.map((r) => `<span class="var">${esc(r.group)}</span><div class="row">${r.buttons.join('')}</div>`).join('');
+  const buttons = rows.map((r) => `<div class="grp"><span class="var">${esc(r.group)}</span>${r.buttons.join('')}</div>`).join('');
   return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Discovery walkthrough</title><style>${CSS}</style></head><body>
 <header><div id="now" aria-live="polite"></div><nav class="steps" aria-label="Steps">${buttons}</nav>
@@ -111,9 +118,10 @@ const failed = [];
 steps.forEach((step, i) => {
   const file = `step-${String(i + 1).padStart(2, '0')}.html`;
   try {
-    const { sha, html, date } = snapshot(step);
+    const { sha, html, date, wrote } = snapshot(step);
     fs.writeFileSync(path.join(OUT, file), html);
-    done.push({ ...step, sha, date, file });
+    const prev = done[done.length - 1];
+    done.push({ ...step, sha, date, wrote, file, same: prev && prev.html === html ? done.length : 0, html });
     console.log(`${i + 1}. ${step.variant ? step.variant + ': ' : ''}${step.label} (${step.commit}) -> walkthrough/${file}`);
   } catch (e) {
     failed.push(`${i + 1}. ${step.label} (${step.commit}): ${e.message.split('\n')[0]}`);
