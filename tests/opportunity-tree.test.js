@@ -433,6 +433,16 @@ test('a written spec and a built page each fill a stage and name where the exper
   assert.match(summary(), /Page built/);
 });
 
+test('a built experiment links its page next to Details, opening in a new tab', () => {
+  const { root, put } = experimentRepo();
+  const card = () => treePage(root).match(/<article class="exp[^"]*"[^>]*>[\s\S]*?<div class="more">/)[0];
+  assert.doesNotMatch(card(), /class="try"/, 'not built, no link');
+  put('site/variants/success-line-first/inquiry.html', '<p>x</p>');
+  assert.match(card(), /Details<\/button><a class="try" href="\/inquiry\.html\?variant=success-line-first" target="_blank"/);
+  put('site/variants/success-line-first/formats.html', '<p>x</p>');
+  assert.match(card(), /href="\/formats\.html\?variant=success-line-first"/, 'the formats page comes first');
+});
+
 test('a learning card saved under another decision number still counts, and only for its own variant', () => {
   const { root, put } = experimentRepo();
   fs.rmSync(path.join(root, 'discovery', 'decisions'), { recursive: true, force: true });

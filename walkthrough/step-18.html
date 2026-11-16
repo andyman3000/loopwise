@@ -72,6 +72,10 @@ svg path.dim{opacity:.15}
 .dots{display:flex;gap:5px}.dots i{width:14px;height:14px;border-radius:50%;border:2px solid var(--accent)}.dots i.f{background:var(--accent)}
 .exp .now{font-size:14px;color:var(--muted);line-height:1.3}
 .exp .open-btn{align-self:flex-start;margin-top:2px}
+.exp .btns{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.exp .btns .open-btn{margin-top:0}
+a.try{font-size:13px;font-weight:600;color:var(--accent-fg);background:var(--accent);border:1.5px solid var(--accent);border-radius:6px;padding:3px 10px;text-decoration:none;white-space:nowrap}
+a.try:hover{filter:brightness(1.1)}
 .stages{margin:0;padding-left:1.2em}.stages .runs{margin:0;padding-left:1em}.stages li{color:var(--muted)}.stages li.done{color:var(--fg)}
 .exp .more .x{display:none}
 body.focus .exp.dim{opacity:.3}
@@ -355,7 +359,7 @@ body.flat .decide .row{grid-template-columns:1fr}
 <span class="mech">format-quiz</span>
 <span class="dots" aria-label="4 of 8 stages done"><i class="f" title="Test card"></i><i class="f" title="Spec"></i><i class="f" title="Built"></i><i class="f" title="Personas"></i><i class="" title="People"></i><i class="" title="Learning card"></i><i class="" title="Launch"></i><i class="" title="Result"></i></span>
 <span class="now">spec checked in 2 persona runs · 0 of 5 people tested</span>
-<button type="button" class="open-btn" data-open="C1-I1-E1">Details</button>
+<span class="btns"><button type="button" class="open-btn" data-open="C1-I1-E1">Details</button><a class="try" href="/formats.html?variant=format-quiz" target="_blank" rel="noopener">Open the page ↗</a></span>
 <div class="more">
 <div class="part"><h3>Stages</h3><ol class="stages">
 <li class="done"><b>Test card</b> Product lead (Loopwise), 2026-11-15</li>
@@ -380,7 +384,7 @@ body.flat .decide .row{grid-template-columns:1fr}
 <span class="mech">call-slot</span>
 <span class="dots" aria-label="4 of 8 stages done"><i class="f" title="Test card"></i><i class="f" title="Spec"></i><i class="f" title="Built"></i><i class="f" title="Personas"></i><i class="" title="People"></i><i class="" title="Learning card"></i><i class="" title="Launch"></i><i class="" title="Result"></i></span>
 <span class="now">page checked in 1 persona run · 0 of 5 people tested</span>
-<button type="button" class="open-btn" data-open="C1-I2-E2">Details</button>
+<span class="btns"><button type="button" class="open-btn" data-open="C1-I2-E2">Details</button><a class="try" href="/inquiry.html?variant=call-slot" target="_blank" rel="noopener">Open the page ↗</a></span>
 <div class="more">
 <div class="part"><h3>Stages</h3><ol class="stages">
 <li class="done"><b>Test card</b> ____ (human decides)</li>
@@ -405,7 +409,7 @@ body.flat .decide .row{grid-template-columns:1fr}
 <span class="mech">short-form</span>
 <span class="dots" aria-label="4 of 8 stages done"><i class="f" title="Test card"></i><i class="f" title="Spec"></i><i class="f" title="Built"></i><i class="f" title="Personas"></i><i class="" title="People"></i><i class="" title="Learning card"></i><i class="" title="Launch"></i><i class="" title="Result"></i></span>
 <span class="now">page checked in 1 persona run · 0 of 5 people tested</span>
-<button type="button" class="open-btn" data-open="C1-I6-E3">Details</button>
+<span class="btns"><button type="button" class="open-btn" data-open="C1-I6-E3">Details</button><a class="try" href="/formats.html?variant=short-form" target="_blank" rel="noopener">Open the page ↗</a></span>
 <div class="more">
 <div class="part"><h3>Stages</h3><ol class="stages">
 <li class="done"><b>Test card</b> ____ (human decides)</li>
