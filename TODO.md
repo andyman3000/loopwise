@@ -8,3 +8,21 @@ Open work on this repo that is not part of a workshop block.
   allowed for further reading. First test case: `discovery/intents/format-fit.md` before and after
   the rewrite of 2026-11-14 ("This sits on branch A, driver start rate, measured by the event
   `inquiry_started`" failed this test). No eval exists in the repo yet.
+- **Decision records for how the repo works.** Bring in the idea of architecture decision records
+  (ADRs): one short file per decision on the repo itself, with context, options, decision and
+  consequence. Today `discovery/decisions/` holds product decisions only. Changes to skills, rules
+  and the chain have no record. First case: the change to `persona-walkthrough` on 2026-11-16
+  (walkthroughs shown in chat, two sign tables, proposals ranked by criticality, no two-pick limit
+  in setting `team`). Open: folder name, template, and who decides.
+- **Ask to update the personas when new evidence comes in.** The persona files in
+  `product/personas/` are drafts. When a skill finds a source line that adds to or contradicts a
+  persona (a new interview, a test with people, the answers a shipped variant collects), it should
+  ask the human whether to update the persona file, and name the line. A persona walkthrough is not
+  new evidence: the personas cannot learn from their own run. Open: which skills ask
+  (`opportunities-from-source`, `learning-card`, `next-bet`), and who approves the change.
+- **Make the views faster to build.** `/discovery/tree` reads and parses every Markdown file it
+  needs on each page load: the comparison, every intent, every opportunity file, and per
+  experiment the test card, each persona run, each tester file and the learning card. That is fine
+  for one opportunity with one experiment. With more experiments the page may get slow. Not now.
+  Open: measure first how long one page load takes, then decide. Options: read each file once and
+  keep it until it changes, or write the parsed data to one file that `npm run tree` builds.
