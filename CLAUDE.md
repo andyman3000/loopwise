@@ -156,14 +156,14 @@ Run in this order. Each skill writes its artefact under `discovery/`.
 | 3 | `compare-opportunities` | `discovery/opportunity-comparison.md`, drawn at `/discovery/tree` |
 | 4 | `intent-and-ideas` | `discovery/intents/<opportunity>.md`: own ideas, more ideas, 3 to 5 with driver and assumption, the idea tested first; drawn at `/discovery/tree` after every step |
 | 5 | `test-card <variant> prototype` | `discovery/test-cards/<variant>-prototype.md` |
-| 6 | `variant-spec` | `discovery/specs/<variant>.md`, then Claude Code builds `site/variants/<variant>/` |
+| 6 | `variant-spec <variant> learn` | `discovery/specs/<variant>.md`: the smallest page that tests the critical assumption, checked for bloat by a challenger; then Claude Code builds `site/variants/<variant>/` |
 | 7 | `persona-walkthrough <variant> spec` or `page` | `discovery/user-tests/<variant>-spec.md` or `<variant>-page.md` |
 | 8 | `learning-card` | `discovery/decisions/002-<variant>.md` |
 | 9 | `test-card <variant> launch` | `discovery/test-cards/<variant>.md` |
 | 10 | `read-result` | the `## Result` section of `discovery/test-cards/<variant>.md` |
 | 11 | `next-bet` | `discovery/kpi-tree.md` (measured values), `discovery/opportunity-comparison.md` (appended) |
 
-For later, outside the workshop chain: `compare-variants` compares several variants of one
+For later, outside the workshop chain: `variant-spec <variant> launch` writes the full page for the release after the launch card (step 9), as `discovery/specs/<variant>-launch.md`. `compare-variants` compares several variants of one
 opportunity, each with a launch card, before one ships. It writes `discovery/variant-comparison.md`.
 
 # Decisions
@@ -200,3 +200,4 @@ pair's own words, and leaves the decision empty if the pair names none.
 | 2026-10-21 | product team | Initial version |
 | 2026-10-24 | product team | Training start state: `variant-spec` skill added, only what exists at the start is described |
 | 2026-11-13 | product team | The word "sponsor" became "buyer", outside quotes from sources and source file names |
+| 2026-11-16 | product team | `variant-spec` has two modes: `learn` (default, the smallest page for the prototype test, with a challenger run against bloat) and `launch` |
