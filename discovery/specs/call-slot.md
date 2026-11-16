@@ -12,7 +12,7 @@
 | # | Date | Review | File | Findings | Decided |
 |---|---|---|---|---|---|
 | 1 | 2026-11-16 | challenger, run 1 | this file, "Challenger check" | 17 findings, 11 rows in the table; the rest confirm the core path | open: 7 applied and 4 kept by the agent, for the product lead to confirm |
-| 2 | 2026-11-16 | persona walkthrough, page, run 1, on commit f251f8a | [discovery/user-tests/call-slot-page.md](../user-tests/call-slot-page.md) | fix before the test: 1 · fix if time allows: 1 · watch in the test: 1 | open |
+| 2 | 2026-11-16 | persona walkthrough, page, run 1, on commit f251f8a | [discovery/user-tests/call-slot-page.md](../user-tests/call-slot-page.md) | fix before the test: 1 · fix if time allows: 1 · watch in the test: 1 | open: the agent applied the one "fix before the test" finding; the other two left for the product lead |
 
 A spec describes the page so exactly that Claude Code can build it from this file alone.
 In mode `learn` it covers only what the prototype test needs. Everything else is left out.
@@ -43,7 +43,7 @@ The page books nothing for real. The slot booking is faked: it sends nothing to 
 
 ### The slot booking (opens in the box, in place of the two options)
 1. "Choose a time" replaces the two options with the booking. There is no way back to the two options; the form stays below. Serves: the step into the slot booking.
-2. **Day:** a drop-down "Day", first entry "Choose a day". It lists the working days (Monday to Friday) from tomorrow, for four weeks. Each entry reads like "Tuesday, 24 November". [invented] Four weeks serve the rework sign that no time fits: the buyer without budget has "No timeline" ([product/personas/buyer-without-budget.md:45](../../product/personas/buyer-without-budget.md#L45)).
+2. **Day:** a drop-down "Day", first entry "Choose a day". It lists the working days (Monday to Friday) from tomorrow, for ten weeks. Each entry reads like "Tuesday, 24 November". [invented] Ten weeks reach past the holidays. They serve the rework sign that no time fits: the buyer without budget has "No timeline" ([product/personas/buyer-without-budget.md:45](../../product/personas/buyer-without-budget.md#L45)), and the rest of her year is full ([product/personas/buyer-without-budget.md:53](../../product/personas/buyer-without-budget.md#L53)).
 3. **Time:** four choices as radio buttons, 9:30, 11:00, 14:00, 16:00. [invented] Every day has all four. No time is ever taken.
 4. **Name** and **Email**, two fields. They sit in their own `<div>`, never in `#inquiry-form`. No other field: the booking asks nothing about the format or the group. Serves: the rework sign that a booking step asks for what the tester does not know ([discovery/test-cards/call-slot-prototype.md:74](../test-cards/call-slot-prototype.md#L74)).
 5. A button "Book this call". [invented] It checks that a day, a time, a name and a valid email are given. A missing one shows one line under the button: Please choose a day and a time, and enter your name and email. [invented]
@@ -82,7 +82,7 @@ The slot booking sends nothing. Its day, time, name and email stay in the browse
 | "Talk to us", "Write to us", "Book a call slot", "Call us directly", "Choose a time", "Book this call" | the product lead |
 | A 20-minute video call | someone who runs scoping calls |
 | The made-up number | the product lead |
-| The days, four weeks ahead, and the four times | someone who runs scoping calls |
+| The days, ten weeks ahead, and the four times | someone who runs scoping calls |
 | Your call is booked, and the line on the video link | the product lead |
 | The error line under "Book this call" | the product lead |
 
@@ -99,7 +99,7 @@ The slot booking sends nothing. Its day, time, name and email stay in the browse
 - Ways to talk on the home or formats page: the idea names the inquiry page only ([discovery/intents/format-fit.md:91](../intents/format-fit.md#L91)). · for the launch spec
 
 ## Changes after review
-_None yet._
+- After persona walkthrough run 1 ([discovery/user-tests/call-slot-page.md](../user-tests/call-slot-page.md)): the day list reaches ten weeks ahead, past the holidays, instead of four. The buyer without budget says the rest of her year is full. Applied by the agent tonight, as its brief asked it to fix every blocker a run names. · Decided by: open, for the product lead to confirm or revert
 
 ## Challenger check
 A subagent with no other context read only the prototype card and this spec on 2026-11-16. It looked for elements that serve no sign and no part of the assumption, second paths, unlikely edge cases and parts the build could fake. It found the core path complete: the ways to talk, "Choose a time", day and time, "Book this call", the booked call, and the form below.

@@ -121,12 +121,12 @@
 
     $('phone').addEventListener('click', (e) => e.preventDefault());
 
-    // Working days from tomorrow, for four weeks.
+    // Working days from tomorrow, for ten weeks, so a buyer whose year is full can pick a date after the holidays.
     const day = $('slot-day');
     const fmt = new Intl.DateTimeFormat('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
     const d = new Date();
     d.setDate(d.getDate() + 1);
-    const end = new Date(d); end.setDate(end.getDate() + 28);
+    const end = new Date(d); end.setDate(end.getDate() + 70);
     for (; d < end; d.setDate(d.getDate() + 1)) {
       if (d.getDay() % 6 === 0) continue;
       const label = fmt.format(d).replace(' ', ', ');
