@@ -6,7 +6,7 @@
 > Passed means the go-on line of the prototype card held: "At least 3 of 5 testers book a call slot on the page" ([discovery/test-cards/call-slot-prototype.md:80](../test-cards/call-slot-prototype.md#L80)).
 > Until then, no line on this card is in force. The product lead asked for this preview on 2026-11-16.
 > Assessment drafted by an agent on 2026-11-16, not a decision.
-> Card owner: ____ (human decides)
+> Card owner: Product lead (Loopwise), the product lead's decision ("Yes, all five", 2026-11-16)
 > Variant: [discovery/specs/call-slot.md](../specs/call-slot.md) · Intent: [discovery/intents/format-fit.md](../intents/format-fit.md) · Prototype test: [discovery/test-cards/call-slot-prototype.md](../test-cards/call-slot-prototype.md), learning card [discovery/decisions/003-call-slot.md](../decisions/003-call-slot.md)
 > KPI branch: Branch A ("Branch A: more inquiries that end in a booking", [discovery/kpi-tree.md:18](../kpi-tree.md#L18)) · driver: call rate ("call rate: percentage of sent inquiries that get a scoping call", [discovery/kpi-tree.md:23](../kpi-tree.md#L23))
 > Material: interviews, inquiry mails, inbox and data are synthetic; the feedback free text is an anonymised composite. This file repeats that label.
@@ -33,7 +33,7 @@ In English: "I don't know, that is exactly the point. None of this is statistica
 Where the draft differs:
 - The success line is the second answer as a share: at least 57.5% of sent inquiries get a scoping call. 65 of 113 is the reference count. The product lead confirmed this on 2026-11-16: "passt so" ("that fits").
 - The draft adds a time frame of eight weeks, which the answers do not name. 113 sent inquiries took 26 weeks, so a share fits a shorter time frame than a count.
-- The draft flags that a booked slot has no sent inquiry. The product lead decides how such calls count.
+- The draft flags that a booked slot has no sent inquiry. The product lead decided that booked slots stay out of the share and are reported on their own.
 
 Feedback:
 - Strong: the first try names a driver from the KPI tree, the call rate, and a size, before launch.
@@ -116,9 +116,9 @@ At least 57.5% of sent inquiries get a scoping call, over the eight weeks after 
 - Source: the product lead, 2026-11-16, „Ich wäre mit 65 von 113 sehr zufrieden“ ("I would be very happy with 65 of 113"). Confirmed as a share the same day: "passt so" ("that fits").
 - In eight weeks before launch, 32 to 40 inquiries were sent. One call more or less moves the share by about three points.
 - Direction only: the change is smaller than the usual swing (table above).
-- How a booked slot counts: ____ (human decides). A booked slot is a scoping call without a sent inquiry. Option one counts it as one sent inquiry and one call. Option two keeps it out and reports booked slots on their own.
+- How a booked slot counts: it stays out of the share and is reported on its own, under "Usage hypothesis". A booked slot is a scoping call without a sent inquiry. Decided: the product lead's decision ("Yes, all five", 2026-11-16).
 - Computed from: sessions with `scoping_call_booked` that also have `inquiry_submitted`, ÷ sessions with `inquiry_submitted`, both with the variant `call-slot`.
-- Set by: ____ (human decides) · Set on: 2026-11-16, the value by the product lead
+- Set by: Product lead (Loopwise), the product lead's decision ("Yes, all five", 2026-11-16) · Set on: 2026-11-16
 
 ## Usage hypothesis
 Buyers use the slot booking: booked slots are at least a quarter of all scoping calls in the time frame (proposal). · Computed from: sessions with `scoping_call_booked` and no `inquiry_submitted`, ÷ sessions with `scoping_call_booked`, variant `call-slot`. Before launch this count is 0, because no slot booking exists.
@@ -137,10 +137,10 @@ Inquiry page visits that end in a contact: a sent inquiry or a booked slot. Must
 Second counter metric, reported without a threshold: the booking rate, `booking_confirmed` ÷ `scoping_call_booked`. Today 23 of 55 (41.8%) ([discovery/opportunities/data.md:95](../opportunities/data.md#L95)). Eight-week blocks: 7 of 17, 10 of 20, 6 of 16. One booking moves the rate by about six points.
 
 ## Kill criterion
-In the first eight weeks after launch, fewer inquiry page visits end in a contact than in every eight-week block before launch: below 32 of 228 (14.0%) (proposal). · Computed from: the counter metric above · The unchanged page met this in 0 of 3 eight-week blocks. In four-week blocks it fell below 14.0% once in 6 (12 of 118). · Set by: ____ (human decides)
+In the first eight weeks after launch, fewer inquiry page visits end in a contact than in every eight-week block before launch: below 32 of 228 (14.0%). · Computed from: the counter metric above · The unchanged page met this in 0 of 3 eight-week blocks. In four-week blocks it fell below 14.0% once in 6 (12 of 118). · Set by: Product lead (Loopwise), the product lead's decision ("Yes, all five", 2026-11-16)
 
 ## Time frame
-Eight weeks from launch (proposal), as long as the eight-week blocks in the swing table. Read the result one week after the eight weeks end: today a call follows a sent inquiry within 1 to 4 days (counted in `data/events.jsonl`). The kill criterion is read at the same time. · Set by: ____ (human decides)
+Eight weeks from launch, as long as the eight-week blocks in the swing table. Read the result one week after the eight weeks end: today a call follows a sent inquiry within 1 to 4 days (counted in `data/events.jsonl`). The kill criterion is read at the same time. · Set by: Product lead (Loopwise), the product lead's decision ("Yes, all five", 2026-11-16)
 
 ## What the measurement will and will not tell
 - **A signal, not proof.** The product lead: „Statistisch relevant ist das alles eh nicht.“ ("None of this is statistically meaningful anyway.") In plain words: eight weeks bring a few dozen sent inquiries. The unchanged page swung by 22.5 points between eight-week blocks, without any change on the page.
