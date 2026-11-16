@@ -2,7 +2,7 @@
 
 > **Pressure-tested, not validated.** The AI personas come from the same sources as the opportunity. Only the test with people tests from outside.
 > Assessment drafted by an agent on 2026-11-16, not a decision.
-> Card owner: ____ (human decides)
+> Card owner: Product lead (Loopwise), 2026-11-16
 > Intent: [discovery/intents/format-fit.md](../intents/format-fit.md) · Idea: I6 ("Cut the form to name and email. Everything else is asked in the scoping call (inquiry page)", [discovery/intents/format-fit.md:100](../intents/format-fit.md#L100))
 > Material: interviews, inquiry mails, inbox and data are synthetic; the feedback free text is an anonymised composite. This file repeats that label.
 
@@ -26,19 +26,19 @@ The intent names the counter-evidence too. The form asks no format today, only "
 No learning card for an earlier variant of this intent exists in `discovery/decisions/`. So this card answers no earlier learning.
 
 ## To verify that, we will
-Show 5 people who lead product people and have not booked a Loopwise format the variant. Proposal: 3 start on `/formats.html?variant=short-form`, 2 on `/inquiry.html?variant=short-form`. The formats page stays as today, and its links keep the variant. The split follows the format-quiz card. In 26 weeks of synthetic data, 364 of 740 inquiry page visits had no formats page view before them in the same session ([discovery/opportunities/data.md:43](../opportunities/data.md#L43)). Each tester gets only the scenario below. The person who built the page watches for the signs.
+Show 5 people who lead product people and have not booked a Loopwise format the variant. Proposal: 3 start on `/formats.html?variant=short-form`, 2 on `/inquiry.html?variant=short-form`. The formats page stays as today, and its links keep the variant. The split follows the format-quiz card. In 26 weeks of synthetic data, 364 of 740 inquiry page visits had no formats page view before them in the same session ([discovery/opportunities/data.md:43](../opportunities/data.md#L43)). Each tester gets only the scenario below. The person who built the page watches for the signs. The product lead confirmed the split of 3 and 2 (2026-11-16).
 
 The scenario is the same as on the format-quiz card. The team can then hold the two variants side by side.
 
 ### Testers
 - **Who qualifies:** proposal. The tester leads product people and looks for an AI format for them ([product/personas/buyer-without-budget.md:14](../../product/personas/buyer-without-budget.md#L14)). The tester does not decide alone, and no budget is settled yet ([product/personas/buyer-without-budget.md:5](../../product/personas/buyer-without-budget.md#L5)). The tester has a real group in mind and has not booked a Loopwise format.
-- **How many:** 5 buyers without budget, proposal · Set by: ____ (human decides)
-- **Recruited by:** ____ (human decides) · **By:** ____ (human decides)
+- **How many:** 5 buyers without budget · Set by: Product lead (Loopwise), 2026-11-16. The criteria above stand as proposed.
+- **Recruited by:** Product lead (Loopwise) · **By:** before 2026-11-24
 
 ### Test scenario (the tester sees only this)
 - **Situation:** You lead a group of product people in your company. You want them trained in using AI in product work. Think of a real group you know well: who is in it, and how they use AI today.
 - **Task:** Find out whether Loopwise has something for that group. Then do what you would do next in real life.
-- **Page:** `/formats.html?variant=short-form` for 3 testers, `/inquiry.html?variant=short-form` for 2, proposal.
+- **Page:** `/formats.html?variant=short-form` for 3 testers, `/inquiry.html?variant=short-form` for 2.
 - **Sources:** the buyer without budget leads product people and looks for an AI format for them ([product/personas/buyer-without-budget.md:14](../../product/personas/buyer-without-budget.md#L14)). Some teams work with agents every day, others are where they were a year ago ([product/personas/buyer-without-budget.md:22](../../product/personas/buyer-without-budget.md#L22)).
 - **Does not count if:** the tester has no such group in mind.
 
@@ -68,16 +68,16 @@ The last column says what the persona file can do for each sign instead:
 | The tester says "I need to know the format first" or "I'd be guessing" | drop | A fact the page must fit: the same line on the guess ([product/personas/buyer-without-budget.md:94](../../product/personas/buyer-without-budget.md#L94)). The page must not read as if the call needs a chosen format. |
 
 ## We are right if (go-on line)
-Proposal: at least 3 of 5 testers reach the inquiry page and send the form with name and email. They do not ask where to describe the group, and do not go back to the formats to choose first.
-Set by: ____ (human decides) · Set on: ____ (human decides)
+At least 3 of 5 testers reach the inquiry page and send the form with name and email. They do not ask where to describe the group, and do not go back to the formats to choose first.
+Set by: Product lead (Loopwise), wording proposed by the agent · Set on: 2026-11-16
 
 ## We rework or drop the idea if (rework-or-drop line)
 The line has two parts. A problem with the page means rework. A problem with the assumption means drop.
-- **We rework the page if**, proposal, 3 or more of 5 testers look for a place to describe their group, or stop at "Send" and ask what it commits them to.
-- **We drop the idea if**, proposal, 3 or more of 5 testers leave without sending, or say they must know the format first.
+- **We rework the page if** 3 or more of 5 testers look for a place to describe their group, or stop at "Send" and ask what it commits them to.
+- **We drop the idea if** 3 or more of 5 testers leave without sending, or say they must know the format first.
 - If the five testers fit none of these lines, the result is mixed. The learning card then decides on another round.
 
-Set by: ____ (human decides) · Set on: ____ (human decides)
+Set by: Product lead (Loopwise), wording proposed by the agent · Set on: 2026-11-16
 
 ## What this test cannot show
 - 5 testers: a pattern, not a rate.
