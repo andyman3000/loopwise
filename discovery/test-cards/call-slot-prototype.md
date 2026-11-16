@@ -2,7 +2,7 @@
 
 > **Pressure-tested, not validated.** The AI personas come from the same sources as the opportunity. Only the test with people tests from outside.
 > Assessment drafted by an agent on 2026-11-16, not a decision.
-> Card owner: ____ (human decides)
+> Card owner: Product lead (Loopwise), 2026-11-16
 > Intent: [discovery/intents/format-fit.md](../intents/format-fit.md) · Idea: I2 ("I2: Offer other ways of contact: Call us directly, Book a call slot, that opens a calendar link (inquiry page)", [discovery/intents/format-fit.md:91](../intents/format-fit.md#L91))
 > Material: interviews, inquiry mails, inbox and data are synthetic; the feedback free text is an anonymised composite. This file repeats that label.
 
@@ -28,23 +28,23 @@ No learning card exists yet for an earlier variant of this intent. So this card 
 
 ## To verify that, we will
 Show 5 people who lead product people and have not booked a Loopwise format the variant.
-Proposal: 3 start on `/formats.html?variant=call-slot`, 2 on `/inquiry.html?variant=call-slot`.
+3 start on `/formats.html?variant=call-slot`, 2 on `/inquiry.html?variant=call-slot`.
 The variant changes only the inquiry page. The formats page stays as today, so a tester meets the five formats first.
 In 26 weeks of synthetic data, 364 of 740 inquiry page visits had no formats page view before them in the same session ([data/events.jsonl](../../data/events.jsonl)).
-That is why some testers start on the inquiry page.
+That is why some testers start on the inquiry page. The product lead set the split of 3 and 2 (2026-11-16).
 Each tester gets only the scenario below. The person who built the page watches for the signs.
 
 ### Testers
-- **Who qualifies:** proposal. The tester leads product people and looks for an AI format for them ([product/personas/buyer-without-budget.md:14](../../product/personas/buyer-without-budget.md#L14)). The tester does not decide alone, and no budget is settled yet ([product/personas/buyer-without-budget.md:5](../../product/personas/buyer-without-budget.md#L5)). The tester has a real group in mind and has not booked a Loopwise format.
-- **How many:** 5 buyers without budget, proposal · Set by: ____ (human decides)
-- **Recruited by:** ____ (human decides) · **By:** ____ (human decides)
+- **Who qualifies:** the tester leads product people and looks for an AI format for them ([product/personas/buyer-without-budget.md:14](../../product/personas/buyer-without-budget.md#L14)). The tester cannot tell yet which format fits. Budget does not matter: a tester may have no budget settled ([product/personas/buyer-without-budget.md:5](../../product/personas/buyer-without-budget.md#L5)), or hold the budget ([product/personas/buyer-with-budget.md:5](../../product/personas/buyer-with-budget.md#L5)). The tester has a real group in mind and has not booked a Loopwise format.
+- **How many:** 5 buyers, with or without budget, in one group · Set by: Product lead (Loopwise), 2026-11-16
+- **Recruited by:** Product lead (Loopwise) · **By:** 2026-11-24
 
-The buyer with budget is left out of this proposal. That buyer wants written answers before a call ([product/personas/buyer-with-budget.md:96](../../product/personas/buyer-with-budget.md#L96)). Five testers of that type would test the counter-evidence. The product lead decides whether to add them.
+The watcher notes for each tester whether they hold a budget. The buyer with budget wants written answers before a call ([product/personas/buyer-with-budget.md:96](../../product/personas/buyer-with-budget.md#L96)). The learning card can then see whether testers with budget behave differently. The product lead chose one mixed group over two groups of five (2026-11-16).
 
 ### Test scenario (the tester sees only this)
 - **Situation:** You lead a group of product people in your company. You want them trained in using AI in product work. Think of a real group you know well: who is in it, and how they use AI today.
 - **Task:** Find out whether Loopwise has something for that group. Then do what you would do next in real life.
-- **Page:** `/formats.html?variant=call-slot` for 3 testers, `/inquiry.html?variant=call-slot` for 2, proposal.
+- **Page:** `/formats.html?variant=call-slot` for 3 testers, `/inquiry.html?variant=call-slot` for 2.
 - **Sources:** the buyer without budget leads product people and looks for an AI format for them ([product/personas/buyer-without-budget.md:14](../../product/personas/buyer-without-budget.md#L14)). Some teams work with agents every day, others are where they were a year ago ([product/personas/buyer-without-budget.md:22](../../product/personas/buyer-without-budget.md#L22)).
 - **Does not count if:** the tester has no such group in mind.
 
@@ -72,28 +72,29 @@ The last column says what the persona file can do for each sign instead:
 | Asked afterwards, the tester says in their own words what they want to settle in the call | go on | Nothing in the file: the tester's own words come only from the test with people. |
 | The tester looks for a way to talk to someone, or asks how to reach a person, and does not find it | rework | Nothing in the file: only the test with people can test this. |
 | The tester opens the slot booking and stops: no time fits, or they ask what the call is for or what they must prepare | rework | A fact the page must fit: the buyer "Does not know the format or how many pieces it has" ([product/personas/buyer-without-budget.md:42](../../product/personas/buyer-without-budget.md#L42)). A booking step that asks for the format will stop the tester. |
-| The tester sees the ways to talk and sends the form instead | drop | A fact the page must fit, for the other buyer type: the buyer with budget "Wants written answers before setting up a call" ([product/personas/buyer-with-budget.md:96](../../product/personas/buyer-with-budget.md#L96)). No tester of that type is proposed. |
+| The tester sees the ways to talk and sends the form instead | drop | A fact the page must fit, for the other buyer type: the buyer with budget "Wants written answers before setting up a call" ([product/personas/buyer-with-budget.md:96](../../product/personas/buyer-with-budget.md#L96)). The watcher notes whether the tester holds a budget. |
 | The tester leaves the page without booking a slot, calling or sending the form | drop | Behaviour in the file, partly: "Keeps the formats page open for weeks, or closes it and comes back later" ([product/personas/buyer-without-budget.md:93](../../product/personas/buyer-without-budget.md#L93)). The line describes today's formats page, without ways to talk. |
 | The tester says they would talk to colleagues first, before they book a call | drop | A fact the page must fit: "Does not decide alone" ([product/personas/buyer-without-budget.md:41](../../product/personas/buyer-without-budget.md#L41)). This may stop a booking for reasons the page cannot change. |
 
 ## We are right if (go-on line)
-Proposal: at least 3 of 5 testers book a call slot on the page, to the page that says the call is booked, and do not send the form.
-Set by: ____ (human decides) · Set on: ____ (human decides)
+At least 3 of 5 testers book a call slot on the page, to the page that says the call is booked, or click the number to call. They do not send the form.
+A click on the number counts as a call: the number on the test page dials nowhere.
+Set by: Product lead (Loopwise), wording proposed by the agent · Set on: 2026-11-16. The product lead added the click on the number the same day.
 
 ## We rework or drop the idea if (rework-or-drop line)
 The line has two parts. A problem with the page means rework. A preference for writing means drop.
-- **We rework the page if**, proposal, 3 or more of 5 testers do not find the ways to talk, or stop inside the slot booking.
-- **We drop the idea if**, proposal, 3 or more of 5 testers see the ways to talk and send the form instead, or leave with neither.
+- **We rework the page if** 3 or more of 5 testers do not find the ways to talk, or stop inside the slot booking.
+- **We drop the idea if** 3 or more of 5 testers see the ways to talk and send the form instead, or leave with neither.
 - If the five testers fit none of these lines, the result is mixed. The learning card then decides on another round.
 
-Set by: ____ (human decides) · Set on: ____ (human decides)
+Set by: Product lead (Loopwise), wording proposed by the agent · Set on: 2026-11-16
 
 ## What this test cannot show
 - 5 testers: a pattern, not a rate.
 - Whether a booked slot turns into a held call, or a booking. A prototype test shows whether people understand and use the page. The launch card is the place to measure the call rate and later steps.
 - Whether more inquiry page visits end in a scoping call than today. Five testers cannot show a change in that share.
-- Whether the tester would really pick up the phone. A phone number on a test page reaches no one, so the test sees only the click or the words.
+- Whether the tester would really pick up the phone. A phone number on a test page reaches no one, so the test sees only the click or the words. The watcher counts a click as a call.
 - Whether a tester who books a slot without writing anything gets a useful call. That is for the people who run scoping calls.
-- The buyer with budget. All five proposed testers are buyers without budget. The counter-evidence from that buyer type stays untested ([discovery/intents/format-fit.md:58](../intents/format-fit.md#L58)).
+- Whether buyers with budget differ from buyers without. One mixed group of five may hold one or two of either type, too few to compare. The counter-evidence from the buyer with budget gets a first look, no more ([discovery/intents/format-fit.md:58](../intents/format-fit.md#L58)).
 - A tester who knows they are watched may book a slot more readily than at their desk.
 - The persona file states the behaviour for one sign, partly. For five signs it states a fact the page must fit. For two signs it states nothing.

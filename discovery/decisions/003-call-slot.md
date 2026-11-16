@@ -15,7 +15,7 @@ The product lead was not present tonight. The agent filled only what the files h
 > Pressure-tested, not validated: rests on persona runs, not on people.
 > Rests on: [discovery/user-tests/call-slot-page-run2.md](../user-tests/call-slot-page-run2.md), the latest run of this round. Run 1 is [discovery/user-tests/call-slot-page.md](../user-tests/call-slot-page.md).
 
-No test with people has happened yet. The card proposes five buyers without budget ([discovery/test-cards/call-slot-prototype.md:39](../test-cards/call-slot-prototype.md#L39)).
+No test with people has happened yet. The card plans five buyers, with or without budget, in one group ([discovery/test-cards/call-slot-prototype.md:39](../test-cards/call-slot-prototype.md#L39)).
 
 ### How it went (first try)
 Skipped. The product lead skipped the try-first step tonight (2026-11-16).
@@ -25,11 +25,11 @@ Skipped. The product lead skipped the try-first step tonight (2026-11-16).
 
 ### We observed
 Persona observations only. Each rests on a line of the persona file.
-- Run 1: the buyer without budget stalled at the day list. Every day on offer ended by 14 December ([discovery/user-tests/call-slot-page.md:26](../user-tests/call-slot-page.md#L26)), resting on [product/personas/buyer-without-budget.md:53](../../product/personas/buyer-without-budget.md#L53). Her file says the rest of her year is full. The page was changed after run 1: the day list now reaches 25 January.
-- Run 2: the stall is gone. She can pick a day in January, and the booking asks nothing about the format she does not know ([discovery/user-tests/call-slot-page-run2.md:26](../user-tests/call-slot-page-run2.md#L26)), resting on [product/personas/buyer-without-budget.md:42](../../product/personas/buyer-without-budget.md#L42).
+- Run 1: the buyer without budget stalled at the day list. Every day on offer ended by 14 December ([discovery/user-tests/call-slot-page.md:26](../user-tests/call-slot-page.md#L26)), resting on [product/personas/buyer-without-budget.md:53](../../product/personas/buyer-without-budget.md#L53). Her file says the rest of her year is full. The agent extended the day list to 25 January after run 1. The product lead reverted it to four weeks and accepts the stall as a known risk (2026-11-16). The page now shows a calendar for the same four weeks.
+- Run 2, on the ten-week list since reverted: the stall is gone. She can pick a day in January, and the booking asks nothing about the format she does not know ([discovery/user-tests/call-slot-page-run2.md:26](../user-tests/call-slot-page-run2.md#L26)), resting on [product/personas/buyer-without-budget.md:42](../../product/personas/buyer-without-budget.md#L42).
 - Run 2: the call card says the call settles which format fits. That fits a buyer who can describe what hurts but cannot name a format ([discovery/user-tests/call-slot-page-run2.md:25](../user-tests/call-slot-page-run2.md#L25)), resting on [product/personas/buyer-without-budget.md:85](../../product/personas/buyer-without-budget.md#L85).
 - Run 2: the buyer without budget would still take the topic to two colleagues first ([discovery/user-tests/call-slot-page-run2.md:29](../user-tests/call-slot-page-run2.md#L29)), resting on [product/personas/buyer-without-budget.md:41](../../product/personas/buyer-without-budget.md#L41).
-- Run 2: the buyer with budget writes his questions into the form and does not open the booking ([discovery/user-tests/call-slot-page-run2.md:32](../user-tests/call-slot-page-run2.md#L32)), resting on [product/personas/buyer-with-budget.md:96](../../product/personas/buyer-with-budget.md#L96). The card recruits no tester of that type.
+- Run 2: the buyer with budget writes his questions into the form and does not open the booking ([discovery/user-tests/call-slot-page-run2.md:32](../user-tests/call-slot-page-run2.md#L32)), resting on [product/personas/buyer-with-budget.md:96](../../product/personas/buyer-with-budget.md#L96). The card now plans one mixed group, so testers with budget may take part.
 
 | Sign (from the card) | Points to | Seen? |
 |---|---|---|
@@ -42,10 +42,10 @@ Persona observations only. Each rests on a line of the persona file.
 | Leaves the page without booking, calling or sending | drop | unclear ([discovery/user-tests/call-slot-page-run2.md:48](../user-tests/call-slot-page-run2.md#L48)) |
 | Says they would talk to colleagues first | drop | shown for the buyer without budget; unclear for the buyer with budget ([discovery/user-tests/call-slot-page-run2.md:49](../user-tests/call-slot-page-run2.md#L49)) |
 
-For the buyer without budget, the only type the card recruits, no sign on the step from the page to a booked call could be judged. So this round cannot show whether the assumption holds. A test with people is the usual next step.
+For the buyer without budget, no sign on the step from the page to a booked call could be judged. So this round cannot show whether the assumption holds. A test with people is the usual next step.
 One drop sign was shown for her: she would talk to colleagues first. The walkthrough lists it as a new assumption about how she decides, not about the page.
 
-Against the lines: ____ (human decides). The product lead has not held the observations against the go-on line ([discovery/test-cards/call-slot-prototype.md:80](../test-cards/call-slot-prototype.md#L80)) or the rework-or-drop line ([discovery/test-cards/call-slot-prototype.md:85](../test-cards/call-slot-prototype.md#L85)) yet.
+Against the lines: ____ (human decides). The product lead has not held the observations against the go-on line ([discovery/test-cards/call-slot-prototype.md:80](../test-cards/call-slot-prototype.md#L80)) or the rework-or-drop line ([discovery/test-cards/call-slot-prototype.md:86](../test-cards/call-slot-prototype.md#L86)) yet.
 
 ### We learned
 From that we learned that ____ (human decides; the product lead's sentence).
