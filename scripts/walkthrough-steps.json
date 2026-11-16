@@ -21,6 +21,8 @@
     {"variant": "call-slot", "label": "Fix from run 1", "title": "Fix from persona run 1: the day list reaches ten weeks ahead, past the holidays", "skill": "build", "commit": "1d1e85d"},
     {"variant": "call-slot", "label": "Persona run 2", "title": "Persona walkthrough on the page, run 2", "skill": "persona-walkthrough call-slot page", "commit": "ccc0188"},
     {"variant": "call-slot", "label": "Learning card draft", "title": "Learning card draft (decision 003) from persona runs only, no test with people yet, decision open", "skill": "learning-card", "commit": "fa7e77b"},
+    {"variant": "call-slot", "label": "Product lead's decisions", "title": "Product lead's decisions on the test card, the spec and decision 003; the decision itself stays open", "skill": "human", "commit": "ff7952a"},
+    {"variant": "call-slot", "label": "Rework: calendar, close", "title": "Rework after the product lead looked at it: calendar for the day, close button, booked message in view", "skill": "build", "commit": "89121c8"},
     {"variant": "short-form", "label": "Test card", "title": "Prototype test card", "skill": "test-card short-form prototype", "commit": "782896d"},
     {"variant": "short-form", "label": "Spec", "title": "Spec in learn mode", "skill": "variant-spec short-form learn", "commit": "2bb31bd"},
     {"variant": "short-form", "label": "Built", "title": "Page built", "skill": "build", "commit": "1f6e80f"},
