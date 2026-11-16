@@ -19,6 +19,7 @@
     .slot-times label{display:inline-flex;align-items:center;gap:.4rem;font-weight:400;margin:0}
     .slot-box{max-width:var(--text)}
     #slot-booking{position:relative}
+    #slot-done:focus{outline:none}
     .slot-close{position:absolute;top:.6rem;right:.6rem;font:inherit;font-size:1.4rem;line-height:1;width:2.2rem;height:2.2rem;border:0;border-radius:8px;background:none;color:var(--muted);cursor:pointer}
     .slot-close:hover{color:var(--fg);background:var(--accent-soft)}
     .write-heading{margin-top:2.5rem}
@@ -91,7 +92,7 @@
         <p class="error" id="slot-error" role="alert" hidden>Please choose a day and a time, and enter your name and email.</p>
       </div>
 
-      <div id="slot-done" class="card slot-box" hidden role="status">
+      <div id="slot-done" class="card slot-box" hidden role="status" tabindex="-1">
         <h3>Your call is booked</h3>
         <p id="slot-done-when"></p>
         <p>In the call we settle together which format fits your team. Nothing else is booked.</p>
@@ -200,6 +201,9 @@
       $('slot-done-when').textContent = `${fmt.format(picked).replace(' ', ', ')}, ${time.value}, 20 minutes. We send the video link to ${email}.`;
       booking.hidden = true;
       done.hidden = false;
+      // The booking box is taller than the booked message, so bring the message into view.
+      done.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      done.focus({ preventScroll: true });
     });
   </script>
 </body>
