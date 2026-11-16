@@ -8,6 +8,7 @@
 A learning card records what a test showed: we believed, we observed, we learned, therefore we will.
 A sign is something the watcher can see or hear during the test ([discovery/test-cards/short-form-prototype.md:12](../test-cards/short-form-prototype.md#L12)).
 The product lead was not present tonight. The agent filled only what the files hold. Every field that needs the product lead's own words stays open.
+The product lead chose to leave the open fields until after the test with people, recruited by 2026-11-24 ([discovery/test-cards/short-form-prototype.md:36](../test-cards/short-form-prototype.md#L36)). Product lead (Loopwise), 2026-11-16.
 
 ## Round 1, 2026-11-16
 
