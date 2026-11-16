@@ -390,7 +390,12 @@ test('an experiment is read from the files of its variant: card, persona runs, p
   const { root, put } = experimentRepo();
   let e = readExperiment(root, 'success-line-first');
   assert.deepEqual([e.card.owner, e.card.date, e.planned, e.testers], ['Product lead (Loopwise)', '2026-11-15', 5, 2]);
-  assert.deepEqual(e.personaRuns, [{ mode: 'spec', date: '2026-11-16', personas: 2, verdict: 'Unclear' }]);
+  assert.deepEqual(e.personaRuns, [{ mode: 'spec', round: 1, run: 1, date: '2026-11-16', personas: 2, verdict: 'Unclear' }]);
+  put('discovery/user-tests/success-line-first-spec-run2.md', '> Run by an agent on 2026-11-18.\n## Buyer without budget\n## Buyer with budget\n## Against the two lines\nHeld. Both personas write a line.\n');
+  put('discovery/user-tests/success-line-first-page-2.md', '> Run by an agent on 2026-11-25.\n## Buyer without budget\n## Against the two lines\nBroke: she leaves.\n');
+  put('discovery/user-tests/success-line-first-spec-notes.md', 'not a run');
+  assert.deepEqual(readExperiment(root, 'success-line-first').personaRuns.map((r) => [r.mode, r.round, r.run, r.date, r.verdict]),
+    [['spec', 1, 1, '2026-11-16', 'Unclear'], ['spec', 1, 2, '2026-11-18', 'Held'], ['page', 2, 1, '2026-11-25', 'Broke']], 'every run file counts, in order; other files do not');
   assert.equal(e.card.goOn, 'At least 3 of 5 testers write a success line.');
   assert.equal(e.card.drop, 'We drop the idea if 3 or more of 5 testers leave the field empty.');
   assert.equal(e.learning, null);
@@ -423,13 +428,21 @@ test('the experiment sits in its own row under its idea: name, stage dots, where
   const [summary, details] = card.split('<div class="more">');
   assert.match(summary, /<span class="mech">success-line-first<\/span>/);
   assert.equal((summary.match(/<i class="f"/g) || []).length, 3, 'test card, personas and people are done');
-  assert.match(summary, /spec checked by 2 personas · 2 of 5 people tested/, 'persona runs and people are counted apart');
+  assert.match(summary, /spec checked in 1 persona run · 2 of 5 people tested/, 'persona runs and people are counted apart');
   assert.doesNotMatch(summary, /<a /);
   assert.match(details, /<b>Test card<\/b> Product lead \(Loopwise\), 2026-11-15/);
-  assert.match(details, /<b>Personas<\/b> spec: 2 personas, 2026-11-16, against the lines: unclear/);
+  assert.match(details, /<b>Personas<\/b> <ul class="runs"><li>spec, run 1: 2 personas, 2026-11-16, against the lines: unclear<\/li><\/ul>/);
   assert.match(details, /<h3>We go on if<\/h3>At least 3 of 5 testers write a success line\./);
   assert.equal((details.match(/<a /g) || []).length, 1, 'one link: the prototype test card');
   assert.match(html, /<div style="grid-column:3"><article class="exp/, 'in the column of idea I3');
   assert.match(html, /data-v="exps">Experiments<kbd>E<\/kbd>/);
   assert.doesNotMatch(treePage(repo(MD)), /class="exp/, 'no named variant, no experiment row');
+});
+
+test('several persona runs are counted as runs, never as more personas', () => {
+  const { root, put } = experimentRepo();
+  put('discovery/user-tests/success-line-first-spec-run2.md', '> Run by an agent on 2026-11-18.\n## Buyer without budget\n## Buyer with budget\n## Against the two lines\nHeld.\n');
+  const card = treePage(root).match(/<article class="exp[^"]*"[^>]*>[\s\S]*?<\/article>/)[0];
+  assert.match(card, /spec checked in 2 persona runs · 2 of 5 people tested/);
+  assert.match(card, /<li>spec, run 2: 2 personas, 2026-11-18, against the lines: held<\/li>/);
 });
