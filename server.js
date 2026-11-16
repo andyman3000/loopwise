@@ -1,9 +1,7 @@
 import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { validateInquiry } from './site/components/inquiry-form.js';
-import { isEventType } from './site/components/events.js';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { discoveryPage } from './lib/discovery-view.js';
 import { mapPage } from './lib/opportunity-map.js';
 import { treePage } from './lib/opportunity-tree.js';
@@ -11,6 +9,13 @@ import { sourcePage } from './lib/source-view.js';
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
 const SITE = path.join(ROOT, 'site');
+
+// The browser loads these two modules from /components/. They are loaded by computed path, not by
+// a static import: Vercel bundles statically imported files into the function as .mjs, and the
+// browser then gets a 404 for /components/inquiry-form.js and /components/events.js.
+const component = (file) => import(pathToFileURL(path.join(SITE, 'components', file)).href);
+const { validateInquiry } = await component('inquiry-form.js');
+const { isEventType } = await component('events.js');
 const MAX_BODY = 100 * 1024;
 
 const TYPES = {
