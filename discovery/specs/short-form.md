@@ -1,7 +1,7 @@
 # Spec: short-form
 
 > Spec drafted by an agent (`variant-spec`, mode `learn`) on 2026-11-16, before the prototype build. Built to learn, not to ship.
-> **Variant:** `short-form` · Pages it changes: `inquiry.html` · Testers start at `/formats.html?variant=short-form` or `/inquiry.html?variant=short-form`
+> **Variant:** `short-form` · Pages it changes: `inquiry.html`, `formats.html` (since walkthrough run 1) · Testers start at `/formats.html?variant=short-form` or `/inquiry.html?variant=short-form`
 > **Idea:** I6 in [discovery/intents/format-fit.md](../intents/format-fit.md) ("Cut the form to name and email. Everything else is asked in the scoping call (inquiry page)", [discovery/intents/format-fit.md:100](../intents/format-fit.md#L100))
 > **Assumption under test:** "Buyers stop at the form because of what it asks them to write. With only name and email to give, they send it without knowing the format." ([discovery/test-cards/short-form-prototype.md:22](../test-cards/short-form-prototype.md#L22))
 > **Label:** interviews, inquiry mails, inbox and data are synthetic; the feedback free text is an anonymised composite. This file repeats that label.
@@ -12,7 +12,7 @@
 | # | Date | Review | File | Findings | Decided |
 |---|---|---|---|---|---|
 | 1 | 2026-11-16 | challenger, run 1 | this file, "Challenger check" | 13 findings: 7 applied, 6 kept | applied by the agent as proposed, tonight; the product lead confirms or reverts |
-| 2 | 2026-11-16 | persona walkthrough, page, run 1, on commit 1f6e80f | [discovery/user-tests/short-form-page.md](../user-tests/short-form-page.md) | fix before the test: 2 · fix if time allows: 1 · watch in the test: 1 | open |
+| 2 | 2026-11-16 | persona walkthrough, page, run 1, on commit 1f6e80f | [discovery/user-tests/short-form-page.md](../user-tests/short-form-page.md) | fix before the test: 2 · fix if time allows: 1 · watch in the test: 1 | 1 and 2 applied per tonight's brief; 3 not applied; 4 for the test |
 
 A spec describes the page so exactly that Claude Code can build it from this file alone.
 In mode `learn` it covers only what the prototype test needs. Everything else is left out.
@@ -29,10 +29,10 @@ Skipped. The product lead skipped the try-first step tonight (2026-11-16), so th
 Each element names the sign or the part of the assumption it serves. The signs are on the prototype card ([discovery/test-cards/short-form-prototype.md:60](../test-cards/short-form-prototype.md#L60)).
 
 ### The formats page
-Its button "Make an inquiry" leads to the inquiry page ([site/formats.html:30](../../site/formats.html#L30)). The server keeps `?variant=short-form` on that link. Serves: the sign that the tester goes back to the formats to choose first.
+One line stands above the button "Make an inquiry": The inquiry asks only for your name and email. [invented, added after walkthrough run 1] Serves: the testers who start here reach the inquiry page, which the go-on line counts ([discovery/test-cards/short-form-prototype.md:71](../test-cards/short-form-prototype.md#L71)). Everything else on the page stays as today. Its button "Make an inquiry" leads to the inquiry page ([site/formats.html:30](../../site/formats.html#L30)). The server keeps `?variant=short-form` on that link. Serves: the sign that the tester goes back to the formats to choose first.
 
 ### The inquiry page (the variant file)
-1. The lead line under it reads: Leave your name and email. We ask about your group in the scoping call. [invented] Serves: the idea, that everything else is asked in the scoping call ([discovery/intents/format-fit.md:100](../intents/format-fit.md#L100)). Without it, a form with two fields reads as broken.
+1. The lead line under the heading reads: Leave your name and email. In the scoping call, you tell us about your group and what gets in the way. We work out the format together. [invented, changed after walkthrough run 1] Serves: the idea, that everything else is asked in the scoping call ([discovery/intents/format-fit.md:100](../intents/format-fit.md#L100)). Without it, a form with two fields reads as broken.
 2. The line "Sending this form books nothing. We reply within a few days to set up a scoping call." stays as today ([site/inquiry.html:22](../../site/inquiry.html#L22)). Serves: the sign that the tester stops at "Send" and asks what it commits them to.
 3. The form holds two fields, in this order: "Name" and "Email". The fields "Company" and "What do you need?" are gone. Serves: the assumption itself. It also lets the watcher see the sign that the tester looks for a place to describe the group.
 4. The button "Send inquiry", as today ([site/inquiry.html:30](../../site/inquiry.html#L30)). Serves: the signs that the tester sends the form, or stops at "Send".
@@ -63,14 +63,15 @@ The page sends nothing to the server (see "What happens on send"). The fields be
 | `email` | string | yes | a valid email, the site's own check ([site/components/inquiry-form.js:3](../../site/components/inquiry-form.js#L3)) |
 
 ## What stays the same
-- The formats page, the confirmation page, home and buyer preparation, the navigation and the footer.
+- The format tiles on the formats page, the confirmation page, home and buyer preparation, the navigation and the footer.
 - The heading "Inquiry", the line on booking nothing, the button text and the box "What happens after you send it" on the inquiry page.
 - The events `page_view` and `inquiry_started` fire as today. `inquiry_submitted` does not fire: the faked send stores no inquiry.
 
 ## Invented lines on the page
 | Line the buyer sees | Who could confirm it |
 |---|---|
-| Leave your name and email. We ask about your group in the scoping call. | the product lead, and the staff who run scoping calls |
+| Leave your name and email. In the scoping call, you tell us about your group and what gets in the way. We work out the format together. | the product lead, and the staff who run scoping calls |
+| The inquiry asks only for your name and email. (formats page) | the product lead |
 
 ## Left out to learn faster
 - A real send to `/api/inquiry` with only name and email: the server rule needs company and message ([site/components/inquiry-form.js:11](../../site/components/inquiry-form.js#L11), [site/components/inquiry-form.js:14](../../site/components/inquiry-form.js#L14)). The change sits in `site/components/inquiry-form.js` and `server.js`. · for the launch spec
@@ -80,6 +81,8 @@ The page sends nothing to the server (see "What happens on send"). The fields be
 
 ## Changes after review
 - After the challenger run: the heading item, the repeated lines on what the form leaves out, `maxlength`, the reasoning around the fake, and the open points on the stored inquiry and the confirmation page are cut. · Decided by: applied by the agent as proposed, 2026-11-16, because the product lead skipped the review tonight; the product lead confirms or reverts
+
+- After persona walkthrough run 1 ([discovery/user-tests/short-form-page.md](../user-tests/short-form-page.md)): proposals 1 and 2, the two marked "fix before the test", are applied. The formats page gets one line above "Make an inquiry". The lead line on the inquiry page now says the call is where the buyer describes the group and what gets in the way. Proposal 3 (a place for written questions, buyer with budget only) is not applied: the card recruits no buyer with budget, and a text box would undo the idea. · Decided by: the brief for tonight's run, which asks to fix every blocker a run names; the product lead confirms or reverts
 
 ## Challenger check
 A subagent with no other context read only the prototype card and this spec on 2026-11-16. It found the spec lean, with the core path complete: two fields, send, confirmation page. The product lead was not present tonight. The agent applied its own proposals; the product lead confirms or reverts each.
@@ -104,7 +107,7 @@ Decided by: applied by the agent as proposed, 2026-11-16; the product lead confi
 
 ## Open points for the human
 - The sign "says afterwards what happens next" has no element on the page. Proposal: after the send, the watcher asks once: "What do you expect to happen now?" · who can answer: the product lead · Answer: ____ (human decides; touches a sign)
-- The lead line says the group is asked about in the scoping call. It may answer the question "where do I say what we need?" before a tester asks it. Then the rework sign on looking for a place to describe the group ([discovery/test-cards/short-form-prototype.md:65](../test-cards/short-form-prototype.md#L65)) shows less often. · who can answer: the product lead · Answer: ____ (human decides; touches a sign)
+- The lead line says the buyer describes the group and what gets in the way in the scoping call. It may answer the question "where do I say what we need?" before a tester asks it. Then the rework sign on looking for a place to describe the group ([discovery/test-cards/short-form-prototype.md:65](../test-cards/short-form-prototype.md#L65)) shows less often. · who can answer: the product lead · Answer: ____ (human decides; touches a sign)
 
 ## Build prompt
 > Build the variant in discovery/specs/short-form.md as one file per page it changes in
