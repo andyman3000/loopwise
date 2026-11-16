@@ -62,7 +62,7 @@ blockquote small{display:block;font-size:.75rem}
 <p class="lead first">Each row is one step of Branch A of the KPI tree, from first visit to booking, holding the opportunities whose file names that step; needs on the parked branch or on no branch come last.</p>
 <p class="lead">The colour shows how well a card is supported, the dots count distinct voices, a dashed card reaches its row only by a side link. Nothing is in the comparison yet. Read-only: <code>/compare-opportunities</code> proposes a shortlist and asks you to confirm it.</p>
 <div class="filters">
-<div class="group"><span>Source</span><button type="button" class="chip" data-group="source" data-value="interviews" aria-pressed="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H9l-4 3v-3H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/><path d="M19 9h1a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-1v3l-4-3h-3"/></svg> interviews</button><button type="button" class="chip" data-group="source" data-value="feedback" aria-pressed="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.6 5.5 6 .8-4.4 4.1 1.1 6L12 16.6 6.7 19.4l1.1-6L3.4 9.3l6-.8z"/></svg> feedback</button><button type="button" class="chip" data-group="source" data-value="inbox" aria-pressed="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13h5l1.5 3h5L16 13h5"/><path d="M5.5 5h13L21 13v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5z"/></svg> inbox</button></div>
+<div class="group"><span>Source</span><button type="button" class="chip" data-group="source" data-value="interviews" aria-pressed="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H9l-4 3v-3H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/><path d="M19 9h1a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-1v3l-4-3h-3"/></svg> interviews</button><button type="button" class="chip" data-group="source" data-value="inquiry-mails" aria-pressed="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg> inquiry mails</button><button type="button" class="chip" data-group="source" data-value="feedback" aria-pressed="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.6 5.5 6 .8-4.4 4.1 1.1 6L12 16.6 6.7 19.4l1.1-6L3.4 9.3l6-.8z"/></svg> feedback</button><button type="button" class="chip" data-group="source" data-value="inbox" aria-pressed="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13h5l1.5 3h5L16 13h5"/><path d="M5.5 5h13L21 13v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5z"/></svg> inbox</button></div>
 <div class="group"><span>Evidence</span><button type="button" class="chip" data-group="level" data-value="well" aria-pressed="false">well supported</button><button type="button" class="chip" data-group="level" data-value="partly" aria-pressed="false">partly supported</button><button type="button" class="chip" data-group="level" data-value="un" aria-pressed="false">unsupported</button></div>
 <div class="group"><span>Voice</span><button type="button" class="chip" data-group="speaker" data-value="buyer" aria-pressed="false">buyer</button><button type="button" class="chip" data-group="speaker" data-value="participant" aria-pressed="false">participant</button><button type="button" class="chip" data-group="speaker" data-value="developer" aria-pressed="false">developer</button></div>
 <div class="group"><span>KPI branch</span><button type="button" class="chip" data-group="branch" data-value="A" aria-pressed="false">A: more inquiries that end in a booking</button><button type="button" class="chip" data-group="branch" data-value="B" aria-pressed="false">B: follow-up bookings, not this quarter</button></div>
@@ -76,11 +76,21 @@ blockquote small{display:block;font-size:.75rem}
 <p class="says">percentage of website visits that open the inquiry page</p>
 <p class="none">No opportunity names this step.</p>
 </section><section class="row driver" data-row="driver:start rate">
-<h2><span class="step">3</span>start rate<span class="n">3 cards</span></h2>
+<h2><span class="step">3</span>start rate<span class="n">4 cards</span></h2>
 <p class="says">percentage of inquiry page visits that start the form</p>
-<div class="grid"><article class="card well" data-key="inbox:O1" data-source="inbox" data-level="well" data-speakers="" data-branch="A">
+<div class="grid"><article class="card well" data-key="inquiry-mails:O1" data-source="inquiry-mails" data-level="well" data-speakers="" data-branch="A">
+<div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg> inquiry mails · <span class="id">O1</span></span></div>
+<div class="title">&ldquo;I can't tell which format fits my group.&rdquo;<span class="ctx">sponsor, before booking</span></div>
+<div class="meter" title="well supported"><i class="f"></i><i class="f"></i><i class="f"></i><b>well supported</b></div>
+<div class="voices" title="distinct voices"><span class="v"></span><span class="v"></span><span class="v"></span><span class="v"></span><span class="v"></span><span class="gap">5 voices</span></div>
+<div class="badges"><span class="badge">A: more inquiries that end in a booking</span></div>
+<blockquote>&quot;Side by side, I can't tell which one is us.&quot;<small><a href="/sources/inquiry-mails/inquiry-07.md#L16">sources/inquiry-mails/inquiry-07.md:16</a></small></blockquote>
+<details class="more"><summary>5 more quotes</summary><blockquote>&quot;I didn't want to send your form with a guess in it, so I am writing instead.&quot;<small><a href="/sources/inquiry-mails/inquiry-07.md#L18">sources/inquiry-mails/inquiry-07.md:18</a></small></blockquote><blockquote>&quot;I don't really know what the difference would mean for us&quot;<small><a href="/sources/inquiry-mails/inquiry-01.md#L16">sources/inquiry-mails/inquiry-01.md:16</a></small></blockquote><blockquote>&quot;I also don't know yet whether we need a workshop, a longer accompaniment or something else.&quot;<small><a href="/sources/inquiry-mails/inquiry-02.md#L21">sources/inquiry-mails/inquiry-02.md:21</a></small></blockquote><blockquote>&quot;I have budget for training this year but no clear idea what to ask for.&quot;<small><a href="/sources/inquiry-mails/inquiry-03.md#L14">sources/inquiry-mails/inquiry-03.md:14</a></small></blockquote><blockquote>&quot;But I am also not sure what the alternative is.&quot;<small><a href="/sources/inquiry-mails/inquiry-04.md#L18">sources/inquiry-mails/inquiry-04.md:18</a></small></blockquote></details>
+<div class="note">Five sponsors say it in their own situation. Two other sponsors already know their format.</div>
+<a href="/discovery/opportunities/inquiry-mails.md" class="note">Read the full entry</a>
+</article><article class="card well" data-key="inbox:O1" data-source="inbox" data-level="well" data-speakers="" data-branch="A">
 <div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13h5l1.5 3h5L16 13h5"/><path d="M5.5 5h13L21 13v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5z"/></svg> inbox · <span class="id">O1</span></span></div>
-<div class="title">Sponsors cannot tell which format fits their team</div>
+<div class="title">&ldquo;I can't tell which format fits my group.&rdquo;<span class="ctx">sponsor, before booking</span></div>
 <div class="meter" title="well supported"><i class="f"></i><i class="f"></i><i class="f"></i><b>well supported</b></div>
 <div class="voices" title="distinct voices"><span class="v"></span><span class="v"></span><span class="v"></span><span class="v"></span><span class="gap">4 voices</span></div>
 <div class="badges"><span class="badge">A: more inquiries that end in a booking</span></div>
@@ -90,7 +100,7 @@ blockquote small{display:block;font-size:.75rem}
 <a href="/discovery/opportunities/inbox.md" class="note">Read the full entry</a>
 </article><article class="card well" data-key="inbox:O3" data-source="inbox" data-level="well" data-speakers="" data-branch="A">
 <div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13h5l1.5 3h5L16 13h5"/><path d="M5.5 5h13L21 13v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5z"/></svg> inbox · <span class="id">O3</span></span></div>
-<div class="title">Sponsors feel they must name a format before they can ask at all</div>
+<div class="title">&ldquo;I feel I must name a format before I can ask.&rdquo;<span class="ctx">sponsor, before booking</span></div>
 <div class="meter" title="well supported"><i class="f"></i><i class="f"></i><i class="f"></i><b>well supported</b></div>
 <div class="voices" title="distinct voices"><span class="v"></span><span class="v"></span><span class="v"></span><span class="gap">3 voices</span></div>
 <div class="badges"><span class="badge">A: more inquiries that end in a booking</span></div>
@@ -100,7 +110,7 @@ blockquote small{display:block;font-size:.75rem}
 <a href="/discovery/opportunities/inbox.md" class="note">Read the full entry</a>
 </article><article class="card un" data-key="inbox:O2" data-source="inbox" data-level="un" data-speakers="" data-branch="A">
 <div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13h5l1.5 3h5L16 13h5"/><path d="M5.5 5h13L21 13v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5z"/></svg> inbox · <span class="id">O2</span></span></div>
-<div class="title">Sponsors do not know how far their team's AI skills go</div>
+<div class="title">&ldquo;I don't know how far my team's AI skills go.&rdquo;<span class="ctx">sponsor, before booking</span></div>
 <div class="meter" title="unsupported"><i class="f"></i><i class=""></i><i class=""></i><b>unsupported</b></div>
 <div class="voices" title="distinct voices"><span class="v"></span><span class="gap">1 voice</span></div>
 <div class="badges"><span class="badge">A: more inquiries that end in a booking</span></div>
@@ -110,29 +120,79 @@ blockquote small{display:block;font-size:.75rem}
 <a href="/discovery/opportunities/inbox.md" class="note">Read the full entry</a>
 </article></div><p class="none filtered" hidden>No card in this row matches the filters.</p>
 </section><section class="row driver" data-row="driver:submit rate">
-<h2><span class="step">4</span>submit rate<span class="n">1 card</span></h2>
+<h2><span class="step">4</span>submit rate<span class="n">3 cards</span></h2>
 <p class="says">percentage of started forms that are sent</p>
 <div class="grid"><article class="card partly" data-key="interviews:O1" data-source="interviews" data-level="partly" data-speakers="" data-branch="A">
 <div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H9l-4 3v-3H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/><path d="M19 9h1a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-1v3l-4-3h-3"/></svg> interviews · <span class="id">O1</span></span></div>
-<div class="title">At first contact, sponsors do not know which format, how many parts or how long</div>
+<div class="title">&ldquo;I don't know which format to ask for.&rdquo;<span class="ctx">sponsor, before booking</span></div>
 <div class="meter" title="partly supported"><i class="f"></i><i class="f"></i><i class=""></i><b>partly supported</b></div>
 <div class="voices" title="distinct voices"><span class="v"></span><span class="v"></span><span class="gap">2 voices</span></div>
 <div class="badges"><span class="badge">A: more inquiries that end in a booking</span></div>
 <blockquote>&quot;Tell me what's on the menu and I'll react to it.&quot;<small>`sources/interviews/sponsor-carla.md:125`</small></blockquote>
-<details class="more"><summary>4 more quotes</summary><blockquote>&quot;And between the two directions you described I haven't decided either, so that's open as well.&quot;<small>`sources/interviews/sponsor-carla.md:141`</small></blockquote><blockquote>&quot;One event or three, and in what order, that was the question I brought&quot;<small>`sources/interviews/sponsor-ines.md:49`</small></blockquote><blockquote>&quot;What to buy to fix it, no.&quot;<small>`sources/interviews/sponsor-ines.md:53`</small></blockquote><blockquote>&quot;whether we were talking about full days or a few hours each&quot;<small>`sources/interviews/sponsor-ines.md:129`</small></blockquote></details>
+<details class="more"><summary>2 more quotes</summary><blockquote>&quot;And between the two directions you described I haven't decided either, so that's open as well.&quot;<small>`sources/interviews/sponsor-carla.md:141`</small></blockquote><blockquote>&quot;What to buy to fix it, no.&quot;<small>`sources/interviews/sponsor-ines.md:53`</small></blockquote></details>
 <div class="note">Two sponsors lived it. Two other sponsors knew the shape early.</div>
+<a href="/discovery/opportunities/interviews.md" class="note">Read the full entry</a>
+</article><article class="card un" data-key="interviews:O16" data-source="interviews" data-level="un" data-speakers="" data-branch="A">
+<div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H9l-4 3v-3H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/><path d="M19 9h1a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-1v3l-4-3h-3"/></svg> interviews · <span class="id">O16</span></span></div>
+<div class="title">&ldquo;I don't know how many events we need.&rdquo;<span class="ctx">sponsor, before booking</span></div>
+<div class="meter" title="unsupported"><i class="f"></i><i class=""></i><i class=""></i><b>unsupported</b></div>
+<div class="voices" title="distinct voices"><span class="v"></span><span class="gap">1 voice</span></div>
+<div class="badges"><span class="badge">A: more inquiries that end in a booking</span></div>
+<blockquote>&quot;One event or three, and in what order, that was the question I brought&quot;<small>`sources/interviews/sponsor-ines.md:49`</small></blockquote>
+
+<div class="note">One voice. Two other sponsors knew the shape early.</div>
+<a href="/discovery/opportunities/interviews.md" class="note">Read the full entry</a>
+</article><article class="card un" data-key="interviews:O17" data-source="interviews" data-level="un" data-speakers="" data-branch="A">
+<div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H9l-4 3v-3H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/><path d="M19 9h1a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-1v3l-4-3h-3"/></svg> interviews · <span class="id">O17</span></span></div>
+<div class="title">&ldquo;I don't know if we need full days or a few hours.&rdquo;<span class="ctx">sponsor, before booking</span></div>
+<div class="meter" title="unsupported"><i class="f"></i><i class=""></i><i class=""></i><b>unsupported</b></div>
+<div class="voices" title="distinct voices"><span class="v"></span><span class="gap">1 voice</span></div>
+<div class="badges"><span class="badge">A: more inquiries that end in a booking</span></div>
+<blockquote>&quot;whether we were talking about full days or a few hours each&quot;<small>`sources/interviews/sponsor-ines.md:129`</small></blockquote>
+
+<div class="note">One voice. Two other sponsors knew the shape early.</div>
 <a href="/discovery/opportunities/interviews.md" class="note">Read the full entry</a>
 </article></div><p class="none filtered" hidden>No card in this row matches the filters.</p>
 </section><section class="row driver" data-row="driver:call rate">
-<h2><span class="step">5</span>call rate<span class="n">0 cards</span></h2>
+<h2><span class="step">5</span>call rate<span class="n">3 cards</span></h2>
 <p class="says">percentage of sent inquiries that get a scoping call</p>
-<p class="none">No opportunity names this step.</p>
+<div class="grid"><article class="card well" data-key="inquiry-mails:O3" data-source="inquiry-mails" data-level="well" data-speakers="" data-branch="A">
+<div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg> inquiry mails · <span class="id">O3</span></span></div>
+<div class="title">&ldquo;I need something to take to my manager.&rdquo;<span class="ctx">sponsor, before booking</span></div>
+<div class="meter" title="well supported"><i class="f"></i><i class="f"></i><i class="f"></i><b>well supported</b></div>
+<div class="voices" title="distinct voices"><span class="v"></span><span class="v"></span><span class="v"></span><span class="gap">3 voices</span></div>
+<div class="badges"><span class="badge">A: more inquiries that end in a booking</span></div>
+<blockquote>&quot;Could you send me some information so I can forward it internally?&quot;<small><a href="/sources/inquiry-mails/inquiry-01.md#L18">sources/inquiry-mails/inquiry-01.md:18</a></small></blockquote>
+<details class="more"><summary>2 more quotes</summary><blockquote>&quot;I will have to take this to my boss, and&quot;<small><a href="/sources/inquiry-mails/inquiry-02.md#L21">sources/inquiry-mails/inquiry-02.md:21</a></small></blockquote><blockquote>&quot;My manager asked me to come back with a proposal before the end of the month.&quot;<small><a href="/sources/inquiry-mails/inquiry-07.md#L14">sources/inquiry-mails/inquiry-07.md:14</a></small></blockquote></details>
+<div class="note">Three sponsors are in this situation now.</div>
+<a href="/discovery/opportunities/inquiry-mails.md" class="note">Read the full entry</a>
+</article><article class="card partly" data-key="inquiry-mails:O2" data-source="inquiry-mails" data-level="partly" data-speakers="" data-branch="A">
+<div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg> inquiry mails · <span class="id">O2</span></span></div>
+<div class="title">&ldquo;I want proof people work differently months later.&rdquo;<span class="ctx">sponsor, before booking</span></div>
+<div class="meter" title="partly supported"><i class="f"></i><i class="f"></i><i class=""></i><b>partly supported</b></div>
+<div class="voices" title="distinct voices"><span class="v"></span><span class="v"></span><span class="gap">2 voices</span></div>
+<div class="badges"><span class="badge">A: more inquiries that end in a booking</span></div>
+<blockquote>&quot;What I have not seen is evidence that any of it changes how people actually work three months later.&quot;<small><a href="/sources/inquiry-mails/inquiry-02.md#L14">sources/inquiry-mails/inquiry-02.md:14</a></small></blockquote>
+<details class="more"><summary>3 more quotes</summary><blockquote>&quot;How do you measure whether it worked?&quot;<small><a href="/sources/inquiry-mails/inquiry-02.md#L19">sources/inquiry-mails/inquiry-02.md:19</a></small></blockquote><blockquote>&quot;I am reaching out because our first attempt did not really work.&quot;<small><a href="/sources/inquiry-mails/inquiry-04.md#L12">sources/inquiry-mails/inquiry-04.md:12</a></small></blockquote><blockquote>&quot;And how would I know after a quarter that this time it stuck?&quot;<small><a href="/sources/inquiry-mails/inquiry-04.md#L18">sources/inquiry-mails/inquiry-04.md:18</a></small></blockquote></details>
+<div class="note">Two sponsors, one of whom lived it. Five mails are silent on proof.</div>
+<a href="/discovery/opportunities/inquiry-mails.md" class="note">Read the full entry</a>
+</article><article class="card un" data-key="inquiry-mails:O7" data-source="inquiry-mails" data-level="un" data-speakers="" data-branch="A">
+<div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg> inquiry mails · <span class="id">O7</span></span></div>
+<div class="title">&ldquo;I don't know what result to expect at the end.&rdquo;<span class="ctx">sponsor, before booking</span></div>
+<div class="meter" title="unsupported"><i class="f"></i><i class=""></i><i class=""></i><b>unsupported</b></div>
+<div class="voices" title="distinct voices"><span class="v"></span><span class="gap">1 voice</span></div>
+<div class="badges"><span class="badge">A: more inquiries that end in a booking</span></div>
+<blockquote>&quot;I genuinely don't know what makes sense, or what I should even expect at the end of it.&quot;<small><a href="/sources/inquiry-mails/inquiry-03.md#L14">sources/inquiry-mails/inquiry-03.md:14</a></small></blockquote>
+
+<div class="note">One sponsor.</div>
+<a href="/discovery/opportunities/inquiry-mails.md" class="note">Read the full entry</a>
+</article></div><p class="none filtered" hidden>No card in this row matches the filters.</p>
 </section><section class="row driver" data-row="driver:booking rate">
-<h2><span class="step">6</span>booking rate<span class="n">17 cards, 14 by side link</span></h2>
+<h2><span class="step">6</span>booking rate<span class="n">22 cards, 19 by side link</span></h2>
 <p class="says">percentage of scoping calls that end in a booking</p>
 <div class="grid"><article class="card well side" data-key="feedback:O1" data-source="feedback" data-level="well" data-speakers="participant" data-branch="B">
 <div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.6 5.5 6 .8-4.4 4.1 1.1 6L12 16.6 6.7 19.4l1.1-6L3.4 9.3l6-.8z"/></svg> feedback · <span class="id">O1</span></span></div>
-<div class="title">Participants cannot place where the training fits in their normal work week</div>
+<div class="title">&ldquo;I can't see where this fits in my normal work week.&rdquo;<span class="ctx">participant, the weeks after</span></div>
 <div class="meter" title="well supported"><i class="f"></i><i class="f"></i><i class="f"></i><b>well supported</b></div>
 <div class="voices" title="distinct voices"><span class="v"></span><span class="v"></span><span class="v"></span><span class="gap">3 voices · participant</span></div>
 <div class="badges"><span class="badge side">side link</span><span class="badge parked">B: follow-up bookings, not this quarter</span></div>
@@ -142,7 +202,7 @@ blockquote small{display:block;font-size:.75rem}
 <a href="/discovery/opportunities/feedback.md" class="note">Read the full entry</a>
 </article><article class="card well side" data-key="feedback:O6" data-source="feedback" data-level="well" data-speakers="participant" data-branch="B">
 <div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.6 5.5 6 .8-4.4 4.1 1.1 6L12 16.6 6.7 19.4l1.1-6L3.4 9.3l6-.8z"/></svg> feedback · <span class="id">O6</span></span></div>
-<div class="title">Participants fall behind or lose the thread during the day</div>
+<div class="title">&ldquo;I can't keep up during the day.&rdquo;<span class="ctx">participant, the day itself</span></div>
 <div class="meter" title="well supported"><i class="f"></i><i class="f"></i><i class="f"></i><b>well supported</b></div>
 <div class="voices" title="distinct voices"><span class="v"></span><span class="v"></span><span class="v"></span><span class="gap">3 voices · participant</span></div>
 <div class="badges"><span class="badge side">side link</span><span class="badge parked">B: follow-up bookings, not this quarter</span></div>
@@ -152,7 +212,7 @@ blockquote small{display:block;font-size:.75rem}
 <a href="/discovery/opportunities/feedback.md" class="note">Read the full entry</a>
 </article><article class="card partly side" data-key="interviews:O3" data-source="interviews" data-level="partly" data-speakers="" data-branch="B">
 <div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H9l-4 3v-3H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/><path d="M19 9h1a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-1v3l-4-3h-3"/></svg> interviews · <span class="id">O3</span></span></div>
-<div class="title">Sponsors cannot say how they would know the format worked for their group</div>
+<div class="title">&ldquo;I can't say how I'd know the format worked.&rdquo;<span class="ctx">sponsor, preparation</span></div>
 <div class="meter" title="partly supported"><i class="f"></i><i class="f"></i><i class=""></i><b>partly supported</b></div>
 <div class="voices" title="distinct voices"><span class="v"></span><span class="v"></span><span class="v"></span><span class="gap">3 voices</span></div>
 <div class="badges"><span class="badge side">side link</span><span class="badge parked">B: follow-up bookings, not this quarter</span></div>
@@ -162,7 +222,7 @@ blockquote small{display:block;font-size:.75rem}
 <a href="/discovery/opportunities/interviews.md" class="note">Read the full entry</a>
 </article><article class="card partly side" data-key="interviews:O4" data-source="interviews" data-level="partly" data-speakers="" data-branch="B">
 <div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H9l-4 3v-3H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/><path d="M19 9h1a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-1v3l-4-3h-3"/></svg> interviews · <span class="id">O4</span></span></div>
-<div class="title">Sponsors fear their people slide back into old habits after the format</div>
+<div class="title">&ldquo;I'm afraid my people slip back into old habits afterwards.&rdquo;<span class="ctx">sponsor, preparation</span></div>
 <div class="meter" title="partly supported"><i class="f"></i><i class="f"></i><i class=""></i><b>partly supported</b></div>
 <div class="voices" title="distinct voices"><span class="v"></span><span class="v"></span><span class="v"></span><span class="gap">3 voices · plus second-hand</span></div>
 <div class="badges"><span class="badge side">side link</span><span class="badge parked">B: follow-up bookings, not this quarter</span></div>
@@ -172,7 +232,7 @@ blockquote small{display:block;font-size:.75rem}
 <a href="/discovery/opportunities/interviews.md" class="note">Read the full entry</a>
 </article><article class="card partly side" data-key="interviews:O6" data-source="interviews" data-level="partly" data-speakers="" data-branch="B">
 <div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H9l-4 3v-3H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/><path d="M19 9h1a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-1v3l-4-3h-3"/></svg> interviews · <span class="id">O6</span></span></div>
-<div class="title">In preparation, sponsors cannot tell how to set up the days for a group at very different levels</div>
+<div class="title">&ldquo;I don't know how the days can suit such mixed levels.&rdquo;<span class="ctx">sponsor, preparation</span></div>
 <div class="meter" title="partly supported"><i class="f"></i><i class="f"></i><i class=""></i><b>partly supported</b></div>
 <div class="voices" title="distinct voices"><span class="v"></span><span class="v"></span><span class="v"></span><span class="gap">3 voices</span></div>
 <div class="badges"><span class="badge side">side link</span><span class="badge parked">B: follow-up bookings, not this quarter</span></div>
@@ -180,9 +240,19 @@ blockquote small{display:block;font-size:.75rem}
 <details class="more"><summary>2 more quotes</summary><blockquote>&quot;Whatever level the two days aim at, it won't suit everybody in there.&quot;<small>`sources/interviews/sponsor-thomas.md:121`</small></blockquote><blockquote>&quot;Very, if you ask our advisor.&quot;<small>`sources/interviews/sponsor-ines.md:97`</small></blockquote></details>
 <div class="note">Two sponsors lived it, one is second-hand. Two sponsors worry less.</div>
 <a href="/discovery/opportunities/interviews.md" class="note">Read the full entry</a>
+</article><article class="card partly side" data-key="inquiry-mails:O4" data-source="inquiry-mails" data-level="partly" data-speakers="" data-branch="none">
+<div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg> inquiry mails · <span class="id">O4</span></span></div>
+<div class="title">&ldquo;I'm afraid some will be bored and others lost.&rdquo;<span class="ctx">sponsor, before booking</span></div>
+<div class="meter" title="partly supported"><i class="f"></i><i class="f"></i><i class=""></i><b>partly supported</b></div>
+<div class="voices" title="distinct voices"><span class="v"></span><span class="v"></span><span class="v"></span><span class="gap">3 voices</span></div>
+<div class="badges"><span class="badge side">side link</span><span class="badge parked">no KPI branch</span></div>
+<blockquote>&quot;I am worried that one group will be bored and the other lost.&quot;<small><a href="/sources/inquiry-mails/inquiry-06.md#L14">sources/inquiry-mails/inquiry-06.md:14</a></small></blockquote>
+<details class="more"><summary>2 more quotes</summary><blockquote>&quot;Some of them already use chat tools, some don't.&quot;<small><a href="/sources/inquiry-mails/inquiry-01.md#L14">sources/inquiry-mails/inquiry-01.md:14</a></small></blockquote><blockquote>&quot;Some are curious about AI and already try things, others avoid it.&quot;<small><a href="/sources/inquiry-mails/inquiry-07.md#L14">sources/inquiry-mails/inquiry-07.md:14</a></small></blockquote></details>
+<div class="note">Three sponsors describe the mix. Only one fears the effect.</div>
+<a href="/discovery/opportunities/inquiry-mails.md" class="note">Read the full entry</a>
 </article><article class="card partly" data-key="interviews:O2" data-source="interviews" data-level="partly" data-speakers="" data-branch="A">
 <div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H9l-4 3v-3H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/><path d="M19 9h1a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-1v3l-4-3h-3"/></svg> interviews · <span class="id">O2</span></span></div>
-<div class="title">Sponsors do not decide alone and need something to take to colleagues or the boss</div>
+<div class="title">&ldquo;I need something to show the people who decide with me.&rdquo;<span class="ctx">sponsor, before booking</span></div>
 <div class="meter" title="partly supported"><i class="f"></i><i class="f"></i><i class=""></i><b>partly supported</b></div>
 <div class="voices" title="distinct voices"><span class="v"></span><span class="v"></span><span class="gap">2 voices</span></div>
 <div class="badges"><span class="badge">A: more inquiries that end in a booking</span></div>
@@ -192,7 +262,7 @@ blockquote small{display:block;font-size:.75rem}
 <a href="/discovery/opportunities/interviews.md" class="note">Read the full entry</a>
 </article><article class="card partly side" data-key="interviews:O5" data-source="interviews" data-level="partly" data-speakers="" data-branch="B">
 <div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H9l-4 3v-3H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/><path d="M19 9h1a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-1v3l-4-3h-3"/></svg> interviews · <span class="id">O5</span></span></div>
-<div class="title">Sponsors face pressure from above to show a fast effect right after the format</div>
+<div class="title">&ldquo;I'm under pressure to show an effect right after.&rdquo;<span class="ctx">sponsor, preparation</span></div>
 <div class="meter" title="partly supported"><i class="f"></i><i class="f"></i><i class=""></i><b>partly supported</b></div>
 <div class="voices" title="distinct voices"><span class="v"></span><span class="v"></span><span class="gap">2 voices</span></div>
 <div class="badges"><span class="badge side">side link</span><span class="badge parked">B: follow-up bookings, not this quarter</span></div>
@@ -200,9 +270,19 @@ blockquote small{display:block;font-size:.75rem}
 <details class="more"><summary>2 more quotes</summary><blockquote>&quot;management expects a big jump in efficiency right after the workshop&quot;<small>`sources/interviews/sponsor-thomas.md:101`</small></blockquote><blockquote>&quot;then there's something to show&quot;<small>`sources/interviews/sponsor-thomas.md:109`</small></blockquote></details>
 <div class="note">Two sponsors, one partly second-hand. Both sponsors also play the expectation down.</div>
 <a href="/discovery/opportunities/interviews.md" class="note">Read the full entry</a>
+</article><article class="card partly side" data-key="inquiry-mails:O6" data-source="inquiry-mails" data-level="partly" data-speakers="" data-branch="B">
+<div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg> inquiry mails · <span class="id">O6</span></span></div>
+<div class="title">&ldquo;I want my people to use it in their own work.&rdquo;<span class="ctx">sponsor, the weeks after</span></div>
+<div class="meter" title="partly supported"><i class="f"></i><i class="f"></i><i class=""></i><b>partly supported</b></div>
+<div class="voices" title="distinct voices"><span class="v"></span><span class="v"></span><span class="gap">2 voices · plus second-hand</span></div>
+<div class="badges"><span class="badge side">side link</span><span class="badge parked">B: follow-up bookings, not this quarter</span></div>
+<blockquote>&quot;People said they now know what the tools can do, but not what to do with them in their own work.&quot;<small><a href="/sources/inquiry-mails/inquiry-04.md#L14">sources/inquiry-mails/inquiry-04.md:14</a></small></blockquote>
+<details class="more"><summary>1 more quote</summary><blockquote>&quot;Ideally everyone leaves with something they can use in their own product work the week after.&quot;<small><a href="/sources/inquiry-mails/inquiry-06.md#L18">sources/inquiry-mails/inquiry-06.md:18</a></small></blockquote></details>
+<div class="note">Two sponsors, one part second-hand.</div>
+<a href="/discovery/opportunities/inquiry-mails.md" class="note">Read the full entry</a>
 </article><article class="card partly side" data-key="feedback:O2" data-source="feedback" data-level="partly" data-speakers="participant" data-branch="B">
 <div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.6 5.5 6 .8-4.4 4.1 1.1 6L12 16.6 6.7 19.4l1.1-6L3.4 9.3l6-.8z"/></svg> feedback · <span class="id">O2</span></span></div>
-<div class="title">Participants fear they slip back into old habits after a training</div>
+<div class="title">&ldquo;I'm afraid I slip back into old habits after a training.&rdquo;<span class="ctx">participant, the weeks after</span></div>
 <div class="meter" title="partly supported"><i class="f"></i><i class="f"></i><i class=""></i><b>partly supported</b></div>
 <div class="voices" title="distinct voices"><span class="v"></span><span class="v"></span><span class="gap">2 voices · participant</span></div>
 <div class="badges"><span class="badge side">side link</span><span class="badge parked">B: follow-up bookings, not this quarter</span></div>
@@ -212,27 +292,17 @@ blockquote small{display:block;font-size:.75rem}
 <a href="/discovery/opportunities/feedback.md" class="note">Read the full entry</a>
 </article><article class="card partly side" data-key="feedback:O3" data-source="feedback" data-level="partly" data-speakers="participant" data-branch="B">
 <div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.6 5.5 6 .8-4.4 4.1 1.1 6L12 16.6 6.7 19.4l1.1-6L3.4 9.3l6-.8z"/></svg> feedback · <span class="id">O3</span></span></div>
-<div class="title">Participants miss the next steps after the training, and what results are expected</div>
+<div class="title">&ldquo;I don't know my next steps after the training.&rdquo;<span class="ctx">participant, the weeks after</span></div>
 <div class="meter" title="partly supported"><i class="f"></i><i class="f"></i><i class=""></i><b>partly supported</b></div>
 <div class="voices" title="distinct voices"><span class="v"></span><span class="v"></span><span class="gap">2 voices · participant</span></div>
 <div class="badges"><span class="badge side">side link</span><span class="badge parked">B: follow-up bookings, not this quarter</span></div>
-<blockquote>&quot;What are the next steps and what results are we expected to get?&quot;<small>`sources/feedback/feedback-export.md:42`</small></blockquote>
+<blockquote>&quot;What are the next steps&quot;<small>`sources/feedback/feedback-export.md:42`</small></blockquote>
 <details class="more"><summary>1 more quote</summary><blockquote>&quot;Assigned next steps, and a way to improve the process bit by bit after the training.&quot;<small>`sources/feedback/feedback-export.md:43`</small></blockquote></details>
 <div class="note">Two participants say it.</div>
 <a href="/discovery/opportunities/feedback.md" class="note">Read the full entry</a>
-</article><article class="card partly side" data-key="inbox:O4" data-source="inbox" data-level="partly" data-speakers="" data-branch="none">
-<div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13h5l1.5 3h5L16 13h5"/><path d="M5.5 5h13L21 13v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5z"/></svg> inbox · <span class="id">O4</span></span></div>
-<div class="title">Sponsors need to change the date or the group after booking</div>
-<div class="meter" title="partly supported"><i class="f"></i><i class="f"></i><i class=""></i><b>partly supported</b></div>
-<div class="voices" title="distinct voices"><span class="v"></span><span class="v"></span><span class="gap">2 voices</span></div>
-<div class="badges"><span class="badge side">side link</span><span class="badge parked">no KPI branch</span></div>
-<blockquote>&quot;Is there any chance to move both workshop days by two weeks?&quot;<small><a href="/sources/inbox/inbox-export.md#L17">sources/inbox/inbox-export.md:17</a></small></blockquote>
-<details class="more"><summary>2 more quotes</summary><blockquote>&quot;One of the new people only joins on day two because of a conflict on day one.&quot;<small><a href="/sources/inbox/inbox-export.md#L41">sources/inbox/inbox-export.md:41</a></small></blockquote><blockquote>&quot;Does that still work for the exercises, or does she miss too much?&quot;<small><a href="/sources/inbox/inbox-export.md#L41">sources/inbox/inbox-export.md:41</a></small></blockquote></details>
-<div class="note">Two voices who lived it.</div>
-<a href="/discovery/opportunities/inbox.md" class="note">Read the full entry</a>
 </article><article class="card un" data-key="interviews:O7" data-source="interviews" data-level="un" data-speakers="" data-branch="A">
 <div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H9l-4 3v-3H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/><path d="M19 9h1a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-1v3l-4-3h-3"/></svg> interviews · <span class="id">O7</span></span></div>
-<div class="title">Before booking, a sponsor cannot tell whether to mix or split a group at different levels</div>
+<div class="title">&ldquo;I can't tell whether to mix or split my group.&rdquo;<span class="ctx">sponsor, before booking</span></div>
 <div class="meter" title="unsupported"><i class="f"></i><i class=""></i><i class=""></i><b>unsupported</b></div>
 <div class="voices" title="distinct voices"><span class="v"></span><span class="gap">1 voice</span></div>
 <div class="badges"><span class="badge">A: more inquiries that end in a booking</span></div>
@@ -242,7 +312,7 @@ blockquote small{display:block;font-size:.75rem}
 <a href="/discovery/opportunities/interviews.md" class="note">Read the full entry</a>
 </article><article class="card un side" data-key="interviews:O8" data-source="interviews" data-level="un" data-speakers="" data-branch="B">
 <div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H9l-4 3v-3H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/><path d="M19 9h1a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-1v3l-4-3h-3"/></svg> interviews · <span class="id">O8</span></span></div>
-<div class="title">A sponsor worries that people who are behind will not dare to ask and will drift</div>
+<div class="title">&ldquo;I'm afraid people who are behind won't dare to ask.&rdquo;<span class="ctx">sponsor, before booking</span></div>
 <div class="meter" title="unsupported"><i class="f"></i><i class=""></i><i class=""></i><b>unsupported</b></div>
 <div class="voices" title="distinct voices"><span class="v"></span><span class="gap">1 voice · plus second-hand</span></div>
 <div class="badges"><span class="badge side">side link</span><span class="badge parked">B: follow-up bookings, not this quarter</span></div>
@@ -252,7 +322,7 @@ blockquote small{display:block;font-size:.75rem}
 <a href="/discovery/opportunities/interviews.md" class="note">Read the full entry</a>
 </article><article class="card un" data-key="interviews:O12" data-source="interviews" data-level="un" data-speakers="" data-branch="A">
 <div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H9l-4 3v-3H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/><path d="M19 9h1a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-1v3l-4-3h-3"/></svg> interviews · <span class="id">O12</span></span></div>
-<div class="title">Before booking, a sponsor cannot tell whether her company's security rules allow the tools a format needs</div>
+<div class="title">&ldquo;I don't know if our security rules allow the tools.&rdquo;<span class="ctx">sponsor, before booking</span></div>
 <div class="meter" title="unsupported"><i class="f"></i><i class=""></i><i class=""></i><b>unsupported</b></div>
 <div class="voices" title="distinct voices"><span class="v"></span><span class="gap">1 voice</span></div>
 <div class="badges"><span class="badge">A: more inquiries that end in a booking</span></div>
@@ -260,9 +330,29 @@ blockquote small{display:block;font-size:.75rem}
 
 <div class="note">One voice.</div>
 <a href="/discovery/opportunities/interviews.md" class="note">Read the full entry</a>
+</article><article class="card un side" data-key="inquiry-mails:O5" data-source="inquiry-mails" data-level="un" data-speakers="" data-branch="none">
+<div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg> inquiry mails · <span class="id">O5</span></span></div>
+<div class="title">&ldquo;I don't know if our IT allows the tools you use.&rdquo;<span class="ctx">sponsor, before booking</span></div>
+<div class="meter" title="unsupported"><i class="f"></i><i class=""></i><i class=""></i><b>unsupported</b></div>
+<div class="voices" title="distinct voices"><span class="v"></span><span class="gap">1 voice</span></div>
+<div class="badges"><span class="badge side">side link</span><span class="badge parked">no KPI branch</span></div>
+<blockquote>&quot;our IT has not approved the AI tool you seem to use in your sessions yet.&quot;<small><a href="/sources/inquiry-mails/inquiry-05.md#L14">sources/inquiry-mails/inquiry-05.md:14</a></small></blockquote>
+<details class="more"><summary>1 more quote</summary><blockquote>&quot;I would rather know this now than discover it on the morning of the training.&quot;<small><a href="/sources/inquiry-mails/inquiry-05.md#L18">sources/inquiry-mails/inquiry-05.md:18</a></small></blockquote></details>
+<div class="note">One sponsor.</div>
+<a href="/discovery/opportunities/inquiry-mails.md" class="note">Read the full entry</a>
+</article><article class="card un side" data-key="inbox:O4" data-source="inbox" data-level="un" data-speakers="" data-branch="none">
+<div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13h5l1.5 3h5L16 13h5"/><path d="M5.5 5h13L21 13v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5z"/></svg> inbox · <span class="id">O4</span></span></div>
+<div class="title">&ldquo;I need to move the dates after booking.&rdquo;<span class="ctx">sponsor, preparation</span></div>
+<div class="meter" title="unsupported"><i class="f"></i><i class=""></i><i class=""></i><b>unsupported</b></div>
+<div class="voices" title="distinct voices"><span class="v"></span><span class="gap">1 voice</span></div>
+<div class="badges"><span class="badge side">side link</span><span class="badge parked">no KPI branch</span></div>
+<blockquote>&quot;Is there any chance to move both workshop days by two weeks?&quot;<small><a href="/sources/inbox/inbox-export.md#L17">sources/inbox/inbox-export.md:17</a></small></blockquote>
+
+<div class="note">One voice.</div>
+<a href="/discovery/opportunities/inbox.md" class="note">Read the full entry</a>
 </article><article class="card un side" data-key="inbox:O5" data-source="inbox" data-level="un" data-speakers="" data-branch="none">
 <div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13h5l1.5 3h5L16 13h5"/><path d="M5.5 5h13L21 13v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5z"/></svg> inbox · <span class="id">O5</span></span></div>
-<div class="title">Sponsors cannot get the AI tool approved by their IT in time</div>
+<div class="title">&ldquo;I can't get the AI tool approved by IT in time.&rdquo;<span class="ctx">sponsor, preparation</span></div>
 <div class="meter" title="unsupported"><i class="f"></i><i class=""></i><i class=""></i><b>unsupported</b></div>
 <div class="voices" title="distinct voices"><span class="v"></span><span class="gap">1 voice</span></div>
 <div class="badges"><span class="badge side">side link</span><span class="badge parked">no KPI branch</span></div>
@@ -272,7 +362,7 @@ blockquote small{display:block;font-size:.75rem}
 <a href="/discovery/opportunities/inbox.md" class="note">Read the full entry</a>
 </article><article class="card un side" data-key="inbox:O10" data-source="inbox" data-level="un" data-speakers="" data-branch="B">
 <div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13h5l1.5 3h5L16 13h5"/><path d="M5.5 5h13L21 13v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5z"/></svg> inbox · <span class="id">O10</span></span></div>
-<div class="title">Sponsors see their team slip back into old routines after the training</div>
+<div class="title">&ldquo;I see my people slipping back into old routines.&rdquo;<span class="ctx">sponsor, the weeks after</span></div>
 <div class="meter" title="unsupported"><i class="f"></i><i class=""></i><i class=""></i><b>unsupported</b></div>
 <div class="voices" title="distinct voices"><span class="v"></span><span class="gap">1 voice</span></div>
 <div class="badges"><span class="badge side">side link</span><span class="badge parked">B: follow-up bookings, not this quarter</span></div>
@@ -280,9 +370,19 @@ blockquote small{display:block;font-size:.75rem}
 <details class="more"><summary>1 more quote</summary><blockquote>&quot;A few have built something in the workshop, but not on their actual tasks yet.&quot;<small><a href="/sources/inbox/inbox-export.md#L113">sources/inbox/inbox-export.md:113</a></small></blockquote></details>
 <div class="note">One voice, partly reporting what others do.</div>
 <a href="/discovery/opportunities/inbox.md" class="note">Read the full entry</a>
+</article><article class="card un side" data-key="inbox:O11" data-source="inbox" data-level="un" data-speakers="" data-branch="none">
+<div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13h5l1.5 3h5L16 13h5"/><path d="M5.5 5h13L21 13v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5z"/></svg> inbox · <span class="id">O11</span></span></div>
+<div class="title">&ldquo;I need to change who takes part after booking.&rdquo;<span class="ctx">sponsor, preparation</span></div>
+<div class="meter" title="unsupported"><i class="f"></i><i class=""></i><i class=""></i><b>unsupported</b></div>
+<div class="voices" title="distinct voices"><span class="v"></span><span class="gap">1 voice</span></div>
+<div class="badges"><span class="badge side">side link</span><span class="badge parked">no KPI branch</span></div>
+<blockquote>&quot;One of the new people only joins on day two because of a conflict on day one.&quot;<small><a href="/sources/inbox/inbox-export.md#L41">sources/inbox/inbox-export.md:41</a></small></blockquote>
+<details class="more"><summary>1 more quote</summary><blockquote>&quot;Does that still work for the exercises, or does she miss too much?&quot;<small><a href="/sources/inbox/inbox-export.md#L41">sources/inbox/inbox-export.md:41</a></small></blockquote></details>
+<div class="note">One voice.</div>
+<a href="/discovery/opportunities/inbox.md" class="note">Read the full entry</a>
 </article><article class="card un side" data-key="feedback:O4" data-source="feedback" data-level="un" data-speakers="participant" data-branch="B">
 <div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.6 5.5 6 .8-4.4 4.1 1.1 6L12 16.6 6.7 19.4l1.1-6L3.4 9.3l6-.8z"/></svg> feedback · <span class="id">O4</span></span></div>
-<div class="title">Participants want support again once they have tried it on their own task</div>
+<div class="title">&ldquo;I want support again once I've tried it on my task.&rdquo;<span class="ctx">participant, the weeks after</span></div>
 <div class="meter" title="unsupported"><i class="f"></i><i class=""></i><i class=""></i><b>unsupported</b></div>
 <div class="voices" title="distinct voices"><span class="gap">0 voices · participant</span></div>
 <div class="badges"><span class="badge side">side link</span><span class="badge parked">B: follow-up bookings, not this quarter</span></div>
@@ -292,11 +392,21 @@ blockquote small{display:block;font-size:.75rem}
 <a href="/discovery/opportunities/feedback.md" class="note">Read the full entry</a>
 </article><article class="card un side" data-key="feedback:O10" data-source="feedback" data-level="un" data-speakers="participant" data-branch="B">
 <div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.6 5.5 6 .8-4.4 4.1 1.1 6L12 16.6 6.7 19.4l1.1-6L3.4 9.3l6-.8z"/></svg> feedback · <span class="id">O10</span></span></div>
-<div class="title">Participants want to see it used on features from their own roadmap</div>
+<div class="title">&ldquo;I want to try it on features from our own roadmap.&rdquo;<span class="ctx">participant, the day itself</span></div>
 <div class="meter" title="unsupported"><i class="f"></i><i class=""></i><i class=""></i><b>unsupported</b></div>
 <div class="voices" title="distinct voices"><span class="gap">0 voices · participant</span></div>
 <div class="badges"><span class="badge side">side link</span><span class="badge parked">B: follow-up bookings, not this quarter</span></div>
 <blockquote>&quot;Show us how to apply this, or part of it, to features that are actually on our roadmap.&quot;<small>`sources/feedback/feedback-export.md:41`</small></blockquote>
+
+<div class="note">One participant.</div>
+<a href="/discovery/opportunities/feedback.md" class="note">Read the full entry</a>
+</article><article class="card un side" data-key="feedback:O16" data-source="feedback" data-level="un" data-speakers="participant" data-branch="B">
+<div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.6 5.5 6 .8-4.4 4.1 1.1 6L12 16.6 6.7 19.4l1.1-6L3.4 9.3l6-.8z"/></svg> feedback · <span class="id">O16</span></span></div>
+<div class="title">&ldquo;I don't know what results are expected of me.&rdquo;<span class="ctx">participant, the weeks after</span></div>
+<div class="meter" title="unsupported"><i class="f"></i><i class=""></i><i class=""></i><b>unsupported</b></div>
+<div class="voices" title="distinct voices"><span class="gap">0 voices · participant</span></div>
+<div class="badges"><span class="badge side">side link</span><span class="badge parked">B: follow-up bookings, not this quarter</span></div>
+<blockquote>&quot;what results are we expected to get?&quot;<small>`sources/feedback/feedback-export.md:42`</small></blockquote>
 
 <div class="note">One participant.</div>
 <a href="/discovery/opportunities/feedback.md" class="note">Read the full entry</a>
@@ -306,7 +416,7 @@ blockquote small{display:block;font-size:.75rem}
 <p class="says">Needs that sit mainly on this branch, with no side link to a step above.</p>
 <div class="grid"><article class="card partly" data-key="feedback:O5" data-source="feedback" data-level="partly" data-speakers="participant" data-branch="B">
 <div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.6 5.5 6 .8-4.4 4.1 1.1 6L12 16.6 6.7 19.4l1.1-6L3.4 9.3l6-.8z"/></svg> feedback · <span class="id">O5</span></span></div>
-<div class="title">Participants arrive without knowing what to expect from the day</div>
+<div class="title">&ldquo;I don't know what to expect from the day.&rdquo;<span class="ctx">participant, the day itself</span></div>
 <div class="meter" title="partly supported"><i class="f"></i><i class="f"></i><i class=""></i><b>partly supported</b></div>
 <div class="voices" title="distinct voices"><span class="v"></span><span class="v"></span><span class="gap">2 voices · participant</span></div>
 <div class="badges"><span class="badge parked">B: follow-up bookings, not this quarter</span></div>
@@ -316,7 +426,7 @@ blockquote small{display:block;font-size:.75rem}
 <a href="/discovery/opportunities/feedback.md" class="note">Read the full entry</a>
 </article><article class="card partly" data-key="feedback:O7" data-source="feedback" data-level="partly" data-speakers="participant" data-branch="B">
 <div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.6 5.5 6 .8-4.4 4.1 1.1 6L12 16.6 6.7 19.4l1.1-6L3.4 9.3l6-.8z"/></svg> feedback · <span class="id">O7</span></span></div>
-<div class="title">Taking part remotely is harder than being in the room</div>
+<div class="title">&ldquo;I can't focus as well when I join remotely.&rdquo;<span class="ctx">participant, the day itself</span></div>
 <div class="meter" title="partly supported"><i class="f"></i><i class="f"></i><i class=""></i><b>partly supported</b></div>
 <div class="voices" title="distinct voices"><span class="v"></span><span class="v"></span><span class="gap">2 voices · participant</span></div>
 <div class="badges"><span class="badge parked">B: follow-up bookings, not this quarter</span></div>
@@ -326,7 +436,7 @@ blockquote small{display:block;font-size:.75rem}
 <a href="/discovery/opportunities/feedback.md" class="note">Read the full entry</a>
 </article><article class="card partly" data-key="feedback:O8" data-source="feedback" data-level="partly" data-speakers="participant" data-branch="B">
 <div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.6 5.5 6 .8-4.4 4.1 1.1 6L12 16.6 6.7 19.4l1.1-6L3.4 9.3l6-.8z"/></svg> feedback · <span class="id">O8</span></span></div>
-<div class="title">The setup is not ready before the first session</div>
+<div class="title">&ldquo;My setup isn't ready before the first session.&rdquo;<span class="ctx">participant, preparation</span></div>
 <div class="meter" title="partly supported"><i class="f"></i><i class="f"></i><i class=""></i><b>partly supported</b></div>
 <div class="voices" title="distinct voices"><span class="v"></span><span class="v"></span><span class="gap">2 voices · participant</span></div>
 <div class="badges"><span class="badge parked">B: follow-up bookings, not this quarter</span></div>
@@ -336,7 +446,7 @@ blockquote small{display:block;font-size:.75rem}
 <a href="/discovery/opportunities/feedback.md" class="note">Read the full entry</a>
 </article><article class="card partly" data-key="feedback:O9" data-source="feedback" data-level="partly" data-speakers="participant" data-branch="B">
 <div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.6 5.5 6 .8-4.4 4.1 1.1 6L12 16.6 6.7 19.4l1.1-6L3.4 9.3l6-.8z"/></svg> feedback · <span class="id">O9</span></span></div>
-<div class="title">Tools fail or slow down the exercises</div>
+<div class="title">&ldquo;The tools get in my way during exercises.&rdquo;<span class="ctx">participant, the day itself</span></div>
 <div class="meter" title="partly supported"><i class="f"></i><i class="f"></i><i class=""></i><b>partly supported</b></div>
 <div class="voices" title="distinct voices"><span class="v"></span><span class="v"></span><span class="gap">2 voices · participant</span></div>
 <div class="badges"><span class="badge parked">B: follow-up bookings, not this quarter</span></div>
@@ -346,7 +456,7 @@ blockquote small{display:block;font-size:.75rem}
 <a href="/discovery/opportunities/feedback.md" class="note">Read the full entry</a>
 </article><article class="card un" data-key="interviews:O9" data-source="interviews" data-level="un" data-speakers="participant" data-branch="B">
 <div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H9l-4 3v-3H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/><path d="M19 9h1a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-1v3l-4-3h-3"/></svg> interviews · <span class="id">O9</span></span></div>
-<div class="title">On the day, a participant with the least experience loses track and does not trust her own work</div>
+<div class="title">&ldquo;I don't understand what I built, so I can't trust it.&rdquo;<span class="ctx">participant, the day itself</span></div>
 <div class="meter" title="unsupported"><i class="f"></i><i class=""></i><i class=""></i><b>unsupported</b></div>
 <div class="voices" title="distinct voices"><span class="v"></span><span class="gap">1 voice · participant</span></div>
 <div class="badges"><span class="badge parked">B: follow-up bookings, not this quarter</span></div>
@@ -356,7 +466,7 @@ blockquote small{display:block;font-size:.75rem}
 <a href="/discovery/opportunities/interviews.md" class="note">Read the full entry</a>
 </article><article class="card un" data-key="interviews:O10" data-source="interviews" data-level="un" data-speakers="participant" data-branch="B">
 <div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H9l-4 3v-3H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/><path d="M19 9h1a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-1v3l-4-3h-3"/></svg> interviews · <span class="id">O10</span></span></div>
-<div class="title">After the format, a participant cannot see herself setting it up alone at her desk</div>
+<div class="title">&ldquo;I can't see myself setting it up alone at my desk.&rdquo;<span class="ctx">participant, the weeks after</span></div>
 <div class="meter" title="unsupported"><i class="f"></i><i class=""></i><i class=""></i><b>unsupported</b></div>
 <div class="voices" title="distinct voices"><span class="v"></span><span class="gap">1 voice · participant</span></div>
 <div class="badges"><span class="badge parked">B: follow-up bookings, not this quarter</span></div>
@@ -366,7 +476,7 @@ blockquote small{display:block;font-size:.75rem}
 <a href="/discovery/opportunities/interviews.md" class="note">Read the full entry</a>
 </article><article class="card un" data-key="interviews:O11" data-source="interviews" data-level="un" data-speakers="" data-branch="B">
 <div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H9l-4 3v-3H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/><path d="M19 9h1a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-1v3l-4-3h-3"/></svg> interviews · <span class="id">O11</span></span></div>
-<div class="title">In preparation, a sponsor cannot answer what participants may install, open or use</div>
+<div class="title">&ldquo;I can't answer which tools my people are allowed to use.&rdquo;<span class="ctx">sponsor, preparation</span></div>
 <div class="meter" title="unsupported"><i class="f"></i><i class=""></i><i class=""></i><b>unsupported</b></div>
 <div class="voices" title="distinct voices"><span class="v"></span><span class="gap">1 voice</span></div>
 <div class="badges"><span class="badge parked">B: follow-up bookings, not this quarter</span></div>
@@ -376,7 +486,7 @@ blockquote small{display:block;font-size:.75rem}
 <a href="/discovery/opportunities/interviews.md" class="note">Read the full entry</a>
 </article><article class="card un" data-key="interviews:O13" data-source="interviews" data-level="un" data-speakers="" data-branch="B">
 <div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H9l-4 3v-3H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/><path d="M19 9h1a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-1v3l-4-3h-3"/></svg> interviews · <span class="id">O13</span></span></div>
-<div class="title">In preparation, a sponsor gets more moving documents than he can work through</div>
+<div class="title">&ldquo;I get more changing documents than I can work through.&rdquo;<span class="ctx">sponsor, preparation</span></div>
 <div class="meter" title="unsupported"><i class="f"></i><i class=""></i><i class=""></i><b>unsupported</b></div>
 <div class="voices" title="distinct voices"><span class="v"></span><span class="gap">1 voice</span></div>
 <div class="badges"><span class="badge parked">B: follow-up bookings, not this quarter</span></div>
@@ -386,7 +496,7 @@ blockquote small{display:block;font-size:.75rem}
 <a href="/discovery/opportunities/interviews.md" class="note">Read the full entry</a>
 </article><article class="card un" data-key="interviews:O14" data-source="interviews" data-level="un" data-speakers="" data-branch="B">
 <div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H9l-4 3v-3H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/><path d="M19 9h1a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-1v3l-4-3h-3"/></svg> interviews · <span class="id">O14</span></span></div>
-<div class="title">In preparation, a sponsor struggles to find a real open problem that is still current on the day</div>
+<div class="title">&ldquo;I can't find a real problem that will still be current.&rdquo;<span class="ctx">sponsor, preparation</span></div>
 <div class="meter" title="unsupported"><i class="f"></i><i class=""></i><i class=""></i><b>unsupported</b></div>
 <div class="voices" title="distinct voices"><span class="v"></span><span class="gap">1 voice</span></div>
 <div class="badges"><span class="badge parked">B: follow-up bookings, not this quarter</span></div>
@@ -396,7 +506,7 @@ blockquote small{display:block;font-size:.75rem}
 <a href="/discovery/opportunities/interviews.md" class="note">Read the full entry</a>
 </article><article class="card un" data-key="interviews:O15" data-source="interviews" data-level="un" data-speakers="" data-branch="B">
 <div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H9l-4 3v-3H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/><path d="M19 9h1a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-1v3l-4-3h-3"/></svg> interviews · <span class="id">O15</span></span></div>
-<div class="title">After the format, a sponsor wants to know how mature his product people really are</div>
+<div class="title">&ldquo;I want to know how mature my product people really are.&rdquo;<span class="ctx">sponsor, the weeks after</span></div>
 <div class="meter" title="unsupported"><i class="f"></i><i class=""></i><i class=""></i><b>unsupported</b></div>
 <div class="voices" title="distinct voices"><span class="v"></span><span class="gap">1 voice</span></div>
 <div class="badges"><span class="badge parked">B: follow-up bookings, not this quarter</span></div>
@@ -406,7 +516,7 @@ blockquote small{display:block;font-size:.75rem}
 <a href="/discovery/opportunities/interviews.md" class="note">Read the full entry</a>
 </article><article class="card un" data-key="inbox:O9" data-source="inbox" data-level="un" data-speakers="" data-branch="B">
 <div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13h5l1.5 3h5L16 13h5"/><path d="M5.5 5h13L21 13v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5z"/></svg> inbox · <span class="id">O9</span></span></div>
-<div class="title">Sponsors cannot fit the follow-up session in while it is still useful</div>
+<div class="title">&ldquo;I don't know if a later follow-up is still useful.&rdquo;<span class="ctx">sponsor, the weeks after</span></div>
 <div class="meter" title="unsupported"><i class="f"></i><i class=""></i><i class=""></i><b>unsupported</b></div>
 <div class="voices" title="distinct voices"><span class="v"></span><span class="gap">1 voice</span></div>
 <div class="badges"><span class="badge parked">B: follow-up bookings, not this quarter</span></div>
@@ -416,7 +526,7 @@ blockquote small{display:block;font-size:.75rem}
 <a href="/discovery/opportunities/inbox.md" class="note">Read the full entry</a>
 </article><article class="card un" data-key="feedback:O11" data-source="feedback" data-level="un" data-speakers="participant" data-branch="B">
 <div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.6 5.5 6 .8-4.4 4.1 1.1 6L12 16.6 6.7 19.4l1.1-6L3.4 9.3l6-.8z"/></svg> feedback · <span class="id">O11</span></span></div>
-<div class="title">Participants need something to reread when they start on their own</div>
+<div class="title">&ldquo;I need something to reread when I start alone.&rdquo;<span class="ctx">participant, the weeks after</span></div>
 <div class="meter" title="unsupported"><i class="f"></i><i class=""></i><i class=""></i><b>unsupported</b></div>
 <div class="voices" title="distinct voices"><span class="gap">0 voices · participant</span></div>
 <div class="badges"><span class="badge parked">B: follow-up bookings, not this quarter</span></div>
@@ -426,7 +536,7 @@ blockquote small{display:block;font-size:.75rem}
 <a href="/discovery/opportunities/feedback.md" class="note">Read the full entry</a>
 </article><article class="card un" data-key="feedback:O12" data-source="feedback" data-level="un" data-speakers="participant" data-branch="B">
 <div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.6 5.5 6 .8-4.4 4.1 1.1 6L12 16.6 6.7 19.4l1.1-6L3.4 9.3l6-.8z"/></svg> feedback · <span class="id">O12</span></span></div>
-<div class="title">The slides do not explain enough</div>
+<div class="title">&ldquo;I need the slides to explain more.&rdquo;<span class="ctx">participant, the day itself or the weeks after</span></div>
 <div class="meter" title="unsupported"><i class="f"></i><i class=""></i><i class=""></i><b>unsupported</b></div>
 <div class="voices" title="distinct voices"><span class="gap">0 voices · participant</span></div>
 <div class="badges"><span class="badge parked">B: follow-up bookings, not this quarter</span></div>
@@ -436,7 +546,7 @@ blockquote small{display:block;font-size:.75rem}
 <a href="/discovery/opportunities/feedback.md" class="note">Read the full entry</a>
 </article><article class="card un" data-key="feedback:O13" data-source="feedback" data-level="un" data-speakers="participant" data-branch="B">
 <div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.6 5.5 6 .8-4.4 4.1 1.1 6L12 16.6 6.7 19.4l1.1-6L3.4 9.3l6-.8z"/></svg> feedback · <span class="id">O13</span></span></div>
-<div class="title">Participants get more AI-written text than they can read</div>
+<div class="title">&ldquo;I get more AI-written text than I can read.&rdquo;<span class="ctx">participant, the day itself</span></div>
 <div class="meter" title="unsupported"><i class="f"></i><i class=""></i><i class=""></i><b>unsupported</b></div>
 <div class="voices" title="distinct voices"><span class="gap">0 voices · participant</span></div>
 <div class="badges"><span class="badge parked">B: follow-up bookings, not this quarter</span></div>
@@ -446,7 +556,7 @@ blockquote small{display:block;font-size:.75rem}
 <a href="/discovery/opportunities/feedback.md" class="note">Read the full entry</a>
 </article><article class="card un" data-key="feedback:O14" data-source="feedback" data-level="un" data-speakers="participant" data-branch="B">
 <div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.6 5.5 6 .8-4.4 4.1 1.1 6L12 16.6 6.7 19.4l1.1-6L3.4 9.3l6-.8z"/></svg> feedback · <span class="id">O14</span></span></div>
-<div class="title">The team's main document grew too long</div>
+<div class="title">&ldquo;Our main document grew far too long.&rdquo;<span class="ctx">participant, the day itself</span></div>
 <div class="meter" title="unsupported"><i class="f"></i><i class=""></i><i class=""></i><b>unsupported</b></div>
 <div class="voices" title="distinct voices"><span class="gap">0 voices · participant</span></div>
 <div class="badges"><span class="badge parked">B: follow-up bookings, not this quarter</span></div>
@@ -456,7 +566,7 @@ blockquote small{display:block;font-size:.75rem}
 <a href="/discovery/opportunities/feedback.md" class="note">Read the full entry</a>
 </article><article class="card un" data-key="feedback:O15" data-source="feedback" data-level="un" data-speakers="participant" data-branch="B">
 <div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.6 5.5 6 .8-4.4 4.1 1.1 6L12 16.6 6.7 19.4l1.1-6L3.4 9.3l6-.8z"/></svg> feedback · <span class="id">O15</span></span></div>
-<div class="title">The room was too loud to read</div>
+<div class="title">&ldquo;The room was too loud for me to read.&rdquo;<span class="ctx">participant, the day itself</span></div>
 <div class="meter" title="unsupported"><i class="f"></i><i class=""></i><i class=""></i><b>unsupported</b></div>
 <div class="voices" title="distinct voices"><span class="gap">0 voices · participant</span></div>
 <div class="badges"><span class="badge parked">B: follow-up bookings, not this quarter</span></div>
@@ -470,7 +580,7 @@ blockquote small{display:block;font-size:.75rem}
 <p class="says">Needs the file ties to no branch of the tree and to no step above.</p>
 <div class="grid"><article class="card partly" data-key="inbox:O6" data-source="inbox" data-level="partly" data-speakers="participant" data-branch="none">
 <div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13h5l1.5 3h5L16 13h5"/><path d="M5.5 5h13L21 13v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5z"/></svg> inbox · <span class="id">O6</span></span></div>
-<div class="title">Participants cannot get the tool running when the workshop starts</div>
+<div class="title">&ldquo;I can't get the tool running when the workshop starts.&rdquo;<span class="ctx">participant, the day itself</span></div>
 <div class="meter" title="partly supported"><i class="f"></i><i class="f"></i><i class=""></i><b>partly supported</b></div>
 <div class="voices" title="distinct voices"><span class="v"></span><span class="v"></span><span class="gap">2 voices · participant · plus second-hand</span></div>
 <div class="badges"><span class="badge parked">no KPI branch</span></div>
@@ -480,7 +590,7 @@ blockquote small{display:block;font-size:.75rem}
 <a href="/discovery/opportunities/inbox.md" class="note">Read the full entry</a>
 </article><article class="card un" data-key="inbox:O7" data-source="inbox" data-level="un" data-speakers="participant" data-branch="none">
 <div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13h5l1.5 3h5L16 13h5"/><path d="M5.5 5h13L21 13v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5z"/></svg> inbox · <span class="id">O7</span></span></div>
-<div class="title">Participants want to know if they can work on a real task that is partly confidential</div>
+<div class="title">&ldquo;I don't know if I may bring my partly confidential task.&rdquo;<span class="ctx">participant, preparation</span></div>
 <div class="meter" title="unsupported"><i class="f"></i><i class=""></i><i class=""></i><b>unsupported</b></div>
 <div class="voices" title="distinct voices"><span class="v"></span><span class="gap">1 voice · participant</span></div>
 <div class="badges"><span class="badge parked">no KPI branch</span></div>
@@ -490,7 +600,7 @@ blockquote small{display:block;font-size:.75rem}
 <a href="/discovery/opportunities/inbox.md" class="note">Read the full entry</a>
 </article><article class="card un" data-key="inbox:O8" data-source="inbox" data-level="un" data-speakers="participant" data-branch="none">
 <div class="top"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13h5l1.5 3h5L16 13h5"/><path d="M5.5 5h13L21 13v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5z"/></svg> inbox · <span class="id">O8</span></span></div>
-<div class="title">Participants want to know what else to prepare besides the setup</div>
+<div class="title">&ldquo;I want to know what else to prepare besides the setup.&rdquo;<span class="ctx">participant, preparation</span></div>
 <div class="meter" title="unsupported"><i class="f"></i><i class=""></i><i class=""></i><b>unsupported</b></div>
 <div class="voices" title="distinct voices"><span class="v"></span><span class="gap">1 voice · participant</span></div>
 <div class="badges"><span class="badge parked">no KPI branch</span></div>

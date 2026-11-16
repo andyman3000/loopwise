@@ -2,7 +2,7 @@
   "about": "The steps of the discovery run, in order. npm run walkthrough draws each commit into walkthrough/. label: the button; title: the heading (default: label). group: the button group (default: variant, else The run). view: kpi = the KPI tree drawing, map = the opportunity map, tree = the opportunity tree (default).",
   "steps": [
     {"label": "KPI tree", "skill": "kpi-tree", "commit": "fbf1878", "view": "kpi"},
-    {"label": "Opportunities", "title": "Opportunities from the sources", "skill": "opportunities-from-source", "commit": "d8b7bf9", "view": "map"},
+    {"label": "Opportunities", "title": "Opportunities from the sources", "skill": "opportunities-from-source", "commit": "80d800c", "view": "map"},
     {"label": "Comparison", "title": "Opportunity comparison", "skill": "compare-opportunities", "commit": "defab49"},
     {"label": "Decision 001", "title": "Decision 001: C1 chosen (gate 1)", "skill": "decision", "commit": "9f77e7a"},
     {"label": "Intent and ideas", "title": "Intent and ideas, format-quiz first", "skill": "intent-and-ideas", "commit": "9274e98"},
