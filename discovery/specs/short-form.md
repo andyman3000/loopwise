@@ -7,13 +7,13 @@
 > **Label:** interviews, inquiry mails, inbox and data are synthetic; the feedback free text is an anonymised composite. This file repeats that label.
 
 ## Status
-**Stage:** Built, because the page opens at `/inquiry.html?variant=short-form` (checked 2026-11-16 on a local server). Not "Tested with people": the learning card [discovery/decisions/004-short-form.md](../decisions/004-short-form.md) rests on persona runs only. No human has decided on the challenger's findings yet, and one open point touches a sign.
+**Stage:** Built, because the page opens at `/inquiry.html?variant=short-form` (checked 2026-11-16 on a local server). Every "fix before the test" finding is decided, and every open point that touches a sign is answered (product lead, 2026-11-16). Not "Tested with people": no person has tested the page, and the learning card rests on persona runs only.
 
 | # | Date | Review | File | Findings | Decided |
 |---|---|---|---|---|---|
-| 1 | 2026-11-16 | challenger, run 1 | this file, "Challenger check" | 13 findings: 7 applied, 6 kept | applied by the agent as proposed, tonight; the product lead confirms or reverts |
-| 2 | 2026-11-16 | persona walkthrough, page, run 1, on commit 1f6e80f | [discovery/user-tests/short-form-page.md](../user-tests/short-form-page.md) | fix before the test: 2 · fix if time allows: 1 · watch in the test: 1 | 1 and 2 applied per tonight's brief; 3 not applied; 4 for the test |
-| 3 | 2026-11-16 | persona walkthrough, page, run 2, on commit 6da3b2a | [discovery/user-tests/short-form-page-run2.md](../user-tests/short-form-page-run2.md) | fix before the test: 0 · fix if time allows: 1 · watch in the test: 2 | open |
+| 1 | 2026-11-16 | challenger, run 1 | this file, "Challenger check" | 13 findings: 7 applied, 6 kept | all 13 confirmed by the product lead, 2026-11-16 |
+| 2 | 2026-11-16 | persona walkthrough, page, run 1, on commit 1f6e80f | [discovery/user-tests/short-form-page.md](../user-tests/short-form-page.md) | fix before the test: 2 · fix if time allows: 1 · watch in the test: 1 | 1 and 2 applied, confirmed by the product lead; 3 moved to the launch spec; 4 for the test |
+| 3 | 2026-11-16 | persona walkthrough, page, run 2, on commit 6da3b2a | [discovery/user-tests/short-form-page-run2.md](../user-tests/short-form-page-run2.md) | fix before the test: 0 · fix if time allows: 1 · watch in the test: 2 | 1 moved to the launch spec; 2 and 3 for the test, the watcher notes both (product lead, 2026-11-16) |
 
 A spec describes the page so exactly that Claude Code can build it from this file alone.
 In mode `learn` it covers only what the prototype test needs. Everything else is left out.
@@ -71,44 +71,45 @@ The page sends nothing to the server (see "What happens on send"). The fields be
 ## Invented lines on the page
 | Line the buyer sees | Who could confirm it |
 |---|---|
-| Leave your name and email. In the scoping call, you tell us about your group and what gets in the way. We work out the format together. | the product lead, and the staff who run scoping calls |
-| The inquiry asks only for your name and email. (formats page) | the product lead |
+| Leave your name and email. In the scoping call, you tell us about your group and what gets in the way. We work out the format together. | confirmed by the product lead (Loopwise), 2026-11-16 |
+| The inquiry asks only for your name and email. (formats page) | confirmed by the product lead (Loopwise), 2026-11-16 |
 
 ## Left out to learn faster
 - A real send to `/api/inquiry` with only name and email: the server rule needs company and message ([site/components/inquiry-form.js:11](../../site/components/inquiry-form.js#L11), [site/components/inquiry-form.js:14](../../site/components/inquiry-form.js#L14)). The change sits in `site/components/inquiry-form.js` and `server.js`. · for the launch spec
 - The field "Company": the idea cuts it ([discovery/intents/format-fit.md:100](../intents/format-fit.md#L100)). Whether the scoping call needs it is a question for the staff who run the calls. · for the launch spec
 - A mail link or a phone number to write instead: a second way to the same sign, and close to idea I2. · not for this variant
 - The event `inquiry_submitted` for the faked send. · for the launch spec
+- A place to ask questions in writing, or a reference to call: only the buyer with budget backs it ([product/personas/buyer-with-budget.md:96](../../product/personas/buyer-with-budget.md#L96)), and the card recruits no tester of that type. · for the launch spec, decided by the product lead (Loopwise), 2026-11-16
 
 ## Changes after review
-- After the challenger run: the heading item, the repeated lines on what the form leaves out, `maxlength`, the reasoning around the fake, and the open points on the stored inquiry and the confirmation page are cut. · Decided by: applied by the agent as proposed, 2026-11-16, because the product lead skipped the review tonight; the product lead confirms or reverts
+- After the challenger run: the heading item, the repeated lines on what the form leaves out, `maxlength`, the reasoning around the fake, and the open points on the stored inquiry and the confirmation page are cut. · Decided by: Product lead (Loopwise), 2026-11-16, confirming what the agent applied
 
-- After persona walkthrough run 1 ([discovery/user-tests/short-form-page.md](../user-tests/short-form-page.md)): proposals 1 and 2, the two marked "fix before the test", are applied. The formats page gets one line above "Make an inquiry". The lead line on the inquiry page now says the call is where the buyer describes the group and what gets in the way. Proposal 3 (a place for written questions, buyer with budget only) is not applied: the card recruits no buyer with budget, and a text box would undo the idea. · Decided by: the brief for tonight's run, which asks to fix every blocker a run names; the product lead confirms or reverts
+- After persona walkthrough run 1 ([discovery/user-tests/short-form-page.md](../user-tests/short-form-page.md)): proposals 1 and 2, the two marked "fix before the test", are applied. The formats page gets one line above "Make an inquiry". The lead line on the inquiry page now says the call is where the buyer describes the group and what gets in the way. Proposal 3 (a place for written questions, buyer with budget only) is not applied: the card recruits no buyer with budget, and a text box would undo the idea. · Decided by: Product lead (Loopwise), 2026-11-16, confirming both fixes. Proposal 3 goes to the launch spec
 
 ## Challenger check
-A subagent with no other context read only the prototype card and this spec on 2026-11-16. It found the spec lean, with the core path complete: two fields, send, confirmation page. The product lead was not present tonight. The agent applied its own proposals; the product lead confirms or reverts each.
+A subagent with no other context read only the prototype card and this spec on 2026-11-16. It found the spec lean, with the core path complete: two fields, send, confirmation page. The agent applied its own proposals first; the product lead confirmed each one the same evening.
 
 | Element | What the challenger says | Proposal | Decided |
 |---|---|---|---|
-| The heading "Inquiry" as its own item | Serves no sign; it is unchanged. | cut the item, keep the heading under "What stays the same" | applied by the agent |
-| The lead line | Serves the assumption. It may answer the question "where do I say what we need?" before the tester asks it. | keep, and name the risk under "Open points" | applied by the agent |
-| "No other field, no free-text box, no mail link" | Repeats the card and "Left out". | cut | applied by the agent |
+| The heading "Inquiry" as its own item | Serves no sign; it is unchanged. | cut the item, keep the heading under "What stays the same" | applied |
+| The lead line | Serves the assumption. It may answer the question "where do I say what we need?" before the tester asks it. | keep, and name the risk under "Open points" | applied |
+| "No other field, no free-text box, no mail link" | Repeats the card and "Left out". | cut | applied |
 | Checks on empty name and wrong email | No sign needs them; a tester who sends gives valid values. | keep: without the check, a tester who presses "Send" on an empty form lands on the confirmation page, and the watcher would misread the sign "sends the form with name and email" | kept |
-| `maxlength="300"` | Serves nothing; the page sends nothing. | cut | applied by the agent |
-| The reasoning around the faked send | Justification, not build text. | simplify to one sentence | applied by the agent |
+| `maxlength="300"` | Serves nothing; the page sends nothing. | cut | applied |
+| The reasoning around the faked send | Justification, not build text. | simplify to one sentence | applied |
 | The faked send | The only way; the server turns down name and email alone. | keep | kept |
 | The events line under "What stays the same" | No sign reads events. | keep: one line, so nobody reads the missing `inquiry_submitted` as a drop later | kept |
-| "The formats page stays as today" twice | Repeated. | cut the first | applied by the agent |
+| "The formats page stays as today" twice | Repeated. | cut the first | applied |
 | The table "Where the watcher sees each sign" | Duplicates the "Serves" notes. | keep: the skill asks for it as the check that every sign has a place | kept |
 | Open point on the watcher's question after the send | Belongs to the test script. | keep as an open point; it touches a sign | kept |
-| Open points on the stored inquiry and the confirmation page | One repeats the fake, one is a launch matter. | cut | applied by the agent |
+| Open points on the stored inquiry and the confirmation page | One repeats the fake, one is a launch matter. | cut | applied |
 | "Invented lines", "Status", "Your first try", "Left out" | Process sections. | keep: the skill asks for each | kept |
 
-Decided by: applied by the agent as proposed, 2026-11-16; the product lead confirms or reverts.
+Decided by: Product lead (Loopwise), 2026-11-16. All 13 decisions confirmed.
 
 ## Open points for the human
-- The sign "says afterwards what happens next" has no element on the page. Proposal: after the send, the watcher asks once: "What do you expect to happen now?" · who can answer: the product lead · Answer: ____ (human decides; touches a sign)
-- The lead line says the buyer describes the group and what gets in the way in the scoping call. It may answer the question "where do I say what we need?" before a tester asks it. Then the rework sign on looking for a place to describe the group ([discovery/test-cards/short-form-prototype.md:65](../test-cards/short-form-prototype.md#L65)) shows less often. · who can answer: the product lead · Answer: ____ (human decides; touches a sign)
+- The sign "says afterwards what happens next" has no element on the page. Proposal: after the send, the watcher asks once: "What do you expect to happen now?" · who can answer: the product lead · Answer: yes, the watcher asks this question once, after the confirmation page (Product lead (Loopwise), 2026-11-16)
+- The lead line says the buyer describes the group and what gets in the way in the scoping call. It may answer the question "where do I say what we need?" before a tester asks it. Then the rework sign on looking for a place to describe the group ([discovery/test-cards/short-form-prototype.md:65](../test-cards/short-form-prototype.md#L65)) shows less often. · who can answer: the product lead · Answer: accepted as a known risk. The line stays. The watcher notes whether a tester reads the lead line before the fields (Product lead (Loopwise), 2026-11-16)
 
 ## Build prompt
 > Build the variant in discovery/specs/short-form.md as one file per page it changes in
