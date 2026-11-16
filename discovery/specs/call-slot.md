@@ -49,16 +49,18 @@ The page books nothing for real. The slot booking is faked: it sends nothing to 
 4. **Name** and **Email**, two fields. They sit in their own `<div>`, never in `#inquiry-form`. No other field: the booking asks nothing about the format or the group. Serves: the rework sign that a booking step asks for what the tester does not know ([discovery/test-cards/call-slot-prototype.md:74](../test-cards/call-slot-prototype.md#L74)).
 5. A button "Book this call". [invented] It checks that a day, a time, a name and a valid email are given. A missing one shows one line under the button: Please choose a day and a time, and enter your name and email. [invented]
 6. On a valid click, the box shows the booked call in place of the booking. Serves: the go-on sign that the tester confirms the slot, to the page that says the call is booked ([discovery/test-cards/call-slot-prototype.md:71](../test-cards/call-slot-prototype.md#L71)).
-   - Heading: Your call is booked. [invented]
-   - Line: <Day>, <time>, 20 minutes. We send the video link to <email>. [invented]
-   - Line: In the call we settle together which format fits your team. Nothing else is booked. [invented, adapted from [site/inquiry.html:36](../../site/inquiry.html#L36)]
+   - A round check mark that pops in, with the heading: You're all set, <first name>! [invented] The first name is the first word of the name field.
+   - Line, marked as a box: <Day> · <time> · 20 minutes. [invented]
+   - Line: The video link is on its way to <email>. [invented]
+   - Line: No preparation needed. Bring what is on your mind, and we work out together which format fits your team. We look forward to talking with you. [invented, partly adapted from [site/inquiry.html:36](../../site/inquiry.html#L36)]
+   - Small line: Nothing else is booked. [invented]
    - Faked: nothing is sent, stored or logged. A reload shows the page as at the start.
 
 ## Where the watcher sees each sign
 | Sign (from the prototype card) | Element on the page |
 |---|---|
 | The tester opens the slot booking or the phone option before clicking into a form field ([:70](../test-cards/call-slot-prototype.md#L70)) | "Choose a time", or the number under "Call us directly" |
-| The tester picks a time and confirms the call slot, to the page that says the call is booked ([:71](../test-cards/call-slot-prototype.md#L71)) | Day, time, name, email, "Book this call", then "Your call is booked" |
+| The tester picks a time and confirms the call slot, to the page that says the call is booked ([:71](../test-cards/call-slot-prototype.md#L71)) | Day, time, name, email, "Book this call", then "You're all set" |
 | Asked afterwards, the tester says what they want to settle in the call ([:72](../test-cards/call-slot-prototype.md#L72)) | no element: the watcher asks once after the booking (open point) |
 | The tester looks for a way to talk, and does not find it ([:73](../test-cards/call-slot-prototype.md#L73)) | the box "Talk to us"; the watcher notes where the tester looks first |
 | The tester opens the slot booking and stops ([:74](../test-cards/call-slot-prototype.md#L74)) | the slot booking: the calendar, the times, the two fields, the close button (×) |
@@ -84,7 +86,8 @@ The slot booking sends nothing. Its day, time, name and email stay in the browse
 | A 20-minute video call | someone who runs scoping calls |
 | The invented number `+49 30 0123 4567` | the product lead |
 | The days in the calendar, four weeks ahead, and the four times | someone who runs scoping calls |
-| Your call is booked, and the line on the video link | the product lead |
+| You're all set, <first name>!, the line on the video link, "We look forward to talking with you", "Nothing else is booked" | the product lead |
+| "No preparation needed" | someone who runs scoping calls |
 | The error line under "Book this call" | the product lead |
 
 ## Left out to learn faster
@@ -102,6 +105,7 @@ The slot booking sends nothing. Its day, time, name and email stay in the browse
 - After persona walkthrough run 1 ([discovery/user-tests/call-slot-page.md](../user-tests/call-slot-page.md)): the agent extended the day list to ten weeks, past the holidays. The buyer without budget says the rest of her year is full. The product lead reverted it to four weeks and accepts the stall as a known risk. The test shows whether testers find no time. · Decided by: Product lead (Loopwise), 2026-11-16
 - The day drop-down becomes a calendar widget. · Decided by: Product lead (Loopwise), 2026-11-16
 - The booking gets a close button (×). It clears the day, the time and both fields, and shows the two ways to talk again. The product lead wants a way out of the booking. This undoes the challenger cut of "Back". · Decided by: Product lead (Loopwise), 2026-11-16
+- The booked message is warmer: a check mark that pops in, the tester's first name in the heading, the booked time in a box, and a line that no preparation is needed. The product lead asked for a more delightful message. · Decided by: Product lead (Loopwise), 2026-11-16
 - The number is an invented German number. A click on it counts as a call, also on the go-on line ([discovery/test-cards/call-slot-prototype.md:80](../test-cards/call-slot-prototype.md#L80)). · Decided by: Product lead (Loopwise), 2026-11-16
 - Testers: one mixed group of five buyers, with or without budget, in place of five buyers without budget. This answers the finding "add buyers with budget as testers" from both walkthrough runs. · Decided by: Product lead (Loopwise), 2026-11-16
 

@@ -20,6 +20,15 @@
     .slot-box{max-width:var(--text)}
     #slot-booking{position:relative}
     #slot-done:focus{outline:none}
+    .done-head{display:flex;align-items:center;gap:.8rem;margin-bottom:.75rem}
+    .done-head h3{margin:0;font-size:1.3rem}
+    .done-check{flex:none;display:grid;place-items:center;width:2.75rem;height:2.75rem;border-radius:50%;background:var(--accent);color:var(--accent-fg)}
+    .done-when{display:inline-block;background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:0 var(--radius) var(--radius) 0;padding:.55rem .9rem;font-weight:650}
+    #slot-done:not([hidden]) .done-check{animation:pop .5s cubic-bezier(.2,1.4,.4,1) both}
+    #slot-done:not([hidden]) .done-check path{stroke-dasharray:24;stroke-dashoffset:24;animation:draw .4s .25s ease-out forwards}
+    @keyframes pop{from{transform:scale(.3);opacity:0}to{transform:scale(1);opacity:1}}
+    @keyframes draw{to{stroke-dashoffset:0}}
+    @media (prefers-reduced-motion:reduce){#slot-done .done-check,#slot-done .done-check path{animation:none;stroke-dashoffset:0}}
     .slot-close{position:absolute;top:.6rem;right:.6rem;font:inherit;font-size:1.4rem;line-height:1;width:2.2rem;height:2.2rem;border:0;border-radius:8px;background:none;color:var(--muted);cursor:pointer}
     .slot-close:hover{color:var(--fg);background:var(--accent-soft)}
     .write-heading{margin-top:2.5rem}
@@ -93,9 +102,14 @@
       </div>
 
       <div id="slot-done" class="card slot-box" hidden role="status" tabindex="-1">
-        <h3>Your call is booked</h3>
-        <p id="slot-done-when"></p>
-        <p>In the call we settle together which format fits your team. Nothing else is booked.</p>
+        <div class="done-head">
+          <span class="done-check" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <h3 id="slot-done-title">You're all set!</h3>
+        </div>
+        <p class="done-when" id="slot-done-when"></p>
+        <p id="slot-done-mail"></p>
+        <p>No preparation needed. Bring what is on your mind, and we work out together which format fits your team. We look forward to talking with you.</p>
+        <p class="muted">Nothing else is booked.</p>
       </div>
     </section>
 
@@ -198,7 +212,10 @@
       const ok = picked && time && name && EMAIL.test(email);
       $('slot-error').hidden = !!ok;
       if (!ok) return;
-      $('slot-done-when').textContent = `${fmt.format(picked).replace(' ', ', ')}, ${time.value}, 20 minutes. We send the video link to ${email}.`;
+      const firstName = name.split(/\s+/)[0];
+      $('slot-done-title').textContent = `You're all set, ${firstName}!`;
+      $('slot-done-when').textContent = `${fmt.format(picked).replace(' ', ', ')} · ${time.value} · 20 minutes`;
+      $('slot-done-mail').textContent = `The video link is on its way to ${email}.`;
       booking.hidden = true;
       done.hidden = false;
       // The booking box is taller than the booked message, so bring the message into view.
