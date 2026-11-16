@@ -18,6 +18,9 @@
     .slot-times legend{font-weight:600;margin-bottom:.35rem;padding:0}
     .slot-times label{display:inline-flex;align-items:center;gap:.4rem;font-weight:400;margin:0}
     .slot-box{max-width:var(--text)}
+    #slot-booking{position:relative}
+    .slot-close{position:absolute;top:.6rem;right:.6rem;font:inherit;font-size:1.4rem;line-height:1;width:2.2rem;height:2.2rem;border:0;border-radius:8px;background:none;color:var(--muted);cursor:pointer}
+    .slot-close:hover{color:var(--fg);background:var(--accent-soft)}
     .write-heading{margin-top:2.5rem}
     .cal{margin:0 0 1.2rem;max-width:22rem}
     .cal-label{font-weight:600;margin-bottom:.35rem}
@@ -64,6 +67,7 @@
       </div>
 
       <div id="slot-booking" class="card slot-box" hidden>
+        <button type="button" class="slot-close" id="slot-close" aria-label="Close">&times;</button>
         <h3>Choose a time for a 20-minute video call</h3>
         <div class="cal" role="group" aria-labelledby="cal-label">
           <div class="cal-label" id="cal-label">Day</div>
@@ -171,6 +175,20 @@
     drawCalendar();
 
     $('slot-open').addEventListener('click', () => { options.hidden = true; booking.hidden = false; });
+
+    // The close button resets the booking and shows the two ways to talk again.
+    $('slot-close').addEventListener('click', () => {
+      picked = null;
+      shown = new Date(first.getFullYear(), first.getMonth(), 1);
+      drawCalendar();
+      document.querySelectorAll('input[name="slot-time"]').forEach((r) => { r.checked = false; });
+      $('slot-name').value = '';
+      $('slot-email').value = '';
+      $('slot-error').hidden = true;
+      booking.hidden = true;
+      options.hidden = false;
+      $('slot-open').focus();
+    });
 
     const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     $('slot-book').addEventListener('click', () => {
