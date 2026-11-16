@@ -420,6 +420,15 @@ ____ (human decides)
   assert.equal(readExperiment(root, 'success-line-first').learning.outcome, 'go on');
 });
 
+test('a learning card saved under another decision number still counts, and only for its own variant', () => {
+  const { root, put } = experimentRepo();
+  fs.rmSync(path.join(root, 'discovery', 'decisions'), { recursive: true, force: true });
+  put('discovery/decisions/001-first-line.md', '## Round 1, 2026-11-17\n### What we decided\nKill: wrong variant\n');
+  assert.equal(readExperiment(root, 'success-line-first').learning, null);
+  put('discovery/decisions/003-success-line-first.md', '## Round 1, 2026-11-17\n### What we decided\nMove on, as the team said\n');
+  assert.equal(readExperiment(root, 'success-line-first').learning.outcome, 'go on');
+});
+
 test('the experiment sits in its own row under its idea: name, stage dots, where it stands, details on zoom', () => {
   const { root } = experimentRepo();
   const html = treePage(root);
