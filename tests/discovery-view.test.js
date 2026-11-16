@@ -48,14 +48,17 @@ test('discoveryPage lists the drawn pages: a link once the artefact exists, a no
   assert.match(html, /Fills once block 1 \(KPI tree\) has run/);
   assert.match(html, /Fills once block 2 \(opportunities\) has run/);
   assert.match(html, /Fills once block 3 \(opportunity decision\) has run/);
+  assert.match(html, /Fills once npm run walkthrough has run/);
   assert.equal(discoveryPage(root, '/discovery/kpi-tree.html').status, 404);
 
   fs.mkdirSync(path.join(root, 'discovery', 'opportunities'));
   fs.writeFileSync(path.join(root, 'discovery', 'opportunities', 'x.md'), '# X\n');
   fs.writeFileSync(path.join(root, 'discovery', 'opportunity-comparison.md'), '# C\n');
   fs.writeFileSync(path.join(root, 'discovery', 'kpi-tree.html'), '<!doctype html><title>drawn</title>');
+  fs.mkdirSync(path.join(root, 'walkthrough'));
+  fs.writeFileSync(path.join(root, 'walkthrough', 'index.html'), '<!doctype html><title>walk</title>');
   html = discoveryPage(root, '/discovery').html;
-  for (const href of ['/discovery/map', '/discovery/tree', '/discovery/kpi-tree.html']) assert.match(html, new RegExp(`href="${href}"`));
+  for (const href of ['/discovery/map', '/discovery/tree', '/discovery/kpi-tree.html', '/discovery/walkthrough']) assert.match(html, new RegExp(`href="${href}"`));
   assert.doesNotMatch(html, /Fills once/);
   const drawn = discoveryPage(root, '/discovery/kpi-tree.html');
   assert.equal(drawn.status, 200);
