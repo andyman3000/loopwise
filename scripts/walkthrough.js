@@ -53,15 +53,29 @@ const head=document.getElementById('now'),prev=document.getElementById('prev'),n
 function show(i){cur=Math.max(0,Math.min(frames.length-1,i));
 frames.forEach((f,k)=>f.classList.toggle('on',k===cur));dots.forEach((b,k)=>{b.setAttribute('aria-current',k===cur?'step':'false');b.classList.toggle('past',k<cur)});
 head.innerHTML=dots[cur].dataset.head;prev.disabled=cur===0;next.disabled=cur===frames.length-1;
-try{history.replaceState(null,'','#'+(cur+1))}catch(e){}}
+try{history.replaceState(null,'','#'+(cur+1))}catch(e){}if(typeof zoomBar==='function')zoomBar()}
 dots.forEach((b,k)=>b.addEventListener('click',()=>show(k)));
 prev.addEventListener('click',()=>show(cur-1));next.addEventListener('click',()=>show(cur+1));
-function key(e){if(e.key==='PageDown')return show(cur+1),e.preventDefault();if(e.key==='PageUp')return show(cur-1),e.preventDefault();
+// Zoom for the projector, for the steps whose view has no zoom of its own (the opportunity map).
+// The tree views fit and zoom themselves (Overview, Funnel, C1 ...) and keep their own keys, 0 included.
+// Scales the snapshot, not the header, and holds across steps. Keys + - 0.
+const ZOOMS=[0.75,1,1.25,1.5,1.75,2,2.5],zl=document.getElementById('zl');let zi=1;
+try{const z=ZOOMS.indexOf(Number(localStorage.getItem('walkthrough-zoom')));if(z>=0)zi=z}catch(e){}
+function own(f){try{return !!f.contentDocument.getElementById('world')}catch(e){return true}}
+function applyZoom(f){if(!own(f))try{f.contentDocument.documentElement.style.zoom=ZOOMS[zi]}catch(e){}}
+function zoomBar(){document.querySelector('.zoom').hidden=own(frames[cur])}
+function zoom(i){zi=Math.max(0,Math.min(ZOOMS.length-1,i));frames.forEach(applyZoom);zl.textContent=Math.round(ZOOMS[zi]*100)+'%';
+document.getElementById('zout').disabled=zi===0;document.getElementById('zin').disabled=zi===ZOOMS.length-1;
+try{localStorage.setItem('walkthrough-zoom',String(ZOOMS[zi]))}catch(e){}}
+document.getElementById('zout').addEventListener('click',()=>zoom(zi-1));document.getElementById('zin').addEventListener('click',()=>zoom(zi+1));
+zl.addEventListener('click',()=>zoom(1));
+function key(e){if(e.metaKey||e.ctrlKey||e.altKey||own(frames[cur])){}else if(e.key==='+'||e.key==='=')return zoom(zi+1),e.preventDefault();else if(e.key==='-')return zoom(zi-1),e.preventDefault();else if(e.key==='0')return zoom(1),e.preventDefault();
+if(e.key==='PageDown')return show(cur+1),e.preventDefault();if(e.key==='PageUp')return show(cur-1),e.preventDefault();
 if(e.currentTarget!==window)return;if(e.key==='ArrowRight')show(cur+1),e.preventDefault();else if(e.key==='ArrowLeft')show(cur-1),e.preventDefault();
 else if(e.key==='Home')show(0);else if(e.key==='End')show(frames.length-1);}
 window.addEventListener('keydown',key);
-frames.forEach((f)=>f.addEventListener('load',()=>{try{f.contentWindow.addEventListener('keydown',key)}catch(e){}}));
-show((parseInt(location.hash.slice(1),10)||1)-1);`;
+frames.forEach((f,k)=>f.addEventListener('load',()=>{applyZoom(f);if(k===cur)zoomBar();try{f.contentWindow.addEventListener('keydown',key)}catch(e){}}));
+zoom(zi);show((parseInt(location.hash.slice(1),10)||1)-1);`;
 
 const CSS = `
 :root{--bg:#faf8f4;--fg:#22262b;--muted:#5b636c;--accent:#2f5d62;--accent-fg:#fff;--line:#c9c3b8;--card:#fff;--chip:#efebe4}
@@ -85,6 +99,10 @@ header{padding:10px 20px;border-bottom:2px solid var(--line);background:var(--ca
 .dot{font:inherit;font-size:13px;font-weight:700;width:30px;height:30px;border-radius:50%;border:2px solid var(--line);background:var(--bg);color:var(--muted);cursor:pointer;padding:0}
 .dot.past{border-color:var(--accent);color:var(--accent)}
 .dot[aria-current=step]{background:var(--accent);border-color:var(--accent);color:var(--accent-fg);transform:scale(1.15)}
+.zoom[hidden]{display:none}
+.zoom{margin-left:auto;display:flex;align-items:center;gap:6px;flex:none}
+.zoom .arrow{width:40px;height:40px;font-size:24px}
+#zl{font:inherit;font-size:15px;font-weight:700;min-width:58px;padding:6px 4px;border:0;background:none;color:var(--muted);cursor:pointer}
 .dot:focus-visible,.arrow:focus-visible{outline:3px solid var(--fg);outline-offset:2px}
 main{flex:1;position:relative}
 iframe{position:absolute;inset:0;width:100%;height:100%;border:0;visibility:hidden}
@@ -105,7 +123,7 @@ function indexPage(steps) {
   const nav = segs.map((g) => `<div class="seg"><span>${esc(g.group)}</span>${g.dots.join('')}</div>`).join('');
   return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Discovery walkthrough</title><style>${CSS}</style></head><body>
-<header><div class="bar"><button type="button" class="arrow" id="prev" aria-label="Previous step">‹</button><button type="button" class="arrow" id="next" aria-label="Next step">›</button><div id="now" aria-live="polite"></div></div>
+<header><div class="bar"><button type="button" class="arrow" id="prev" aria-label="Previous step">‹</button><button type="button" class="arrow" id="next" aria-label="Next step">›</button><div id="now" aria-live="polite"></div><div class="zoom" role="group" aria-label="Zoom"><button type="button" class="arrow" id="zout" aria-label="Zoom out (key -)">−</button><button type="button" id="zl" title="Reset zoom (key 0)">100%</button><button type="button" class="arrow" id="zin" aria-label="Zoom in (key +)">+</button></div></div>
 <nav class="steps" aria-label="Steps">${nav}</nav></header>
 <main>${steps.map((s, i) => `<iframe src="/discovery/walkthrough/${esc(s.file)}" title="Step ${i + 1}: ${esc(s.label)}"></iframe>`).join('')}</main>
 <script>${CLIENT}</script></body></html>`;
