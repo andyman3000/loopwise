@@ -7,7 +7,7 @@
 > **Label:** interviews, inquiry mails, inbox and data are synthetic; the feedback free text is an anonymised composite. This file repeats that label.
 
 ## Status
-**Stage:** Draft, because no human has decided on a review yet.
+**Stage:** Built, because the page opens at `/inquiry.html?variant=call-slot` (2026-11-16). The product lead has not yet decided on any review. So the stages Reviewed and Ready to build were not met before the build.
 
 | # | Date | Review | File | Findings | Decided |
 |---|---|---|---|---|---|
