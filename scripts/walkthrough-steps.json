@@ -29,6 +29,7 @@
     {"variant": "short-form", "label": "Persona run 1", "title": "Persona walkthrough on the page, run 1", "skill": "persona-walkthrough short-form page", "commit": "ae62fbe"},
     {"variant": "short-form", "label": "Fix from run 1", "title": "Fix from persona run 1: a hint on the formats page, the lead line names what the call asks", "skill": "build", "commit": "6da3b2a"},
     {"variant": "short-form", "label": "Persona run 2", "title": "Persona walkthrough on the page, run 2", "skill": "persona-walkthrough short-form page", "commit": "2d9505b"},
-    {"variant": "short-form", "label": "Learning card draft", "title": "Learning card draft (decision 004) from persona runs only, no test with people yet, decision open", "skill": "learning-card", "commit": "f0d4db6"}
+    {"variant": "short-form", "label": "Learning card draft", "title": "Learning card draft (decision 004) from persona runs only, no test with people yet, decision open", "skill": "learning-card", "commit": "f0d4db6"},
+    {"group": "Open points", "label": "Agent answers kept", "title": "Agent answers kept on the open points; learning cards: test the contrasting variants with people, then merge; go on, rework or drop stays open", "skill": "human", "commit": "61bfc82"}
   ]
 }
