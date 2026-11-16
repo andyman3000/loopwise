@@ -127,13 +127,13 @@ The tester can skip the quiz. Then the quiz signs cannot show, and the watcher n
 | `name` | string | yes | as today |
 | `company` | string | yes | as today |
 | `email` | string | yes | a valid email, as today |
-| `teamSize` | number | no | as today; the quiz does not fill it |
+| `teamSize` | number | no | no longer on the form, in the baseline and in the variant; the server still accepts it |
 | `message` | string | yes | at least 10 characters, as today; filled from the quiz |
 
 No new fields. The quiz answers reach the server only as text in `message`.
 
 ## What stays the same
-- The five format tiles and their text, the inquiry form, its validation and the send to `/api/inquiry`.
+- The five format tiles and their text, the inquiry form (without the team size field, see "Changes after review"), its validation and the send to `/api/inquiry`.
 - The site's existing events, which fire as today. The quiz adds none.
 - Home, buyer preparation and confirmation pages, the navigation and the footer.
 
@@ -159,7 +159,6 @@ No new fields. The quiz answers reach the server only as text in `message`.
 - The result line "With your answers we can prepare a better call." and the link "Back to all formats": no sign needs them; the links under "Other formats" lead back to the tiles. · for the launch spec
 - Q5, how much time the group can spend away from work: no sign and no rule step uses it. · for the launch spec
 - The link "Change my answers": "Back" does the same job. · for the launch spec
-- Filling "Team size (optional)" from Q1: Q1 is already in the form text, and no sign reads the field. · for the launch spec
 - Fallbacks when the browser blocks storage or the clipboard: the test runs in a browser the watcher controls. · for the launch spec
 - Links on the other formats: a click would look like the drop sign of going back to the formats. · for the launch spec
 - The list "Other formats" below the result, and the button "Copy the result": cut after the build. · for the launch spec, if the test shows testers miss them
@@ -175,6 +174,7 @@ No new fields. The quiz answers reach the server only as text in `message`.
 - After the product lead looked at the built page a second time: the quiz choices are in normal weight, with more space and the example in muted text. Q3 is now "How does the group work together today?", with one choice and no "Not sure". The product lead found "same product" against "several teams" misleading, and "Not sure" made no sense there. The list "Other formats" is cut: the product lead found it confusing. It served the buyer without budget, who needs options to react to ([product/personas/buyer-without-budget.md:85](../../product/personas/buyer-without-budget.md#L85)). The test shows whether testers miss it. The button "Copy the result" is cut: the product lead sees no need for it. The watcher no longer notes whether a tester copied the result before leaving. · Decided by: Product lead (Loopwise), 2026-11-16
 - Q2 has no "Not sure" any more: the product lead finds it does not fit a question on the working styles in the group. · Decided by: Product lead (Loopwise), 2026-11-16
 - The quiz gets a second way in, from the inquiry page, and opens in an overlay on both pages. The product lead pointed out that the test start did not match how visitors arrive. 364 of 740 inquiry page visits had no formats page view before them in the same session ([data/events.jsonl](../../data/events.jsonl)). Some testers now start on the inquiry page; the prototype card proposes 2 of 5. Opening the quiz from the form does not count as the drop sign ([discovery/test-cards/format-quiz-prototype.md:76](../test-cards/format-quiz-prototype.md#L76)). · Decided by: Product lead (Loopwise), 2026-11-16
+- The field "Team size (optional)" is gone from the inquiry form, in the baseline and in the variant. The product lead found it confusing next to Q1 of the quiz, which asks the same. The intent lists this as idea I4 ([discovery/intents/format-fit.md:73](../intents/format-fit.md#L73)). · Decided by: Product lead (Loopwise), 2026-11-16
 
 ## Challenger check
 A subagent with no other context read only the prototype card and this spec on 2026-11-16. It looked for elements that serve no sign and no part of the assumption, second paths, unlikely edge cases and parts the build could fake. It found the core path complete: quiz, result, "Inquire now", form filled, click into a field, send.
