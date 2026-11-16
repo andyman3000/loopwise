@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inquiry - Loopwise</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/">Loopwise</a>
+    <nav aria-label="Main">
+      <a href="/">Home</a>
+      <a href="/formats.html">Formats</a>
+      <a href="/inquiry.html" aria-current="page">Inquiry</a>
+      <a href="/buyer-prep.html">Buyer preparation</a>
+    </nav>
+  </header>
+  <main>
+    <h1>Inquiry</h1>
+    <!-- invented line, see discovery/specs/short-form.md -->
+    <p class="lead">Leave your name and email. We ask about your group in the scoping call.</p>
+    <p>Sending this form books nothing. We reply within a few days to set up a scoping call.</p>
+    <div class="with-aside">
+    <form id="inquiry-form" novalidate>
+      <div class="field"><label for="name">Name</label><input id="name" name="name" autocomplete="name"><p class="error" data-error-for="name" hidden></p></div>
+      <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email"><p class="error" data-error-for="email" hidden></p></div>
+      <button class="button" type="submit">Send inquiry</button>
+    </form>
+    <aside aria-labelledby="after-inquiry">
+      <h2 id="after-inquiry">What happens after you send it</h2>
+      <ol class="path compact">
+        <li class="is-current" aria-current="step"><strong>You send this form</strong><span>It does not book anything.</span></li>
+        <li><strong>We hold a scoping call</strong><span>Together we settle which format fits your team.</span></li>
+        <li><strong>We prepare together</strong><span>The steps are on the <a href="/buyer-prep.html">buyer preparation page</a>.</span></li>
+        <li><strong>We train you</strong><span>The format runs as settled in the scoping call.</span></li>
+        <li><strong>We follow up after four weeks</strong><span>We ask what has changed in daily work.</span></li>
+      </ol>
+    </aside>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <p>Loopwise is a fictional academy used for a demo.</p>
+    <nav aria-label="Footer">
+      <a href="/formats.html">Formats</a>
+      <a href="/inquiry.html">Inquiry</a>
+      <a href="/buyer-prep.html">Buyer preparation</a>
+    </nav>
+  </footer>
+  <script type="module">
+    import { showErrors } from '/components/inquiry-form.js';
+    import { logEvent } from '/components/events.js';
+    const VARIANT = 'short-form';
+    const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    logEvent('page_view', { page: 'inquiry' }, VARIANT);
+    const form = document.getElementById('inquiry-form');
+    let started = false;
+    form.addEventListener('focusin', () => {
+      if (started) return;
+      started = true;
+      logEvent('inquiry_started', {}, VARIANT);
+    });
+    // Faked send (discovery/specs/short-form.md, "What happens on send"):
+    // nothing goes to /api/inquiry, the page only checks both fields and opens the confirmation page.
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = form.elements.namedItem('name').value.trim();
+      const email = form.elements.namedItem('email').value.trim();
+      const errors = {};
+      if (!name) errors.name = 'Please enter your name.';
+      if (!EMAIL.test(email)) errors.email = 'Please enter a valid email address.';
+      showErrors(form, errors);
+      if (Object.keys(errors).length) return;
+      window.location.href = '/confirmation.html?variant=' + VARIANT;
+    });
+  </script>
+</body>
+</html>
