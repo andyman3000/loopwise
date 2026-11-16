@@ -197,8 +197,8 @@ Decided by: Product lead (Loopwise), 2026-11-16.
 
 ## Open points for the human
 - The sign "says afterwards why the format fits" has no element on the page. Proposal: after the send, the watcher asks once: "Why did you keep (or change) the first line?" · who can answer: the product lead · Answer: yes, the watcher asks this question (Product lead (Loopwise), 2026-11-16)
-- The rule is invented. Someone who runs the training should read it before the first test with people. · who can answer: the product lead · Answer: ____ (human decides; does not block the build)
-- The ladder in Q2 has five steps, with one example each. A buyer who knows the group only from a distance may still not tell them apart. The first tests show it. · who can answer: the tests with people · Answer: ____ (human decides after the tests)
+- The rule is invented. Someone who runs the training should read it before the first test with people. · who can answer: the product lead · Answer: the rule stays for the prototype test. Someone who runs the training reads it before a launch spec (Product lead (Loopwise), 2026-11-16, the agent's proposal kept)
+- The ladder in Q2 has five steps, with one example each. A buyer who knows the group only from a distance may still not tell them apart. The first tests show it. · who can answer: the tests with people · Answer: open until the tests with people. Nothing to decide before them (Product lead (Loopwise), 2026-11-16)
 
 ## Build prompt
 > Build the variant in discovery/specs/format-quiz.md as one file per page it changes in

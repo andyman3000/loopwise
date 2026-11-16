@@ -45,13 +45,14 @@ Persona observations only. Each rests on a line of the persona file.
 For the buyer without budget, no sign on the step from the page to a booked call could be judged. So this round cannot show whether the assumption holds. A test with people is the usual next step.
 One drop sign was shown for her: she would talk to colleagues first. The walkthrough lists it as a new assumption about how she decides, not about the page.
 
-Against the lines: ____ (human decides). The product lead has not held the observations against the go-on line ([discovery/test-cards/call-slot-prototype.md:80](../test-cards/call-slot-prototype.md#L80)) or the rework-or-drop line ([discovery/test-cards/call-slot-prototype.md:86](../test-cards/call-slot-prototype.md#L86)) yet.
+Against the lines: neither line can be judged yet. The go-on line counts testers who book a call ([discovery/test-cards/call-slot-prototype.md:80](../test-cards/call-slot-prototype.md#L80)). The rework-or-drop line counts testers too ([discovery/test-cards/call-slot-prototype.md:86](../test-cards/call-slot-prototype.md#L86)). This round had two personas and no testers. Written by the agent. The product lead keeps the agent's reading (2026-11-16).
 
 ### We learned
-From that we learned that ____ (human decides; the product lead's sentence).
+From that we learned that persona runs cannot show whether buyers book a call. Only people can show it. Written by the agent. The product lead keeps the agent's reading (2026-11-16).
 
 ### Therefore we will
-____ (human decides)
+The product lead's words, 2026-11-16: "I generally like testing contrasting ideas with users, get their reactions and then maybe merge them into a final thing we would be on to go live with".
+For call-slot this means: test it with five buyers next to format-quiz and short-form.
 
 ### Options considered
 - Move on: what changes before roll-out is open. The booking is faked today. A real booking needs a calendar link, a real number and the event `scoping_call_booked` ([discovery/specs/call-slot.md](../specs/call-slot.md), "Left out to learn faster"). Every invented line needs a confirmer first ([discovery/specs/call-slot.md](../specs/call-slot.md), "Invented lines on the page").
