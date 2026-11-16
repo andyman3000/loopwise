@@ -12,6 +12,7 @@
 | # | Date | Review | File | Findings | Decided |
 |---|---|---|---|---|---|
 | 1 | 2026-11-16 | challenger, run 1 | this file, "Challenger check" | 17 findings, 11 rows in the table; the rest confirm the core path | open: 7 applied and 4 kept by the agent, for the product lead to confirm |
+| 2 | 2026-11-16 | persona walkthrough, page, run 1, on commit f251f8a | [discovery/user-tests/call-slot-page.md](../user-tests/call-slot-page.md) | fix before the test: 1 · fix if time allows: 1 · watch in the test: 1 | open |
 
 A spec describes the page so exactly that Claude Code can build it from this file alone.
 In mode `learn` it covers only what the prototype test needs. Everything else is left out.
