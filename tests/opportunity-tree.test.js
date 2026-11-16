@@ -205,7 +205,7 @@ test('every round marks its own idea, and an idea named in words only is not mar
   fs.mkdirSync(path.join(root, 'discovery', 'intents'));
   fs.writeFileSync(path.join(root, 'discovery', 'intents', 'x.md'), two);
   const html = treePage(root);
-  assert.equal((html.match(/class="sol picked"/g) || []).length, 2);
+  assert.equal((html.match(/class="sol [^"]*picked"/g) || []).length, 2);
   assert.match(html, /tested first: success-line-first/);
   assert.match(html, /tested in round 2: second-try/);
   assert.deepEqual(parseIntent(INTENT.replace('- Idea it comes from: I3', '- Idea it comes from: the call button')).tested, []);
@@ -322,4 +322,28 @@ test('citations written as Markdown links parse like bare ones in intents, oppor
   assert.equal(o.quote.where, 'sources/inquiry-mails/m.md:16');
   const html = drawPage('# KPI tree\n\n## Tree\n- Business goal: more bookings ([product/strategy.md:8](../product/strategy.md#L8))\n  - Branch A: inquiries ([product/strategy.md:12](../product/strategy.md#L12))\n    - start rate: share that starts · measured: no\n');
   assert.doesNotMatch(html, /strategy\.md/);
+});
+
+test('an idea is a small card on the overview: number, short title, tested first; the rest only on zoom', () => {
+  const root = repo(MD);
+  fs.mkdirSync(path.join(root, 'discovery', 'intents'));
+  fs.writeFileSync(path.join(root, 'discovery', 'intents', 'x.md'), INTENT.replace('| I3: examples of success lines |', '| I3: Show examples of success lines. Each example names a team ([site/formats.html:21](../../site/formats.html#L21)) (formats page, inquiry page) |')
+    .replace('| submit rate |', '| submit rate ([discovery/kpi-tree.md:22](../kpi-tree.md#L22)) |')
+    + '\n## Ideas not picked\n- I4: A chat on every page (all pages) · the team\n- I5: Ask the team size first. Then the rest (inquiry page) · another domain\n');
+  const html = treePage(root);
+  const sol = html.match(/<article class="sol[^"]*"[^>]*data-view="C2-I3"[\s\S]*?<\/article>/)[0];
+  const [summary, details] = sol.split('<div class="more">');
+  assert.match(summary, /<span class="mech">Show examples of success lines<\/span>/, 'the first sentence is the title');
+  assert.match(summary, /tested first: success-line-first/);
+  assert.match(summary, />Details<\/button>/);
+  assert.doesNotMatch(summary, /pill|chip|<a /, 'no level, no steps, no links on the overview card');
+  assert.match(details, /<h3>The idea<\/h3>Show examples of success lines\. Each example names a team<span class="basis">Changes: formats page, inquiry page<\/span>/);
+  assert.match(details, /<div class="part x"><h3>Steps it moves<\/h3><span class="acts"><span class="chip">submit rate<\/span>/);
+  assert.equal((details.match(/<a /g) || []).length, 1, 'one link: the intent file');
+  assert.doesNotMatch(sol, /\.md:\d+|\.html:\d+/, 'no file references anywhere in the card');
+  assert.match(html, /data-view="C2-rest"[^>]*data-title="2 more ideas, not picked"/);
+  assert.match(html, /<li><b>I5<\/b> Ask the team size first<\/li>/);
+  const views = [...html.matchAll(/<article class="sol[^"]*"[^>]*data-view="([^"]+)"/g)].map((m) => m[1]);
+  assert.deepEqual(views, ['C2-I1', 'C2-I2', 'C2-I3', 'C2-rest'], 'one row, in the order of the file, the ideas not picked last');
+  assert.match(html, /data-v="ideas">Ideas<kbd>I<\/kbd>/);
 });
