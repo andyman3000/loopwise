@@ -420,6 +420,19 @@ ____ (human decides)
   assert.equal(readExperiment(root, 'success-line-first').learning.outcome, 'go on');
 });
 
+test('a written spec and a built page each fill a stage and name where the experiment stands', () => {
+  const { root, put } = experimentRepo();
+  fs.rmSync(path.join(root, 'discovery', 'user-tests'), { recursive: true, force: true });
+  const summary = () => treePage(root).match(/<article class="exp[^"]*"[^>]*>[\s\S]*?<div class="more">/)[0];
+  assert.match(summary(), /Test card written/);
+  put('discovery/specs/success-line-first.md', '# Spec\n');
+  assert.match(summary(), /<i class="f" title="Spec">/);
+  assert.match(summary(), /Spec written/);
+  put('site/variants/success-line-first/inquiry.html', '<p>x</p>');
+  assert.match(summary(), /<i class="f" title="Built">/);
+  assert.match(summary(), /Page built/);
+});
+
 test('a learning card saved under another decision number still counts, and only for its own variant', () => {
   const { root, put } = experimentRepo();
   fs.rmSync(path.join(root, 'discovery', 'decisions'), { recursive: true, force: true });
@@ -438,6 +451,7 @@ test('the experiment sits in its own row under its idea: name, stage dots, where
   assert.match(summary, /<span class="mech">success-line-first<\/span>/);
   assert.equal((summary.match(/<i class="f"/g) || []).length, 3, 'test card, personas and people are done');
   assert.match(summary, /spec checked in 1 persona run · 2 of 5 people tested/, 'persona runs and people are counted apart');
+  assert.match(summary, /title="Spec"><\/i><i class="" title="Built">/, 'no spec, no page: both stages open');
   assert.doesNotMatch(summary, /<a /);
   assert.match(details, /<b>Test card<\/b> Product lead \(Loopwise\), 2026-11-15/);
   assert.match(details, /<b>Personas<\/b> <ul class="runs"><li>spec, run 1: 2 personas, 2026-11-16, against the lines: unclear<\/li><\/ul>/);
