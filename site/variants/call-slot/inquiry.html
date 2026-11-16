@@ -148,14 +148,7 @@
     import { initInquiryForm } from '/components/inquiry-form.js';
     import { logEvent } from '/components/events.js';
     logEvent('page_view', { page: 'inquiry' });
-    // The variant's own confirmation page greets the sender by first name.
-    initInquiryForm(document.getElementById('inquiry-form'), {
-      variant: 'call-slot',
-      redirectTo: '/confirmation.html?variant=call-slot',
-      onSubmitted: () => {
-        try { sessionStorage.setItem('call-slot-name', document.getElementById('name').value.trim().split(/\s+/)[0]); } catch {}
-      },
-    });
+    initInquiryForm(document.getElementById('inquiry-form'), { variant: 'call-slot' });
 
     // The ways to talk sit outside #inquiry-form, so a click there is never a started form.
     // Faked for the prototype test: the number dials nothing, the booking sends, stores and logs nothing.

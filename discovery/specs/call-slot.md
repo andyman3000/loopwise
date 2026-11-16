@@ -1,7 +1,7 @@
 # Spec: call-slot
 
 > Spec drafted by an agent (`variant-spec`, mode `learn`) on 2026-11-16, before the prototype build. Built to learn, not to ship.
-> **Variant:** `call-slot` · Pages it changes: `inquiry.html`, `confirmation.html` · Testers start at `/formats.html?variant=call-slot` or `/inquiry.html?variant=call-slot`
+> **Variant:** `call-slot` · Pages it changes: `inquiry.html`; the site-wide `confirmation.html` changed too · Testers start at `/formats.html?variant=call-slot` or `/inquiry.html?variant=call-slot`
 > **Idea:** I2 in [discovery/intents/format-fit.md](../intents/format-fit.md) ("I2: Offer other ways of contact: Call us directly, Book a call slot, that opens a calendar link (inquiry page)", [discovery/intents/format-fit.md:91](../intents/format-fit.md#L91))
 > **Assumption under test:** "Buyers who cannot tell which format fits would rather talk to a person than write. They book a call slot themselves when the page offers one." ([discovery/test-cards/call-slot-prototype.md:24](../test-cards/call-slot-prototype.md#L24))
 > **Label:** interviews, inquiry mails, inbox and data are synthetic; the feedback free text is an anonymised composite. This file repeats that label.
@@ -57,15 +57,14 @@ The page books nothing for real. The slot booking is faked: it sends nothing to 
    - Faked: nothing is sent, stored or logged. A reload shows the page as at the start.
 
 ### The confirmation page after the form
-The product lead asked for the same warm style after a sent inquiry. No sign needs this page: the drop sign ends when the tester sends the form.
-1. The form "Write to us" now leads to `/confirmation.html?variant=call-slot`, the variant's own page. The shared form takes an optional target for this ([site/components/inquiry-form.js:40](../../site/components/inquiry-form.js#L40)). Other pages keep today's target.
-2. Before it leaves, the inquiry page keeps the first word of the name field in the browser (`sessionStorage`, key `call-slot-name`).
-3. The page shows a check mark that pops in, and the heading: Thank you, <first name>! Without a stored name: Thank you! [invented]
-4. Lead line: Your inquiry is with us. We are glad you wrote. [invented]
-5. Line, marked as a box: Within a few days we get in touch to set a date for the scoping call. Adapted from [site/confirmation.html:25](../../site/confirmation.html#L25).
-6. Line: No preparation needed. Bring what is on your mind, and we work out together which format fits your team. We look forward to talking with you. [invented]
-7. Small line: Nothing is booked yet. Adapted from [site/confirmation.html:21](../../site/confirmation.html#L21).
-8. "What happens next" and its five steps stay as on today's page.
+The product lead asked for the same warm style after a sent inquiry, on the site's default page `/confirmation.html`. So every visitor sees it, in the baseline and in every variant. The variant holds no confirmation page of its own. No sign needs this page: the drop sign ends when the tester sends the form.
+1. After a send, the shared form keeps the first word of the name field in the browser (`sessionStorage`, key `inquiry-first-name`).
+2. The page shows a check mark that pops in, and the heading: Thank you, <first name>! Without a stored name: Thank you! [invented]
+3. Lead line: Your inquiry is with us. We are glad you wrote. [invented]
+4. Line, marked as a box: Within a few days we get in touch to set a date for the scoping call. [invented, from the step list on the same page]
+5. Line: No preparation needed. Bring what is on your mind, and we work out together which format fits your team. We look forward to talking with you. [invented]
+6. Small line: Nothing is booked yet. [invented, from the old lead line of the page]
+7. "What happens next" and its five steps stay as before.
 
 ## Where the watcher sees each sign
 | Sign (from the prototype card) | Element on the page |
@@ -110,7 +109,7 @@ The slot booking sends nothing. Its day, time, name and email stay in the browse
 - Taken times, time zones, public holidays. · for the launch spec
 - A field "What would you like to talk about?": no sign needs it, and the watcher asks after the booking. · for the launch spec
 - Opening hours next to the number, and a line after a click on it: no sign needs them. · for the launch spec
-- What a booked slot shows instead of the confirmation page, which says Loopwise gets in touch "within a few days" ([site/confirmation.html:25](../../site/confirmation.html#L25)). · for the launch spec
+- What a booked slot shows instead of the confirmation page, which says Loopwise gets in touch "within a few days" ([site/confirmation.html:44](../../site/confirmation.html#L44)). · for the launch spec
 - Ways to talk on the home or formats page: the idea names the inquiry page only ([discovery/intents/format-fit.md:91](../intents/format-fit.md#L91)). · for the launch spec
 
 ## Changes after review
@@ -118,7 +117,7 @@ The slot booking sends nothing. Its day, time, name and email stay in the browse
 - The day drop-down becomes a calendar widget. · Decided by: Product lead (Loopwise), 2026-11-16
 - The booking gets a close button (×). It clears the day, the time and both fields, and shows the two ways to talk again. The product lead wants a way out of the booking. This undoes the challenger cut of "Back". · Decided by: Product lead (Loopwise), 2026-11-16
 - The booked message is warmer: a check mark that pops in, the tester's first name in the heading, the booked time in a box, and a line that no preparation is needed. The product lead asked for a more delightful message. · Decided by: Product lead (Loopwise), 2026-11-16
-- The page after a sent inquiry gets the same warm style, as the variant's own confirmation page. The shared form gets an optional target page for this; every other page keeps today's target. · Decided by: Product lead (Loopwise), 2026-11-16
+- The page after a sent inquiry gets the same warm style. First as a page of this variant only, then, on the product lead's ask, on the site's default `/confirmation.html` for every visitor. · Decided by: Product lead (Loopwise), 2026-11-16
 - The number is an invented German number. A click on it counts as a call, also on the go-on line ([discovery/test-cards/call-slot-prototype.md:80](../test-cards/call-slot-prototype.md#L80)). · Decided by: Product lead (Loopwise), 2026-11-16
 - Testers: one mixed group of five buyers, with or without budget, in place of five buyers without budget. This answers the finding "add buyers with budget as testers" from both walkthrough runs. · Decided by: Product lead (Loopwise), 2026-11-16
 
@@ -148,6 +147,6 @@ Decided by: Product lead (Loopwise), 2026-11-16.
 
 ## Build prompt
 > Build the variant in discovery/specs/call-slot.md as one file per page it changes in
-> site/variants/call-slot/, named like the page it replaces (here: inquiry.html and confirmation.html).
+> site/variants/call-slot/, named like the page it replaces (here: inquiry.html only).
 > The name is already listed in "variants" in site/config.json. Do not set "shipped".
 > Build only what the spec names. Where the spec says an element is faked, do not wire it up.
