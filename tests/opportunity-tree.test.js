@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { parseComparison, parseIntent, treePage, funnelBars, thousands, namedDrivers } from '../lib/opportunity-tree.js';
+import { parseComparison, parseIntent, treePage, funnelBars, thousands, namedDrivers, readExperiment } from '../lib/opportunity-tree.js';
 
 const MD = `# Opportunity comparison
 
@@ -286,7 +286,7 @@ test('every step, candidate and idea is a place the keys and the hash can jump t
   fs.writeFileSync(path.join(root, 'discovery', 'intents', 'x.md'), INTENT);
   const html = treePage(root);
   const views = [...html.matchAll(/<(?:div|article|section) [^>]*data-view="([^"]+)"/g)].map((m) => m[1]);
-  assert.deepEqual(views, ['S1', 'S2', 'S3', 'S4', 'C1', 'C2', 'C2-I1', 'C2-I2', 'C2-I3', 'decision']);
+  assert.deepEqual(views, ['S1', 'S2', 'S3', 'S4', 'C1', 'C2', 'C2-I1', 'C2-I2', 'C2-I3', 'C2-I3-E1', 'decision']);
   assert.match(html, /data-v="C1">C1<kbd>1<\/kbd>/);
   for (const k of ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Escape']) assert.match(html, new RegExp(k), `the page script handles ${k}`);
   assert.match(html, /max-width: 48rem/, 'a narrow screen gets one scrolling page instead of the camera');
@@ -346,4 +346,90 @@ test('an idea is a small card on the overview: number, short title, tested first
   const views = [...html.matchAll(/<article class="sol[^"]*"[^>]*data-view="([^"]+)"/g)].map((m) => m[1]);
   assert.deepEqual(views, ['C2-I1', 'C2-I2', 'C2-I3', 'C2-rest'], 'one row, in the order of the file, the ideas not picked last');
   assert.match(html, /data-v="ideas">Ideas<kbd>I<\/kbd>/);
+});
+
+function experimentRepo() {
+  const root = repo(MD);
+  const put = (rel, text) => { fs.mkdirSync(path.dirname(path.join(root, rel)), { recursive: true }); fs.writeFileSync(path.join(root, rel), text); };
+  put('discovery/intents/x.md', INTENT);
+  put('discovery/test-cards/success-line-first-prototype.md', `# Prototype test card: success-line-first
+
+> Card owner: Product lead (Loopwise), 2026-11-15
+
+## We believe that (the assumption we test)
+"Buyers can name a success line." ([discovery/intents/x.md:3](../intents/x.md#L3))
+Level in the intent: "unsupported"
+
+## To verify that, we will
+Show 5 people the page.
+
+## We are right if (go-on line)
+At least 3 of 5 testers write a success line.
+Set by: Product lead (Loopwise) · Set on: 2026-11-15
+
+## We rework or drop the idea if (rework-or-drop line)
+- **We drop the idea if** 3 or more of 5 testers leave the field empty.
+`);
+  put('discovery/user-tests/success-line-first-spec.md', `# Persona walkthrough: success-line-first, spec
+
+> Run by an agent (\`persona-walkthrough\`) on 2026-11-16. Not a decision.
+
+## Buyer without budget
+x
+## Buyer with budget
+y
+## Against the two lines
+Unclear. Neither persona file shows the step.
+`);
+  put('discovery/user-tests/success-line-first-tester-1.md', '# Test with people: success-line-first, tester 1\n');
+  put('discovery/user-tests/success-line-first-tester-2.md', '# Test with people: success-line-first, tester 2\n');
+  return { root, put };
+}
+
+test('an experiment is read from the files of its variant: card, persona runs, people, learning card', () => {
+  const { root, put } = experimentRepo();
+  let e = readExperiment(root, 'success-line-first');
+  assert.deepEqual([e.card.owner, e.card.date, e.planned, e.testers], ['Product lead (Loopwise)', '2026-11-15', 5, 2]);
+  assert.deepEqual(e.personaRuns, [{ mode: 'spec', date: '2026-11-16', personas: 2, verdict: 'Unclear' }]);
+  assert.equal(e.card.goOn, 'At least 3 of 5 testers write a success line.');
+  assert.equal(e.card.drop, 'We drop the idea if 3 or more of 5 testers leave the field empty.');
+  assert.equal(e.learning, null);
+  put('discovery/decisions/002-success-line-first.md', `# Decision 002: success-line-first, learning card
+
+## Round 1, 2026-11-17
+### Therefore we will
+Change the field label.
+### What we decided
+Another round, with the label changed
+## Round 2, 2026-11-20
+### Therefore we will
+Build the real page.
+### What we decided
+____ (human decides)
+`);
+  e = readExperiment(root, 'success-line-first');
+  assert.deepEqual([e.learning.rounds, e.learning.outcome, e.learning.text, e.learning.date], [2, '', 'Build the real page.', '2026-11-20'], 'the last round counts, and an empty decision stays open');
+  put('discovery/decisions/002-success-line-first.md', '## Round 1, 2026-11-17\n### What we decided\nKill: buyers left the field empty\n');
+  assert.equal(readExperiment(root, 'success-line-first').learning.outcome, 'drop');
+  put('discovery/decisions/002-success-line-first.md', '## Round 1, 2026-11-17\n### What we decided\nMove on, as the team said\n');
+  assert.equal(readExperiment(root, 'success-line-first').learning.outcome, 'go on');
+});
+
+test('the experiment sits in its own row under its idea: name, stage dots, where it stands, details on zoom', () => {
+  const { root } = experimentRepo();
+  const html = treePage(root);
+  const card = html.match(/<article class="exp[^"]*"[^>]*>[\s\S]*?<\/article>/)[0];
+  assert.match(card, /data-view="C2-I3-E1" data-parent="C2-I3"/, 'under the idea tested first');
+  const [summary, details] = card.split('<div class="more">');
+  assert.match(summary, /<span class="mech">success-line-first<\/span>/);
+  assert.equal((summary.match(/<i class="f"/g) || []).length, 3, 'test card, personas and people are done');
+  assert.match(summary, /spec checked by 2 personas · 2 of 5 people tested/, 'persona runs and people are counted apart');
+  assert.doesNotMatch(summary, /<a /);
+  assert.match(details, /<b>Test card<\/b> Product lead \(Loopwise\), 2026-11-15/);
+  assert.match(details, /<b>Personas<\/b> spec: 2 personas, 2026-11-16, against the lines: unclear/);
+  assert.match(details, /<h3>We go on if<\/h3>At least 3 of 5 testers write a success line\./);
+  assert.equal((details.match(/<a /g) || []).length, 1, 'one link: the prototype test card');
+  assert.match(html, /<div style="grid-column:3"><article class="exp/, 'in the column of idea I3');
+  assert.match(html, /data-v="exps">Experiments<kbd>E<\/kbd>/);
+  assert.doesNotMatch(treePage(repo(MD)), /class="exp/, 'no named variant, no experiment row');
 });
