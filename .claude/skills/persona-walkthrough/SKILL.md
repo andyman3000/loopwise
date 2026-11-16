@@ -35,6 +35,8 @@ then runs if no people can be found for the test, or before they test. It never 
 - **What a persona types is built from its file.** Text the persona enters in a field is made only from lines of its file, and the walkthrough quotes those lines. A sign that turns on what the persona would write in its own words is "cannot tell", in both modes. Name, company and email get placeholders ("Test Buyer", "buyer@example.com"), marked as having no source.
 - **No source, no reaction.** If the persona file has nothing on a point, write "[no source in the persona file: the persona cannot tell]" and do not use it as a sign. Never invent a goal, a fear or a habit the file does not hold.
 - **Judge by the card's signs only**, after the walkthrough. For each sign: shown, not shown, or cannot tell, with the walkthrough line it rests on. A sign the card marks "only the cross test with people can test this" (or, in setting `team`, "only the test with people can test this") is "cannot tell", unless the walkthrough quotes a persona line that states the behaviour (see "too strict" below). A field the persona leaves empty because its file has no line for it is "cannot tell", never "not shown". If the card says a persona can show a sign but its file holds only the worry, the goal, what the buyer knows, or a different behaviour, the sign is "cannot tell", and the file says the card was too generous. The other way round: if the card says only people can show a sign, but the walkthrough quotes a persona line that states the behaviour, mark it shown or not shown and say the card was too strict. A stall that matches no sign goes under "Other stalls", with its source.
+- **Two questions per sign, two tables.** Table 1 asks what the persona would do on the page: shown, not shown or cannot tell. Table 2 asks whether the spec or page goes against something the persona file says: "yes" with what clashes and the line, "no", or "the file says nothing". Ask the second question for every sign, most of all where the card says "a fact the page must fit". Never hide a clash in the "Rests on" column. A sign can read "cannot tell" in table 1 and "yes" in table 2. The persona files hold facts about buyers, not behaviour on a new page, so table 1 mostly reads "cannot tell". The findings then come from table 2. Title each table with its question, never with a short label.
+- **Every proposal names its evidence**, in this order of strength: a sign the persona showed; a clash with a fact in the persona file; a stall outside the signs; a gap where the persona file has no line. Sort the proposals in that order. Mark a proposal "buyer with budget only" when only that persona backs it, and say so if the card recruits no tester of that type.
 - **Mode `page` uses a browser tool** (Playwright MCP or Chrome DevTools MCP): open the page, take a snapshot of each screen, click as the persona would. React to what is on screen, not to the code. If no browser tool is connected, read the files in `site/variants/<variant>/` and their scripts instead, and write at the top of the file: "No browser tool connected: the personas read the HTML, not the page. The HTML shows things a buyer never sees." Never read the HTML silently in place of the page.
 - **Screen text is cited to the page.** Text the persona reads on screen is cited as `[site/variants/<variant>/<page>.html:<line>](../../site/variants/<variant>/<page>.html#L<line>)`, or written without quote marks. A quote followed by a persona citation must stand in the persona file, or `npm run check` fails.
 - **No publishing.** The page stays on localhost. Do not upload it anywhere.
@@ -45,15 +47,16 @@ then runs if no people can be found for the test, or before they test. It never 
 ## Steps
 
 0. **Try first.** Ask the human: "Before the personas read, where do you expect them to stall?" Wait for the answer before you read further.
-1. Read the prototype card. If it does not exist, stop and say so. Note the scenario for the personas, and keep the signs and lines aside for step 5.
+1. Read the prototype card. If it does not exist, stop and say so. Note the scenario for the personas, and keep the signs and lines aside for step 6.
 2. Read both persona files.
 3. Open what the personas meet:
    - mode `spec`: read `discovery/specs/<variant>.md`, only the two sections named above. If the spec does not exist, stop.
    - mode `page`: ask which port the server runs on (3000 unless `PORT` is set), then check it answers: `curl -s -o /dev/null -w '%{http_code}' 'http://localhost:<port>/<page>?variant=<variant>'`. Not 200: ask the human to run `npm start` in a second terminal and check `site/config.json` lists the variant. Then open the page with the browser tool. Record which tool, or that none was connected.
 4. Walk through as each persona, in turn. Per screen or step: what they notice first, what they would do and why, where they hesitate, what they would ask. Each line with its persona-file source. 100 to 250 words per persona.
-5. Judge each sign, per persona: shown, not shown, cannot tell. Then hold the result against the go-on line and the rework-or-drop line, in words: which line the observations lean towards, or "unclear".
-6. Show the human the sign table. Ask what is wrong or missing, and correct it.
-7. Write the file. Give the feedback on the first try (see Rules). Tell the human in two lines the strongest finding and the sign no persona could test. Then stop.
+5. **Show both walkthroughs in chat**, before any table. One short block per persona, one line per screen or question: what the persona does or where it stalls, and the persona-file line it rests on. The human must see the reasoning before judging the signs.
+6. Judge each sign, per persona, in both tables (see Rules): what the persona would do, and whether the spec or page goes against the persona file. Then hold the result against the go-on line and the rework-or-drop line, in words: which line the observations lean towards, or "unclear".
+7. Show the human both sign tables. Above them, write in one line why table 1 mostly reads "cannot tell", and that the findings come from table 2. Ask what is wrong or missing, and correct it.
+8. Write the file. Give the feedback on the first try (see Rules). Tell the human in two lines the strongest finding and the sign no persona could test. Then list the proposals in chat, sorted by evidence, each with its evidence named (see Rules). Then stop.
 
 ## Output template
 
@@ -80,9 +83,17 @@ Feedback: <two or three short lines: what was strong, what was weak, and why>
 <walkthrough, each reaction with "([product/personas/buyer-with-budget.md:<line>](../../product/personas/buyer-with-budget.md#L<line>))">
 
 ## Signs
+The persona files hold facts about buyers, not behaviour on this page. So table 1 mostly reads "cannot tell". The findings come from table 2.
+
+### Table 1: What would the persona do on the page?
 | Sign (from the card) | Points to | Buyer without budget | Buyer with budget | Rests on |
 |---|---|---|---|---|
-| <sign> | go on / rework or drop | shown / not shown / cannot tell | ... | <walkthrough line, or "no source in the persona file"> |
+| <sign> | go on / rework / drop | shown / not shown / cannot tell | ... | <walkthrough line, or "no source in the persona file"> |
+
+### Table 2: Does the spec go against something the persona file says?
+| Sign (from the card) | Buyer without budget | Buyer with budget |
+|---|---|---|
+| <sign> | yes: <what clashes, with the persona line> / no / the file says nothing | ... |
 
 ## Other stalls
 - <stall that matches no sign, with its persona-file source, or "none">
@@ -94,5 +105,6 @@ Feedback: <two or three short lines: what was strong, what was weak, and why>
 - <every sign or question with no source in either persona file>
 
 ## What the pair might change (proposals)
-- <change>: because <finding>
+Sorted by evidence: a sign the persona showed, a clash with a fact, a stall outside the signs, a gap in the file.
+- <change> (page: <page>) · Evidence: <shown sign | clash with a fact | other stall | gap in the file>[ · buyer with budget only]: because <finding>
 ```
