@@ -36,7 +36,8 @@ export function showErrors(form, errors) {
 }
 
 // submittedProps and onSubmitted let a variant add props to inquiry_submitted and clean up after a send.
-export function initInquiryForm(form, { variant = 'baseline', submittedProps = () => ({}), onSubmitted } = {}) {
+// redirectTo lets a variant send the visitor to its own confirmation page; default is the server's redirect.
+export function initInquiryForm(form, { variant = 'baseline', submittedProps = () => ({}), onSubmitted, redirectTo } = {}) {
   let started = false;
   form.addEventListener('focusin', () => {
     if (started) return;
@@ -62,7 +63,7 @@ export function initInquiryForm(form, { variant = 'baseline', submittedProps = (
         logEvent('inquiry_submitted', submittedProps(), variant);
         if (onSubmitted) onSubmitted();
         // sendBeacon is queued by the browser and survives navigation
-        window.location.href = json.redirect;
+        window.location.href = redirectTo || json.redirect;
         return;
       }
       if (json.errors) showErrors(form, json.errors);
