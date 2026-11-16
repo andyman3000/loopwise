@@ -13,6 +13,7 @@
 |---|---|---|---|---|---|
 | 1 | 2026-11-16 | challenger, run 1 | this file, "Challenger check" | 13 findings: 7 applied, 6 kept | applied by the agent as proposed, tonight; the product lead confirms or reverts |
 | 2 | 2026-11-16 | persona walkthrough, page, run 1, on commit 1f6e80f | [discovery/user-tests/short-form-page.md](../user-tests/short-form-page.md) | fix before the test: 2 · fix if time allows: 1 · watch in the test: 1 | 1 and 2 applied per tonight's brief; 3 not applied; 4 for the test |
+| 3 | 2026-11-16 | persona walkthrough, page, run 2, on commit 6da3b2a | [discovery/user-tests/short-form-page-run2.md](../user-tests/short-form-page-run2.md) | fix before the test: 0 · fix if time allows: 1 · watch in the test: 2 | open |
 
 A spec describes the page so exactly that Claude Code can build it from this file alone.
 In mode `learn` it covers only what the prototype test needs. Everything else is left out.
