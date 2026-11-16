@@ -7,7 +7,7 @@
 > **Label:** interviews, inquiry mails, inbox and data are synthetic; the feedback free text is an anonymised composite. This file repeats that label.
 
 ## Status
-**Stage:** Built, because the page opens at `/inquiry.html?variant=short-form` (checked 2026-11-16 on a local server). No human has decided on the challenger's findings yet, and one open point touches a sign.
+**Stage:** Built, because the page opens at `/inquiry.html?variant=short-form` (checked 2026-11-16 on a local server). Not "Tested with people": the learning card [discovery/decisions/004-short-form.md](../decisions/004-short-form.md) rests on persona runs only. No human has decided on the challenger's findings yet, and one open point touches a sign.
 
 | # | Date | Review | File | Findings | Decided |
 |---|---|---|---|---|---|
