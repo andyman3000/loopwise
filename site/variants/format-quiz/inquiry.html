@@ -27,7 +27,7 @@
       <div class="field"><label for="company">Company</label><input id="company" name="company" autocomplete="organization"><p class="error" data-error-for="company" hidden></p></div>
       <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email"><p class="error" data-error-for="email" hidden></p></div>
       <div class="field"><label for="teamSize">Team size (optional)</label><input id="teamSize" name="teamSize" type="number" min="1" inputmode="numeric"><p class="error" data-error-for="teamSize" hidden></p></div>
-      <div class="field"><label for="message">What do you need?</label><textarea id="message" name="message" rows="6"></textarea><p class="error" data-error-for="message" hidden></p></div>
+      <div class="field"><div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:.25rem 1rem"><label for="message">What do you need?</label><button type="button" id="quiz-open" style="font:inherit;font-size:.95rem;background:none;border:0;padding:0;color:var(--accent);text-decoration:underline;text-underline-offset:.18em;cursor:pointer">Unsure? Take this quiz</button></div><textarea id="message" name="message" rows="6"></textarea><p class="error" data-error-for="message" hidden></p></div>
       <p class="error" id="form-error" role="alert" hidden></p>
       <button class="button" type="submit">Send inquiry</button>
     </form>
@@ -54,42 +54,34 @@
   <script type="module">
     import { initInquiryForm } from '/components/inquiry-form.js';
     import { logEvent } from '/components/events.js';
+    import { initQuiz, formText } from '/variants/format-quiz/quiz.js';
     logEvent('page_view', { page: 'inquiry' });
     const form = document.getElementById('inquiry-form');
     initInquiryForm(form, { variant: 'format-quiz' });
 
-    // Fill "What do you need?" from the quiz on the formats page. No cursor in a field:
+    // Fill "What do you need?" from the quiz. No cursor in a field:
     // a started form counts only when the visitor clicks into a field.
-    // [invented] The text is written as the buyer would write it. "Not sure" ticks are left out.
-    // The first line names the format: the watcher reads whether the tester keeps it.
-    const NOT_SURE = 'Not sure';
-    const STYLES = {
-      Assisting: 'use AI for small things',
-      Conversational: 'work back and forth with one AI',
-      Delegating: 'hand over whole tasks to agents',
-      Orchestrating: 'run several agents in parallel',
-      'System-building': 'build their own setups that turn an intent into finished work',
-    };
-    const TEAMS = {
-      'As one team, on one product': 'They work as one team, on one product.',
-      'People come from different teams or products': 'They come from different teams or products.',
-    };
-    const and = (parts) => (parts.length < 2 ? parts.join('') : `${parts.slice(0, -1).join(', ')} and ${parts.at(-1)}`);
-    let quiz = null;
-    try { quiz = JSON.parse(sessionStorage.getItem('format-quiz')); } catch {}
-    if (quiz && quiz.format) {
-      const a = quiz.answers || {};
-      const ticks = (list) => (Array.isArray(list) ? list.filter((t) => t !== NOT_SURE) : []);
-      const lines = [`A format that could fit us: ${quiz.format}.`];
-      if (a.q1) lines.push(a.q1 === 1 ? 'One person would take part.' : `About ${a.q1} people would take part.`);
-      lines.push(...ticks(a.q3).map((t) => TEAMS[t]));
-      const styles = ticks(a.q2).map((t) => STYLES[t]).filter(Boolean);
-      if (styles.length) lines.push(`In the group, people ${and(styles)}.`);
-      const blocks = ticks(a.q4);
-      if (blocks.length) lines.push('What gets in the way today:', ...blocks.map((t) => `- ${t}.`));
-      document.getElementById('message').value = lines.join('\n');
+    const message = document.getElementById('message');
+    let lastQuizText = '';
+    function fill(result) {
+      const text = formText(result);
+      // A new quiz result replaces the last one. A text the visitor typed stays; the quiz text goes below it.
+      const now = message.value.trim();
+      message.value = !now || now === lastQuizText ? text : `${now}\n\n${text}`;
+      lastQuizText = text;
+    }
+    let stored = null;
+    try { stored = JSON.parse(sessionStorage.getItem('format-quiz')); } catch {}
+    if (stored && stored.format) {
+      fill(stored);
       form.scrollIntoView({ block: 'start' });
     }
+    // The quiz opens in an overlay. The CTA keeps the focus off the form,
+    // so opening the quiz does not count as a started form.
+    const openQuiz = initQuiz({ inquireLabel: 'Use this', onInquire: fill });
+    const cta = document.getElementById('quiz-open');
+    cta.addEventListener('mousedown', (e) => e.preventDefault());
+    cta.addEventListener('click', openQuiz);
   </script>
 </body>
 </html>

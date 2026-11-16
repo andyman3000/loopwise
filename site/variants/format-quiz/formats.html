@@ -5,15 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Formats - Loopwise</title>
   <link rel="stylesheet" href="/styles.css">
-  <style>
-    [hidden]{display:none !important}
-    /* Quiz choices: one choice per row, normal weight, the example muted below it. */
-    .quiz-q{border:0;padding:0;margin:0}
-    .quiz-q legend{font-weight:650;font-size:1.1rem;margin-bottom:1rem;padding:0}
-    .choice{display:flex;gap:.7rem;align-items:flex-start;font-weight:400;margin:0 0 1rem;line-height:1.4}
-    .choice input{margin-top:.25rem;flex:none}
-    .choice small{display:block;color:var(--muted);font-size:.92rem;margin-top:.2rem}
-  </style>
 </head>
 <body>
   <!-- Variant format-quiz, built to learn: see discovery/specs/format-quiz.md. Synthetic material. -->
@@ -34,62 +25,6 @@
     <div class="note" id="quiz-box">
       <p>Not sure which format fits your group? Answer four short questions.</p>
       <p class="actions" style="margin-top:.5rem"><button class="button" type="button" id="quiz-start">Start the quiz</button></p>
-      <div id="quiz" hidden>
-        <p><a href="#" id="quiz-close">Close the quiz</a></p>
-
-        <section class="card" data-step="0">
-          <div class="field">
-            <label for="q1">How many people would take part?</label>
-            <input id="q1" type="number" min="1" step="1" inputmode="numeric">
-            <p><small>If you do not know yet, leave it empty.</small></p>
-          </div>
-        </section>
-
-        <section class="card" data-step="1" hidden>
-          <fieldset class="quiz-q">
-            <legend>Which of these working styles are in your group? Tick all that apply.</legend>
-            <label class="choice"><input type="checkbox" name="q2" value="Assisting"><span>Assisting: AI for small things, a draft, a summary.<small>Example: asks a chat assistant to sum up a meeting</small></span></label>
-            <label class="choice"><input type="checkbox" name="q2" value="Conversational"><span>Conversational: working back and forth with one AI.<small>Example: writes a user story together with a chat assistant</small></span></label>
-            <label class="choice"><input type="checkbox" name="q2" value="Delegating"><span>Delegating: handing over whole tasks with several steps.<small>Example: gives an agent a research task and gets back a finished report</small></span></label>
-            <label class="choice"><input type="checkbox" name="q2" value="Orchestrating"><span>Orchestrating: several AI agents in parallel.<small>Example: runs one agent per task at the same time and reviews their work</small></span></label>
-            <label class="choice"><input type="checkbox" name="q2" value="System-building"><span>System-building: their own setups that turn an intent into finished work.<small>Example: built a shared set of skills that turns an intent into a spec</small></span></label>
-          </fieldset>
-        </section>
-
-        <section class="card" data-step="2" hidden>
-          <fieldset class="quiz-q">
-            <legend>How does the group work together today?</legend>
-            <label class="choice"><input type="radio" name="q3" value="As one team, on one product"><span>As one team, on one product</span></label>
-            <label class="choice"><input type="radio" name="q3" value="People come from different teams or products"><span>People come from different teams or products</span></label>
-          </fieldset>
-        </section>
-
-        <section class="card" data-step="3" hidden>
-          <fieldset class="quiz-q">
-            <legend>What gets in the way for them today? Tick all that apply.</legend>
-            <label class="choice"><input type="checkbox" name="q4" value="One topic keeps coming up, and no one in the group knows it well"><span>One topic keeps coming up, and no one in the group knows it well</span></label>
-            <label class="choice"><input type="checkbox" name="q4" value="They are at very different levels with AI, and have no shared start"><span>They are at very different levels with AI, and have no shared start</span></label>
-            <label class="choice"><input type="checkbox" name="q4" value="They know AI tools, but do not use them on real backlog work"><span>They know AI tools, but do not use them on real backlog work</span></label>
-            <label class="choice"><input type="checkbox" name="q4" value="One team wants to change how it works together"><span>One team wants to change how it works together</span></label>
-            <label class="choice"><input type="checkbox" name="q4" value="Single people want feedback on how they work day to day"><span>Single people want feedback on how they work day to day</span></label>
-            <label class="choice"><input type="checkbox" name="q4" value="Not sure"><span>Not sure</span></label>
-          </fieldset>
-        </section>
-
-        <section class="card" data-step="4" id="quiz-result" hidden>
-          <h2 id="result-heading"></h2>
-          <p id="result-why"></p>
-          <p>The scoping call shapes the real format.</p>
-          <p class="actions">
-            <button class="button" type="button" id="quiz-inquire">Inquire now</button>
-          </p>
-        </section>
-
-        <p class="actions">
-          <button class="button secondary" type="button" id="quiz-back">Back</button>
-          <button class="button" type="button" id="quiz-next">Next</button>
-        </p>
-      </div>
     </div>
 
     <div class="card-grid">
@@ -112,93 +47,15 @@
   </footer>
   <script type="module">
     import { logEvent } from '/components/events.js';
+    import { initQuiz } from '/variants/format-quiz/quiz.js';
     logEvent('page_view', { page: 'formats' });
-
-    const NOT_SURE = 'Not sure';
-    const $ = (id) => document.getElementById(id);
-    const steps = [...document.querySelectorAll('#quiz [data-step]')];
-    let step = 0;
-
-    function answers() {
-      const ticks = (name) => [...document.querySelectorAll(`input[name="${name}"]:checked`)].map((i) => i.value);
-      const n = Number($('q1').value);
-      return { q1: Number.isInteger(n) && n >= 1 ? n : null, q2: ticks('q2'), q3: ticks('q3'), q4: ticks('q4') };
-    }
-
-    // [invented] The rule from answers to format. Someone who runs the training should read it.
-    const Q4_FORMAT = {
-      'One topic keeps coming up, and no one in the group knows it well': 'Half-day workshop',
-      'They are at very different levels with AI, and have no shared start': 'Two-day training',
-      'They know AI tools, but do not use them on real backlog work': 'Agentic Product Management lab',
-      'One team wants to change how it works together': 'Multi-week team coaching',
-      'Single people want feedback on how they work day to day': 'Shadowing',
-    };
-    const ADVANCED = ['Delegating', 'Orchestrating', 'System-building'];
-    function pickFormat(a) {
-      // Step 1: every Q4 tick other than "Not sure" stands for the same format.
-      const named = [...new Set(a.q4.filter((t) => t !== NOT_SURE).map((t) => Q4_FORMAT[t]))];
-      if (named.length === 1) {
-        const f = named[0];
-        if (f !== 'Multi-week team coaching' || a.q3.includes('As one team, on one product')) return f;
-      }
-      // Step 2: Q2 decides.
-      if (a.q2.length && a.q2.every((t) => ADVANCED.includes(t))) return 'Agentic Product Management lab';
-      return 'Two-day training';
-    }
-
-    // [invented pattern] One line on why, built from the tester's own answers.
-    const Q4_SHORT = {
-      'One topic keeps coming up, and no one in the group knows it well': 'one topic no one in the group knows well',
-      'They are at very different levels with AI, and have no shared start': 'very different levels with AI',
-      'They know AI tools, but do not use them on real backlog work': 'AI tools not used on real backlog work',
-      'One team wants to change how it works together': 'one team wants to change how it works together',
-      'Single people want feedback on how they work day to day': 'single people want feedback on their work',
-    };
-    function whyLine(a) {
-      const parts = [];
-      if (a.q1) parts.push(`${a.q1} ${a.q1 === 1 ? 'person' : 'people'}`);
-      const Q3_SHORT = { 'As one team, on one product': 'one team on one product', 'People come from different teams or products': 'people from different teams or products' };
-      parts.push(...a.q3.map((t) => Q3_SHORT[t]));
-      const q2 = a.q2.filter((t) => t !== NOT_SURE).map((t) => t.toLowerCase());
-      if (q2.length) parts.push(`working styles: ${q2.join(', ')}`);
-      parts.push(...a.q4.filter((t) => t !== NOT_SURE).map((t) => Q4_SHORT[t]));
-      return parts.length ? `You said ${parts.join(', ')}.` : 'You left the questions open, so this is the format for a mixed group.';
-    }
-
-    let result = null;
-    function showResult() {
-      const a = answers();
-      const format = pickFormat(a);
-      result = { format, why: whyLine(a), answers: a };
-      $('result-heading').textContent = `A format that could fit: ${format}`;
-      $('result-why').textContent = result.why;
-    }
-
-    function show(n) {
-      step = n;
-      steps.forEach((s, i) => { s.hidden = i !== n; });
-      $('quiz-back').hidden = n === 0;
-      $('quiz-next').hidden = n === steps.length - 1;
-      if (n === steps.length - 1) showResult();
-    }
-
-    $('quiz-start').addEventListener('click', () => {
-      $('quiz').hidden = false;
-      $('quiz-start').hidden = true;
-      show(0);
+    const openQuiz = initQuiz({
+      onInquire(result) {
+        sessionStorage.setItem('format-quiz', JSON.stringify({ format: result.format, answers: result.answers }));
+        window.location.href = '/inquiry.html?variant=format-quiz';
+      },
     });
-    $('quiz-close').addEventListener('click', (e) => {
-      e.preventDefault();
-      $('quiz').hidden = true;
-      $('quiz-start').hidden = false;
-    });
-    $('quiz-next').addEventListener('click', () => show(step + 1));
-    $('quiz-back').addEventListener('click', () => show(step - 1));
-
-    $('quiz-inquire').addEventListener('click', () => {
-      sessionStorage.setItem('format-quiz', JSON.stringify({ format: result.format, answers: result.answers }));
-      window.location.href = '/inquiry.html?variant=format-quiz';
-    });
+    document.getElementById('quiz-start').addEventListener('click', openQuiz);
   </script>
 </body>
 </html>
