@@ -479,3 +479,14 @@ test('several persona runs are counted as runs, never as more personas', () => {
   assert.match(card, /spec checked in 2 persona runs · 2 of 5 people tested/);
   assert.match(card, /<li>spec, run 2: 2 personas, 2026-11-18, against the lines: held<\/li>/);
 });
+
+test('a launch card counts as written; its result counts only once read-result fills the section', () => {
+  const { root, put } = experimentRepo();
+  put('discovery/test-cards/success-line-first.md', '# Launch card\n\n## Kill criterion\nX\n\n## Result\n\n_Empty until after the time frame. A human decides keep, adjust or withdraw._\n');
+  let e = readExperiment(root, 'success-line-first');
+  assert.deepEqual([e.launch, e.result], [true, null], 'the italic placeholder is no result');
+  assert.doesNotThrow(() => treePage(root));
+  put('discovery/test-cards/success-line-first.md', '# Launch card\n\n## Result\n\n### The numbers\n12 of 40\n\n### Conclusion\nKeep it,\nbecause buyers send it.\n\n**Decision:** keep\n');
+  e = readExperiment(root, 'success-line-first');
+  assert.equal(e.result.text, 'Keep it, because buyers send it. **Decision:** keep', 'the conclusion, not the whole section');
+});
