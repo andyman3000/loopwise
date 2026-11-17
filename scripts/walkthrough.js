@@ -60,6 +60,16 @@ function snapshot(step, swap = {}) {
       git('archive', '--format=tar', '-o', part, ref, '--', ...files);
       execFileSync('tar', ['-xf', part, '-C', dir]);
     }
+    // Commits before the rename say "sponsor" for the role the views and filters now call "buyer".
+    // Draw every snapshot in today's word; file names such as sources/interviews/sponsor-carla.md
+    // stay, so links keep working.
+    const renameDir = (d) => { for (const e of fs.readdirSync(d, { withFileTypes: true })) {
+      const f = path.join(d, e.name);
+      if (e.isDirectory()) renameDir(f);
+      else if (f.endsWith('.md')) fs.writeFileSync(f, fs.readFileSync(f, 'utf8')
+        .replace(/(?<![\/\w-])sponsor(s?)\b(?!-)/g, 'buyer$1').replace(/(?<![\/\w-])Sponsor(s?)\b(?!-)/g, 'Buyer$1'));
+    } };
+    if (fs.existsSync(path.join(dir, 'discovery'))) renameDir(path.join(dir, 'discovery'));
     const html = (VIEWS[step.view || 'tree'] || VIEWS.tree)(dir);
     if (EMPTY.test(html)) throw new Error('the page shows no tree for this commit');
     // The files this step wrote, so the header can name them even where the tree draws no mark.
