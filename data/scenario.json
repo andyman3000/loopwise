@@ -1,12 +1,9 @@
 {
   "synthetic": true,
-  "note": "SYNTHETIC. Every file in data/ is generated from this scenario with fixed seeds. No real visitor, sponsor, company or booking exists behind any row. 26 weeks of the baseline form, then 8 weeks from 2026-08-19 in which format-quiz runs in even weeks (0, 2, 4, 6) and the baseline form in odd weeks. The result is deliberately mixed, and every knob is scenario design, not a finding.",
+  "note": "SYNTHETIC. Every file in data/ is generated from this scenario with fixed seeds. No real visitor, buyer, company or booking exists behind any row. This is the baseline export: 26 weeks of the current inquiry form, taken on launch day. All knobs, browsing paths included, are scenario design, not findings.",
   "seed": 33,
   "launchDate": "2026-08-19",
   "weeksBefore": 26,
-  "weeksAfter": 8,
-  "dataThrough": "2026-10-18",
-  "alternateWeeks": true,
   "baselineVariant": "baseline",
   "traffic": {
     "inquiryPageViewsPerWeek": 30,
@@ -17,14 +14,9 @@
     "before": {
       "startGivenView": 0.3,
       "submitGivenStart": 0.54
-    },
-    "after": {
-      "startGivenQuiz": 0.5,
-      "startGivenNoQuiz": 0.3,
-      "submitGivenStart": 0.5
     }
   },
-  "sponsorMix": {
+  "buyerMix": {
     "soft": 0.55,
     "hard": 0.45
   },
@@ -40,10 +32,6 @@
   ],
   "scopingCallRate": {
     "before": {
-      "soft": 0.34,
-      "hard": 0.48
-    },
-    "after": {
       "soft": 0.34,
       "hard": 0.48
     }
@@ -75,7 +63,7 @@
     "pages": {
       "home": 0.35,
       "formats": 0.45,
-      "sponsor-prep": 0.2
+      "buyer-prep": 0.2
     },
     "formatsShare": 0.6,
     "formatsReachFactor": 0.67,
@@ -83,100 +71,5 @@
       1,
       6
     ]
-  },
-  "quiz": {
-    "note": "After launch only, own seed, so the weeks before launch stay the baseline. unsure is the chance of 'I don't know yet' per question, by sponsor type. takeGivenFormats: chance that a visit on the formats page takes the quiz, for visits that were going to the inquiry page anyway and for visits that would have left. finishGivenLeaving: of the visits that would have left and took the quiz, the share that finishes it and opens the inquiry page; the others leave during the quiz, at dropAtStep.",
-    "seed": 374,
-    "unsure": {
-      "soft": [
-        0.25,
-        0.35,
-        0.15,
-        0.5
-      ],
-      "hard": [
-        0.1,
-        0.2,
-        0.1,
-        0.35
-      ]
-    },
-    "emptyGivenNotUnsure": 0.05,
-    "takeGivenFormats": {
-      "inquiring": 0.4,
-      "leaving": 0.15
-    },
-    "finishGivenLeaving": 0.6,
-    "dropAtStep": {
-      "1": 0.5,
-      "2": 0.3,
-      "3": 0.2
-    },
-    "answerSeed": 119,
-    "twoAnswers": 0.35,
-    "alone": [
-      "Nothing yet, this is the first training"
-    ],
-    "options": {
-      "roles": {
-        "soft": {
-          "Product managers": 0.25,
-          "Product owners": 0.25,
-          "UX people": 0.1,
-          "People moving over from project management and consulting": 0.25,
-          "Not decided yet, it could be several teams": 0.15
-        },
-        "hard": {
-          "Product managers": 0.3,
-          "Product owners": 0.3,
-          "UX people": 0.15,
-          "People moving over from project management and consulting": 0.15,
-          "Not decided yet, it could be several teams": 0.1
-        }
-      },
-      "stand": {
-        "soft": {
-          "Almost no hands-on AI experience": 0.3,
-          "Some already use chat tools, some don't": 0.35,
-          "Tools are rolled out, but the actual work hasn't changed": 0.2,
-          "From never written a prompt to building their own agents": 0.15
-        },
-        "hard": {
-          "Almost no hands-on AI experience": 0.1,
-          "Some already use chat tools, some don't": 0.3,
-          "Tools are rolled out, but the actual work hasn't changed": 0.45,
-          "From never written a prompt to building their own agents": 0.15
-        }
-      },
-      "before": {
-        "soft": {
-          "Nothing yet, this is the first training": 0.3,
-          "Some went to an external course, mostly optional": 0.3,
-          "A training after which daily work stayed the same": 0.3,
-          "Developers got training, product people did not": 0.1
-        },
-        "hard": {
-          "Nothing yet, this is the first training": 0.1,
-          "Some went to an external course, mostly optional": 0.2,
-          "A training after which daily work stayed the same": 0.5,
-          "Developers got training, product people did not": 0.2
-        }
-      }
-    }
-  },
-  "callRecord": {
-    "note": "What the person who runs a scoping call records for every call from recordFrom on: how many of the four questions about the team they still had to ask, and whether the format was settled in the call. Own seed.",
-    "seed": 49,
-    "recordFrom": "2026-07-22",
-    "askIfAnswered": 0.15,
-    "askIfOpen": {
-      "soft": 0.8,
-      "hard": 0.6
-    },
-    "formatSettled": {
-      "soft": 0.4,
-      "hard": 0.6
-    },
-    "formatSettledQuizBoost": 0.1
   }
 }

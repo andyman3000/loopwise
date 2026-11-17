@@ -1,132 +1,296 @@
-# Opportunities from interviews
+# Opportunities from sources/interviews
 
-> Assessment by an agent (`opportunities-from-source` skill), not a decision. Date: 2026-08-18.
-> Reads: sources/interviews/participants-group-1.md, participants-group-2.md, participants-group-3.md, sponsor-soft.md, sponsor-hard.md, discovery/kpi-tree.md, product/personas/
-> Material: all five interviews are anonymised composites of real conversations. This file repeats that label.
+> Assessment by an agent (`opportunities-from-source` skill), not a decision. Date: 2026-11-13.
+> Reads: sources/interviews/ (nine files), [discovery/kpi-tree.md](../kpi-tree.md), product/personas/
+> Material: synthetic, built from patterns in real conversations ([sources/interviews/sponsor-carla.md:3](../../sources/interviews/sponsor-carla.md#L3)).
+> Every finding below rests on synthetic interviews.
 
-An opportunity is a need or pain of a customer that, if we serve it, could move a number in the KPI tree.
-A KPI branch is one way the business goal can grow (see discovery/kpi-tree.md).
+An opportunity is a need or a pain a person has. It is never a solution.
+A KPI branch is one way the business goal can grow ([discovery/kpi-tree.md:6](../kpi-tree.md#L6)).
+A driver is something people do that can be counted and that moves a branch ([discovery/kpi-tree.md:7](../kpi-tree.md#L7)).
+A success line is one sentence that says how the buyer will know the format worked ([product/glossary.md:33](../../product/glossary.md#L33)).
+Counter-evidence is a quote from the same source that speaks against the need.
 
 ## Your first try
-People dont know what the right format is for their team, so the knowledge sticks
+
+The quote shown: "If someone from outside runs it, people find it easier to say, I've never done this." ([sources/interviews/sponsor-carla.md:89](../../sources/interviews/sponsor-carla.md#L89), Carla, buyer)
+
+Answer, word for word:
+
+> The pain behind it is: "I dont feel comfortable admitting that I am behind some of my colleagues". Not a solution
 
 Where the draft differs:
-- Same core as O1: the sponsor does not know which format fits. The draft keeps it as her pain, not yet a fix.
-- "So the knowledge sticks" is a second need. The draft splits it off as O3, because both sponsors raise it, also the one who knows her format.
-- In the quote the sponsor names formats (workshop, team coaching). The need is not knowing what to ask for; the formats are solutions.
+- The draft keeps this need with the buyer. Carla reports what she sees in her product owners. So it is second-hand, from one voice (O8).
+- The draft sorts "someone from outside runs it" under solution ideas. The need sits underneath it.
+- A participant lived the same pain on the day itself (O9). The draft keeps it apart: other role, other moment.
+
+Feedback:
+- Strong: you named a pain, a feeling, not a page or a button. It stays close to what Carla describes.
+- Weak: "behind some of my colleagues" comes from line 85, not from line 89. Line 89 is about saying "I've never done this" in front of the own line.
+- Weak: "Not a solution" is half right. The quote names a solution: an outsider runs the format. The need sits under it.
 
 ## Source
+
 | File | Type | Speakers (role) | Basis line from the file |
 |---|---|---|---|
-| sources/interviews/participants-group-1.md | group interview, excerpt | 4: business analyst, product owner, product manager, project lead (participant) | real conversations, anonymised composite |
-| sources/interviews/participants-group-2.md | group interview, excerpt | 4: two product owners, product manager, product team member (participant) | real conversations, anonymised composite |
-| sources/interviews/participants-group-3.md | group interview, excerpt | 5: analyst, two product managers, product specialist, product owner (participant) | real conversations, anonymised composite |
-| sources/interviews/sponsor-soft.md | one-on-one interview, excerpt | 1: supports the AI move, no budget (sponsor) | real conversations, anonymised composite |
-| sources/interviews/sponsor-hard.md | one-on-one interview, excerpt | 1: head of product (sponsor) | real conversations, anonymised composite |
+| [sources/interviews/sponsor-carla.md](../../sources/interviews/sponsor-carla.md) | one-on-one interview, before any booking | Carla (buyer) | synthetic, built from patterns in real conversations |
+| [sources/interviews/sponsor-sabine.md](../../sources/interviews/sponsor-sabine.md) | one-on-one interview, after a booked workshop, second group booked | Sabine (buyer) | synthetic, built from patterns in real conversations |
+| [sources/interviews/sponsor-ines.md](../../sources/interviews/sponsor-ines.md) | one-on-one interview, booked, while preparing | Ines (buyer) | synthetic, built from patterns in real conversations |
+| [sources/interviews/sponsor-thomas.md](../../sources/interviews/sponsor-thomas.md) | one-on-one interview, booked, before it runs | Thomas (buyer) | synthetic, built from patterns in real conversations |
+| [sources/interviews/sponsor-mehmet.md](../../sources/interviews/sponsor-mehmet.md) | one-on-one interview, booked, days before it runs | Mehmet (buyer) | synthetic, built from patterns in real conversations |
+| [sources/interviews/participant-francoise.md](../../sources/interviews/participant-francoise.md) | one-on-one interview, a few days after a workshop | Françoise (participant) | synthetic, built from patterns in real conversations |
+| [sources/interviews/participant-rasmus.md](../../sources/interviews/participant-rasmus.md) | one-on-one interview, before any booking | Rasmus (participant) | synthetic, built from patterns in real conversations |
+| [sources/interviews/participant-jannik.md](../../sources/interviews/participant-jannik.md) | one-on-one interview, before any booking | Jannik (participant) | synthetic, built from patterns in real conversations |
+| [sources/interviews/developer-lena.md](../../sources/interviews/developer-lena.md) | one-on-one interview, not a participant | Lena (developer) | synthetic, built from patterns in real conversations |
 
-15 distinct speakers: 13 participants, 2 sponsors. The interviewer is not counted.
-Speaker labels (P1, P2) restart in each group file, so G1 P1 and G2 P1 are different people.
+Branches mapped against: Branch A, more inquiries that end in a booking, and its six drivers. Branch B, follow-up bookings, is parked this quarter ([discovery/kpi-tree.md:25](../kpi-tree.md#L25)).
+The tree has no branch for preparation, the day itself or the weeks after. Needs met there sit on Branch B, the branch after the booking.
+Missing: no buyer speaks about the website. Only one buyer (Carla) speaks before any booking. Only one participant (Françoise) speaks after a format.
 
 ## Opportunities
 
-### O1: The sponsor does not know which format fits, or what to ask for
+### O1: "I don't know which format to ask for." (buyer, before booking)
 - **Evidence:**
-  - "Whether it's a four-hour workshop or someone who works alongside a team for a while, I don't know." (sources/interviews/sponsor-soft.md:49, S, sponsor)
-  - "I have no idea." (sources/interviews/sponsor-soft.md:49, S, sponsor)
-  - "I sketched three ways." (sources/interviews/sponsor-soft.md:53, S, sponsor)
-  - "I haven't." (sources/interviews/sponsor-soft.md:57, S, sponsor, asked which slice she would pick)
-- **Voices:** 1 distinct speaker: sponsor (soft). Second-hand: no.
-- **KPI branch:** Branch A: inquiries that end in a booking, driver submit rate. [assumption: a sponsor who cannot name what she needs stalls at the free text field "What do you need?" (site/inquiry.html:27) and does not send the form.] Could also sit on call rate. The tree does not state either link.
-- **Counter-evidence in this source:** "Two days, more of a getting-to-know-each-other thing." (sources/interviews/sponsor-hard.md:13): the hard sponsor already knows the format. "I really want to stay open, see what comes out, and then decide that one sounds like a good direction." (sources/interviews/sponsor-soft.md:57): she keeps it open on purpose, so not knowing may not feel like a pain to her.
-- **Gaps:** One voice in this source. No sign here of whether not knowing stops her from sending an inquiry. The data could show where sponsors drop out; it cannot show why.
-- **Assessment:** partly supported. The pain is stated clearly and more than once, but by one speaker. The other sponsor contradicts it. The link to a driver is an assumption.
+  - "Tell me what's on the menu and I'll react to it." ([sources/interviews/sponsor-carla.md:125](../../sources/interviews/sponsor-carla.md#L125), Carla, buyer)
+  - "And between the two directions you described I haven't decided either, so that's open as well." ([sources/interviews/sponsor-carla.md:141](../../sources/interviews/sponsor-carla.md#L141), Carla, buyer)
+  - "What to buy to fix it, no." ([sources/interviews/sponsor-ines.md:53](../../sources/interviews/sponsor-ines.md#L53), Ines, buyer)
+- **Voices:** 2 distinct speakers: buyers. Second-hand: no. Carla speaks before booking. Ines looks back on her first call.
+- **Merged:** yes. Carla does not know which direction fits. Ines does not know what to buy. Both are buyers before the booking, unsure which format to ask for.
+- **Close to:** O16 and O17. Same role and moment, but a different need: which format here, how many events in O16, how long in O17.
+- **KPI branch:** Branch A, driver submit rate [assumption: a buyer who cannot name a format hesitates to send the form]. Also driver booking rate [assumption: a call that leaves the format open ends without a booking more often].
+- **Counter-evidence in this source:** "The two days, those we settled almost in the first week, the dates too." ([sources/interviews/sponsor-thomas.md:21](../../sources/interviews/sponsor-thomas.md#L21)). "The shape I knew." ([sources/interviews/sponsor-mehmet.md:29](../../sources/interviews/sponsor-mehmet.md#L29))
+- **Gaps:** no buyer says how this felt on the website. Ines booked in the end, after several scoping calls.
+- **Assessment:** partly supported. Two buyers lived it. Two other buyers knew the shape early.
 
-### O2: The sponsor must show the effect before more budget, but has no measure for it
+### O2: "I need something to show the people who decide with me." (buyer, before booking)
 - **Evidence:**
-  - "Anything beyond that, I need to show the effect." (sources/interviews/sponsor-hard.md:13, S, sponsor)
-  - "And internally I need a business case before I even ask." (sources/interviews/sponsor-hard.md:13, S, sponsor)
-  - "What is concretely different four weeks later, and how do we measure it?" (sources/interviews/sponsor-hard.md:33, S, sponsor)
-  - "Honestly, I haven't worked that out." (sources/interviews/sponsor-hard.md:37, S, sponsor)
-  - "If this flops, I look bad in front of my team and in front of the board." (sources/interviews/sponsor-hard.md:19, S, sponsor)
-- **Voices:** 1 distinct speaker: sponsor (hard). Second-hand: no.
-- **KPI branch:** Branch B: follow-up bookings, not this quarter. Her own words aim there: "Show me it works. Then we talk about more teams." (sources/interviews/sponsor-hard.md:55). Side link to Branch A, driver booking rate. [assumption: a sponsor who needs a business case and has no measure hesitates to confirm a booking after the scoping call.]
-- **Counter-evidence in this source:** "They can work out hard goals for themselves later." (sources/interviews/sponsor-soft.md:63): the soft sponsor does not need a measure up front. "What I got approved is a first step." (sources/interviews/sponsor-hard.md:13): the first booking is already approved without one.
-- **Gaps:** One voice. The evidence speaks of the next budget, not the first booking. No source says which measure would be enough.
-- **Assessment:** partly supported. The need is clear and repeated by one sponsor. It sits mainly on Branch B, which is out of scope this quarter. The booking rate link is an assumption.
-- **Why separate from O3:** O2 is about proving an effect to others. O3 is about fearing there will be none. The soft sponsor shares the fear but not the need for proof.
+  - "I'll take this to two colleagues and talk it through with them." ([sources/interviews/sponsor-carla.md:153](../../sources/interviews/sponsor-carla.md#L153), Carla, buyer)
+  - "Sure, why not. Send them over." ([sources/interviews/sponsor-carla.md:157](../../sources/interviews/sponsor-carla.md#L157), Carla, buyer, on example agendas)
+  - "I said fine, I'll take it to him and see how he reacts." ([sources/interviews/sponsor-mehmet.md:29](../../sources/interviews/sponsor-mehmet.md#L29), Mehmet, buyer)
+  - "He didn't want to commit to months with someone we'd never worked with" ([sources/interviews/sponsor-mehmet.md:37](../../sources/interviews/sponsor-mehmet.md#L37), Mehmet, buyer, about his boss)
+- **Voices:** 2 distinct speakers: buyers. Second-hand: Mehmet reports his boss's view (line 37). His own step of taking it to the boss is lived (line 29).
+- **Merged:** yes. Carla takes it to colleagues. Mehmet takes it to his boss. Both are buyers before the booking who need others to agree.
+- **Close to:** none
+- **KPI branch:** Branch A, driver booking rate [assumption: what the buyer can show others after the call decides whether they book].
+- **Counter-evidence in this source:** "The two days, those we settled almost in the first week, the dates too." ([sources/interviews/sponsor-thomas.md:21](../../sources/interviews/sponsor-thomas.md#L21))
+- **Gaps:** no source says what the colleagues or the boss ask for. Carla takes example agendas; whether they help is unknown.
+- **Assessment:** partly supported. Two buyers lived it before booking.
 
-### O3: Sponsors fear nothing changes after the training, as last time
+### O3: "I can't say how I'd know the format worked." (buyer, preparation)
 - **Evidence:**
-  - "Booked, everyone thought it was nice, four weeks later everything was as before." (sources/interviews/sponsor-hard.md:23, S, sponsor)
-  - "The hard part is holding ourselves accountable afterwards." (sources/interviews/sponsor-hard.md:29, S, sponsor)
-  - "In theory the knowledge should be there. The doing isn't." (sources/interviews/sponsor-soft.md:21, S, sponsor)
-  - "Everyone enjoyed it, and that's where it ends." (sources/interviews/sponsor-soft.md:37, S, sponsor)
-  - "On the day everything is great, and then the next morning you carry on exactly the way you did before." (sources/interviews/participants-group-1.md:35, G1 P2, participant)
-- **Voices:** 3 distinct speakers: 2 sponsors, 1 participant. Second-hand: yes, the soft sponsor reports what her people say: "It came up again and again in conversations." (sources/interviews/sponsor-soft.md:25)
-- **KPI branch:** Branch A, driver booking rate. [assumption: a sponsor who saw past trainings change nothing waits for a sign in the scoping call that people will use this one, and does not confirm without it.] Also Branch B, not this quarter.
-- **Counter-evidence in this source:** "This time, no. It was practical." (sources/interviews/participants-group-1.md:39, G1 P2): the same participant says the last format did stick. "That's something I'll stick with." (sources/interviews/participants-group-3.md:25, G3 P5). Both sponsors still went ahead with a first step: "What I got approved is a first step." (sources/interviews/sponsor-hard.md:13)
-- **Gaps:** No source shows a sponsor who did not book because of this fear. The participant voice describes the pattern, not a booking choice.
-- **Assessment:** well supported as a sponsor fear. Both sponsors say it in their own words, and a participant confirms the pattern. The link to booking rate is an assumption.
+  - "Then you'd have got a shrug." ([sources/interviews/sponsor-sabine.md:53](../../sources/interviews/sponsor-sabine.md#L53), Sabine, buyer)
+  - "Not one I'd sign." ([sources/interviews/sponsor-ines.md:73](../../sources/interviews/sponsor-ines.md#L73), Ines, buyer)
+  - "He asked me which metrics would show whether the new process is actually being used." ([sources/interviews/sponsor-mehmet.md:173](../../sources/interviews/sponsor-mehmet.md#L173), Mehmet, buyer, reporting his head of engineering)
+  - "We don't really have product KPIs anyone steers by." ([sources/interviews/sponsor-mehmet.md:93](../../sources/interviews/sponsor-mehmet.md#L93), Mehmet, buyer, about products, not the format)
+- **Voices:** 3 distinct speakers: buyers. Second-hand: Mehmet reports a question from his head of engineering. Two voices lived it: Sabine and Ines.
+- **Merged:** yes. Sabine had no answer for the group. Ines has no sentence she would sign. Mehmet was asked for metrics. All three are buyers in preparation, before the format runs.
+- **Close to:** O4. O3 is about naming a success line. O4 is the fear that nothing lasts.
+- **KPI branch:** the need is first met in preparation, after the booking. The preparation list asked for it ([sources/interviews/sponsor-sabine.md:39](../../sources/interviews/sponsor-sabine.md#L39)). So it sits mainly on Branch B. Side link: Branch A, driver booking rate [assumption: buyers who can name a success line before the call book more often]. The strategy states this assumption ([product/strategy.md:19](../../product/strategy.md#L19)).
+- **Counter-evidence in this source:** "If you want a number: cycle time." ([sources/interviews/sponsor-thomas.md:89](../../sources/interviews/sponsor-thomas.md#L89))
+- **Gaps:** no buyer in this source tried to write a success line in the inquiry. Sabine booked a second group without one ([sources/interviews/sponsor-sabine.md:173](../../sources/interviews/sponsor-sabine.md#L173)).
+- **Assessment:** partly supported. Two buyers lived it, one more is second-hand. One buyer can name a number.
 
-### O4: Participants do not see where AI helps in their own work
+### O4: "I'm afraid my people slip back into old habits afterwards." (buyer, preparation)
 - **Evidence:**
-  - "So my real question is: where do I actually put the assistant so I get a result that helps me?" (sources/interviews/participants-group-1.md:23, G1 P4, participant)
-  - "But I couldn't tell you where." (sources/interviews/participants-group-1.md:25, G1 P1, participant)
-  - "Not: this is what I'm going to do with it." (sources/interviews/participants-group-2.md:13, G2 P1, participant)
-  - "Some of the bigger topics, I lack a bit of imagination for how I would use it, what it would look like, what it can all do." (sources/interviews/participants-group-2.md:51, G2 P2, participant)
-  - "I don't even know what the idea could turn into." (sources/interviews/participants-group-3.md:19, G3 P1, participant)
-  - "And I didn't do it with AI." (sources/interviews/participants-group-3.md:37, G3 P3, participant)
-- **Voices:** 6 distinct speakers: participants. Second-hand: yes, the soft sponsor reports the same: "I know what the tool can do, I just can't see what to use it for in my own work." (sources/interviews/sponsor-soft.md:29), and "That's not what's missing." (sources/interviews/sponsor-soft.md:41) about access, with "I think what's missing is ideas" on the same line.
-- **KPI branch:** Branch B: follow-up bookings, not this quarter. [assumption: what participants tell the sponsor afterwards decides whether more is booked; the sponsor hears it "From what people say." (sources/interviews/sponsor-soft.md:25)] Side link to Branch A, driver booking rate. [assumption: if a new sponsor can see what past participants now use in their own work, the fear that nothing changes after the training (O3) weighs less.]
-- **Counter-evidence in this source:** "For research that's honestly brilliant." (sources/interviews/participants-group-1.md:13, G1 P1). "I already have several agents running in parallel and I mostly work at the level of the spec." (sources/interviews/participants-group-2.md:17, G2 P4). "I built myself a small interface for one of my own cases" (sources/interviews/participants-group-3.md:25, G3 P5).
-- **Gaps:** These are participants after a format. We do not know if the same holds before one. The content of the training is not owned by this repo; only preparation and follow-up are.
-- **Assessment:** well supported as a need: six voices in three groups, plus a sponsor reporting it. It sits mainly on Branch B, out of scope this quarter. The booking rate link runs through a sponsor and is an assumption.
-- **Why separate from O3:** O4 is the participant's pain during their work. O3 is the sponsor's fear before booking. Different role, different moment.
+  - "What worries me is the Monday after, and the one after that" ([sources/interviews/sponsor-mehmet.md:169](../../sources/interviews/sponsor-mehmet.md#L169), Mehmet, buyer)
+  - "people do a session like this and then slide back into their old habits" ([sources/interviews/sponsor-mehmet.md:173](../../sources/interviews/sponsor-mehmet.md#L173), Mehmet, buyer, reporting his head of engineering)
+  - "People go back to their desks and file AI under" ([sources/interviews/sponsor-thomas.md:93](../../sources/interviews/sponsor-thomas.md#L93), Thomas, buyer)
+  - "A day of only listening doesn't change how anyone works afterwards." ([sources/interviews/sponsor-ines.md:149](../../sources/interviews/sponsor-ines.md#L149), Ines, buyer)
+  - "tells everyone the workshop was great, and never uses a single one" ([sources/interviews/sponsor-ines.md:153](../../sources/interviews/sponsor-ines.md#L153), Ines, buyer, reporting her advisor)
+- **Voices:** 3 distinct speakers: buyers. Second-hand: yes, Mehmet's head of engineering and Ines's advisor. All three buyers only fear it. None of them has seen it after a Loopwise format.
+- **Merged:** yes. Mehmet fears the Monday after. Thomas fears AI gets filed away. Ines fears a day of listening changes nothing. All three are buyers, before the format, about the weeks after.
+- **Close to:** O5. Same buyers, same moment. O5 is pressure from above for a fast effect, a different need.
+- **KPI branch:** the need is met in the weeks after the format. So it sits mainly on Branch B, parked. Side link: Branch A, driver booking rate [assumption: a buyer who sees how the effect is checked later books more readily]. The persona of the buyer with budget wants proof of effect before booking more ([product/glossary.md:12](../../product/glossary.md#L12)).
+- **Counter-evidence in this source:** "We booked another round." ([sources/interviews/sponsor-sabine.md:173](../../sources/interviews/sponsor-sabine.md#L173)). Sabine names no fade after the first run.
+- **Gaps:** no buyer in this source reports the weeks after a Loopwise format. Françoise is the only voice after a format (O10).
+- **Assessment:** partly supported. Three buyers only fear it. Two of the accounts are partly second-hand.
 
-### O5: The sponsor cannot tell whether one format can hold a group of very mixed levels
+### O5: "I'm under pressure to show an effect right after." (buyer, preparation)
 - **Evidence:**
-  - "From never written a prompt to building their own agents." (sources/interviews/sponsor-hard.md:45, S, sponsor)
-  - "And that the strongest are bored while the weakest drop out on the first morning." (sources/interviews/sponsor-hard.md:41, S, sponsor)
-  - "The group won't have one level that suits everyone." (sources/interviews/sponsor-soft.md:45, S, sponsor)
-  - "By definition we all have the same job title." (sources/interviews/participants-group-1.md:59, G1 P1, participant)
-  - "I had zero clue and I thought it would be far too much to get into." (sources/interviews/participants-group-2.md:15, G2 P3, participant)
-  - "On the first day I got left behind a bit with the persona part." (sources/interviews/participants-group-3.md:25, G3 P5, participant)
-- **Voices:** 5 distinct speakers: 2 sponsors, 3 participants. Second-hand: no.
-- **KPI branch:** Branch A, driver booking rate. [assumption: a sponsor who expects a mixed group checks in the scoping call whether the format can hold it, and does not confirm if unsure.] Could also touch call rate.
-- **Counter-evidence in this source:** "In our group it was okay. Everyone took a lot away." (sources/interviews/participants-group-2.md:61, G2 P3): the same participant who felt lost says the mixed group worked out.
-- **Gaps:** The sponsors state the worry; neither says it would stop a booking. The participants describe the day itself, which is training content this repo does not own.
-- **Assessment:** partly supported. Both sponsors and three participants describe the mix. Only the hard sponsor names it as something that must not happen. The link to booking rate is an assumption.
-- **Why the participant voices stay in here:** they show the mix is real. The need in O5 is the sponsor's, before booking. The participants' own pain on the day is listed under "Looks like an opportunity, but".
+  - "At the top of the company the expectation is now: much faster, soon." ([sources/interviews/sponsor-mehmet.md:73](../../sources/interviews/sponsor-mehmet.md#L73), Mehmet, buyer)
+  - "management expects a big jump in efficiency right after the workshop" ([sources/interviews/sponsor-thomas.md:101](../../sources/interviews/sponsor-thomas.md#L101), Thomas, buyer, reporting the AI programme lead)
+  - "then there's something to show" ([sources/interviews/sponsor-thomas.md:109](../../sources/interviews/sponsor-thomas.md#L109), Thomas, buyer)
+- **Voices:** 2 distinct speakers: buyers. Second-hand: Thomas reports what the AI programme lead said about management.
+- **Merged:** yes. Mehmet hears it from the top. Thomas hears it through the AI programme lead. Both are buyers in preparation, under the same pressure.
+- **Close to:** O4. O4 is a lasting change. O5 is a quick result to show upwards.
+- **KPI branch:** the need is met right after the format. So it sits mainly on Branch B. Side link: Branch A, driver booking rate [assumption: a buyer who can promise something to show upwards books more readily].
+- **Counter-evidence in this source:** "Small is fine." ([sources/interviews/sponsor-thomas.md:85](../../sources/interviews/sponsor-thomas.md#L85)). "One thing I won't do is go out and promise a number" ([sources/interviews/sponsor-mehmet.md:77](../../sources/interviews/sponsor-mehmet.md#L77))
+- **Gaps:** both buyers had booked already. No source says whether this pressure slows a booking.
+- **Assessment:** partly supported. Two buyers, one partly second-hand. Both buyers also play the expectation down.
+
+### O6: "I don't know how the days can suit such mixed levels." (buyer, preparation)
+- **Evidence:**
+  - "whether the ones who were further ahead would get anything out of it" ([sources/interviews/sponsor-sabine.md:153](../../sources/interviews/sponsor-sabine.md#L153), Sabine, buyer)
+  - "Whatever level the two days aim at, it won't suit everybody in there." ([sources/interviews/sponsor-thomas.md:121](../../sources/interviews/sponsor-thomas.md#L121), Thomas, buyer)
+  - "Very, if you ask our advisor." ([sources/interviews/sponsor-ines.md:97](../../sources/interviews/sponsor-ines.md#L97), Ines, buyer, reporting her advisor)
+- **Voices:** 3 distinct speakers: buyers. Second-hand: Ines reports her advisor. Two voices lived it: Sabine and Thomas.
+- **Merged:** yes. Sabine could not say what the spread meant for two days. Thomas says one level will not suit all. Both are buyers in preparation.
+- **Close to:** O7. Same need, but Carla asks before the booking (moment test fails). O9: the day itself, a participant (role and moment tests fail).
+- **KPI branch:** the need is met in preparation. So it sits mainly on Branch B. Side link: Branch A, driver booking rate [assumption: a buyer who sees how mixed levels are handled books more readily].
+- **Counter-evidence in this source:** "I don't think the spread is a big issue." ([sources/interviews/sponsor-mehmet.md:125](../../sources/interviews/sponsor-mehmet.md#L125)). "Less than it worries him." ([sources/interviews/sponsor-ines.md:101](../../sources/interviews/sponsor-ines.md#L101)). Sabine adds that the pairs worked ([sources/interviews/sponsor-sabine.md:153](../../sources/interviews/sponsor-sabine.md#L153)).
+- **Gaps:** Thomas mixed the levels on purpose ([sources/interviews/sponsor-thomas.md:125](../../sources/interviews/sponsor-thomas.md#L125)). He wants the mix, but not one level for all.
+- **Assessment:** partly supported. Two buyers lived it, one is second-hand. Two buyers worry less.
+
+### O7: "I can't tell whether to mix or split my group." (buyer, before booking)
+- **Evidence:**
+  - "would you mix everyone and hope the quick ones pull the others along?" ([sources/interviews/sponsor-carla.md:137](../../sources/interviews/sponsor-carla.md#L137), Carla, buyer)
+- **Voices:** 1 distinct speaker: buyer. Second-hand: no.
+- **Merged:** no
+- **Close to:** O6. Same role and need, but before the booking, not in preparation.
+- **KPI branch:** Branch A, driver booking rate [assumption: an open question on mixing the group delays the booking]. Carla leaves it open after the call ([sources/interviews/sponsor-carla.md:141](../../sources/interviews/sponsor-carla.md#L141)).
+- **Counter-evidence in this source:** none found in this source
+- **Gaps:** one buyer before booking. No source says whether the answer changes the booking.
+- **Assessment:** unsupported. One voice.
+
+### O8: "I'm afraid people who are behind won't dare to ask." (buyer, before booking)
+- **Evidence:**
+  - "That some people fall behind and don't dare to ask, and then they just drift." ([sources/interviews/sponsor-carla.md:133](../../sources/interviews/sponsor-carla.md#L133), Carla, buyer)
+  - "I think a lot of them simply have no idea where they stand." ([sources/interviews/sponsor-carla.md:85](../../sources/interviews/sponsor-carla.md#L85), Carla, buyer)
+  - "If someone from outside runs it, people find it easier to say, I've never done this." ([sources/interviews/sponsor-carla.md:89](../../sources/interviews/sponsor-carla.md#L89), Carla, buyer)
+- **Voices:** 1 distinct speaker: buyer. Second-hand: yes. Carla describes her product owners. She fears it; she has not seen it in a format.
+- **Merged:** no
+- **Close to:** O9. Similar pain, but a buyer before booking, here a participant on the day (role and moment tests fail).
+- **KPI branch:** the need is met on the day itself. So it sits mainly on Branch B. Side link: Branch A, driver booking rate [assumption: a buyer who sees that people who are behind get help books more readily]. Carla gives this as a reason to talk to an outside academy ([sources/interviews/sponsor-carla.md:89](../../sources/interviews/sponsor-carla.md#L89)).
+- **Counter-evidence in this source:** "So I said it out loud, that I'd fallen behind." ([sources/interviews/participant-francoise.md:105](../../sources/interviews/participant-francoise.md#L105)). One participant did dare to say it.
+- **Gaps:** no product owner from Carla's group speaks in this source.
+- **Assessment:** unsupported. One voice, second-hand and a fear.
+
+### O9: "I don't understand what I built, so I can't trust it." (participant, the day itself)
+- **Evidence:**
+  - "with no idea what any of it did" ([sources/interviews/participant-francoise.md:101](../../sources/interviews/participant-francoise.md#L101), Françoise, participant)
+  - "I just didn't trust any of it." ([sources/interviews/participant-francoise.md:109](../../sources/interviews/participant-francoise.md#L109), Françoise, participant)
+  - "I kept apologising for not seeing it." ([sources/interviews/participant-francoise.md:137](../../sources/interviews/participant-francoise.md#L137), Françoise, participant)
+  - "I don't think there was one speed for all of us." ([sources/interviews/participant-francoise.md:121](../../sources/interviews/participant-francoise.md#L121), Françoise, participant)
+- **Voices:** 1 distinct speaker: participant. Second-hand: no.
+- **Merged:** no
+- **Close to:** O8 (buyer before booking, role and moment tests fail). O6 (buyer in preparation, role and moment tests fail).
+- **KPI branch:** the need is met on the day itself. So it sits mainly on Branch B. No side link: a new buyer does not see a participant's day before booking. [assumption: a buyer only hears of it through participants of an earlier run.]
+- **Counter-evidence in this source:** "Day one was good." ([sources/interviews/participant-francoise.md:57](../../sources/interviews/participant-francoise.md#L57)). The trainer told her she was where the others were ([sources/interviews/participant-francoise.md:109](../../sources/interviews/participant-francoise.md#L109)).
+- **Gaps:** one participant after a format. No other participant speaks about a Loopwise day.
+- **Assessment:** unsupported. One voice.
+
+### O10: "I can't see myself setting it up alone at my desk." (participant, the weeks after)
+- **Evidence:**
+  - "If it's just me and the agent, I'll get to the first message I don't understand and stop there." ([sources/interviews/participant-francoise.md:125](../../sources/interviews/participant-francoise.md#L125), Françoise, participant)
+  - "At my desk there isn't." ([sources/interviews/participant-francoise.md:133](../../sources/interviews/participant-francoise.md#L133), Françoise, participant)
+  - "how we actually use this once we're back at our desks" ([sources/interviews/participant-francoise.md:93](../../sources/interviews/participant-francoise.md#L93), Françoise, participant, reporting another participant's card)
+- **Voices:** 1 distinct speaker: participant. Second-hand: the card on line 93 was written by another participant.
+- **Merged:** no
+- **Close to:** O4. Similar need, but buyers fear it before the format; here a participant in the weeks after (role test fails).
+- **KPI branch:** the need is met in the weeks after the format. So it sits mainly on Branch B. No side link: no driver of Branch A shows a participant's weeks after.
+- **Counter-evidence in this source:** "I use it for most of what I do, and a lot." ([sources/interviews/participant-jannik.md:53](../../sources/interviews/participant-jannik.md#L53)). Jannik works alone with AI, but before any format.
+- **Gaps:** Françoise speaks a few days after the format. She predicts; she has not tried it alone yet.
+- **Assessment:** unsupported. One voice, and a prediction.
+
+### O11: "I can't answer which tools my people are allowed to use." (buyer, preparation)
+- **Evidence:**
+  - "A good part of those I couldn't answer." ([sources/interviews/sponsor-sabine.md:77](../../sources/interviews/sponsor-sabine.md#L77), Sabine, buyer)
+  - "And of the tools you work with, exactly one is cleared" ([sources/interviews/sponsor-sabine.md:81](../../sources/interviews/sponsor-sabine.md#L81), Sabine, buyer)
+  - "For my analysts that is not a normal morning." ([sources/interviews/sponsor-sabine.md:89](../../sources/interviews/sponsor-sabine.md#L89), Sabine, buyer)
+  - "When we ran it, that wasn't settled." ([sources/interviews/sponsor-sabine.md:97](../../sources/interviews/sponsor-sabine.md#L97), Sabine, buyer)
+- **Voices:** 1 distinct speaker: buyer. Second-hand: no.
+- **Merged:** no
+- **Close to:** O12. Same role and topic, but Carla speaks before the booking (moment test fails).
+- **KPI branch:** the need is met in preparation. So it sits mainly on Branch B. No side link: Sabine had booked before these questions came up.
+- **Counter-evidence in this source:** "we gave the participants licences for a coding assistant, so they'd have it before the workshop." ([sources/interviews/sponsor-thomas.md:113](../../sources/interviews/sponsor-thomas.md#L113))
+- **Gaps:** one buyer. Participants' view of setup is in Françoise's interview, without a complaint ([sources/interviews/participant-francoise.md:37](../../sources/interviews/participant-francoise.md#L37)).
+- **Assessment:** unsupported. One voice.
+
+### O12: "I don't know if our security rules allow the tools." (buyer, before booking)
+- **Evidence:**
+  - "until the security side is sorted, I wouldn't want a training built on that tool." ([sources/interviews/sponsor-carla.md:133](../../sources/interviews/sponsor-carla.md#L133), Carla, buyer)
+- **Voices:** 1 distinct speaker: buyer. Second-hand: no.
+- **Merged:** no
+- **Close to:** O11. Same topic, but before the booking, not in preparation.
+- **KPI branch:** Branch A, driver booking rate [assumption: an open security question holds back a booking].
+- **Counter-evidence in this source:** "we gave the participants licences for a coding assistant, so they'd have it before the workshop." ([sources/interviews/sponsor-thomas.md:113](../../sources/interviews/sponsor-thomas.md#L113))
+- **Gaps:** Carla does not know the security concerns in detail ([sources/interviews/sponsor-carla.md:137](../../sources/interviews/sponsor-carla.md#L137)).
+- **Assessment:** unsupported. One voice.
+
+### O13: "I get more changing documents than I can work through." (buyer, preparation)
+- **Evidence:**
+  - "Every evening there was another long document, and each one assumed I'd already worked through the one before." ([sources/interviews/sponsor-mehmet.md:141](../../sources/interviews/sponsor-mehmet.md#L141), Mehmet, buyer)
+  - "either a few pieces stop moving so I can build on them, or someone takes part of the work off me." ([sources/interviews/sponsor-mehmet.md:141](../../sources/interviews/sponsor-mehmet.md#L141), Mehmet, buyer)
+- **Voices:** 1 distinct speaker: buyer. Second-hand: no.
+- **Merged:** no
+- **Close to:** O11. Same role and moment, but a different need: too much to read, not unknown answers.
+- **KPI branch:** the need is met in preparation. So it sits mainly on Branch B. No side link: Mehmet had booked before preparation started.
+- **Counter-evidence in this source:** "some of my push is probably just last-minute nerves" ([sources/interviews/sponsor-mehmet.md:149](../../sources/interviews/sponsor-mehmet.md#L149))
+- **Gaps:** one buyer, days before the format.
+- **Assessment:** unsupported. One voice.
+
+### O14: "I can't find a real problem that will still be current." (buyer, preparation)
+- **Evidence:**
+  - "I thought I was bringing a good example and it was the wrong kind." ([sources/interviews/sponsor-ines.md:113](../../sources/interviews/sponsor-ines.md#L113), Ines, buyer)
+  - "If I pick something now, by the workshop it may be old news." ([sources/interviews/sponsor-ines.md:117](../../sources/interviews/sponsor-ines.md#L117), Ines, buyer)
+- **Voices:** 1 distinct speaker: buyer. Second-hand: no.
+- **Merged:** no
+- **Close to:** none
+- **KPI branch:** the need is met in preparation. So it sits mainly on Branch B. No side link: Ines had booked before she looked for the example.
+- **Counter-evidence in this source:** "I'd rather prepare the run-through properly beforehand" ([sources/interviews/sponsor-mehmet.md:49](../../sources/interviews/sponsor-mehmet.md#L49)). Mehmet prepared his cases himself ([sources/interviews/sponsor-mehmet.md:161](../../sources/interviews/sponsor-mehmet.md#L161)).
+- **Gaps:** one buyer.
+- **Assessment:** unsupported. One voice.
+
+### O15: "I want to know how mature my product people really are." (buyer, the weeks after)
+- **Evidence:**
+  - "How mature is our product management really, and how ready are we for agent-based work." ([sources/interviews/sponsor-thomas.md:189](../../sources/interviews/sponsor-thomas.md#L189), Thomas, buyer)
+  - "one result I'd value from the two days is a list" ([sources/interviews/sponsor-thomas.md:141](../../sources/interviews/sponsor-thomas.md#L141), Thomas, buyer)
+- **Voices:** 1 distinct speaker: buyer. Second-hand: no.
+- **Merged:** no
+- **Close to:** none
+- **KPI branch:** the need is met after the format. So it sits mainly on Branch B. No side link: Thomas asks for it after booking, and no driver of Branch A shows it.
+- **Counter-evidence in this source:** none found in this source
+- **Gaps:** one buyer. The persona of the buyer with budget lists it as a need before the call ([product/personas/buyer-with-budget.md:90](../../product/personas/buyer-with-budget.md#L90)), but this source has it only after booking.
+- **Assessment:** unsupported. One voice.
+
+### O16: "I don't know how many events we need." (buyer, before booking)
+- **Evidence:**
+  - "One event or three, and in what order, that was the question I brought" ([sources/interviews/sponsor-ines.md:49](../../sources/interviews/sponsor-ines.md#L49), Ines, buyer)
+- **Voices:** 1 distinct speaker: buyer. Second-hand: no. Ines looks back on her first call.
+- **Merged:** no
+- **Close to:** O1 and O17. Same role and moment, but a different need: how many events here, which format in O1, how long in O17.
+- **KPI branch:** Branch A, driver submit rate [assumption: a buyer who cannot name a format hesitates to send the form]. Also driver booking rate [assumption: a call that leaves the format open ends without a booking more often].
+- **Counter-evidence in this source:** "The two days, those we settled almost in the first week, the dates too." ([sources/interviews/sponsor-thomas.md:21](../../sources/interviews/sponsor-thomas.md#L21)). "The shape I knew." ([sources/interviews/sponsor-mehmet.md:29](../../sources/interviews/sponsor-mehmet.md#L29))
+- **Gaps:** no buyer says how this felt on the website. Ines booked in the end, after several scoping calls.
+- **Assessment:** unsupported. One voice. Two other buyers knew the shape early.
+
+### O17: "I don't know if we need full days or a few hours." (buyer, before booking)
+- **Evidence:**
+  - "whether we were talking about full days or a few hours each" ([sources/interviews/sponsor-ines.md:129](../../sources/interviews/sponsor-ines.md#L129), Ines, buyer)
+- **Voices:** 1 distinct speaker: buyer. Second-hand: no. Ines looks back on her first call.
+- **Merged:** no
+- **Close to:** O1 and O16. Same role and moment, but a different need: how long here, which format in O1, how many events in O16.
+- **KPI branch:** Branch A, driver submit rate [assumption: a buyer who cannot name a format hesitates to send the form]. Also driver booking rate [assumption: a call that leaves the format open ends without a booking more often].
+- **Counter-evidence in this source:** "The two days, those we settled almost in the first week, the dates too." ([sources/interviews/sponsor-thomas.md:21](../../sources/interviews/sponsor-thomas.md#L21)). "The shape I knew." ([sources/interviews/sponsor-mehmet.md:29](../../sources/interviews/sponsor-mehmet.md#L29))
+- **Gaps:** no buyer says how this felt on the website. Ines booked in the end, after several scoping calls.
+- **Assessment:** unsupported. One voice. Two other buyers knew the shape early.
 
 ## Looks like an opportunity, but
+
 | Finding | Quote and location | Why it is not one (yet) |
 |---|---|---|
-| Tool access and setup slow things down | "In practice, getting all the access takes longer than building the thing." (sources/interviews/sponsor-hard.md:49) | Loud and vivid, but one sponsor voice. Counter-evidence: "No. That's not what's missing." (sources/interviews/sponsor-soft.md:41), "The connectors are all in, that part works for me." (sources/interviews/participants-group-1.md:19), "Not really." (sources/interviews/participants-group-3.md:47). One hardware case: "I had to request more memory for my laptop so this runs at all." (sources/interviews/participants-group-2.md:29). No driver in the tree measures setup. |
-| Participants feel lost at the start of the day | "No schedule, no concrete goal for the day." (sources/interviews/participants-group-2.md:47) | Two voices (also sources/interviews/participants-group-2.md:21). It happens after the booking, and no driver in the tree covers that moment. Could feed preparation work later. |
-| Skills are not shared within the team | "Everyone works with their own assistant." (sources/interviews/participants-group-3.md:43) | Two voices (also sources/interviews/participants-group-2.md:55). Real, but it is about working after the training. No KPI branch. |
-| Results are not reused | "When I need something similar again, I don't reuse what I had." (sources/interviews/participants-group-1.md:55) | One voice. No KPI branch. |
-| Worry about no longer thinking for oneself | "But I do worry that I just type everything in, get the finished answer, glance at it and send it off." (sources/interviews/participants-group-1.md:65) | One voice. No KPI branch. |
-| No time to find out what went wrong | "Time, mostly." (sources/interviews/participants-group-3.md:23) | One voice. No KPI branch. |
+| Tickets stay thin and context gets lost between meetings | "What we saw is in three heads, it never really got written down." ([sources/interviews/participant-rasmus.md:59](../../sources/interviews/participant-rasmus.md#L59)); "A title, two lines, sometimes the description is empty." ([sources/interviews/sponsor-thomas.md:57](../../sources/interviews/sponsor-thomas.md#L57)); "That could have been settled before anyone wrote a line." ([sources/interviews/developer-lena.md:91](../../sources/interviews/developer-lena.md#L91)) | Loud and repeated: a participant, a buyer and the developer. It is a problem in daily product work, the content of the training. This repo does not change that content ([product/strategy.md:42](../../product/strategy.md#L42)). No quote links it to what a buyer reads, starts or books. |
+| Helpers and notes stay with one person | "Everyone here has their own account and tinkers with their own little helpers." ([sources/interviews/participant-jannik.md:57](../../sources/interviews/participant-jannik.md#L57)); "Not on my laptop, where it's only mine." ([sources/interviews/participant-francoise.md:169](../../sources/interviews/participant-francoise.md#L169)); "then they all go back to their desks and carry on alone" ([sources/interviews/sponsor-mehmet.md:57](../../sources/interviews/sponsor-mehmet.md#L57)); "At the moment that just doesn't exist." ([sources/interviews/developer-lena.md:115](../../sources/interviews/developer-lena.md#L115)) | Four voices in three roles. Same reason: training content. One buyer gives it as his reason for an outsider: "among themselves they don't do it" ([sources/interviews/sponsor-mehmet.md:65](../../sources/interviews/sponsor-mehmet.md#L65)). That is one voice; inquiry mails could show whether buyers name it. |
+| No shared way of working from idea to release | "We don't share methods" ([sources/interviews/sponsor-thomas.md:41](../../sources/interviews/sponsor-thomas.md#L41)); "There's no shared way of doing them." ([sources/interviews/sponsor-sabine.md:169](../../sources/interviews/sponsor-sabine.md#L169)); "What's missing is a shared way of working." ([sources/interviews/sponsor-mehmet.md:53](../../sources/interviews/sponsor-mehmet.md#L53)) | Three buyers, all booked. It describes their teams, not their path to Loopwise. It is training content ([product/strategy.md:42](../../product/strategy.md#L42)). |
+| Checking AI output takes longer than writing it | "checking whether all of it is right would take me longer than just writing it" ([sources/interviews/participant-rasmus.md:83](../../sources/interviews/participant-rasmus.md#L83)) | One participant, before any booking. It is about using AI at work, the content of the training. |
+| Interviewees unsure what the interview was for | "I wasn't sure what you were after" ([sources/interviews/participant-rasmus.md:107](../../sources/interviews/participant-rasmus.md#L107)); "What is it we're actually trying to get out of these conversations?" ([sources/interviews/participant-jannik.md:109](../../sources/interviews/participant-jannik.md#L109)); "What happens with all this?" ([sources/interviews/developer-lena.md:123](../../sources/interviews/developer-lena.md#L123)) | About this research, not about a format. It is a gap: these three answers may follow what they guessed the interviewer wanted. |
 
 ## Solution ideas heard
+
 | Idea | Quote and location | Opportunity it might serve |
 |---|---|---|
-| Show good examples | "Maybe I'd see it if I saw good examples." (sources/interviews/participants-group-1.md:29) | O4 |
-| Someone works with me on my own topic | "Honestly, someone who sits with me on my own topic." (sources/interviews/participants-group-3.md:59) | O4 |
-| Train each person in their own context | "Train people individually." (sources/interviews/participants-group-3.md:41) | O4, O5 |
-| A skill that loads product background first | "I'd need one that first loads the background of my product and the people involved, and only then starts on the task." (sources/interviews/participants-group-3.md:33) | O4 |
-| Material to reread afterwards | "I still need the material afterwards to reread." (sources/interviews/participants-group-2.md:57) | O3 |
-| A small shared project when remote | "Maybe a small shared project when it's remote, so everyone can work on it and nobody loses the thread." (sources/interviews/participants-group-2.md:61) | O5 |
-| A plan for the next weeks | "And a plan for how we move forward in the next weeks, with next steps." (sources/interviews/participants-group-2.md:43) | O3 |
-| A way to share skills | "A way to share the skills we create that actually works between us." (sources/interviews/participants-group-3.md:63) | none of O1 to O5 |
-| Weekly meetings and a second touchpoint | "Meeting every week, a second touchpoint after four or six weeks, going deep again." (sources/interviews/sponsor-hard.md:29) | O3 |
-| Define KPIs up front | "When we changed things in engineering, we defined KPIs so we wouldn't lose sight of it afterwards." (sources/interviews/sponsor-hard.md:27) | O2 |
-| One or two things ready to use straight after | "So I'd want one or two things ready that people can use productively straight after." (sources/interviews/sponsor-hard.md:17) | O2, O3 |
-| References from someone who delivered it | "Before I put more budget or more teams on this, I want to talk to someone who has actually delivered it, or see a comparable reference." (sources/interviews/sponsor-hard.md:13) | O2 |
-| A pilot that is then multiplied | "If it works, we call it a method and multiply it." (sources/interviews/sponsor-soft.md:67) | O1, O2 |
-| Slice by role, by team or by project | "By role: take the product people, or the ones doing project or requirements work, and start from what their job is." (sources/interviews/sponsor-soft.md:53) | O1 |
-| A workshop, team coaching, shadowing or mentoring | "Maybe it's a standard course after all, maybe shadowing a team, maybe digging out use cases together, maybe some kind of mentoring." (sources/interviews/sponsor-soft.md:49) | O1 |
+| Example agendas to show colleagues | "Should I send you a couple of example agendas, so you have something to show them?" ([sources/interviews/sponsor-carla.md:155](../../sources/interviews/sponsor-carla.md#L155), interviewer's offer) | O2 |
+| Someone from outside runs the format | "If someone from outside runs it, people find it easier to say, I've never done this." ([sources/interviews/sponsor-carla.md:89](../../sources/interviews/sponsor-carla.md#L89)) | O8 |
+| Split the group by level | "Or is it kinder to split them by where they stand" ([sources/interviews/sponsor-carla.md:137](../../sources/interviews/sponsor-carla.md#L137)) | O7 |
+| Pairs that put the most and least experienced together | "you started by putting the top end with the bottom end" ([sources/interviews/sponsor-sabine.md:145](../../sources/interviews/sponsor-sabine.md#L145)) | O6 |
+| A trainer next to the participant, on her laptop, with her problem | "What worked was a trainer next to me, on my laptop, with my problem." ([sources/interviews/participant-francoise.md:177](../../sources/interviews/participant-francoise.md#L177)) | O9, O10 |
+| Short check-ins, then a longer session weeks later | "Short check-ins at regular intervals, and then one longer session some weeks later where we go deeper." ([sources/interviews/sponsor-mehmet.md:177](../../sources/interviews/sponsor-mehmet.md#L177)) | O4 |
+| Exercises, not a day of only listening | "There have to be exercises." ([sources/interviews/sponsor-ines.md:149](../../sources/interviews/sponsor-ines.md#L149)) | O4 |
+| One or two assistants set up in the company platform | "one or two assistants or skills already set up in our company platform" ([sources/interviews/sponsor-thomas.md:109](../../sources/interviews/sponsor-thomas.md#L109)) | O5 |
+| Cycle time as the number to watch | "If you want a number: cycle time." ([sources/interviews/sponsor-thomas.md:89](../../sources/interviews/sponsor-thomas.md#L89)) | O3 |
+| Work on real cases from the participants' own desks | "Their own real cases." ([sources/interviews/sponsor-thomas.md:177](../../sources/interviews/sponsor-thomas.md#L177)); "Bring a real case from your own work." ([sources/interviews/participant-francoise.md:193](../../sources/interviews/participant-francoise.md#L193)) | O14 |
+| A setup checklist for new participants | "I'll put together the checklist for the new people again, what to install and how to log in" ([sources/interviews/sponsor-sabine.md:193](../../sources/interviews/sponsor-sabine.md#L193)) | O11 |
 
 ## Goes into comparison
-Goes into comparison: O1, together with emails O1 and inbox O1; O3, together with emails O3; O5, together with emails O4
-Decided by: Reference decision (replace with your own) · Date: 2026-08-18
+Goes into comparison: O1, together with inquiry-mails O1 and inbox O1 (C1); O2, together with inquiry-mails O3 (C3)
+Decided by: Product lead (Loopwise) · Date: 2026-08-18

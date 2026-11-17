@@ -1,84 +1,98 @@
 # Prototype test card: format-quiz
 
-> **Pressure-tested, not validated.** The AI personas come from the same sources as the opportunity. Only the cross test with people tests from outside.
-> Assessment drafted by an agent on 2026-08-18, not a decision.
-> Card owner: ____ (human decides)
-> Intent: `discovery/intents/format-question.md` · Idea: I2 ("next to the form, a link "Unsure what to pick? Find out in a small quiz" opens a short quiz whose questions find out what the sponsor needs.", `discovery/intents/format-question.md:37`)
-> Material: interviews are anonymised composites; mails, inbox and data are synthetic (`discovery/intents/format-question.md:5`). This card repeats that label.
+> **Pressure-tested, not validated.** The AI personas come from the same sources as the opportunity. Only the test with people tests from outside.
+> Assessment drafted by an agent on 2026-11-14, not a decision.
+> Card owner: Product lead (Loopwise), 2026-11-15
+> Intent: [discovery/intents/format-fit.md](../intents/format-fit.md) · Idea: I1 ("Build a small quiz to help the buyer pick the right format. The quiz fills "What do you need?" in the form (home page, formats page, inquiry page)", [discovery/intents/format-fit.md:82](../intents/format-fit.md#L82))
+> Material: interviews, inquiry mails, inbox and data are synthetic; the feedback free text is an anonymised composite. This file repeats that label.
 
-A prototype test shows one person a rough page and watches what they do.
+A prototype test shows a rough page to a person and watches what they do.
+It tests one critical assumption before anyone builds the real page.
 A critical assumption is the one thing that must be true for an idea to work.
-The person who built the page watches. The tester knows only the situation and the task.
+A sign is something the watcher can see or hear during the test.
+A buyer is the person in the customer company who wants a format for their team ([product/glossary.md:8](../../product/glossary.md#L8)).
+A format is one thing a team can book ([product/glossary.md:20](../../product/glossary.md#L20)).
+The inquiry is the form on the website where a buyer asks for a format ([product/glossary.md:32](../../product/glossary.md#L32)).
 
 ## Your first try
-"We believe that sponsors who are unsure about a the format can gain more trust into our programm and that we can help them if they know better, what they need.
-To test this, we will design a small wizard that makes them aware of their current situation.
-We are sucesful, if testers of our prototype find the link, click it and go throguht the whole process, then send the form"
+"We believe that offering a small quiz on the website will help potential buyers to reflect and then pinpoint a bit better where they currently stand with their teams' AI usage and where additional training might help getting them to the next level.
+To verify that we will build a prototype and run it through a small user test with virtual buyer personas and real people and measure, how many people go through the quiz and then send out the form with a confident feeling.
+We are right if at least 50% of the participants end up sending the form after taking the quiz."
 
 Where the draft differs:
-- The answer names a solution, "a small wizard". It is kept word for word above.
-- The answer counts finding the link, clicking it, finishing and sending. The draft adds signs for answering without a person.
-- The draft adds signs for the quiz annoying the tester. The pair tests this idea first to find out "if this helps or if it annoys people" (`discovery/intents/format-question.md:62`).
-- The belief about trust is not part of this assumption, so this test cannot check it.
+- The draft tests the assumption from the selection: buyers trust the format the quiz names enough to start the form.
+- The draft turns "a confident feeling" into signs a watcher can see. The tester keeps the named format in the form and does not go back to the formats.
+- The draft counts testers ("3 of 5") instead of a percentage.
+
+Feedback:
+- Strong: "send out the form" is a behaviour a watcher can see. "Go through the quiz" keeps the two steps apart.
+- Weak: "offering a small quiz … will help" names the idea, not the assumption. "Where they stand with their teams' AI usage" is a different assumption from the selected one.
+- Weak: a watcher cannot see "a confident feeling". "50%" of five testers is a percentage of a handful of people. A count of testers says the same thing more honestly.
 
 ## We believe that (the assumption we test)
-"A sponsor who is unsure about the format chooses the quiz, and can answer its questions on a page without a person." (`discovery/intents/format-question.md:61`)
-Level in the intent: "partly supported" (`discovery/intents/format-question.md:37`)
+"Buyers who cannot tell which format fits will answer a few questions about their team. They then trust the format the quiz names enough to start the form." ([discovery/intents/format-fit.md:83](../intents/format-fit.md#L83))
+Level in the intent: "partly supported" ([discovery/intents/format-fit.md:57](../intents/format-fit.md#L57))
 
-No learning card for an earlier variant of this intent exists in `discovery/decisions/`.
+## To verify that, we will
+Show 5 people who lead product people and have not booked a Loopwise format the variant. Proposal: 3 start on `/formats.html?variant=format-quiz`, 2 on `/inquiry.html?variant=format-quiz`. In 26 weeks of synthetic data, 364 of 740 inquiry page visits had no formats page view before them in the same session ([data/events.jsonl](../../data/events.jsonl)). Each tester gets only the scenario below. The person who built the page watches for the signs. The split of 3 and 2 is a proposal; the product lead decided that some testers start on the inquiry page (2026-11-16).
 
-## To test that, we will
-Show one tester from another pair the page `/formats?variant=format-quiz`. The tester gets only the scenario below. The person who built the page watches for the signs.
+### Testers
+- **Who qualifies:** proposal. The tester leads product people and looks for an AI format for them ([product/personas/buyer-without-budget.md:14](../../product/personas/buyer-without-budget.md#L14)). The tester does not decide alone, and no budget is settled yet ([product/personas/buyer-without-budget.md:5](../../product/personas/buyer-without-budget.md#L5)). The tester has a real group in mind and has not booked a Loopwise format.
+- **How many:** 5 buyers without budget · Set by: Product lead (Loopwise), 2026-11-14
+- **Recruited by:** Product lead (Loopwise) · **By:** before 2026-11-17
 
 ### Test scenario (the tester sees only this)
-- **Situation:** You help a product team in your company get better at using AI in their daily work. Think of a real team you know well that could use outside training for this. You are on the website of an academy that runs trainings inside companies.
-- **Task:** Get in touch with the academy about a training for that team.
-- **Page:** `/formats?variant=format-quiz`. The quiz link sits next to the form and "also sits on the formats page" (`discovery/intents/format-question.md:37`). [assumption: the test starts on the formats page; the spec names the start page and may change it]
-- **Sources:** the soft sponsor "supports the move to AI for product and project roles, together with the team leads" (`product/personas/sponsor-soft.md:14`). The hard sponsor is "head of product" (`product/personas/sponsor-hard.md:14`). The academy runs trainings for "one team inside one company" (`product/glossary.md:21`).
-- **Does not count if:** the tester has no such team.
+- **Situation:** You lead a group of product people in your company. You want them trained in using AI in product work. Think of a real group you know well: who is in it, and how they use AI today.
+- **Task:** Find out whether Loopwise has something for that group. Then do what you would do next in real life.
+- **Page:** `/formats.html?variant=format-quiz` for 3 testers, `/inquiry.html?variant=format-quiz` for 2, proposal.
+- **Sources:** the buyer without budget leads product people and looks for an AI format for them ([product/personas/buyer-without-budget.md:14](../../product/personas/buyer-without-budget.md#L14)). Some teams work with agents every day, others are where they were a year ago ([product/personas/buyer-without-budget.md:22](../../product/personas/buyer-without-budget.md#L22)).
+- **Does not count if:** the tester has no such group in mind.
 
-### Signs the watcher looks for
-| Sign (what the watcher sees or hears) | Points to | Can a persona show it? |
+The task does not say "send an inquiry". Otherwise a sent form would only show that the tester followed the task.
+
+### For the spec: the step from the quiz result to the form
+The quiz fills "What do you need?" in the form ([discovery/intents/format-fit.md:82](../intents/format-fit.md#L82)).
+The quiz result therefore needs one visible step into the form, for example a button.
+The spec plans that step, so the watcher can see whether the tester takes it.
+The tester must also be able to leave the result without taking it.
+The site counts a started form when the visitor clicks into a form field ([discovery/intents/format-fit.md:32](../intents/format-fit.md#L32)).
+
+## And measure (the signs the watcher looks for)
+An AI persona cannot show how a buyer reacts to a page its sources never saw.
+The last column says what the persona file can do for each sign instead:
+- **Behaviour in the file:** the file states the behaviour itself. A persona can show it.
+- **A fact the page must fit:** the file states something about the buyer that the page could clash with. The persona walkthrough checks the spec against it.
+- **Nothing in the file:** only the test with people can test this sign.
+
+| Sign (what the watcher sees or hears) | Points to | What the persona file says |
 |---|---|---|
-| The tester clicks the quiz link before writing in the form | go on | only the cross test with people can test this |
-| The tester answers every quiz question without asking the watcher what it means | go on | only the cross test with people can test this |
-| The tester finishes the quiz and sends the inquiry | go on | only the cross test with people can test this |
-| The tester stops at a question, says "I don't know", or leaves it empty | rework or drop | yes: "Sketched three slices (by role, by team, by project) and picked none, on purpose" (`product/personas/sponsor-soft.md:44`) |
-| The tester passes the link and writes straight into the form | rework or drop | only the cross test with people can test this |
-| The tester asks for a call or a person instead of the quiz | rework or drop | only the cross test with people can test this. The hard sponsor "Wants to talk to someone who delivered it, or a comparable reference" (`product/personas/sponsor-hard.md:46`). That is a different behaviour. |
-| The tester says the quiz takes too long, or asks how many questions are left | rework or drop | only the cross test with people can test this |
+| The tester answers every quiz question for their own group, without asking what a question means | go on | A fact the page must fit: the buyer "Does not know the format or how many pieces it has" ([product/personas/buyer-without-budget.md:42](../../product/personas/buyer-without-budget.md#L42)). A question that needs this knowledge will fail. |
+| On the quiz result, the tester uses the step to the form and clicks into a form field, without going back to the formats | go on | Nothing in the file: only the test with people can test this. |
+| The tester sends the form and keeps the named format in the first line of "What do you need?", or adds to it. Rewording the other lines does not count against it | go on | A fact the page must fit: the buyer needs "Options to react to; she can describe what hurts, not name a format" ([product/personas/buyer-without-budget.md:85](../../product/personas/buyer-without-budget.md#L85)). A result with one format and no options may get deleted. |
+| Asked afterwards, the tester says in their own words why the format fits their group | go on | Nothing in the file: the tester's own words come only from the test with people. |
+| The tester stops at a question, asks "what do you mean?", or skips it | rework | A fact the page must fit: the buyer "Asks whether to mix the group or split it by level, and leaves it open" ([product/personas/buyer-without-budget.md:43](../../product/personas/buyer-without-budget.md#L43)). The buyer "Cannot name a success line for the group" ([product/personas/buyer-without-budget.md:44](../../product/personas/buyer-without-budget.md#L44)). A question about either will likely stop the tester. |
+| On the quiz result, the tester looks around for what to do next, or asks where to go | rework | Nothing in the file: only the test with people can test this. |
+| The tester deletes the named format in the first line, or puts another format there. Rewording the other lines does not count | drop | A fact the page must fit: the same line on options to react to ([product/personas/buyer-without-budget.md:85](../../product/personas/buyer-without-budget.md#L85)). |
+| The tester leaves the page, or goes back to the formats, without starting the form. Opening the quiz from the form does not count | drop | Behaviour in the file, partly: "Keeps the formats page open for weeks, or closes it and comes back later" ([product/personas/buyer-without-budget.md:93](../../product/personas/buyer-without-budget.md#L93)). The line describes today's formats page, without a quiz. |
+| The tester says "I'm guessing" or "not sure this is us" | drop | A fact the page must fit: the buyer "Does not want to send the form with a guess in it" ([product/personas/buyer-without-budget.md:94](../../product/personas/buyer-without-budget.md#L94)). The filled text must not read like a guess the tester made. |
 
 ## We are right if (go-on line)
-The tester clicks the quiz link on their own, answers every question without help, and sends the inquiry. (proposal) · Set on: ____ (human decides)
+At least 3 of 5 testers answer the quiz for their own group, take the step from the result into the form, and send it with the named format still in it.
+Set by: Product lead (Loopwise), wording proposed by the agent · Set on: 2026-11-15
 
 ## We rework or drop the idea if (rework-or-drop line)
-The tester passes the link. Or the tester stops at a question, asks the watcher, or leaves the quiz before the end. (proposal) · Set on: ____ (human decides)
+The line has two parts. A problem with the page means rework. A problem with trust in the named format means drop.
+- **We rework the quiz if** 3 or more of 5 testers get stuck on a question, or cannot find the way from the result to the form.
+- **We drop the idea if** 3 or more of 5 testers delete the format the quiz named, or reach the form and leave without sending it.
+- If the five testers fit none of these lines, the result is mixed. The learning card then decides on another round.
+
+Set by: Product lead (Loopwise), wording proposed by the agent · Set on: 2026-11-15
 
 ## What this test cannot show
-- One tester per pair: a pattern, not a rate.
-- Whether the tester was unsure about the format. The scenario cannot put them in that state. A tester who already knows the format may pass the link for that reason.
-- Whether a sponsor who finishes the quiz later books a scoping call or a format.
-- Whether the sponsor trusts the academy more after the quiz.
-- The scenario fits both sponsors. The soft sponsor is an "influencer without budget authority" (`product/personas/sponsor-soft.md:5`). The hard sponsor "got a first step approved" (`product/personas/sponsor-hard.md:16`). Each persona keeps its own file in the persona runs.
-- Six of the seven signs have no line in a persona file. The persona runs can show stalls only, not these signs.
-
-## Round 2, 2026-08-18
-
-The spec changed after two failed cross tests (`discovery/decisions/003-success-line-first.md`). The quiz has four questions, not five. A line above the first question says open answers are worked out in the scoping call. The assumption and the scenario stay. Two signs change, because "I don't know yet" is now an answer the page invites.
-
-### Signs the watcher looks for, round 2
-| Sign (what the watcher sees or hears) | Points to | Can a persona show it? |
-|---|---|---|
-| The tester clicks the quiz link before writing in the form | go on | only the cross test with people can test this |
-| The tester goes through all four questions without asking the watcher, ticking "I don't know yet" where they do not know | go on | only the cross test with people can test this |
-| The tester finishes the quiz and sends the inquiry | go on | only the cross test with people can test this |
-| The tester stops the quiz before the end | rework or drop | only the cross test with people can test this |
-| The tester asks the watcher what a question means | rework or drop | only the cross test with people can test this |
-| The tester passes the link and writes straight into the form | rework or drop | only the cross test with people can test this |
-| The tester asks for a call or a person instead of the quiz | rework or drop | only the cross test with people can test this |
-
-### We are right if (go-on line), round 2
-The tester clicks the quiz link on their own, goes through all four questions without asking the watcher, and sends the inquiry. "I don't know yet" counts as an answer. (proposal) · Set on: 2026-08-18
-
-### We rework or drop the idea if (rework-or-drop line), round 2
-The tester passes the link, stops the quiz before the end, asks the watcher what a question means, or asks for a person instead. (proposal) · Set on: 2026-08-18
+- 5 testers: a pattern, not a rate.
+- Whether buyers book in the end. A prototype test shows whether people understand and use the page. The launch card is the place to measure the start rate and later steps.
+- Whether more visits start the form than today. Today 194 of 740 inquiry page visits start the form, in synthetic data ([discovery/intents/format-fit.md:34](../intents/format-fit.md#L34)). Five testers cannot show a change in that share.
+- Whether the format the quiz names holds up in the scoping call. The format is settled there ([product/glossary.md:33](../../product/glossary.md#L33)).
+- The buyer with budget. All five testers are buyers without budget.
+- A tester who knows they are watched may send the form more readily than at their desk.
+- The persona file states the behaviour for one sign, partly. For five signs it states a fact the page must fit. For three signs it states nothing.

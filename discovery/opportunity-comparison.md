@@ -1,138 +1,176 @@
 # Opportunity comparison
 
 > Assessment by an agent (`compare-opportunities`), not a decision. Date: 2026-08-18.
-> Inputs: discovery/opportunities/interviews.md, emails.md, inbox.md, feedback.md, data.md, discovery/kpi-tree.md
-> Material: interviews and feedback free text are anonymised composites; mails, inbox and data are synthetic. This file repeats that label.
+> Inputs: [discovery/opportunities/interviews.md](opportunities/interviews.md), [discovery/opportunities/inquiry-mails.md](opportunities/inquiry-mails.md), [discovery/opportunities/inbox.md](opportunities/inbox.md), [discovery/opportunities/feedback.md](opportunities/feedback.md), [discovery/opportunities/data.md](opportunities/data.md), [discovery/kpi-tree.md](kpi-tree.md)
+> Material: interviews, inquiry mails, inbox and data are synthetic; the feedback free text is an anonymised composite. This file repeats that label.
 
 Drawn as a tree at `http://localhost:3000/discovery/tree`.
 
-An opportunity is a need or pain of a customer that, if we serve it, could move a number in the KPI tree.
-A KPI branch is one way the business goal can grow. A driver is a step people take that we can count.
+An opportunity is a need or a pain a customer has. It is never a solution.
+A KPI branch is one way the business goal can grow.
+A driver is a step people take that we can count, and that moves a branch.
+Counter-evidence is a quote that speaks against the need.
 
 ## What you decide
-Question: Which need do we work on for the next eight weeks?
-Appears favoured: C2, because it has the most sponsor voices (6) in the most source groups (3) and acts on the website, early in the funnel. A reading of the comparison, not a choice.
-Not readable from today's data: C1, C3. Both show mainly in `booking_confirmed`, 23 events in 26 weeks (data.md D6).
-No candidate: reach rate: 3026 of 3766 visits never open the inquiry page (data.md D1), only C2 as an assumption. Open research question, not a candidate.
+Question: Which buyer need before the booking do we work on for the next eight weeks?
+Appears favoured: C1, because 11 buyers in three source groups say it, three of them say it kept them from the form, and the website can change the step where 546 of 740 inquiry page visits stop. A reading of the comparison, not a choice.
+Not readable from today's data: C3 and C4. Both show mainly in `scoping_call_booked` (55 in 26 weeks) and `booking_confirmed` (23 in 26 weeks).
+No candidate: reach rate, 3026 of 3766 visits never open the inquiry page, and submit rate, 81 of 194 started forms are never sent. Only C1 touches them, as an assumption. Open research questions, not candidates.
 
 ## Your first try
-"Sponsors fear the training fades like the last one and nothing changes" if we create trust, we can really solve this, we would increase calls and bookins
-Matches: C1
+"I'm afraid my people slip back into old habits afterwards." If we can create trust that we can do this on the site, this will help throughout the process and this is the actual outcome that the training should achieve
+Matches: none
 Where the draft differs:
-- Same candidate is in the shortlist (C1). The comparison favours C2: more sponsor voices in more sources, and it acts on the website.
-- Your reason adds calls. The files put this fear on booking rate only. The fearful mail sender offered a call anyway: "Happy to explain more in a call." (sources/emails/inquiry-04.md:20).
-- "Create trust" is a way to meet the need, not the need. Whether trust settles the fear is not in any source.
+- Your favourite is not in the comparison. The need is met in the weeks after the training, on Branch B, which is parked this quarter ([discovery/kpi-tree.md:25](kpi-tree.md#L25)).
+- The nearest candidate is C4. Two buyers want proof of a lasting effect before they book. That sits on Branch A.
+- Your reason is about the training's effect. The website cannot cause that, it can only ask about it in the follow-up ([product/constraints.md:59](../product/constraints.md#L59)).
 
 ## Tree
-Outcome: more booked in-house workshops per quarter (product/strategy.md:8)
-Branch: Branch A: inquiries that end in a booking (product/strategy.md:12)
-- website visits: 3766 visits, the top of the funnel (data.md D1) · Candidates: none
-- reach rate: 3026 of 3766 visits never open the inquiry page (data.md D1) · Candidates: C2 (assumed)
-  - Data: of visits that see the formats page, 376 of 2291 open the inquiry page, of the others 364 of 1475 (data.md D2)
-- start rate: 546 of 740 inquiry page visits leave without starting the form (data.md D3) · Candidates: C2
-- submit rate: 81 of 194 started forms are not sent (data.md D4) · Candidates: C2
-- call rate: 58 of 113 sent inquiries get no call (data.md D5) · Candidates: C2, C3
-- booking rate: 32 of 55 scoping calls end without a booking (data.md D6) · Candidates: C1, C2, C3
+Outcome: more booked in-house workshops per quarter ([product/strategy.md:8](../product/strategy.md#L8))
+Branch: Branch A: more inquiries that end in a booking ([product/strategy.md:12](../product/strategy.md#L12))
+- website visits: 3766 visits, the top of the funnel ([discovery/opportunities/data.md:32](opportunities/data.md#L32)) · Candidates: none
+- reach rate: 3026 of 3766 visits never open the inquiry page ([discovery/opportunities/data.md:37](opportunities/data.md#L37)) · Candidates: C1 (assumed)
+  - Data: of visits that see the formats page, 376 of 2291 open the inquiry page; of the others, 364 of 1475 ([discovery/opportunities/data.md:43](opportunities/data.md#L43))
+- start rate: 546 of 740 inquiry page visits never start the form ([discovery/opportunities/data.md:51](opportunities/data.md#L51)) · Candidates: C1, C2
+- submit rate: 81 of 194 started forms are never sent ([discovery/opportunities/data.md:65](opportunities/data.md#L65)) · Candidates: C1 (assumed)
+- call rate: 58 of 113 sent inquiries get no scoping call ([discovery/opportunities/data.md:80](opportunities/data.md#L80)) · Candidates: C3 (assumed), C4
+- booking rate: 32 of 55 scoping calls end without a booking ([discovery/opportunities/data.md:95](opportunities/data.md#L95)) · Candidates: C1 (assumed), C3 (assumed), C4 (assumed)
+  - Data: calls from visits that saw the buyer preparation page end in a booking 8 of 27 times; the other calls 15 of 28 times ([discovery/opportunities/data.md:102](opportunities/data.md#L102))
+
+"(assumed)" means no source line ties the need to this step. The opportunity file states it only as an assumption.
 
 ## Candidates
-### C1: Sponsor fears nothing changes after the training, as last time
-- **From:** interviews O3 + emails O3
-- **Evidence:** well supported: 2 source groups, 3 sponsors plus 1 participant, lived, not only feared
-- **Leverage:** partly supported: indirect, the fear is settled in the call, off the website
+### C1: "I can't tell which format fits my group." (buyer, before booking)
+- **From:** inquiry-mails O1 + inbox O1 + interviews O1
+- **Evidence:** well supported: 3 source groups, 11 buyers, each about their own situation now or at first contact
+- **Leverage:** partly supported: direct, the website can change it; but the site already says the format is settled in the scoping call
 - **Need or solution:** need
-- **Readable from today's data in 8 weeks:** unsupported: `booking_confirmed`, 23 events in 26 weeks; also `followup_answered`, 14 answers, 28 to 31 days after the booking, Branch B
-- **Wins on:** both sponsors say it in their own words, from lived experience
-- **Loses on:** acts only on the last step, and 23 bookings are too few to read
-- **Strongest quote:** "Booked, everyone thought it was nice, four weeks later everything was as before." (sources/interviews/sponsor-hard.md:23)
+- **Readable from today's data in 8 weeks:** partly supported: `inquiry_started` 194 and inquiry page visits 740 in 26 weeks; the data cannot say why a visit stops
+- **Wins on:** most voices in most source groups; three buyers say it kept them from the form
+- **Loses on:** four buyers knew their format; the site already answers the question and buyers still feel stuck
+- **Strongest quote:** "I didn't want to send your form with a guess in it, so I am writing instead." ([sources/inquiry-mails/inquiry-07.md:18](../sources/inquiry-mails/inquiry-07.md#L18))
 
-### C2: Sponsor does not know what to ask for, or which format fits
-- **From:** interviews O1 + emails O1 + inbox O1
-- **Evidence:** well supported: 3 source groups, 6 sponsors, stated about themselves now
-- **Leverage:** partly supported: direct, the website can change it; which driver is an assumption
+### C2: "I feel I must pick a format before I can send you an inquiry." (buyer, before booking)
+- **From:** inbox O3
+- **Evidence:** well supported: 1 source group, 3 buyers, each lived it on the formats page
+- **Leverage:** partly supported: direct, the inquiry page can change it; but the form asks for no format today
 - **Need or solution:** need
-- **Readable from today's data in 8 weeks:** partly supported: `inquiry_started` 194, `inquiry_submitted` 113, `scoping_call_booked` 55 in 26 weeks
-- **Wins on:** most voices, most source groups, acts early where most people are
-- **Loses on:** every driver link is an assumption; two of six mail senders knew their format
-- **Strongest quote:** "I have budget for training this year but no clear idea what to ask for." (sources/emails/inquiry-03.md:14)
+- **Readable from today's data in 8 weeks:** partly supported: `inquiry_started` 194 of 740 inquiry page visits in 26 weeks
+- **Wins on:** acts on the exact step where 546 of 740 visits stop, and the senders name that step
+- **Loses on:** one source group only; it may be part of C1 rather than a need of its own
+- **Strongest quote:** "I do not want to pick one just to have something to write in the form." ([sources/inbox/inbox-export.md:137](../sources/inbox/inbox-export.md#L137))
 
-### C3: Sponsor worries one format cannot hold mixed levels
-- **From:** interviews O5 + emails O4
-- **Evidence:** partly supported: 2 source groups, 3 sponsors plus 3 participants, feared, not seen stopping a booking
-- **Leverage:** partly supported: indirect, settled in the call; the website could show how levels are handled
+### C3: "I need something to show the people who decide with me." (buyer, before booking)
+- **From:** inquiry-mails O3 + interviews O2
+- **Evidence:** well supported: 2 source groups, 5 buyers, all in that situation now; one account of a boss is second-hand
+- **Leverage:** partly supported: the website could give something to forward, but the decision happens with colleagues, off the site
 - **Need or solution:** need
-- **Readable from today's data in 8 weeks:** unsupported: `booking_confirmed` 23, `scoping_call_booked` 55 in 26 weeks
-- **Wins on:** concrete worry, raised by sponsors who already want to book
-- **Loses on:** fewest sponsor voices; the strongest interview quote answers a leading question
-- **Strongest quote:** "I am worried that one group will be bored and the other lost." (sources/emails/inquiry-06.md:14)
+- **Readable from today's data in 8 weeks:** unsupported: `scoping_call_booked` 55 and `booking_confirmed` 23 in 26 weeks
+- **Wins on:** buyers say it without being asked; it acts close to the booking
+- **Loses on:** every driver link is an assumption; no source says what the people above want to see
+- **Strongest quote:** "My manager asked me to come back with a proposal before the end of the month." ([sources/inquiry-mails/inquiry-07.md:14](../sources/inquiry-mails/inquiry-07.md#L14))
+
+### C4: "I want proof people work differently months later." (buyer, before booking)
+- **From:** inquiry-mails O2
+- **Evidence:** partly supported: 1 source group, 2 buyers; one lived a training that faded, one has seen offers without proof
+- **Leverage:** unsupported: the website can show how the effect is checked, but it cannot cause the effect, and no proof exists yet to show
+- **Need or solution:** need
+- **Readable from today's data in 8 weeks:** unsupported: `scoping_call_booked` 55 in 26 weeks; `followup_answered` 14 in 26 weeks measures the need itself, on Branch B, a month after the booking
+- **Wins on:** the one buyer who makes the call depend on it says so; it is the version of your favourite that sits on this quarter's branch
+- **Loses on:** fewest voices, one source group; the other buyer offered a call anyway
+- **Strongest quote:** "What I have not seen is evidence that any of it changes how people actually work three months later." ([sources/inquiry-mails/inquiry-02.md:14](../sources/inquiry-mails/inquiry-02.md#L14))
 
 ## Evidence
-### C1: Sponsor fears nothing changes after the training, as last time
-- **Evidence strength:** well supported. Two independent source groups: interviews and emails. Voices: 3 sponsors (sponsor-hard, sponsor-soft, inquiry-04) and 1 participant. Lived, not only feared: "Booked, everyone thought it was nice, four weeks later everything was as before." (sources/interviews/sponsor-hard.md:23); "But when I asked around a few weeks later, almost nobody was using any of it." (sources/emails/inquiry-04.md:14). Feared: "What I fear most: people go home with a full bag of new tricks and no reason to reach for any of them, so nothing changes." (sources/interviews/sponsor-soft.md:37). Participant: "On the day everything is great, and then the next morning you carry on exactly the way you did before." (sources/interviews/participants-group-1.md:35). Counter-evidence: the same participant says "This time, no. It was practical." (sources/interviews/participants-group-1.md:39). Gap: no source shows a sponsor who did not book because of this fear.
-- **Leverage:** Branch A, booking rate (discovery/kpi-tree.md:24). Indirect: the fear is settled in the scoping call, which happens off the website. The website could show what happens after the training; the sponsor preparation page already names a "Follow-up after four weeks" (site/sponsor-prep.html:25). The link to booking rate is an assumption in both files (discovery/opportunities/interviews.md:66, discovery/opportunities/emails.md:66). The fear also belongs to Branch B, which is not this quarter (product/strategy.md:35).
-- **Where in the funnel:** booking rate: 32 of 55 scoping calls end without a booking · 23 of 55 book (data.md D6).
-- **Need or solution:** need. Two different solutions would each meet it: a follow-up plan the sponsor sees before booking (site/sponsor-prep.html:25), or a second touchpoint after four to six weeks: "Meeting every week, a second touchpoint after four or six weeks, going deep again." (sources/interviews/sponsor-hard.md:29).
-- **Readable from today's data (8 weeks):** unsupported. The driver shows in `booking_confirmed`, 23 events in 26 weeks. A signal on Branch B measures the need itself: `followup_answered`, 14 answers in 26 weeks (6 "not-yet", 5 "using-it-sometimes", 3 "using-it-regularly", data.md D8). Each answer arrives 28 to 31 days after its booking (counted from `booking_confirmed` and `followup_answered` per session in data/events.jsonl).
-- **Gaps and uncertainty:** whether the fear is what stops a booking in the call. Nothing is logged about the call (data.md D6). Academy staff who run scoping calls could answer it.
+### C1: "I can't tell which format fits my group." (buyer, before booking)
+- **Evidence strength:** well supported. Three independent source groups: inquiry mails, inbox, interviews. Voices: 11 buyers (inquiry-01, 02, 03, 04, 07; four inbox senders; Carla and Ines). The inbox export names roles, not people, so four inbox senders is an assumption ([discovery/opportunities/inbox.md:21](opportunities/inbox.md#L21)). Stated about themselves: "Side by side, I can't tell which one is us." ([sources/inquiry-mails/inquiry-07.md:16](../sources/inquiry-mails/inquiry-07.md#L16)); "I looked at your formats but cannot tell which one fits" ([sources/inbox/inbox-export.md:125](../sources/inbox/inbox-export.md#L125)); "I did not know what to choose and did not want to commit to the wrong thing." ([sources/inbox/inbox-export.md:161](../sources/inbox/inbox-export.md#L161)); "One event or three, and in what order, that was the question I brought" ([sources/interviews/sponsor-ines.md:49](../sources/interviews/sponsor-ines.md#L49)). Counter-evidence: "we would like to book an AI workshop for our product and UX team, around 15 people." ([sources/inquiry-mails/inquiry-06.md:12](../sources/inquiry-mails/inquiry-06.md#L12)); "we are interested in your hands-on workshop for product owners, about 12 participants." ([sources/inquiry-mails/inquiry-05.md:12](../sources/inquiry-mails/inquiry-05.md#L12)); "The two days, those we settled almost in the first week, the dates too." ([sources/interviews/sponsor-thomas.md:21](../sources/interviews/sponsor-thomas.md#L21)); "The shape I knew." ([sources/interviews/sponsor-mehmet.md:29](../sources/interviews/sponsor-mehmet.md#L29)). Gap: every sender in this evidence wrote in the end. Buyers who gave up silently are in no source.
+- **Leverage:** Branch A ([discovery/kpi-tree.md:18](kpi-tree.md#L18)). Direct: the website can change what a buyer reads on the formats and inquiry pages. Three buyers tie it to the form: "I didn't want to send your form with a guess in it" ([sources/inquiry-mails/inquiry-07.md:18](../sources/inquiry-mails/inquiry-07.md#L18)), "I do not want to pick one just to have something to write in the form." ([sources/inbox/inbox-export.md:137](../sources/inbox/inbox-export.md#L137)), "Can I talk to someone before I fill in anything?" ([sources/inbox/inbox-export.md:149](../sources/inbox/inbox-export.md#L149)). The site already tells them: "The scoping call shapes the real format." ([site/formats.html:21](../site/formats.html#L21)) and "You book a format after the scoping call, once we have settled together which one fits." ([site/formats.html:29](../site/formats.html#L29)). So the words exist and buyers still feel stuck. Whether other words would help is open.
+- **Where in the funnel:** start rate: 546 of 740 inquiry page visits never start the form; 23 of 194 who start end in a booking ([discovery/opportunities/data.md:51](opportunities/data.md#L51), [discovery/opportunities/data.md:95](opportunities/data.md#L95)). Submit rate, as an assumption in the interviews file ([discovery/opportunities/interviews.md:60](opportunities/interviews.md#L60)): 81 of 194 started forms are never sent; 23 of 113 sent inquiries end in a booking. Booking rate, same assumption: 32 of 55 calls end without a booking; 23 of 55 book. [assumption: the need also acts on reach rate]: 3026 of 3766 visits never open the inquiry page; 23 of 740 who open it book. One buyer closed the formats page ([sources/inbox/inbox-export.md:161](../sources/inbox/inbox-export.md#L161)). Of visits that see the formats page, 376 of 2291 open the inquiry page; of the others, 364 of 1475 ([discovery/opportunities/data.md:43](opportunities/data.md#L43)).
+- **Need or solution:** need. Two different solutions would each meet it: a short call where the academy asks the questions, "maybe a 20 minute call would be easier." ([sources/inquiry-mails/inquiry-03.md:16](../sources/inquiry-mails/inquiry-03.md#L16)), or a way to see where the team stands first, "Is there a way to find out where the team stands before we decide?" ([sources/inbox/inbox-export.md:125](../sources/inbox/inbox-export.md#L125)).
+- **Readable from today's data (8 weeks):** partly supported. Inquiry page visits: 740 in 26 weeks. `inquiry_started`: 194 in 26 weeks, 70 in the last eight weeks of the export (counted in [data/events.jsonl](../data/events.jsonl) from 2026-06-23). `page_view` with the page name shows the formats page. Nothing is logged inside the form, and `inquiry_step_completed` never occurs ([discovery/opportunities/data.md:75](opportunities/data.md#L75)). So the data can show the start rate moving. It cannot show that this need moved it.
+- **Gaps and uncertainty:** which part of the formats page leaves buyers unsure. No sender says ([discovery/opportunities/inbox.md:40](opportunities/inbox.md#L40)). A walk-through of the formats and inquiry pages with buyers could answer it.
 
-### C2: Sponsor does not know what to ask for, or which format fits
-- **Evidence strength:** well supported. Three independent source groups: interviews, emails, inbox. Voices: 6 sponsors (sponsor-soft; inquiry-01, 02, 03, 04; INB-010). Stated about themselves, now: "I have no idea." (sources/interviews/sponsor-soft.md:49); "I have budget for training this year but no clear idea what to ask for." (sources/emails/inquiry-03.md:14); "I also don't know yet whether we need a workshop, a longer accompaniment or something else." (sources/emails/inquiry-02.md:21); "I looked at your formats but cannot tell which one fits: the half-day workshop, the two days, or the longer team coaching." (sources/inbox/inbox-export.md:125). Counter-evidence: "Two days, more of a getting-to-know-each-other thing." (sources/interviews/sponsor-hard.md:13); "we would like to book an AI workshop for our product and UX team, around 15 people." (sources/emails/inquiry-06.md:12); "we are interested in your hands-on workshop for product owners, about 12 participants." (sources/emails/inquiry-05.md:12).
-- **Leverage:** Branch A (discovery/kpi-tree.md:18). Direct: the website can change what a sponsor sees before and inside the form, for example the field "What do you need?" (site/inquiry.html:27). The strategy names this path because "the website can change it" (product/strategy.md:15). Each file puts it on a different driver, and each link is an assumption: submit rate (discovery/opportunities/interviews.md:39), call rate (discovery/opportunities/emails.md:42), booking rate and start rate (discovery/opportunities/inbox.md:34).
-- **Where in the funnel:** start rate: 546 of 740 inquiry page visits leave without starting · 23 of 194 who start book (data.md D3, D6); inbox O1: "Could also sit on start rate" (discovery/opportunities/inbox.md:34). Submit rate: 81 of 194 started forms are not sent · 23 of 113 sent inquiries book (data.md D4, D6). Call rate: 58 of 113 sent inquiries get no call · 23 of 55 with a call book (data.md D5, D6). Booking rate: 32 of 55 calls end without a booking · 23 of 55 book (data.md D6). [assumption: the need also acts on reach rate]: 3026 of 3766 visits never open the inquiry page; of visits that see the formats page, 376 of 2291 open it, of the others 364 of 1475 (data.md D1, D2).
-- **Need or solution:** need. Two different solutions would each meet it: a short call where the academy asks the questions, "Then you can ask me the questions I apparently don't know to ask." (sources/emails/inquiry-03.md:16), or a way to see where the team stands first, "Is there a way to find out where the team stands before we decide?" (sources/inbox/inbox-export.md:125).
-- **Readable from today's data (8 weeks):** partly supported. `inquiry_started` 194, `inquiry_submitted` 113, `scoping_call_booked` 55 events in 26 weeks; `page_view` of the inquiry page 740 visits (data.md D1, D3). Nothing is logged inside the form: `inquiry_step_completed` never occurs (discovery/opportunities/data.md:29). So the data can show a step moving, not that this need moved it.
-- **Gaps and uncertainty:** which driver the need acts on. The mails were sent anyway, so they say nothing about sponsors who gave up before sending (discovery/opportunities/emails.md:44). A user test on the formats and inquiry pages with sponsors could answer it.
+### C2: "I feel I must pick a format before I can send you an inquiry." (buyer, before booking)
+- **Evidence strength:** well supported in one source group: the inbox. Voices: 3 buyers (team lead, learning and development partner, product lead). Each lived it: "I do not want to pick one just to have something to write in the form." ([sources/inbox/inbox-export.md:137](../sources/inbox/inbox-export.md#L137)); "Can I talk to someone before I fill in anything?" ([sources/inbox/inbox-export.md:149](../sources/inbox/inbox-export.md#L149)); "Is that enough to start with, or do I need to know the format first?" ([sources/inbox/inbox-export.md:161](../sources/inbox/inbox-export.md#L161)). One inquiry mail says the same, inside C1: "I didn't want to send your form with a guess in it" ([sources/inquiry-mails/inquiry-07.md:18](../sources/inquiry-mails/inquiry-07.md#L18)). Counter-evidence: none in the inbox. Gap: the three senders who held back still wrote to the academy.
+- **Leverage:** Branch A, start rate. Direct: the inquiry page and the formats page can change it. The form has no format field today. It asks "What do you need?" ([site/inquiry.html:28](../site/inquiry.html#L28)). The home page says the form "does not book anything." ([site/index.html:63](../site/index.html#L63)). So the belief that a format is needed comes from somewhere other than the form itself. Where, no source says.
+- **Where in the funnel:** start rate: 546 of 740 inquiry page visits never start the form; 23 of 194 who start end in a booking ([discovery/opportunities/data.md:51](opportunities/data.md#L51), [discovery/opportunities/data.md:95](opportunities/data.md#L95)).
+- **Need or solution:** need. Two different solutions would each meet it: a line on the inquiry page that says a format is not needed, or a way to talk to a person before the form. The second is what one sender asks for ([sources/inbox/inbox-export.md:149](../sources/inbox/inbox-export.md#L149)).
+- **Readable from today's data (8 weeks):** partly supported. `inquiry_started` 194 of 740 inquiry page visits in 26 weeks, 70 in the last eight weeks. The data cannot show what a visitor believed.
+- **Gaps and uncertainty:** whether this is a need of its own or the same need as C1, seen at the form. Three of the four C1 inbox senders also say C2. A walk-through of the inquiry page with buyers could separate them.
 
-### C3: Sponsor worries one format cannot hold mixed levels
-- **Evidence strength:** partly supported. Two independent source groups: interviews and emails. Voices: 3 sponsors (sponsor-hard, sponsor-soft, inquiry-06) and 3 participants who describe the mix. Feared: "And that the strongest are bored while the weakest drop out on the first morning." (sources/interviews/sponsor-hard.md:41); "The group won't have one level that suits everyone." (sources/interviews/sponsor-soft.md:45); "I am worried that one group will be bored and the other lost." (sources/emails/inquiry-06.md:14). inquiry-01 states the mix as a fact only: "Some of them already use chat tools, some don't." (sources/emails/inquiry-01.md:14). Counter-evidence: "In our group it was okay. Everyone took a lot away." (sources/interviews/participants-group-2.md:61); the worried sender already wants to book (sources/emails/inquiry-06.md:12).
-- **Leverage:** Branch A, booking rate, could also touch call rate (discovery/opportunities/interviews.md:95). Indirect: settled in the scoping call. The website could show how a format handles mixed levels; the sponsor preparation page already has an expectations survey that asks "what they already know" (site/sponsor-prep.html:24). The link is an assumption in both files.
-- **Where in the funnel:** booking rate: 32 of 55 calls end without a booking · 23 of 55 book (data.md D6). Call rate: 58 of 113 sent inquiries get no call · 23 of 55 with a call book (data.md D5, D6).
-- **Need or solution:** need. Two different solutions would each meet it: split the group by level, or ask people beforehand where they stand: "Do you split into levels, or do you ask people beforehand where they stand?" (sources/emails/inquiry-06.md:16).
-- **Readable from today's data (8 weeks):** unsupported. `booking_confirmed` 23 and `scoping_call_booked` 55 events in 26 weeks. `team_size` in data/inquiries.csv counts people, not levels.
-- **Gaps and uncertainty:** no source says the worry stopped a booking. The day itself is training content this repo does not own (discovery/opportunities/interviews.md:97). Academy staff who run scoping calls could say how often it comes up.
+### C3: "I need something to show the people who decide with me." (buyer, before booking)
+- **Evidence strength:** well supported. Two independent source groups: inquiry mails and interviews. Voices: 5 buyers (inquiry-01, 02, 07; Carla and Mehmet). In that situation now: "Could you send me some information so I can forward it internally?" ([sources/inquiry-mails/inquiry-01.md:18](../sources/inquiry-mails/inquiry-01.md#L18)); "My manager asked me to come back with a proposal before the end of the month." ([sources/inquiry-mails/inquiry-07.md:14](../sources/inquiry-mails/inquiry-07.md#L14)); "I'll take this to two colleagues and talk it through with them." ([sources/interviews/sponsor-carla.md:153](../sources/interviews/sponsor-carla.md#L153)); "I said fine, I'll take it to him and see how he reacts." ([sources/interviews/sponsor-mehmet.md:29](../sources/interviews/sponsor-mehmet.md#L29)). Second-hand: Mehmet on his boss ([sources/interviews/sponsor-mehmet.md:37](../sources/interviews/sponsor-mehmet.md#L37)). Counter-evidence: "I have budget for training this year" ([sources/inquiry-mails/inquiry-03.md:14](../sources/inquiry-mails/inquiry-03.md#L14)); this buyer names no one above. "The two days, those we settled almost in the first week, the dates too." ([sources/interviews/sponsor-thomas.md:21](../sources/interviews/sponsor-thomas.md#L21)).
+- **Leverage:** Branch A, call rate and booking rate. Both links are assumptions ([discovery/opportunities/inquiry-mails.md:68](opportunities/inquiry-mails.md#L68), [discovery/opportunities/interviews.md:74](opportunities/interviews.md#L74)). Indirect: the website could offer something to forward, but the people above decide off the site. Mehmet's boss shrank the format after the offer ([sources/interviews/sponsor-mehmet.md:37](../sources/interviews/sponsor-mehmet.md#L37)).
+- **Where in the funnel:** call rate: 58 of 113 sent inquiries get no scoping call; 23 of 55 who get a call book ([discovery/opportunities/data.md:80](opportunities/data.md#L80), [discovery/opportunities/data.md:95](opportunities/data.md#L95)). Booking rate: 32 of 55 calls end without a booking; 23 of 55 book.
+- **Need or solution:** need. Two different solutions would each meet it: example agendas to forward, which the interviewer offered ([sources/interviews/sponsor-carla.md:155](../sources/interviews/sponsor-carla.md#L155)), or references from a comparable company: "Can you share references, ideally a company comparable to ours that I could speak to?" ([sources/inquiry-mails/inquiry-02.md:18](../sources/inquiry-mails/inquiry-02.md#L18)).
+- **Readable from today's data (8 weeks):** unsupported. `scoping_call_booked` 55 in 26 weeks, 17 in the last eight weeks. `booking_confirmed` 23 in 26 weeks, 6 in the last eight weeks. No event shows that a buyer forwarded anything.
+- **Gaps and uncertainty:** what the people above ask for. No source says ([discovery/opportunities/inquiry-mails.md:70](opportunities/inquiry-mails.md#L70)). The academy staff who run scoping calls could say what buyers come back with.
+
+### C4: "I want proof people work differently months later." (buyer, before booking)
+- **Evidence strength:** partly supported, one source group: inquiry mails. Voices: 2 buyers. One lived it with another provider: "But when I asked around a few weeks later, almost nobody was using any of it." ([sources/inquiry-mails/inquiry-04.md:14](../sources/inquiry-mails/inquiry-04.md#L14)); "And how would I know after a quarter that this time it stuck?" ([sources/inquiry-mails/inquiry-04.md:18](../sources/inquiry-mails/inquiry-04.md#L18)). One has seen offers without proof: "What I have not seen is evidence that any of it changes how people actually work three months later." ([sources/inquiry-mails/inquiry-02.md:14](../sources/inquiry-mails/inquiry-02.md#L14)); "How do you measure whether it worked?" ([sources/inquiry-mails/inquiry-02.md:19](../sources/inquiry-mails/inquiry-02.md#L19)). Counter-evidence: the other five mails do not ask for proof ([discovery/opportunities/inquiry-mails.md:56](opportunities/inquiry-mails.md#L56)). The four inbox buyers before a booking ask about the format, not about proof ([sources/inbox/inbox-export.md:125](../sources/inbox/inbox-export.md#L125), [sources/inbox/inbox-export.md:137](../sources/inbox/inbox-export.md#L137), [sources/inbox/inbox-export.md:149](../sources/inbox/inbox-export.md#L149), [sources/inbox/inbox-export.md:161](../sources/inbox/inbox-export.md#L161)). Related: six buyers fear or see people slipping back after a training. That need is parked on Branch B ([discovery/opportunities/interviews.md:103](opportunities/interviews.md#L103)).
+- **Leverage:** Branch A, call rate. One buyer makes the call depend on written answers: "If you can answer these in writing, I am happy to follow up with a call." ([sources/inquiry-mails/inquiry-02.md:23](../sources/inquiry-mails/inquiry-02.md#L23)). Booking rate for the other buyer is an assumption ([discovery/opportunities/inquiry-mails.md:55](opportunities/inquiry-mails.md#L55)). The website cannot cause the effect. It can only ask about it in the follow-up ([product/constraints.md:59](../product/constraints.md#L59)). The site already names a "Follow-up after four weeks" ([site/buyer-prep.html:27](../site/buyer-prep.html#L27)). There is no proof of a lasting effect to show yet beyond 14 follow-up answers.
+- **Where in the funnel:** call rate: 58 of 113 sent inquiries get no scoping call; 23 of 55 who get a call book ([discovery/opportunities/data.md:80](opportunities/data.md#L80), [discovery/opportunities/data.md:95](opportunities/data.md#L95)). Booking rate: 32 of 55 calls end without a booking; 23 of 55 book.
+- **Need or solution:** need. Two different solutions would each meet it: a way to measure the effect, agreed before booking, or a reference the buyer can talk to: "Can you share references, ideally a company comparable to ours that I could speak to?" ([sources/inquiry-mails/inquiry-02.md:18](../sources/inquiry-mails/inquiry-02.md#L18)).
+- **Readable from today's data (8 weeks):** unsupported. `scoping_call_booked` 55 in 26 weeks, 17 in the last eight weeks. A signal on Branch B measures the need itself: `followup_answered`, 14 answers in 26 weeks (6 "not-yet", 5 "using-it-sometimes", 3 "using-it-regularly", counted in [data/events.jsonl](../data/events.jsonl)). Each answer arrives 28 to 31 days after its booking ([data/README.md](../data/README.md)). In 8 weeks only a booking in the first four weeks can produce an answer.
+- **Gaps and uncertainty:** what proof would be enough. No mail says ([discovery/opportunities/inquiry-mails.md:57](opportunities/inquiry-mails.md#L57)). Whether buyers who never wrote hold back for this reason. The academy staff who run scoping calls could say how often proof comes up.
 
 ## Shortlist
-Confirmed by Reference decision (replace with your own), 2026-08-18: C1 fears nothing changes after the training (interviews O3 + emails O3); C2 does not know what to ask for (interviews O1 + emails O1 + inbox O1); C3 mixed levels (interviews O5 + emails O4)
-Proposed by the agent: confirmed as proposed
+Confirmed by Product lead (Loopwise), 2026-08-18: C1 (inquiry-mails O1 + inbox O1 + interviews O1), C2 (inbox O3), C3 (inquiry-mails O3 + interviews O2), C4 (inquiry-mails O2). The product lead's words: "Yes, add it"
+Proposed by the agent: C1, C2, C3. The product lead added C4, which the agent had dropped as partly supported in one source group only.
+Strong, but parked (Branch B or no branch this quarter):
+- buyer fears or sees people slip back into old habits after the training: interviews O4 + inquiry-mails O6 + inbox O10, 6 buyers, partly supported
+- participant cannot see where it fits in a normal work week: feedback O1, 3 participants, well supported
+- participant cannot keep up during the day: feedback O6, 3 participants, well supported
+- participant's tools do not work when the exercise starts: inbox O6 + feedback O9, partly supported
+- buyer does not know if IT allows the tools in time: inquiry-mails O5 + inbox O5 + interviews O11, partly supported
 Dropped:
-- interviews O2: parked branch, link to the active branch is an assumption; related to emails O2, but about the next budget, not the first booking
-- emails O2: partly supported in one source group only
-- emails O5: partly supported in one source group only
-- interviews O4 + feedback O1: parked branch, link to the active branch is an assumption
-- feedback O2: parked branch, link to the active branch is an assumption; related to C1, after the training
-- inbox O3: parked branch, link to the active branch is an assumption; related to C1, after the training
-- feedback O3: parked branch, link to the active branch is an assumption; related to C3, on the day
-- inbox O2 + feedback O4: parked branch, link to the active branch is an assumption
-- inbox O4: no Branch A link
+- inquiry-mails O4: partly supported in one group; met on the day itself; Branch A link is an assumption
+- inquiry-mails O7, inbox O2, interviews O16, interviews O17: unsupported, one voice; related to C1
+- inbox O4, O7, O8, O9, O11: unsupported, one voice
+- interviews O3, O5, O6: partly supported in one group; mainly Branch B
+- interviews O7, O8, O9, O10, O12, O13, O14, O15: unsupported, one voice
+- feedback O2, O3, O5, O7, O8: partly supported in one group; Branch B or no branch
+- feedback O4, O10 to O16: unsupported, one participant
+- [discovery/opportunities/data.md](opportunities/data.md) D1 to D6: observations, used as evidence, not compared
 
-## Challenger (on the favoured row)
+## Challenger (on the favoured row, and on your first try)
 
-**Counter-evidence to C2:**
-- "Two days, more of a getting-to-know-each-other thing." (sources/interviews/sponsor-hard.md:13): the hard sponsor knows her format.
-- "I really want to stay open, see what comes out, and then decide that one sounds like a good direction." (sources/interviews/sponsor-soft.md:57): the soft sponsor keeps it open on purpose. Not knowing may not feel like a pain to her.
-- "we would like to book an AI workshop for our product and UX team, around 15 people." (sources/emails/inquiry-06.md:12) and "we are interested in your hands-on workshop for product owners, about 12 participants." (sources/emails/inquiry-05.md:12): two of six senders know the format.
-- "If a list is not how you work, maybe a 20 minute call would be easier." (sources/emails/inquiry-03.md:16): not knowing did not stop this sender from asking for a call. All four mail senders who do not know still wrote.
-- Need test, harder: two of the strongest quotes ask for a thing. "do you have a price list or an overview of your formats you could send me?" (sources/emails/inquiry-03.md:12); "Is there a way to find out where the team stands before we decide?" (sources/inbox/inbox-export.md:125). The problem itself is described on the next line or the same line, so the need holds, but the quotes invite a format overview as the answer.
+**Counter-evidence to C1:**
+- Four buyers knew their format: "we would like to book an AI workshop for our product and UX team, around 15 people." ([sources/inquiry-mails/inquiry-06.md:12](../sources/inquiry-mails/inquiry-06.md#L12)); "we are interested in your hands-on workshop for product owners, about 12 participants." ([sources/inquiry-mails/inquiry-05.md:12](../sources/inquiry-mails/inquiry-05.md#L12)); "The two days, those we settled almost in the first week, the dates too." ([sources/interviews/sponsor-thomas.md:21](../sources/interviews/sponsor-thomas.md#L21)); "The shape I knew." ([sources/interviews/sponsor-mehmet.md:29](../sources/interviews/sponsor-mehmet.md#L29)).
+- Every C1 sender wrote to the academy anyway. "maybe a 20 minute call would be easier." ([sources/inquiry-mails/inquiry-03.md:16](../sources/inquiry-mails/inquiry-03.md#L16)). Not knowing did not stop them from asking.
+- The site already says what they want to hear: "The scoping call shapes the real format." ([site/formats.html:21](../site/formats.html#L21)). If buyers miss that line, new words may be missed too.
+- The formats page split points both ways. Visits that see it open the inquiry page less often: 376 of 2291 against 364 of 1475 ([discovery/opportunities/data.md:43](opportunities/data.md#L43)). But calls from those visits end in a booking more often: 13 of 26 against 10 of 29 ([discovery/opportunities/data.md:101](opportunities/data.md#L101)). The numbers are small, and a gap of a few visits can come from chance ([discovery/opportunities/data.md:29](opportunities/data.md#L29)).
+- Need test, harder: two strong quotes ask for a thing. "do you have a price list or an overview of your formats you could send me?" ([sources/inquiry-mails/inquiry-03.md:12](../sources/inquiry-mails/inquiry-03.md#L12)); "Is there a way to find out where the team stands before we decide?" ([sources/inbox/inbox-export.md:125](../sources/inbox/inbox-export.md#L125)). The problem sits on the next line or the same line, so the need holds. But the quotes invite a format overview as the answer.
+- The same senders count twice. inquiry-02 and inquiry-07 are voices in C1 and in C3; inquiry-02 and inquiry-04 are voices in C1 and in C4. Three inbox senders are voices in C1 and in C2.
 
-**Counter-evidence to C1 (the first try):**
-- "This time, no. It was practical." (sources/interviews/participants-group-1.md:39): the participant who named the pattern says it did not happen this time.
-- "What I got approved is a first step." (sources/interviews/sponsor-hard.md:13): this sponsor saw a past training change nothing and still booked.
-- "Happy to explain more in a call." (sources/emails/inquiry-04.md:20): the fearful sender moves on to a call. Nothing here shows the fear costing a call.
-- "No work on follow-up bookings." (product/strategy.md:35): part of this fear is about what happens after, which the strategy leaves for later.
+**Counter-evidence to your first try and its reason:**
+- Your reason says trust built on the site helps the booking. No source says that. The link is an assumption in all three files ([discovery/opportunities/interviews.md:103](opportunities/interviews.md#L103), [discovery/opportunities/inquiry-mails.md:105](opportunities/inquiry-mails.md#L105), [discovery/opportunities/inbox.md:147](opportunities/inbox.md#L147)).
+- The site already shows a follow-up after four weeks, on the home page ([site/index.html:67](../site/index.html#L67)) and the buyer preparation page ([site/buyer-prep.html:27](../site/buyer-prep.html#L27)). Calls from visits that saw the buyer preparation page end in a booking less often: 8 of 27 against 15 of 28 ([discovery/opportunities/data.md:102](opportunities/data.md#L102)). That is no proof against you, the numbers are small. It is no support either.
+- "the actual outcome that the training should achieve" is the training's content and effect. This repo does not change the training ([product/strategy.md:42](../product/strategy.md#L42)), and the website cannot cause use after the training ([product/constraints.md:59](../product/constraints.md#L59)).
+- The strongest interview voices for your favourite answer questions that asked for a fear or a failure. See leading questions below.
+- Counter-evidence in the sources: "We booked another round." ([sources/interviews/sponsor-sabine.md:173](../sources/interviews/sponsor-sabine.md#L173)); this buyer names no fading after the first run. "This time I have a good feeling I will build it into my daily work." ([sources/feedback/feedback-export.md:45](../sources/feedback/feedback-export.md#L45)).
+- The buyer who lived a faded training still moved on to a call: "Happy to explain more in a call." ([sources/inquiry-mails/inquiry-04.md:20](../sources/inquiry-mails/inquiry-04.md#L20)). Nothing here shows the fear costing a call.
 
 **Leading questions:**
-- C1: "Have you run trainings before?" (sources/interviews/sponsor-hard.md:21) before "Booked, everyone thought it was nice, four weeks later everything was as before.": an open question. It does not ask whether a training changed nothing. sponsor-soft's fear follows "What would you not want to happen?" (sources/interviews/sponsor-soft.md:35): asked for exactly a fear. The participant volunteered it after a question to someone else: "P4, you mentioned a training earlier. What did you take from it?" (sources/interviews/participants-group-1.md:31). The mail is unprompted.
-- C2: "When you picture working with someone on this, what does it look like?" (sources/interviews/sponsor-soft.md:47) before "I have no idea." (sources/interviews/sponsor-soft.md:49): open. The four mails and the inbox request are unprompted.
-- C3: "Let me come back to that. What must not happen?" (sources/interviews/sponsor-hard.md:39) before "And that the strongest are bored while the weakest drop out on the first morning.": asked for exactly a fear. The mail is unprompted.
+- C1: "Before I describe them, what do you think your people would need?" ([sources/interviews/sponsor-carla.md:123](../sources/interviews/sponsor-carla.md#L123)) before "Tell me what's on the menu and I'll react to it." ([sources/interviews/sponsor-carla.md:125](../sources/interviews/sponsor-carla.md#L125)): an open question. For Ines the interviewer says it first: "So you weren't sure which of those you needed from us." ([sources/interviews/sponsor-ines.md:47](../sources/interviews/sponsor-ines.md#L47)), then Ines agrees ([sources/interviews/sponsor-ines.md:49](../sources/interviews/sponsor-ines.md#L49)). That question asked for exactly this answer. The strongest quote, the mails and the inbox requests are unprompted.
+- C2: inbox requests only, all unprompted.
+- C3: Carla's line on taking it to two colleagues follows a remark, not a question ([sources/interviews/sponsor-carla.md:151](../sources/interviews/sponsor-carla.md#L151)). Her "Sure, why not. Send them over." ([sources/interviews/sponsor-carla.md:157](../sources/interviews/sponsor-carla.md#L157)) accepts an offer the interviewer made: "Should I send you a couple of example agendas, so you have something to show them?" ([sources/interviews/sponsor-carla.md:155](../sources/interviews/sponsor-carla.md#L155)). Mehmet answers an open question: "Which of the usual questions could you have answered on the spot?" ([sources/interviews/sponsor-mehmet.md:27](../sources/interviews/sponsor-mehmet.md#L27)). The mails are unprompted.
+- C4: inquiry mails only, unprompted.
+- Your favourite: "Once the two days are over, what could still go wrong?" ([sources/interviews/sponsor-mehmet.md:167](../sources/interviews/sponsor-mehmet.md#L167)) comes before "What worries me is the Monday after, and the one after that" ([sources/interviews/sponsor-mehmet.md:169](../sources/interviews/sponsor-mehmet.md#L169)). "And what would failure look like?" ([sources/interviews/sponsor-thomas.md:91](../sources/interviews/sponsor-thomas.md#L91)) comes before "People go back to their desks and file AI under" ([sources/interviews/sponsor-thomas.md:93](../sources/interviews/sponsor-thomas.md#L93)). "What would it look like if it doesn't change anything?" ([sources/interviews/sponsor-ines.md:151](../sources/interviews/sponsor-ines.md#L151)) comes before Ines's advisor story ([sources/interviews/sponsor-ines.md:153](../sources/interviews/sponsor-ines.md#L153)). All three questions asked for a fear or a failure. The mail ([sources/inquiry-mails/inquiry-04.md:14](../sources/inquiry-mails/inquiry-04.md#L14)) and the inbox request ([sources/inbox/inbox-export.md:113](../sources/inbox/inbox-export.md#L113)) are unprompted.
 
-**Wins on, loses on:** C2 wins on reach: it can act where 740 inquiry page visits arrive and 194 forms start (data.md D3). It loses on closeness: of 194 who start, 23 book, against 23 of 55 for C1 and C3, which act after the call (data.md D6).
+**Wins on, loses on:** C1 and C2 win on reach. They act where 740 inquiry page visits arrive and 546 stop ([discovery/opportunities/data.md:51](opportunities/data.md#L51)). They lose on closeness: of 194 who start, 23 book. C3 and C4 act after the inquiry, where 23 of 55 with a call book ([discovery/opportunities/data.md:95](opportunities/data.md#L95)). But they reach 113 sent inquiries at most, and their signal is 17 calls in the last eight weeks.
 
 **What would make another candidate the better choice:**
-- "Booked, everyone thought it was nice, four weeks later everything was as before." (sources/interviews/sponsor-hard.md:23): if call notes show sponsors stop at the call over this fear, C1 sits where the conversion is closest to a booking. The 14 `followup_answered` answers, 6 of them "not-yet" (data.md D8), already measure whether people use what they learned, 28 to 31 days after a booking.
-- "Do you split into levels, or do you ask people beforehand where they stand?" (sources/emails/inquiry-06.md:16): a concrete question the website could answer on a page that exists. If scoping calls show it comes up often, C3 is a cheap way in.
+- C2 is the cheapest way in. The inquiry page is one page, and it already has no format field ([site/inquiry.html:28](../site/inquiry.html#L28)). If a walk-through shows buyers stop there for this reason, C2 is C1 at the exact step, with a direct signal in `inquiry_started`.
+- C4 has the only stated link to the call: "If you can answer these in writing, I am happy to follow up with a call." ([sources/inquiry-mails/inquiry-02.md:23](../sources/inquiry-mails/inquiry-02.md#L23)). If the academy staff say proof comes up in many calls, C4 sits where a booking is closest. The 14 `followup_answered` answers already measure whether people use what they learned.
+- C3 has five buyers who are in that situation now. If scoping call notes show that many calls end with "I'll take it to my boss", C3 is closer to the 32 calls without a booking than C1.
 
-**Could not check:** what happens in scoping calls and why 32 end without a booking: academy staff who run them. Whether the six mail senders booked: the academy's inquiry records. Whether visits that see the formats page leave because they cannot tell which format fits: a user test with sponsors.
+**Could not check:**
+- Why 32 of 55 scoping calls end without a booking. Nothing is logged about the call. The academy staff who run the calls could answer it.
+- Whether the mail and inbox senders booked. The academy's inquiry records could answer it.
+- Whether visits leave the formats page because they cannot choose. A walk-through with buyers could answer it.
+- What proof would be enough for C4, and what the people above want to see for C3. No source says.
 
 ## Decision (human)
 
-Chosen opportunity: C2: the sponsor does not know what to ask for, or which format fits. Reference decision (replace with your own). Six sponsors say it, in three kinds of source, and we can change it on the website. My first try was C1, but C1 only matters after the scoping call.
-We would switch if: the people who run the scoping calls tell us that sponsors who don't book are worried the training won't last, not unsure about the format. Then we switch to C1.
+Chosen opportunity: C1: "I can't tell which format fits my group." Chosen by Product lead (Loopwise), 2026-08-18. The product lead's words: "C1 because the evidence is very good and it affects a step very early in the funnel."
+We would switch if: the product lead's words, 2026-08-18: "We would switch if we learn that the real problem is not that people dont know which format to pick, but if they dont book because we cannot convince them enough, that our training is really different"

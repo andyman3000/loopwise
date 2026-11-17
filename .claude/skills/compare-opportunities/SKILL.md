@@ -17,7 +17,8 @@ contrast" opportunities against each other, rather than judging one in isolation
 ## Rules
 
 - **Try first, then compare.** Before you draft, ask the human for which opportunity they favour right now, with a one-sentence reason. Point them to their opportunity map first: with `npm start` running, `http://localhost:3000/discovery/map` shows every opportunity by source and evidence. The challenger step then also attacks their favourite, if it differs from the candidate the comparison favours. Wait for the answer and never invent it. After drafting, fill the section "Your first try": their answer word for word, the candidate ID it matches ("Matches: C1", or "none"), then two or three short lines on where your draft differs and why. If they say skip, write "skipped". This step is how participants learn the concept; do not shorten it.
-- **Every claim quotes its source with location** (file and line or section). No quote, no claim.
+- **Feedback on the first try.** After the comparison is written, tell the human in two or three short lines how strong their answer was: what was good, what was weak, and why. Judge the reason, never the favourite itself. Does the reason rest on evidence: independent sources, voices, where in the funnel? Or on a gut feeling, one vivid quote, or a solution the human already has in mind? Is their favourite a need or a solution in disguise? Name their words. Be honest and specific, never flattering. A skipped answer gets no feedback. Say it in the chat only: the tree page reads "Your first try", so the file keeps its template shape.
+- **Every claim quotes its source with location** (file and line or section). No quote, no claim. Each citation is a Markdown link: `[<file>:<line>](<path from this file>#L<line>)` (`.claude/rules/writing.md`, "Citations are links").
   Open the cited file in `sources/` and check the quote is there. If it is not, say so in the line
   and do not use it.
 - **Do not invent numbers.** Only counted numbers: independent sources, voices, events in a log.
@@ -26,7 +27,7 @@ contrast" opportunities against each other, rather than judging one in isolation
   strength, leverage and readability give the level, the reasoning, the sources, the
   counter-evidence and the gaps. The funnel line gives counts only, no level.
 - **Independent sources:** two quotes from the same interview or the same mail thread are one
-  source. Say whose voice it is (sponsor, participant, academy staff).
+  source. Say whose voice it is (buyer, participant, developer, academy staff).
 - **Shortlist: the agent narrows, the human confirms.** Propose every candidate that passes the
   keep test, never pick one, and never cut a passing candidate to reach a number. Write "Goes into comparison" only after the human explicitly said yes to the
   shortlist or changed it, and write what they confirmed, not your proposal. A vague reply ("ok",
@@ -55,15 +56,17 @@ contrast" opportunities against each other, rather than judging one in isolation
 1. **Shortlist.** Read all opportunity files and the KPI tree. If a "Goes into comparison" line is
    already filled, show it and ask whether it still holds; otherwise propose:
    - **Merge** the same need found in several source files into one candidate, naming every source
-     and ID ("emails O1 + interviews O1 + inbox O1"). Merge only when the role (sponsor or
+     and ID ("inquiry-mails O1 + interviews O1 + inbox O1"). Merge only when the role (buyer or
      participant) and the moment (before the booking or after the training) are the same. Needs that
      differ in either stay apart; name them as related.
    - **Keep** a candidate if it passes all three, judged after merging:
      - it is a need, not a solution in disguise (the need-or-solution test in Rules);
      - it sits on an active branch of `discovery/kpi-tree.md`. A side link that is only an
-       `[assumption: ...]` does not count: such a candidate drops with the reason "parked branch,
-       link to the active branch is an assumption";
+       `[assumption: ...]` does not count;
      - it is well supported, or partly supported in two or more independent source groups.
+   - **Strong, but parked:** a candidate that passes the first and third test but sits on a branch
+     that is not this quarter's is not dropped. List it under "Strong, but parked" with its branch
+     and its assessment, so the human sees how much evidence waits there and can bring it in.
    - **Show** every candidate that passes, each with one line on why, and any need you reworded
      under the need-or-solution test, with the wording you propose. Then show every opportunity
      that dropped out, each with its one-line reason, so the human can bring it back. If their
@@ -98,8 +101,8 @@ contrast" opportunities against each other, rather than judging one in isolation
 3. Name the candidate the comparison appears to favour, as "Appears favoured: <ID>, because <one
    line>". This is a reading of the comparison, not a choice.
 4. **Challenger.** You are a challenger. Your job is to find out early whether the favoured row is a
-   bad bet. Be specific to the material: "what about other sponsors?" is useless, "the format
-   question appears in one sponsor's interview only, `sources/interviews/...`, section 4" is useful.
+   bad bet. Be specific to the material: "what about other buyers?" is useless, "the format
+   question appears in one buyer's interview only, `sources/interviews/...`, section 4" is useful.
    - Search `sources/` for counter-evidence to the favoured row. Quote it.
    - Run the need-or-solution test again on the favoured row, harder: does its strongest quote ask
      for a thing rather than describe a problem? Quote it.
@@ -130,7 +133,8 @@ contrast" opportunities against each other, rather than judging one in isolation
 7. **Send the human to the tree before they decide.** Your closing message always gives the link
    `http://localhost:3000/discovery/tree` (start the server with `npm start` if it is not running)
    and says to read the tree before filling "Chosen opportunity" and "We would switch if". Name the
-   one thing to look at first: the question on top and the steps where no candidate acts. Never
+   one thing to look at first: the question on top and the steps where no candidate acts. Give the
+   feedback on the first try (see Rules) in the same message. Never
    close without the link, also when the human asks for a summary in the chat. Then stop. Do not
    start an intent.
 
@@ -162,13 +166,13 @@ Where the draft differs:
 - <two or three short lines>
 
 ## Tree
-Outcome: <business goal> (<file:line>)
-Branch: <Branch A: name> (<file:line>)
+Outcome: <business goal> ([<file>:<line>](../<file>#L<line>))
+Branch: <Branch A: name> ([<file>:<line>](../<file>#L<line>))
 - <driver>: <lost> of <reached> <what> (data.md D<n>) · Candidates: <IDs, "(assumed)" after a driver only the comparison adds, or "none">
   - Data: <only under a driver with an assumed link: the observation that suggests it, counted> (data.md D<n>)
 
 ## Candidates
-### C1: <need, in the sponsor's or participant's terms>
+### C1: "<the need, first person, as the opportunity files write it>" (<role>, <moment>)
 - **From:** <source IDs, merges named>
 - **Evidence:** <level>: <independent source groups, voices, observed or feared>
 - **Leverage:** <level>: <direct or indirect, can the website change it>
@@ -176,11 +180,11 @@ Branch: <Branch A: name> (<file:line>)
 - **Readable from today's data in 8 weeks:** <level>: <event, events over the data span>; also <a signal on another branch that measures the need: event, count, delay>, if any
 - **Wins on:** <one line>
 - **Loses on:** <one line>
-- **Strongest quote:** "<quote>" (<file:line>)
+- **Strongest quote:** "<quote>" ([<file>:<line>](../<file>#L<line>))
 
 ## Evidence
 ### C1: <name>
-- **Evidence strength:** <reasoning, quotes with file and line, counter-evidence, gaps>
+- **Evidence strength:** <reasoning, quotes with file and line as links, counter-evidence, gaps>
 - **Leverage:** <KPI branch, direct or indirect, reasoning, source>
 - **Where in the funnel:** <driver: lost there, counted> · <of those reaching it, how many book> (data.md D-number)
 - **Need or solution:** <two solutions that would each meet it, or the need underneath with its quote>
@@ -190,26 +194,28 @@ Branch: <Branch A: name> (<file:line>)
 ## Shortlist
 Confirmed by <name>, <date>: <candidates as confirmed, merges named>
 Proposed by the agent: <the proposal, or "confirmed as proposed">
+Strong, but parked:
+- <candidate, sources>: <branch>, <assessment> | none
 Dropped:
 - <ID, file>: <one-line reason>
 
 ## Challenger (on the favoured row)
 
 **Counter-evidence to <favoured>:**
-- "<quote>" (<file, line or section>): <why it cuts against>
+- "<quote>" ([<file>:<line>](../<file>#L<line>), or [<file>](../<file>) and a section): <why it cuts against>
 
 **Leading questions:**
-- <ID>: "<interviewer question>" (<file:line>) before "<quote>": <asked for exactly this, or open>
+- <ID>: "<interviewer question>" ([<file>:<line>](../<file>#L<line>)) before "<quote>": <asked for exactly this, or open>
 
 **Wins on, loses on:** <reach or closeness to a booking, with the counts>
 
 **What would make another candidate the better choice:**
-- "<quote>" (<file, line or section>): <what it would take>
+- "<quote>" ([<file>:<line>](../<file>#L<line>), or [<file>](../<file>) and a section): <what it would take>
 
 **Could not check:** <item, who could answer>
 
 ## Decision (human)
 
 Chosen opportunity: ____ (human decides)
-We would switch if: ____ (a finding, and the candidate you would switch to, for example "call notes show sponsors settle the format in five minutes: then C3")
+We would switch if: ____ (a finding, and the candidate you would switch to, for example "call notes show buyers settle the format in five minutes: then C3")
 ```

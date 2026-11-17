@@ -4,10 +4,10 @@ Hard limits for every artefact and every change in this repo.
 
 ## Data and prices
 
-- **No prices**, not on the website and not in data. Sponsors do ask for them ("do you have a price
-  list", `sources/emails/inquiry-03.md:12`); the answer goes through the scoping call.
+- **No prices**, not on the website and not in data. Buyers do ask for them ("do you have a price
+  list", `sources/inquiry-mails/inquiry-03.md:12`); the answer goes through the scoping call.
 - **All data is synthetic or an anonymised composite**, and each file says which in its header
-  (for example `sources/interviews/sponsor-soft.md:3`, `sources/emails/inquiry-01.md:3`,
+  (for example `sources/interviews/sponsor-sabine.md:3`, `sources/inquiry-mails/inquiry-01.md:3`,
   `sources/inbox/inbox-export.md:3`).
 - **Feedback ratings are invented** (`sources/feedback/feedback-export.md:3`, `:23`). Free-text
   answers may be quoted; the rating table is never used as evidence.
@@ -20,16 +20,18 @@ Hard limits for every artefact and every change in this repo.
 
 ## Tool access on the customer side
 
-Sponsors often cannot change tool access before a format, and we plan around that:
+Buyers often cannot change tool access before a format, and we plan around that:
 
-- IT has not approved the tool, data protection reviews take months (`sources/emails/inquiry-05.md:14`).
+- IT has not approved the tool, data protection reviews take months (`sources/inquiry-mails/inquiry-05.md:14`).
 - Approval pending with IT, no answer expected before the workshop (`sources/inbox/inbox-export.md:53`).
 - No admin rights on managed laptops, in the room (`sources/inbox/inbox-export.md:77`).
-- Rights, API keys and shared skill storage still to clarify with IT; one approved tool only
-  (`sources/interviews/sponsor-hard.md:49`, `:51`).
+- One of the trainer's tools cleared, the others not; what people may put into it still open with
+  IT (`sources/interviews/sponsor-sabine.md:81`, `sources/interviews/sponsor-sabine.md:97`).
+- Access to the coding agent taken away again from non-developers until security is sorted
+  (`sources/interviews/sponsor-carla.md:133`).
 
-Counter-evidence: in other companies access is not the gap (`sources/interviews/sponsor-soft.md:41`,
-`sources/interviews/participants-group-1.md:19`, `sources/inbox/inbox-export.md:65`). Access is a
+Counter-evidence: in other companies access is not the gap (`sources/interviews/sponsor-thomas.md:113`,
+`sources/interviews/participant-jannik.md:65`, `sources/inbox/inbox-export.md:65`). Access is a
 constraint to plan for, not the problem we exist for.
 
 ## Measurement
@@ -52,7 +54,7 @@ constraint to plan for, not the problem we exist for.
 
 ## What the website can reach
 
-- **Can reach:** the inquiry, the scoping call booking, and the sponsor preparation around a format:
-  participant list, setup check, expectations survey, follow-up after four weeks (`site/sponsor-prep.html`).
+- **Can reach:** the inquiry, the scoping call booking, and the buyer preparation around a format:
+  participant list, setup check, expectations survey, follow-up after four weeks (`site/buyer-prep.html`).
 - **Cannot reach:** the training itself, what happens in the room, and whether participants use it
   in their work afterwards. The website can ask about that in the follow-up; it cannot cause it.

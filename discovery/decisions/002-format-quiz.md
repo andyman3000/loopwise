@@ -1,121 +1,84 @@
 # Decision 002: format-quiz, learning card
 
 > Decision record and learning card. Each round below starts with its own label line.
-> Written by the `learning-card` skill from what the pair said. The material behind the prototype is synthetic or an anonymised composite: interviews are anonymised composites; mails, inbox and data are synthetic.
-> Rests on: `discovery/test-cards/format-quiz-prototype.md`, `discovery/user-tests/format-quiz-cross.md`, `discovery/user-tests/format-quiz-spec.md`
+> Written by the `learning-card` skill on 2026-11-16. The material behind the prototype is synthetic; the feedback free text is an anonymised composite. This file repeats that label.
+> Rests on: [discovery/test-cards/format-quiz-prototype.md](../test-cards/format-quiz-prototype.md), [discovery/user-tests/format-quiz-spec.md](../user-tests/format-quiz-spec.md), [discovery/user-tests/format-quiz-spec-run2.md](../user-tests/format-quiz-spec-run2.md), [discovery/user-tests/format-quiz-qlaris.md](../user-tests/format-quiz-qlaris.md)
+> Number 002: 003 is call-slot and 004 is short-form.
 
-## Round 1, 2026-08-18
+A learning card records what a test showed: we believed, we observed, we learned, therefore we will.
+A sign is something the watcher can see or hear during the test ([discovery/test-cards/format-quiz-prototype.md:12](../test-cards/format-quiz-prototype.md#L12)).
+An AI twin is a software participant that Qlaris sends to the page. It reports what it did and felt.
+The agent wrote every line of this file from the files, unless a line names the product lead. The decision text is the product lead's.
 
-> **Synthetic cross test: no test with a person took place.** The watcher's notes were written for the reference run, to show what a failed test looks like (`discovery/user-tests/format-quiz-cross.md:4`). In your own run, this line reads "Tested with one person from another pair: a pattern, not a rate."
-> Rests on: `discovery/test-cards/format-quiz-prototype.md`, `discovery/user-tests/format-quiz-cross.md`, `discovery/user-tests/format-quiz-spec.md`
+## Round 1, 2026-11-16: the persona walkthrough of the spec, and the Qlaris result added
 
-### How it went (first try)
-Not well. The tester started the quiz gladly and gave up on it halfway.
+> Pressure-tested, not validated: rests on persona runs, not on people. The persona runs here are a walkthrough of the spec and five Qlaris AI twins.
+> Rests on: [discovery/user-tests/format-quiz-spec-run2.md](../user-tests/format-quiz-spec-run2.md), the latest walkthrough run of this round (run 1 is [discovery/user-tests/format-quiz-spec.md](../user-tests/format-quiz-spec.md)), and [discovery/user-tests/format-quiz-qlaris.md](../user-tests/format-quiz-qlaris.md).
 
-### We believed
-"A sponsor who is unsure about the format chooses the quiz, and can answer its questions on a page without a person." (`discovery/test-cards/format-quiz-prototype.md:25`)
-
-### We observed
-- The tester chose the quiz on their own: "Sure, let's see what it says." (`discovery/user-tests/format-quiz-cross.md:8`)
-- The tester could not say who is in the team: "It depends which team I mean. I haven't picked one yet." (`discovery/user-tests/format-quiz-cross.md:9`)
-- The tester asked the watcher: "Can I pick more than one here?" (`discovery/user-tests/format-quiz-cross.md:10`)
-- The tester ticked "I don't know yet" twice, and said: "These are exactly the questions I can't answer. That's why I'm here." (`discovery/user-tests/format-quiz-cross.md:13`)
-- The tester asked for a person: "I'd rather talk to someone about this." (`discovery/user-tests/format-quiz-cross.md:14`)
-- The tester did not send the inquiry (`discovery/user-tests/format-quiz-cross.md:16`).
-- Persona run on the spec: the soft sponsor stalls at question 1, the same place: "She hesitates." (`discovery/user-tests/format-quiz-spec.md:28`), resting on "Sketched three slices (by role, by team, by project) and picked none, on purpose" (`product/personas/sponsor-soft.md:44`).
-
-| Sign (from the card) | Points to | Seen? |
-|---|---|---|
-| The tester clicks the quiz link before writing in the form | go on | seen |
-| The tester answers every quiz question without asking the watcher what it means | go on | not seen |
-| The tester finishes the quiz and sends the inquiry | go on | not seen |
-| The tester stops at a question, says "I don't know", or leaves it empty | rework or drop | seen |
-| The tester passes the link and writes straight into the form | rework or drop | not seen |
-| The tester asks for a call or a person instead of the quiz | rework or drop | seen |
-| The tester says the quiz takes too long, or asks how many questions are left | rework or drop | not seen |
-
-Against the lines: broke. The first half held: the tester chose the quiz. The second half broke: the tester could not answer its questions without a person, asked the watcher, and left the quiz before the end. That is the rework-or-drop line: "Or the tester stops at a question, asks the watcher, or leaves the quiz before the end." (`discovery/test-cards/format-quiz-prototype.md:55`)
-
-### We learned
-From that we learned that the quiz asks the sponsor the same questions the sponsor came to us with. An unsure sponsor wants to try the quiz, but cannot answer questions about a team they have not picked yet. A sponsor who does not know the answers wants something to react to, or a person to talk to.
-
-### Therefore we will
-Drop the quiz. Test the next idea from the intent, I12: the inquiry page opens with "What should be different for your team in three months?", with example answers to pick or change and a "don't know yet" box. The sponsor reacts to examples instead of answering questions, and the format is settled in the scoping call.
-
-### Options considered
-- Move on: not chosen. The go-on line asked that the tester "answers every question without help, and sends the inquiry" (`discovery/test-cards/format-quiz-prototype.md:52`). Neither happened.
-- Another round, changed spec: not chosen. Allowing several answers would fix the question "Can I pick more than one here?", but not "These are exactly the questions I can't answer."
-- Another round, next idea: chosen. I12 "the inquiry page opens with the question" about what should be different for the team (`discovery/intents/format-question.md:41`). The other ideas: I4, a "Book a call" button in place of the form (`discovery/intents/format-question.md:38`), which answers "I'd rather talk to someone about this." but drops the written inquiry; I6, the message label asks "What do you see in your team today?" (`discovery/intents/format-question.md:39`).
-- Kill: chosen for the quiz itself.
-
-### What we decided
-Kill format-quiz. Next idea: I12, as variant `success-line-first`.
-
-### Why
-The tester wanted the quiz but could not answer it alone. Examples to react to ask less of a sponsor who does not know yet.
-
-### Who
-Reference decision (replace with your own)
-
-### When
-2026-08-18
-
-## Round 2, 2026-08-18
-
-> **Synthetic cross test: no test with a person took place.** The watcher's notes were written for the reference run, to show what a passed test looks like (`discovery/user-tests/format-quiz-cross-2.md:4`). In your own run, this line reads "Tested with one person from another pair: a pattern, not a rate."
-> Rests on: `discovery/test-cards/format-quiz-prototype.md` (section "Round 2"), `discovery/user-tests/format-quiz-cross-2.md`
-
-We came back to the quiz after success-line-first failed (`discovery/decisions/003-success-line-first.md`). The spec changed: four questions, the question about what should be different after the training is gone, and a line above the first question says open answers are worked out in the scoping call.
+No test with people has happened yet. The card plans five buyers without budget ([discovery/test-cards/format-quiz-prototype.md:41](../test-cards/format-quiz-prototype.md#L41)).
+Planned: 5 testers. Tested with people: 0. The five AI twins are not testers. Written by the agent.
 
 ### How it went (first try)
-Smooth. The tester went through the quiz in one go and sent the inquiry.
+Not asked. The product lead stated only the decision below (2026-11-16). Written by the agent.
 
 ### We believed
-"A sponsor who is unsure about the format chooses the quiz, and can answer its questions on a page without a person." (`discovery/test-cards/format-quiz-prototype.md:25`)
+"Buyers who cannot tell which format fits will answer a few questions about their team. They then trust the format the quiz names enough to start the form." ([discovery/test-cards/format-quiz-prototype.md:33](../test-cards/format-quiz-prototype.md#L33))
 
 ### We observed
-- The tester chose the quiz on their own (`discovery/user-tests/format-quiz-cross-2.md:7`).
-- The line above the first question took the pressure off: "Good. Because I don't know half of this." (`discovery/user-tests/format-quiz-cross-2.md:8`)
-- The tester answered what they knew, several answers where two fit (`discovery/user-tests/format-quiz-cross-2.md:9`, `discovery/user-tests/format-quiz-cross-2.md:11`).
-- The tester ticked "I don't know yet" without stopping: "No idea what they did before I joined." (`discovery/user-tests/format-quiz-cross-2.md:12`)
-- The filled message helped: "Oh, it wrote that for me." (`discovery/user-tests/format-quiz-cross-2.md:13`)
-- The tester still added the format question: "Mainly I want to know which format fits." (`discovery/user-tests/format-quiz-cross-2.md:14`)
-- The tester sent the inquiry (`discovery/user-tests/format-quiz-cross-2.md:15`).
+Written by the agent from the files. Persona observations first, each resting on a line of the persona file.
+- Walkthrough: the buyer without budget sees the named format and four others. That fits "Options to react to" ([discovery/user-tests/format-quiz-spec-run2.md:44](../user-tests/format-quiz-spec-run2.md#L44)), resting on [product/personas/buyer-without-budget.md:85](../../product/personas/buyer-without-budget.md#L85).
+- Walkthrough: she copies the result "and leaves without" taking the step into the form ([discovery/user-tests/format-quiz-spec-run2.md:44](../user-tests/format-quiz-spec-run2.md#L44)). She decides with two colleagues first, resting on [product/personas/buyer-without-budget.md:41](../../product/personas/buyer-without-budget.md#L41).
+- Walkthrough: the buyer with budget finds no evidence on the result ([discovery/user-tests/format-quiz-spec-run2.md:61](../user-tests/format-quiz-spec-run2.md#L61)), resting on [product/personas/buyer-with-budget.md:95](../../product/personas/buyer-with-budget.md#L95). The card recruits no tester of his type.
 
-| Sign (from the card, round 2) | Points to | Seen? |
-|---|---|---|
-| The tester clicks the quiz link before writing in the form | go on | seen |
-| The tester goes through all four questions without asking the watcher, ticking "I don't know yet" where they do not know | go on | seen |
-| The tester finishes the quiz and sends the inquiry | go on | seen |
-| The tester stops the quiz before the end | rework or drop | not seen |
-| The tester asks the watcher what a question means | rework or drop | not seen |
-| The tester passes the link and writes straight into the form | rework or drop | not seen |
-| The tester asks for a person instead of the quiz | rework or drop | not seen |
+Then the Qlaris run, five AI twins, counted against the card's lines.
+- Qlaris stops a twin before an action that sends data. So no twin pressed the send button ([discovery/user-tests/format-quiz-qlaris.md:59](../user-tests/format-quiz-qlaris.md#L59)). The decisive step of the go-on line was therefore not observed.
+- All five answered the quiz for their group ([discovery/user-tests/format-quiz-qlaris.md:112](../user-tests/format-quiz-qlaris.md#L112)). All five did this too: "Take the step from the result into the form" ([discovery/user-tests/format-quiz-qlaris.md:113](../user-tests/format-quiz-qlaris.md#L113)).
+- Sent the form with the named format still in it: "0 of 5. Qlaris stopped every twin" ([discovery/user-tests/format-quiz-qlaris.md:114](../user-tests/format-quiz-qlaris.md#L114)). Up to the send button, all five kept the format line unchanged ([discovery/user-tests/format-quiz-qlaris.md:115](../user-tests/format-quiz-qlaris.md#L115)).
+- The answers were identical: "All five answered the same four quiz questions the same way" ([discovery/user-tests/format-quiz-qlaris.md:73](../user-tests/format-quiz-qlaris.md#L73)). Every result named the same format ([discovery/user-tests/format-quiz-qlaris.md:76](../user-tests/format-quiz-qlaris.md#L76)).
+- One twin was drawn twice: "The five runs therefore come from four different twins." ([discovery/user-tests/format-quiz-qlaris.md:69](../user-tests/format-quiz-qlaris.md#L69))
+- The Qlaris persona holds a budget, the card's testers do not: "The Qlaris persona decides on the budget. The card's testers have no budget settled." ([discovery/user-tests/format-quiz-qlaris.md:137](../user-tests/format-quiz-qlaris.md#L137))
+- Both twins that started on the inquiry page went to the formats first: "2 of 2 in run B" ([discovery/user-tests/format-quiz-qlaris.md:130](../user-tests/format-quiz-qlaris.md#L130)). This is the card's drop sign. Both came back through the quiz.
+- All five asked for something the page does not answer: data protection, and a way to measure success for the CFO ([discovery/user-tests/format-quiz-qlaris.md:131](../user-tests/format-quiz-qlaris.md#L131)).
 
-Against the lines: held. The go-on line asked that the tester "goes through all four questions without asking the watcher, and sends the inquiry" (`discovery/test-cards/format-quiz-prototype.md:81`). All three go-on signs were seen, no rework sign.
+| Sign (from the card) | Points to | Walkthrough, buyer without budget | Qlaris twins |
+|---|---|---|---|
+| Answers every quiz question for their own group, without asking what a question means | go on | cannot tell ([discovery/user-tests/format-quiz-spec-run2.md:69](../user-tests/format-quiz-spec-run2.md#L69)) | 5 of 5 ([discovery/user-tests/format-quiz-qlaris.md:112](../user-tests/format-quiz-qlaris.md#L112)) |
+| On the result, uses the step to the form and clicks into a form field | go on | cannot tell ([discovery/user-tests/format-quiz-spec-run2.md:70](../user-tests/format-quiz-spec-run2.md#L70)) | step taken by 5 of 5, a field clicked by 1 of 5 ([discovery/user-tests/format-quiz-qlaris.md:127](../user-tests/format-quiz-qlaris.md#L127)) |
+| Sends the form and keeps the named format | go on | cannot tell ([discovery/user-tests/format-quiz-spec-run2.md:71](../user-tests/format-quiz-spec-run2.md#L71)) | not observed: Qlaris stopped every twin ([discovery/user-tests/format-quiz-qlaris.md:114](../user-tests/format-quiz-qlaris.md#L114)) |
+| Says why the format fits their group | go on | cannot tell ([discovery/user-tests/format-quiz-spec-run2.md:72](../user-tests/format-quiz-spec-run2.md#L72)) | 5 of 5 ([discovery/user-tests/format-quiz-qlaris.md:128](../user-tests/format-quiz-qlaris.md#L128)) |
+| Stops at a question, or asks what it means | rework | cannot tell ([discovery/user-tests/format-quiz-spec-run2.md:73](../user-tests/format-quiz-spec-run2.md#L73)) | 0 of 5 ([discovery/user-tests/format-quiz-qlaris.md:119](../user-tests/format-quiz-qlaris.md#L119)) |
+| On the result, looks around for what to do next | rework | cannot tell ([discovery/user-tests/format-quiz-spec-run2.md:74](../user-tests/format-quiz-spec-run2.md#L74)) | 0 of 5 ([discovery/user-tests/format-quiz-qlaris.md:120](../user-tests/format-quiz-qlaris.md#L120)) |
+| Deletes the named format, or puts another there | drop | cannot tell ([discovery/user-tests/format-quiz-spec-run2.md:75](../user-tests/format-quiz-spec-run2.md#L75)) | 0 of 5 ([discovery/user-tests/format-quiz-qlaris.md:123](../user-tests/format-quiz-qlaris.md#L123)) |
+| Leaves, or goes back to the formats, without starting the form | drop | shown ([discovery/user-tests/format-quiz-spec-run2.md:76](../user-tests/format-quiz-spec-run2.md#L76)) | 2 of 2 in run B at the start, then back through the quiz ([discovery/user-tests/format-quiz-qlaris.md:130](../user-tests/format-quiz-qlaris.md#L130)); 5 of 5 did not send because of the Qlaris stop ([discovery/user-tests/format-quiz-qlaris.md:124](../user-tests/format-quiz-qlaris.md#L124)) |
+| Says "I'm guessing" or "not sure this is us" | drop | cannot tell ([discovery/user-tests/format-quiz-spec-run2.md:77](../user-tests/format-quiz-spec-run2.md#L77)) | 0 of 5 ([discovery/user-tests/format-quiz-qlaris.md:129](../user-tests/format-quiz-qlaris.md#L129)) |
+
+Against the lines: neither line can be judged. The go-on line ends with a sent form ([discovery/test-cards/format-quiz-prototype.md:80](../test-cards/format-quiz-prototype.md#L80)). No twin could send, and no person was tested. The drop line counts testers who leave without sending ([discovery/test-cards/format-quiz-prototype.md:86](../test-cards/format-quiz-prototype.md#L86)). All five twins stopped because of the Qlaris rule, not by choice. Written by the agent.
 
 ### We learned
-From that we learned that an unsure sponsor answers questions about the team today, when the page says that not knowing is fine. The sponsor still wants the format question answered by a person, in the scoping call.
+Written by the agent. These runs neither show nor refute the critical assumption. No run reached the sent form, and no person took part.
+- Strongest signal for: all five twins took the quiz result into the form and kept the named format unchanged ([discovery/user-tests/format-quiz-qlaris.md:115](../user-tests/format-quiz-qlaris.md#L115)). None said it was guessing ([discovery/user-tests/format-quiz-qlaris.md:129](../user-tests/format-quiz-qlaris.md#L129)). The five gave identical answers, so this is close to one answer repeated.
+- Strongest signal against: in the walkthrough, the buyer without budget copies the result and leaves to talk to colleagues ([discovery/user-tests/format-quiz-spec-run2.md:95](../user-tests/format-quiz-spec-run2.md#L95)). The twins decide on the budget themselves ([discovery/user-tests/format-quiz-qlaris.md:37](../user-tests/format-quiz-qlaris.md#L37)). So the Qlaris run cannot test the reason she left.
 
 ### Therefore we will
-Move on with format-quiz. Before roll-out:
-- Academy staff who run scoping calls confirm the invented line "Tick what you know. What you don't know yet, we work out with you in the scoping call." The spec lists it as invented, to be confirmed by "academy staff who run scoping calls" (`discovery/specs/format-quiz.md:131`).
-- The baseline formats page logs a `page_view` too, so formats page visits count the same way with and without the quiz. The spec names this gap: "The baseline formats page logs no `page_view`" (`discovery/specs/format-quiz.md:123`).
+The product lead's next step, 2026-11-16: a real user test.
+Written by the agent: the test with real people runs on the live page. The Qlaris runs started there, for example `https://loopwise-v2.vercel.app/formats.html?variant=format-quiz` ([discovery/user-tests/format-quiz-qlaris.md:33](../user-tests/format-quiz-qlaris.md#L33)). The card plans five buyers without budget ([discovery/test-cards/format-quiz-prototype.md:41](../test-cards/format-quiz-prototype.md#L41)).
 
 ### Options considered
-- Move on: chosen, with the two changes above.
-- Another round, changed spec: not chosen. No rework sign was seen.
-- Another round, next idea: not chosen. I4 "a "Book a call" button in place of the form" (`discovery/intents/format-question.md:38`) stays open for later, because the tester still asked about the format.
-- Kill: not chosen.
+Written by the agent.
+- Move on: not chosen. No counted test with people shows the assumption holds.
+- Another round: a test with people, a changed spec, or the next idea from the intent. The other ideas are I2 ("Offer other ways of contact: Call us directly, Book a call slot, that opens a calendar link (inquiry page)", built as call-slot), I6 ("Cut the form to name and email. Everything else is asked in the scoping call (inquiry page)", built as short-form) and I8 ("The inquiry page promises a short written proposal of two fitting formats, sent before any call (inquiry page)") ([discovery/intents/format-fit.md:58](../intents/format-fit.md#L58), [discovery/intents/format-fit.md:59](../intents/format-fit.md#L59), [discovery/intents/format-fit.md:60](../intents/format-fit.md#L60)).
+- Kill: drop the quiz and keep today's formats and inquiry pages.
 
 ### What we decided
-Move on with format-quiz, round 2 page, after the two changes before roll-out.
+Another round. The product lead's words, 2026-11-16, in German as said:
+„Kein echter Test mehr. Learning Cards für alle 3 mit dem Ergebnis und dem next step: echter User Test.“
+In English: no further test now, a learning card for each of the three with its result, and the next step is a real user test.
 
 ### Why
-One tester went through all four questions without help and sent the inquiry. The line about open answers turned "I don't know" from a stop into an answer.
+The product lead's words above. The product lead gave no further reason. Written by the agent.
 
 ### Who
-Reference decision (replace with your own)
+Product lead (Loopwise)
 
 ### When
-2026-08-18
+2026-11-16

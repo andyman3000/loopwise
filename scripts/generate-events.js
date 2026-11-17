@@ -4,10 +4,16 @@
 // A scenario without weeksAfter is a baseline export: weeks before launch only, cut at launch.
 import fs from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DAY = 86400000;
+
+// The example lines arrive with the success-line-first variant (block 4). The baseline needs none.
+const EXAMPLES_FILE = path.join(ROOT, 'site', 'variants', 'success-line-first', 'success-line-first.js');
+const { EXAMPLE_GROUPS } = fs.existsSync(EXAMPLES_FILE)
+  ? await import(pathToFileURL(EXAMPLES_FILE).href)
+  : { EXAMPLE_GROUPS: null };
 
 export function mulberry32(seed) {
   let a = seed >>> 0;
@@ -20,8 +26,8 @@ export function mulberry32(seed) {
   };
 }
 
-export const CSV_HEADER = 'id,submitted_at,variant,sponsor_type,team_size,quiz,quiz_answered,quiz_unsure,quiz_roles,quiz_stand,quiz_before,scoping_call_booked,booking_confirmed,call_team_questions,call_format_settled';
-export const BASELINE_CSV_HEADER = 'id,submitted_at,variant,sponsor_type,team_size,scoping_call_booked,booking_confirmed';
+export const CSV_HEADER = 'id,submitted_at,variant,buyer_type,team_size,success_line_choice,success_line_text,scoping_call_booked,booking_confirmed';
+export const BASELINE_CSV_HEADER = 'id,submitted_at,variant,buyer_type,team_size,scoping_call_booked,booking_confirmed';
 
 function csvCell(v) {
   const s = String(v);
@@ -30,7 +36,7 @@ function csvCell(v) {
 
 export function buildData(scenario) {
   const rnd = mulberry32(scenario.seed);
-  const pick = (arr, r = rnd) => arr[Math.floor(r() * arr.length)];
+  const pick = (arr) => arr[Math.floor(rnd() * arr.length)];
   const weighted = (obj, r = rnd) => {
     const u = r();
     let acc = 0;
@@ -44,28 +50,7 @@ export function buildData(scenario) {
   const baselineOnly = !scenario.weeksAfter;
   const launch = Date.parse(scenario.launchDate + 'T00:00:00Z');
   const through = scenario.dataThrough ? Date.parse(scenario.dataThrough + 'T00:00:00Z') : Infinity;
-  const qz = scenario.quiz;
-  // The quiz after launch draws from its own stream, so the weeks before launch stay as the baseline.
-  const qrnd = qz ? mulberry32(qz.seed) : null;
-  // The ticked answers of sent inquiries draw from a third stream, so they never shift the counts.
-  const arnd = qz ? mulberry32(qz.answerSeed) : null;
-  // What the person who runs a scoping call records, from recordFrom on. Its own stream, so it never
-  // shifts any other number.
-  const cr = scenario.callRecord;
-  const crnd = cr ? mulberry32(cr.seed) : null;
-  const recordFrom = cr ? Date.parse(cr.recordFrom + 'T00:00:00Z') : Infinity;
-  // Of the four questions about the team (who, how many, AI level, earlier training), the ones still
-  // asked in the call. A question the quiz answered is rarely asked again; one left open or answered "I don't know
-  // yet" is asked as often as without the quiz.
-  const callRecord = (type, quiz) => {
-    let asked = 0;
-    for (let i = 0; i < 4; i++) {
-      const p = quiz && quiz[i].answered ? cr.askIfAnswered : cr.askIfOpen[type];
-      if (crnd() < p) asked++;
-    }
-    const settled = crnd() < cr.formatSettled[type] + (quiz ? cr.formatSettledQuizBoost : 0);
-    return { asked, settled };
-  };
+  const sl = scenario.successLine;
   const events = [];
   const inquiries = [];
   let seq = 0;
@@ -89,42 +74,21 @@ export function buildData(scenario) {
   };
   const delay = (lo, hi, r = rnd) => Math.round(lo + r() * (hi - lo)) * 1000;
 
-  // One run through the quiz: per question answered, "I don't know yet", or left empty.
-  const QUIZ_STEPS = 4;
-  const quizAnswers = (type) => {
-    const out = [];
-    for (let i = 0; i < QUIZ_STEPS; i++) {
-      const unsure = qrnd() < qz.unsure[type][i];
-      const answered = !unsure && qrnd() >= qz.emptyGivenNotUnsure;
-      out.push({ step: i + 1, answered, unsure });
+  const successLineFor = (type) => {
+    if (!EXAMPLE_GROUPS) throw new Error('success-line-first variant missing: ' + EXAMPLES_FILE);
+    if (rnd() < sl.dontKnow[type]) return { choice: 'dont-know', text: '', vague: false, example: null };
+    if (rnd() < sl.vagueOwnGivenFilled[type]) return { choice: 'own', text: pick(sl.ownLines.vague), vague: true, example: null };
+    const choice = weighted(sl.choiceGivenFilled[type]);
+    if (choice === 'own') {
+      const pool = rnd() < sl.ownGapGivenOwn[type] ? sl.ownLines.implementationGap : sl.ownLines.other;
+      return { choice, text: pick(pool), vague: false, example: null };
     }
-    return out;
-  };
-  // What a sent inquiry ticked on questions 1, 3 and 4, as the inquiry page stores it.
-  // One or two options per answered question, drawn by weight without repeats.
-  const UNSURE = "I don't know yet";
-  const ticked = (opts) => {
-    const n = arnd() < qz.twoAnswers ? 2 : 1;
-    const left = { ...opts };
-    const out = [];
-    while (out.length < n && Object.keys(left).length) {
-      const total = Object.values(left).reduce((a, b) => a + b, 0);
-      const k = weighted(Object.fromEntries(Object.entries(left).map(([o, w]) => [o, w / total])), arnd);
-      out.push(k);
-      delete left[k];
-      if (qz.alone.includes(k)) break;
-    }
-    if (out.some((o) => qz.alone.includes(o))) return out.filter((o) => qz.alone.includes(o)).slice(0, 1);
-    return out;
-  };
-  const quizTexts = (quiz, type) => {
-    const at = (i, key) => (quiz[i].unsure ? UNSURE : quiz[i].answered ? ticked(qz.options[key][type]).join('; ') : '');
-    return { roles: at(0, 'roles'), stand: at(2, 'stand'), before: at(3, 'before') };
-  };
-
-  // Quiz screens are passed one after the other, ending a little before `end`.
-  const emitQuiz = (end, variant, session, answers) => {
-    answers.forEach((a, i) => emit(end - (answers.length - i) * 30000, 'inquiry_step_completed', variant, session, { step: a.step, answered: a.answered, unsure: a.unsure }));
+    const own = type === 'soft' ? EXAMPLE_GROUPS[0] : EXAMPLE_GROUPS[1];
+    const other = type === 'soft' ? EXAMPLE_GROUPS[1] : EXAMPLE_GROUPS[0];
+    const group = rnd() < sl.ownGroupAffinity ? own : other;
+    const line = pick(group.lines);
+    const text = choice === 'example' ? line.text : line.text + pick(sl.editSuffixes);
+    return { choice, text, vague: false, example: line.id };
   };
 
   // One visit sees several pages. Every visit draws how many pages it sees from the same
@@ -154,91 +118,20 @@ export function buildData(scenario) {
   };
   const gap = () => delay(br.minutesBetween[0] * 60, br.minutesBetween[1] * 60, brnd);
 
-  // From the inquiry page view on: start, send, scoping call, booking, follow-up.
-  // d draws whether the form is started and sent, r draws everything else.
-  const inquire = (s, t, variant, after, quizOn, type, quiz, d, r) => {
-    const st = quizOn ? scenario.steps.after : scenario.steps.before;
-    const startP = quizOn ? (quiz ? st.startGivenQuiz : st.startGivenNoQuiz) : st.startGivenView;
-    if (d() >= startP) return;
-    if (type === null) type = weighted(scenario.sponsorMix, r);
-    t += delay(5, 40, r);
-    emit(t, 'inquiry_started', variant, s, {});
-    if (d() >= st.submitGivenStart) return;
-
-    t += delay(60, 300, r);
-    const props = quizOn ? { quiz: Boolean(quiz) } : {};
-    emit(t, 'inquiry_submitted', variant, s, props);
-    const id = 'inq-' + String(++inquiryNo).padStart(4, '0');
-    const teamSize = pick(scenario.teamSizes, r);
-
-    let called = false;
-    let booked = false;
-    let callMs = null;
-    let bookMs = null;
-    let callRec = null;
-    const rate = (after ? scenario.scopingCallRate.after : scenario.scopingCallRate.before)[type];
-    if (r() < rate) {
-      const ct = t + delay(86400 + 3600, 3 * 86400 + 6 * 3600, r);
-      called = emit(ct, 'scoping_call_booked', variant, s, {});
-      if (called) callMs = ct;
-      if (called && cr && ct >= recordFrom) callRec = callRecord(type, quiz);
-      if (called && r() < scenario.bookingGivenCall[type]) {
-        const bt = ct + delay(5 * 86400, 20 * 86400, r);
-        booked = emit(bt, 'booking_confirmed', variant, s, {});
-        if (booked) bookMs = bt;
-        if (booked && r() < scenario.followup.answerRate) {
-          const ft = bt + scenario.followup.delayDaysAfterBooking * DAY + delay(0, 3 * 86400, r);
-          emit(ft, 'followup_answered', variant, s, { answer: weighted(scenario.followup.answers, r), weeks_after: 4 });
-        }
-      }
-    }
-    inquiries.push({
-      ms: t, id, variant, type, teamSize,
-      quiz: quizOn ? Boolean(quiz) : '',
-      quizAnswered: quiz ? quiz.filter((a) => a.answered).length : '',
-      quizUnsure: quiz ? quiz.filter((a) => a.unsure).length : '',
-      texts: quiz ? quizTexts(quiz, type) : { roles: '', stand: '', before: '' },
-      called, booked, callMs, bookMs, callRec,
-    });
-  };
-
-  // In quiz weeks the shipped variant serves the formats page; home and sponsor preparation stay baseline.
-  // The browsing paths and their gaps are drawn the same with or without the quiz, so the quiz is the
-  // only thing that differs between a quiz week and an off week.
-  const pageVariant = (p, quizOn) => (quizOn && p === 'formats' ? scenario.shippedVariant : scenario.baselineVariant);
-  const browseWeek = (weekStart, inquiryVisits, quizOn) => {
+  const browseWeek = (weekStart, inquiryVisits) => {
     for (const v of inquiryVisits) {
-      // A visit that took the quiz goes from the formats page through the quiz to the inquiry page.
-      const pages = v.quiz ? v.pages.slice(0, v.pages.lastIndexOf('formats') + 1) : v.pages;
+      const pages = path(true);
       let t = v.t;
-      const times = pages.map((p, i) => (t -= v.gaps[i] + (i === 0 && v.quiz ? (QUIZ_STEPS + 1) * 30000 : 0))).reverse();
-      pages.forEach((p, i) => emit(times[i], 'page_view', pageVariant(p, quizOn), v.s, { page: p }));
+      const times = pages.map(() => (t -= gap())).reverse();
+      pages.forEach((p, i) => emit(times[i], 'page_view', scenario.baselineVariant, v.s, { page: p }));
     }
     const others = Math.round((inquiryVisits.length * (1 - br.reachRate)) / br.reachRate * (1 + br.weeklyJitter * (2 * brnd() - 1)));
     for (let i = 0; i < others; i++) {
       const s = 's-' + String(++browseSessionNo).padStart(6, '0');
       let t = randomTime(weekStart, brnd);
-      let gone = false;
       path(false).forEach((p, j) => {
         if (j > 0) t += gap();
-        if (gone) return;
-        emit(t, 'page_view', pageVariant(p, quizOn), s, { page: p });
-        // A visit that would have left takes the quiz on the formats page. Some finish it and go on to
-        // the inquiry page, the others leave during the quiz.
-        if (quizOn && qz && p === 'formats' && qrnd() < qz.takeGivenFormats.leaving) {
-          gone = true;
-          const type = weighted(scenario.sponsorMix, qrnd);
-          const quiz = quizAnswers(type);
-          if (qrnd() < qz.finishGivenLeaving) {
-            const ti = t + (QUIZ_STEPS + 1) * 30000;
-            emitQuiz(ti, scenario.shippedVariant, s, quiz);
-            emit(ti, 'page_view', scenario.shippedVariant, s, { page: 'inquiry' });
-            inquire(s, ti, scenario.shippedVariant, true, true, type, quiz, qrnd, qrnd);
-          } else {
-            const stop = Number(weighted(qz.dropAtStep, qrnd));
-            emitQuiz(t + (stop + 1) * 30000, scenario.shippedVariant, s, quiz.slice(0, stop));
-          }
-        }
+        emit(t, 'page_view', scenario.baselineVariant, s, { page: p });
       });
     }
   };
@@ -248,9 +141,7 @@ export function buildData(scenario) {
 
   for (const w of weeks) {
     const after = w >= 0;
-    // With alternating weeks the shipped variant runs in even weeks after launch, the baseline in odd ones.
-    const quizOn = after && (!scenario.alternateWeeks || w % 2 === 0);
-    const variant = quizOn ? scenario.shippedVariant : scenario.baselineVariant;
+    const variant = after ? scenario.shippedVariant : scenario.baselineVariant;
     const weekStart = launch + w * 7 * DAY;
     const jitter = (m) => Math.max(1, Math.round(m * (1 + scenario.traffic.weeklyJitter * (2 * rnd() - 1))));
 
@@ -260,34 +151,67 @@ export function buildData(scenario) {
     for (let i = 0; i < others; i++) {
       const s = 's-' + String(++sessionNo).padStart(6, '0');
       const t = randomTime(weekStart);
-      const page = pick(['home', 'formats', 'sponsor-prep']);
+      const page = pick(['home', 'formats', 'buyer-prep']);
       if (!br) emit(t, 'page_view', scenario.baselineVariant, s, { page });
     }
 
     const views = jitter(scenario.traffic.inquiryPageViewsPerWeek);
+    const st = after ? scenario.steps.after : scenario.steps.before;
     const inquiryVisits = [];
     for (let i = 0; i < views; i++) {
       const s = 's-' + String(++sessionNo).padStart(6, '0');
-      const t = randomTime(weekStart);
-      // The pages before the inquiry page, drawn here so the quiz can depend on them.
-      const pages = br ? path(true) : null;
-      const gaps = pages ? pages.map(() => gap()) : null;
-      let type = null;
-      let quiz = null;
+      let t = randomTime(weekStart);
+      emit(t, 'page_view', variant, s, { page: 'inquiry' });
+      inquiryVisits.push({ s, t });
+      if (rnd() >= st.startGivenView) continue;
+      const type = weighted(scenario.buyerMix);
+      t += delay(5, 40);
+      emit(t, 'inquiry_started', variant, s, {});
+      let line = null;
       if (after) {
-        type = weighted(scenario.sponsorMix, qrnd);
-        // A visit that was going to the inquiry page anyway may take the quiz on the way, if it sees the formats page.
-        if (quizOn && (!pages || pages.includes('formats')) && qrnd() < qz.takeGivenFormats.inquiring) {
-          quiz = quizAnswers(type);
-          emitQuiz(t, variant, s, quiz);
+        if (rnd() >= st.stepGivenStart) continue;
+        line = successLineFor(type);
+        t += delay(30, 120);
+        if (line.choice !== 'dont-know') {
+          emit(t, 'success_line_filled', variant, s, { choice: line.choice, example: line.example, length: line.text.length });
+        }
+        emit(t + 1000, 'inquiry_step_completed', variant, s, { step: 'success_line', choice: line.choice });
+        t += 1000;
+        if (rnd() >= st.submitGivenStep) continue;
+      } else if (rnd() >= st.submitGivenStart) continue;
+
+      t += delay(60, 300);
+      const props = after ? { success_line: line.choice === 'dont-know' ? 'dont-know' : 'filled', choice: line.choice } : {};
+      emit(t, 'inquiry_submitted', variant, s, props);
+      const id = 'inq-' + String(++inquiryNo).padStart(4, '0');
+      const teamSize = pick(scenario.teamSizes);
+
+      let called = false;
+      let booked = false;
+      let callMs = null;
+      let bookMs = null;
+      const rate = (after ? scenario.scopingCallRate.after : scenario.scopingCallRate.before)[type];
+      if (rnd() < rate) {
+        const ct = t + delay(86400 + 3600, 3 * 86400 + 6 * 3600);
+        called = emit(ct, 'scoping_call_booked', variant, s, {});
+        if (called) callMs = ct;
+        if (called && rnd() < scenario.bookingGivenCall[type]) {
+          const bt = ct + delay(5 * 86400, 20 * 86400);
+          booked = emit(bt, 'booking_confirmed', variant, s, {});
+          if (booked) bookMs = bt;
+          if (booked && rnd() < scenario.followup.answerRate) {
+            const ft = bt + scenario.followup.delayDaysAfterBooking * DAY + delay(0, 3 * 86400);
+            emit(ft, 'followup_answered', variant, s, { answer: weighted(scenario.followup.answers), weeks_after: 4 });
+          }
         }
       }
-      emit(t, 'page_view', variant, s, { page: 'inquiry' });
-      inquiryVisits.push({ s, t, quiz, pages, gaps });
-      if (after) inquire(s, t, variant, true, quizOn, type, quiz, qrnd, rnd);
-      else inquire(s, t, variant, false, false, null, null, rnd, rnd);
+      inquiries.push({
+        ms: t, id, variant, type, teamSize,
+        choice: after ? line.choice : '', text: after ? line.text : '',
+        called, booked, callMs, bookMs,
+      });
     }
-    if (br) browseWeek(weekStart, inquiryVisits, quizOn);
+    if (br) browseWeek(weekStart, inquiryVisits);
   }
 
   // A baseline export is taken on launch day: later events are not in it yet.
@@ -299,7 +223,7 @@ export function buildData(scenario) {
   inquiries.sort((a, b) => a.ms - b.ms || a.id.localeCompare(b.id));
   const rows = baselineOnly
     ? inquiries.map((q) => [q.id, new Date(q.ms).toISOString(), q.variant, q.type, q.teamSize, q.called && q.callMs < launch, q.booked && q.bookMs < launch])
-    : inquiries.map((q) => [q.id, new Date(q.ms).toISOString(), q.variant, q.type, q.teamSize, q.quiz, q.quizAnswered, q.quizUnsure, q.texts.roles, q.texts.stand, q.texts.before, q.called, q.booked, q.callRec ? q.callRec.asked : '', q.callRec ? q.callRec.settled : '']);
+    : inquiries.map((q) => [q.id, new Date(q.ms).toISOString(), q.variant, q.type, q.teamSize, q.choice, q.text, q.called, q.booked]);
   const csvText = [baselineOnly ? BASELINE_CSV_HEADER : CSV_HEADER]
     .concat(rows.map((r) => r.map(csvCell).join(',')))
     .join('\n') + '\n';

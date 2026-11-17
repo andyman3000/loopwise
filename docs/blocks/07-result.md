@@ -13,14 +13,14 @@ allow.
    ```bash
    git add -A && git commit -m "my state before the demo"
    git fetch --tags --force
-   git switch -c result 06-test-decision
+   git switch -c result v2-06-test-decision
    ```
 2. The trainer shows the reference launch card, `discovery/test-cards/format-quiz.md`. The quiz ran
    in every other week after launch, today's form in the weeks between.
 3. Run `npm start`. The trainer shows the dashboard on the wall once, at
    `http://localhost:3000/dashboard`, and where each number is. Then click through the quiz yourself
    at `http://localhost:3000/formats.html?variant=format-quiz`.
-4. In pairs, run `/read-result`. Before it says what any number means, it shows a table: what the
+4. In pairs, start a fresh Claude Code session (`/clear`). Then run `/read-result`. Before it says what any number means, it shows a table: what the
    card assumed, one row per line, and where on the dashboard to look. Fill in the last column
    yourself: met, not met or unclear, and why in a few words. Then: would you keep the quiz, change
    it, or take it back?
@@ -42,3 +42,6 @@ other pairs read it.
 **For the Abgleich:** what would you not conclude from these numbers, even though it is tempting?
 
 The data are synthetic and the files say so.
+
+**Next:** stay in the room. The trainer runs `/next-bet` as the rest of the demo:
+[08-next-bet.md](08-next-bet.md).

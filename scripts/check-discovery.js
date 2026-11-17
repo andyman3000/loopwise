@@ -1,5 +1,7 @@
 // Deterministic checks on the discovery artefacts, run with `npm run check`.
 // 1. Every citation `file:line` (or "file, line N") points at an existing, non-empty line.
+//    A citation may be written as a Markdown link, [sources/x.md:16](../../sources/x.md#L16). It is
+//    read as its text, and the link must lead to the same file and line as the text names.
 // 2. A quote directly before or after a citation appears on the cited line(s).
 // 3. Event names come from the list in CLAUDE.md (column names of data/*.csv are allowed).
 // 4. No em or en dashes.
@@ -26,7 +28,7 @@ function walk(dir, out = []) {
 const norm = (s) => s.toLowerCase().replace(/[‘’]/g, "'").replace(/[“”]/g, '"')
   .replace(/\*\*|`/g, '').replace(/\s+/g, ' ').trim();
 
-function resolve(root, fromFile, ref, byName) {
+export function resolve(root, fromFile, ref, byName) {
   for (const c of [path.join(root, ref), path.join(root, 'sources', ref), path.join(path.dirname(fromFile), ref)]) {
     if (fs.existsSync(c) && fs.statSync(c).isFile()) return c;
   }
@@ -44,26 +46,71 @@ function allFiles(dir, out = []) {
   return out;
 }
 
+// A Markdown link whose text is a citation: [sources/x.md:16](../../sources/x.md#L16), or a file
+// without a line: [site/formats.html](../../site/formats.html).
+export const LINK = /\[([^[\]\n]+)\]\(([^)\s]+)\)/g;
+// A cited path: a file name with one of these extensions, with or without folders.
+export const PATH = '[\\w][\\w./-]*\\.(?:md|csv|jsonl|json|html|js)';
+export const LINK_TEXT = new RegExp(`^\`?(${PATH})(?::(\\d+)(?:-(\\d+))?)?\`?$`);
+
+// Checks each citation link on one line against its own text. Returns the problems found.
+function checkLinks(root, file, text, where, byName) {
+  const errors = [];
+  let links = 0;
+  for (const m of text.matchAll(LINK)) {
+    const t = m[1].match(LINK_TEXT);
+    if (!t) continue;
+    links++;
+    const [href, fragment = ''] = m[2].split('#');
+    if (/^[a-z]+:/i.test(href) || href.startsWith('/')) { errors.push(`${where}: link for ${m[1]} must be a path relative to this file, not ${m[2]}`); continue; }
+    let target;
+    try { target = path.resolve(path.dirname(file), decodeURIComponent(href)); } catch { errors.push(`${where}: link for ${m[1]} cannot be read: ${m[2]}`); continue; }
+    const named = resolve(root, file, t[1], byName);
+    // A missing file with a line is reported by the citation check; without a line it is reported here.
+    if (!named) { if (!t[2]) errors.push(`${where}: link text names missing file ${t[1]}`); continue; }
+    if (target !== named) { errors.push(`${where}: link for ${m[1]} leads to ${path.relative(root, target)}, not ${path.relative(root, named)}`); continue; }
+    // With a line: #L<line> (or #L12-L14 for a range). Without one: no line fragment; a section
+    // anchor such as #result is fine.
+    const want = t[2] ? [`L${t[2]}`, ...(t[3] ? [`L${t[2]}-L${t[3]}`] : [])] : null;
+    if (want ? !want.includes(fragment) : /^L\d/.test(fragment)) errors.push(`${where}: link for ${m[1]} ends in ${fragment ? '#' + fragment : 'no line'}, expected ${want ? '#' + want[0] : 'no line'}`);
+  }
+  return { errors, links };
+}
+
+// Every file in sources/, discovery/ and product/ by its base name, for bare file names.
+export function nameIndex(root) {
+  const byName = new Map();
+  for (const f of ['sources', 'discovery', 'product'].flatMap((d) => allFiles(path.join(root, d)))) {
+    byName.set(path.basename(f), [...(byName.get(path.basename(f)) || []), f]);
+  }
+  return byName;
+}
+
+// A line number on its own after a full citation on the same line: `:4`, `:4-6`.
+export const SHORT = /(?<![\w.])`?:(\d+)(?:-(\d+))?`?/g;
+
 // Finds citations in one line of text: `path.ext:12`, `path.ext:12-14`, `path.ext`, line 12, lines 12 to 14.
-const CITE = /`?([\w][\w./-]*\.(?:md|csv|jsonl|json|html|js))`?(?::(\d+)(?:-(\d+))?|`?,? lines? (\d+)(?: (?:to|-) (\d+))?)/g;
+export const CITE = new RegExp(`\`?(${PATH})\`?(?::(\\d+)(?:-(\\d+))?|\`?,? lines? (\\d+)(?: (?:to|-) (\\d+))?)`, 'g');
 
 export function check(root) {
   const errors = [];
-  let citations = 0, quotes = 0;
+  let citations = 0, quotes = 0, links = 0;
   const cache = new Map();
   const linesOf = (f) => { if (!cache.has(f)) cache.set(f, fs.readFileSync(f, 'utf8').split('\n')); return cache.get(f); };
   // Column names of data/*.csv look like events (`success_line_text`) but are not.
   const columns = new Set(allFiles(path.join(root, 'data')).filter((f) => f.endsWith('.csv'))
     .flatMap((f) => fs.readFileSync(f, 'utf8').split('\n')[0].split(',').map((c) => c.trim())));
-  const byName = new Map();
-  for (const f of ['sources', 'discovery', 'product'].flatMap((d) => allFiles(path.join(root, d)))) {
-    byName.set(path.basename(f), [...(byName.get(path.basename(f)) || []), f]);
-  }
+  const byName = nameIndex(root);
 
   for (const file of SCAN.flatMap((d) => walk(path.join(root, d)))) {
     const rel = path.relative(root, file);
-    linesOf(file).forEach((text, i) => {
+    linesOf(file).forEach((raw, i) => {
       const where = `${rel}:${i + 1}`;
+      const found = checkLinks(root, file, raw, where, byName);
+      errors.push(...found.errors);
+      links += found.links;
+      // From here on a citation link reads as its text, so both forms are checked alike.
+      const text = raw.replace(LINK, (m, t) => (LINK_TEXT.test(t) ? t : m));
       if (/[\u2013\u2014]/.test(text)) errors.push(`${where}: em or en dash`);
       for (const m of text.matchAll(/`([a-z_]+)`/g)) {
         if (EVENT_LIKE.test(m[1]) && !EVENTS.includes(m[1]) && !columns.has(m[1])) errors.push(`${where}: unknown event \`${m[1]}\``);
@@ -72,7 +119,7 @@ export function check(root) {
       const spans = [];
       let last = null;
       const refs = [...text.matchAll(CITE)].map((m) => ({ m, kind: 'full' }))
-        .concat([...text.matchAll(/(?<![\w.])`?:(\d+)(?:-(\d+))?`?/g)].map((m) => ({ m, kind: 'short' })))
+        .concat([...text.matchAll(SHORT)].map((m) => ({ m, kind: 'short' })))
         .sort((x, y) => x.m.index - y.m.index);
       for (const { m, kind } of refs) {
         let target, from, to;
@@ -116,13 +163,13 @@ export function check(root) {
       }
     });
   }
-  return { errors, citations, quotes };
+  return { errors, citations, quotes, links };
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const root = path.resolve(process.argv[2] || path.join(path.dirname(fileURLToPath(import.meta.url)), '..'));
-  const { errors, citations, quotes } = check(root);
+  const { errors, citations, quotes, links } = check(root);
   for (const e of errors) console.log(e);
-  console.log(`check: ${citations} citations, ${quotes} quotes checked, ${errors.length} problems`);
+  console.log(`check: ${citations} citations, ${quotes} quotes checked, ${links} citation links, ${errors.length} problems`);
   process.exit(errors.length ? 1 : 0);
 }

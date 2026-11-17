@@ -7,87 +7,80 @@
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
+  <!-- Variant format-quiz, built to learn: see discovery/specs/format-quiz.md. Synthetic material. -->
   <header class="site-header">
     <a class="brand" href="/">Loopwise</a>
     <nav aria-label="Main">
       <a href="/">Home</a>
       <a href="/formats.html">Formats</a>
       <a href="/inquiry.html" aria-current="page">Inquiry</a>
-      <a href="/sponsor-prep.html">Sponsor preparation</a>
+      <a href="/buyer-prep.html">Buyer preparation</a>
     </nav>
   </header>
   <main>
     <h1>Inquiry</h1>
     <p class="lead">Tell us a little about you and what you need.</p>
-    <p><a href="/formats.html?variant=format-quiz&amp;quiz=open">Unsure what to pick? Find out in a small quiz</a></p>
-    <p>After you send this, we book a scoping call with you. In the call we talk about the format and how you will know it worked.</p>
+    <p>Sending this form books nothing. We reply within a few days to set up a scoping call.</p>
+    <div class="with-aside">
     <form id="inquiry-form" novalidate>
       <div class="field"><label for="name">Name</label><input id="name" name="name" autocomplete="name"><p class="error" data-error-for="name" hidden></p></div>
       <div class="field"><label for="company">Company</label><input id="company" name="company" autocomplete="organization"><p class="error" data-error-for="company" hidden></p></div>
       <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email"><p class="error" data-error-for="email" hidden></p></div>
-      <div class="field"><label for="teamSize">Team size (optional)</label><input id="teamSize" name="teamSize" type="number" min="1" inputmode="numeric"><p class="error" data-error-for="teamSize" hidden></p></div>
-      <div class="field"><label for="message">What do you need?</label><textarea id="message" name="message" rows="6"></textarea><p class="error" data-error-for="message" hidden></p></div>
-      <input type="hidden" name="quizRoles">
-      <input type="hidden" name="quizStand">
-      <input type="hidden" name="quizBefore">
-      <input type="hidden" name="quizAnswered">
-      <input type="hidden" name="quizUnsure">
+      <div class="field"><div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:.25rem 1rem"><label for="message">What do you need?</label><button type="button" id="quiz-open" style="font:inherit;font-size:.95rem;background:none;border:0;padding:0;color:var(--accent);text-decoration:underline;text-underline-offset:.18em;cursor:pointer">Unsure? Take this quiz</button></div><textarea id="message" name="message" rows="6"></textarea><p class="error" data-error-for="message" hidden></p></div>
       <p class="error" id="form-error" role="alert" hidden></p>
       <button class="button" type="submit">Send inquiry</button>
     </form>
+    <aside aria-labelledby="after-inquiry">
+      <h2 id="after-inquiry">What happens after you send it</h2>
+      <ol class="path compact">
+        <li class="is-current" aria-current="step"><strong>You send this form</strong><span>It does not book anything.</span></li>
+        <li><strong>We hold a scoping call</strong><span>Together we settle which format fits your team.</span></li>
+        <li><strong>We prepare together</strong><span>The steps are on the <a href="/buyer-prep.html">buyer preparation page</a>.</span></li>
+        <li><strong>We train you</strong><span>The format runs as settled in the scoping call.</span></li>
+        <li><strong>We follow up after four weeks</strong><span>We ask what has changed in daily work.</span></li>
+      </ol>
+    </aside>
+    </div>
   </main>
-  <footer class="site-footer">Loopwise is a fictional academy used for a demo.</footer>
+  <footer class="site-footer">
+    <p>Loopwise is a fictional academy used for a demo.</p>
+    <nav aria-label="Footer">
+      <a href="/formats.html">Formats</a>
+      <a href="/inquiry.html">Inquiry</a>
+      <a href="/buyer-prep.html">Buyer preparation</a>
+    </nav>
+  </footer>
   <script type="module">
     import { initInquiryForm } from '/components/inquiry-form.js';
     import { logEvent } from '/components/events.js';
-    const VARIANT = 'format-quiz';
-    const KEY = 'formatQuiz';
-    const UNSURE = "I don't know yet";
-    const LABELS = ['Team', 'Size', 'Where the team stands with AI', 'Tried before'];
-    const HIDDEN = { 0: 'quizRoles', 2: 'quizStand', 3: 'quizBefore' };
+    import { initQuiz, formText } from '/variants/format-quiz/quiz.js';
+    logEvent('page_view', { page: 'inquiry' });
     const form = document.getElementById('inquiry-form');
-    logEvent('page_view', { page: 'inquiry' }, VARIANT);
+    initInquiryForm(form, { variant: 'format-quiz' });
 
-    function readQuiz() {
-      try {
-        const a = JSON.parse(sessionStorage.getItem(KEY));
-        return Array.isArray(a) && a.length === 4 ? a : null;
-      } catch {
-        return null;
-      }
+    // Fill "What do you need?" from the quiz. No cursor in a field:
+    // a started form counts only when the visitor clicks into a field.
+    const message = document.getElementById('message');
+    let lastQuizText = '';
+    function fill(result) {
+      const text = formText(result);
+      // A new quiz result replaces the last one. A text the visitor typed stays; the quiz text goes below it.
+      const now = message.value.trim();
+      message.value = !now || now === lastQuizText ? text : `${now}\n\n${text}`;
+      lastQuizText = text;
     }
-
-    // "Product owners" reads "product owners" inside a sentence; "UX people" keeps its capitals.
-    const inSentence = (s) => (/^[A-Z](?![A-Z])/.test(s) ? s[0].toLowerCase() + s.slice(1) : s);
-    // Answers that hold a comma themselves are kept apart with semicolons.
-    const joinAnswers = (values) => values.map(inSentence).join(values.some((v) => v.includes(',')) ? '; ' : ', ');
-
-    // Fills the form from the quiz answers, using only what the sponsor ticked or typed.
-    function fill(answers) {
-      const lines = [];
-      answers.forEach((a, i) => {
-        const values = Array.isArray(a?.values) ? a.values.map(String) : [];
-        if (a?.unsure) lines.push(`${LABELS[i]}: ${UNSURE}.`);
-        else if (values.length) lines.push(`${LABELS[i]}: ${joinAnswers(values)}.`);
-        if (HIDDEN[i]) form.elements[HIDDEN[i]].value = (a?.unsure ? UNSURE : values.join('; ')).slice(0, 300);
-      });
-      const size = answers[1]?.unsure ? '' : answers[1]?.values?.[0];
-      if (size) form.elements.teamSize.value = size;
-      form.elements.message.value = lines.join('\n');
-      form.elements.quizAnswered.value = String(answers.filter((a) => !a?.unsure && a?.values?.length).length);
-      form.elements.quizUnsure.value = String(answers.filter((a) => a?.unsure).length);
+    let stored = null;
+    try { stored = JSON.parse(sessionStorage.getItem('format-quiz')); } catch {}
+    if (stored && stored.format) {
+      fill(stored);
+      form.scrollIntoView({ block: 'start' });
     }
-
-    const answers = readQuiz();
-    if (answers) fill(answers);
-
-    initInquiryForm(form, {
-      variant: VARIANT,
-      submittedProps: () => ({ quiz: Boolean(answers) }),
-      onSubmitted: () => {
-        try { sessionStorage.removeItem(KEY); } catch {}
-      },
-    });
+    // The quiz opens in an overlay. The CTA keeps the focus off the form,
+    // so opening the quiz does not count as a started form.
+    const openQuiz = initQuiz({ inquireLabel: 'Use this', onInquire: fill });
+    const cta = document.getElementById('quiz-open');
+    cta.addEventListener('mousedown', (e) => e.preventDefault());
+    cta.addEventListener('click', openQuiz);
   </script>
 </body>
 </html>

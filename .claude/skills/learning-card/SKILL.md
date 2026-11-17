@@ -10,7 +10,7 @@ if the cross test dropped. Also after a second round, to update the card.
 **Input:** the variant name. If missing, ask.
 **Reads:** `discovery/test-cards/<variant>-prototype.md` (the assumption, the signs, the two lines);
 `discovery/user-tests/<variant>-cross.md` (the watcher's notes from the cross test), `<variant>-spec.md` and `<variant>-page.md` if they exist; `discovery/specs/<variant>.md` (section "Invented lines on the page");
-`product/personas/sponsor-soft.md`, `product/personas/sponsor-hard.md`;
+`product/personas/buyer-without-budget.md`, `product/personas/buyer-with-budget.md`;
 `discovery/intents/<opportunity>.md` (the other two ideas).
 **Writes:** `discovery/decisions/<nnn>-<variant>.md`. If a file for this variant exists, add a dated
 round below the last one, with all its sections, its own decision, Who and When included; never
@@ -21,35 +21,72 @@ A learning card (Osterwalder, Strategyzer) records what a test showed: we believ
 learned, therefore we will. Here it is also the decision record for what happens to the variant.
 The pair decides. This skill asks, quotes and writes; it decides nothing.
 
+**Setting.** Read the `Setting:` line in `CLAUDE.md`. No line means `workshop`.
+- `workshop`: one tester from another pair tried the page (the cross test). Notes are in
+  `<variant>-cross.md`, as below.
+- `team`: the team tested the page with people it recruited. Read "the pair" in this skill as
+  "the team", and "the cross test" as "the test with people". The rules under "Setting `team`"
+  replace the notes file, the sign marks and the label of a round.
+
 ## Rules
 
 - **One question at a time.** Wait for the answer before the next one. At most five sentences per turn. No emojis.
 - **Try first is the gut feeling.** The first question is always: "How did the test go, in a few words?" Never start with analysis. A vague reply ("go on", "ok") gets one more ask; if it stays vague, write "skipped". "skip" is written as "skipped".
 - **Never ask for what the files hold.** Quote the assumption, the signs and the lines from the prototype card. Do not ask the pair to repeat them.
 - **Write only what the pair says.** Observations, the learning and the decision are the pair's words, shortened at most. If an answer is vague, ask one follow-up. If it stays vague, write it as said and mark it "[vague: the pair did not say more]".
-- **Observations from people and from personas stay apart.** A cross-test observation quotes the watcher's notes with file and line (`discovery/user-tests/<variant>-cross.md:<line>`). If the cross test happened but the notes file is missing, ask the pair to write it first (block 6a says how) and wait. A persona observation quotes the walkthrough file and the persona-file line it rests on (`product/personas/<file>:<line>`). A persona action with no persona-file line behind it is not an observation and is left out.
-- **One round, one set of files.** Round 1 reads `<variant>-cross.md`, `<variant>-page.md` and the card's first section. Round 2 reads `<variant>-cross-2.md` and `<variant>-page-2.md` and the card's "Round 2" section. Never quote an earlier round's test as evidence for a later round.
+- **Observations from people and from personas stay apart.** A cross-test observation quotes the watcher's notes with file and line ([discovery/user-tests/<variant>-cross.md:<line>](../user-tests/<variant>-cross.md#L<line>)). If the cross test happened but the notes file is missing, ask the pair to write it first (block 6a says how) and wait. A persona observation quotes the walkthrough file and the persona-file line it rests on ([product/personas/<file>:<line>](../../product/personas/<file>#L<line>)). A persona action with no persona-file line behind it is not an observation and is left out.
+- **One round, one set of files.** Round 1 reads `<variant>-cross.md`, `<variant>-page.md` and the card's first section. Round 2 reads `<variant>-cross-2.md` and `<variant>-page-2.md` and the card's "Round 2" section. A persona walkthrough may have several runs in a round (`-run2`, `-run3`); read the latest run of the round. Never quote an earlier round's test as evidence for a later round.
 - **A test that does not count.** If the watcher's notes say the tester had no real case the scenario asked for, write at the top of the round: "This test does not count: the tester had no such case (`<notes file>:<line>`)." Ask the pair for another tester, or for `/persona-walkthrough <variant> page`, before the outcome. If the pair still chooses move on, advise against it once, plainly: "I advise against moving on. No counted test shows the assumption holds, so the launch card would rest on a guess." Then write their choice, and add under "Why": "Moved on without a counted test, against the skill's advice." Do not ask again.
 - **No sign judged.** If every sign of the round is "cannot tell" or "unclear", say so in one line: "No sign could be judged in this round, so it cannot show whether the assumption holds." The pair still names one of the three outcomes; a person test is the usual next step.
 - **Hold observations against the signs, not against hopes.** For each sign on the prototype card, ask whether the watcher saw it. The pair answers; you do not.
 - **A seen rework sign is named.** If the pair says the assumption held while a sign that points to rework or drop was seen, quote that sign and ask once: "This sign was seen. Does it change your answer?" Write what they say. The same if the pair calls the result unclear and still moves on: quote the go-on line and ask once, "The go-on line asked for this. Did you see it?"
+- **Feedback on the pair's own answers.** These answers get feedback: what the tester did or said (step 2), why the assumption held or broke (step 4), and the sentence "From that we learned that ..." (step 5). Tell the pair in two or three short lines how strong the answer was: what was good, what was weak, and why. Name their words. Be honest and specific, never flattering. Say it in the chat; the card holds only the pair's words. The gut feeling, a skipped answer and the choice of outcome get no feedback.
+  - What the tester did or said: are these things a watcher saw or heard? Or guesses about what the tester felt?
+  - Held or broke: does the reason rest on the signs and the two lines? Or on how the pair hoped the test would go?
+  - We learned: is it something new about the buyer or the assumption? Or does it repeat an observation, or name a solution?
 - **Decides nothing.** The pair names one of three outcomes and why: move on (with what changes before roll-out), another round (changed spec or the next idea from the intent), or kill. If they do not name one, the field stays `____ (human decides)`. Never suggest which one.
-- **Every claim quotes its source with location** (file and line). A citation into `discovery/` carries a short quote, so `npm run check` catches a line that moved; never a section name alone. No invented numbers: one tester is a pattern, not a rate.
+- **Every claim quotes its source with location** (file and line). Each citation is a Markdown link: `[<file>:<line>](<path from this file>#L<line>)` (`.claude/rules/writing.md`, "Citations are links"). A citation into `discovery/` carries a short quote, so `npm run check` catches a line that moved; never a section name alone. No invented numbers: one tester is a pattern, not a rate.
 - **The label of a round.** Each round starts with one label line. If that round has its own cross-test file (`<variant>-cross.md` for round 1, `<variant>-cross-2.md` for round 2): "Tested with one person from another pair: a pattern, not a rate." Otherwise: "Pressure-tested, not validated: rests on persona runs, not on people."
 - **Changes on other pages.** A change the pair names for roll-out may sit on any page. Name the page, and write the change as said.
 - **Invented lines.** If the outcome is move on, ask: "Which lines on the page are invented, and who confirms them before roll-out?" Quote the spec's "Invented lines on the page". Write the answer under "Therefore we will".
 
+### Setting `team`
+
+- **One notes file per tester.** Round 1: `discovery/user-tests/<variant>-tester-<n>.md`, numbered
+  from 1. Round 2: `<variant>-2-tester-<n>.md`. If a tester's notes are missing, ask the team to
+  write them first, in this format, and wait:
+  ```markdown
+  # Test with people: <variant>, tester <n>
+
+  > Notes by the watcher, <name>, <date>. Tester: <role, and how they meet the card's criteria>. No real names.
+
+  ## What the tester did and said
+  - <one line per thing the watcher saw or heard, words in quotes, word for word>
+
+  ## Signs from the card
+  - <sign>: seen / not seen / unclear
+  ```
+- **Planned against done.** Read the planned number from "How many" in the card's "Testers"
+  section. Count the notes files of the round. A tester whose notes say they had no real case does
+  not count; name them in one line.
+- **Signs per tester, then counted.** Quote the marks from all notes files in one table, one column
+  per tester. Ask: "Do these marks stand?" Then count per sign, for example "seen by 3 of 4". If a
+  line on the card counts testers, hold the count against it.
+- **The label of a round** in setting `team`: "Tested with <done> of <planned> people: a pattern,
+  not a rate." If no tester counts, use the persona label below.
+- **Step 2 asks across testers:** "What did the testers do or say? List it freely, per tester."
+
 ## Steps
 
 0. **Try first.** Ask: "How did the test go, in a few words?" Wait.
-1. Read the prototype card and the user-test files. If the prototype card is missing, stop and say so. If neither `<variant>-cross.md` nor `<variant>-page.md` exists, ask which test happened.
-2. Ask: "What did the tester do or say? List it freely." Reflect it back as a short list. Ask: "Anything else, or shall we work with these?"
+1. Read the prototype card and the user-test files. If the prototype card is missing, stop and say so. If neither `<variant>-cross.md` nor `<variant>-page.md` exists, ask which test happened. In setting `team`, read `<variant>-tester-<n>.md` in place of `<variant>-cross.md`.
+2. Ask: "What did the tester do or say? List it freely." Reflect it back as a short list. Give the feedback on it (see Rules). Ask: "Anything else, or shall we work with these?"
 3. Quote the sign marks from `<variant>-cross.md` in one message and ask: "Do these marks stand?" Ask per sign only where a mark is missing. Without a cross test, quote the persona run's sign table instead.
-4. Quote the assumption and the two lines. Ask: "Against these lines, did the assumption hold, break, or is it unclear? Why?" If unclear: "What would you need to see to be sure?"
-5. Ask: "Finish the sentence: From that we learned that ..."
+4. Quote the assumption and the two lines. Ask: "Against these lines, did the assumption hold, break, or is it unclear? Why?" If unclear: "What would you need to see to be sure?" Give the feedback on the reason (see Rules).
+5. Ask: "Finish the sentence: From that we learned that ..." Give the feedback on the sentence (see Rules).
 6. Ask: "Which outcome: move on, another round, or kill? And why?" If move on: "What changes before roll-out?" If another round: "Changed spec, or the next idea from the intent?" Name the two other ideas from the intent, quoted.
 7. Ask who decided and the date.
-8. Show the card. Ask what is wrong. Correct it, then write the file. Tell the human the next step: move on, `/test-card <variant> launch`; another round, rebuild, then `/persona-walkthrough <variant> page` and this skill again; kill, the next idea starts with `/test-card <next-variant> prototype`.
+8. Show the card. Ask what is wrong. Correct it, then write the file. Then stop.
 
 ## Output template
 
@@ -69,15 +106,19 @@ The pair decides. This skill asks, quotes and writes; it decides nothing.
 <gut feeling, word for word>
 
 ### We believed
-"<assumption, quoted>" (`discovery/test-cards/<variant>-prototype.md:<line>`)
+"<assumption, quoted>" ([discovery/test-cards/<variant>-prototype.md:<line>](../test-cards/<variant>-prototype.md#L<line>))
 
 ### We observed
-- <cross test: "<what the tester did or said>" (`discovery/user-tests/<variant>-cross.md:<line>`)>
-- <persona: "<quote>" (`discovery/user-tests/<file>:<line>`), resting on `product/personas/<file>:<line>`>
+- <cross test: "<what the tester did or said>" ([discovery/user-tests/<variant>-cross.md:<line>](../user-tests/<variant>-cross.md#L<line>))>
+- <persona: "<quote>" ([discovery/user-tests/<file>:<line>](../user-tests/<file>#L<line>)), resting on [product/personas/<file>:<line>](../../product/personas/<file>#L<line>)>
 
 | Sign (from the card) | Points to | Seen? |
 |---|---|---|
 | <sign> | go on / rework or drop | seen / not seen / unclear |
+
+<setting `team`: one column per tester instead of "Seen?", then "Seen by" with the count, for example "3 of 4">
+<setting `team`: "Planned: <n> testers. Tested: <done>. Not counted: <tester, reason, or none>.">
+<setting `team`: observations quote `discovery/user-tests/<variant>-tester-<n>.md` with line>
 
 Against the lines: <held / broke / unclear, and why, in the pair's words>
 

@@ -11,7 +11,7 @@ improves the workshop with it.
    git checkout origin/build -- .claude/skills/workshop-feedback docs/blocks/09-feedback.md
    ```
    Restart Claude Code, so it sees the new skill.
-2. In Claude Code: `/workshop-feedback`. Each of you answers five short questions on your own. Hand
+2. In the fresh session after the restart, run `/workshop-feedback`. Each of you answers five short questions on your own. Hand
    over the keyboard when the skill asks.
 3. The skill shows the files it will pack: your artefacts in `discovery/`, your variant in
    `site/variants/`, your git history and your answers. Say yes, or name what to leave out.
@@ -25,3 +25,5 @@ improves the workshop with it.
 
 The answers carry your name, because you send the mail. Skip any question you do not want to
 answer.
+
+**Next:** nothing. This is the last block of the workshop.

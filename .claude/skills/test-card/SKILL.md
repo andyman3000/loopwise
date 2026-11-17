@@ -1,6 +1,6 @@
 ---
 name: test-card
-description: Draft the test card for one solution variant, in one of two modes. Both read as a Strategyzer test card: we believe that, to test that we will, we are right if. "prototype" writes the card for the prototype test before the spec and the build - one critical assumption, a test scenario for a tester, signs to watch, a go-on line and a rework-or-drop line. "launch" writes the card for the release - critical assumptions, a success line set upfront, usage hypothesis, proxy metric, counter metric, kill criterion, time frame. Use as "/test-card <variant> prototype" or "/test-card <variant> launch". Writes one file per variant and mode; never decides whether the variant ships.
+description: Draft the test card for one solution variant, in one of two modes. Both read as a Strategyzer test card in four lines: we believe that, to verify that we will, and measure, we are right if. "prototype" writes the card for the prototype test before the spec and the build - one critical assumption, a test scenario for a tester, signs to watch, a go-on line and a rework-or-drop line. "launch" writes the card for the release - critical assumptions, a success line set upfront, usage hypothesis, proxy metric, counter metric, kill criterion, time frame. Use as "/test-card <variant> prototype" or "/test-card <variant> launch". Writes one file per variant and mode; never decides whether the variant ships.
 ---
 
 # Test card
@@ -18,15 +18,22 @@ Both modes also read `product/constraints.md`, `discovery/kpi-tree.md`, `product
 
 This is an assessment drafted by an agent, not a decision. A human owns the card and every value on it.
 
+**Setting.** Read the `Setting:` line in `CLAUDE.md`. No line means `workshop`.
+- `workshop`: a pair in the training. One tester from another pair tries the page (the cross test).
+- `team`: a product team. It tests the page with people it recruits. Read "the pair" in this skill
+  as "the team", and "the cross test" as "the test with people". Mode `prototype` adds the rules
+  under "Setting `team`". Mode `launch` is the same in both settings.
+
 ## Rules for both modes
 
-- **Every claim quotes its source with location** (file and line). No quote, no claim.
+- **Every claim quotes its source with location** (file and line). No quote, no claim. Each citation is a Markdown link: `[<file>:<line>](<path from this file>#L<line>)` (`.claude/rules/writing.md`, "Citations are links").
 - **Do not invent numbers.** Evidence uses only counted numbers: sources, voices, events in the log. No scores, no probabilities, no totals.
 - **Evidence levels in words:** **well supported**, **partly supported** or **unsupported**, with reasoning, sources, counter-evidence and gaps.
 - **Repeat the material label:** the sources are synthetic or anonymised composites; the card says so in its header.
 - Respect `product/constraints.md`: a line that needs data the constraints rule out goes under "What we cannot see" or "What this test cannot show".
 - Leave the owner field and every `____ (human decides)` field empty.
 - **Try first, then compare.** Each mode asks the human one question before it drafts (below). Wait for the answer and never invent it. A vague reply ("go on", "ok") is not an answer: ask once more, and if it stays vague, write "skipped". If the answer names a solution or a page change instead of what they want to see, keep it word for word and say so in "Your first try". After drafting, fill the section "Your first try": their answer word for word, then two or three short lines on where your draft differs and why. If they say skip, write "skipped". This step is how participants learn the concept; do not shorten it.
+- **Feedback on the human's answer.** Each answer the human gives in their own words gets feedback: the first try, and in mode `prototype` the answer on what the idea answers of an earlier learning. Tell them in two or three short lines how strong it was. Say what was good, what was weak, and why. Judge it against what a test card needs, as each mode says below. Name the words in their answer. Be honest and specific, never flattering. A skipped answer gets no feedback. Write the feedback on the first try under "Feedback" in "Your first try" too.
 
 ## Mode `prototype`
 
@@ -34,10 +41,13 @@ A prototype test shows one person a rough page and watches what they do. It test
 assumption, before anyone builds the real thing. The person who built the page watches; the tester
 knows only the situation and the task, never the assumption.
 
-The card reads as a test card (Osterwalder, Strategyzer): **We believe that** <the assumption>.
-**To test that, we will** <show a tester the page, with this scenario, and watch for these signs>.
-**We are right if** <go-on line>. **We rework or drop the idea if** <rework-or-drop line>.
-The learning card later answers it line by line: we believed, we observed, we learned, therefore we will.
+The card reads as a test card (Osterwalder and Bland, Strategyzer), in four lines:
+- **We believe that** <the assumption>.
+- **To verify that, we will** <show a tester the page, with this scenario>.
+- **And measure** <the signs the watcher sees or hears>.
+- **We are right if** <go-on line>.
+
+Under the four lines: **We rework or drop the idea if** <rework-or-drop line>.
 
 ### Rules
 
@@ -49,18 +59,36 @@ The learning card later answers it line by line: we believed, we observed, we le
   - If the assumption needs the tester to be in a certain situation (a training that did not stick, no idea what to ask for) or to know something about their team, the situation asks them to answer for a real case of their own: "Think of a team you know well", "Think of a training your team had that did not stick". It never hands them that case. If the tester has no such case, the test does not count.
   - It names no role or fact a persona file contradicts unless the test needs it; then say so under "What this test cannot show".
 - **Signs are what the watcher can see or hear:** a click, a pause, a question the tester asks, a field left empty, words the tester says. Not a feeling the watcher guesses. Each sign is tied to the go-on line or to the rework-or-drop line.
-- **Go-on line and rework-or-drop line** are set before the test, in words, by the human. Propose both, mark each "proposal". No percentages: one tester per pair cannot carry a rate.
-- **Persona-source rule.** An AI persona (`persona-walkthrough`) can test only what its persona file has a source for. For each sign, check `product/personas/sponsor-soft.md` and `product/personas/sponsor-hard.md`: quote the line that states the behaviour itself, or write "only the cross test with people can test this". A line that names only the worry, the goal, what the sponsor knows, or a different behaviour is not enough. Anything the tester would write in their own words is always "only the cross test with people can test this".
+- **Go-on line and rework-or-drop line** are set before the test, in words, by the human. Propose both, mark each "proposal". No percentages: one tester per pair cannot carry a rate. In setting `team` the lines may count testers (see "Setting `team`").
+- **Persona-source rule.** An AI persona (`persona-walkthrough`) can test only what its persona file has a source for. For each sign, check `product/personas/buyer-without-budget.md` and `product/personas/buyer-with-budget.md`: quote the line that states the behaviour itself, or write "only the cross test with people can test this". A line that names only the worry, the goal, what the buyer knows, or a different behaviour is not enough. Anything the tester would write in their own words is always "only the cross test with people can test this".
+- **Feedback on the first try** asks: does "We believe that" name the assumption, not the idea? Is "To verify that, we will" something one tester does on a page? Does "And measure" name what a watcher can see or hear, not a feeling? Is "We are right if" set before the test, and could a watcher tell whether it happened?
 - **"Pressure-tested, not validated"** stands at the top of the card. The AI personas come from the same sources as the opportunity, so they cannot confirm it from outside.
+
+### Setting `team`
+
+- **Who tests.** Propose who qualifies as a tester, from the persona file of the buyer type the
+  scenario targets. Quote the lines you use. Ask the human to confirm or change the criteria, and to
+  name who recruits the testers and by when.
+- **How many.** Propose five people per buyer type the test targets, marked "proposal". Say why in
+  one line in the chat: five people show most of the problems people have in understanding and
+  using one page. If the scenario fits both buyer types, ask whether the test covers one type or
+  both. The human sets the number.
+- **The two lines may count testers.** For example "at least 3 of 5 testers ...". Mark each line
+  "proposal". The human sets it before the first test. Never a percentage.
+- **Not every assumption fits a prototype test.** A prototype test shows whether people understand
+  and use the page. It cannot show whether they would book or pay. If the assumption is about that,
+  say so under "What this test cannot show", and name the launch card as the place to measure it.
+- **The tester count goes on the card**, so the learning card can say how many of the planned
+  people tested.
 
 ### Steps
 
-0. **Try first.** Ask the human: "Finish three sentences in your own words. We believe that ... To test that, we will ... We are right if ..." Wait for the answer before you read further or draft anything. The last sentence matters most: what would a tester have to do, or say, for the assumption to hold?
-1. Read the intent and its "Selection (human)". Quote the assumption, the idea and the variant name. If a field is empty, stop and say which. If `discovery/decisions/` holds a learning card for an earlier variant of the same intent, quote its "We learned" line and ask the human: "What does this idea answer of what you learned?" Put the answer under "The assumption we test".
+0. **Try first.** Ask the human: "Finish four lines in your own words. We believe that ... To verify that, we will ... And measure ... We are right if ..." Wait for the answer before you read further or draft anything. The last line matters most: what would a tester have to do, or say, for the assumption to hold?
+1. Read the intent and its "Selection (human)". Quote the assumption, the idea and the variant name. If a field is empty, stop and say which. Now give the feedback on the first try (see Rules): the intent shows whether "We believe that" names the assumption or the idea. If `discovery/decisions/` holds a learning card for an earlier variant of the same intent, quote its "We learned" line and ask the human: "What does this idea answer of what you learned?" Put the answer under "We believe that". Then give feedback in two lines: does the answer tie the new idea to what was learned, or only restate the idea?
 2. Read the idea's assumptions and their sources in the intent. Do not reassess them.
-3. Draft the scenario, the signs, the two lines and what the test cannot show. Apply the persona-source rule to every sign. Hold the situation against both persona files: their "Persona type" line and their facts (the soft sponsor has no budget and no line authority, `product/personas/sponsor-soft.md:5`; the hard sponsor already got a first step approved, `product/personas/sponsor-hard.md:16`). A role or fact that clashes goes under "What this test cannot show"; the personas then keep their own file.
-4. Show the human the scenario and the signs. Ask: can a tester who knows only the situation and the task show these signs? Change what they say.
-5. Write the file. Tell the human in three lines which sign is weakest, which lines they must own, and that the next step is `/variant-spec <variant>`. If every sign is "only the cross test with people can test this", say so: the persona runs will then show stalls only, not signs.
+3. Draft the scenario, the signs, the two lines and what the test cannot show. Apply the persona-source rule to every sign. Hold the situation against both persona files: their "Persona type" line and their facts (the buyer without budget does not decide alone and has no budget settled at first contact, `product/personas/buyer-without-budget.md:5`; the buyer with budget already got a first step approved, `product/personas/buyer-with-budget.md:16`). A role or fact that clashes goes under "What this test cannot show"; the personas then keep their own file.
+4. Show the human the scenario and the signs. Ask: can a tester who knows only the situation and the task show these signs? Change what they say. In setting `team`, then ask who qualifies, how many, who recruits and by when (see "Setting `team`").
+5. Write the file. Tell the human in three lines which sign is weakest and which lines they must own. If every sign is "only the cross test with people can test this", say so: no AI persona can show a sign on this card. Then stop.
 
 ### Output template, mode `prototype`
 
@@ -75,13 +103,19 @@ The learning card later answers it line by line: we believed, we observed, we le
 
 ## Your first try
 <the human's answer, word for word> · Where the draft differs: <two or three short lines>
+Feedback: <two or three short lines: what was strong, what was weak, and why>
 
 ## We believe that (the assumption we test)
-"<assumption, quoted from Selection (human)>" (`discovery/intents/<opportunity>.md:<line>`)
+"<assumption, quoted from Selection (human)>" ([discovery/intents/<opportunity>.md:<line>](../intents/<opportunity>.md#L<line>))
 Level in the intent: <level, quoted>
 
-## To test that, we will
-Show one tester from another pair the page `/<page>?variant=<variant>`. The tester gets only the scenario below. The person who built the page watches for the signs.
+## To verify that, we will
+Show <workshop: "one tester from another pair" | team: "<n> people who <criteria>"> the page `/<page>?variant=<variant>`. Each tester gets only the scenario below. The person who built the page watches for the signs.
+
+### Testers (setting `team` only)
+- **Who qualifies:** <criteria, proposal, with the persona lines they rest on>
+- **How many:** <n> per <buyer type>, proposal · Set by: ____ (human decides)
+- **Recruited by:** <name or role> · **By:** <YYYY-MM-DD>
 
 ### Test scenario (the tester sees only this)
 - **Situation:** <two or three sentences, "You are ...">
@@ -90,10 +124,10 @@ Show one tester from another pair the page `/<page>?variant=<variant>`. The test
 - **Sources:** <citations for the team facts in the situation, not read to the tester>
 - **Does not count if:** <only when the situation asks for a real case: "the tester has no such case">
 
-### Signs the watcher looks for
+## And measure (the signs the watcher looks for)
 | Sign (what the watcher sees or hears) | Points to | Can a persona show it? |
 |---|---|---|
-| <sign> | go on | <"yes: <quote>" (`product/personas/<file>:<line>`), or "only the cross test with people can test this"> |
+| <sign> | go on | <"yes: <quote>" ([product/personas/<file>:<line>](../../product/personas/<file>#L<line>)), or "only the cross test with people can test this"> |
 | <sign> | rework or drop | ... |
 
 ## We are right if (go-on line)
@@ -103,16 +137,18 @@ Show one tester from another pair the page `/<page>?variant=<variant>`. The test
 <in words, proposal> · Set on: <YYYY-MM-DD>
 
 ## What this test cannot show
-- One tester per pair: a pattern, not a rate.
-- <what the scenario cannot reach, for example whether the sponsor later books>
+- <workshop: "One tester per pair: a pattern, not a rate." | team: "<n> testers: a pattern, not a rate.">
+- <team: whether the assumption needs a test the prototype cannot give, for example whether buyers book>
+- <what the scenario cannot reach, for example whether the buyer later books>
 - <signs no persona file has a source for>
 ```
 
 ## Mode `launch`
 
 A launch card says, before release, what must happen for the variant to count as working, and when
-to take it back. Its first section says this as a test card (Osterwalder, Strategyzer): we believe
-that, to test that we will, we measure, we are right if, we take it back if.
+to take it back. Its first section says this as a test card (Osterwalder and Bland, Strategyzer), in
+four lines: we believe that, to verify that we will, and measure, we are right if. The kill criterion
+follows under the four lines: we take it back if.
 
 ### Rules
 
@@ -121,24 +157,25 @@ that, to test that we will, we measure, we are right if, we take it back if.
 - **Citations into `discovery/` carry a short quote**, so `npm run check` catches a line that moved. Never cite a section name alone.
 - **Every line is checkable against data later.** Each metric names the event(s) it is computed from, from this list only: `page_view`, `inquiry_started`, `inquiry_step_completed`, `inquiry_submitted`, `success_line_filled`, `scoping_call_booked`, `booking_confirmed`, `followup_answered`. If a line cannot be computed from these, say so under "What we cannot see" instead of inventing an event.
 - **Changes before roll-out come first.** If the learning card moves on "with what changes before roll-out", check each change is in the spec. If a page change is missing, list it and stop: the spec needs it before the launch card. A change that is not a page change (someone confirms a line, a person test) is listed as open on the card, not as missing. A change on another page belongs in the spec like any other: the variant holds one file per page it changes.
-- **Invented lines are assumptions.** Every line the spec marks as invented that the page shows to sponsors (a promise about what the academy does) becomes a critical assumption, with "unsupported" until someone who runs the training confirms it.
+- **Invented lines are assumptions.** Every line the spec marks as invented that the page shows to buyers (a promise about what the academy does) becomes a critical assumption, with "unsupported" until someone who runs the training confirms it.
 - **Hold every threshold against its counted baseline.** Where `data/` holds the baseline, count it and put it next to the threshold. If the baseline already meets the kill criterion, or already meets the success line, say so in one line: the threshold would fire, or pass, on day one. The human sets the value.
 - **Hold every threshold against the usual swing.** Before setting a line on a rate, count the same rate for the unchanged page in blocks as long as the comparison will be (four weeks per side, eight weeks after launch), across the baseline in `data/`. Show the blocks in a table with the command. If the line asks for a change smaller than the largest difference between neighbouring blocks, say so: the rate shows a direction, not an effect. Then propose a line where the variant should make a larger difference (a step it replaces, a field it fills, a record outside the website), or mark the rate "direction only". Counted blocks only, no probabilities. Do the same for the kill criterion: count how often the unchanged page would have met it.
 - **Every driver the intent wants to move gets a line.** Quote each driver from the intent's "Desired outcome", with its line. Each one appears on the card: in the success line, as a line marked "direction only", or under "What we cannot see" with the reason. A card that drops a driver gets read without it later, and the result the intent asked for goes unread.
 - **Name the driver the page can move.** A variant changes pages on the website, up to the sent inquiry. If the intent's driver lies after it (call rate, booking rate), name the driver the pages can move and write the link as `[assumption: ...]`. Quote both drivers from `discovery/kpi-tree.md`.
 - **Say whether this repo's data holds the variant.** Count the events in `data/events.jsonl` whose `variant` is this variant. If there are none, write in the header and under "What we cannot see": "No event in `data/` carries this variant, so this card cannot be read against the data in this repo."
 - **The success line is set upfront**, before launch, and never edited after data arrives. A later change is a new card version with a date.
-- Leave the Result section empty. `read-result` fills it.
+- Leave the Result section empty.
+- **Feedback on the first try** asks: can the success line be counted from the events in the list above? Does it name what is compared with what? Is it set before launch, not tuned to a hoped result? Once the swing table exists, say whether the change it asks for is larger than the usual swing.
 
 ### Steps
 
-0. **Try first.** Ask the human for their success line in one sentence: what must happen for this variant to count as working. Wait for the answer before you read further or draft anything.
+0. **Try first.** Ask the human to finish one line: "We are right if ...". That is their success line: what must happen for this variant to count as working. Wait for the answer before you read further or draft anything.
 1. If the spec changed after the learning card, ask whether the page was rebuilt. If not, stop: the launch card describes the page that ships, so the rebuild comes first. Read the spec, the prototype card `discovery/test-cards/<variant>-prototype.md` and the learning card for this variant in `discovery/decisions/` (`<nnn>-<variant>.md`) if they exist, and the intent. If the variant name has no file in `discovery/specs/`, stop and ask.
 2. List the critical assumptions: what must be true for this variant to change behaviour. Two to four. Start with the one the prototype tested and what the learning card says about it, quoted. Search `sources/` for evidence for and against each.
 3. Map the variant to its KPI branch in `discovery/kpi-tree.md` (quote the line).
 4. Count the events in `data/events.jsonl` that carry this variant.
 5. Draft each field of the template. Check: every metric names events; no counted number lacks a source; every threshold says "proposal"; every driver in the intent's "Desired outcome" has a line on the card or a reason under "What we cannot see".
-6. Write the file. Tell the human in three lines which assumption is weakest and which line needs their judgement most.
+6. Write the file. Give the feedback on the first try (see Rules), now that the swing table shows the usual swing. Tell the human in three lines which assumption is weakest and which line needs their judgement most. Then stop.
 
 ### Output template, mode `launch`
 
@@ -148,19 +185,21 @@ that, to test that we will, we measure, we are right if, we take it back if.
 > Assessment drafted by an agent on <YYYY-MM-DD>, not a decision.
 > Card owner: ____ (human decides)
 > Variant: `discovery/specs/<variant>.md` · Intent: `discovery/intents/<opportunity>.md` · Prototype test: `discovery/test-cards/<variant>-prototype.md`, learning card `discovery/decisions/<nnn>-<variant>.md` (or "none")
-> KPI branch: <branch> ("<quote>", `discovery/kpi-tree.md:<line>`)
+> KPI branch: <branch> ("<quote>", [discovery/kpi-tree.md:<line>](../kpi-tree.md#L<line>))
 > Material: <synthetic or composite, repeated>
 > Data: <n> events in `data/events.jsonl` carry this variant <(command)>
 
 ## Your first try
 <the human's answer, word for word> · Where the draft differs: <two or three short lines>
+Feedback: <two or three short lines: what was strong, what was weak, and why>
 
-## The card in five lines
+## The test card in four lines
 - **We believe that** <the weakest critical assumption below, in one sentence>.
-- **To test that, we will** release the variant to <who> for <time frame>.
-- **And measure** <proxy metric>.
+- **To verify that, we will** release the variant to <who> for <time frame>.
+- **And measure** <proxy metric, with the events it is computed from>.
 - **We are right if** <success line>.
-- **We take it back if** <kill criterion>.
+
+Under the four lines: **We take it back if** <kill criterion>.
 
 Each line repeats a field below in one sentence. If a field changes, this section changes with it.
 
@@ -170,7 +209,7 @@ Each line repeats a field below in one sentence. If a field changes, this sectio
 ## Critical assumptions
 1. **<assumption>**: <well supported | partly supported | unsupported>
    - Reasoning: <why this level>
-   - Sources: "<quote>" (`<file>:<line>`)
+   - Sources: "<quote>" ([<file>:<line>](../../<file>#L<line>))
    - Prototype test: <what the learning card says about it, quoted, or "not tested">
    - Counter-evidence: <quote with location, or "none found in sources/">
    - Gap: <what nobody has checked yet, who could>
@@ -198,5 +237,5 @@ Each line repeats a field below in one sentence. If a field changes, this sectio
 
 ## Result
 
-_Empty until after the time frame. `read-result` fills this section from the event log; a human decides keep, adjust or withdraw._
+_Empty until after the time frame. A human decides keep, adjust or withdraw._
 ```

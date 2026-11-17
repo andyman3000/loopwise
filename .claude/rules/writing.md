@@ -6,8 +6,8 @@ Each sentence must make sense on first reading, without the files around it.
 ## Say the full thing
 - No coined labels. Do not invent a short name for an idea and reuse it.
   Write what people said or did, every time.
-  - Not: "sponsors who don't book name the fade, not the format"
-  - But: "sponsors who don't book are worried the training won't last,
+  - Not: "buyers who don't book name the fade, not the format"
+  - But: "buyers who don't book are worried the training won't last,
     not unsure about the format"
 - Terms from `product/glossary.md` and the product terms named under
   "Audience and Language" in `CLAUDE.md` are allowed. Nothing else gets a label.
@@ -18,7 +18,9 @@ Each sentence must make sense on first reading, without the files around it.
 - No noun stacks. At most two nouns in a row.
   Not "booking rate link", but "whether this changes the booking rate".
 - A person or a system is the subject. Not "the quote carries" or
-  "the data says", but "the sponsor says" or "12 of 40 visits end here".
+  "the data says", but "the buyer says" or "12 of 40 visits end here".
+- Every verb names its object or person, unless the sentence leaves no
+  doubt. Not "before I can ask", but "before I can send you an inquiry".
 
 ## Sentences
 - Under 15 words. One idea per sentence.
@@ -34,6 +36,20 @@ Each sentence must make sense on first reading, without the files around it.
 - Forced lists of three, and announced counts ("Two things:").
 - "Nobody", "nothing", "everyone": name the group. "No respondent reports".
 - Stance adverbs: genuinely, quietly, deliberately, plainly.
+
+## Citations are links
+Every reference in an artefact is a clickable Markdown link.
+A reader in a Markdown preview then opens it with one click.
+- The link text stays `file:line`, the path from the repo root.
+- The target is the same file, relative to the artefact's own folder.
+- A line becomes the fragment `#L<line>`. A range `:12-14` links to `#L12`.
+- A file without a line links to the file, with no fragment.
+- From `discovery/intents/x.md`, a mail line is
+  `[sources/inquiry-mails/inquiry-07.md:16](../../sources/inquiry-mails/inquiry-07.md#L16)`.
+- From the same file, the comparison is
+  `[discovery/opportunity-comparison.md](../opportunity-comparison.md)`.
+- No backticks inside the link text. `npm run check` flags a link
+  whose target or line differs from its text.
 
 ## Before saving
 Read each sentence as someone who opened only this file.

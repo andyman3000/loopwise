@@ -61,6 +61,8 @@ export function initInquiryForm(form, { variant = 'baseline', submittedProps = (
       if (res.ok && json.redirect) {
         logEvent('inquiry_submitted', submittedProps(), variant);
         if (onSubmitted) onSubmitted();
+        // The confirmation page greets the sender by first name.
+        try { sessionStorage.setItem('inquiry-first-name', String(fields.name || '').trim().split(/\s+/)[0]); } catch {}
         // sendBeacon is queued by the browser and survives navigation
         window.location.href = json.redirect;
         return;

@@ -7,33 +7,35 @@ Status: draft. Numbers appear only where they are counted from a file; everythin
 
 **Business goal: more booked in-house workshops per quarter**
 
-Loopwise earns money when a sponsor books a workshop for their team.
+Loopwise earns money when a buyer books a workshop for their team.
 
 ## This quarter: more inquiries that end in a booking
 
-A sponsor finds the website, opens the inquiry form, sends it, has a scoping call, and books.
+A buyer finds the website, opens the inquiry form, sends it, has a scoping call, and books.
 Each step loses people. This quarter we work on that path, because the website can change it and
 `data/` can count it.
 
 Drivers: website visits; visits that open the inquiry page; inquiries started; inquiries submitted;
-scoping calls booked; bookings confirmed. [assumption: sponsors who can name a success line before the call book more often]
+scoping calls booked; bookings confirmed. [assumption: buyers who can name a success line before the call book more often]
 
 ## Why this path
 
-Sponsors often come without knowing what they want:
+Buyers often come without knowing what they want:
 
-- They ask for "something with AI" for the team (`sources/emails/inquiry-03.md:14`).
-- Before booking, sponsors often cannot say which format they need or how they would recognise
-  success (`sources/interviews/sponsor-soft.md:49`, `sources/interviews/sponsor-hard.md:37`).
+- They ask for "something with AI" for the team (`sources/inquiry-mails/inquiry-03.md:14`).
+- Before booking, buyers often cannot say which format they need
+  (`sources/interviews/sponsor-ines.md:49`, `sources/interviews/sponsor-carla.md:141`) or how they
+  would recognise success (`sources/inquiry-mails/inquiry-03.md:14`, `sources/inquiry-mails/inquiry-04.md:18`).
 
-A scoping call with a sponsor who cannot say what success looks like often ends without a booking.
+A scoping call with a buyer who cannot say what success looks like often ends without a booking.
 [assumption: the call fails for this reason; `data/` shows how many calls end without a booking, not
 why]
 
 ## What we deliberately do not do this quarter
 
-- **No work on follow-up bookings.** Customers who book again matter a lot: "Show me it works. Then
-  we talk about more teams." (`sources/interviews/sponsor-hard.md:55`). But the website cannot cause
+- **No work on follow-up bookings.** Customers who book again matter a lot. One buyer's boss
+  "said, let's do a smaller first step and see how working together goes" (`sources/interviews/sponsor-mehmet.md:37`).
+  Another buyer booked a second group (`sources/interviews/sponsor-sabine.md:173`). But the website cannot cause
   them, and they take months to show (see `product/constraints.md`). They come back on the table
   once the inquiry path works.
 - No prices on the website or in data.

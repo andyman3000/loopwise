@@ -5,12 +5,12 @@ explained in each artefact that uses them.
 
 ## People
 
-- **Sponsor:** the person in the customer company who wants the format for their team. The buyer.
+- **Buyer:** the person in the customer company who wants the format for their team.
   Two kinds:
-  - **Soft sponsor:** supports the move to AI, but has no budget and no line authority
-    (`product/personas/sponsor-soft.md`).
-  - **Hard sponsor:** head of product with budget, wants proof of effect before booking more
-    (`product/personas/sponsor-hard.md`).
+  - **Buyer without budget:** leads product people and wants the move to AI, but does not decide alone and
+    has no budget settled at first contact (`product/personas/buyer-without-budget.md`).
+  - **Buyer with budget:** product lead with budget, wants proof of effect before booking more
+    (`product/personas/buyer-with-budget.md`).
 - **Participant:** a product manager, product owner, UX person or consultant who takes part in the
   format. The user, not the buyer (`product/personas/participant.md`).
 - **Loopwise, the academy:** the fictional company that runs the formats and the website.
@@ -18,26 +18,31 @@ explained in each artefact that uses them.
 ## What Loopwise sells
 
 - **Format:** one thing a team can book, from a half-day workshop to several weeks of team coaching.
+- **Group:** the participants of one booking. They can come from several teams.
 - **In-house:** for one team inside one company, not an open seminar with strangers.
-- **Booking:** the sponsor confirms a format. Loopwise earns money on bookings.
+- **Booking:** the buyer confirms a format. This happens after the scoping call, once buyer and
+  Loopwise have settled which format fits. An inquiry alone books nothing. Loopwise earns money on
+  bookings.
+- **Pilot:** a first, limited run of a format with one team. It shows whether the format works
+  before more teams book it.
 - **Follow-up booking:** a customer who has booked once books again: more days, more teams.
 
 ## The path to a booking
 
-- **Inquiry:** the form on the website where a sponsor asks for a format.
-- **Scoping call:** the first call after an inquiry. Sponsor and Loopwise settle which format fits.
-- **Success line:** one sentence that says how the sponsor will know the format worked.
+- **Inquiry:** the form on the website where a buyer asks for a format.
+- **Scoping call:** the first call after an inquiry. Buyer and Loopwise settle which format fits.
+- **Success line:** one sentence that says how the buyer will know the format worked.
 
-## After the booking (sponsor preparation)
+## After the booking (buyer preparation)
 
-The steps on `site/sponsor-prep.html`:
+The steps on `site/buyer-prep.html`:
 
 - **Participant list:** names, roles and emails of the participants, two weeks before the format.
 - **Setup check:** one week before, Loopwise checks room or video tool, network, tool accounts and
   security rules.
 - **Expectations survey:** a short survey per participant before the format: what they hope to take
   away, which questions they bring.
-- **Follow-up after four weeks:** Loopwise asks participants and sponsor what has changed in daily work.
+- **Follow-up after four weeks:** Loopwise asks participants and buyer what has changed in daily work.
 
 ## About the material
 

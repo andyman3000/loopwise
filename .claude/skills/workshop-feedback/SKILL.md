@@ -7,7 +7,7 @@ description: Close the workshop. Ask each of the two people in the pair at most 
 
 **When:** the last step of day 2, after the pair's own work is done. The trainer may not be in the room.
 **Input:** none.
-**Reads:** the pair's branch (`git branch --show-current`), `git log` and `git diff` from `00-start`, the files listed under "What goes into the zip".
+**Reads:** the pair's branch (`git branch --show-current`), `git log` and `git diff` from `v2-00-start`, the files listed under "What goes into the zip".
 **Writes:** `feedback/feedback.md` in the repo, and one zip outside the repo. Changes no other file and makes no commit.
 
 The trainer uses the answers and the pair's artefacts to improve the workshop. This skill asks, packs and tells the pair where the zip is. It never sends anything: no mail, no upload, no push.
@@ -34,11 +34,11 @@ The trainer uses the answers and the pair's artefacts to improve the workshop. T
 - `feedback/feedback.md`
 - `discovery/` as it is now, committed or not
 - `site/variants/` and `site/config.json`
-- `git-log.txt`: `git log --stat 00-start..HEAD`
-- `git-diff.txt`: `git diff 00-start` (all changes since the start, committed or not)
+- `git-log.txt`: `git log --stat v2-00-start..HEAD`
+- `git-diff.txt`: `git diff v2-00-start` (all changes since the start, committed or not)
 - `git-status.txt`: `git status --short`
 
-Nothing from `data/`, nothing outside the repo, nothing else. If `00-start` is not an ancestor of HEAD (`git merge-base --is-ancestor 00-start HEAD` fails), say so and use the tag the branch started from, after asking the pair.
+Nothing from `data/`, nothing outside the repo, nothing else. If `v2-00-start` is not an ancestor of HEAD (`git merge-base --is-ancestor v2-00-start HEAD` fails), say so and use the tag the branch started from, after asking the pair.
 
 ## Steps
 
