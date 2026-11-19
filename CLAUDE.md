@@ -47,8 +47,10 @@ on one path: more inquiries that end in a booking (`product/strategy.md`).
 ```
 loopwise/
   README.md  CLAUDE.md  package.json  server.js
-  site/            pages, components/, config.json   (variants/ appears once variants are built)
+  site/            pages, components/, config.json   (variants/ and hardened/ appear once variants are built)
                    styles.css: the design system (tokens and components), owned by the designer
+  gates/           gates.json: the release gates, owner role, soft or hard
+                   policies/: the rule behind each gate (design-system.md, no-prices.md)
   lib/             discovery-view.js: renders discovery/ at /discovery
                    opportunity-map.js: /discovery/map, opportunities in rows by KPI driver
                    opportunity-tree.js: /discovery/tree, the comparison drawn as an opportunity tree
@@ -69,7 +71,8 @@ loopwise/
 ```bash
 npm start   # http://localhost:3000, PORT overrides
 npm test    # node --test
-npm run check   # citations (bare or as links) point at real lines, quotes match, event names from the list
+npm run check   # citations (bare or as links) point at real lines, quotes match, event names from the list,
+                # then the release gates on site/hardened/ (gates/gates.json; prototypes are not scanned)
 npm run tree    # draws discovery/kpi-tree.md as discovery/kpi-tree.html
 # http://localhost:3000/discovery shows the artefacts as readable pages, the KPI tree drawn
 # http://localhost:3000/discovery/map: every opportunity on an evidence map, filterable, read-only

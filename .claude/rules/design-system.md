@@ -12,7 +12,11 @@ agent builds a variant: a prototype in `site/variants/` (build to learn) and a h
   `site/styles.css` is the full list.
 - Use tokens for every colour, spacing step and radius: `var(--accent)`, `var(--space-4)`,
   `var(--radius-sm)`. Never a raw colour (`#e33`, `rgb()`, `red`) or a raw spacing value (`12px`,
-  `1.5rem`) in a page or a variant's own CSS.
+  `1.5rem`) in a page or a variant's own CSS. The design gate checks colours and spacing; radius
+  is a rule the designer reviews by eye.
+- A chosen option (a day, a time slot) is a `.button secondary` with `aria-pressed="true"`; an
+  option that cannot be chosen is a disabled `.button secondary`. A small control such as a close
+  or a month button is a `.button secondary` too.
 - One primary action per view is `.button`; a second action is `.button secondary`. No other
   button look.
 - A page may add layout classes of its own, for a grid or a calendar. They use tokens only and

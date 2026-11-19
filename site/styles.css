@@ -4,7 +4,7 @@
    brought to the other in the same sitting.
    1. Tokens: colour, type, spacing, radius, layout. Use them as var(--name); never a raw value.
    2. Components: site-header, brand, nav, site-footer, lead, eyebrow, note, muted, card, card-grid,
-      actions, button, secondary, field, error, with-aside, path, is-current, is-done, compact,
+      actions, button (with the states aria-pressed and disabled), secondary, field, error, with-aside, path, is-current, is-done, compact,
       hero, agent, done-head, done-check, done-next.
    Every page and every variant links this file and builds from these classes. A page may add
    layout classes of its own; they use tokens only and never restyle a component above.
@@ -88,6 +88,10 @@ strong{font-weight:var(--weight-strong)}
 .button:hover{background:var(--accent-strong);border-color:var(--accent-strong);color:var(--accent-fg)}
 .button.secondary{background:transparent;color:var(--accent)}
 .button.secondary:hover{background:var(--accent-soft);color:var(--accent-strong)}
+/* States: a chosen option (a day, a time) and an option that cannot be chosen */
+.button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:var(--accent-fg)}
+.button:disabled{opacity:.45;cursor:default}
+.button:disabled:hover{background:transparent;border-color:var(--accent);color:var(--accent)}
 
 /* Forms */
 form{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:var(--space-6) var(--space-6) 1.6rem;box-shadow:var(--shadow);max-width:var(--text)}

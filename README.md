@@ -10,7 +10,9 @@ build that chain themselves in pairs, with skills, on top of a small working web
 ```bash
 npm start   # http://localhost:3000, set PORT to change it
 npm test
-npm run check   # citations, quotes, event names, dashes in discovery/ and product/
+npm run check   # citations, quotes, event names, dashes in discovery/ and product/,
+                # then the release gates on site/hardened/ (design: soft, legal: hard)
+node scripts/check-gates.js --json   # the gate result as JSON, read by the release step
 ```
 
 With `npm start` running, `http://localhost:3000/discovery` shows every artefact as a readable page,
