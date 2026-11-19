@@ -5,7 +5,13 @@ each with the driver it moves and its critical assumption: the one thing that mu
 to work. You pick which idea to test first, and why. Then you write the prototype test card
 before anything is built: what a tester does, and what you watch for.
 
-You work as a pair on one branch, on your own opportunity from block 3. You keep it to the end.
+You work as a pair on one branch, on the opportunity chosen in decision 001. You keep it to the end.
+
+**Read first (5 min).** With `npm start` running, open `http://localhost:3000/discovery/tree`. On top
+is the business goal, below it the funnel steps, at the bottom the four candidate opportunities. The
+chosen one, C1, is marked. Then read `discovery/decisions/001-format-fit.md`: what was decided, and
+why. An opportunity is a customer need or pain, never a solution. Your ideas in this block are
+solutions for it.
 
 ## What you do (about 60 min)
 
@@ -27,17 +33,24 @@ at a time and waits for you each time. You go first.
    sources support it. The tree now shows only your picks.
 4. **The idea you test first (5 min).** Name it and why. Not "the one we like most": the one whose
    assumption would hurt most if it is wrong, or has no source. Then a variant name, lowercase with
-   dashes (for example `examples-first`). The tree marks it with a green border. The skill stops
-   here.
+   dashes (for example `examples-first`). A variant is your version of a page. Its name becomes the
+   folder `site/variants/<name>/`, the link `?variant=<name>`, and the word after each later
+   command, for example `/loopwise-test-card examples-first prototype`. The tree marks the idea with a green
+   border. The skill stops here and names the next command.
 5. **Prototype test card (15 min).** Start a fresh session (`/clear`). Then
    `/loopwise-test-card <variant> prototype`, with the variant name from step 4. It writes
    `discovery/test-cards/<variant>-prototype.md` in the four lines of a test card. We believe
    that <the assumption>. To verify that, we will <show a tester the page with a scenario>. And
    measure <the signs the watcher looks for>. We are right if <go-on line>. One more line says when
-   you rework or drop the idea.
+   you rework or drop the idea. The page in the card does not exist yet: you build it in block 5.
+   Until then its link answers "Not found".
 6. **Own the card (10 min).** Read it as the tester will: does the scenario give away the
    assumption? Can you see each sign, or would you have to guess? Fill `Card owner`. Turn the two
-   lines into your own words.
+   lines into your own words. The go-on line says what you must see to keep the idea. The
+   rework-or-drop line says what makes you change it or drop it.
+   Under the signs, the card says which ones an AI persona can show. In block 5, Claude plays two
+   buyers from `product/personas/`: written profiles built from the same interviews and mails. A
+   persona can only do what its file has a line for. Signs in the tester's own words need a person.
 7. **Check and commit (5 min).**
    ```bash
    npm run check
@@ -70,5 +83,5 @@ Do this only while other pairs are still working. Stop when the room meets for t
    git add discovery && git commit -m "block 4: second idea and its prototype test card"
    ```
 
-Your first variant stays the one a tester tries on Tuesday. If you drop it later, the second idea
+Your first variant stays the one you test first. If you drop it later, the second idea
 is ready to go.
