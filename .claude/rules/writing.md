@@ -51,6 +51,12 @@ A reader in a Markdown preview then opens it with one click.
 - No backticks inside the link text. `npm run check` flags a link
   whose target or line differs from its text.
 
+## While you work
+- Before work that takes more than a moment, say what you do now.
+  Name the stages, for example "I read the five files, then I draft."
+- Before you write a file, name it: "I am writing discovery/... now."
+- Never go quiet for minutes. After each stage, say it is done.
+
 ## Before saving
 Read each sentence as someone who opened only this file.
 If a phrase needs another file or the chat to make sense, rewrite it.
