@@ -27,6 +27,17 @@ should check an entry are named by role.
   reference states from block 4 on were built with that tooling.
 - **Undo:** revert the first v3 commit.
 
+### D3. Work packages ran as subagents, not as sessions
+
+- **Question:** the brief asks for one sub-session per work package, started with
+  `start_session`, each in its own worktree.
+- **Choice:** the app refused `start_session` from a session that another session started. Each
+  package ran as a background subagent in its own git worktree and branch (`v3-p0-feedback`,
+  `v3-p1-design-system`, `v3-p2-gates`, ...). The orchestrator read each diff, ran `npm test` and
+  `npm run check` itself, and merged with `--no-ff`.
+- **Reason:** same isolation and review, no wait for a person to click a card.
+- **Undo:** none needed; the merge commits name each package.
+
 ## Package 0: feedback from the full run
 
 A trainer's full run of the v2 chain, and the notes from the first reference run, raise the points
@@ -40,6 +51,11 @@ The groups jump onto the start state at block 4. Points in blocks 1 to 3 stay op
 state already holds the block's result.
 
 Count: fixed in v2: 13. Fixed in v3: 13. Proposed, applied by orchestrator: 2. Open: 27.
+
+Orchestrator, on the proposals: P1 to P4, P6 and P7 are applied (commit "v3: apply package 0
+proposals"). P5, a new allow rule in `.claude/settings.json` for the persona run's page check
+(`curl -s -o /dev/null *`), is not applied: it widens what Claude Code runs without asking, and
+that is a person's call. Until it is decided, a pair answers one permission prompt per page run.
 
 ### Setup and across blocks
 
