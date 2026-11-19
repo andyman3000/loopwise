@@ -1,6 +1,7 @@
 /* Loopwise design system: the one style file.
-   Owner: the designer. Source of truth for the tokens is this file; the Design System artifact
-   (link in README.md) shows the same tokens and components with previews and rules.
+   Owner: the designer, who also owns the Design System artifact linked in README.md. The
+   artifact shows the same tokens and components with previews and rules; a change in one is
+   brought to the other in the same sitting.
    1. Tokens: colour, type, spacing, radius, layout. Use them as var(--name); never a raw value.
    2. Components: site-header, brand, nav, site-footer, lead, eyebrow, note, muted, card, card-grid,
       actions, button, secondary, field, error, with-aside, path, is-current, is-done, compact,

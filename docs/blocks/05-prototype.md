@@ -25,6 +25,12 @@ Code builds the page. On Tuesday a person from another pair tests it.
    > Build the variant in discovery/specs/<variant>.md as one file per page it changes in
    > site/variants/<variant>/, named like the page it replaces (inquiry.html, formats.html),
    > and add the name to "variants" in site/config.json. Do not set "shipped".
+   > Build on the design system in site/styles.css: its components and tokens, no own colours,
+   > spacing values or button looks (.claude/rules/design-system.md).
+
+   The build reads `site/styles.css`, the design system: the same buttons, cards and fields as
+   the rest of the site, so the prototype looks on brand without anyone designing it. Nothing
+   checks it here; in build to earn, the design gate does.
 
    Then `npm start` and open the start page from the spec, for example
    `http://localhost:3000/inquiry?variant=<variant>`. Click through it

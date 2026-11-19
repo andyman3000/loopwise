@@ -12,7 +12,7 @@ description: Write the spec for one variant so Claude Code can build it, in one 
 | `learn` | after `loopwise-test-card <variant> prototype`, before the prototype build | `discovery/test-cards/<variant>-prototype.md` | the smallest page on which a tester meets the critical assumption and the watcher sees every sign | `discovery/specs/<variant>.md` |
 | `launch` | after `loopwise-test-card <variant> launch`, before the variant ships | `discovery/test-cards/<variant>.md` | the full page for real visitors, measured by the launch card | `discovery/specs/<variant>-launch.md` |
 
-**Reads, both modes:** the card for the mode; `discovery/intents/<opportunity>.md` (the idea and its assumptions); the pages the idea changes in `site/` and `site/components/` (what they do today); `site/formats.html` (the formats a page may name); `product/constraints.md`; `product/personas/`; `sources/` where the variant needs wording from the material.
+**Reads, both modes:** the card for the mode; `site/styles.css`, the design system (tokens and components, see `.claude/rules/design-system.md`); `discovery/intents/<opportunity>.md` (the idea and its assumptions); the pages the idea changes in `site/` and `site/components/` (what they do today); `site/formats.html` (the formats a page may name); `product/constraints.md`; `product/personas/`; `sources/` where the variant needs wording from the material.
 **Reads, mode `launch` also:** `discovery/specs/<variant>.md` (the learn spec), `discovery/decisions/002-<variant>.md` (the learning card), and `discovery/user-tests/` for this variant.
 
 A spec is the hand-over to the build: precise enough that Claude Code can build the page from this file alone.
@@ -44,6 +44,7 @@ A spec is the hand-over to the build: precise enough that Claude Code can build 
 
 ## Rules, mode `learn`
 
+- **Built on the design system.** Every element is one of the components in `site/styles.css` (button, card, field, note, path and so on). Name the component for each element in "What changes on the page". An element the design system has no component for gets a page layout class on tokens; say so in one line. The design system makes the prototype fast; no gate checks it here.
 - **Every element earns its place.** For each element on the page, name the sign or the part of the assumption it serves. An element that serves neither is left out.
 - **One way in.** The page the prototype card names as the start page. A second page or a second way in only if the assumption needs it.
 - **The happy path only.** No edge-case rules a tester is unlikely to hit (group splits, limits, rare combinations). No fallbacks for browser features beyond one sentence. If the build needs a fallback to work at all, say it in one line.
@@ -129,6 +130,8 @@ Feedback: <two or three short lines: what was strong, what was weak, and why>
 > Build the variant in discovery/specs/<variant>.md as one file per page it changes in
 > site/variants/<variant>/, named like the page it replaces (inquiry.html, formats.html),
 > and add the name to "variants" in site/config.json. Do not set "shipped".
+> Build on the design system in site/styles.css: its components and tokens, no own colours,
+> spacing values or button looks (.claude/rules/design-system.md).
 > Build only what the spec names. Where the spec says an element is faked, do not wire it up.
 ```
 

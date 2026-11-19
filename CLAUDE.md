@@ -48,6 +48,7 @@ on one path: more inquiries that end in a booking (`product/strategy.md`).
 loopwise/
   README.md  CLAUDE.md  package.json  server.js
   site/            pages, components/, config.json   (variants/ appears once variants are built)
+                   styles.css: the design system (tokens and components), owned by the designer
   lib/             discovery-view.js: renders discovery/ at /discovery
                    opportunity-map.js: /discovery/map, opportunities in rows by KPI driver
                    opportunity-tree.js: /discovery/tree, the comparison drawn as an opportunity tree
@@ -60,6 +61,7 @@ loopwise/
                    test-cards/, decisions/, user-tests/
   .claude/skills/  one folder per skill
   .claude/rules/   writing.md: how every artefact and reply is written
+                   design-system.md: every page and variant is built on site/styles.css
 ```
 
 ## How to run
