@@ -68,6 +68,19 @@ to a reference state replaces it.
 Pre-filled decisions in the reference states say "Reference decision (replace with your own)". In
 your own run, you are the decider.
 
+## Design system
+
+Every page is built on one style file, [site/styles.css](site/styles.css): tokens for colour, type,
+spacing and radius, and the few components the site uses. The same system is shown with previews
+and rules in the [Loopwise Design System](https://claude.ai/artifact/LnuyCcsvwkDQxd9qKFVQ1V)
+artifact in Claude Design. The rule that binds an agent to it is
+[.claude/rules/design-system.md](.claude/rules/design-system.md).
+
+A change made in Claude Design reaches the repo when someone asks Claude Code to bring the
+artifact's `tokens.json` into `site/styles.css`; a change in the style file goes back when Claude
+Code re-syncs the artifact from the repo. The designer owns both, and the design gate that checks
+released pages against them.
+
 ## Where the pages are
 
 - `/` home, `/formats.html`, `/inquiry` (the form), `/confirmation.html`, `/buyer-prep.html`

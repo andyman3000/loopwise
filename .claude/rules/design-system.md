@@ -1,0 +1,34 @@
+# Design system
+
+Every page in `site/` is built on the design system in `site/styles.css`. This holds whenever an
+agent builds a variant: a prototype in `site/variants/` (build to learn) and a hardened variant in
+`site/hardened/` (build to earn) alike. The designer owns the design system.
+
+## When you build a page
+
+- Link `/styles.css` and build from its components: `site-header`, `brand`, `site-footer`, `lead`,
+  `eyebrow`, `note`, `muted`, `card`, `card-grid`, `actions`, `button`, `secondary`, `field`,
+  `error`, `with-aside`, `path`, `done-head`, `done-check`, `done-next`. The header comment of
+  `site/styles.css` is the full list.
+- Use tokens for every colour, spacing step and radius: `var(--accent)`, `var(--space-4)`,
+  `var(--radius-sm)`. Never a raw colour (`#e33`, `rgb()`, `red`) or a raw spacing value (`12px`,
+  `1.5rem`) in a page or a variant's own CSS.
+- One primary action per view is `.button`; a second action is `.button secondary`. No other
+  button look.
+- A page may add layout classes of its own, for a grid or a calendar. They use tokens only and
+  never restyle a component or a native control (`button`, `input`, `select`, `textarea`): no own
+  background, colour, border, radius, font or shadow on them.
+- If the page needs a component the design system does not have, say so to the human and leave it
+  to the designer. Do not invent one in the page.
+
+## Who checks it
+
+- Build to learn: the rule leads, no gate blocks. The design system makes the prototype fast and on
+  brand.
+- Build to earn: the design gate in `npm run check` scans `site/hardened/`. It is soft: it fails
+  the check, and only the designer can let it pass, with a waiver in `discovery/decisions/`.
+
+## Changing the design system
+
+Only the designer changes `site/styles.css` and the Design System artifact linked in `README.md`.
+A change made in one is brought to the other in the same sitting.
