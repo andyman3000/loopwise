@@ -1,6 +1,6 @@
 # Opportunities from sources/interviews
 
-> Assessment by an agent (`opportunities-from-source` skill), not a decision. Date: 2026-11-13.
+> Assessment by an agent (`loopwise-opportunities-from-source` skill), not a decision. Date: 2026-11-13.
 > Reads: sources/interviews/ (nine files), [discovery/kpi-tree.md](../kpi-tree.md), product/personas/
 > Material: synthetic, built from patterns in real conversations ([sources/interviews/sponsor-carla.md:3](../../sources/interviews/sponsor-carla.md#L3)).
 > Every finding below rests on synthetic interviews.

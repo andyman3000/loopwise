@@ -1,6 +1,6 @@
 # Opportunities from feedback
 
-> Assessment by an agent (`opportunities-from-source` skill), not a decision. Date: 2026-11-13.
+> Assessment by an agent (`loopwise-opportunities-from-source` skill), not a decision. Date: 2026-11-13.
 > Reads: [sources/feedback/feedback-export.md](../../sources/feedback/feedback-export.md), [discovery/kpi-tree.md](../kpi-tree.md), product/personas/
 > Mixed material: the free-text answers are paraphrased from an anonymised composite of two clients. All ratings are invented ([sources/feedback/feedback-export.md:3](../../sources/feedback/feedback-export.md#L3)). Every finding below repeats that label.
 

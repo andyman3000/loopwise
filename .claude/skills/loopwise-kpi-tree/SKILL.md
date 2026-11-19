@@ -1,11 +1,10 @@
 ---
-name: kpi-tree
+name: loopwise-kpi-tree
 description: Draw the KPI tree for the business goal: the branches the strategy names, and under each the drivers the team can influence, each tied to the event that measures it. Use at the start of discovery, before any opportunity work, or when the strategy changes. Writes discovery/kpi-tree.md and draws it as discovery/kpi-tree.html. Shows the mechanism only; it does not diagnose, rank or recommend.
 ---
 
-# kpi-tree
-
-- **When:** first step of the discovery chain, before `opportunities-from-source`. Again when `product/strategy.md` changes.
+# loopwise-kpi-tree
+- **When:** first step of the discovery chain, before `loopwise-opportunities-from-source`. Again when `product/strategy.md` changes.
 - **Reads:** `product/strategy.md` (goal and branches), `CLAUDE.md`, `data/events.jsonl` and `data/inquiries.csv` (which events and columns exist).
 - **Writes:** `discovery/kpi-tree.md` (the tree as text) and `discovery/kpi-tree.html` (the same tree drawn, made by `npm run tree`).
 
@@ -41,7 +40,7 @@ Each link is a plain relationship: a product or a sum. This skill draws that tre
 ````markdown
 # KPI tree
 
-> Drawn by an agent (`kpi-tree` skill) from product/strategy.md and the event names in data/ (synthetic). Date: YYYY-MM-DD.
+> Drawn by an agent (`loopwise-kpi-tree` skill) from product/strategy.md and the event names in data/ (synthetic). Date: YYYY-MM-DD.
 
 <one short sentence per term, only if CLAUDE.md asks for it: KPI tree, branch, driver>
 

@@ -1,11 +1,11 @@
 ---
-name: compare-variants
+name: loopwise-compare-variants
 description: Compare the solution variants of one intent by their critical assumptions and propose a route, either live or user test first. Use after every variant has a test card and before anyone decides which variant ships. Writes one comparison file; never picks the variant or the route.
 ---
 
 # Compare variants
 
-**When:** after `test-card` has run for every variant in `discovery/specs/`. Before the human decides which variant ships.
+**When:** after `loopwise-test-card` has run for every variant in `discovery/specs/`. Before the human decides which variant ships.
 **Reads:** `discovery/specs/`, `discovery/test-cards/`, `sources/`, `product/personas/`, and user tests in `discovery/user-tests/` if any exist (say so if there are none).
 **Writes:** `discovery/variant-comparison.md`.
 

@@ -27,7 +27,7 @@ another round, or kill. That decision is your learning card, decision 002.
    tester. When the tester asks you something, write the question down and answer "what would you do now?"
    Stop the server with `Ctrl+C` when the test is over. The tester goes back to their own pair.
 3. **Learning card (25 min).** Together again. Start a fresh Claude Code session (`/clear`). Then
-   `/learning-card <variant>`. It asks one question at a
+   `/loopwise-learning-card <variant>`. It asks one question at a
    time. It asks how it went, what the tester did, which signs you saw, and whether the assumption
    held. Then what you learned, and what you will do. It writes only what you say, into
    `discovery/decisions/002-<variant>.md`, and quotes your notes file.
@@ -40,9 +40,9 @@ another round, or kill. That decision is your learning card, decision 002.
    next command for each outcome.
 
 **If the cross test drops** (no tester, or no page on the other side): start a fresh session
-(`/clear`), then run `/persona-walkthrough <variant> page` on your own page. It opens the page with
+(`/clear`), then run `/loopwise-persona-walkthrough <variant> page` on your own page. It opens the page with
 the browser tool and plays both buyers. Then start a fresh session again and run
-`/learning-card <variant>`. The card then says "pressure-tested, not validated". The personas come
+`/loopwise-learning-card <variant>`. The card then says "pressure-tested, not validated". The personas come
 from the same sources as your opportunity.
 
 ## 6b: Carry on (about 35 min), then the Abgleich
@@ -52,23 +52,23 @@ Go as far as you get. What you do depends on your learning card. Start a fresh C
 
 - **Move on:** first write the changes from "Therefore we will" into the spec, and rebuild if they
   change a page. A variant can change any page, the thank-you page too. Then
-  `/test-card <variant> launch`. It writes `discovery/test-cards/<variant>.md`: success line, usage,
+  `/loopwise-test-card <variant> launch`. It writes `discovery/test-cards/<variant>.md`: success line, usage,
   proxy, counter metric, kill criterion, time frame. Fill its `Card owner`. Your own launch card
   cannot be read against the data in this repo. The synthetic data were generated for one reference
   variant only, and the card says so. You see a result read against data in the demo.
 - **Another round, changed spec:** change the spec. If a sign or the scenario changes, add a dated
   "Round 2" section to the card below the first; do not edit round 1. Rebuild with the build prompt
-  at the end of the spec. Then `/persona-walkthrough <variant> page`. Then `/learning-card <variant>`
+  at the end of the spec. Then `/loopwise-persona-walkthrough <variant> page`. Then `/loopwise-learning-card <variant>`
   again. It adds round 2 to decision 002. If you can, test round 2 with a person too, and name the
   notes `<variant>-cross-2.md`. Personas alone often judge no sign.
 - **Another round, next idea, or kill:** say why in the learning card. In the intent, fill a second
   "Selection (human)" below the first for the next idea, with its own variant name. Then run these
   in order, and skip what you did in block 4 or 5 under "If you are done early":
-  1. `/test-card <next-variant> prototype`
-  2. `/variant-spec <next-variant>`
+  1. `/loopwise-test-card <next-variant> prototype`
+  2. `/loopwise-variant-spec <next-variant>`
   3. build with the build prompt at the end of its spec
-  4. `/persona-walkthrough <next-variant> page`
-  5. `/learning-card <next-variant>`. Its learning card becomes decision 003.
+  4. `/loopwise-persona-walkthrough <next-variant> page`
+  5. `/loopwise-learning-card <next-variant>`. Its learning card becomes decision 003.
 
 Commit what you have:
 ```bash

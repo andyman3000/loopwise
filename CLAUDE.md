@@ -107,6 +107,13 @@ The trainer changes this one line per cohort, for example to `product managers`.
   skip these explanations.
 - Quotes from sources stay word for word, even when their language is not plain.
 
+**Setting: team**
+
+The skills read this line. `workshop`: pairs in the two-day training; one tester from another pair
+tries each page (the cross test). `team`: a product team; it tests each page with people it
+recruits, about five per buyer type. No line means `workshop`. The trainer sets `workshop` for a
+cohort.
+
 ---
 
 # Hard Constraints (Always Apply)
@@ -127,9 +134,9 @@ The trainer changes this one line per cohort, for example to `product managers`.
 - **Assessments on three levels, in words:** well supported, partly supported, unsupported. Each
   with reasoning, sources, counter-evidence and gaps.
 - **Agents never decide.** Selection fields (chosen opportunity, chosen variant, keep or roll back)
-  stay empty for a human. Two exceptions: "Goes into comparison" is written by `compare-opportunities`
+  stay empty for a human. Two exceptions: "Goes into comparison" is written by `loopwise-compare-opportunities`
   after the human explicitly confirmed or changed its shortlist, with the human's name; and
-  `learning-card` writes the decision the pair states, in their words.
+  `loopwise-learning-card` writes the decision the pair states, in their words.
 - **Synthetic data and composites are labelled** in the file header, and any artefact built on them
   repeats the label.
 - Assumptions are written as `[assumption: ...]`.
@@ -144,26 +151,26 @@ Run in this order. Each skill writes its artefact under `discovery/`.
 
 | # | Skill | Writes |
 |---|---|---|
-| 1 | `kpi-tree` | `discovery/kpi-tree.md`, drawn as `discovery/kpi-tree.html` |
-| 2 | `opportunities-from-source` | `discovery/opportunities/<source-group>.md` |
-| 3 | `compare-opportunities` | `discovery/opportunity-comparison.md`, drawn at `/discovery/tree` |
-| 4 | `intent-and-ideas` | `discovery/intents/<opportunity>.md`: own ideas, more ideas, 3 to 5 with driver and assumption, the idea tested first; drawn at `/discovery/tree` after every step |
-| 5 | `test-card <variant> prototype` | `discovery/test-cards/<variant>-prototype.md` |
-| 6 | `variant-spec` | `discovery/specs/<variant>.md`, then Claude Code builds `site/variants/<variant>/` |
-| 7 | `persona-walkthrough <variant> spec` or `page` | `discovery/user-tests/<variant>-spec.md` or `<variant>-page.md` |
-| 8 | `learning-card` | `discovery/decisions/002-<variant>.md` |
-| 9 | `test-card <variant> launch` | `discovery/test-cards/<variant>.md` |
-| 10 | `read-result` | the `## Result` section of `discovery/test-cards/<variant>.md` |
-| 11 | `next-bet` | `discovery/kpi-tree.md` (measured values), `discovery/opportunity-comparison.md` (appended) |
+| 1 | `loopwise-kpi-tree` | `discovery/kpi-tree.md`, drawn as `discovery/kpi-tree.html` |
+| 2 | `loopwise-opportunities-from-source` | `discovery/opportunities/<source-group>.md` |
+| 3 | `loopwise-compare-opportunities` | `discovery/opportunity-comparison.md`, drawn at `/discovery/tree` |
+| 4 | `loopwise-intent-and-ideas` | `discovery/intents/<opportunity>.md`: own ideas, more ideas, 3 to 5 with driver and assumption, the idea tested first; drawn at `/discovery/tree` after every step |
+| 5 | `loopwise-test-card <variant> prototype` | `discovery/test-cards/<variant>-prototype.md` |
+| 6 | `loopwise-variant-spec <variant> learn` | `discovery/specs/<variant>.md`: the smallest page that tests the critical assumption, checked for bloat by a challenger; then Claude Code builds `site/variants/<variant>/` |
+| 7 | `loopwise-persona-walkthrough <variant> spec` or `page` | `discovery/user-tests/<variant>-spec.md` or `<variant>-page.md` |
+| 8 | `loopwise-learning-card` | `discovery/decisions/002-<variant>.md` |
+| 9 | `loopwise-test-card <variant> launch` | `discovery/test-cards/<variant>.md` |
+| 10 | `loopwise-read-result` | the `## Result` section of `discovery/test-cards/<variant>.md` |
+| 11 | `loopwise-next-bet` | `discovery/kpi-tree.md` (measured values), `discovery/opportunity-comparison.md` (appended) |
 
-For later, outside the workshop chain: `compare-variants` compares several variants of one
+For later, outside the workshop chain: `loopwise-variant-spec <variant> launch` writes the full page for the release after the launch card (step 9), as `discovery/specs/<variant>-launch.md`. `loopwise-compare-variants` compares several variants of one
 opportunity, each with a launch card, before one ships. It writes `discovery/variant-comparison.md`.
 
 # Decisions
 
 Decisions live in `discovery/decisions/`, one file per decision, each with a named human decider,
 the date, the options considered and the artefact it rests on. A skill may prepare a decision; it
-never records one on its own. A learning card is a decision record: `learning-card` writes the
+never records one on its own. A learning card is a decision record: `loopwise-learning-card` writes the
 pair's own words, and leaves the decision empty if the pair names none.
 
 ---
@@ -191,5 +198,6 @@ pair's own words, and leaves the decision empty if the pair names none.
 | Date | Author | Changes |
 |---|---|---|
 | 2026-10-21 | product team | Initial version |
-| 2026-10-24 | product team | Training start state: `variant-spec` skill added, only what exists at the start is described |
+| 2026-10-24 | product team | Training start state: `loopwise-variant-spec` skill added, only what exists at the start is described |
 | 2026-11-13 | product team | The word "sponsor" became "buyer", outside quotes from sources and source file names |
+| 2026-11-16 | product team | `loopwise-variant-spec` has two modes: `learn` (default, the smallest page for the prototype test, with a challenger run against bloat) and `launch` |

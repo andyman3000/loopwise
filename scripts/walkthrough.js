@@ -1,0 +1,190 @@
+// Draws the discovery run step by step: for each step in scripts/walkthrough-steps.json it unpacks
+// that commit into a temporary folder (git archive), renders the view with today's lib/ against
+// that folder, and writes a static snapshot to walkthrough/step-NN.html. walkthrough/index.html
+// holds one button per step; /discovery/walkthrough serves it. The temporary folders are removed
+// in the same run, also when a step fails. Usage: npm run walkthrough
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import { execFileSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
+import { treePage } from '../lib/opportunity-tree.js';
+import { mapPage } from '../lib/opportunity-map.js';
+import { drawPage } from './draw-kpi-tree.js';
+
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const OUT = path.join(ROOT, 'walkthrough');
+const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+const git = (...args) => execFileSync('git', args, { cwd: ROOT, encoding: 'utf8' }).trim();
+
+const VIEWS = {
+  kpi: (dir) => drawPage(fs.readFileSync(path.join(dir, 'discovery', 'kpi-tree.md'), 'utf8')),
+  map: (dir) => mapPage(dir),
+  tree: (dir) => treePage(dir),
+};
+// Pages that render but show only the "nothing to draw" text count as not rendered.
+const EMPTY = /No comparison yet|has no "Tree" or "Candidates" section/;
+
+// Variants built at the same time are drawn one after the other, in the order of the step list.
+// While a variant's steps run, a variant listed after it shows as it stood before the first of
+// them, and a variant listed before it shows as it stood after its own last step.
+const variantFile = (f, v) => f.startsWith(`site/variants/${v}/`) || f === `site/variants/${v}`
+  || ['test-cards', 'specs', 'user-tests'].some((d) => f.startsWith(`discovery/${d}/${v}.`) || f.startsWith(`discovery/${d}/${v}-`))
+  || new RegExp(`^discovery/decisions/\\d{3}-${v.replace(/[^a-z0-9-]/g, '')}\\.md$`).test(f);
+function others(steps, i, parallel) {
+  const v = steps[i].variant;
+  if (!parallel.includes(v)) return {};
+  const at = (w) => steps.map((s, k) => (s.variant === w ? k : -1)).filter((k) => k >= 0);
+  const firstParallel = Math.min(...parallel.flatMap(at));
+  return Object.fromEntries(parallel.filter((w) => w !== v && at(w).length).map((w) => {
+    const ks = at(w);
+    return [w, ks[0] < i ? steps[ks[ks.length - 1]].commit : steps[firstParallel - 1].commit];
+  }));
+}
+
+function snapshot(step, swap = {}) {
+  const sha = git('rev-parse', '--verify', `${step.commit}^{commit}`);
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'loopwise-walkthrough-'));
+  try {
+    const tar = path.join(tmp, 'tree.tar');
+    git('archive', '--format=tar', '-o', tar, sha);
+    const dir = path.join(tmp, 'root');
+    fs.mkdirSync(dir);
+    execFileSync('tar', ['-xf', tar, '-C', dir]);
+    for (const [v, ref] of Object.entries(swap)) {
+      for (const f of git('ls-tree', '-r', '--name-only', sha).split('\n').filter((f) => variantFile(f, v))) fs.rmSync(path.join(dir, f), { force: true });
+      fs.rmSync(path.join(dir, 'site', 'variants', v), { recursive: true, force: true });
+      const files = git('ls-tree', '-r', '--name-only', ref).split('\n').filter((f) => variantFile(f, v));
+      if (!files.length) continue;
+      const part = path.join(tmp, `${v}.tar`);
+      git('archive', '--format=tar', '-o', part, ref, '--', ...files);
+      execFileSync('tar', ['-xf', part, '-C', dir]);
+    }
+    // Commits before the rename say "sponsor" for the role the views and filters now call "buyer".
+    // Draw every snapshot in today's word; file names such as sources/interviews/sponsor-carla.md
+    // stay, so links keep working.
+    const renameDir = (d) => { for (const e of fs.readdirSync(d, { withFileTypes: true })) {
+      const f = path.join(d, e.name);
+      if (e.isDirectory()) renameDir(f);
+      else if (f.endsWith('.md')) fs.writeFileSync(f, fs.readFileSync(f, 'utf8')
+        .replace(/(?<![\/\w-])sponsor(s?)\b(?!-)/g, 'buyer$1').replace(/(?<![\/\w-])Sponsor(s?)\b(?!-)/g, 'Buyer$1'));
+    } };
+    if (fs.existsSync(path.join(dir, 'discovery'))) renameDir(path.join(dir, 'discovery'));
+    const html = (VIEWS[step.view || 'tree'] || VIEWS.tree)(dir);
+    if (EMPTY.test(html)) throw new Error('the page shows no tree for this commit');
+    // The files this step wrote, so the header can name them even where the tree draws no mark.
+    const wrote = git('diff-tree', '--root', '--no-commit-id', '--name-only', '-r', sha).split('\n')
+      .filter((f) => (f.startsWith('discovery/') && !f.endsWith('.html')) || f.startsWith('site/variants/'));
+    return { sha, html, wrote, date: git('show', '-s', '--format=%ad', '--date=format:%Y-%m-%d %H:%M', sha) };
+  } finally {
+    fs.rmSync(tmp, { recursive: true, force: true });
+  }
+}
+
+// Inside a snapshot, PageUp/PageDown (what a presenter clicker sends) still switch steps; the arrow
+// keys stay with the tree there once someone clicks into it.
+const CLIENT = `
+const frames=[...document.querySelectorAll('iframe')],dots=[...document.querySelectorAll('.dot')];
+const head=document.getElementById('now'),prev=document.getElementById('prev'),next=document.getElementById('next');let cur=0;
+function show(i){cur=Math.max(0,Math.min(frames.length-1,i));
+frames.forEach((f,k)=>f.classList.toggle('on',k===cur));dots.forEach((b,k)=>{b.setAttribute('aria-current',k===cur?'step':'false');b.classList.toggle('past',k<cur)});
+head.innerHTML=dots[cur].dataset.head;prev.disabled=cur===0;next.disabled=cur===frames.length-1;
+try{history.replaceState(null,'','#'+(cur+1))}catch(e){}if(typeof zoomBar==='function')zoomBar()}
+dots.forEach((b,k)=>b.addEventListener('click',()=>show(k)));
+prev.addEventListener('click',()=>show(cur-1));next.addEventListener('click',()=>show(cur+1));
+// Zoom for the projector, for the steps whose view has no zoom of its own (the opportunity map).
+// The tree views fit and zoom themselves (Overview, Funnel, C1 ...) and keep their own keys, 0 included.
+// Scales the snapshot, not the header, and holds across steps. Keys + - 0.
+const ZOOMS=[0.75,1,1.25,1.5,1.75,2,2.5],zl=document.getElementById('zl');let zi=1;
+try{const z=ZOOMS.indexOf(Number(localStorage.getItem('walkthrough-zoom')));if(z>=0)zi=z}catch(e){}
+function own(f){try{return !!f.contentDocument.getElementById('world')}catch(e){return true}}
+function applyZoom(f){if(!own(f))try{f.contentDocument.documentElement.style.zoom=ZOOMS[zi]}catch(e){}}
+function zoomBar(){document.querySelector('.zoom').hidden=own(frames[cur])}
+function zoom(i){zi=Math.max(0,Math.min(ZOOMS.length-1,i));frames.forEach(applyZoom);zl.textContent=Math.round(ZOOMS[zi]*100)+'%';
+document.getElementById('zout').disabled=zi===0;document.getElementById('zin').disabled=zi===ZOOMS.length-1;
+try{localStorage.setItem('walkthrough-zoom',String(ZOOMS[zi]))}catch(e){}}
+document.getElementById('zout').addEventListener('click',()=>zoom(zi-1));document.getElementById('zin').addEventListener('click',()=>zoom(zi+1));
+zl.addEventListener('click',()=>zoom(1));
+function key(e){if(e.metaKey||e.ctrlKey||e.altKey||own(frames[cur])){}else if(e.key==='+'||e.key==='=')return zoom(zi+1),e.preventDefault();else if(e.key==='-')return zoom(zi-1),e.preventDefault();else if(e.key==='0')return zoom(1),e.preventDefault();
+if(e.key==='PageDown')return show(cur+1),e.preventDefault();if(e.key==='PageUp')return show(cur-1),e.preventDefault();
+if(e.currentTarget!==window)return;if(e.key==='ArrowRight')show(cur+1),e.preventDefault();else if(e.key==='ArrowLeft')show(cur-1),e.preventDefault();
+else if(e.key==='Home')show(0);else if(e.key==='End')show(frames.length-1);}
+window.addEventListener('keydown',key);
+frames.forEach((f,k)=>f.addEventListener('load',()=>{applyZoom(f);if(k===cur)zoomBar();try{f.contentWindow.addEventListener('keydown',key)}catch(e){}}));
+zoom(zi);show((parseInt(location.hash.slice(1),10)||1)-1);`;
+
+const CSS = `
+:root{--bg:#faf8f4;--fg:#22262b;--muted:#5b636c;--accent:#2f5d62;--accent-fg:#fff;--line:#c9c3b8;--card:#fff;--chip:#efebe4}
+@media (prefers-color-scheme:dark){:root{--bg:#1b1e21;--fg:#e8e6e1;--muted:#a3a8ad;--accent:#7fb3b8;--accent-fg:#10201f;--line:#4a5056;--card:#23272b;--chip:#2c3135}}
+*{box-sizing:border-box}html,body{margin:0;height:100%}
+body{background:var(--bg);color:var(--fg);font:18px/1.35 system-ui,-apple-system,sans-serif;display:flex;flex-direction:column;overflow:hidden}
+header{padding:10px 20px;border-bottom:2px solid var(--line);background:var(--card);display:flex;flex-direction:column;gap:10px}
+.bar{display:flex;align-items:center;gap:14px;min-width:0}
+.arrow{font:inherit;font-size:26px;line-height:1;width:48px;height:48px;flex:none;border-radius:50%;border:2px solid var(--accent);background:var(--card);color:var(--accent);cursor:pointer}
+.arrow:hover:not(:disabled){background:var(--accent);color:var(--accent-fg)}
+.arrow:disabled{opacity:.3;cursor:default}
+#now{display:flex;flex-direction:column;min-width:0}
+#now .top{display:flex;align-items:baseline;gap:12px;min-width:0}
+#now .n{font-size:20px;font-weight:700;color:var(--muted);white-space:nowrap}
+#now .grp{font-size:15px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);white-space:nowrap}
+#now h1{font-size:30px;line-height:1.15;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#now .sub{font-size:17px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.steps{display:flex;flex-wrap:wrap;gap:6px 20px;align-items:center}
+.steps .seg{display:flex;gap:4px;align-items:center}
+.steps .seg span{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);white-space:nowrap;margin-right:4px}
+.dot{font:inherit;font-size:13px;font-weight:700;width:30px;height:30px;border-radius:50%;border:2px solid var(--line);background:var(--bg);color:var(--muted);cursor:pointer;padding:0}
+.dot.past{border-color:var(--accent);color:var(--accent)}
+.dot[aria-current=step]{background:var(--accent);border-color:var(--accent);color:var(--accent-fg);transform:scale(1.15)}
+.zoom[hidden]{display:none}
+.zoom{margin-left:auto;display:flex;align-items:center;gap:6px;flex:none}
+.zoom .arrow{width:40px;height:40px;font-size:24px}
+#zl{font:inherit;font-size:15px;font-weight:700;min-width:58px;padding:6px 4px;border:0;background:none;color:var(--muted);cursor:pointer}
+.dot:focus-visible,.arrow:focus-visible{outline:3px solid var(--fg);outline-offset:2px}
+main{flex:1;position:relative}
+iframe{position:absolute;inset:0;width:100%;height:100%;border:0;visibility:hidden}
+iframe.on{visibility:visible}`;
+
+function indexPage(steps) {
+  // The header shows one step at a time: back, forward, where we are, what this step did.
+  // Below it one numbered dot per step, grouped: the shared run first, then one group per variant.
+  const segs = [];
+  steps.forEach((s, i) => {
+    const group = s.group || s.variant || 'The run';
+    if (!segs.length || segs[segs.length - 1].group !== group) segs.push({ group, dots: [] });
+    const sub = [s.title && s.title !== s.label ? s.title : '', s.skill && s.skill !== 'human' ? `skill: ${s.skill}` : '', s.same ? 'no change on the tree' : ''].filter(Boolean).join(' · ');
+    const head = `<div class="top"><span class="n">${i + 1} / ${steps.length}</span><span class="grp">${esc(group)}</span><h1>${esc(s.label)}</h1></div>`
+      + (sub ? `<div class="sub">${esc(sub)}</div>` : '');
+    segs[segs.length - 1].dots.push(`<button type="button" class="dot" data-head="${esc(head)}" title="${esc(`${i + 1}. ${s.label}`)}" aria-label="Step ${i + 1}: ${esc(s.label)}">${i + 1}</button>`);
+  });
+  const nav = segs.map((g) => `<div class="seg"><span>${esc(g.group)}</span>${g.dots.join('')}</div>`).join('');
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Discovery walkthrough</title><style>${CSS}</style></head><body>
+<header><div class="bar"><button type="button" class="arrow" id="prev" aria-label="Previous step">‹</button><button type="button" class="arrow" id="next" aria-label="Next step">›</button><div id="now" aria-live="polite"></div><div class="zoom" role="group" aria-label="Zoom"><button type="button" class="arrow" id="zout" aria-label="Zoom out (key -)">−</button><button type="button" id="zl" title="Reset zoom (key 0)">100%</button><button type="button" class="arrow" id="zin" aria-label="Zoom in (key +)">+</button></div></div>
+<nav class="steps" aria-label="Steps">${nav}</nav></header>
+<main>${steps.map((s, i) => `<iframe src="/discovery/walkthrough/${esc(s.file)}" title="Step ${i + 1}: ${esc(s.label)}"></iframe>`).join('')}</main>
+<script>${CLIENT}</script></body></html>`;
+}
+
+const { steps, parallel = [] } = JSON.parse(fs.readFileSync(path.join(ROOT, 'scripts', 'walkthrough-steps.json'), 'utf8'));
+fs.rmSync(OUT, { recursive: true, force: true });
+fs.mkdirSync(OUT, { recursive: true });
+const done = [];
+const failed = [];
+steps.forEach((step, i) => {
+  const file = `step-${String(i + 1).padStart(2, '0')}.html`;
+  try {
+    const { sha, html, date, wrote } = snapshot(step, others(steps, i, parallel));
+    fs.writeFileSync(path.join(OUT, file), html);
+    const prev = done[done.length - 1];
+    done.push({ ...step, sha, date, wrote, file, same: prev && prev.html === html ? done.length : 0, html });
+    console.log(`${i + 1}. ${step.variant ? step.variant + ': ' : ''}${step.label} (${step.commit}) -> walkthrough/${file}`);
+  } catch (e) {
+    failed.push(`${i + 1}. ${step.label} (${step.commit}): ${e.message.split('\n')[0]}`);
+  }
+});
+fs.writeFileSync(path.join(OUT, 'index.html'), indexPage(done));
+console.log(`${done.length} of ${steps.length} steps drawn; open /discovery/walkthrough`);
+if (failed.length) {
+  console.error(`Not drawn:\n${failed.join('\n')}`);
+  process.exitCode = 1;
+}

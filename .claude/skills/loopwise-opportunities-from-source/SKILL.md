@@ -1,11 +1,10 @@
 ---
-name: opportunities-from-source
-description: Find opportunities (customer needs or pains, never solutions) in one source group under sources/, with verbatim quotes and line locations, counted voices, the KPI branch each would move, and counter-evidence. Run once per source group, e.g. "opportunities-from-source sources/interviews". The usage data in data/ can be read too: it yields observations (where people drop out), not opportunities. Writes discovery/opportunities/<source-group>.md. Does not choose what goes into the comparison.
+name: loopwise-opportunities-from-source
+description: Find opportunities (customer needs or pains, never solutions) in one source group under sources/, with verbatim quotes and line locations, counted voices, the KPI branch each would move, and counter-evidence. Run once per source group, e.g. "loopwise-opportunities-from-source sources/interviews". The usage data in data/ can be read too: it yields observations (where people drop out), not opportunities. Writes discovery/opportunities/<source-group>.md. Does not choose what goes into the comparison.
 ---
 
-# opportunities-from-source
-
-- **When:** after `kpi-tree`, once per source group (`sources/interviews`, `sources/inquiry-mails`, `sources/feedback`, `sources/inbox`, and `data`).
+# loopwise-opportunities-from-source
+- **When:** after `loopwise-kpi-tree`, once per source group (`sources/interviews`, `sources/inquiry-mails`, `sources/feedback`, `sources/inbox`, and `data`).
 - **Input:** one folder or file under `sources/`, or `data`. If none is given, offer every source group first (step 0a), then wait.
 - **Reads:** that source, `discovery/kpi-tree.md`, `product/personas/`.
 - **Writes:** `discovery/opportunities/<source-group>.md` (for example `interviews.md`, or `data.md` for the usage data).
@@ -30,7 +29,7 @@ This file is an **assessment by an agent, not a decision**. Say so at the top of
 - **Voices:** count distinct speakers per opportunity and name their role (buyer, participant, developer, other). The interviewer is not a voice. One person said three times is one voice. Mark second-hand evidence (someone reporting what others said) as second-hand.
 - **Map by where the need is met first, then check the active branch.** A need that is met after the booking (preparation, the day itself, the weeks after) sits mainly on the branch for that moment, even if it is parked; say so first. Then go through each driver of the active branch: could showing that this need is met change what a new buyer reads, starts or books? If yes, add it as a side link with an `[assumption: ...]` saying how. If none fits, write "No side link" and why. Never move a need onto the active branch just because that branch is active.
 - **Merge only what is one need.** Put two quotes under one opportunity only if all three hold: the same role says them, at the same moment (before the booking, preparation, the day itself, the weeks after), about the same need. Sounding alike is not enough. If one test fails, they stay separate, and each says in one line which test failed ("Close to O2: same need, but buyers before the booking, here participants after the day").
-- **Every merge shows its parts.** An opportunity built from more than one need as first heard gets a "Merged" line: what each part said and why it is one need. When in doubt, keep them apart: `compare-opportunities` can still put them side by side, but cannot split a merged one.
+- **Every merge shows its parts.** An opportunity built from more than one need as first heard gets a "Merged" line: what each part said and why it is one need. When in doubt, keep them apart: `loopwise-compare-opportunities` can still put them side by side, but cannot split a merged one.
 - **Decoy-like findings:** loud, vivid or repeated themes that do not link to any KPI branch, or are solution requests in disguise, go under "Looks like an opportunity, but". Say honestly why.
 - Counter-evidence from the same source is mandatory per opportunity. "None found in this source" is a valid answer; leaving it out is not.
 - Assessments in words on exactly three levels: **well supported**, **partly supported**, **unsupported**, each with reasoning, sources, counter-evidence, gaps.
@@ -46,7 +45,7 @@ This file is an **assessment by an agent, not a decision**. Say so at the top of
   it, how many reach the next step, against the visits that did not. Do this for every page, never
   for a chosen one, and write each split that differs into one observation on the same driver. It
   still shows where, not why.
-- The skill never decides. "Goes into comparison" stays empty; `compare-opportunities` fills it once
+- The skill never decides. "Goes into comparison" stays empty; `loopwise-compare-opportunities` fills it once
   the human has confirmed the shortlist.
 
 ## Steps
@@ -63,7 +62,7 @@ This file is an **assessment by an agent, not a decision**. Say so at the top of
 ```markdown
 # Opportunities from <source-group>
 
-> Assessment by an agent (`opportunities-from-source` skill), not a decision. Date: YYYY-MM-DD.
+> Assessment by an agent (`loopwise-opportunities-from-source` skill), not a decision. Date: YYYY-MM-DD.
 > Reads: <files, each as a link>, [discovery/kpi-tree.md](../kpi-tree.md), product/personas/
 
 ## Your first try
@@ -95,7 +94,7 @@ Feedback: <two or three short lines: what was strong, what was weak, and why>
 |---|---|---|
 
 ## Goes into comparison
-Goes into comparison: ____ (human confirms the shortlist in compare-opportunities)
+Goes into comparison: ____ (human confirms the shortlist in loopwise-compare-opportunities)
 Decided by: ____ · Date: ____
 ```
 

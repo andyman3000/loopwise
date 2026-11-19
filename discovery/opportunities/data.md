@@ -1,6 +1,6 @@
 # Opportunities from data
 
-> Assessment by an agent (`opportunities-from-source` skill), not a decision. Date: 2026-11-13.
+> Assessment by an agent (`loopwise-opportunities-from-source` skill), not a decision. Date: 2026-11-13.
 > Reads: [data/events.jsonl](../../data/events.jsonl), [data/inquiries.csv](../../data/inquiries.csv), [data/README.md](../../data/README.md), [discovery/kpi-tree.md](../kpi-tree.md), product/personas/
 > Synthetic data: every row in data/ is invented ([data/README.md](../../data/README.md)). Every count below repeats that label.
 
@@ -110,5 +110,5 @@ The numbers are small. A gap of a few visits can come from chance.
 Observations go into the comparison only together with an opportunity from another source.
 
 ## Goes into comparison
-Goes into comparison: ____ (human confirms the shortlist in compare-opportunities)
+Goes into comparison: ____ (human confirms the shortlist in loopwise-compare-opportunities)
 Decided by: ____ · Date: ____

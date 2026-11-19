@@ -1,6 +1,6 @@
 # KPI tree
 
-> Drawn by an agent (`kpi-tree` skill) from [product/strategy.md](../product/strategy.md) and the event names in data/ (synthetic). Date: 2026-11-13.
+> Drawn by an agent (`loopwise-kpi-tree` skill) from [product/strategy.md](../product/strategy.md) and the event names in data/ (synthetic). Date: 2026-11-13.
 
 A KPI tree breaks one business goal into numbers the team can move.
 A branch is one way the goal can grow.

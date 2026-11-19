@@ -5,7 +5,7 @@ and what you can measure within eight weeks. The agent compares and challenges; 
 
 ## What you do (about 60 min)
 
-1. Run `npm start`. Start a fresh Claude Code session (`/clear`). Then `/compare-opportunities`. It first asks which opportunity you
+1. Run `npm start`. Start a fresh Claude Code session (`/clear`). Then `/loopwise-compare-opportunities`. It first asks which opportunity you
    favour. Answer from your opportunity map at `http://localhost:3000/discovery/map`: the colour
    shows how well each opportunity is supported, the dots count the voices.
 2. The skill merges the same need across sources and proposes every candidate that passes its
@@ -47,5 +47,5 @@ Two pairs may choose the same opportunity. That is fine: in block 4, try to test
 
 **For the Abgleich:** did you pick the better supported opportunity or the more reachable one, and why?
 
-**Next:** wait for the room. After the Abgleich, block 4 starts with `/intent-and-ideas`:
+**Next:** wait for the room. After the Abgleich, block 4 starts with `/loopwise-intent-and-ideas`:
 [04-test-card.md](04-test-card.md).

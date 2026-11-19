@@ -1,16 +1,15 @@
 ---
-name: next-bet
-description: Carry a read result back into the tree. Use after read-result has written the Result section and someone asks "what next?", "update the KPI tree", "which opportunity now?". Enters measured values on the KPI tree branch, sets the status of the tested opportunity, reads the answers the shipped variant collected as a fresh source, and proposes the next opportunity. Never decides.
+name: loopwise-next-bet
+description: Carry a read result back into the tree. Use after loopwise-read-result has written the Result section and someone asks "what next?", "update the KPI tree", "which opportunity now?". Enters measured values on the KPI tree branch, sets the status of the tested opportunity, reads the answers the shipped variant collected as a fresh source, and proposes the next opportunity. Never decides.
 ---
 
-# next-bet
-
-> **When:** after `read-result`, once the Result section of the shipped variant's test card exists.
+# loopwise-next-bet
+> **When:** after `loopwise-read-result`, once the Result section of the shipped variant's test card exists.
 > **Reads:** `site/config.json` (key `shipped`); the `## Result` section of `discovery/test-cards/<variant>.md`;
 > `discovery/kpi-tree.md`; `discovery/opportunities/`; `discovery/opportunity-comparison.md`;
 > `discovery/decisions/`; `data/inquiries.csv` (the answers the shipped variant collected, read as a NEW source).
 > **Writes:** two paths, by design (plan: "update both"): `discovery/kpi-tree.md` (measured values on
-> the branch) and `discovery/opportunity-comparison.md` (an appended status and next-bet section). This
+> the branch) and `discovery/opportunity-comparison.md` (an appended status and loopwise-next-bet section). This
 > is the one skill in the chain that writes two artefacts, because the loop closes on both.
 
 You close the loop: what was measured goes back on the tree, and the new answers from the shipped
@@ -68,7 +67,7 @@ Feedback: <two or three short lines: what was strong, what was weak, and why>
 
 ## Status after <variant>, <YYYY-MM-DD>
 
-> Assessment by the next-bet agent. Not a decision. [Synthetic data.] [Result decision still open.]
+> Assessment by the loopwise-next-bet agent. Not a decision. [Synthetic data.] [Result decision still open.]
 
 ### Tested opportunity: <name>
 Status: well supported / partly supported / unsupported, with reasoning, the Result counts, what the

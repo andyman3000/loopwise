@@ -5,14 +5,14 @@ time, each with a quote, its location and counter-evidence. Needs, not solutions
 
 ## What you do (about 35 min)
 
-1. Start a fresh Claude Code session (`/clear`). Then `/opportunities-from-source`. It lists every source group in `sources/`. Start
+1. Start a fresh Claude Code session (`/clear`). Then `/loopwise-opportunities-from-source`. It lists every source group in `sources/`. Start
    with `interviews`. It writes `discovery/opportunities/interviews.md`.
 2. Read it critically:
    - Does every opportunity quote the source with file and line? Open two of them and check.
    - Is anything a solution in disguise ("they need a dashboard")?
    - How many different voices carry each opportunity, and does the file say so?
 3. Run it again for the other source groups as time allows: `inquiry-mails`, `feedback`, `inbox`. Type
-   `/clear` before each run, then for example `/opportunities-from-source sources/inquiry-mails`. The last
+   `/clear` before each run, then for example `/loopwise-opportunities-from-source sources/inquiry-mails`. The last
    row, `data`, is the usage data: it gives observations (where people drop out), not opportunities.
    Which source group could tell you why? The reference state `v2-02-opportunities` has all five files, `data.md` included.
 4. Leave "Goes into comparison" empty for now. You fill it at the start of block 3.
@@ -26,5 +26,5 @@ time, each with a quote, its location and counter-evidence. Needs, not solutions
 
 **For the Abgleich:** which opportunity rests on a single voice? Would you still keep it?
 
-**Next:** wait for the room. After the Abgleich, block 3 starts with `/compare-opportunities`:
+**Next:** wait for the room. After the Abgleich, block 3 starts with `/loopwise-compare-opportunities`:
 [03-opportunity-decision.md](03-opportunity-decision.md).

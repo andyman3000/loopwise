@@ -6,7 +6,7 @@ you can run it yourself.
 
 ## In the workshop (part of the demo)
 
-The trainer runs `/next-bet` on the reference. It first asks what you would work on next, and why.
+The trainer runs `/loopwise-next-bet` on the reference. It first asks what you would work on next, and why.
 Then it enters the measured values in `discovery/kpi-tree.md`. It appends a section to
 `discovery/opportunity-comparison.md`: the status of the tested opportunity and a proposal for the
 next one. Watch for two things:
@@ -20,7 +20,7 @@ next one. Watch for two things:
 You need a Result section. Either continue on your `result` branch from block 7
 (`git switch result`), or start from the reference result: `git switch -c demo-result v2-07-result`.
 
-1. Start a fresh Claude Code session (`/clear`). Then `/next-bet`. Answer its first question yourself: what would you work on next?
+1. Start a fresh Claude Code session (`/clear`). Then `/loopwise-next-bet`. Answer its first question yourself: what would you work on next?
 2. Read the proposal. Which new evidence does it use? Did the questions on the shipped page shape it?
 3. Decide the next opportunity. Fill `Next opportunity`, `Who` and `Date` at the end of
    `discovery/opportunity-comparison.md`.

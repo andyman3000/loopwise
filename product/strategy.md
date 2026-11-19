@@ -51,5 +51,5 @@ why]
 - The drivers above, counted from `data/events.jsonl` and `data/inquiries.csv` (synthetic). The KPI
   tree in `discovery/kpi-tree.md` holds them.
 - For any change we ship: a success line written before it goes live, in its test card under
-  `discovery/test-cards/`, read against the data by `read-result`.
+  `discovery/test-cards/`, read against the data by `loopwise-read-result`.
 - Bookings themselves: reported, not attributed (see `product/constraints.md`).

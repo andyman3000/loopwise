@@ -18,8 +18,8 @@ You work in pairs for both days, on one laptop and one branch per pair.
    npm start     # then open http://localhost:3000 and click "Inquiry"
    ```
    Leave the server running for step 4.
-3. Start Claude Code **inside the `loopwise` folder** and type `/`. You should see `kpi-tree`,
-   `opportunities-from-source` and the other skills of the chain.
+3. Start Claude Code **inside the `loopwise` folder** and type `/`. You should see `loopwise-kpi-tree`,
+   `loopwise-opportunities-from-source` and the other skills of the chain.
 4. **Browser tool.** On day 2 a skill opens your page in a browser. Add one browser tool to Claude
    Code, for your user only. It is not part of the repo. Pick one:
    - Playwright MCP (needs Node). From the
@@ -46,7 +46,7 @@ again inside the `loopwise` folder. Each skill reads what it needs from the file
 session, Claude carries old answers into the next skill, and its answers get worse. Each block file
 reminds you at the step where a skill starts, and names the command that comes next.
 
-**Done when:** tests are green, the inquiry page opens, `/kpi-tree` shows up in Claude Code, and
+**Done when:** tests are green, the inquiry page opens, `/loopwise-kpi-tree` shows up in Claude Code, and
 Claude Code read the inquiry page with the browser tool.
 
 If Claude Code lists no skills, it was started outside the `loopwise` folder. If the browser tool

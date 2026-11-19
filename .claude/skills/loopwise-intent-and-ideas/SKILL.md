@@ -1,12 +1,12 @@
 ---
-name: intent-and-ideas
+name: loopwise-intent-and-ideas
 description: Guide the pair from the chosen opportunity to an intent (problem, desired outcome, for whom, open questions) and 3 to 5 solution ideas on the opportunity tree, one question per message. The skill drafts the intent and the pair corrects it, then the pair lists its own ideas, the skill adds ideas from other angles, the pair picks 3 to 5 and the skill shows the driver and the critical assumption of each, then the pair names the idea it tests first. The file is rewritten after every step, so the ideas show on /discovery/tree from the first step on. Use after the opportunity decision is recorded, when the team says "write the intent", "let's develop ideas", or "what could we build for this opportunity". Writes the intent. Never picks an idea.
 ---
 
 # Intent and ideas
 
 **When:** after the human has chosen an opportunity in `discovery/opportunity-comparison.md` and the
-decision is recorded in `discovery/decisions/`. Before `/test-card <variant> prototype`.
+decision is recorded in `discovery/decisions/`. Before `/loopwise-test-card <variant> prototype`.
 **Input:** the chosen opportunity, named by the human. If no name is given, ask. Do not take it from
 "Appears favoured" in the comparison.
 **Reads:** `discovery/opportunity-comparison.md`; the decision record in `discovery/decisions/`; the
@@ -20,6 +20,10 @@ tend to be obvious or average, so the pair always goes first.
 
 **A critical assumption** is the one thing that must be true for an idea to work. If it is false, the
 idea fails, however well it is built.
+
+**Setting.** Read the `Setting:` line in `CLAUDE.md`. No line means `workshop`. In `team`, read
+"the pair" in this skill as "the team", and write "the team" in the From column for the human's
+ideas. Do not show the time hints ("about 15 min") to the team.
 
 ## Rules
 
@@ -62,7 +66,7 @@ idea fails, however well it is built.
 ```markdown
 # Intent: <what should change, for whom, in words> (draft)
 
-> Assessment by an agent (`intent-and-ideas`), not a decision. Date: YYYY-MM-DD.
+> Assessment by an agent (`loopwise-intent-and-ideas`), not a decision. Date: YYYY-MM-DD.
 > Opportunity: <C-id>, <name>, in [discovery/opportunity-comparison.md](../opportunity-comparison.md) · Decision: [discovery/decisions/<file>.md](../decisions/<file>.md)
 > Material: <synthetic or composite, repeated from the material the opportunity rests on>
 

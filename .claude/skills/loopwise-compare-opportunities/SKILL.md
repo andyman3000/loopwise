@@ -1,11 +1,11 @@
 ---
-name: compare-opportunities
-description: Narrow the opportunities in discovery/opportunities/ to a shortlist the human confirms, then compare the shortlist on fixed criteria (evidence strength, leverage, where in the funnel, need or solution in disguise, measurability, gaps) and challenge the favoured one, drawn as an opportunity tree at /discovery/tree. Use when the team asks "which opportunity should we pursue" or "compare the opportunities", after opportunities-from-source has run on the sources. Writes an assessment for a human decision; never picks the opportunity.
+name: loopwise-compare-opportunities
+description: Narrow the opportunities in discovery/opportunities/ to a shortlist the human confirms, then compare the shortlist on fixed criteria (evidence strength, leverage, where in the funnel, need or solution in disguise, measurability, gaps) and challenge the favoured one, drawn as an opportunity tree at /discovery/tree. Use when the team asks "which opportunity should we pursue" or "compare the opportunities", after loopwise-opportunities-from-source has run on the sources. Writes an assessment for a human decision; never picks the opportunity.
 ---
 
 # Compare opportunities
 
-**When:** after `opportunities-from-source` has run on the sources. Before `intent-and-ideas`.
+**When:** after `loopwise-opportunities-from-source` has run on the sources. Before `loopwise-intent-and-ideas`.
 **Reads:** every file in `discovery/opportunities/`; `discovery/kpi-tree.md`; `sources/` (all
 subfolders) to verify each quote the opportunity files cite.
 **Writes:** `discovery/opportunity-comparison.md`; the "Goes into comparison" lines in
@@ -147,7 +147,7 @@ prefixes, so keep the headings, the field names and the line shapes exactly as i
 ```markdown
 # Opportunity comparison
 
-> Assessment by an agent (`compare-opportunities`), not a decision. Date: YYYY-MM-DD.
+> Assessment by an agent (`loopwise-compare-opportunities`), not a decision. Date: YYYY-MM-DD.
 > Inputs: <list of files in discovery/opportunities/>, discovery/kpi-tree.md
 > Material: <the labels of the material the inputs rest on>. This file repeats that label.
 

@@ -1,6 +1,6 @@
 # Opportunities from inquiry mails
 
-> Assessment by an agent (`opportunities-from-source` skill), not a decision. Date: 2026-11-13.
+> Assessment by an agent (`loopwise-opportunities-from-source` skill), not a decision. Date: 2026-11-13.
 > Reads: [sources/inquiry-mails/inquiry-01.md](../../sources/inquiry-mails/inquiry-01.md) to [sources/inquiry-mails/inquiry-07.md](../../sources/inquiry-mails/inquiry-07.md), [discovery/kpi-tree.md](../kpi-tree.md), product/personas/
 > Built on synthetic material: every mail says "synthetic, modelled on real first-contact patterns" ([sources/inquiry-mails/inquiry-01.md:3](../../sources/inquiry-mails/inquiry-01.md#L3)).
 

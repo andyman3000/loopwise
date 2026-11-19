@@ -10,7 +10,8 @@
     "check": "node scripts/check-discovery.js",
     "links": "node scripts/link-citations.js",
     "tree": "node scripts/draw-kpi-tree.js",
-    "generate": "node scripts/generate-events.js"
+    "generate": "node scripts/generate-events.js",
+    "walkthrough": "node scripts/walkthrough.js"
   },
   "engines": {
     "node": ">=20"

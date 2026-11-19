@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { parseComparison, parseIntent, treePage, funnelBars, thousands, namedDrivers } from '../lib/opportunity-tree.js';
+import { parseComparison, parseIntent, treePage, funnelBars, thousands, namedDrivers, readExperiment } from '../lib/opportunity-tree.js';
 
 const MD = `# Opportunity comparison
 
@@ -164,7 +164,7 @@ test('right after the first step, ideas without an assumption are drawn, with no
 | Idea | From | Driver | Critical assumption | Level |
 |---|---|---|---|---|
 | I1: a call request instead of the form | the pair | call rate | | |
-| I2: a format quiz | the pair | start rate | | |
+| I2: a format quiz | the team | start rate | | |
 | I3: case stories | another domain | reach rate | | |
 | I4: one question first | turned around | start rate | | |
 | I5: a chat | today's page, changed | start rate | | |
@@ -183,6 +183,7 @@ test('right after the first step, ideas without an assumption are drawn, with no
   assert.equal((html.match(/<article class="sol/g) || []).length, 5);
   assert.doesNotMatch(html, /Critical assumption:|not given/);
   assert.match(html, /class="tag you">the pair/);
+  assert.match(html, /class="tag you">the team/);
 });
 
 test('an idea that moves two drivers shows a chip for each, and the page lights up every driver it names', () => {
@@ -204,7 +205,7 @@ test('every round marks its own idea, and an idea named in words only is not mar
   fs.mkdirSync(path.join(root, 'discovery', 'intents'));
   fs.writeFileSync(path.join(root, 'discovery', 'intents', 'x.md'), two);
   const html = treePage(root);
-  assert.equal((html.match(/class="sol picked"/g) || []).length, 2);
+  assert.equal((html.match(/class="sol [^"]*picked"/g) || []).length, 2);
   assert.match(html, /tested first: success-line-first/);
   assert.match(html, /tested in round 2: second-try/);
   assert.deepEqual(parseIntent(INTENT.replace('- Idea it comes from: I3', '- Idea it comes from: the call button')).tested, []);
@@ -285,7 +286,7 @@ test('every step, candidate and idea is a place the keys and the hash can jump t
   fs.writeFileSync(path.join(root, 'discovery', 'intents', 'x.md'), INTENT);
   const html = treePage(root);
   const views = [...html.matchAll(/<(?:div|article|section) [^>]*data-view="([^"]+)"/g)].map((m) => m[1]);
-  assert.deepEqual(views, ['S1', 'S2', 'S3', 'S4', 'C1', 'C2', 'C2-I1', 'C2-I2', 'C2-I3', 'decision']);
+  assert.deepEqual(views, ['S1', 'S2', 'S3', 'S4', 'C1', 'C2', 'C2-I1', 'C2-I2', 'C2-I3', 'C2-I3-E1', 'decision']);
   assert.match(html, /data-v="C1">C1<kbd>1<\/kbd>/);
   for (const k of ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Escape']) assert.match(html, new RegExp(k), `the page script handles ${k}`);
   assert.match(html, /max-width: 48rem/, 'a narrow screen gets one scrolling page instead of the camera');
@@ -321,4 +322,171 @@ test('citations written as Markdown links parse like bare ones in intents, oppor
   assert.equal(o.quote.where, 'sources/inquiry-mails/m.md:16');
   const html = drawPage('# KPI tree\n\n## Tree\n- Business goal: more bookings ([product/strategy.md:8](../product/strategy.md#L8))\n  - Branch A: inquiries ([product/strategy.md:12](../product/strategy.md#L12))\n    - start rate: share that starts · measured: no\n');
   assert.doesNotMatch(html, /strategy\.md/);
+});
+
+test('an idea is a small card on the overview: number, short title, tested first; the rest only on zoom', () => {
+  const root = repo(MD);
+  fs.mkdirSync(path.join(root, 'discovery', 'intents'));
+  fs.writeFileSync(path.join(root, 'discovery', 'intents', 'x.md'), INTENT.replace('| I3: examples of success lines |', '| I3: Show examples of success lines. Each example names a team ([site/formats.html:21](../../site/formats.html#L21)) (formats page, inquiry page) |')
+    .replace('| submit rate |', '| submit rate ([discovery/kpi-tree.md:22](../kpi-tree.md#L22)) |')
+    + '\n## Ideas not picked\n- I4: A chat on every page (all pages) · the team\n- I5: Ask the team size first. Then the rest (inquiry page) · another domain\n');
+  const html = treePage(root);
+  const sol = html.match(/<article class="sol[^"]*"[^>]*data-view="C2-I3"[\s\S]*?<\/article>/)[0];
+  const [summary, details] = sol.split('<div class="more">');
+  assert.match(summary, /<span class="mech">Show examples of success lines<\/span>/, 'the first sentence is the title');
+  assert.match(summary, /tested first: success-line-first/);
+  assert.match(summary, />Details<\/button>/);
+  assert.doesNotMatch(summary, /pill|chip|<a /, 'no level, no steps, no links on the overview card');
+  assert.match(details, /<h3>The idea<\/h3>Show examples of success lines\. Each example names a team<span class="basis">Changes: formats page, inquiry page<\/span>/);
+  assert.match(details, /<div class="part x"><h3>Steps it moves<\/h3><span class="acts"><span class="chip">submit rate<\/span>/);
+  assert.equal((details.match(/<a /g) || []).length, 1, 'one link: the intent file');
+  assert.doesNotMatch(sol, /\.md:\d+|\.html:\d+/, 'no file references anywhere in the card');
+  assert.match(html, /data-view="C2-rest"[^>]*data-title="2 more ideas, not picked"/);
+  assert.match(html, /<li><b>I5<\/b> Ask the team size first<\/li>/);
+  const views = [...html.matchAll(/<article class="sol[^"]*"[^>]*data-view="([^"]+)"/g)].map((m) => m[1]);
+  assert.deepEqual(views, ['C2-I1', 'C2-I2', 'C2-I3', 'C2-rest'], 'one row, in the order of the file, the ideas not picked last');
+  assert.match(html, /data-v="ideas">Ideas<kbd>I<\/kbd>/);
+});
+
+function experimentRepo() {
+  const root = repo(MD);
+  const put = (rel, text) => { fs.mkdirSync(path.dirname(path.join(root, rel)), { recursive: true }); fs.writeFileSync(path.join(root, rel), text); };
+  put('discovery/intents/x.md', INTENT);
+  put('discovery/test-cards/success-line-first-prototype.md', `# Prototype test card: success-line-first
+
+> Card owner: Product lead (Loopwise), 2026-11-15
+
+## We believe that (the assumption we test)
+"Buyers can name a success line." ([discovery/intents/x.md:3](../intents/x.md#L3))
+Level in the intent: "unsupported"
+
+## To verify that, we will
+Show 5 people the page.
+
+## We are right if (go-on line)
+At least 3 of 5 testers write a success line.
+Set by: Product lead (Loopwise) · Set on: 2026-11-15
+
+## We rework or drop the idea if (rework-or-drop line)
+- **We drop the idea if** 3 or more of 5 testers leave the field empty.
+`);
+  put('discovery/user-tests/success-line-first-spec.md', `# Persona walkthrough: success-line-first, spec
+
+> Run by an agent (\`persona-walkthrough\`) on 2026-11-16. Not a decision.
+
+## Buyer without budget
+x
+## Buyer with budget
+y
+## Against the two lines
+Unclear. Neither persona file shows the step.
+`);
+  put('discovery/user-tests/success-line-first-tester-1.md', '# Test with people: success-line-first, tester 1\n');
+  put('discovery/user-tests/success-line-first-tester-2.md', '# Test with people: success-line-first, tester 2\n');
+  return { root, put };
+}
+
+test('an experiment is read from the files of its variant: card, persona runs, people, learning card', () => {
+  const { root, put } = experimentRepo();
+  let e = readExperiment(root, 'success-line-first');
+  assert.deepEqual([e.card.owner, e.card.date, e.planned, e.testers], ['Product lead (Loopwise)', '2026-11-15', 5, 2]);
+  assert.deepEqual(e.personaRuns, [{ mode: 'spec', round: 1, run: 1, date: '2026-11-16', personas: 2, verdict: 'Unclear' }]);
+  put('discovery/user-tests/success-line-first-spec-run2.md', '> Run by an agent on 2026-11-18.\n## Buyer without budget\n## Buyer with budget\n## Against the two lines\nHeld. Both personas write a line.\n');
+  put('discovery/user-tests/success-line-first-page-2.md', '> Run by an agent on 2026-11-25.\n## Buyer without budget\n## Against the two lines\nBroke: she leaves.\n');
+  put('discovery/user-tests/success-line-first-spec-notes.md', 'not a run');
+  assert.deepEqual(readExperiment(root, 'success-line-first').personaRuns.map((r) => [r.mode, r.round, r.run, r.date, r.verdict]),
+    [['spec', 1, 1, '2026-11-16', 'Unclear'], ['spec', 1, 2, '2026-11-18', 'Held'], ['page', 2, 1, '2026-11-25', 'Broke']], 'every run file counts, in order; other files do not');
+  assert.equal(e.card.goOn, 'At least 3 of 5 testers write a success line.');
+  assert.equal(e.card.drop, 'We drop the idea if 3 or more of 5 testers leave the field empty.');
+  assert.equal(e.learning, null);
+  put('discovery/decisions/002-success-line-first.md', `# Decision 002: success-line-first, learning card
+
+## Round 1, 2026-11-17
+### Therefore we will
+Change the field label.
+### What we decided
+Another round, with the label changed
+## Round 2, 2026-11-20
+### Therefore we will
+Build the real page.
+### What we decided
+____ (human decides)
+`);
+  e = readExperiment(root, 'success-line-first');
+  assert.deepEqual([e.learning.rounds, e.learning.outcome, e.learning.text, e.learning.date], [2, '', 'Build the real page.', '2026-11-20'], 'the last round counts, and an empty decision stays open');
+  put('discovery/decisions/002-success-line-first.md', '## Round 1, 2026-11-17\n### What we decided\nKill: buyers left the field empty\n');
+  assert.equal(readExperiment(root, 'success-line-first').learning.outcome, 'drop');
+  put('discovery/decisions/002-success-line-first.md', '## Round 1, 2026-11-17\n### What we decided\nMove on, as the team said\n');
+  assert.equal(readExperiment(root, 'success-line-first').learning.outcome, 'go on');
+});
+
+test('a written spec and a built page each fill a stage and name where the experiment stands', () => {
+  const { root, put } = experimentRepo();
+  fs.rmSync(path.join(root, 'discovery', 'user-tests'), { recursive: true, force: true });
+  const summary = () => treePage(root).match(/<article class="exp[^"]*"[^>]*>[\s\S]*?<div class="more">/)[0];
+  assert.match(summary(), /Test card written/);
+  put('discovery/specs/success-line-first.md', '# Spec\n');
+  assert.match(summary(), /<i class="f" title="Spec">/);
+  assert.match(summary(), /Spec written/);
+  put('site/variants/success-line-first/inquiry.html', '<p>x</p>');
+  assert.match(summary(), /<i class="f" title="Built">/);
+  assert.match(summary(), /Page built/);
+});
+
+test('a built experiment links its page next to Details, opening in a new tab', () => {
+  const { root, put } = experimentRepo();
+  const card = () => treePage(root).match(/<article class="exp[^"]*"[^>]*>[\s\S]*?<div class="more">/)[0];
+  assert.doesNotMatch(card(), /class="try"/, 'not built, no link');
+  put('site/variants/success-line-first/inquiry.html', '<p>x</p>');
+  assert.match(card(), /Details<\/button><a class="try" href="\/inquiry\.html\?variant=success-line-first" target="_blank"/);
+  put('site/variants/success-line-first/formats.html', '<p>x</p>');
+  assert.match(card(), /href="\/formats\.html\?variant=success-line-first"/, 'the formats page comes first');
+});
+
+test('a learning card saved under another decision number still counts, and only for its own variant', () => {
+  const { root, put } = experimentRepo();
+  fs.rmSync(path.join(root, 'discovery', 'decisions'), { recursive: true, force: true });
+  put('discovery/decisions/001-first-line.md', '## Round 1, 2026-11-17\n### What we decided\nKill: wrong variant\n');
+  assert.equal(readExperiment(root, 'success-line-first').learning, null);
+  put('discovery/decisions/003-success-line-first.md', '## Round 1, 2026-11-17\n### What we decided\nMove on, as the team said\n');
+  assert.equal(readExperiment(root, 'success-line-first').learning.outcome, 'go on');
+});
+
+test('the experiment sits in its own row under its idea: name, stage dots, where it stands, details on zoom', () => {
+  const { root } = experimentRepo();
+  const html = treePage(root);
+  const card = html.match(/<article class="exp[^"]*"[^>]*>[\s\S]*?<\/article>/)[0];
+  assert.match(card, /data-view="C2-I3-E1" data-parent="C2-I3"/, 'under the idea tested first');
+  const [summary, details] = card.split('<div class="more">');
+  assert.match(summary, /<span class="mech">success-line-first<\/span>/);
+  assert.equal((summary.match(/<i class="f"/g) || []).length, 3, 'test card, personas and people are done');
+  assert.match(summary, /spec checked in 1 persona run · 2 of 5 people tested/, 'persona runs and people are counted apart');
+  assert.match(summary, /title="Spec"><\/i><i class="" title="Built">/, 'no spec, no page: both stages open');
+  assert.doesNotMatch(summary, /<a /);
+  assert.match(details, /<b>Test card<\/b> Product lead \(Loopwise\), 2026-11-15/);
+  assert.match(details, /<b>Personas<\/b> <ul class="runs"><li>spec, run 1: 2 personas, 2026-11-16, against the lines: unclear<\/li><\/ul>/);
+  assert.match(details, /<h3>We go on if<\/h3>At least 3 of 5 testers write a success line\./);
+  assert.equal((details.match(/<a /g) || []).length, 1, 'one link: the prototype test card');
+  assert.match(html, /<div style="grid-column:3"><article class="exp/, 'in the column of idea I3');
+  assert.match(html, /data-v="exps">Experiments<kbd>E<\/kbd>/);
+  assert.doesNotMatch(treePage(repo(MD)), /class="exp/, 'no named variant, no experiment row');
+});
+
+test('several persona runs are counted as runs, never as more personas', () => {
+  const { root, put } = experimentRepo();
+  put('discovery/user-tests/success-line-first-spec-run2.md', '> Run by an agent on 2026-11-18.\n## Buyer without budget\n## Buyer with budget\n## Against the two lines\nHeld.\n');
+  const card = treePage(root).match(/<article class="exp[^"]*"[^>]*>[\s\S]*?<\/article>/)[0];
+  assert.match(card, /spec checked in 2 persona runs · 2 of 5 people tested/);
+  assert.match(card, /<li>spec, run 2: 2 personas, 2026-11-18, against the lines: held<\/li>/);
+});
+
+test('a launch card counts as written; its result counts only once read-result fills the section', () => {
+  const { root, put } = experimentRepo();
+  put('discovery/test-cards/success-line-first.md', '# Launch card\n\n## Kill criterion\nX\n\n## Result\n\n_Empty until after the time frame. A human decides keep, adjust or withdraw._\n');
+  let e = readExperiment(root, 'success-line-first');
+  assert.deepEqual([e.launch, e.result], [true, null], 'the italic placeholder is no result');
+  assert.doesNotThrow(() => treePage(root));
+  put('discovery/test-cards/success-line-first.md', '# Launch card\n\n## Result\n\n### The numbers\n12 of 40\n\n### Conclusion\nKeep it,\nbecause buyers send it.\n\n**Decision:** keep\n');
+  e = readExperiment(root, 'success-line-first');
+  assert.equal(e.result.text, 'Keep it, because buyers send it. **Decision:** keep', 'the conclusion, not the whole section');
 });

@@ -1,5 +1,5 @@
 ---
-name: workshop-feedback
+name: loopwise-workshop-feedback
 description: Close the workshop. Ask each of the two people in the pair at most five questions about the two days, one question per message, then pack the pair's work and answers into one zip on this laptop for the pair to mail to the trainer themselves. The Claude Code transcripts go in only after a separate yes. Use at the end of day 2, when the team says "workshop feedback", "pack our results" or "we are done". Sends nothing itself.
 ---
 

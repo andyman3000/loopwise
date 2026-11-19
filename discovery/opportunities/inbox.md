@@ -1,6 +1,6 @@
 # Opportunities from sources/inbox
 
-> Assessment by an agent (`opportunities-from-source` skill), not a decision. Date: 2026-11-13.
+> Assessment by an agent (`loopwise-opportunities-from-source` skill), not a decision. Date: 2026-11-13.
 > Reads: [sources/inbox/inbox-export.md](../../sources/inbox/inbox-export.md), [discovery/kpi-tree.md](../kpi-tree.md), product/personas/
 > Built on synthetic material: the inbox export is labelled synthetic ([sources/inbox/inbox-export.md:3](../../sources/inbox/inbox-export.md#L3)).
 

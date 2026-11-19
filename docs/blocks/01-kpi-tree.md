@@ -8,7 +8,7 @@ would move.
 
 1. Read `product/strategy.md`. It is one page. Note the business goal and the path the academy works
    on this quarter. Unclear words such as "buyer" or "scoping call" are in `product/glossary.md`.
-2. Start a fresh Claude Code session (`/clear`). Then `/kpi-tree`. It first asks you which steps a buyer goes through from the website
+2. Start a fresh Claude Code session (`/clear`). Then `/loopwise-kpi-tree`. It first asks you which steps a buyer goes through from the website
    to a booking. Answer before it drafts. It then writes `discovery/kpi-tree.md` and draws it as
    `discovery/kpi-tree.html`.
 3. With `npm start` running, open `http://localhost:3000/discovery/kpi-tree.html` to see the tree. Compare it with your steps. Which step did you name that the tree does not have, and why?

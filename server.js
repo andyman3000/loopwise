@@ -1,9 +1,7 @@
 import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { validateInquiry } from './site/components/inquiry-form.js';
-import { isEventType } from './site/components/events.js';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { discoveryPage } from './lib/discovery-view.js';
 import { mapPage } from './lib/opportunity-map.js';
 import { treePage } from './lib/opportunity-tree.js';
@@ -11,6 +9,13 @@ import { sourcePage } from './lib/source-view.js';
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
 const SITE = path.join(ROOT, 'site');
+
+// The browser loads these two modules from /components/. They are loaded by computed path, not by
+// a static import: Vercel bundles statically imported files into the function as .mjs, and the
+// browser then gets a 404 for /components/inquiry-form.js and /components/events.js.
+const component = (file) => import(pathToFileURL(path.join(SITE, 'components', file)).href);
+const { validateInquiry } = await component('inquiry-form.js');
+const { isEventType } = await component('events.js');
 const MAX_BODY = 100 * 1024;
 
 const TYPES = {
@@ -205,6 +210,14 @@ export function createServer() {
       res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
       return res.end(req.method === 'HEAD' ? undefined : mapPage(process.env.LOOPWISE_ROOT || ROOT));
     }
+    // The walkthrough: static snapshots of the tree, one per skill step, drawn by npm run walkthrough.
+    const walk = pathname.match(/^\/discovery\/walkthrough(?:\/(index\.html|step-\d+\.html)?)?$/);
+    if (walk) {
+      const file = path.join(ROOT, 'walkthrough', walk[1] || 'index.html');
+      if (!fs.existsSync(file)) return notFound();
+      res.writeHead(200, { 'Content-Type': TYPES['.html'] });
+      return res.end(req.method === 'HEAD' ? undefined : fs.readFileSync(file));
+    }
     if (pathname === '/discovery/tree') {
       res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
       return res.end(req.method === 'HEAD' ? undefined : treePage(process.env.LOOPWISE_ROOT || ROOT));
@@ -250,4 +263,18 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   createServer().listen(port, () => {
     console.log(`Loopwise running at http://localhost:${port}/`);
   });
+}
+
+// Vercel entry point: Vercel imports this file and calls the default export per request. The
+// hosted version shows the website pages only; the workshop artefacts stay local. Vercel's
+// filesystem is read-only except /tmp, so form entries go there and do not persist.
+let hosted;
+export default function vercelHandler(req, res) {
+  process.env.LOOPWISE_DATA_DIR ||= '/tmp/loopwise-data';
+  hosted ||= createServer().listeners('request')[0];
+  if (/^\/(discovery|sources)(\/|$)/.test(new URL(req.url, 'http://localhost').pathname)) {
+    res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
+    return res.end('Not found');
+  }
+  return hosted(req, res);
 }
