@@ -22,7 +22,7 @@ Every pair starts from decision 001 and works on C1. Your first own step is bloc
 
 1. Clone the repo and start your pair's branch from the start state. Use your two names:
    ```bash
-   git clone https://github.com/andyman3000/loopwise.git loopwise && cd loopwise
+   git clone <repo> loopwise && cd loopwise
    git switch -c pair-<name>-<name> v3-03-start
    ```
 2. Check the website runs. Node 20 or newer, no `npm install` needed:
