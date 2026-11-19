@@ -1,0 +1,20 @@
+{
+  "about": "Release gates, run by npm run check on site/hardened/ only. A failing gate lands on its owner's table. A soft gate can be waived by its owner with a waiver file in discovery/decisions/; a hard gate takes no waiver. The agent never decides at a gate.",
+  "scan": "site/hardened",
+  "gates": [
+    {
+      "id": "design",
+      "name": "Design gate",
+      "owner": "designer",
+      "kind": "soft",
+      "rule": "gates/policies/design-system.md"
+    },
+    {
+      "id": "legal",
+      "name": "Legal gate",
+      "owner": "legal",
+      "kind": "hard",
+      "rule": "gates/policies/no-prices.md"
+    }
+  ]
+}
