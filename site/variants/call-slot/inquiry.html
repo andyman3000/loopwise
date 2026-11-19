@@ -7,40 +7,40 @@
   <link rel="stylesheet" href="/styles.css">
   <style>
     /* Variant call-slot only. */
-    .talk{max-width:var(--wide);margin:1.5rem 0 0}
+    .talk{max-width:var(--wide);margin:var(--space-6) 0 0}
     .talk>h2{margin-top:0}
-    .talk-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr));gap:1rem}
+    .talk-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr));gap:var(--space-4)}
     .talk [hidden]{display:none}
     .talk-options>.card{margin:0}
     .talk .card p{max-width:none}
     .talk .muted{color:var(--muted)}
-    .slot-times{display:flex;flex-wrap:wrap;gap:.5rem 1.25rem;border:0;margin:0 0 1.2rem;padding:0}
+    .slot-times{display:flex;flex-wrap:wrap;gap:var(--space-2) var(--space-5);border:0;margin:0 0 1.2rem;padding:0}
     .slot-times legend{font-weight:600;margin-bottom:.35rem;padding:0}
     .slot-times label{display:inline-flex;align-items:center;gap:.4rem;font-weight:400;margin:0}
     .slot-box{max-width:var(--text)}
     #slot-booking{position:relative}
     #slot-done:focus{outline:none}
-    .done-head{display:flex;align-items:center;gap:.8rem;margin-bottom:.75rem}
+    .done-head{display:flex;align-items:center;gap:.8rem;margin-bottom:var(--space-3)}
     .done-head h3{margin:0;font-size:1.3rem}
-    .done-check{flex:none;display:grid;place-items:center;width:2.75rem;height:2.75rem;border-radius:50%;background:var(--accent);color:var(--accent-fg)}
+    .done-check{flex:none;display:grid;place-items:center;width:2.75rem;height:2.75rem;border-radius:var(--radius-round);background:var(--accent);color:var(--accent-fg)}
     .done-when{display:inline-block;background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:0 var(--radius) var(--radius) 0;padding:.55rem .9rem;font-weight:650}
     #slot-done:not([hidden]) .done-check{animation:pop .5s cubic-bezier(.2,1.4,.4,1) both}
     #slot-done:not([hidden]) .done-check path{stroke-dasharray:24;stroke-dashoffset:24;animation:draw .4s .25s ease-out forwards}
     @keyframes pop{from{transform:scale(.3);opacity:0}to{transform:scale(1);opacity:1}}
     @keyframes draw{to{stroke-dashoffset:0}}
     @media (prefers-reduced-motion:reduce){#slot-done .done-check,#slot-done .done-check path{animation:none;stroke-dashoffset:0}}
-    .slot-close{position:absolute;top:.6rem;right:.6rem;font:inherit;font-size:1.4rem;line-height:1;width:2.2rem;height:2.2rem;border:0;border-radius:8px;background:none;color:var(--muted);cursor:pointer}
+    .slot-close{position:absolute;top:.6rem;right:.6rem;font:inherit;font-size:1.4rem;line-height:1;width:2.2rem;height:2.2rem;border:0;border-radius:var(--radius-sm);background:none;color:var(--muted);cursor:pointer}
     .slot-close:hover{color:var(--fg);background:var(--accent-soft)}
-    .write-heading{margin-top:2.5rem}
+    .write-heading{margin-top:var(--space-8)}
     .cal{margin:0 0 1.2rem;max-width:22rem}
     .cal-label{font-weight:600;margin-bottom:.35rem}
     .cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:.4rem}
     .cal-head strong{font-weight:650}
-    .cal-nav{font:inherit;background:none;border:1.5px solid var(--line);border-radius:8px;color:var(--fg);width:2.2rem;height:2.2rem;cursor:pointer}
+    .cal-nav{font:inherit;background:none;border:1.5px solid var(--line);border-radius:var(--radius-sm);color:var(--fg);width:2.2rem;height:2.2rem;cursor:pointer}
     .cal-nav:disabled{opacity:.35;cursor:default}
-    .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:.25rem;text-align:center}
+    .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:var(--space-1);text-align:center}
     .cal-grid .dow{font-size:.8rem;color:var(--muted);padding:.2rem 0}
-    .cal-grid button{font:inherit;font-size:.95rem;aspect-ratio:1;border:1.5px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);cursor:pointer;padding:0}
+    .cal-grid button{font:inherit;font-size:.95rem;aspect-ratio:1;border:1.5px solid var(--line);border-radius:var(--radius-sm);background:var(--bg);color:var(--fg);cursor:pointer;padding:0}
     .cal-grid button:hover:not(:disabled){border-color:var(--accent)}
     .cal-grid button:disabled{border-color:transparent;background:none;color:var(--muted);opacity:.45;cursor:default}
     .cal-grid button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:var(--accent-fg);font-weight:650}

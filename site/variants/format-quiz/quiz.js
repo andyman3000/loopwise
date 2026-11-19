@@ -66,13 +66,13 @@ const MARKUP = `
 const STYLE = `
   [hidden]{display:none !important}
   dialog.quiz{width:min(40rem,calc(100vw - 32px));max-height:calc(100vh - 32px);border:1px solid var(--line);border-radius:var(--radius);
-    background:var(--card);color:var(--fg);padding:1.25rem 1.5rem 1.5rem;box-shadow:var(--shadow)}
+    background:var(--card);color:var(--fg);padding:var(--space-5) var(--space-6) var(--space-6);box-shadow:var(--shadow)}
   dialog.quiz::backdrop{background:rgba(23,32,42,.45)}
-  .quiz-head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-bottom:1.25rem}
+  .quiz-head{display:flex;justify-content:space-between;align-items:baseline;gap:var(--space-4);margin-bottom:var(--space-5)}
   .quiz-q{border:0;padding:0;margin:0}
-  .quiz-q legend{font-weight:650;font-size:1.1rem;margin-bottom:1rem;padding:0}
-  .quiz .choice{display:flex;gap:.7rem;align-items:flex-start;font-weight:400;margin:0 0 1rem;line-height:1.4}
-  .quiz .choice input{margin-top:.25rem;flex:none}
+  .quiz-q legend{font-weight:650;font-size:1.1rem;margin-bottom:var(--space-4);padding:0}
+  .quiz .choice{display:flex;gap:.7rem;align-items:flex-start;font-weight:400;margin:0 0 var(--space-4);line-height:1.4}
+  .quiz .choice input{margin-top:var(--space-1);flex:none}
   .quiz .choice small{display:block;color:var(--muted);font-size:.92rem;margin-top:.2rem}
   .quiz h2{margin-top:0}
 `;
