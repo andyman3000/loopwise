@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inquiry - Loopwise</title>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    /* Variant call-slot only. */
+    .talk{max-width:var(--wide);margin:1.5rem 0 0}
+    .talk>h2{margin-top:0}
+    .talk-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr));gap:1rem}
+    .talk [hidden]{display:none}
+    .talk-options>.card{margin:0}
+    .talk .card p{max-width:none}
+    .talk .muted{color:var(--muted)}
+    .slot-times{display:flex;flex-wrap:wrap;gap:.5rem 1.25rem;border:0;margin:0 0 1.2rem;padding:0}
+    .slot-times legend{font-weight:600;margin-bottom:.35rem;padding:0}
+    .slot-times label{display:inline-flex;align-items:center;gap:.4rem;font-weight:400;margin:0}
+    .slot-box{max-width:var(--text)}
+    #slot-booking{position:relative}
+    #slot-done:focus{outline:none}
+    .done-head{display:flex;align-items:center;gap:.8rem;margin-bottom:.75rem}
+    .done-head h3{margin:0;font-size:1.3rem}
+    .done-check{flex:none;display:grid;place-items:center;width:2.75rem;height:2.75rem;border-radius:50%;background:var(--accent);color:var(--accent-fg)}
+    .done-when{display:inline-block;background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:0 var(--radius) var(--radius) 0;padding:.55rem .9rem;font-weight:650}
+    #slot-done:not([hidden]) .done-check{animation:pop .5s cubic-bezier(.2,1.4,.4,1) both}
+    #slot-done:not([hidden]) .done-check path{stroke-dasharray:24;stroke-dashoffset:24;animation:draw .4s .25s ease-out forwards}
+    @keyframes pop{from{transform:scale(.3);opacity:0}to{transform:scale(1);opacity:1}}
+    @keyframes draw{to{stroke-dashoffset:0}}
+    @media (prefers-reduced-motion:reduce){#slot-done .done-check,#slot-done .done-check path{animation:none;stroke-dashoffset:0}}
+    .slot-close{position:absolute;top:.6rem;right:.6rem;font:inherit;font-size:1.4rem;line-height:1;width:2.2rem;height:2.2rem;border:0;border-radius:8px;background:none;color:var(--muted);cursor:pointer}
+    .slot-close:hover{color:var(--fg);background:var(--accent-soft)}
+    .write-heading{margin-top:2.5rem}
+    .cal{margin:0 0 1.2rem;max-width:22rem}
+    .cal-label{font-weight:600;margin-bottom:.35rem}
+    .cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:.4rem}
+    .cal-head strong{font-weight:650}
+    .cal-nav{font:inherit;background:none;border:1.5px solid var(--line);border-radius:8px;color:var(--fg);width:2.2rem;height:2.2rem;cursor:pointer}
+    .cal-nav:disabled{opacity:.35;cursor:default}
+    .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:.25rem;text-align:center}
+    .cal-grid .dow{font-size:.8rem;color:var(--muted);padding:.2rem 0}
+    .cal-grid button{font:inherit;font-size:.95rem;aspect-ratio:1;border:1.5px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);cursor:pointer;padding:0}
+    .cal-grid button:hover:not(:disabled){border-color:var(--accent)}
+    .cal-grid button:disabled{border-color:transparent;background:none;color:var(--muted);opacity:.45;cursor:default}
+    .cal-grid button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:var(--accent-fg);font-weight:650}
+  </style>
+</head>
+<body>
+  <!-- Variant call-slot, built to learn: see discovery/specs/call-slot.md. Synthetic material. Every new line is [invented] unless the spec says otherwise. -->
+  <header class="site-header">
+    <a class="brand" href="/">Loopwise</a>
+    <nav aria-label="Main">
+      <a href="/">Home</a>
+      <a href="/formats.html">Formats</a>
+      <a href="/inquiry.html" aria-current="page">Inquiry</a>
+      <a href="/buyer-prep.html">Buyer preparation</a>
+    </nav>
+  </header>
+  <main>
+    <h1>Inquiry</h1>
+    <p class="lead">Write to us, or talk to us first.</p>
+
+    <section class="talk" aria-labelledby="talk-heading">
+      <h2 id="talk-heading">Talk to us</h2>
+      <div id="talk-options" class="talk-options">
+        <div class="card">
+          <h3>Book a call slot</h3>
+          <p>A 20-minute video call.</p>
+          <p class="muted">In the call we settle together which format fits your team.</p>
+          <p class="actions"><button type="button" class="button" id="slot-open">Choose a time</button></p>
+        </div>
+        <div class="card">
+          <h3>Call us directly</h3>
+          <p><a href="#" id="phone">+49 30 0123 4567</a></p>
+        </div>
+      </div>
+
+      <div id="slot-booking" class="card slot-box" hidden>
+        <button type="button" class="slot-close" id="slot-close" aria-label="Close">&times;</button>
+        <h3>Choose a time for a 20-minute video call</h3>
+        <div class="cal" role="group" aria-labelledby="cal-label">
+          <div class="cal-label" id="cal-label">Day</div>
+          <div class="cal-head">
+            <button type="button" class="cal-nav" id="cal-prev" aria-label="Month before">&lsaquo;</button>
+            <strong id="cal-month" aria-live="polite"></strong>
+            <button type="button" class="cal-nav" id="cal-next" aria-label="Month after">&rsaquo;</button>
+          </div>
+          <div class="cal-grid" id="cal-grid"></div>
+        </div>
+        <fieldset class="slot-times">
+          <legend>Time</legend>
+          <label><input type="radio" name="slot-time" value="9:30"> 9:30</label>
+          <label><input type="radio" name="slot-time" value="11:00"> 11:00</label>
+          <label><input type="radio" name="slot-time" value="14:00"> 14:00</label>
+          <label><input type="radio" name="slot-time" value="16:00"> 16:00</label>
+        </fieldset>
+        <div class="field"><label for="slot-name">Name</label><input id="slot-name" autocomplete="name"></div>
+        <div class="field"><label for="slot-email">Email</label><input id="slot-email" type="email" autocomplete="email"></div>
+        <button type="button" class="button" id="slot-book">Book this call</button>
+        <p class="error" id="slot-error" role="alert" hidden>Please choose a day and a time, and enter your name and email.</p>
+      </div>
+
+      <div id="slot-done" class="card slot-box" hidden role="status" tabindex="-1">
+        <div class="done-head">
+          <span class="done-check" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <h3 id="slot-done-title">You're all set!</h3>
+        </div>
+        <p class="done-when" id="slot-done-when"></p>
+        <p id="slot-done-mail"></p>
+        <p>No preparation needed. Bring what is on your mind, and we work out together which format fits your team. We look forward to talking with you.</p>
+        <p class="muted">Nothing else is booked.</p>
+      </div>
+    </section>
+
+    <h2 class="write-heading">Write to us</h2>
+    <p>Sending this form books nothing. We reply within a few days to set up a scoping call.</p>
+    <div class="with-aside">
+    <form id="inquiry-form" novalidate>
+      <div class="field"><label for="name">Name</label><input id="name" name="name" autocomplete="name"><p class="error" data-error-for="name" hidden></p></div>
+      <div class="field"><label for="company">Company</label><input id="company" name="company" autocomplete="organization"><p class="error" data-error-for="company" hidden></p></div>
+      <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email"><p class="error" data-error-for="email" hidden></p></div>
+      <div class="field"><label for="message">What do you need?</label><textarea id="message" name="message" rows="6"></textarea><p class="error" data-error-for="message" hidden></p></div>
+      <p class="error" id="form-error" role="alert" hidden></p>
+      <button class="button" type="submit">Send inquiry</button>
+    </form>
+    <aside aria-labelledby="after-inquiry">
+      <h2 id="after-inquiry">What happens after you send it</h2>
+      <ol class="path compact">
+        <li class="is-current" aria-current="step"><strong>You send this form</strong><span>It does not book anything.</span></li>
+        <li><strong>We hold a scoping call</strong><span>Together we settle which format fits your team.</span></li>
+        <li><strong>We prepare together</strong><span>The steps are on the <a href="/buyer-prep.html">buyer preparation page</a>.</span></li>
+        <li><strong>We train you</strong><span>The format runs as settled in the scoping call.</span></li>
+        <li><strong>We follow up after four weeks</strong><span>We ask what has changed in daily work.</span></li>
+      </ol>
+    </aside>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <p>Loopwise is a fictional academy used for a demo.</p>
+    <nav aria-label="Footer">
+      <a href="/formats.html">Formats</a>
+      <a href="/inquiry.html">Inquiry</a>
+      <a href="/buyer-prep.html">Buyer preparation</a>
+    </nav>
+  </footer>
+  <script type="module">
+    import { initInquiryForm } from '/components/inquiry-form.js';
+    import { logEvent } from '/components/events.js';
+    logEvent('page_view', { page: 'inquiry' });
+    initInquiryForm(document.getElementById('inquiry-form'), { variant: 'call-slot' });
+
+    // The ways to talk sit outside #inquiry-form, so a click there is never a started form.
+    // Faked for the prototype test: the number dials nothing, the booking sends, stores and logs nothing.
+    const $ = (id) => document.getElementById(id);
+    const options = $('talk-options'), booking = $('slot-booking'), done = $('slot-done');
+
+    $('phone').addEventListener('click', (e) => e.preventDefault());
+
+    // Calendar: working days from tomorrow, for four weeks, can be picked. Every other day is grey.
+    const fmt = new Intl.DateTimeFormat('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
+    const monthFmt = new Intl.DateTimeFormat('en-GB', { month: 'long', year: 'numeric' });
+    const midnight = (x) => new Date(x.getFullYear(), x.getMonth(), x.getDate());
+    const first = midnight(new Date()); first.setDate(first.getDate() + 1);
+    const last = new Date(first); last.setDate(last.getDate() + 27);
+    const bookable = (x) => x >= first && x <= last && x.getDay() % 6 !== 0;
+    let shown = new Date(first.getFullYear(), first.getMonth(), 1);
+    let picked = null;
+    const grid = $('cal-grid');
+    function drawCalendar() {
+      $('cal-month').textContent = monthFmt.format(shown);
+      $('cal-prev').disabled = shown <= new Date(first.getFullYear(), first.getMonth(), 1);
+      $('cal-next').disabled = shown >= new Date(last.getFullYear(), last.getMonth(), 1);
+      grid.replaceChildren(...['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'].map((t) => Object.assign(document.createElement('span'), { className: 'dow', textContent: t })));
+      const lead = (shown.getDay() + 6) % 7;
+      for (let i = 0; i < lead; i++) grid.append(document.createElement('span'));
+      const days = new Date(shown.getFullYear(), shown.getMonth() + 1, 0).getDate();
+      for (let n = 1; n <= days; n++) {
+        const x = new Date(shown.getFullYear(), shown.getMonth(), n);
+        const b = Object.assign(document.createElement('button'), { type: 'button', textContent: n });
+        b.setAttribute('aria-label', fmt.format(x));
+        b.disabled = !bookable(x);
+        b.setAttribute('aria-pressed', String(!!picked && +picked === +x));
+        b.addEventListener('click', () => { picked = x; drawCalendar(); });
+        grid.append(b);
+      }
+    }
+    $('cal-prev').addEventListener('click', () => { shown = new Date(shown.getFullYear(), shown.getMonth() - 1, 1); drawCalendar(); });
+    $('cal-next').addEventListener('click', () => { shown = new Date(shown.getFullYear(), shown.getMonth() + 1, 1); drawCalendar(); });
+    drawCalendar();
+
+    $('slot-open').addEventListener('click', () => { options.hidden = true; booking.hidden = false; });
+
+    // The close button resets the booking and shows the two ways to talk again.
+    $('slot-close').addEventListener('click', () => {
+      picked = null;
+      shown = new Date(first.getFullYear(), first.getMonth(), 1);
+      drawCalendar();
+      document.querySelectorAll('input[name="slot-time"]').forEach((r) => { r.checked = false; });
+      $('slot-name').value = '';
+      $('slot-email').value = '';
+      $('slot-error').hidden = true;
+      booking.hidden = true;
+      options.hidden = false;
+      $('slot-open').focus();
+    });
+
+    const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    $('slot-book').addEventListener('click', () => {
+      const time = document.querySelector('input[name="slot-time"]:checked');
+      const name = $('slot-name').value.trim(), email = $('slot-email').value.trim();
+      const ok = picked && time && name && EMAIL.test(email);
+      $('slot-error').hidden = !!ok;
+      if (!ok) return;
+      const firstName = name.split(/\s+/)[0];
+      $('slot-done-title').textContent = `You're all set, ${firstName}!`;
+      $('slot-done-when').textContent = `${fmt.format(picked).replace(' ', ', ')} · ${time.value} · 20 minutes`;
+      $('slot-done-mail').textContent = `The video link is on its way to ${email}.`;
+      booking.hidden = true;
+      done.hidden = false;
+      // The booking box is taller than the booked message, so bring the message into view.
+      done.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      done.focus({ preventScroll: true });
+    });
+  </script>
+</body>
+</html>
