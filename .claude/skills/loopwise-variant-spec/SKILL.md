@@ -49,6 +49,7 @@ A spec is the hand-over to the build: precise enough that Claude Code can build 
 - **One way in.** The page the prototype card names as the start page. A second page or a second way in only if the assumption needs it.
 - **The happy path only.** No edge-case rules a tester is unlikely to hit (group splits, limits, rare combinations). No fallbacks for browser features beyond one sentence. If the build needs a fallback to work at all, say it in one line.
 - **Fake what the test does not need to work.** A button the watcher only needs to see pressed may do nothing more than show a short reply. Say so in the spec, so the build does not wire it up.
+- **Invent the content the test needs.** Loopwise is fictional. If the page needs content the material does not hold (a trainer's background, dates, a quote from a past group), draft it yourself and list it under "Invented lines on the page". Ask the pair to confirm or change it as the product team, never as if they were the academy. Make it as specific as the assumption needs: a placeholder cannot test an assumption about content.
 - **No events and no hidden fields.** The prototype test does not read events; the watcher reads the page. Leave out the section "Events to emit" and any field that only feeds events. The site's existing events keep firing as today.
 - **The rule behind a result stays as simple as the test allows.** A tester needs a result that plausibly fits their group. They do not need every case covered.
 - **Every sign on the prototype card needs something on the page.** For each sign, name the element where the watcher can see it, and check it can happen on the path the tester takes. If a sign has no element, say so under "Open points for the human".
@@ -70,7 +71,7 @@ A spec is the hand-over to the build: precise enough that Claude Code can build 
 2. Read the current pages the idea changes and their components, so the spec says what changes against today and what stays.
 3. Draft the spec with the template for the mode. Show the human the section "What changes on the page" and ask them to confirm or change it.
 4. Mode `learn` only: **challenger run** (see Rules). Show the findings as a table, ask the human which to apply, apply only those, and record it under "Challenger check". Add its row to the review log and set the stage.
-5. Write the file. Give the feedback on the first try (see Rules). Tell the human in three lines what the build needs most and which open point needs their judgement. Say that every open point touching a sign must be answered before the build. Then stop.
+5. Write the file. Give the feedback on the first try (see Rules). Tell the human in three lines what the build needs most and which open point needs their judgement. Say that every open point touching a sign must be answered before the build. In mode `learn`, end with two lines: "Still open in this block: the persona run on this spec, then the build." and "Next: start a fresh session (`/clear`), then `/loopwise-persona-walkthrough <variant> spec`. Build after that." In mode `launch`, end with: "Next: your block file names the step after this spec." Then stop.
 
 ## Output template, mode `learn`
 

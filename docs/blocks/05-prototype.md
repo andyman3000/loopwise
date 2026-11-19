@@ -2,7 +2,7 @@
 
 **What it's for:** you describe the smallest page that lets a tester meet your assumption. Two AI
 personas read that description before the build, so you fix the obvious gaps cheaply. Then Claude
-Code builds the page. On Tuesday a person from another pair tests it.
+Code builds the page. Later a person from another pair tests it.
 
 ## What you do (about 62 min)
 
@@ -42,10 +42,10 @@ Code builds the page. On Tuesday a person from another pair tests it.
    ```
 
 **Done when:** the spec, the persona run on the spec and a page that opens at
-the start page with `?variant=<variant>` are committed. Tuesday's test needs a page from every pair, so the build
+the start page with `?variant=<variant>` are committed. The test needs a page from every pair, so the build
 comes before anything else that is left.
 
-**If you are short of time:** skip steps 2 and 3. On Tuesday you can run
+**If you are short of time:** skip steps 2 and 3. After the build you can run
 `/loopwise-persona-walkthrough <variant> page` on the built page instead.
 
 **For the Abgleich:** what did the persona find that you had not expected? What could it not tell you?
@@ -72,4 +72,4 @@ early". Then build the second variant the same way as the first:
    git add discovery site && git commit -m "block 5: second variant"
    ```
 
-The tester on Tuesday tries your first variant. The second one waits.
+The tester tries your first variant. The second one waits.

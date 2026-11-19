@@ -109,7 +109,7 @@ The trainer changes this one line per cohort, for example to `product managers`.
   skip these explanations.
 - Quotes from sources stay word for word, even when their language is not plain.
 
-**Setting: team**
+**Setting: workshop**
 
 The skills read this line. `workshop`: pairs in the two-day training; one tester from another pair
 tries each page (the cross test). `team`: a product team; it tests each page with people it

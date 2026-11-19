@@ -30,8 +30,8 @@ labels which of the two it is.
 
 Step-by-step instructions for every workshop block are in [docs/blocks/](docs/blocks/README.md).
 
-All skills are in `.claude/skills/` from the start; `CLAUDE.md` lists them in chain order. You start
-at `v2-00-start` and run the chain yourself. Each further tag is a reference state after one workshop
+All skills are in `.claude/skills/` from the start; `CLAUDE.md` lists them in chain order. In the one-day workshop you start at `v3-03-start`, with blocks 1 to 3 done, and run the chain
+from block 4. Each further tag is a reference state after one workshop
 block. If you decided differently, keep your own state or continue from the reference state.
 
 **One Claude Code session per skill.** Start a fresh session before each skill: type `/clear`, or

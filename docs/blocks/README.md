@@ -5,7 +5,7 @@ the block is for, what you do step by step, and when you are done.
 
 | File | Block | Tag after the block |
 |---|---|---|
-| [00-setup.md](00-setup.md) | Setup | `v2-00-start` |
+| [00-setup.md](00-setup.md) | Setup | `v3-03-start` |
 | [01-kpi-tree.md](01-kpi-tree.md) | KPI tree | `v2-01-kpi-tree` |
 | [02-opportunities.md](02-opportunities.md) | Opportunities from sources | `v2-02-opportunities` |
 | [03-opportunity-decision.md](03-opportunity-decision.md) | Compare opportunities and decide | `v2-03-opportunity-decision` |
@@ -14,13 +14,13 @@ the block is for, what you do step by step, and when you are done.
 | [06-test-decision.md](06-test-decision.md) | Cross test, learning card, carry on | `v2-06-test-decision` |
 | [07-result.md](07-result.md) | Demo: read the result | `v2-07-result` |
 | [08-next-bet.md](08-next-bet.md) | Demo: next bet | `v2-08-next-bet` |
-| [09-feedback.md](09-feedback.md) | Feedback and your results, end of day 2 | none |
+| [09-feedback.md](09-feedback.md) | Feedback and your results, end of the day | none |
 
 ## The same four moves in every block
 
 - **Run the skill.** In Claude Code, inside the `loopwise` folder, type `/` and the skill name.
-  Start a fresh session before each skill: type `/clear` first. The skill does not say what comes
-  next; your block file does.
+  Start a fresh session before each skill: type `/clear` first. The block 4 and 5 skills end by
+  naming what is still open in the block and the next command. Your block file has the full order.
 - **Try first.** Before it drafts anything, the skill asks you one question about the step. Answer it
   yourself, in a sentence or two. Afterwards the output shows your answer next to its draft, under
   "Your first try". That comparison is where you learn the most.
@@ -38,7 +38,7 @@ evidence map.
 
 ## Your pair's branch and the reference states
 
-You work as a pair on one branch, started from `v2-00-start`. You keep your own opportunity and your
+You work as a pair on one branch, started from `v3-03-start`. You keep your own opportunity and your
 own variant to the end. After every block there is a reference state. If you are stuck or behind,
 continue from the reference state of the block you missed:
 
