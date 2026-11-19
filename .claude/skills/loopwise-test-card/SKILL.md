@@ -87,8 +87,8 @@ Under the four lines: **We rework or drop the idea if** <rework-or-drop line>.
 1. Read the intent and its "Selection (human)". Quote the assumption, the idea and the variant name. If a field is empty, stop and say which. Now give the feedback on the first try (see Rules): the intent shows whether "We believe that" names the assumption or the idea. If `discovery/decisions/` holds a learning card for an earlier variant of the same intent, quote its "We learned" line and ask the human: "What does this idea answer of what you learned?" Put the answer under "We believe that". Then give feedback in two lines: does the answer tie the new idea to what was learned, or only restate the idea?
 2. Read the idea's assumptions and their sources in the intent. Do not reassess them.
 3. Draft the scenario, the signs, the two lines and what the test cannot show. Apply the persona-source rule to every sign. Hold the situation against both persona files: their "Persona type" line and their facts (the buyer without budget does not decide alone and has no budget settled at first contact, `product/personas/buyer-without-budget.md:5`; the buyer with budget already got a first step approved, `product/personas/buyer-with-budget.md:16`). A role or fact that clashes goes under "What this test cannot show"; the personas then keep their own file.
-4. Show the human the scenario and the signs. Ask: can a tester who knows only the situation and the task show these signs? Change what they say. In setting `team`, then ask who qualifies, how many, who recruits and by when (see "Setting `team`").
-5. Write the file. Tell the human in three lines which sign is weakest and which lines they must own. If every sign is "only the cross test with people can test this", say so: no AI persona can show a sign on this card. Then stop.
+4. Show the human the scenario, then the signs as a numbered list, each with what it tells them (go on, or rework or drop). Ask: "Picture yourself watching a tester. Which of these could you see or hear? Name the numbers you could not." Change what they say. Then say in two lines which signs an AI persona can show: in block 5 Claude plays two buyers from `product/personas/`, written profiles built from the same sources, and a persona can only do what its file has a line for. In setting `team`, then ask who qualifies, how many, who recruits and by when (see "Setting `team`").
+5. Write the file. Tell the human in three lines which sign is weakest and which lines they must own. If every sign is "only the cross test with people can test this", say so: no AI persona can show a sign on this card. Say that the page on the card is built in block 5: until then its link answers "Not found". End with two lines: "Still open in this block: fill `Card owner`, put both lines in your own words, then `npm run check` and commit." and "Next block: start a fresh session (`/clear`), then `/loopwise-variant-spec <variant>`." Then stop.
 
 ### Output template, mode `prototype`
 
@@ -120,15 +120,18 @@ Show <workshop: "one tester from another pair" | team: "<n> people who <criteria
 ### Test scenario (the tester sees only this)
 - **Situation:** <two or three sentences, "You are ...">
 - **Task:** <one sentence>
-- **Page:** `/<page>?variant=<variant>`, the page the spec names as the start
+- **Page:** `/<page>?variant=<variant>`, the page the tester starts on. It is built in block 5; until then the link answers "Not found"
 - **Sources:** <citations for the team facts in the situation, not read to the tester>
 - **Does not count if:** <only when the situation asks for a real case: "the tester has no such case">
 
 ## And measure (the signs the watcher looks for)
-| Sign (what the watcher sees or hears) | Points to | Can a persona show it? |
-|---|---|---|
-| <sign> | go on | <"yes: <quote>" ([product/personas/<file>:<line>](../../product/personas/<file>#L<line>)), or "only the cross test with people can test this"> |
-| <sign> | rework or drop | ... |
+| What the watcher sees or hears | What it tells you |
+|---|---|
+| <sign> | go on |
+| <sign> | rework or drop |
+
+**Which signs an AI persona can show** (block 5: Claude plays the buyer personas from `product/personas/`):
+- <sign>: <"yes: <quote>" ([product/personas/<file>:<line>](../../product/personas/<file>#L<line>)), or "only the cross test with people can test this">
 
 ## We are right if (go-on line)
 <in words, proposal> · Set on: <YYYY-MM-DD>
