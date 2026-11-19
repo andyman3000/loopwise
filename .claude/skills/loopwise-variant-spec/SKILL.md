@@ -1,6 +1,6 @@
 ---
 name: loopwise-variant-spec
-description: Write the spec for one variant so Claude Code can build it, in one of two modes. "learn" (the default) writes the smallest page that tests the critical assumption on the prototype card, ends with a challenger run by a subagent that hunts for bloat, and leaves everything else out. "launch" writes the full page for the release, after the launch card, with events, every way in, fallbacks and edge cases. Use as "/loopwise-variant-spec <variant>" or "/loopwise-variant-spec <variant> learn" after "/loopwise-test-card <variant> prototype", and "/loopwise-variant-spec <variant> launch" after "/loopwise-test-card <variant> launch". Use when the team says "write the spec", "spec this variant", or "what exactly do we build for <variant>". Writes one file per variant and mode; never chooses variants and never builds.
+description: Write the spec for one variant so Claude Code can build it, in one of two modes. "learn" (the default) writes the smallest page that tests the critical assumption on the prototype card, ends with a challenger run by a subagent that hunts for bloat, and leaves everything else out. "launch" writes the lean launch spec after the launch card: at most one page with what a developer needs and the prototype does not show (non-functional requirements, decisions and why, events, invisible behaviour, open points), then a subagent checks it against the prototype and every line the prototype already shows is cut. Use as "/loopwise-variant-spec <variant>" or "/loopwise-variant-spec <variant> learn" after "/loopwise-test-card <variant> prototype", and "/loopwise-variant-spec <variant> launch" after "/loopwise-test-card <variant> launch". Use when the team says "write the spec", "spec this variant", or "what exactly do we build for <variant>". Writes one file per variant and mode; never chooses variants and never builds.
 ---
 
 # Spec
@@ -10,19 +10,20 @@ description: Write the spec for one variant so Claude Code can build it, in one 
 | Mode | When | Card it rests on | Goal | Writes |
 |---|---|---|---|---|
 | `learn` | after `loopwise-test-card <variant> prototype`, before the prototype build | `discovery/test-cards/<variant>-prototype.md` | the smallest page on which a tester meets the critical assumption and the watcher sees every sign | `discovery/specs/<variant>.md` |
-| `launch` | after `loopwise-test-card <variant> launch`, before the variant ships | `discovery/test-cards/<variant>.md` | the full page for real visitors, measured by the launch card | `discovery/specs/<variant>-launch.md` |
+| `launch` | after `loopwise-test-card <variant> launch`, before the variant ships | `discovery/test-cards/<variant>.md` | one page with what the build for real visitors needs and the prototype does not show | `discovery/specs/<variant>-launch.md` |
 
 **Reads, both modes:** the card for the mode; `site/styles.css`, the design system (tokens and components, see `.claude/rules/design-system.md`); `discovery/intents/<opportunity>.md` (the idea and its assumptions); the pages the idea changes in `site/` and `site/components/` (what they do today); `site/formats.html` (the formats a page may name); `product/constraints.md`; `product/personas/`; `sources/` where the variant needs wording from the material.
-**Reads, mode `launch` also:** `discovery/specs/<variant>.md` (the learn spec), `discovery/decisions/002-<variant>.md` (the learning card), and `discovery/user-tests/` for this variant.
+**Reads, mode `launch` also:** the prototype in `site/variants/<variant>/` (every file); `discovery/specs/<variant>.md` (the learn spec); the learning card, the file in `discovery/decisions/` whose name ends in `-<variant>.md` (002 for the first variant, a later number for the next); every other file in `discovery/decisions/` that names the variant; `discovery/user-tests/` for this variant; `site/components/events.js` and `server.js` (what the site logs and stores today); `gates/gates.json` and `gates/policies/` (the release gates).
 
 A spec is the hand-over to the build: precise enough that Claude Code can build the page from this file alone.
+In mode `launch` the hand-over is a kit of three files: the prototype, the intent and the launch spec. The prototype shows everything visible. The intent says why. The launch spec holds only the rest.
 
 **Mode `learn` builds to learn, not to ship.** The page exists to test one critical assumption with a few testers. A critical assumption is the one thing that must be true for the idea to work. Every element on the page must serve that assumption or a sign on the prototype card. Everything else is left out and listed as such. When in doubt, leave it out: the launch spec can add it later.
 
 ## Rules, both modes
 
-- **Try first, then compare.** Before you draft, ask the human. In `learn`: "What is the smallest page that lets a tester hit the assumption?" In `launch`: "What does the page need beyond the prototype before real visitors see it?" Wait for the answer and never invent it. A vague reply ("go on", "ok") is not an answer: ask once more, and if it stays vague, write "skipped". After drafting, fill the section "Your first try": their answer word for word, then two or three short lines on where your draft differs and why. If they say skip, write "skipped". This step is how participants learn the concept; do not shorten it.
-- **Feedback on the first try.** After drafting, tell the human in two or three short lines how strong their answer was: what was good, what was weak, and why. Judge it against the mode. In `learn`: is it the smallest page, or a full feature? Does it let a tester meet the assumption? Can the watcher see every sign on it? In `launch`: does it cover what the launch card measures? Name their words. Be honest and specific, never flattering. A skipped answer gets no feedback. Write the same lines under "Feedback" in "Your first try".
+- **Try first, then compare.** Before you draft, ask the human. In `learn`: "What is the smallest page that lets a tester hit the assumption?" In `launch`: "What would a developer need to know that the prototype does not show?" The answer should fit about ten minutes of the pair's time. Wait for the answer and never invent it. A vague reply ("go on", "ok") is not an answer: ask once more, and if it stays vague, write "skipped". After drafting, fill the section "Your first try": their answer word for word, then two or three short lines on where your draft differs and why. If they say skip, write "skipped". This step is how participants learn the concept; do not shorten it.
+- **Feedback on the first try.** After drafting, tell the human in two or three short lines how strong their answer was: what was good, what was weak, and why. Judge it against the mode. In `learn`: is it the smallest page, or a full feature? Does it let a tester meet the assumption? Can the watcher see every sign on it? In `launch`: does it name what the prototype cannot show (data, errors, the events the launch card counts, legal limits), or does it repeat what the page already shows? Name their words. Be honest and specific, never flattering. A skipped answer gets no feedback. Write the same lines under "Feedback" in "Your first try".
 - **Every claim quotes its source with location** (file and line). No quote, no claim. Each citation is a Markdown link: `[<file>:<line>](<path from this file>#L<line>)` (`.claude/rules/writing.md`, "Citations are links").
 - **Do not invent numbers.** No targets, no thresholds, no expected rates; those belong in the test card.
 - **No line on the page says what a go-on sign listens for.** A tester who reads such a line back shows nothing.
@@ -59,19 +60,27 @@ A spec is the hand-over to the build: precise enough that Claude Code can build 
 
 ## Rules, mode `launch`
 
-- **Start from the learn spec and the learning card.** Keep what the prototype test showed works. Name what changed after the test, with its source in the learning card.
-- **Cover what real visitors meet:** every way in the idea names, the paths a visitor may take, fallbacks for browser features, edge cases the rule must handle, and every item left out in the learn spec. For each item left out in the learn spec, say whether it now goes in, and why.
-- **Events come from this list only:** `page_view`, `inquiry_started`, `inquiry_step_completed`, `inquiry_submitted`, `success_line_filled`, `scoping_call_booked`, `booking_confirmed`, `followup_answered`. For each, say when it fires, which props it carries, and which line of the launch card it measures: the proxy metric, the counter metric, the kill criterion or the success line. If the launch card needs something no event covers, say so under "What we cannot see".
-- **Invented lines need a confirmer before launch.** Every invented line names who confirmed it, or stays an open point.
+- **One page, no more.** Aim for under 60 lines of Markdown; 80 is the hard limit. A longer draft gets cut, never split into a second file. A long requirements document is a poor hand-over: most of what it would say gets decided when a team specs together. The launch spec carries only the rest.
+- **The prototype is the reference for everything visible.** Link its files and never describe layout, wording, labels, fields, order or visible states. If the release must change something a visitor sees, write one line: what changes and the decision behind it, or an open point.
+- **Six sections and nothing else,** in the order of the template: the kit, non-functional requirements, decisions taken, events, invisible behaviour, open points. Above them stays "Your first try"; below them, one "Prototype check" line. No status log, no build prompt, no list of invented lines. Of the rules for both modes, "Name what changes on the page", the section "Invented lines on the page" and the stage and review log do not apply in `launch`.
+- **Non-functional requirements: only those that matter for this release.** Look at least at these: the page works once the faked parts of the prototype are real; accessibility basics; a performance budget for a static page; privacy of form data. Each line has a source or is marked `[assumption: ...]`. A budget is a rule from `product/constraints.md` or a counted number, never an invented one.
+- **Decisions taken: only what a human decided in a file.** Each line says what was decided and why, and cites the file and line: a file in `discovery/decisions/`, the launch card or the learning card. Anything no human decided goes to the open points, with your proposal at most.
+- **Events come from this list only:** `page_view`, `inquiry_started`, `inquiry_step_completed`, `inquiry_submitted`, `success_line_filled`, `scoping_call_booked`, `booking_confirmed`, `followup_answered`. For each, say when it fires, which props it carries, and which line of the launch card it feeds: the success line, the usage hypothesis, the proxy metric, the counter metric or the kill criterion. Cite that line. If the launch card needs something no event covers, say so under invisible behaviour.
+- **Invisible behaviour: what a visitor cannot see in the prototype.** States between clicks, errors, edge cases the rule must handle, which data goes where and who may read it, and legal limits. Always name the legal limit on prices: no price on the site, citing `product/constraints.md:7` as a link, and the release gates in `gates/gates.json` that the hardened page must pass.
+- **Every item the learn spec left out appears once:** as a decision, as invisible behaviour, or as an open point. The prototype's faked parts are among them.
+- **Invented lines need a confirmer before launch.** An invented line from the learn spec without a confirmer is an open point.
+- **Prototype check at the end.** After the draft, start a subagent (the Agent tool, a fresh agent with no conversation context). Give it only the prototype files in `site/variants/<variant>/` and the draft, and this brief: "The prototype is the reference for everything a visitor sees. List every line of the launch spec that describes something visible in the prototype: layout, wording, labels, fields, order or visible states. Quote the spec line and name the prototype element. Judge nothing else." Do not give it your own view. Cut every line it lists. If a listed line also holds something the prototype does not show, keep only that part. Record the run in the "Prototype check" line: lines listed, cut, shortened. Tell the human which lines went.
 
 ## Steps
 
 0. **Try first.** Ask the human the question for the mode (see Rules). Wait for the answer before you read further or draft anything.
-1. Read the card for the mode: the assumption, the scenario and the signs, or the launch lines. Then the intent and its "Selection (human)". Confirm the variant name and which idea it comes from. In `launch`, also read the learn spec, the learning card and the walkthroughs.
+1. Read the card for the mode: the assumption, the scenario and the signs, or the launch lines. Then the intent and its "Selection (human)". Confirm the variant name and which idea it comes from. In `launch`, also read the prototype files, the learn spec, the learning card, the other decisions on the variant and the walkthroughs.
 2. Read the current pages the idea changes and their components, so the spec says what changes against today and what stays.
 3. Draft the spec with the template for the mode. Show the human the section "What changes on the page" and ask them to confirm or change it.
+   In `launch`, show the sections "Decisions taken" and "Invisible behaviour" instead.
 4. Mode `learn` only: **challenger run** (see Rules). Show the findings as a table, ask the human which to apply, apply only those, and record it under "Challenger check". Add its row to the review log and set the stage.
-5. Write the file. Give the feedback on the first try (see Rules). Tell the human in three lines what the build needs most and which open point needs their judgement. Say that every open point touching a sign must be answered before the build. In mode `learn`, end with two lines: "Still open in this block: the persona run on this spec, then the build." and "Next: start a fresh session (`/clear`), then `/loopwise-persona-walkthrough <variant> spec`. Build after that." In mode `launch`, end with: "Next: your block file names the step after this spec." Then stop.
+4. Mode `launch` only: **prototype check** (see Rules). Cut the lines the subagent lists, tell the human which, and fill the "Prototype check" line. Count the lines of the file: over 80, cut further before you write it.
+5. Write the file. Give the feedback on the first try (see Rules). Tell the human in three lines what the build needs most and which open point needs their judgement. Say that every open point touching a sign must be answered before the build. In mode `learn`, end with two lines: "Still open in this block: the persona run on this spec, then the build." and "Next: start a fresh session (`/clear`), then `/loopwise-persona-walkthrough <variant> spec`. Build after that." In mode `launch`, say which open points the build needs answered first, and that every open point must be answered before launch. End with: "Next: your block file names the step after this spec." Then stop.
 
 ## Output template, mode `learn`
 
@@ -139,57 +148,43 @@ Feedback: <two or three short lines: what was strong, what was weak, and why>
 ## Output template, mode `launch`
 
 ```markdown
-# Spec: <variant>, launch
+# Launch spec: <variant>
 
-> Spec drafted by an agent (`loopwise-variant-spec`, mode `launch`) on <YYYY-MM-DD>, before the variant ships.
-> **Variant:** `<variant>` · Pages it changes: <page files> · Visitors start at <pages>
-> **Launch card:** [discovery/test-cards/<variant>.md](../test-cards/<variant>.md) · **Learn spec:** [discovery/specs/<variant>.md](<variant>.md) · **Learning card:** [discovery/decisions/002-<variant>.md](../decisions/002-<variant>.md)
+> Launch spec drafted by an agent (`loopwise-variant-spec`, mode `launch`) on <YYYY-MM-DD>, before the variant ships. Not a decision: open points stay open for a human.
+> **Kit:** prototype [site/variants/<variant>/<page>.html](../../site/variants/<variant>/<page>.html) · intent [discovery/intents/<opportunity>.md](../intents/<opportunity>.md) · this launch spec
+> **Rests on:** launch card [discovery/test-cards/<variant>.md](../test-cards/<variant>.md) · learning card [discovery/decisions/<nnn>-<variant>.md](../decisions/<nnn>-<variant>.md) · learn spec [discovery/specs/<variant>.md](<variant>.md)
 > **Label:** <synthetic or composite, repeated from the material the intent rests on>
+
+<one line per product term on first use, as CLAUDE.md asks>
 
 ## Your first try
 <the human's answer, word for word> · Where the draft differs: <two or three short lines>
 Feedback: <two or three short lines: what was strong, what was weak, and why>
 
-## What changed since the prototype
-- <change>: <source in the learning card or a walkthrough>
+## Kit
+- Prototype: <a link to every file in site/variants/<variant>/, and the page visitors start on>
+- Intent: <link, and the idea it comes from, quoted with its line>
+- The prototype is the reference for everything visible. This file holds only what it does not show.
 
-## What changes on the page
-<every way in and every path, step by step>
+## Non-functional requirements
+- **<requirement>:** <what must hold, and why> (<source link> or [assumption: ...])
 
-## Fields and validation
-| Field (POST body key) | Type | Required | Allowed values or limit |
+## Decisions taken
+- **<decision>:** <why> (<source link: discovery/decisions/, the launch card or the learning card>)
+
+## Events
+| Event | When it fires | Props | Feeds (launch card line) |
 |---|---|---|---|
 
-## Events to emit
-| Event | When it fires | Props | Measures (line of the launch card) |
-|---|---|---|---|
+## Invisible behaviour
+- **States:** <...>
+- **Errors:** <...>
+- **Edge cases:** <...>
+- **Data:** <what is stored, where, who may read it>
+- **Legal:** no price on the site (<link to product/constraints.md:7>). <the release gates the hardened page must pass>
 
-## What stays the same
-- <...>
+## Open points
+- <point> · who confirms: <role> · Answer: ____ (human decides before launch)
 
-## Critical assumptions it rests on
-- <assumption from the intent or the launch card, quoted with its level>
-
-## What we cannot see
-- <what this variant changes that no event measures>
-
-## Invented lines on the page
-| Line the buyer sees | Confirmed by |
-|---|---|
-
-## Left out in the learn spec, now
-| Element | Goes in now? | Why |
-|---|---|---|
-
-## Out of scope
-- <...>
-
-## Open points for the human
-- <point>: who can answer it · Answer: ____ (human decides before launch)
-
-## Build prompt
-> Build the variant in discovery/specs/<variant>-launch.md as one file per page it changes in
-> site/variants/<variant>/, named like the page it replaces (inquiry.html, formats.html),
-> replacing the prototype files, and keep the name in "variants" in site/config.json.
-> Do not set "shipped".
+**Prototype check:** <date>, a fresh subagent read only the prototype and the draft. Lines listed: <n> · cut: <n> · shortened: <n>.
 ```
