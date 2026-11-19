@@ -1,5 +1,8 @@
 # Setup
 
+> **The jump: pairs or threes, at one laptop. 25 minutes. Task: clone the repo, start your branch
+> from `v3-03-start`, and get the site and Claude Code running.**
+
 **What it's for:** everyone has the repo running, Claude Code sees the skills, and Claude Code can
 open a page in a browser, before block 4 starts.
 

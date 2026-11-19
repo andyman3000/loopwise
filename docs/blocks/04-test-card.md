@@ -1,5 +1,12 @@
 # Block 4: Ideas, the assumption to test, prototype test card
 
+> **Ideation: pairs or threes, at one laptop. 50 minutes. Task: find many ideas for C1, pick 3 to
+> 5, and name the one you test first and why.** This is "Read first" and steps 1 to 4.
+>
+> **Persona test and what to measure, part 1: same group. About 25 of 60 minutes. Task: write and
+> own the prototype test card for your variant.** This is steps 5 to 7, with step 6 cut to 5
+> minutes. Part 2 is block 5, steps 1 and 2.
+
 **What it's for:** you develop many ideas for your chosen opportunity, then narrow them to 3 to 5,
 each with the driver it moves and its critical assumption: the one thing that must be true for it
 to work. You pick which idea to test first, and why. Then you write the prototype test card
