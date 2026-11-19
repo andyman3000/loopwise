@@ -117,6 +117,13 @@ function variantDir(name) {
   return dir.startsWith(path.join(SITE, 'variants') + path.sep) && fs.existsSync(dir) ? dir : null;
 }
 
+// The hardened build of a variant (build to earn): site/hardened/<name>/, same rule as above.
+function hardenedDir(name) {
+  if (typeof name !== 'string' || !readConfig().variants.includes(name)) return null;
+  const dir = path.join(SITE, 'hardened', name);
+  return dir.startsWith(path.join(SITE, 'hardened') + path.sep) && fs.existsSync(dir) ? dir : null;
+}
+
 // A variant replaces a page by holding a file of the same name: variants/<name>/formats.html.
 // A page the variant does not hold is the baseline page.
 function variantPage(dir, page) {
@@ -124,9 +131,10 @@ function variantPage(dir, page) {
   return file && fs.existsSync(file) ? file : null;
 }
 
-// Links between pages keep ?variant=<name>, so a visitor stays inside the variant.
-function keepVariant(html, variant) {
-  return html.replace(/href="(\/[a-z0-9-]*(?:\.html)?)"/g, (all, href) => (pageName(href) ? `href="${href}?variant=${encodeURIComponent(variant)}"` : all));
+// Links between pages keep ?variant=<name> (and &build=hardened), so a visitor stays inside the variant.
+function keepVariant(html, variant, hardened = false) {
+  const query = `?variant=${encodeURIComponent(variant)}${hardened ? '&build=hardened' : ''}`;
+  return html.replace(/href="(\/[a-z0-9-]*(?:\.html)?)"/g, (all, href) => (pageName(href) ? `href="${href}${query}"` : all));
 }
 
 // Extra fields from a variant form are passed through by rule, not by name: any top-level key
@@ -235,14 +243,18 @@ export function createServer() {
     let file;
     const page = pageName(pathname);
     if (page) {
-      const variant = new URL(req.url, 'http://localhost').searchParams.get('variant');
+      const params = new URL(req.url, 'http://localhost').searchParams;
+      const variant = params.get('variant');
+      const hardened = params.get('build') === 'hardened';
       const baseline = path.join(SITE, page + '.html');
-      if (variant === null) file = variantPage(variantDir(readConfig().shipped), page) || baseline;
+      // A shipped variant is served from its hardened build if there is one, else from its prototype.
+      const shipped = readConfig().shipped;
+      if (variant === null) file = variantPage(hardenedDir(shipped) || variantDir(shipped), page) || baseline;
       else if (variant === 'baseline') file = baseline;
       else {
-        const dir = variantDir(variant);
+        const dir = hardened ? hardenedDir(variant) : variantDir(variant);
         if (!dir) return notFound();
-        const html = keepVariant(fs.readFileSync(variantPage(dir, page) || baseline, 'utf8'), variant);
+        const html = keepVariant(fs.readFileSync(variantPage(dir, page) || baseline, 'utf8'), variant, hardened);
         res.writeHead(200, { 'Content-Type': TYPES['.html'], 'Content-Length': Buffer.byteLength(html) });
         return res.end(req.method === 'HEAD' ? undefined : html);
       }

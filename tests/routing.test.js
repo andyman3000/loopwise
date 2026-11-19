@@ -8,7 +8,9 @@ import { createServer } from '../server.js';
 
 const SITE = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'site');
 const VARIANTS = path.join(SITE, 'variants');
+const HARDENED = path.join(SITE, 'hardened');
 const MARK = 'TEST-VARIANT-MARKER';
+const HMARK = 'TEST-HARDENED-MARKER';
 
 let server, base, dir, cfg, dataDir;
 const created = [];
@@ -34,6 +36,7 @@ after(async () => {
   await new Promise((r) => server.close(r));
   for (const d of created) fs.rmSync(d, { recursive: true, force: true });
   if (!fs.readdirSync(VARIANTS).length) fs.rmdirSync(VARIANTS);
+  if (fs.existsSync(HARDENED) && !fs.readdirSync(HARDENED).length) fs.rmdirSync(HARDENED);
   fs.rmSync(dir, { recursive: true, force: true });
   delete process.env.LOOPWISE_CONFIG;
   delete process.env.LOOPWISE_DATA_DIR;
@@ -172,4 +175,50 @@ test('/api/inquiry passes through extra scalar fields by rule and drops the rest
   const row2 = JSON.parse(fs.readFileSync(path.join(dataDir, 'inquiries-live.jsonl'), 'utf8').trim().split('\n').pop());
   assert.equal(row2.variant, 'baseline');
   assert.equal(Object.keys(row2).filter((k) => /^k\d+$/.test(k)).length, 20);
+});
+
+// Hardened builds (build to earn) live in site/hardened/<name>/. Each test makes its own folders.
+function hardenedBuild(name, files) {
+  const d = path.join(HARDENED, name);
+  fs.mkdirSync(d, { recursive: true });
+  created.push(d);
+  for (const [f, body] of Object.entries(files)) fs.writeFileSync(path.join(d, f), body);
+  return d;
+}
+
+test('?variant=<name>&build=hardened serves the hardened page, and its links keep both params', async () => {
+  hardenedBuild('zz-test-a', { 'inquiry.html': `<!doctype html>${HMARK}-zz-test-a<a href="/formats.html">F</a><a href="/styles.css">S</a>` });
+  setConfig({ shipped: null, variants: ['zz-test-a'] });
+  const r = await get('/inquiry?variant=zz-test-a&build=hardened');
+  assert.equal(r.status, 200);
+  assert.match(r.text, new RegExp(HMARK + '-zz-test-a'));
+  assert.match(r.text, /href="\/formats\.html\?variant=zz-test-a&build=hardened"/);
+  assert.match(r.text, /href="\/styles\.css"/, 'files that are not pages keep their link');
+  assert.match((await get('/inquiry?variant=zz-test-a')).text, new RegExp(MARK + '-zz-test-a'), 'without build=hardened the prototype is served');
+  const formats = await get('/formats.html?variant=zz-test-a&build=hardened');
+  assert.equal(formats.status, 200, 'a page the hardened build does not hold is the baseline page');
+  assert.doesNotMatch(formats.text, new RegExp(HMARK));
+  assert.match(formats.text, /href="\/inquiry\.html\?variant=zz-test-a&build=hardened"/);
+});
+
+test('build=hardened is 404 when the variant has no hardened build or is not listed', async () => {
+  setConfig({ shipped: null, variants: ['zz-test-a', 'zz-test-b'] });
+  assert.equal((await get('/inquiry?variant=zz-test-b&build=hardened')).status, 404, 'no hardened folder');
+  hardenedBuild('zz-test-b', { 'inquiry.html': `<!doctype html>${HMARK}-zz-test-b` });
+  setConfig({ shipped: null, variants: ['zz-test-a'] });
+  assert.equal((await get('/inquiry?variant=zz-test-b&build=hardened')).status, 404, 'not listed in config.variants');
+  assert.equal((await get('/inquiry?variant=../../server&build=hardened')).status, 404);
+});
+
+test('a shipped variant is served from its hardened build if there is one, else from its prototype', async () => {
+  hardenedBuild('zz-test-a', { 'inquiry.html': `<!doctype html>${HMARK}-zz-test-a` });
+  setConfig({ shipped: 'zz-test-a', variants: ['zz-test-a', 'zz-test-b'] });
+  assert.match((await get('/inquiry')).text, new RegExp(HMARK + '-zz-test-a'));
+  assert.match((await get('/inquiry.html')).text, new RegExp(HMARK + '-zz-test-a'));
+  assert.match((await get('/formats.html')).text, /<title>[^<]*<\/title>/, 'a page the hardened build does not hold is the baseline');
+  assert.doesNotMatch((await get('/formats.html')).text, new RegExp(HMARK));
+  assert.match((await get('/inquiry?variant=baseline')).text, /id="inquiry-form"/);
+  fs.rmSync(path.join(HARDENED, 'zz-test-b'), { recursive: true, force: true });
+  setConfig({ shipped: 'zz-test-b', variants: ['zz-test-a', 'zz-test-b'] });
+  assert.match((await get('/inquiry')).text, new RegExp(MARK + '-zz-test-b'), 'no hardened folder: the prototype');
 });
