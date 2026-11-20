@@ -3,7 +3,7 @@
 > Assessment drafted by an agent on 2026-11-16, not a decision.
 > Card owner: Product lead (Loopwise), the product lead's decision ("Yes, all five", 2026-11-16)
 > Variant: [discovery/specs/call-slot.md](../specs/call-slot.md) · Intent: [discovery/intents/format-fit.md](../intents/format-fit.md) · Prototype test: [discovery/test-cards/call-slot-prototype.md](../test-cards/call-slot-prototype.md), learning card [discovery/decisions/003-call-slot.md](../decisions/003-call-slot.md)
-> KPI branch: Branch A ("Branch A: more inquiries that end in a booking", [discovery/kpi-tree.md:18](../kpi-tree.md#L18)) · driver: call rate ("call rate: percentage of sent inquiries that get a scoping call", [discovery/kpi-tree.md:23](../kpi-tree.md#L23))
+> KPI branch: Branch A ("Branch A: more inquiries that end in a booking", [discovery/kpi-tree.md:18](../kpi-tree.md#L18)) · measured step: visit-to-call ("visit-to-call: percentage of inquiry page visits that end in a scoping call, by the form or a booked slot", [discovery/kpi-tree.md:30](../kpi-tree.md#L30)), the step the intent names ([discovery/intents/format-fit.md:30](../intents/format-fit.md#L30)) · not the driver call rate ([discovery/kpi-tree.md:23](../kpi-tree.md#L23))
 > Material: interviews, inquiry mails, inbox and data are synthetic; the feedback free text is an anonymised composite. This file repeats that label.
 > Data: 0 events in `data/events.jsonl` carry this variant (`grep -c '"variant":"call-slot"' data/events.jsonl`). No event in `data/` carries this variant, so this card cannot be read against the data in this repo.
 
@@ -26,24 +26,24 @@ Asked what 15% means, the product lead answered on 2026-11-16, in German as said
 In English: "I don't know, that is exactly the point. None of this is statistically meaningful anyway. I would be very happy with 65 of 113."
 
 Where the draft differs:
-- The success line is the second answer as a share: at least 57.5% of sent inquiries get a scoping call. 65 of 113 is the reference count. The product lead confirmed this on 2026-11-16: "passt so" ("that fits").
+- The success line moves to the step the intent names: inquiry page visits that end in a scoping call, by the form or a booked slot ([discovery/intents/format-fit.md:30](../intents/format-fit.md#L30)). Its value is a reference decision (replace with your own): Noa Vale, product lead, 2026-11-20, at least 10%. It is not taken from the answers above.
 - The draft adds a time frame of eight weeks, which the answers do not name. 113 sent inquiries took 26 weeks, so a share fits a shorter time frame than a count.
-- The draft flags that a booked slot has no sent inquiry. The product lead decided that booked slots stay out of the share and are reported on their own.
+- A booked slot has no sent inquiry. On the success line it counts like any scoping call. It is also reported on its own, under "Usage hypothesis".
 
 Feedback:
 - Strong: the first try names a driver from the KPI tree, the call rate, and a size, before launch.
 - Weak: "15%" could mean 15 percent of today's rate or 15 points. On 55 of 113 (48.7%), that is 56.0% or 63.7%.
 - Weak: it names no baseline and no time frame. A reader later cannot tell what "improve" is measured against.
 - Can `data/` count it? Not today. No event carries `call-slot`, and the prototype's slot booking logs no event ([discovery/specs/call-slot.md:33](../specs/call-slot.md#L33)).
-- The call rate counts calls per sent inquiry. A slot booking makes a call without a sent inquiry. So the rate can rise without any extra calls, or fall while calls grow.
+- Weak: the first try names the call rate; the intent names a different step. A slot booking skips the sent inquiry, so the call rate cannot show it.
 - The second answer is stronger: "65 of 113" is a count, with the same base as today's 55 of 113.
 - Against the usual swing: 65 of 113 is 57.5%. The unchanged page reached 62.5% in one of three eight-week blocks before launch (table below). So the line shows a direction, not an effect.
 
 ## The test card in four lines
 - **We believe that** buyers who cannot tell which format fits would rather book a call slot themselves than write an inquiry.
 - **To verify that, we will** release the variant to every inquiry page visitor for eight weeks.
-- **And measure** scoping calls per sent inquiry, from `scoping_call_booked` and `inquiry_submitted`, and booked slots on their own.
-- **We are right if** at least 57.5% of sent inquiries get a scoping call (today 55 of 113, 48.7%).
+- **And measure** inquiry page visits that end in a scoping call, by the form or a booked slot, from `page_view` and `scoping_call_booked`, and booked slots on their own.
+- **We are right if** at least 10% of inquiry page visits end in a scoping call (today 55 of 740, 7.4%).
 
 Under the four lines: **We take it back if** fewer inquiry page visits end in any contact than in every eight-week block before launch.
 
@@ -81,7 +81,7 @@ On the inquiry page, a buyer can book a 20-minute call slot or call a number, ne
 ## How much the unchanged page swings
 Counted from `data/events.jsonl`, 26 weeks of synthetic data from 2026-02-18. A call counts in the block of its sent inquiry. The last block holds two weeks only.
 
-| Block from | Calls of sent inquiries (call rate) | Calls of inquiry page visits | Sent inquiries of inquiry page visits |
+| Block from | Calls of sent inquiries (call rate, not the measure) | Calls of inquiry page visits (visit-to-call, the measure) | Sent inquiries of inquiry page visits |
 |---|---|---|---|
 | 2026-02-18, 4 weeks | 7 of 17 (41.2%) | 7 of 112 (6.3%) | 17 of 112 (15.2%) |
 | 2026-03-18, 4 weeks | 10 of 18 (55.6%) | 10 of 111 (9.0%) | 18 of 111 (16.2%) |
@@ -95,9 +95,9 @@ Counted from `data/events.jsonl`, 26 weeks of synthetic data from 2026-02-18. A 
 | 2026-06-10, 8 weeks | 16 of 40 (40.0%) | 16 of 237 (6.8%) | 40 of 237 (16.9%) |
 | All 26 weeks | 55 of 113 (48.7%) | 55 of 740 (7.4%) | 113 of 740 (15.3%) |
 
-The call rate of the unchanged page moved by 21.1 points between neighbouring four-week blocks (60.0% to 38.9%). Between eight-week blocks it moved by 22.5 points (62.5% to 40.0%).
-The success line asks for 57.5% against 48.7%, a change of 8.8 points. That is smaller than the usual swing. So the call rate shows a direction, not an effect.
-The unchanged page would have met the success line in 1 of 3 eight-week blocks (20 of 32, 62.5%).
+Visit-to-call on the unchanged page moved by 5.0 points between neighbouring four-week blocks (10.9% to 5.9%). Between eight-week blocks it moved by 2.0 points (8.8% to 6.8%).
+The success line asks for 10% against 7.4%, a change of 2.6 points. That is larger than the swing between eight-week blocks, and smaller than between four-week blocks. The time frame is eight weeks.
+The unchanged page would have met the success line in 0 of 3 eight-week blocks, and in 1 of 6 four-week blocks (12 of 110, 10.9%). For comparison, the call rate swung by 22.5 points between eight-week blocks (62.5% to 40.0%).
 The data opportunities file counts the same 55 of 113 ([discovery/opportunities/data.md:80](../opportunities/data.md#L80)). The agent recounted it on 2026-11-16: 55 sessions with `scoping_call_booked`, all of them with `inquiry_submitted`.
 
 Command, run from the repo root:
@@ -107,22 +107,22 @@ node -e 'const fs=require("fs");const ev=fs.readFileSync("data/events.jsonl","ut
 ```
 
 ## Success line (set upfront, before launch)
-At least 57.5% of sent inquiries get a scoping call, over the eight weeks after launch. 65 of 113 is the reference count. Today 55 of 113 do (48.7%), in 26 weeks.
-- Source: the product lead, 2026-11-16, „Ich wäre mit 65 von 113 sehr zufrieden“ ("I would be very happy with 65 of 113"). Confirmed as a share the same day: "passt so" ("that fits").
-- In eight weeks before launch, 32 to 40 inquiries were sent. One call more or less moves the share by about three points.
-- Direction only: the change is smaller than the usual swing (table above).
-- How a booked slot counts: it stays out of the share and is reported on its own, under "Usage hypothesis". A booked slot is a scoping call without a sent inquiry. Decided: the product lead's decision ("Yes, all five", 2026-11-16).
-- Computed from: sessions with `scoping_call_booked` that also have `inquiry_submitted`, ÷ sessions with `inquiry_submitted`, both with the variant `call-slot`.
-- Set by: Product lead (Loopwise), the product lead's decision ("Yes, all five", 2026-11-16) · Set on: 2026-11-16
+At least 10% of inquiry page visits end in a scoping call, by the form or a booked slot, over the eight weeks after launch. Today 55 of 740 do (7.4%), in 26 weeks.
+- Source: reference decision (replace with your own), Noa Vale, product lead, 2026-11-20, derived from the swing table. The unchanged page reached at most 8.8% in an eight-week block (20 of 228). 9% would ask for one call more than that block; 10% asks for three more (23 of about 228 visits). The value is not taken from the first try.
+- In eight weeks before launch, 223 to 237 inquiry page visits came in. One call more or less moves the share by about 0.4 points.
+- Above the swing between eight-week blocks, below the swing between four-week blocks (table above). Still a few dozen calls: a signal, not proof.
+- How a booked slot counts: as a scoping call, like a call after a sent inquiry. It is also reported on its own, under "Usage hypothesis". The call rate leaves booked slots out, so it is no measure for this variant.
+- Computed from: sessions with `scoping_call_booked` ÷ sessions with a `page_view` of the inquiry page, both with the variant `call-slot`.
+- Set by: Noa Vale, product lead, reference decision (replace with your own) · Set on: 2026-11-20
 
 ## Usage hypothesis
 Buyers use the slot booking: booked slots are at least a quarter of all scoping calls in the time frame (proposal). · Computed from: sessions with `scoping_call_booked` and no `inquiry_submitted`, ÷ sessions with `scoping_call_booked`, variant `call-slot`. Before launch this count is 0, because no slot booking exists.
 
 ## Proxy metric
-Scoping calls of inquiry page visits, both routes together: a slot, or a sent inquiry that gets a call. Today 55 of 740 (7.4%). [assumption: a call booked on the page ends in a booking as often as a call after a sent inquiry; see assumption 2] · Computed from: sessions with `scoping_call_booked` ÷ sessions with a `page_view` of the inquiry page
+Inquiry page visits that start the form or book a slot. It shows on the day of the visit; a call after a sent inquiry follows 1 to 4 days later. Today 194 of 740 (26.2%), all of them started forms, since no slot booking exists. [assumption: a started form or a booked slot ends in a scoping call as often as a started form did before launch] · Computed from: sessions with `inquiry_started` or `scoping_call_booked`, ÷ sessions with a `page_view` of the inquiry page
 
-## Start rate (the driver the intent names)
-The intent asks that more inquiry page visits start the form ([discovery/intents/format-fit.md:30](../intents/format-fit.md#L30)), counted as the start rate ([discovery/intents/format-fit.md:32](../intents/format-fit.md#L32)).
+## Start rate (an early signal, not the measure)
+The intent reads the start rate as "Early signal only", together with slot bookings ([discovery/intents/format-fit.md:32](../intents/format-fit.md#L32)).
 Direction only, and read with the slot bookings. A buyer who books a slot never clicks into the form. So the start rate can fall while more buyers get a call.
 Today 194 of 740 inquiry page visits start the form ([discovery/intents/format-fit.md:34](../intents/format-fit.md#L34)). In four-week blocks it ran from 19.5% to 30.3%. · Computed from: `inquiry_started` ÷ sessions with a `page_view` of the inquiry page
 
@@ -138,7 +138,7 @@ In the first eight weeks after launch, fewer inquiry page visits end in a contac
 Eight weeks from launch, as long as the eight-week blocks in the swing table. Read the result one week after the eight weeks end: today a call follows a sent inquiry within 1 to 4 days (counted in `data/events.jsonl`). The kill criterion is read at the same time. · Set by: Product lead (Loopwise), the product lead's decision ("Yes, all five", 2026-11-16)
 
 ## What the measurement will and will not tell
-- **A signal, not proof.** The product lead: „Statistisch relevant ist das alles eh nicht.“ ("None of this is statistically meaningful anyway.") In plain words: eight weeks bring a few dozen sent inquiries. The unchanged page swung by 22.5 points between eight-week blocks, without any change on the page.
+- **A signal, not proof.** The product lead: „Statistisch relevant ist das alles eh nicht.“ ("None of this is statistically meaningful anyway.") In plain words: eight weeks bring a few dozen scoping calls. Without any change on the page, visit-to-call swung by 2.0 points between eight-week blocks, and by 5.0 points between four-week blocks.
 - **No control group.** Every visitor sees the variant. The comparison is before launch against after launch. A season, a slow month or a change elsewhere looks the same as an effect of the page.
 - **What it will tell:** whether buyers use the slot booking at all, and whether calls rise or fall in the same direction.
 - Whether a booked slot is held. No event counts a held call.
