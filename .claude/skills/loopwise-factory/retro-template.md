@@ -29,6 +29,3 @@ Per decision: the role, the person and the file. The factory decided nothing at 
 One line per question in [discovery/factory/<variant>-questions.md](<variant>-questions.md).
 For each: which file of the kit should have answered it?
 - <question> ([discovery/factory/<variant>-questions.md:<line>](<variant>-questions.md#L<line>)): ____
-
-## What we change in the kit next time
-- ____
