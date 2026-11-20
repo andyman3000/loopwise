@@ -48,10 +48,18 @@ test('the same slot cannot be booked twice', async () => {
   assert.equal(lines('events-live.jsonl').length, 1);
 });
 
+test('a one-digit hour counts as the same time as its two-digit form', async () => {
+  const first = await book({ day: '2026-12-02', time: '9:30', variant: 'call-slot' });
+  assert.equal(first.status, 201);
+  assert.equal((await first.json()).time, '09:30');
+  const again = await book({ day: '2026-12-02', time: '09:30', variant: 'call-slot' });
+  assert.equal(again.status, 409);
+});
+
 test('a booking without a valid day or time is refused and logs nothing', async () => {
   const res = await book({ day: 'tomorrow', time: '10' });
   assert.equal(res.status, 400);
   const body = await res.json();
   assert.ok(body.errors.day && body.errors.time);
-  assert.equal(lines('events-live.jsonl').length, 1);
+  assert.equal(lines('events-live.jsonl').length, 2);
 });

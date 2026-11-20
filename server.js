@@ -177,7 +177,7 @@ const API = {
   // A slot that is already booked is refused with 409. Nothing is sent to anyone.
   '/api/booking': (body, res) => {
     const day = typeof body.day === 'string' ? body.day.trim() : '';
-    const time = typeof body.time === 'string' ? body.time.trim() : '';
+    const time = typeof body.time === 'string' ? body.time.trim().replace(/^(\d):/, '0$1:') : '';
     const errors = {};
     if (!/^\d{4}-\d{2}-\d{2}$/.test(day) || Number.isNaN(Date.parse(`${day}T00:00:00Z`))) errors.day = 'Choose a day.';
     if (!/^\d{2}:\d{2}$/.test(time)) errors.time = 'Choose a time.';
