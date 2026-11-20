@@ -7,6 +7,9 @@
 > own the prototype test card for your variant.** This is steps 5 to 7, with step 6 cut to 5
 > minutes. Part 2 is block 5, steps 1 and 2.
 
+**Blocks 1 to 3 are done for you in the start state. You do not need to read them:** the skill
+briefs you on the opportunity before it asks anything.
+
 **What it's for:** you develop many ideas for your chosen opportunity, then narrow them to 3 to 5,
 each with the driver it moves and its critical assumption: the one thing that must be true for it
 to work. You pick which idea to test first, and why. Then you write the prototype test card

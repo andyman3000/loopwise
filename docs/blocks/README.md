@@ -5,7 +5,7 @@ the block is for, what you do step by step, and when you are done.
 
 | File | Block | Tag after the block |
 |---|---|---|
-| [00-setup.md](00-setup.md) | Setup | `v3-03-start` |
+| [00-setup.md](00-setup.md) | Setup with `/loopwise-onboarding` | `v3-03-start` |
 | [01-kpi-tree.md](01-kpi-tree.md) | KPI tree | `v2-01-kpi-tree` |
 | [02-opportunities.md](02-opportunities.md) | Opportunities from sources | `v2-02-opportunities` |
 | [03-opportunity-decision.md](03-opportunity-decision.md) | Compare opportunities and decide | `v2-03-opportunity-decision` |
@@ -19,7 +19,8 @@ the block is for, what you do step by step, and when you are done.
 | [11-factory-run-2.md](11-factory-run-2.md) | Factory run 2: the hard gate, release, retro | `v3-08-factory-run-2` |
 
 At the bootcamp the day runs: setup and jump, block 4, the first part of block 5 (no build), then
-factory runs 1 and 2 from `v3-06-test-decision`. Blocks 1 to 3 are done in the start state.
+factory runs 1 and 2 from `v3-06-test-decision`. Blocks 1 to 3 are done for you in the start
+state: you do not need to read them. Block 4's skill briefs you on the opportunity first.
 
 ## The same four moves in every block
 
