@@ -91,7 +91,7 @@ Set by: Product lead (Loopwise), wording proposed by the agent · Set on: 2026-1
 
 ## What this test cannot show
 - 5 testers: a pattern, not a rate.
-- Whether a booked slot turns into a held call, or a booking. A prototype test shows whether people understand and use the page. The launch card is the place to measure the call rate and later steps.
+- Whether a booked slot turns into a held call, or a booking. A prototype test shows whether people understand and use the page. The launch card is the place to measure whether more inquiry page visits reach a scoping call, and later steps. The call rate cannot show it: a booked slot has no sent inquiry.
 - Whether more inquiry page visits end in a scoping call than today. Five testers cannot show a change in that share.
 - Whether the tester would really pick up the phone. A phone number on a test page reaches no one, so the test sees only the click or the words. The watcher counts a click as a call.
 - Whether a tester who books a slot without writing anything gets a useful call. That is for the people who run scoping calls.
