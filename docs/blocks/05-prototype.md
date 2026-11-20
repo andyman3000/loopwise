@@ -1,5 +1,11 @@
 # Block 5: Spec, persona reads the spec, build the prototype
 
+> **Persona test and what to measure, part 2: pairs or threes, at one laptop. About 35 of 60
+> minutes. Task: write the smallest spec for your variant and let two AI personas read it before
+> anything is built.** This is steps 1 and 2; step 3 only if time is left. The bootcamp builds no
+> prototype in the morning: skip step 4. The afternoon starts from the reference prototype `call-slot`
+> ([10-factory-run-1.md](10-factory-run-1.md)).
+
 **What it's for:** you describe the smallest page that lets a tester meet your assumption. Two AI
 personas read that description before the build, so you fix the obvious gaps cheaply. Then Claude
 Code builds the page. Later a person from another pair tests it.
