@@ -5,7 +5,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { checkRelease, readReleaseDecisions, decisionProblem } from '../scripts/release.js';
+import { checkRelease, readReleaseDecisions, decisionProblem, formatRelease } from '../scripts/release.js';
 
 const REPO = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SCRIPT = path.join(REPO, 'scripts', 'release.js');
@@ -124,4 +124,16 @@ test('a release decision counts only with Decision: release, a person, the produ
   const problems = ds.map(decisionProblem);
   for (const [i, re] of [[0, /Decision: release/], [1, /no person/], [2, /no person/], [3, /product lead/], [4, /YYYY-MM-DD/], [5, /no reason/]]) assert.match(problems[i], re);
   assert.equal(problems[6], null, 'Markdown bold and list dashes are fine');
+});
+
+test('a hold decision by the product lead is reported as a hold, not as a missing decision', () => {
+  const HOLD = fields({ Variant: 'call-slot', Decision: 'hold', 'Decided by': 'Kim Example', Role: 'product lead', Date: '2026-11-20', Reason: 'No test with people yet.' });
+  const root = repo({ 'site/hardened/call-slot/inquiry.html': CLEAN, 'discovery/decisions/005-release-call-slot.md': HOLD });
+  const result = checkRelease(root, 'call-slot');
+  assert.equal(result.ok, false);
+  assert.equal(result.held, 'discovery/decisions/005-release-call-slot.md');
+  const out = formatRelease(result).join('\n');
+  assert.match(out, /held by the product lead's decision/);
+  assert.doesNotMatch(out, /Copy \.claude\/skills\/loopwise-factory\/release-decision-template\.md/);
+  assert.match(fs.readFileSync(path.join(root, 'site', 'config.json'), 'utf8'), /"shipped": null/);
 });

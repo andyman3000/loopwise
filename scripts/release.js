@@ -108,13 +108,18 @@ export function checkRelease(root, variant) {
 
   const decisions = readReleaseDecisions(root).filter((d) => d.variant === variant);
   const valid = decisions.find((d) => !decisionProblem(d));
+  // A complete decision that says "hold" is a decision, not a missing step.
+  const held = valid ? null : decisions.find((d) => d.decision === 'hold' && !decisionProblem({ ...d, decision: 'release' }));
   add(Boolean(valid), valid ? `a release decision for ${variant} exists: ${valid.file} (decided by ${valid.decidedBy}, ${valid.date})` : `a release decision for ${variant} exists in discovery/decisions/`, 'product lead',
-    valid ? [] : [
+    valid ? [] : held ? [
+      `${held.file}: the product lead decided to hold (${held.decidedBy}, ${held.date}). Reason: ${held.reason}`,
+      'A hold is a decision, not a missing step. The release waits until the product lead writes a new decision.',
+    ] : [
       ...decisions.map((d) => `${d.file} does not count: ${decisionProblem(d)}`),
       `Copy .claude/skills/loopwise-factory/release-decision-template.md to discovery/decisions/<next number>-release-${variant}.md and fill it in. A person writes it, not the agent.`,
     ]);
 
-  return { variant, ok: conditions.every((c) => c.ok), conditions, shipped: typeof config.shipped === 'string' ? config.shipped : null };
+  return { variant, ok: conditions.every((c) => c.ok), conditions, held: held ? held.file : null, shipped: typeof config.shipped === 'string' ? config.shipped : null };
 }
 
 // Sets "shipped" in site/config.json and keeps the rest of the file as it is.
@@ -134,8 +139,10 @@ export function formatRelease(result, { dryRun = false, released = false } = {})
     for (const d of c.details) lines.push(`           ${d}`);
   }
   if (!result.ok) {
-    const owners = [...new Set(result.conditions.filter((c) => !c.ok).map((c) => c.owner))];
-    lines.push(`release: refused. Waiting on: ${owners.join(', ')}. site/config.json is unchanged.`);
+    const missing = result.conditions.filter((c) => !c.ok);
+    const owners = [...new Set(missing.map((c) => c.owner))];
+    if (result.held && missing.length === 1) lines.push(`release: held by the product lead's decision in ${result.held}. site/config.json is unchanged.`);
+    else lines.push(`release: refused. Waiting on: ${owners.join(', ')}. site/config.json is unchanged.`);
   } else if (dryRun) {
     lines.push(`release: every condition holds. Without --dry-run, "shipped" in site/config.json becomes "${result.variant}".`);
   } else if (released) {
