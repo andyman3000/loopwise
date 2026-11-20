@@ -1,10 +1,5 @@
 # Test card: call-slot
 
-> **Preview. This card applies only after the test with real people has passed.**
-> Decision 003 chose another round, not a launch. Its next step is a test with people: "the next step is a real user test" ([discovery/decisions/003-call-slot.md:131](../decisions/003-call-slot.md#L131)).
-> The persona runs could not show the assumption: "This run neither shows nor refutes the critical assumption." ([discovery/decisions/003-call-slot.md:114](../decisions/003-call-slot.md#L114))
-> Passed means the go-on line of the prototype card held: "At least 3 of 5 testers book a call slot on the page" ([discovery/test-cards/call-slot-prototype.md:80](../test-cards/call-slot-prototype.md#L80)).
-> Until then, no line on this card is in force. The product lead asked for this preview on 2026-11-16.
 > Assessment drafted by an agent on 2026-11-16, not a decision.
 > Card owner: Product lead (Loopwise), the product lead's decision ("Yes, all five", 2026-11-16)
 > Variant: [discovery/specs/call-slot.md](../specs/call-slot.md) · Intent: [discovery/intents/format-fit.md](../intents/format-fit.md) · Prototype test: [discovery/test-cards/call-slot-prototype.md](../test-cards/call-slot-prototype.md), learning card [discovery/decisions/003-call-slot.md](../decisions/003-call-slot.md)
@@ -55,21 +50,21 @@ Under the four lines: **We take it back if** fewer inquiry page visits end in an
 Each line repeats a field below in one sentence. If a field changes, this section changes with it.
 
 ## Before this card can apply
-- The test with people has passed (see the top of this card). Not done: "Tested with people: 0." ([discovery/decisions/003-call-slot.md:81](../decisions/003-call-slot.md#L81))
+- The test with people has passed. Done: 4 of 5 testers booked a call slot on the page, so the go-on line held ([discovery/decisions/003-call-slot.md:188](../decisions/003-call-slot.md#L188)). The product lead decided launch: "Decision: launch" ([discovery/decisions/005-launch-call-slot.md:9](../decisions/005-launch-call-slot.md#L9)).
 - The page is built for release. Today the booking is faked and logs no event ([discovery/specs/call-slot.md:33](../specs/call-slot.md#L33)). The spec leaves these for the launch spec: a real calendar link ([discovery/specs/call-slot.md:105](../specs/call-slot.md#L105)), the event `scoping_call_booked` for a booked slot ([discovery/specs/call-slot.md:106](../specs/call-slot.md#L106)), a real number ([discovery/specs/call-slot.md:107](../specs/call-slot.md#L107)), and a confirmation mail ([discovery/specs/call-slot.md:108](../specs/call-slot.md#L108)).
-- No launch spec `discovery/specs/call-slot-launch.md` exists yet. The release page must log `scoping_call_booked` with the variant `call-slot` when a buyer books a slot. Otherwise no line on this card can be counted.
+- The launch spec [discovery/specs/call-slot-launch.md](../specs/call-slot-launch.md) says when the release page logs `scoping_call_booked` with the variant `call-slot`: once the server stored a booked slot. Without it no line on this card can be counted.
 - The invented lines on the page have a confirmer (assumption 3).
 
 ## What changes for whom
 On the inquiry page, a buyer can book a 20-minute call slot or call a number, next to the form. A buyer who books a slot gets a scoping call without writing an inquiry.
 
 ## Critical assumptions
-1. **Buyers who cannot tell which format fits would rather talk than write, and book a slot themselves**: partly supported
-   - Reasoning: two buyers ask for a call first. No buyer in `sources/` books a slot alone, and no person has tried the page.
+1. **Buyers who cannot tell which format fits would rather talk than write, and book a slot themselves**: well supported
+   - Reasoning: two buyers ask for a call first. In the test with people, 4 of 5 testers booked a slot on the page themselves ([discovery/decisions/003-call-slot.md:188](../decisions/003-call-slot.md#L188)).
    - Sources: "Can I talk to someone before I fill in anything?" ([sources/inbox/inbox-export.md:149](../../sources/inbox/inbox-export.md#L149)); "maybe a 20 minute call would be easier." ([sources/inquiry-mails/inquiry-03.md:16](../../sources/inquiry-mails/inquiry-03.md#L16))
    - Prototype test: "This run neither shows nor refutes the critical assumption." ([discovery/decisions/003-call-slot.md:114](../decisions/003-call-slot.md#L114)) All five AI twins chose the slot booking, but every twin held a budget ([discovery/decisions/003-call-slot.md:115](../decisions/003-call-slot.md#L115), [discovery/decisions/003-call-slot.md:116](../decisions/003-call-slot.md#L116)).
    - Counter-evidence: the buyer with budget wants written answers first: "If you can answer these in writing, I am happy to follow up with a call." ([sources/inquiry-mails/inquiry-02.md:23](../../sources/inquiry-mails/inquiry-02.md#L23))
-   - Gap: the test with people. The product lead recruits five buyers by 2026-11-24 ([discovery/test-cards/call-slot-prototype.md:40](../test-cards/call-slot-prototype.md#L40)).
+   - Gap: five testers are few, and the one buyer with budget wrote instead. The eight weeks after launch show whether visitors book as the testers did.
 2. **A call the buyer books on the page ends in a booking as often as a call set up after a sent inquiry**: unsupported
    - Reasoning: no source and no test reaches a call booked without writing first.
    - Sources: the buyer without budget does not decide alone: "I'll take this to two colleagues and talk it through with them." ([product/personas/buyer-without-budget.md:41](../../product/personas/buyer-without-budget.md#L41))
