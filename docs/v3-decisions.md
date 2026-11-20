@@ -507,3 +507,25 @@ Then both reference runs were produced again on the corrected base.
   A pair may use its own prototype once it has a launch card and a launch spec.
 - No agenda file was changed.
 
+### P5-3. Fixes after the uninformed test run
+
+A fresh agent with only the repo and the block files played a pair from `v3-03-start` through
+both factory runs (agent run: setup about 0:30, run 1 4:33, run 2 1:37). It finished both runs.
+It found:
+
+- **Run 2 forced a release.** "Done when" demanded the shipped key, while step 4 allows a hold. The
+  pair held, with the launch spec's own reason (no launch before the test with people), and the
+  release script answered as if the decision were missing. Choice: "Done when" accepts release or
+  hold; the release script reports a complete hold decision as a hold. The reference release
+  decision now says the release is a rehearsal on localhost and that real visitors wait for the
+  test with people, so it no longer contradicts its kit.
+- **The prototype check could cut the legal line and open points.** Choice: both stay.
+- **Two honest factory runs built different pages** (one removed the phone card, one kept it).
+  Choice: the factory keeps an element whose promise the kit leaves open, writes the question,
+  and names it for the product lead.
+- **Smaller:** the clone link and a busy port in setup, "nothing to commit" in run 1, the v2-only
+  demo tags marked as not built, the retro template has four questions only, and step numbering in
+  `loopwise-variant-spec`.
+- **Not changed:** the launch spec draft in run 1 reads many files, so 10 minutes may be tight for
+  a pair; the guide allows stopping. How many questions the factory asks varies between runs
+  (6 against 11); that is retro material, not a defect.
