@@ -11,6 +11,7 @@
       "Bash(curl http://localhost:3000)",
       "Bash(curl http://localhost:3000/*)",
       "Bash(curl -s http://localhost:3000/*)",
+      "Bash(curl -s -o /dev/null -w '%{http_code}' 'http://localhost:*)",
       "Bash(grep *)",
       "Bash(ls *)",
       "Bash(git status *)",
