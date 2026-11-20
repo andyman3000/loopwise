@@ -31,6 +31,7 @@ both settle where they differ and draw the conclusion. The conclusion and the de
   threshold (a proxy metric, a number the card only reports) get no row. Name them in one line under
   the table as "also on the dashboard, no line to meet". More than seven rows: merge the parts of
   one line into one row. Read each row against what the card says, including the usual swing.
+- **Check the step first.** Before the table, compare the card's success line with the intent's "Desired outcome" (the card links the intent). If they name different steps, say so in one line above the table, quoting both with their lines: the result then answers a question the intent did not ask. Read the card as written all the same; changing a line after data arrived is a new card version.
 - **Three readings per line, in words:** met, not met, unclear. Unclear when the card itself says the
   line shows a direction only, or when the difference is a few cases.
 - **Say what the numbers cannot show:** small numbers per week, bookings that cannot be tied to the

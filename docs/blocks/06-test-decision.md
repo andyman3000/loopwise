@@ -53,7 +53,9 @@ Go as far as you get. What you do depends on your learning card. Start a fresh C
 - **Move on:** first write the changes from "Therefore we will" into the spec, and rebuild if they
   change a page. A variant can change any page, the thank-you page too. Then
   `/loopwise-test-card <variant> launch`. It writes `discovery/test-cards/<variant>.md`: success line, usage,
-  proxy, counter metric, kill criterion, time frame. Fill its `Card owner`. Your own launch card
+  proxy, counter metric, kill criterion, time frame. The success line names the same step as your
+  intent's desired outcome; if your first try names another step, the card says so. Fill its
+  `Card owner`. Your own launch card
   cannot be read against the data in this repo. The synthetic data were generated for one reference
   variant only, and the card says so. You see a result read against data in the demo.
 - **Another round, changed spec:** change the spec. If a sign or the scenario changes, add a dated

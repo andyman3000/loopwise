@@ -27,4 +27,7 @@ Where the tree differs:
 ## How branch A works
 bookings = website visits × reach rate × start rate × submit rate × call rate × booking rate
 
+visit-to-call: percentage of inquiry page visits that end in a scoping call, by the form or a booked slot · measured: sessions with `scoping_call_booked` ÷ sessions with a `page_view` of the inquiry page
+For the form path it equals start rate × submit rate × call rate. It is no driver of its own: it joins those three steps. A call slot booked on the page skips the form and logs the same `scoping_call_booked`, once the server has stored it. So a page that adds a way to the call is read on this one number.
+
 Events are in [data/events.jsonl](../data/events.jsonl).

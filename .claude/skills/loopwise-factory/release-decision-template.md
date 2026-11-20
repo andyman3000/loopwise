@@ -16,7 +16,9 @@ Reason: <why this build may go to real visitors now, or what must change first>
 - Hold the release until <what must change first>.
 
 ## What it rests on
-- Gates: <the two gate lines from npm run check, for example: legal gate (owner: legal, hard): pass>
+- Gates: <the three gate lines from npm run check, for example: legal gate (owner: legal, hard): pass>
+- Launch decision: <the launch decision file in discovery/decisions/>
+- Launch card: <the success line>, on the step the intent names: <yes, or which step differs>
 - Design waiver: <the waiver file in discovery/decisions/, or "none">
 - Launch spec: discovery/specs/<variant>-launch.md
 - Questions the factory left open: discovery/factory/<variant>-questions.md

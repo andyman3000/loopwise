@@ -575,3 +575,28 @@ trainers on 2026-11-20:
   keep their numbers: file names, tags and the two-day training hang on them.
 - **Undo:** rename the folders back and revert the commits of this entry.
 
+
+### P5-7. C1 and call-slot measured on one outcome
+
+The C1 intent asked for a higher start rate (194 of 740 inquiry page visits start the form).
+call-slot's launch card, launch spec and release measured the call rate (55 of 113 sent inquiries
+get a scoping call). A booked slot skips the form and the sent inquiry, so the call rate could rise
+without one extra call, and the start rate could fall while more buyers reach a call. The chain from
+business KPI to opportunity to feature to measured outcome broke at its last link. Decided by the
+trainers on 2026-11-20:
+
+- One outcome for C1 and call-slot: the share of inquiry page visits that end in a scoping call, by
+  the form or a booked slot. Today 55 of 740 (7.4%). The KPI tree derives it as "visit-to-call"
+  from start rate, submit rate and call rate; the drivers and the bookings formula stay as they were.
+- Reasoning in the files: C1 is "I can't tell which format fits my group", and the format is
+  settled in the scoping call (`product/glossary.md`). The need is met when the buyer reaches the
+  call, not when they start the form. The start rate stays as an early signal, read with slot bookings.
+- call-slot's success line moves to visit-to-call: at least 10% over eight weeks. A reference
+  decision of the fictional product lead, derived from the swing table: the unchanged page reached
+  at most 8.8% in an eight-week block (20 of 228). 9% would ask for one call more than that block;
+  10% asks for three more (23 of about 228 visits).
+  The first try and the product lead's answer stay word for word; the feedback names the break.
+- `loopwise-intent-and-ideas` picks the step where the need is met. `loopwise-test-card`,
+  `loopwise-read-result` and `loopwise-factory` check that the success line names the same step as
+  the intent and say so when it does not. The release decision template asks for it.
+- **Undo:** revert the commits of this entry; the six tags move back.

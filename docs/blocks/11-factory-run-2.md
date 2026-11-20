@@ -24,8 +24,9 @@ Keep the roles from run 1: designer, product lead, and in a three, legal.
    `npm run check`. Done when it ends with `gates: pass`.
 4. **Decide the release (5 min).** The product lead reads the build
    (`npm start`, then `http://localhost:3000/inquiry.html?variant=call-slot&build=hardened`), the
-   review and the open questions in `discovery/factory/call-slot-questions.md`. Then the product
-   lead copies `.claude/skills/loopwise-factory/release-decision-template.md` to
+   review and the open questions in `discovery/factory/call-slot-questions.md`. The factory shows
+   the launch card's success line next to the step the intent names: both should be the same.
+   Then the product lead copies `.claude/skills/loopwise-factory/release-decision-template.md` to
    `discovery/decisions/<next number>-release-call-slot.md` and fills it in: release or hold,
    their own name, the date, the reason. An open question can be a reason to hold.
 5. **Release (2 min).**
