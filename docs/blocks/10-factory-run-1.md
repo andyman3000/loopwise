@@ -15,6 +15,11 @@ The factory reads only the handover kit, three files:
 - the intent `discovery/intents/format-fit.md`: why;
 - the launch spec `discovery/specs/call-slot-launch.md`: only what the prototype does not show.
 
+**Three gates.** The validation gate (hard, owner: product lead) stands at the entry: the factory
+builds only a variant the product lead decided to launch. call-slot passed its test with people,
+so it passes here. A variant of your own from the morning has no launch decision and is stopped.
+The design gate (soft, owner: designer) and the legal gate (hard, owner: legal) check the build.
+
 **Roles.** Before you start, give each person a role. One is the **designer**: owns the design
 system and the design gate. One is the **product lead**: decides the release in run 2. In a three,
 the third is **legal**: owns the legal gate in run 2. Everybody types; the role decides.
@@ -40,7 +45,7 @@ the third is **legal**: owns the legal gate in run 2. Everybody types; the role 
    git checkout -- discovery/specs/call-slot-launch.md
    ```
 5. **Run the factory (15 min).** Start a fresh session (`/clear`). Then
-   `/loopwise-factory call-slot run-1`. Watch what it says it does. It plants one error on purpose and does
+   `/loopwise-factory call-slot run-1`. It first runs the validation gate in the open, then builds. It plants one error on purpose and does
    not tell you which. At the end it runs `npm run check` in the open. Read the gate lines: each
    finding names the file, the line, the rule and the owner. A fresh review agent also writes
    `discovery/factory/call-slot-review-run-1.md`. Read it: it blocks nothing and decides nothing.

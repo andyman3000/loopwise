@@ -11,7 +11,8 @@ build that chain themselves in pairs, with skills, on top of a small working web
 npm start   # http://localhost:3000, set PORT to change it
 npm test
 npm run check   # citations, quotes, event names, dashes in discovery/ and product/,
-                # then the release gates on site/hardened/ (design: soft, legal: hard)
+                # then the release gates on site/hardened/ (validation and legal: hard, design: soft)
+node scripts/check-gates.js --entry <variant>   # validation gate: has the product lead decided launch?
 node scripts/check-gates.js --json   # the gate result as JSON, read by the release step
 npm run release -- <variant>         # simulated release: sets the shipped key behind both gates and a release decision
 ```

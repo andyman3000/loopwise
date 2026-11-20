@@ -50,7 +50,7 @@ loopwise/
   site/            pages, components/, config.json   (variants/ and hardened/ appear once variants are built)
                    styles.css: the design system (tokens and components), owned by the designer
   gates/           gates.json: the release gates, owner role, soft or hard
-                   policies/: the rule behind each gate (design-system.md, no-prices.md)
+                   policies/: the rule behind each gate (launch-decision.md, design-system.md, no-prices.md)
   lib/             discovery-view.js: renders discovery/ at /discovery
                    opportunity-map.js: /discovery/map, opportunities in rows by KPI driver
                    opportunity-tree.js: /discovery/tree, the comparison drawn as an opportunity tree
@@ -174,8 +174,8 @@ prototype, the intent and the launch spec:
 | # | Skill or command | Writes |
 |---|---|---|
 | 12 | `loopwise-variant-spec <variant> launch` | `discovery/specs/<variant>-launch.md`: at most one page, only what the prototype does not show (non-functional requirements, decisions, events against the launch card, invisible behaviour, open points) |
-| 13 | `loopwise-factory <variant> run-1` or `run-2` | `site/hardened/<variant>/`: the variant rebuilt for production on the design system, from the kit only; `discovery/factory/<variant>-questions.md` (what the kit left open) and a review report. Plants one error per run; `npm run check` shows the gate that fires |
-| 14 | `npm run release -- <variant>` | the `shipped` key in `site/config.json`, only when the legal gate passes, the design gate passes or is waived, and a release decision by the product lead is in `discovery/decisions/` |
+| 13 | `loopwise-factory <variant> run-1` or `run-2` | `site/hardened/<variant>/`: the variant rebuilt for production on the design system, from the kit only; `discovery/factory/<variant>-questions.md` (what the kit left open) and a review report. Starts only after the validation gate passes: a launch decision by the product lead in `discovery/decisions/`. Plants one error per run; `npm run check` shows the gate that fires |
+| 14 | `npm run release -- <variant>` | the `shipped` key in `site/config.json`, only when the validation and legal gates pass, the design gate passes or is waived, and a release decision by the product lead is in `discovery/decisions/` |
 | 15 | `loopwise-factory <variant> retro` | `discovery/factory/<variant>-retro.md`: what the gate caught, what it would have missed, who decided, what the factory had to ask |
 
 `loopwise-compare-variants` compares several variants of one opportunity, each with a launch card, before
