@@ -168,8 +168,18 @@ Run in this order. Each skill writes its artefact under `discovery/`.
 | 10 | `loopwise-read-result` | the `## Result` section of `discovery/test-cards/<variant>.md` |
 | 11 | `loopwise-next-bet` | `discovery/kpi-tree.md` (measured values), `discovery/opportunity-comparison.md` (appended) |
 
-For later, outside the workshop chain: `loopwise-variant-spec <variant> launch` writes the full page for the release after the launch card (step 9), as `discovery/specs/<variant>-launch.md`. `loopwise-compare-variants` compares several variants of one
-opportunity, each with a launch card, before one ships. It writes `discovery/variant-comparison.md`.
+Build to earn (the hardening cycle), after the launch card (step 9). The handover kit is the
+prototype, the intent and the launch spec:
+
+| # | Skill or command | Writes |
+|---|---|---|
+| 12 | `loopwise-variant-spec <variant> launch` | `discovery/specs/<variant>-launch.md`: at most one page, only what the prototype does not show (non-functional requirements, decisions, events against the launch card, invisible behaviour, open points) |
+| 13 | `loopwise-factory <variant> run-1` or `run-2` | `site/hardened/<variant>/`: the variant rebuilt for production on the design system, from the kit only; `discovery/factory/<variant>-questions.md` (what the kit left open) and a review report. Plants one error per run; `npm run check` shows the gate that fires |
+| 14 | `npm run release -- <variant>` | the `shipped` key in `site/config.json`, only when the legal gate passes, the design gate passes or is waived, and a release decision by the product lead is in `discovery/decisions/` |
+| 15 | `loopwise-factory <variant> retro` | `discovery/factory/<variant>-retro.md`: what the gate caught, what it would have missed, who decided, what the factory had to ask |
+
+`loopwise-compare-variants` compares several variants of one opportunity, each with a launch card, before
+one ships. It writes `discovery/variant-comparison.md`.
 
 # Decisions
 
@@ -206,3 +216,4 @@ pair's own words, and leaves the decision empty if the pair names none.
 | 2026-10-24 | product team | Training start state: `loopwise-variant-spec` skill added, only what exists at the start is described |
 | 2026-11-13 | product team | The word "sponsor" became "buyer", outside quotes from sources and source file names |
 | 2026-11-16 | product team | `loopwise-variant-spec` has two modes: `learn` (default, the smallest page for the prototype test, with a challenger run against bloat) and `launch` |
+| 2026-11-20 | product team | v3: design system in `site/styles.css`, release gates in `npm run check`, lean launch spec, `loopwise-factory` skill and `npm run release` for build to earn |

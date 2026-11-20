@@ -13,6 +13,7 @@ npm test
 npm run check   # citations, quotes, event names, dashes in discovery/ and product/,
                 # then the release gates on site/hardened/ (design: soft, legal: hard)
 node scripts/check-gates.js --json   # the gate result as JSON, read by the release step
+npm run release -- <variant>         # simulated release: sets the shipped key behind both gates and a release decision
 ```
 
 With `npm start` running, `http://localhost:3000/discovery` shows every artefact as a readable page,
