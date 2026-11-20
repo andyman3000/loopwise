@@ -18,6 +18,7 @@ Reason: All three gates pass: the test with people passed and launch is decided 
 ## What it rests on
 - Gates: validation gate (owner: product lead, hard): pass. Design gate (owner: designer, soft): pass. Legal gate (owner: legal, hard): pass.
 - Launch decision: [discovery/decisions/005-launch-call-slot.md](005-launch-call-slot.md)
+- Launch card: [discovery/test-cards/call-slot.md](../test-cards/call-slot.md), success line at least 10% of inquiry page visits end in a scoping call, on the step the intent names: yes
 - Design waiver: none
 - Launch spec: [discovery/specs/call-slot-launch.md](../specs/call-slot-launch.md)
 - Questions the factory left open: [discovery/factory/call-slot-questions.md](../factory/call-slot-questions.md)
