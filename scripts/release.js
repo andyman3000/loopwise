@@ -116,7 +116,7 @@ export function checkRelease(root, variant) {
   const valid = decisions.find((d) => !decisionProblem(d));
   // A complete decision that says "hold" is a decision, not a missing step.
   const held = valid ? null : decisions.find((d) => d.decision === 'hold' && !decisionProblem({ ...d, decision: 'release' }));
-  add(Boolean(valid), valid ? `a release decision for ${variant} exists: ${valid.file} (decided by ${valid.decidedBy}, ${valid.date})` : `a release decision for ${variant} exists in discovery/decisions/`, 'product lead',
+  add(Boolean(valid), valid ? `a release decision for ${variant} exists: ${valid.file} (decided by ${valid.decidedBy}, ${valid.date})` : held ? `the product lead decided to hold ${variant}` : `a release decision for ${variant} exists in discovery/decisions/`, 'product lead',
     valid ? [] : held ? [
       `${held.file}: the product lead decided to hold (${held.decidedBy}, ${held.date}). Reason: ${held.reason}`,
       'A hold is a decision, not a missing step. The release waits until the product lead writes a new decision.',
@@ -125,6 +125,7 @@ export function checkRelease(root, variant) {
       `Copy .claude/skills/loopwise-factory/release-decision-template.md to discovery/decisions/<next number>-release-${variant}.md and fill it in. A person writes it, not the agent.`,
     ]);
 
+  if (held) conditions[conditions.length - 1].held = true;
   return { variant, ok: conditions.every((c) => c.ok), conditions, held: held ? held.file : null, shipped: typeof config.shipped === 'string' ? config.shipped : null };
 }
 
@@ -141,7 +142,8 @@ export function setShipped(root, variant) {
 export function formatRelease(result, { dryRun = false, released = false } = {}) {
   const lines = [`release: ${result.variant}${dryRun ? ' (dry run, nothing changes)' : ''}`];
   for (const c of result.conditions) {
-    lines.push(`${c.ok ? 'ok     ' : 'MISSING'}  ${c.what}  owner: ${c.owner}`);
+    const label = c.ok ? 'ok     ' : c.held ? 'HOLD   ' : 'MISSING';
+    lines.push(`${label}  ${c.what}  owner: ${c.owner}`);
     for (const d of c.details) lines.push(`           ${d}`);
   }
   if (!result.ok) {

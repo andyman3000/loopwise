@@ -139,6 +139,8 @@ test('a hold decision by the product lead is reported as a hold, not as a missin
   assert.equal(result.held, 'discovery/decisions/005-release-call-slot.md');
   const out = formatRelease(result).join('\n');
   assert.match(out, /held by the product lead's decision/);
+  assert.match(out, /^HOLD +the product lead decided to hold call-slot/m);
+  assert.doesNotMatch(out, /^MISSING/m);
   assert.doesNotMatch(out, /Copy \.claude\/skills\/loopwise-factory\/release-decision-template\.md/);
   assert.match(fs.readFileSync(path.join(root, 'site', 'config.json'), 'utf8'), /"shipped": null/);
 });
