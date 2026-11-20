@@ -73,3 +73,7 @@ The launch spec answers where bookings are stored: the server route for bookings
 - Meanwhile the factory: the booking asks only for a day, a time, a name and an email, as in the prototype.
 - Who should answer: product lead
 - Answer: ____
+
+## Run 2, 2026-11-20
+
+No question from run 1 has an answer yet. The factory kept each meanwhile choice from run 1. The kit raised no new question in this run.
