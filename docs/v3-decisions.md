@@ -529,3 +529,20 @@ It found:
 - **Not changed:** the launch spec draft in run 1 reads many files, so 10 minutes may be tight for
   a pair; the guide allows stopping. How many questions the factory asks varies between runs
   (6 against 11); that is retro material, not a defect.
+
+### P5-4. call-slot validated, and a validation gate at the entry
+
+- **Question:** the afternoon says build to earn rebuilds what proved itself. On `v3-06`, decision
+  003 said "another round, not a launch", and the launch card was a preview until a test with
+  people passed. Participants who open the files see the contradiction.
+- **Choice:** from `v3-06` on, call-slot has a synthetic test with five people (round 3 of decision
+  003: four of five book a call slot, the go-on line holds), and a launch decision by the product
+  lead (decision 005, a reference decision). The launch card lost its preview banner; the launch
+  spec cites the passed test. A new gate in `gates/gates.json`: validation, hard, owner product
+  lead, rule `gates/policies/launch-decision.md`. The factory runs it first
+  (`node scripts/check-gates.js --entry <variant>`) and stops without a launch decision; `npm run
+  check` and `npm run release` check it for every hardened variant. For call-slot it passes; a
+  pair's own morning variant is stopped there. The release decision of the reference run is now
+  decision 006.
+- **Reason:** decided by the trainers on 2026-11-20, so the story and the files agree.
+- **Undo:** revert the gate commit and the commits that add round 3 and decision 005.
