@@ -172,6 +172,27 @@ const API = {
     appendLine('inquiries-live.jsonl', record);
     sendJson(res, 201, { ok: true, redirect: '/confirmation.html' });
   },
+  // A booked call slot. Stores the slot in data/bookings-live.jsonl and logs the event
+  // scoping_call_booked itself, once the slot is stored, without name or email in the event.
+  // A slot that is already booked is refused with 409. Nothing is sent to anyone.
+  '/api/booking': (body, res) => {
+    const day = typeof body.day === 'string' ? body.day.trim() : '';
+    const time = typeof body.time === 'string' ? body.time.trim() : '';
+    const errors = {};
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(day) || Number.isNaN(Date.parse(`${day}T00:00:00Z`))) errors.day = 'Choose a day.';
+    if (!/^\d{2}:\d{2}$/.test(time)) errors.time = 'Choose a time.';
+    if (Object.keys(errors).length) return sendJson(res, 400, { ok: false, errors });
+    const file = path.join(dataDir(), 'bookings-live.jsonl');
+    const taken = fs.existsSync(file) && fs.readFileSync(file, 'utf8').split('\n').filter(Boolean)
+      .some((line) => { try { const b = JSON.parse(line); return b.day === day && b.time === time; } catch { return false; } });
+    if (taken) return sendJson(res, 409, { ok: false, errors: { time: 'This time is already booked. Choose another one.' } });
+    const variant = typeof body.variant === 'string' && /^[a-z0-9-]+$/.test(body.variant) ? body.variant.slice(0, 50) : 'baseline';
+    const text = (v) => (typeof v === 'string' ? v.trim().slice(0, 300) : undefined);
+    const ts = new Date().toISOString();
+    appendLine('bookings-live.jsonl', { ts, day, time, name: text(body.name), email: text(body.email), variant });
+    appendLine('events-live.jsonl', { type: 'scoping_call_booked', ts, variant, props: {} });
+    sendJson(res, 201, { ok: true, day, time });
+  },
   '/api/events': (body, res) => {
     if (!isEventType(body.type)) return sendJson(res, 400, { ok: false, errors: { type: 'Unknown event type.' } });
     const props = body.props && typeof body.props === 'object' && !Array.isArray(body.props) ? body.props : {};
