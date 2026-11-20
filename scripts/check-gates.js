@@ -345,7 +345,47 @@ function legalFindings(root, files) {
   return out;
 }
 
+// ---------------------------------------------------------------- validation (entry)
+
+// A launch decision: a file in discovery/decisions/ whose name contains "launch", with the lines
+// Variant, Decision: launch, Decided by (a person), Role: product lead, Date, Reason.
+const LAUNCH_FIELD = /^(variant|decision|decided by|role|date|reason)\s*:\s*(.*)$/i;
+const NOT_A_PERSON = /\b(claude|agent|assistant|ai|bot)\b/i;
+
+export function readLaunchDecisions(root) {
+  const dir = path.join(root, 'discovery', 'decisions');
+  if (!fs.existsSync(dir)) return [];
+  return fs.readdirSync(dir).filter((n) => /launch/i.test(n) && n.endsWith('.md')).sort().map((n) => {
+    const fields = {};
+    for (const raw of fs.readFileSync(path.join(dir, n), 'utf8').split('\n')) {
+      const line = raw.replace(/\*\*|`/g, '').replace(/^\s*(?:[-*>]\s+)*/, '').trim();
+      const m = line.match(LAUNCH_FIELD);
+      if (m && !(m[1].toLowerCase() in fields)) fields[m[1].toLowerCase()] = m[2].trim();
+    }
+    return { file: `discovery/decisions/${n}`, variant: fields.variant || '', decision: (fields.decision || '').toLowerCase(),
+      decidedBy: fields['decided by'] || '', role: (fields.role || '').toLowerCase(), date: fields.date || '', reason: fields.reason || '' };
+  });
+}
+
+export function launchProblem(d) {
+  if (d.decision !== 'launch') return `it does not say "Decision: launch" (it says "${d.decision || 'nothing'}")`;
+  if (!d.decidedBy || /^<.*>$/.test(d.decidedBy) || NOT_A_PERSON.test(d.decidedBy)) return 'Decided by names no person; an agent never decides a launch';
+  if (d.role !== 'product lead') return `its role is "${d.role || 'missing'}"; the product lead decides a launch (Role: product lead)`;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(d.date)) return 'it has no date as YYYY-MM-DD';
+  if (!d.reason || /^<.*>$/.test(d.reason)) return 'it gives no reason (Reason: ...)';
+  return null;
+}
+
+// Findings for one variant: none if a valid launch decision exists.
+export function validationFindings(root, variant) {
+  const mine = readLaunchDecisions(root).filter((d) => d.variant === variant);
+  if (mine.some((d) => !launchProblem(d))) return [];
+  if (!mine.length) return [{ file: 'discovery/decisions/', line: null, rule: 'validation/no-launch-decision', match: `no launch decision for ${variant}` }];
+  return mine.map((d) => ({ file: d.file, line: null, rule: 'validation/launch-decision-incomplete', match: launchProblem(d) }));
+}
+
 const DETECTORS = {
+  validation: (root, v) => validationFindings(root, v.name),
   design: (root, v, ds) => {
     const found = designFindings(root, v.files, ds);
     if (!ds.found) found.unshift({ file: 'site/styles.css', line: 1, rule: 'design/no-design-system', match: 'site/styles.css not found' });
@@ -454,7 +494,7 @@ export function formatResult(result) {
   for (const g of Object.values(result.gates)) {
     for (const f of g.findings) {
       const tail = g.kind === 'hard' ? 'hard, no waiver' : f.waived ? `soft, waived by ${f.waiver}` : 'soft, waiver possible';
-      lines.push(`${f.file}:${f.line}  ${f.rule}  "${f.match}"  owner: ${f.owner} (${tail})`);
+      lines.push(`${f.file}${f.line ? `:${f.line}` : ''}  ${f.rule}  "${f.match}"  owner: ${f.owner} (${tail})`);
     }
     for (const w of g.waivers.filter((x) => !x.applied)) lines.push(`${g.id} gate: waiver ${w.file} ignored: ${w.ignored}`);
     const parts = Object.entries(g.variants).filter(([, s]) => s !== 'pass').map(([v, s]) => {
@@ -479,9 +519,37 @@ export function formatResult(result) {
   return lines;
 }
 
+// The entry check for one variant, before the factory builds it.
+export function formatEntry(root, variant) {
+  const config = JSON.parse(fs.readFileSync(path.join(root, 'gates', 'gates.json'), 'utf8'));
+  const g = config.gates.find((x) => x.id === 'validation');
+  if (!g) throw new Error('gates/gates.json lists no validation gate');
+  const found = validationFindings(root, variant);
+  const lines = [`gates: entry check for ${variant}, before build to earn.`];
+  for (const f of found) lines.push(`${f.file}  ${f.rule}  "${f.match}"  owner: ${g.owner} (hard, no waiver)`);
+  if (found.length) {
+    lines.push(`validation gate (owner: ${g.owner}, ${g.kind}): fail. On the ${g.owner}'s table: a variant goes into build to earn only after the ${g.owner} decided launch in discovery/decisions/ (rule: ${g.rule}). The factory does not start.`);
+  } else {
+    const d = readLaunchDecisions(root).find((x) => x.variant === variant && !launchProblem(x));
+    lines.push(`validation gate (owner: ${g.owner}, ${g.kind}): pass. ${variant}: ${d.file} (decided by ${d.decidedBy}, ${d.date})`);
+  }
+  return { ok: !found.length, lines };
+}
+
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const args = process.argv.slice(2);
   const json = args.includes('--json');
+  const entryAt = args.indexOf('--entry');
+  if (entryAt !== -1) {
+    // Entry check before build to earn: does the variant have a launch decision?
+    const variant = args[entryAt + 1];
+    const root = path.resolve(args.find((a, i) => !a.startsWith('--') && i !== entryAt + 1) || path.join(HERE, '..'));
+    if (!variant) { console.error('gates: --entry needs a variant name'); process.exit(1); }
+    let lines, ok;
+    try { ({ lines, ok } = formatEntry(root, variant)); } catch (e) { console.error(`gates: ${e.message}`); process.exit(1); }
+    for (const l of lines) console.log(l);
+    process.exit(ok ? 0 : 1);
+  }
   const root = path.resolve(args.find((a) => !a.startsWith('--')) || path.join(HERE, '..'));
   let discoveryFailed = false;
   if (args.includes('--with-discovery') && !json) {

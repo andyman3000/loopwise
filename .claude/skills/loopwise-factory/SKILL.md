@@ -7,6 +7,8 @@ description: Build to earn. Rebuilds one variant's prototype for production into
 
 **Input:** a variant name and a mode. If either is missing, ask.
 
+Before anything is built, the validation gate checks that the product lead decided launch for the variant (hard, owner: product lead). No launch decision, no factory run.
+
 | Mode | The factory plants | The gate that should fire | Owner role |
 |---|---|---|---|
 | `run-1` | one design error | design gate (soft) | designer |
@@ -41,7 +43,7 @@ Never read `gates/`, `discovery/test-cards/`, or any other file in `discovery/`.
 - Plain English (`.claude/rules/writing.md`). Before each step, say in one line what you do now.
 
 ## Steps, modes `run-1` and `run-2`
-1. **Frame.** Say the sentence above. Check that the kit is complete.
+1. **Frame.** Say the sentence above. Check that the kit is complete. Then run the entry check in the open: `node scripts/check-gates.js --entry <variant>`. It passes only if the product lead decided launch for the variant in `discovery/decisions/`. If it fails, show its lines as they are, say that the variant has not proved itself yet and build to earn waits for the product lead, and stop. Do not build, and never write the launch decision yourself.
 2. **Read** the kit and the files the build plugs into. Note where the kit is silent.
 3. **Build** `site/hardened/<variant>/`. If the folder exists from an earlier run, say so and replace it: each run builds from the kit. Write each open question as you meet it.
 4. **Check your clean build quietly.** Run `node scripts/check-gates.js --json` without showing the output. Read only the findings whose `variant` is `<variant>`. Fix your build until it has no findings in either gate. Do not open the rule files the output names.

@@ -1,7 +1,14 @@
 {
-  "about": "Release gates, run by npm run check on site/hardened/ only. A failing gate lands on its owner's table. A soft gate can be waived by its owner with a waiver file in discovery/decisions/; a hard gate takes no waiver. The agent never decides at a gate.",
+  "about": "Release gates, run by npm run check on site/hardened/ only. The validation gate also runs at the entry of build to earn: node scripts/check-gates.js --entry <variant>. A failing gate lands on its owner's table. A soft gate can be waived by its owner with a waiver file in discovery/decisions/; a hard gate takes no waiver. The agent never decides at a gate.",
   "scan": "site/hardened",
   "gates": [
+    {
+      "id": "validation",
+      "name": "Validation gate",
+      "owner": "product lead",
+      "kind": "hard",
+      "rule": "gates/policies/launch-decision.md"
+    },
     {
       "id": "design",
       "name": "Design gate",

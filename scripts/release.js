@@ -90,7 +90,13 @@ export function checkRelease(root, variant) {
   } catch (e) {
     add(false, 'the release gates can run', 'product team', [`gates: ${e.message}`]);
   }
-  const findingLines = (g) => g.findings.filter((f) => f.variant === variant).map((f) => `${f.file}:${f.line}  ${f.rule}  "${f.match}"`);
+  const findingLines = (g) => g.findings.filter((f) => f.variant === variant).map((f) => `${f.file}${f.line ? `:${f.line}` : ''}  ${f.rule}  "${f.match}"`);
+  if (gates?.validation) {
+    const g = gates.validation;
+    const status = g.variants[variant] || 'not scanned';
+    add(status === 'pass', `the ${g.id} gate passes for ${variant} (${g.kind}, now: ${status}): the product lead decided launch`, g.owner,
+      [...findingLines(g), ...(status === 'fail' ? ['A hard gate takes no waiver: the product lead writes a launch decision, or the variant does not go into build to earn.'] : [])]);
+  }
   if (gates?.legal) {
     const g = gates.legal;
     const status = g.variants[variant] || 'not scanned';

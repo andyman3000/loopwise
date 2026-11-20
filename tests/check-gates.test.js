@@ -29,6 +29,11 @@ function repo(files = {}) {
     'site/styles.css': STYLES,
     ...files,
   };
+  // Every hardened variant here has a launch decision, so the validation gate passes and these
+  // tests see only the gates they test. tests/validation-gate.test.js tests that gate.
+  for (const v of new Set(Object.keys(files).map((p) => (p.match(/^site\/hardened\/([^/]+)\//) || [])[1]).filter(Boolean))) {
+    all[`discovery/decisions/900-launch-${v}.md`] ??= `Variant: ${v}\nDecision: launch\nDecided by: Kim Example\nRole: product lead\nDate: 2026-11-20\nReason: The test with people passed.\n`;
+  }
   for (const [p, body] of Object.entries(all)) {
     if (body === null) continue;
     fs.mkdirSync(path.dirname(path.join(root, p)), { recursive: true });
