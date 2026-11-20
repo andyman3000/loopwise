@@ -23,14 +23,13 @@ check now. After each step, say ok, or what is wrong and what to do. Plain Engli
    stop. No `npm install`: Loopwise has no dependencies.
 2. **Tests.** Run `npm test`. Report "<n> tests, all green" or name the failing test and say:
    "Tell the trainer. You can carry on meanwhile."
-3. **The site.** Find a free port: check `curl -s -o /dev/null -w '%{http_code}' 'http://localhost:3000/'`.
-   - No answer (000): port 3000 is free. Start `npm start` in the background.
-   - An answer: check whether it is Loopwise (`curl -s 'http://localhost:3000/'` contains
-     "Loopwise"). If yes, use it as it runs. If not, port 3000 is taken by something else: try
-     3001, 3002 and so on, and start `PORT=<port> npm start` in the background on the first free one.
-   Then check `curl -s -o /dev/null -w '%{http_code}' 'http://localhost:<port>/inquiry.html'`
-   answers 200. Say which port the site runs on. If it is not 3000, say: "Use port <port> in every
-   link the block files name."
+3. **The site.** Start this folder's own site; never reuse a server that is already running, even a
+   Loopwise one: it may serve another folder, and the pair would read the wrong files. Find the
+   first free port from 3000 up: `curl -s -o /dev/null -w '%{http_code}' 'http://localhost:<port>/'`
+   answers 000 on a free port. Start `PORT=<port> npm start` in the background on it. Then check
+   `curl -s -o /dev/null -w '%{http_code}' 'http://localhost:<port>/inquiry.html'` answers 200. Say
+   which port the site runs on. If it is not 3000, say: "Port 3000 is taken by another program.
+   Use port <port> in every link the block files name."
 4. **The Loopwise skills.** List the folders in `.claude/skills/` whose names start with
    `loopwise-`, and check each holds a `SKILL.md`. Say how many there are, and name the three the
    day starts with: `/loopwise-intent-and-ideas`, `/loopwise-test-card`, `/loopwise-variant-spec`.
@@ -54,4 +53,4 @@ have a minute (setup step 4)." If step 2 had a failing test, say that the traine
 to do, and still end with the line above. If step 1 or 3 failed, end with what to do instead.
 
 Remind the pair once, before the last line: "The site runs inside this Claude Code session. If you
-quit Claude Code, start it again in a second terminal with npm start."
+quit Claude Code, start it again in a second terminal with PORT=<port> npm start."

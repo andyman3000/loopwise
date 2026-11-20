@@ -17,7 +17,8 @@ before anything is built: what a tester does, and what you watch for.
 
 You work as a pair on one branch, on the opportunity chosen in decision 001. You keep it to the end.
 
-**Read first (5 min).** With `npm start` running, open `http://localhost:3000/discovery/tree`. On top
+**Read first (5 min).** Open the page `/loopwise-onboarding` named, `http://localhost:<port>/discovery/tree`
+(port 3000 unless onboarding said otherwise). On top
 is the business goal, below it the funnel steps, at the bottom the four candidate opportunities. The
 chosen one, C1, is marked. Then read `discovery/decisions/001-format-fit.md`: what was decided, and
 why. An opportunity is a customer need or pain, never a solution. Your ideas in this block are
@@ -25,8 +26,8 @@ solutions for it.
 
 ## What you do (about 60 min)
 
-Start the site in a second terminal and keep it running: `npm start`. Open
-`http://localhost:3000/discovery/tree`. Reload it after every step: your ideas appear under your
+The site runs since onboarding. If it does not answer, start it in a second terminal and keep it
+running: `PORT=<port> npm start`. Open `http://localhost:<port>/discovery/tree`. Reload it after every step: your ideas appear under your
 opportunity from the first step on.
 
 Start a fresh Claude Code session (`/clear`). Then `/loopwise-intent-and-ideas` and name your chosen opportunity. The skill guides you one step
