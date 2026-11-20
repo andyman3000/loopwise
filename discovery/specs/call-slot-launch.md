@@ -48,7 +48,7 @@ Skipped (reference state). No feedback, since there is no answer to judge.
 - **Legal:** no price on the site ([product/constraints.md:7](../../product/constraints.md#L7)). The hardened page passes both gates in [gates/gates.json](../../gates/gates.json). The legal gate takes no waiver ([gates/policies/no-prices.md:28](../../gates/policies/no-prices.md#L28)).
 
 ## Open points
-- Where bookings are stored: a new server route or a booking tool ([discovery/specs/call-slot.md:105](../specs/call-slot.md#L105)) · who confirms: product lead with the developer · Answer: ____ (human decides before launch)
+- Where bookings are stored: a new server route or a booking tool ([discovery/specs/call-slot.md:105](../specs/call-slot.md#L105)) · who confirms: product lead with the developer · Answer: the server route `/api/booking` ([server.js:178](../../server.js#L178)). It stores the slot, refuses a taken one, and logs `scoping_call_booked` without name or email. Reference decision (replace with your own), 2026-11-20.
 - How events get a session, and who logs `scoping_call_booked` for a call after a sent inquiry · who confirms: the developer · Answer: ____ (human decides before launch)
 - Who answers the phone number, and at which hours ([discovery/specs/call-slot.md:107](../specs/call-slot.md#L107), [discovery/specs/call-slot.md:111](../specs/call-slot.md#L111)) · who confirms: product lead · Answer: ____ (human decides before launch)
 - Who sends the mail or calendar invite after a booking, and from which tool ([discovery/specs/call-slot.md:108](../specs/call-slot.md#L108)) · who confirms: product lead · Answer: ____ (human decides before launch)
