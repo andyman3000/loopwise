@@ -1,4 +1,4 @@
-# Intent: Buyers start an inquiry with confidence, whether or not they know their format
+# Intent: Buyers reach a scoping call, whether or not they know their format
 
 > Assessment by an agent (`loopwise-intent-and-ideas`), not a decision. Date: 2026-11-14.
 > Opportunity: C1, "I can't tell which format fits my group.", in [discovery/opportunity-comparison.md](../opportunity-comparison.md) · Decision: [discovery/decisions/001-format-fit.md](../decisions/001-format-fit.md)
@@ -27,11 +27,11 @@ The [formats page](../../site/formats.html) already says: "The scoping call shap
 Buyers still feel they must choose first ([discovery/opportunity-comparison.md:86](../opportunity-comparison.md#L86)).
 
 ## Desired outcome
-More of the buyers who open the inquiry page start filling in the form.
-They start even when they do not know their format yet.
-- How the site counts it: a visit counts as started when the visitor clicks into a form field (`inquiry_started`, [site/components/inquiry-form.js:41](../../site/components/inquiry-form.js#L41)). The share of inquiry page visits that start the form is the driver "start rate" ([discovery/kpi-tree.md:21](../kpi-tree.md#L21)).
-- Why it matters: this quarter Loopwise works on one way to grow, more inquiries that end in a booking ([discovery/kpi-tree.md:18](../kpi-tree.md#L18)). Every booking passes through this step first.
-- Today: 194 of 740 inquiry page visits started the form, in 26 weeks of synthetic data ([discovery/opportunities/data.md:51](../opportunities/data.md#L51)). The other 546 visits left without clicking into the form.
+More of the buyers who open the inquiry page reach a scoping call. They get there even when they do not know their format yet.
+Why this step: the format is settled in the scoping call ([product/glossary.md:33](../../product/glossary.md#L33)). So the buyer's need is met when they reach the call, not when they start the form.
+- How the site counts it: a visit counts when the same session gets a scoping call (`scoping_call_booked`), after a sent inquiry or by a booked call slot. The share of inquiry page visits that end in a scoping call is "visit-to-call" ([discovery/kpi-tree.md:30](../kpi-tree.md#L30)). Early signal only: a visit counts as started when the visitor clicks into a form field (`inquiry_started`, [site/components/inquiry-form.js:41](../../site/components/inquiry-form.js#L41)), the driver "start rate" ([discovery/kpi-tree.md:21](../kpi-tree.md#L21)). Read it together with slot bookings: a buyer who books a slot never starts the form.
+- Why it matters: this quarter Loopwise works on one way to grow, more inquiries that end in a booking ([discovery/kpi-tree.md:18](../kpi-tree.md#L18)). A booking follows a scoping call ([discovery/kpi-tree.md:24](../kpi-tree.md#L24)).
+- Today: 55 of 740 inquiry page visits ended in a scoping call (7.4%), in 26 weeks of synthetic data ([discovery/opportunities/data.md:80](../opportunities/data.md#L80), [discovery/opportunities/data.md:51](../opportunities/data.md#L51)). 194 of the 740 visits started the form ([discovery/opportunities/data.md:51](../opportunities/data.md#L51)). The other 546 visits left without clicking into the form.
 - No target here.
 
 ## For whom and where
