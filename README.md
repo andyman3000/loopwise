@@ -46,12 +46,12 @@ Claude carries old answers into the next skill. The block files say which comman
 
 | Tag | State |
 |---|---|
-| `v3-03-start` | the jump: `v2-03-opportunity-decision` plus the design system, the release gates, the lean launch spec mode, the loopwise-factory skill and the release step |
+| `v3-03-start` | the jump: `v2-03-opportunity-decision` plus the design system, three gates (validation, design, legal), the lean launch spec mode, the loopwise-factory skill and the release step |
 | `v3-04-test-card` | intent with 3 to 5 ideas and the idea tested first, prototype test card |
 | `v3-05-prototype` | specs, persona runs, three built prototypes on the design system tokens |
-| `v3-06-test-decision` | learning cards, launch card for call-slot, and call-slot's complete handover kit: prototype, intent, launch spec. The afternoon starts here |
+| `v3-06-test-decision` | learning cards; call-slot passed a test with five people and the product lead decided launch (decision 005); its launch card and complete handover kit: prototype, intent, launch spec. The afternoon starts here |
 | `v3-07-factory-run-1` | call-slot rebuilt in `site/hardened/`, the design gate failed and was healed |
-| `v3-08-factory-run-2` | the legal gate failed and was fixed, the release decision, call-slot shipped on localhost, the retro |
+| `v3-08-factory-run-2` | the legal gate failed and was fixed, the release decision (006), call-slot shipped on localhost, the retro |
 
 The decisions taken while building v3 are in [docs/v3-decisions.md](docs/v3-decisions.md).
 
