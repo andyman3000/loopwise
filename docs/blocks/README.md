@@ -25,8 +25,10 @@ state: you do not need to read them. Block 4's skill briefs you on the opportuni
 ## The same four moves in every block
 
 - **Run the skill.** In Claude Code, inside the `loopwise` folder, type `/` and the skill name.
-  Start a fresh session before each skill: type `/clear` first. The block 4 and 5 skills end by
-  naming what is still open in the block and the next command. Your block file has the full order.
+  Start a fresh session before each skill: type `/clear` first. Every skill starts with three
+  lines (where you are, what you end with, how long), says before each step what to do and what a
+  good answer looks like, and ends with the next command. It talks in the language you write in.
+  Your block file has the full order.
 - **Try first.** Before it drafts anything, the skill asks you one question about the step. Answer it
   yourself, in a sentence or two. Afterwards the output shows your answer next to its draft, under
   "Your first try". That comparison is where you learn the most.

@@ -11,6 +11,18 @@ description: Draw the KPI tree for the business goal: the branches the strategy 
 A KPI tree breaks one output metric (the business goal) into the input metrics a team can move.
 Each link is a plain relationship: a product or a sum. This skill draws that tree and nothing else.
 
+
+## Orientation
+
+Guide as `.claude/rules/guiding.md` says, in the language the human writes in. Show first:
+- **Where:** Block 1: the KPI tree, the numbers the business goal depends on.
+- **You end with:** `discovery/kpi-tree.md`, drawn at http://localhost:<port>/discovery/kpi-tree.html.
+- **Time:** about 30 minutes.
+
+Before the try first, say: about 3 minutes, one line. A good answer lists the steps a buyer takes, in order. Example from an unrelated product, a library app: "open the app, search a book, borrow it, get a reminder, return it".
+
+End each step with "Done: <what>. Next: <what the human does now>." At the end, four lines: Made (the tree), Look (http://localhost:<port>/discovery/kpi-tree.html), Next ("type `/clear`, then `/loopwise-opportunities-from-source`"), Time (block 1 planned about 30 minutes).
+
 ## Rules
 
 - **Only the tree.** Goal, branches, drivers, the formula of each branch. No counts, no drop-off ranking, no assessment, no assumptions table, no recommendation, no decision field. Opportunities, assumptions and the choice of what to move come in later blocks.

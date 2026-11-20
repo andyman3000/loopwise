@@ -14,6 +14,18 @@ subfolders) to verify each quote the opportunity files cite.
 Before the build there is only evidence, so this skill compares evidence. Torres: "compare and
 contrast" opportunities against each other, rather than judging one in isolation.
 
+
+## Orientation
+
+Guide as `.claude/rules/guiding.md` says, in the language the human writes in. Show first:
+- **Where:** Block 3: compare the opportunities and decide which one to pursue.
+- **You end with:** `discovery/opportunity-comparison.md`, drawn at http://localhost:<port>/discovery/tree, and your decision.
+- **Time:** about 60 minutes.
+
+Before the try first, say: about 3 minutes, one sentence. A good answer names one opportunity and a reason you could check in the files. Example from an unrelated product, a library app: "the late returns: most voices, and the app counts every return".
+
+End each step with "Done: <what>. Next: <what the human does now>." At the end, four lines: Made (the comparison), Look (http://localhost:<port>/discovery/tree), Next (fill "Decision (human)" and record it in `discovery/decisions/`; then block 4: `/clear`, then `/loopwise-intent-and-ideas <C-id>`), Time (block 3 planned about 60 minutes).
+
 ## Rules
 
 - **Try first, then compare.** Before you draft, ask the human for which opportunity they favour right now, with a one-sentence reason. Point them to their opportunity map first: with `npm start` running, `http://localhost:3000/discovery/map` shows every opportunity by source and evidence. The challenger step then also attacks their favourite, if it differs from the candidate the comparison favours. Wait for the answer and never invent it. After drafting, fill the section "Your first try": their answer word for word, the candidate ID it matches ("Matches: C1", or "none"), then two or three short lines on where your draft differs and why. If they say skip, write "skipped". This step is how participants learn the concept; do not shorten it.
@@ -52,7 +64,7 @@ contrast" opportunities against each other, rather than judging one in isolation
 
 ## Steps
 
-0. **Try first.** Ask the human to open their opportunity map (`npm start`, then `http://localhost:3000/discovery/map`) and say which opportunity they favour right now, with a one-sentence reason. The challenger step then also attacks their favourite, if it differs from the candidate the comparison favours. Wait for the answer before you read further or draft anything.
+0. **Try first.** Ask the human to open their opportunity map (`npm start`, then `http://localhost:<port>/discovery/map`) and say which opportunity they favour right now, with a one-sentence reason. The challenger step then also attacks their favourite, if it differs from the candidate the comparison favours. Wait for the answer before you read further or draft anything.
 1. **Shortlist.** Read all opportunity files and the KPI tree. If a "Goes into comparison" line is
    already filled, show it and ask whether it still holds; otherwise propose:
    - **Merge** the same need found in several source files into one candidate, naming every source
@@ -131,7 +143,7 @@ contrast" opportunities against each other, rather than judging one in isolation
    - **Candidates:** every field is one line, at most 15 words, except the quote.
 6. Write the file with the template below. Run `npm run check`.
 7. **Send the human to the tree before they decide.** Your closing message always gives the link
-   `http://localhost:3000/discovery/tree` (start the server with `npm start` if it is not running)
+   `http://localhost:<port>/discovery/tree` (start the server with `npm start` if it is not running)
    and says to read the tree before filling "Chosen opportunity" and "We would switch if". Name the
    one thing to look at first: the question on top and the steps where no candidate acts. Give the
    feedback on the first try (see Rules) in the same message. Never

@@ -19,6 +19,15 @@ The prototype in `site/variants/<variant>/` was built to learn: fast, for a test
 The factory builds to earn: the same page, fit for real visitors, in `site/hardened/<variant>/`.
 The factory runs in the open. People decide at the gates. The factory never decides at a gate.
 
+## Orientation
+
+Guide as `.claude/rules/guiding.md` says, in the language the pair writes in. Show first, by mode:
+- `run-1`: **Where:** Factory run 1, step 5 of 8: build to earn. The factory rebuilds the prototype for real visitors, and the gates check it. **You end with:** `site/hardened/<variant>/`, at http://localhost:<port>/inquiry.html?variant=<variant>&build=hardened, and `npm run check` green after you healed what the design gate found. **Time:** about 15 minutes for the run, 10 to heal.
+- `run-2`: **Where:** Factory run 2, steps 1 to 5 of 7: a second build, the legal gate, the release decision. **You end with:** a build both gates pass, your release decision in `discovery/decisions/`, and `npm run release`. **Time:** about 30 minutes.
+- `retro`: **Where:** Factory run 2, step 6 of 7: the retro, four questions. **You end with:** `discovery/factory/<variant>-retro.md` with your answers. **Time:** about 12 minutes.
+
+Say in one line what a gate is, and in run 1 what a waiver is (`.claude/rules/guiding.md`, "Terms"). Before every decision the pair takes, say who decides (the role), how long, and what a good answer looks like. End each step with "Done: <what>. Next: <what the pair does now>."
+
 **Say this first, word for word:** "The factory runs in the open. In each run it plants one error on purpose and does not tell you which. The gate should find it. If the gate stays green, note that for the retro."
 
 ## What the factory reads
@@ -29,7 +38,7 @@ The handover kit:
 
 And what the build plugs into: `site/styles.css`, `.claude/rules/design-system.md`, `site/components/`, the page routing and the API routes in `server.js` (`/api/inquiry`, `/api/booking`, `/api/events`), `site/config.json`. Also its own questions file in `discovery/factory/`, if one exists.
 
-Never read `gates/`, `discovery/test-cards/`, or any other file in `discovery/`. You may list the file names in `discovery/decisions/`, to name the next free number, but never open them. If the build needs a rule the kit does not state, that is a question (below), not a reason to look elsewhere.
+Never read `gates/`, `discovery/test-cards/`, or any other file in `discovery/`, with one exception: in run 2, step 9, after the build, read the success line of `discovery/test-cards/<variant>.md` and the intent's "Desired outcome", to show them side by side. You may list the file names in `discovery/decisions/`, to name the next free number, but never open them. If the build needs a rule the kit does not state, that is a question (below), not a reason to look elsewhere.
 
 ## Rules
 - **Write only in `site/hardened/<variant>/` and `discovery/factory/`.** Use the prototype's page file names. Change no other file: not the prototype, `site/styles.css`, `server.js` or `site/config.json`. If the build needs a change elsewhere (an endpoint, a shared component, a new token), write a question.
@@ -40,7 +49,7 @@ Never read `gates/`, `discovery/test-cards/`, or any other file in `discovery/`.
 - **Ask, do not guess.** Where the kit leaves a question open, write it in the questions file and go on with the most cautious choice. Tell the pair the question in one line. Do not wait for an answer: the questions feed the retro.
 - **No line numbers for files in `site/` inside `discovery/factory/`.** The build changes during the run, and `npm run check` checks every `file:line` in `discovery/`. Name the file and the place in words. Lines of the launch spec or the intent may be cited as links, as `.claude/rules/writing.md` says.
 - **Never decide at a gate.** Never write a waiver, a release decision or a "Decided by" line. Never change `shipped` in `site/config.json`. Never say which error you planted, before or after, and never mark it in the code.
-- Plain English (`.claude/rules/writing.md`). Before each step, say in one line what you do now.
+- Plain words (`.claude/rules/writing.md`), in the language the pair writes in. Before each step, say in one line what you do now.
 
 ## Steps, modes `run-1` and `run-2`
 1. **Frame.** Say the sentence above. First run the entry check in the open: `node scripts/check-gates.js --entry <variant>`. It passes only if the product lead decided launch for the variant in `discovery/decisions/`. If it fails, show its lines as they are, say that the variant has not proved itself yet and build to earn waits for the product lead, and stop. Do not build, and never write the launch decision yourself. Only after it passes, check that the kit is complete.
@@ -55,13 +64,13 @@ Never read `gates/`, `discovery/test-cards/`, or any other file in `discovery/`.
 8. **Hand over.** For each failing gate, tell the pair:
    - each finding as `npm run check` printed it: file, line, rule
    - the owner role: the designer for the design gate, legal for the legal gate
-   - the options. Design gate, soft: fix it, or the designer writes a waiver. The designer copies `.claude/skills/loopwise-factory/waiver-template.md` to `discovery/decisions/<next number>-design-waiver-<variant>.md` and fills it in. Name the next free number. Legal gate, hard: fix it. No waiver counts, not even one from legal.
+   - the options. Design gate, soft: fix it, or the designer writes a waiver. The designer copies the template with `cp .claude/skills/loopwise-factory/waiver-template.md discovery/decisions/<next number>-design-waiver-<variant>.md` and fills in their own name and reason. Name the next free number. Legal gate, hard: fix it. No waiver counts, not even one from legal. In run 2, let the pair try it once first, about 3 minutes: copy the waiver template to `discovery/decisions/<next number>-legal-waiver-<variant>.md`, write `Gate: legal` and `Owner role: legal`, run `npm run check`, read what it says, then delete the file.
 
    If an open question means the page promises what no one delivers, say so: the product lead answers it before the release.
-   Then say: "Tell me what to fix, or fix it yourself. Then run npm run check again. See the build with npm start at http://localhost:3000/<page>?variant=<variant>&build=hardened." When the pair asks for a fix, change only what the finding or the pair names, and run `npm run check` again.
+   Then say: "Tell me what to fix, or fix it yourself. Then run npm run check again. See the build at http://localhost:<port>/<page>?variant=<variant>&build=hardened." Before it, say: the owner decides, about 10 minutes; a good answer is "fix it" with what to change, or the owner's waiver with a reason that a reader would accept. When the pair asks for a fix, change only what the finding or the pair names, and run `npm run check` again.
 9. **Release step.**
-   - `run-1`: once the gate is fixed or waived, run `npm run release -- <variant> --dry-run`. It lists what the release still waits for, with the owner role. The release itself comes in run 2.
-   - `run-2`: once both gates allow it, the product lead decides. First show in one line the launch card's success line and the step the intent's "Desired outcome" names, each quoted with its file and line. If the two name different steps, say so: after the release, the build would be measured on a step the intent does not ask for. This blocks nothing. Then the product lead copies `.claude/skills/loopwise-factory/release-decision-template.md` to `discovery/decisions/<next number>-release-<variant>.md` and fills it in. Name the next free number. Then `npm run release -- <variant>`. It sets `shipped` in `site/config.json` only if the legal gate passes, the design gate passes or is waived, and the decision exists. Nothing is deployed anywhere: the release is that one key on localhost. Then ask: "Shall I write the retro file now? (/loopwise-factory <variant> retro)"
+   - `run-1`: once the gate is fixed or waived, run `npm run release -- <variant> --dry-run`. It lists what the release still waits for, with the owner role. The release itself comes in run 2. End with four lines: "Made: the hardened build of <variant>, both gates green." "Look: http://localhost:<port>/inquiry.html?variant=<variant>&build=hardened, next to the prototype at http://localhost:<port>/inquiry.html?variant=<variant>." "Next: commit with `npm test && npm run check`, then `git add -A && git commit -m "factory run 1: built, gate healed"`. Run 2 starts with `/clear`, then `/loopwise-factory <variant> run-2`." "Time: factory run 1 planned 50 minutes in all." Then stop.
+   - `run-2`: once both gates allow it, the product lead decides. First show in one line the launch card's success line and the step the intent's "Desired outcome" names, each quoted with its file and line. If the two name different steps, say so: after the release, the build would be measured on a step the intent does not ask for. This blocks nothing. Then the product lead decides, about 5 minutes: they read the build, the review and the questions file, and copy the template with `cp .claude/skills/loopwise-factory/release-decision-template.md discovery/decisions/<next number>-release-<variant>.md`. They fill it in: release or hold, their own name, the date, the reason. A good reason names what the build can do for real visitors now, or what must change first; an open question can be a reason to hold. Name the next free number. Then `npm run release -- <variant>`. It sets `shipped` in `site/config.json` only if the legal gate passes, the design gate passes or is waived, and the decision exists. Nothing is deployed anywhere: the release is that one key on localhost. If the product lead held, say that a hold is a decision too. End with four lines: "Made: a build both gates pass, and the release decision." "Look: http://localhost:<port>/inquiry.html: after a release every visitor gets the hardened page." "Next: type `/clear`, then `/loopwise-factory <variant> retro`." "Time: factory run 2 planned about 30 minutes up to here; the retro takes 12."
 
 ## Questions file
 `discovery/factory/<variant>-questions.md`. Create it in the first run. In a later run, add a section and do not repeat a question. If a question has an answer, follow it and say so.
@@ -86,5 +95,6 @@ Never read `gates/`, `discovery/test-cards/`, or any other file in `discovery/`.
 Reads the questions file, the review reports in `discovery/factory/`, and only those files in `discovery/decisions/` whose names contain `waiver`, `release` or `launch` and that name the variant.
 1. Copy `.claude/skills/loopwise-factory/retro-template.md` to `discovery/factory/<variant>-retro.md`. Say the file name first.
 2. Prefill question 3 with the waiver and release files found, as links. Prefill question 4 with each question from the questions file, without quote marks, and a link to its heading line.
-3. Ask the pair the four questions, one at a time. Write their answers word for word. A skipped answer stays `____`.
+3. Ask the pair the four questions, one at a time. Before each, say: about 3 minutes; a good answer names a file, a gate or a person. Write their answers word for word. A skipped answer stays `____`.
 4. Do not say which errors were planted. The pair knows what the gates caught.
+5. End with four lines: "Made: the retro for <variant>." "Look: `discovery/factory/<variant>-retro.md`." "Next: `npm test && npm run check`, then `git add -A && git commit -m "factory run 2: gate fixed, release decided, retro"`; then back to your company table." "Time: the retro planned 12 minutes, the commit 3." 

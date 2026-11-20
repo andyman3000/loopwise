@@ -63,6 +63,7 @@ loopwise/
                    test-cards/, decisions/, user-tests/
   .claude/skills/  one folder per skill
   .claude/rules/   writing.md: how every artefact and reply is written
+                   guiding.md: how every skill guides the participant, step by step
                    design-system.md: every page and variant is built on site/styles.css
 ```
 
@@ -103,8 +104,10 @@ product context, the discovery artefacts and the decisions taken on them.
 
 The trainer changes this one line per cohort, for example to `product managers`.
 
-- **Plain English in every artefact and every reply.** Common words. The writing rules are in
-  `.claude/rules/writing.md`, loaded in every session.
+- **Plain English in every artefact. Every reply in the language the participant writes in**, in
+  plain words. The writing rules are in `.claude/rules/writing.md`, loaded in every session.
+- **Every skill guides step by step** (`.claude/rules/guiding.md`, loaded in every session): where
+  you are, what you end with, how long, what to do next.
 - **Loopwise words mean what `product/glossary.md` says.** Use them that way in every artefact.
 - **Explain product terms once.** While the audience line names people new to product work, explain
   each product term (opportunity, KPI branch, proxy metric, counter metric, success line, kill
@@ -153,7 +156,8 @@ cohort.
 # Skill chain
 
 Every Loopwise skill starts with `loopwise-`. Before the chain, `loopwise-onboarding` checks the setup
-(Node, tests, the site on a free port, the skills, the browser) and writes nothing.
+(Node, tests, the site on a free port, the skills, the browser) and writes only `discovery/.local.json`
+(the language and the port, ignored by git).
 
 Run in this order. Each skill writes its artefact under `discovery/`.
 

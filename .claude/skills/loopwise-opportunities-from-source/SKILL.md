@@ -11,6 +11,18 @@ description: Find opportunities (customer needs or pains, never solutions) in on
 
 This file is an **assessment by an agent, not a decision**. Say so at the top of the output.
 
+
+## Orientation
+
+Guide as `.claude/rules/guiding.md` says, in the language the human writes in. Show first:
+- **Where:** Block 2: opportunities from one source group: customer needs and pains, each with a quote.
+- **You end with:** `discovery/opportunities/<source-group>.md`, at http://localhost:<port>/discovery/map.
+- **Time:** about 35 minutes for all source groups; one run per group.
+
+Before the try first, say: about 2 minutes, one sentence. A good answer names a need or a pain, not a solution. Example from an unrelated product, a library app: the quote "I always forget when it's due" holds the need "I want to know when to return a book without checking".
+
+End each step with "Done: <what>. Next: <what the human does now>." At the end, four lines: Made (the file), Look (http://localhost:<port>/discovery/map), Next ("type `/clear`, then `/loopwise-opportunities-from-source <next group>`"; after the last group, `/loopwise-compare-opportunities`), Time (block 2 planned about 35 minutes for all groups).
+
 ## Rules
 
 - **Try first, then compare.** Before you draft, ask the human for the need behind one quote. Show one quote from the source with file:line, then ask: what need or pain sits behind it, and is what the person says a need or already a solution?. Wait for the answer and never invent it. After drafting, fill the section "Your first try": their answer word for word, then two or three short lines on where your draft differs and why. If they say skip, write "skipped". This step is how participants learn the concept; do not shorten it.

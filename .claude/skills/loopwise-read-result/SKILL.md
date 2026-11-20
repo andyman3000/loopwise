@@ -15,6 +15,18 @@ The numbers are already counted, by code, on the dashboard. This skill does not 
 helps the human read them against the test card: the human reads first, then the skill reads, then
 both settle where they differ and draw the conclusion. The conclusion and the decision are the human's.
 
+
+## Orientation
+
+Guide as `.claude/rules/guiding.md` says, in the language the human writes in. Show first:
+- **Where:** Block 7, the demo: read a launched variant's result against its card.
+- **You end with:** the `## Result` section of `discovery/test-cards/<variant>.md`, with your reading and your decision.
+- **Time:** about 30 minutes.
+
+Before the human reads, say: about 10 minutes for the table. A good reading says met, not met or unclear per row, held against the threshold and the usual swing on the card.
+
+End each step with "Done: <what>. Next: <what the human does now>." At the end, four lines: Made (the Result section), Look (http://localhost:<port>/discovery/test-cards/<variant>.md), Next (the trainer runs `/loopwise-next-bet`), Time (the demo planned about 30 minutes for this).
+
 ## Rules
 
 - **The human reads first.** Before you say what any number means, ask for their reading (step 1).
@@ -48,9 +60,9 @@ both settle where they differ and draw the conclusion. The conclusion and the de
 
 1. **The numbers, then the human's reading.** Read `site/config.json` and the test card. Run
    `npm run summary` for your own reading, but do not show its output in the chat. Point the human
-   to `http://localhost:3000/dashboard` (it needs `npm start`), where the same numbers are, and to the
+   to `http://localhost:<port>/dashboard` (it needs `npm start`), where the same numbers are, and to the
    shipped page, so they can see what the numbers are about: the start address the spec names
-   (`discovery/specs/<variant>.md`, "Tester starts at"), as a full link on `http://localhost:3000`.
+   (`discovery/specs/<variant>.md`, "Tester starts at"), as a full link on `http://localhost:<port>`.
    Then show what the card assumed, one row per line with a threshold, in plain words with its threshold and
    its comparison. No line numbers, no section names alone, no numbers from after launch:
 

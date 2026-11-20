@@ -16,6 +16,18 @@ You close the loop: what was measured goes back on the tree, and the new answers
 feature are read as evidence for the next opportunity. You are an agent writing an assessment, not a
 decision.
 
+
+## Orientation
+
+Guide as `.claude/rules/guiding.md` says, in the language the human writes in. Show first:
+- **Where:** Block 8: the next bet. The result flows back into the KPI tree, and you pick what to work on next.
+- **You end with:** measured values in `discovery/kpi-tree.md`, and the next bet appended to `discovery/opportunity-comparison.md`.
+- **Time:** about 30 minutes.
+
+Before the try first, say: about 3 minutes, one sentence. A good answer names one opportunity and the number that moved, or did not. Example from an unrelated product, a library app: "the late returns again: the reminder moved returns least".
+
+End each step with "Done: <what>. Next: <what the human does now>." At the end, four lines: Made (both files), Look (http://localhost:<port>/discovery/tree), Next ("type `/clear`, then `/loopwise-workshop-feedback`"), Time (block 8 planned about 30 minutes).
+
 ## Rules
 
 - **Try first, then compare.** Before you draft, ask the human for what they would work on next, and why, before you read the new evidence. Point them to their opportunity tree in that first message: with `npm start` running, `http://localhost:3000/discovery/tree` shows the compared candidates linked to the business goal. Wait for the answer and never invent it. After drafting, fill the section "Your first try": their answer word for word, then two or three short lines on where your draft differs and why. If they say skip, write "skipped". This step is how participants learn the concept; do not shorten it.
@@ -38,7 +50,7 @@ decision.
 
 ## Steps
 
-0. **Try first.** Ask the human to open their opportunity tree (`npm start`, then `http://localhost:3000/discovery/tree`) and say what they would work on next, and why, before you read the new evidence. Wait for the answer before you read further or draft anything.
+0. **Try first.** Ask the human to open their opportunity tree (`npm start`, then `http://localhost:<port>/discovery/tree`) and say what they would work on next, and why, before you read the new evidence. Wait for the answer before you read further or draft anything.
 1. Read the Result section. Copy the counted values and the weeks they cover.
 2. Read the KPI tree; find the branch the tested opportunity hangs on (quote it). Enter the values.
 3. Read the decision files for the tested opportunity: what it said would tip the decision. Check it.

@@ -12,6 +12,18 @@ description: Close the workshop. Ask each of the two people in the pair at most 
 
 The trainer uses the answers and the pair's artefacts to improve the workshop. This skill asks, packs and tells the pair where the zip is. It never sends anything: no mail, no upload, no push.
 
+
+## Orientation
+
+Guide as `.claude/rules/guiding.md` says, in the language the human writes in. Show first:
+- **Where:** Block 9: feedback and your results, at the end of the day.
+- **You end with:** a zip of your results and your answers to five questions, for the trainer.
+- **Time:** about 15 minutes.
+
+Before each question, say: about 2 minutes; a good answer is honest and concrete, one or two sentences.
+
+End each step with "Done: <what>. Next: <what the human does now>." At the end, three lines: Made (the zip), Look (where it lies), Next (hand it to the trainer as they say).
+
 ## Rules
 
 - **One question at a time.** Use AskUserQuestion with the options below; the person can always type their own answer instead. After each answer, ask one short follow-up only if the answer is a single word and the question asks why. No emojis.

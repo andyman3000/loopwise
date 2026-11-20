@@ -28,6 +28,18 @@ The pair decides. This skill asks, quotes and writes; it decides nothing.
   "the team", and "the cross test" as "the test with people". The rules under "Setting `team`"
   replace the notes file, the sign marks and the label of a round.
 
+
+## Orientation
+
+Guide as `.claude/rules/guiding.md` says, in the language the human writes in. Show first:
+- **Where:** Block 6a, step 3: the learning card, what the test showed and what you decide.
+- **You end with:** `discovery/decisions/<nnn>-<variant>.md`, at http://localhost:<port>/discovery/decisions/<nnn>-<variant>.md.
+- **Time:** about 25 minutes.
+
+Before the try first, say: about 2 minutes, a few words. A good answer says what the tester did, not what you hoped. Example from an unrelated product, a library app: "The tester found renew at once, then asked whether it costs anything."
+
+End each step with "Done: <what>. Next: <what the human does now>." At the end, four lines: Made (the learning card), Look (its link), Next (by the decision: move on, `/clear`, then `/loopwise-test-card <variant> launch`; another round, change the spec and rebuild; kill, a second "Selection (human)" in the intent), Time (block 6a planned about 25 minutes for the card).
+
 ## Rules
 
 - **One question at a time.** Wait for the answer before the next one. At most five sentences per turn. No emojis.

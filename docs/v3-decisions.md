@@ -600,3 +600,31 @@ trainers on 2026-11-20:
   `loopwise-read-result` and `loopwise-factory` check that the success line names the same step as
   the intent and say so when it does not. The release decision template asks for it.
 - **Undo:** revert the commits of this entry; the six tags move back.
+
+### P5-8. Every skill guides the participant step by step
+
+A trainer playing a participant, and a trainer dry run, did not know what to do next for most of
+block 4: an intent draft came with no word on what an intent is or what to check; the ideas came
+without a time box, a number, or the pages to look at; the chat ran in the participant's language
+while the skill's fixed questions appeared in English. Participants do not read `docs/blocks/`.
+Decided by the trainers on 2026-11-20:
+
+- A shared rule, `.claude/rules/guiding.md`, loaded in every session: three orientation lines at
+  the start (where, what you end with, how long, from the block's time budget); before every action
+  what to do, how long and what a good answer looks like, with one example from an unrelated
+  product for creative asks; before a confirmation what the file is and what to check; one line per
+  term on first use; "Done: ... Next: ..." after each step; made, look, next, time at the end.
+- Replies in the participant's language, fixed questions included. Files stay in English.
+- `/loopwise-onboarding` asks for the language (or takes it as `/loopwise-onboarding Deutsch`) and
+  writes it with the port to `discovery/.local.json`, which git ignores. Every skill reads it, so
+  a fresh session after `/clear` keeps both. Before, each new session guessed the port and could
+  link another folder's site.
+- `npm run check` now reads a citation into `.claude/` with its leading dot; it used to report the
+  file as missing.
+- Measured with an uninformed role-play (one agent plays the session and a participant who writes
+  German and never opens `docs/blocks/`), same prompt before and after, counting every moment the
+  participant does not know what to do next.
+- Each skill names its own orientation lines and endings; the bootcamp path (onboarding, intent and
+  ideas, test card, spec, persona walkthrough, factory) also frames each human step. The try-first
+  questions and the human-decides fields are unchanged.
+- **Undo:** revert the commit of this entry; the six tags move back.

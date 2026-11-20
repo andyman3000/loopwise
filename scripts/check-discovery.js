@@ -51,7 +51,9 @@ function allFiles(dir, out = []) {
 export const LINK = /\[([^[\]\n]+)\]\(([^)\s]+)\)/g;
 // A cited path: a file name with one of these extensions, with or without folders.
 export const PATH = '[\\w][\\w./-]*\\.(?:md|csv|jsonl|json|html|js)';
-export const LINK_TEXT = new RegExp(`^\`?(${PATH})(?::(\\d+)(?:-(\\d+))?)?\`?$`);
+// A citation into .claude/ keeps its leading dot.
+const CPATH = `(?:\\.(?=claude/))?${PATH}`;
+export const LINK_TEXT = new RegExp(`^\`?(${CPATH})(?::(\\d+)(?:-(\\d+))?)?\`?$`);
 
 // Checks each citation link on one line against its own text. Returns the problems found.
 function checkLinks(root, file, text, where, byName) {
@@ -90,7 +92,7 @@ export function nameIndex(root) {
 export const SHORT = /(?<![\w.])`?:(\d+)(?:-(\d+))?`?/g;
 
 // Finds citations in one line of text: `path.ext:12`, `path.ext:12-14`, `path.ext`, line 12, lines 12 to 14.
-export const CITE = new RegExp(`\`?(${PATH})\`?(?::(\\d+)(?:-(\\d+))?|\`?,? lines? (\\d+)(?: (?:to|-) (\\d+))?)`, 'g');
+export const CITE = new RegExp(`\`?(${CPATH})\`?(?::(\\d+)(?:-(\\d+))?|\`?,? lines? (\\d+)(?: (?:to|-) (\\d+))?)`, 'g');
 
 export function check(root) {
   const errors = [];

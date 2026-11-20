@@ -11,6 +11,18 @@ description: Compare the solution variants of one intent by their critical assum
 
 This is an assessment by an agent, not a decision. A human picks the variant and the route.
 
+
+## Orientation
+
+Guide as `.claude/rules/guiding.md` says, in the language the human writes in. Show first:
+- **Where:** after two or more launch cards for one opportunity: compare the variants before one ships.
+- **You end with:** `discovery/variant-comparison.md`, at http://localhost:<port>/discovery/variant-comparison.md.
+- **Time:** about 20 minutes.
+
+Before the try first, say: about 2 minutes, one sentence. A good answer names a variant and one reason from its card. Example from an unrelated product, a library app: "the one-tap renew: its card has the clearer success line".
+
+End each step with "Done: <what>. Next: <what the human does now>." At the end, four lines: Made (the comparison), Look (its link), Next (fill "Decision (human)"), Time (about 20 minutes).
+
 ## Rules
 
 - **Try first, then compare.** Before you draft, ask the human for which variant they would ship, and whether they would test it with users first, with a one-sentence reason. Wait for the answer and never invent it. After drafting, fill the section "Your first try": their answer word for word, then two or three short lines on where your draft differs and why. If they say skip, write "skipped". This step is how participants learn the concept; do not shorten it.

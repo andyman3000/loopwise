@@ -27,6 +27,16 @@ test('valid citations, quotes and shorthand pass', () => {
   assert.equal(r.quotes, 1);
 });
 
+test('a citation into .claude/ keeps its leading dot', () => {
+  const root = repo({
+    '.claude/rules/r.md': source,
+    'discovery/x.md': 'Rule ([.claude/rules/r.md:3](../.claude/rules/r.md#L3)) and `.claude/rules/r.md:4`.\n',
+  });
+  assert.deepEqual(check(root).errors, []);
+  const bad = repo({ '.claude/rules/r.md': source, 'discovery/x.md': 'Rule `.claude/rules/r.md:99`.\n' });
+  assert.match(check(bad).errors.join('\n'), /\.claude\/rules\/r\.md:99/);
+});
+
 test('a quote on a later shorthand line is found', () => {
   const root = repo({ 'sources/a.md': source, 'discovery/x.md': '"about budget here" (`a.md:3`, `:4`)\n' });
   assert.equal(check(root).errors.length, 1);
