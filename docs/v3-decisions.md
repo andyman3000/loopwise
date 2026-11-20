@@ -546,3 +546,13 @@ It found:
   decision 006.
 - **Reason:** decided by the trainers on 2026-11-20, so the story and the files agree.
 - **Undo:** revert the gate commit and the commits that add round 3 and decision 005.
+
+### P5-5. Fixes after the second uninformed test run
+
+A fresh agent ran both runs again on the pushed state with the validation gate (agent run: run 1
+6:33, run 2 2:06; it held the release, a valid end). The gate stopped `my-variant` and passed
+call-slot. Fixed: the factory runs the entry check before the kit check, so a morning variant
+sees the validation gate and not a missing launch spec; a hold shows as `HOLD` in the release
+output; the prototype check keeps "Your first try" and the kit lines; the retro may read the
+launch decision; run 1 says how a pair's own variant gets in. Not fixed: interface weaknesses
+the review subagents found in a hardened build (they differ between runs; retro material).
