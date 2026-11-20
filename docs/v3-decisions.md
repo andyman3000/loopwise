@@ -387,6 +387,105 @@ The designer role should check G3 to G6 and G9. The legal role should check G7 a
 
 ## Package 3: lean launch spec and factory
 
+### P3-1. Lean launch mode (loopwise-variant-spec)
+
+- **Choice:** mode `launch` writes at most one page (aim under 60 lines, cap 80) with six sections:
+  kit, non-functional requirements, decisions taken, events against the launch card, invisible
+  behaviour, open points. It keeps "try first", now asking what a developer would need that the
+  prototype does not show. A fresh subagent compares the draft with the prototype; every line it
+  lists as visible is cut or shortened. Mode `learn` is byte-identical to before (both learn
+  sections diffed).
+- **Smaller choices:** the learn-only rules shared by both modes stay in place, with a sentence
+  that they do not apply in launch. Launch finds the learning card by name (`*-<variant>.md`), since
+  call-slot's card is 003, not 002. The launch template has no build prompt; the factory builds
+  from the kit.
+- **Undo:** revert the commit "loopwise-variant-spec: launch mode writes the lean launch spec".
+
+### P3-2. The reference launch spec for call-slot
+
+- **Choice:** 60 lines. Only decisions the product lead already took are written as decided; every
+  other human field is open. The prototype check listed 13 lines: 3 cut, 10 shortened. Time zone
+  and public holidays left the open points that way, because the check counted their absence on
+  the page as visible. The factory then asked about the time zone itself (see the questions file
+  on `v3-07-factory-run-1`).
+- **Found:** the live event log stores no session (`site/components/events.js`), while the launch
+  card counts sessions. The success line cannot be counted from the live log as it stands. Left as
+  an open point for the developer in the spec; not fixed.
+- **Check:** the trainer who owns Loopwise, whether "how a booked slot is stored" should be decided in the spec for the
+  day, so the factory has one question fewer.
+
+### P3-3. Factory, release, serving
+
+- **Choice:** `/loopwise-factory <variant> run-1 | run-2 | retro`. It reads only the kit plus the design
+  system and the site infrastructure, writes only `site/hardened/<variant>/` and
+  `discovery/factory/`. Before planting, it checks its clean build with the gates quietly and fixes
+  it; then it plants one error, runs `npm run check` in the open, has a fresh subagent review the
+  diff into `discovery/factory/<variant>-review-run-<n>.md`, and hands each failing gate to its
+  owner role with the options. It never writes a waiver, a release decision or the shipped key,
+  and never says which error it planted.
+- **Release:** `npm run release -- <variant>` (with `--dry-run`) sets `shipped` only when the legal
+  gate passes, the design gate passes or is waived, and a release decision names a person with
+  role product lead and says "Decision: release". Nothing is deployed anywhere.
+- **Serving:** `?variant=<name>&build=hardened` shows the hardened build before release; a shipped
+  variant is served from `site/hardened/<name>/` when that folder exists.
+- **How it was built:** the subagent for this package lost its network connection after its four
+  tooling commits and the first trial run (run 1 failed at the design gate and passed after a fix).
+  The orchestrator reviewed the commits, kept them, and ran run 2 in the reference runs (P4-3).
+- **Undo:** revert the four commits (server, release, loopwise-factory skill, fixes from the first trial).
+
 ## Package 4: tags
 
+### P4-1. Reference states carried by path, not by commit
+
+- **Question:** the brief says to carry the v2 reference states onto v3 by cherry-pick. Between
+  `v2-03` and `v2-06` lie 79 commits, most of them tooling that v3 already carries (D2).
+- **Choice:** one commit per block: the files under `discovery/`, `site/variants/`,
+  `site/config.json` (and `walkthrough/` at block 6) as they are at the v2 tag. The opportunity
+  comparison keeps v3's corrected citation. One citation into `site/confirmation.html` follows the
+  page, whose styles moved into the design system file. `data/` is unchanged between `v2-03` and
+  `v2-06`, so the launch card still finds no events for call-slot.
+- **Reason:** the same end state with four readable commits, and no conflicts with v3's tooling.
+- **Undo:** none needed; each commit names its v2 tag.
+
+### P4-2. Reference prototypes on tokens
+
+- **Choice:** in the three prototypes, every spacing or radius value that equals a token became
+  that token (17 lines). Other values stay as they are: prototypes are not gated. Screenshots of
+  the five variant pages at 1280 and 390 px are pixel-identical before and after; scripts and event
+  names are unchanged.
+
+### P4-3. Reference runs
+
+- **Choice:** `v3-07-factory-run-1` and `v3-08-factory-run-2` were produced by an agent following
+  the loopwise-factory skill, with the human steps played by a fictional product team member ("Noa Vale")
+  and marked as reference decisions. Run 1 is healed by a fix, not a waiver; the run 1 guide offers
+  both.
+
+### P4-4. Two design system states added for the factory
+
+- **Question:** call-slot's calendar needs a chosen day and days that cannot be chosen. The design
+  system had no look for either, so a clean hardened build was impossible without restyling a
+  button, which the design gate flags.
+- **Choice:** `site/styles.css` got `.button[aria-pressed=true]` and `.button:disabled`, and the
+  rule file says to use them. No base page uses them; base page screenshots are unchanged. The
+  artifact's Button card shows both.
+- **Undo:** revert the commit "design system: button states ...".
+
 ## Package 5: material
+
+### P5-1. The morning maps onto existing blocks
+
+- **Choice:** jump = `00-setup.md` (25 min); ideation = block 4, read first and steps 1 to 4
+  (50 min); persona test and what to measure = block 4 steps 5 to 7 plus block 5 steps 1 and 2,
+  without the build (60 min). Each block file says group size, minutes and task at the top. Block
+  5's step 3 (change the spec) is done only if time is left.
+- **Reason:** the agenda's three morning slots fit the existing steps; no new block file.
+- **Check:** the trainer who owns Loopwise, whether "persona test" means the persona run on the spec, as assumed here.
+
+### P5-2. Agenda differences decided by the trainers on 2026-11-19
+
+- Run 2 is a legal gate (prices on the page), not the API key gate in the agenda.
+- The afternoon runs on call-slot from `v3-06-test-decision`, the only variant with a launch card.
+  A pair may use its own prototype once it has a launch card and a launch spec.
+- No agenda file was changed.
+
