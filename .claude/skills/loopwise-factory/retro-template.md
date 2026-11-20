@@ -4,7 +4,7 @@
 > Label: <repeated from the launch spec>
 
 The factory rebuilt the prototype for production in site/hardened/<variant>/.
-Two release gates checked the build: the design gate (soft, owner: designer) and the legal gate (hard, owner: legal).
+Three gates held the build: the validation gate at the entry (hard, owner: product lead), the design gate (soft, owner: designer) and the legal gate (hard, owner: legal).
 In each run the factory planted one error on purpose.
 
 ## 1. What did the gate catch?
@@ -21,6 +21,7 @@ What a person saw in the build or the review that no gate checks.
 ## 3. Who decided?
 Per decision: the role, the person and the file. The factory decided nothing at a gate.
 - Design gate, run 1: <fixed by the pair, or waived in the file below>
+- Validation gate, at the entry: <the launch decision file, decided by the product lead>
 - Legal gate, run 2: fixed by the pair. A hard gate takes no waiver.
 - Release: <the release decision file, or "not released">
 - Decision files: <links to the waiver and release files for this variant>
