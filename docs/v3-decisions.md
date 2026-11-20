@@ -54,8 +54,9 @@ Count: fixed in v2: 13. Fixed in v3: 13. Proposed, applied by orchestrator: 2. O
 
 Orchestrator, on the proposals: P1 to P4, P6 and P7 are applied (commit "v3: apply package 0
 proposals"). P5, a new allow rule in `.claude/settings.json` for the persona run's page check
-(`curl -s -o /dev/null *`), is not applied: it widens what Claude Code runs without asking, and
-that is a person's call. Until it is decided, a pair answers one permission prompt per page run.
+(`curl -s -o /dev/null *`), was held back because it widens what Claude Code runs without asking.
+A trainer approved it on 2026-11-20. It went in narrowed to localhost:
+`curl -s -o /dev/null -w '%{http_code}' 'http://localhost:*`, the exact command the skill runs.
 
 ### Setup and across blocks
 
