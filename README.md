@@ -38,6 +38,10 @@ All skills are in `.claude/skills/` from the start; `CLAUDE.md` lists them in ch
 from block 4. Each further tag is a reference state after one workshop
 block. If you decided differently, keep your own state or continue from the reference state.
 
+**Start with `/loopwise-onboarding`.** After cloning and starting Claude Code inside the folder, it
+checks everything the day needs and names the page to open next. Every Loopwise skill starts with
+`loopwise-`, so they stand together when you type `/`.
+
 **One Claude Code session per skill.** Start a fresh session before each skill: type `/clear`, or
 quit Claude Code and start it again. Each skill reads what it needs from the files. In a long session,
 Claude carries old answers into the next skill. The block files say which command comes next.

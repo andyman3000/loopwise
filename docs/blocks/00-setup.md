@@ -1,7 +1,7 @@
 # Setup
 
 > **The jump: pairs or threes, at one laptop. 25 minutes. Task: clone the repo, start your branch
-> from `v3-03-start`, and get the site and Claude Code running.**
+> from `v3-03-start`, start Claude Code and run `/loopwise-onboarding`.**
 
 **What it's for:** everyone has the repo running, Claude Code sees the skills, and Claude Code can
 open a page in a browser, before block 4 starts.
@@ -29,18 +29,17 @@ Every pair starts from decision 001 and works on C1. Your first own step is bloc
    git clone <repo> loopwise && cd loopwise
    git switch -c pair-<names> v3-03-start
    ```
-2. Check the website runs. Node 20 or newer, no `npm install` needed:
+2. Start Claude Code **inside the `loopwise` folder**:
    ```bash
-   npm test      # all green
-   npm start     # then open http://localhost:3000 and click "Inquiry"
+   claude
    ```
-   Leave the server running for step 4. If port 3000 is taken, start it with another port:
-   `PORT=3001 npm start` (in PowerShell: `$env:PORT=3001; npm start`). Then use that port in
-   every link the block files name.
-3. Start Claude Code **inside the `loopwise` folder** and type `/`. You should see
-   `loopwise-intent-and-ideas`, `loopwise-test-card` and the other skills of the chain.
-4. **Browser tool.** Later today a skill opens your page in a browser. Add one browser tool to Claude
-   Code, for your user only. It is not part of the repo. Pick one:
+   These two steps you do by hand: the repo and Claude Code must exist before a skill can run.
+3. Type `/loopwise-onboarding`. It checks Node, runs the tests, starts the site (on another port if
+   3000 is taken), checks that the Loopwise skills are there and that Claude Code can open a page in
+   a browser. It ends with the page to open next. If it names a port other than 3000, use that port
+   in every link the block files name.
+4. **Only if onboarding says the browser tool is missing:** add one browser tool to Claude Code, for
+   your user only. It is not part of the repo. Pick one:
    - Playwright MCP (needs Node). From the
      [official README](https://github.com/microsoft/playwright-mcp), section "Claude Code":
      ```bash
@@ -52,11 +51,8 @@ Every pair starts from decision 001 and works on C1. Your first own step is bloc
      ```bash
      claude mcp add chrome-devtools --scope user npx chrome-devtools-mcp@latest
      ```
-   Run the line in a terminal inside the `loopwise` folder, then restart Claude Code. `/mcp` lists the
-   tool. Check it with the server still running. Ask Claude Code:
-   > Open http://localhost:3000/inquiry with the browser tool and tell me the heading of the page.
-
-   It should answer "Inquiry". Then stop the server with `Ctrl+C`.
+   Run the line in a terminal inside the `loopwise` folder, restart Claude Code, and run
+   `/loopwise-onboarding` again.
 
 ## Permission questions
 
@@ -83,10 +79,10 @@ fails, tell the trainer and carry on with the block.
 After each block the room meets for a short comparison, the Abgleich. Pairs say what they decided
 and why. Each block file ends with one question for it.
 
-**Done when:** tests are green, the inquiry page opens, `/loopwise-intent-and-ideas` shows up in Claude Code,
-and Claude Code read the inquiry page with the browser tool.
+**Done when:** `/loopwise-onboarding` ends with "Everything runs." and the page to open next.
 
-If Claude Code lists no skills, it was started outside the `loopwise` folder. If the browser tool
-does not work, carry on: the skill then reads the page's HTML and says so. Tell the trainer.
+If `/loopwise-onboarding` does not show up when you type `/`, Claude Code was started outside the
+`loopwise` folder: quit it, `cd loopwise`, start it again. If the browser tool does not work, carry
+on: later skills read the page's HTML and say so. Tell the trainer.
 
 **Next:** wait for the room. Block 4 starts together: [04-test-card.md](04-test-card.md).

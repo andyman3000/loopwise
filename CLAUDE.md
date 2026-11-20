@@ -152,6 +152,9 @@ cohort.
 
 # Skill chain
 
+Every Loopwise skill starts with `loopwise-`. Before the chain, `loopwise-onboarding` checks the setup
+(Node, tests, the site on a free port, the skills, the browser) and writes nothing.
+
 Run in this order. Each skill writes its artefact under `discovery/`.
 
 | # | Skill | Writes |
