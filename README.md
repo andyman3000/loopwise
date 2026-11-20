@@ -41,6 +41,21 @@ block. If you decided differently, keep your own state or continue from the refe
 quit Claude Code and start it again. Each skill reads what it needs from the files. In a long session,
 Claude carries old answers into the next skill. The block files say which command comes next.
 
+### v3: the one-day bootcamp
+
+| Tag | State |
+|---|---|
+| `v3-03-start` | the jump: `v2-03-opportunity-decision` plus the design system, the release gates, the lean launch spec mode, the loopwise-factory skill and the release step |
+| `v3-04-test-card` | intent with 3 to 5 ideas and the idea tested first, prototype test card |
+| `v3-05-prototype` | specs, persona runs, three built prototypes on the design system tokens |
+| `v3-06-test-decision` | learning cards, launch card for call-slot, and call-slot's complete handover kit: prototype, intent, launch spec. The afternoon starts here |
+| `v3-07-factory-run-1` | call-slot rebuilt in `site/hardened/`, the design gate failed and was healed |
+| `v3-08-factory-run-2` | the legal gate failed and was fixed, the release decision, call-slot shipped on localhost, the retro |
+
+The decisions taken while building v3 are in [docs/v3-decisions.md](docs/v3-decisions.md).
+
+### v2: the two-day training
+
 | Tag | State after the block |
 |---|---|
 | `v2-00-start` | website in its before state, server, product context, material, all skills |
