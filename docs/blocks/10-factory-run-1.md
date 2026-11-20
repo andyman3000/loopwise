@@ -17,7 +17,10 @@ The factory reads only the handover kit, three files:
 
 **Three gates.** The validation gate (hard, owner: product lead) stands at the entry: the factory
 builds only a variant the product lead decided to launch. call-slot passed its test with people,
-so it passes here. A variant of your own from the morning has no launch decision and is stopped.
+so it passes here. A variant of your own from the morning has no launch decision and is stopped
+(at the bootcamp the morning builds no page, so there is nothing to harden yet). It gets in only
+after a test with people and a launch decision by the product lead; the format is in
+`gates/policies/launch-decision.md`.
 The design gate (soft, owner: designer) and the legal gate (hard, owner: legal) check the build.
 
 **Roles.** Before you start, give each person a role. One is the **designer**: owns the design
