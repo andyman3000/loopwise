@@ -12,8 +12,8 @@ the block is for, what you do step by step, and when you are done.
 | [04-test-card.md](04-test-card.md) | Ideas, the assumption to test, prototype test card | `v3-04-test-card` |
 | [05-prototype.md](05-prototype.md) | Spec, persona reads the spec, build the prototype | `v3-05-prototype` |
 | [06-test-decision.md](06-test-decision.md) | Cross test, learning card, carry on | `v3-06-test-decision` |
-| [07-result.md](07-result.md) | Demo: read the result | `v2-07-result` |
-| [08-next-bet.md](08-next-bet.md) | Demo: next bet | `v2-08-next-bet` |
+| [07-result.md](07-result.md) | Demo: read the result | not built (two-day training only) |
+| [08-next-bet.md](08-next-bet.md) | Demo: next bet | not built (two-day training only) |
 | [09-feedback.md](09-feedback.md) | Feedback and your results, end of the day | none |
 | [10-factory-run-1.md](10-factory-run-1.md) | Factory run 1: launch spec, build to earn, the design gate fires | `v3-07-factory-run-1` |
 | [11-factory-run-2.md](11-factory-run-2.md) | Factory run 2: the hard gate, release, retro | `v3-08-factory-run-2` |

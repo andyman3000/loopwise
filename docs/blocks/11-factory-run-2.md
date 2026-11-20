@@ -33,9 +33,10 @@ Keep the roles from run 1: designer, product lead, and in a three, legal.
    npm run release -- call-slot
    ```
    It sets `shipped` in `site/config.json` only if the legal gate passes, the design gate passes
-   or is waived, and the release decision says release. Open `http://localhost:3000/inquiry.html`
-   without any `?variant=`: every visitor now gets the hardened page. Stop the server with
-   `Ctrl+C`.
+   or is waived, and the release decision says release. Then open
+   `http://localhost:3000/inquiry.html` without any `?variant=`: every visitor now gets the
+   hardened page. Stop the server with `Ctrl+C`. If the product lead decided to hold, the step
+   says so and changes nothing. That is a decision too.
 6. **Retro (12 min).** Start a fresh session (`/clear`). Then `/loopwise-factory call-slot retro`. It writes
    `discovery/factory/call-slot-retro.md` and asks you four questions, one at a time:
    - What did the gate catch?
@@ -45,11 +46,12 @@ Keep the roles from run 1: designer, product lead, and in a three, legal.
 7. **Commit (3 min).**
    ```bash
    npm test && npm run check
-   git add -A && git commit -m "factory run 2: released, retro"
+   git add -A && git commit -m "factory run 2: gate fixed, release decided, retro"
    ```
 
-**Done when:** `site/config.json` says `"shipped": "call-slot"`, the release decision names a
-person, and the retro file holds your answers.
+**Done when:** the legal gate passes, the release decision (release or hold) names a person and a
+reason, `npm run release -- call-slot` has run, and the retro file holds your answers. After a
+release, `site/config.json` says `"shipped": "call-slot"`; after a hold, it is unchanged.
 
 **If you are stuck:** the reference state after this run is `v3-08-factory-run-2`.
 

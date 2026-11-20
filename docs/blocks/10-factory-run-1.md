@@ -24,8 +24,9 @@ the third is **legal**: owns the legal gate in run 2. Everybody types; the role 
 1. **Start from the reference state (2 min).** Keep your morning work, then switch:
    ```bash
    git add -A && git commit -m "our morning state"
-   git switch -c factory-<name>-<name> v3-06-test-decision
+   git switch -c factory-<names> v3-06-test-decision
    ```
+   If git says "nothing to commit", go on: the switch still works.
 2. **Draft the launch spec yourself (10 min).** Start a fresh Claude Code session (`/clear`). Then
    `/loopwise-variant-spec call-slot launch`. It asks what a developer would need to know that the
    prototype does not show. Answer it yourself first. It drafts at most one page and cuts every

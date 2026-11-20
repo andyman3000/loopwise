@@ -23,17 +23,20 @@ Every pair starts from decision 001 and works on C1. Your first own step is bloc
 
 ## What you do (about 10 min)
 
-1. Clone the repo and start your pair's branch from the start state. Use your two names:
+1. Clone the repo and start your pair's branch from the start state. `<repo>` is the link your
+   trainer gives you. Use your first names, one or more:
    ```bash
    git clone <repo> loopwise && cd loopwise
-   git switch -c pair-<name>-<name> v3-03-start
+   git switch -c pair-<names> v3-03-start
    ```
 2. Check the website runs. Node 20 or newer, no `npm install` needed:
    ```bash
    npm test      # all green
    npm start     # then open http://localhost:3000 and click "Inquiry"
    ```
-   Leave the server running for step 4.
+   Leave the server running for step 4. If port 3000 is taken, start it with another port:
+   `PORT=3001 npm start` (in PowerShell: `$env:PORT=3001; npm start`). Then use that port in
+   every link the block files name.
 3. Start Claude Code **inside the `loopwise` folder** and type `/`. You should see
    `loopwise-intent-and-ideas`, `loopwise-test-card` and the other skills of the chain.
 4. **Browser tool.** Later today a skill opens your page in a browser. Add one browser tool to Claude
