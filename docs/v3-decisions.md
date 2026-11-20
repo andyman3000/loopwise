@@ -556,3 +556,22 @@ sees the validation gate and not a missing launch spec; a hold shows as `HOLD` i
 output; the prototype check keeps "Your first try" and the kit lines; the retro may read the
 launch decision; run 1 says how a pair's own variant gets in. Not fixed: interface weaknesses
 the review subagents found in a hardened build (they differ between runs; retro material).
+
+### P5-6. Changes after a trainer dry run as a participant
+
+A trainer dry run from block 4 found: the participant felt they had to understand blocks 1 to 3
+first; the skills were hard to find among other skills; setup should be one guided step; the
+ideation skill asked for ideas before the participant had seen anything of C1. Decided by the
+trainers on 2026-11-20:
+
+- Every Loopwise skill is renamed with the prefix `loopwise-` (folders, frontmatter, every command
+  and reference in guides, rules, artefacts and the reference states).
+- New skill `loopwise-onboarding`: after clone and starting Claude Code, it checks Node, runs the
+  tests, starts the site on a free port, checks the skills and the browser, and names the page to
+  open next. Clone and starting Claude Code stay manual steps before it.
+- `loopwise-intent-and-ideas` briefs the pair on the opportunity (three sentences, two quotes with
+  file and line) before it asks anything.
+- Block 4 and the block README say that blocks 1 to 3 are done and need not be read. The blocks
+  keep their numbers: file names, tags and the two-day training hang on them.
+- **Undo:** rename the folders back and revert the commits of this entry.
+
