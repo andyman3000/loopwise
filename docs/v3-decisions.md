@@ -472,6 +472,23 @@ The designer role should check G3 to G6 and G9. The legal role should check G7 a
   artifact's Button card shows both.
 - **Undo:** revert the commit "design system: button states ...".
 
+### P4-5. Fixes after the first reference runs
+
+The first reference runs (agent run: run 1 5:12, run 2 4:15) showed three problems:
+
+- **The released page could not book.** It posted to `/api/booking`, which did not exist, and the
+  factory may not change `server.js`. Choice: `server.js` got the route as site infrastructure. It
+  stores the slot in `data/bookings-live.jsonl` (git-ignored), refuses a taken slot, and logs
+  `scoping_call_booked` itself without name or email, as the launch spec asks. The reference launch
+  spec answers "where bookings are stored" with it, as a reference decision. Undo: revert the
+  server commit and reopen the point in the spec.
+- **Time slots as buttons hide the single choice from screen readers.** Choice: a time from a short
+  list is a native radio button in a fieldset; only calendar days are buttons with `aria-pressed`.
+- **Both reviews named the planted error.** Choice: accepted. A person reading the diff may see what
+  a gate sees; the gate still decides. The loopwise-factory skill says so.
+
+Then both reference runs were produced again on the corrected base.
+
 ## Package 5: material
 
 ### P5-1. The morning maps onto existing blocks
