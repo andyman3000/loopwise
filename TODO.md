@@ -48,3 +48,13 @@ Open work on this repo that is not part of a workshop block.
   (`discovery/test-cards/short-form-prototype.md:86`). No new field, no score column. Not before
   the talk on 2026-11-17: the demo's selections come from the current skill. Raised on
   2026-11-16, while preparing the talk.
+- **Rename the setting `team`.** The `Setting:` line in `CLAUDE.md` has two values, `workshop` and
+  `team`. `workshop` names a situation, a training. `team` names a group of people, and a workshop
+  pair is a team too, so the word does not say what changes. What changes is the test design:
+  testers recruited by criteria and counted across testers, no block numbers, no minutes. The name
+  was never chosen on purpose: the note that proposed the switch left it open ("`workshop | team`,
+  or `workshop | real`?", `agentic-pm-trainings/talks/2026-11-DL-Summit/loopwise-skill-modes.md`,
+  open question 3). Candidates: `real`, `project`. A rename touches `CLAUDE.md`,
+  `loopwise-test-card`, `loopwise-learning-card`, `loopwise-persona-walkthrough`,
+  `loopwise-intent-and-ideas` and `.claude/rules/guiding.md`. No effect on a workshop, which runs
+  `workshop`. Raised on 2026-11-22, during the Berlin dry run.
