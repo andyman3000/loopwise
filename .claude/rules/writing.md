@@ -50,6 +50,11 @@ A reader in a Markdown preview then opens it with one click.
   `[discovery/opportunity-comparison.md](../opportunity-comparison.md)`.
 - No backticks inside the link text. `npm run check` flags a link
   whose target or line differs from its text.
+- One exception: an intent in `discovery/intents/`. Its text carries
+  numbered references only: `"quote" [1]`, or `[1, 3]` for two sources.
+  A section "## Sources" at the end lists each number once, as a link:
+  `1. [sources/inquiry-mails/inquiry-07.md:16](../../sources/inquiry-mails/inquiry-07.md#L16)`.
+  Table cells carry a number too, never a link.
 
 ## While you work
 - Before work that takes more than a moment, say what you do now.
