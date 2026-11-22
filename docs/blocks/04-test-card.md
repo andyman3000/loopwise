@@ -34,8 +34,9 @@ Start a fresh Claude Code session (`/clear`). Then `/loopwise-intent-and-ideas` 
 at a time and waits for you each time. You go first.
 
 1. **The intent, then your ideas (15 min).** If your opportunity holds two needs, the skill first
-   asks which part you work on. It then drafts the intent: what should change for whom, the problem,
-   the desired outcome and the open questions. The desired outcome names the step where the
+   asks which part you work on. Then you say in one or two sentences what should change, and for
+   whom. Only then does the skill draft the intent: what should change for whom, the problem, the
+   desired outcome and the open questions. It shows where its draft differs from yours. The desired outcome names the step where the
    buyer's need is met; the launch card later measures that same step. Correct it until it says
    what you mean. Then list
    as many ways to change the website as you can, on the inquiry page or any page before it.
