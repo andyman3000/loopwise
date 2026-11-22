@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { parseComparison, parseIntent, treePage, funnelBars, thousands, namedDrivers, readExperiment } from '../lib/opportunity-tree.js';
+import { parseComparison, parseIntent, treePage, funnelBars, thousands, namedDrivers, readExperiment, uncite } from '../lib/opportunity-tree.js';
 
 const MD = `# Opportunity comparison
 
@@ -489,4 +489,9 @@ test('a launch card counts as written; its result counts only once read-result f
   put('discovery/test-cards/success-line-first.md', '# Launch card\n\n## Result\n\n### The numbers\n12 of 40\n\n### Conclusion\nKeep it,\nbecause buyers send it.\n\n**Decision:** keep\n');
   e = readExperiment(root, 'success-line-first');
   assert.equal(e.result.text, 'Keep it, because buyers send it. **Decision:** keep', 'the conclusion, not the whole section');
+});
+
+test('numbered references from an intent are dropped from drivers and text', () => {
+  assert.deepEqual(namedDrivers('start rate [3] · submit rate [4, 5]', [{ name: 'start rate' }, { name: 'submit rate' }]), ['start rate', 'submit rate']);
+  assert.equal(uncite('Buyers do not know the format [1, 3].'), 'Buyers do not know the format.');
 });
