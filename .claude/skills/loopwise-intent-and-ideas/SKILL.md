@@ -36,12 +36,13 @@ Start each step with one line, for example "Step 2 of 7: more ideas, about 5 min
 
 ## Rules
 
-- **The intent file reads on its own.** People read it as a communication tool. Agents read it as context for the prototype and later the implementation. A person or an agent with no other file open must be able to say what should change, for whom, where on the site, and how it would show in the data.
-  - Explain every term in plain words the first time it appears: opportunity, KPI branch, driver, scoping call, format. Never a bare "Branch A" or "start rate": say what the branch or driver means in the same sentence.
-  - Never a bare event name. Say what the site counts, in words, then add the event name, for example "visits that start filling in the form (`inquiry_started`)".
-  - Every number says what it counts, over which period, and that the data is synthetic when it is.
-  - Quotes appear in full, never only as a pointer. Name who said it, for example "one buyer writes".
-  - Links to other files in `discovery/` are welcome for further reading. The intent never needs them to be understood.
+- **The intent is short and reads on its own.** People read it as a communication tool. Agents read it as context for the prototype and later the implementation. Someone with only this file open must be able to say what should change, for whom, and how it would show on the site. Less detail is better, as long as that meaning stays.
+  - "Problem" and "Desired outcome" get at most three sentences each. "For whom and where" gets two lines, each open question one line.
+  - Explain a term once, inside the sentence where it first appears, for example "a scoping call, the first call where the format is settled". No separate block of definitions.
+  - No event names and no tree vocabulary beyond the step's name in brackets: the KPI tree holds the events. Say what the site counts in plain words, for example "visits that start the form".
+  - A number says what it counts and over how long, for example "55 of 740 inquiry page visits, in 26 weeks". The header says once that the data is synthetic.
+  - Quotes appear in full, at most one per section. Name who said it, for example "one buyer writes".
+  - Leave out what a later skill decides: targets, who answers a question, what it blocks.
 - **One question per message.** Each step ends with one question to the pair; step 1 asks up to four (the part, the intent check, the ideas, "What else?"), one at a time, plus the one follow-up on a feature below. Wait for the answer. A vague reply ("go on", "ok", "you choose") gets one more ask; if it stays vague, carry on and note "the pair added none".
 - **Write the file after every step**, then tell the pair to reload `http://localhost:<port>/discovery/tree`, with the port the site runs on. The tree draws every row of "Solution ideas" under the opportunity.
 - **No judging in steps 1 and 2.** No levels, no "this would not work", no constraint checks. Every idea goes in the table. The feedback on the pair's list judges how the ideas are named and how varied they are, never whether one would work. An idea may change any page of the website. If it changes another page than the inquiry page, name the page after the idea, for example "(formats page)".
@@ -60,8 +61,8 @@ Start each step with one line, for example "Step 2 of 7: more ideas, about 5 min
 
 1. **The intent, then your ideas** (about 15 min). Read the decision record; if it is missing or names a different opportunity, say so and stop. **Brief the pair before you ask anything.** The pair may not have read blocks 1 to 3. Give a short briefing of the chosen opportunity: its name, then the problem in three short sentences (who has it, where on the way to a booking it shows, what it costs, each from the decision record or the comparison), then two customer quotes, word for word, each cited with the file and line in `discovery/` where it stands (not the source line behind it) as a link (from the opportunity files or the comparison; two different speakers if the files have them). End the briefing with: "This is the problem your ideas solve." Name no block: a pair that starts here has never heard of blocks 1 to 3. Only then go on. The site runs since `/loopwise-onboarding`, on the port in `discovery/.local.json`; if it does not answer, offer to start it, as `.claude/rules/guiding.md` says.
    **First check whether the opportunity holds two needs.** It does if its name joins two needs with "or", or if the comparison puts it on drivers far apart in the funnel. Count only drivers the comparison backs with a source; a driver marked "(assumed)" does not count. If so, show each part in one line with one quote and its file and line. Say: one minute, a good answer names the part in your words. Ask: "Which part do you work on?" Wait for the answer. Do not suggest a part. Write the answer in the pair's words into "Part we work on" under "Selection (human)". A pair that wants both writes "both". If the opportunity holds one need, write "the whole opportunity" there.
-   **Then draft the intent.** Say first, in these words: "I draft the intent from the chosen problem. You correct it next." Draft it for the part the pair named, from the decision record, the comparison and `discovery/kpi-tree.md`: the title, "Problem", "Desired outcome", "For whom and where" and "Open questions". Mark the five "(draft)". The title says what should change, for whom ("Buyers can say before the call what should be different afterwards"), never the opportunity's name. The desired outcome says in plain words who does what more often, then what the site counts to show it, then today's counted value with its period. It names the KPI branch, the step and the event, each explained in words and cited with its line (see "The intent file reads on its own"). It sets no target.
-   **Pick the step where the need is met**, not the first step a page changes. Find yourself where on the way to a booking the buyer's problem is solved (this is not a question to the pair), and quote the line that says so (the glossary, the decision record or the comparison). The step is a driver in `discovery/kpi-tree.md`, or a line the tree derives from several drivers; cite the tree line either way. If the need can be met by more than one path (a call booked without the form), the step must count every path. Then the launch card can measure the same step. A driver before that step may stay as an early signal, marked so. Before writing the file, read it as someone who has only this file open. Open questions come from "Gaps and uncertainty" and "Could not check" in the comparison, each with who can answer it and what it blocks. Write the file. Show the title, the problem and the desired outcome in chat, and link the file at http://localhost:<port>/discovery/intents/<opportunity-slug>.md. Say in one line what an intent is (`.claude/rules/guiding.md`, "Terms"), then what to check, about 3 minutes:
+   **Then draft the intent.** Say first, in these words: "I draft the intent from the chosen problem. You correct it next." Draft it for the part the pair named, from the decision record, the comparison and `discovery/kpi-tree.md`: the title, "Problem", "Desired outcome", "For whom and where" and "Open questions". Mark the five "(draft)". The title says what should change, for whom ("Buyers can say before the call what should be different afterwards"), never the opportunity's name. The desired outcome says in plain words who does what more often, then what the site counts to show it, then today's counted value with its period. It names the step in plain words, with its name in the KPI tree in brackets and its line, for example "reach a scoping call (visit-to-call in the KPI tree) [6]". It sets no target.
+   **Pick the step where the need is met**, not the first step a page changes. Find yourself where on the way to a booking the buyer's problem is solved (this is not a question to the pair), and quote the line that says so (the glossary, the decision record or the comparison). The step is a driver in `discovery/kpi-tree.md`, or a line the tree derives from several drivers; cite the tree line either way. If the need can be met by more than one path (a call booked without the form), the step must count every path. Then the launch card can measure the same step. A driver before that step may stay as an early signal, marked so. Before writing the file, read it as someone who has only this file open. Open questions come from "Gaps and uncertainty" and "Could not check" in the comparison: the two or three that matter for the prototype, one line each. Write the file. Show the title, the problem and the desired outcome in chat, and link the file at http://localhost:<port>/discovery/intents/<opportunity-slug>.md. Say in one line what an intent is (`.claude/rules/guiding.md`, "Terms"), then what to check, about 3 minutes:
    - Is the problem a need of the buyer, not a solution?
    - Does the desired outcome name the step where the buyer's need is met, with today's number?
    - Would someone who reads only this page understand it?
@@ -80,35 +81,26 @@ Start each step with one line, for example "Step 2 of 7: more ideas, about 5 min
 ```markdown
 # Intent: <what should change, for whom, in words> (draft)
 
-> Assessment by an agent (`loopwise-intent-and-ideas`), not a decision. Date: YYYY-MM-DD.
-> Opportunity: <C-id>, <name>, in [discovery/opportunity-comparison.md](../opportunity-comparison.md) · Decision: [discovery/decisions/<file>.md](../decisions/<file>.md)
-> Material: <synthetic or composite, repeated from the material the opportunity rests on>
-
-An intent says what should change, for whom, and why, before anyone picks a solution.
-A critical assumption is the one thing that must be true for an idea to work.
-<one plain sentence for each further term the file uses: opportunity, KPI branch, driver, scoping call, format>
-
-This file reads on its own. Links to other files are for further reading.
+> Draft by an agent (`loopwise-intent-and-ideas`), not a decision. YYYY-MM-DD. <Synthetic data, or what the material is>.
+> Opportunity: <C-id>, in [the comparison](../opportunity-comparison.md) · [Decision <nnn>](../decisions/<file>.md)
 
 ## Problem (draft)
-<the part of the opportunity we work on, in two or three sentences, with the strongest quote in full, who said it, and its number, as "quote" [1]>
+<who has the problem and where it shows, in at most three sentences, with the strongest quote in full and who said it: "quote" [1]>
 
 ## Desired outcome (draft)
-<who does what more often, in plain words>
-- How the site counts it: <what is counted, in words> (`<event>`). This step is <the driver or derived line, by its name in the tree> [n].
-- Why this step: <where the need is met, with its source line>.
-- Why it matters: <the KPI branch in words> [n].
-- Today: <counted value, period, synthetic or not> [n].
-- No target here.
+<who does what more often, in plain words, with the step's name in the KPI tree in brackets [n]>
+Today <counted value, what it counts, over how long> [n].
+<only if there is one: Early signal: <the earlier step in plain words>, today <value> [n].>
 
 ## For whom and where (draft)
-- Who: <buyer types or personas, each with its number [n]>
-- Pages the ideas may change: <pages in words, each with its file, such as the inquiry page (`site/inquiry.html`)>
+Who: <buyer types in words [n]>. Pages: <the pages in words, such as inquiry, formats>.
 
 ## Open questions (draft)
-- <question> · who can answer: <role> · blocks: the prototype / the launch / later
+- <question, one line> [n]
 
 ## Solution ideas
+
+A driver is one step from a visit to a booking that the site counts. A critical assumption is the one thing that must be true for an idea to work.
 
 | Idea | From | Driver | Critical assumption | Level |
 |---|---|---|---|---|
