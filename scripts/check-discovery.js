@@ -3,6 +3,7 @@
 //    A citation may be written as a Markdown link, [sources/x.md:16](../../sources/x.md#L16). It is
 //    read as its text, and the link must lead to the same file and line as the text names.
 // 2. A quote directly before or after a citation appears on the cited line(s).
+//    A numbered reference, [1] or [1, 3], reads as the citation its entry under "## Sources" holds.
 // 3. Event names come from the list in CLAUDE.md (column names of data/*.csv are allowed).
 // 4. No em or en dashes.
 // Exit code 1 if anything fails. No dependencies.
@@ -94,6 +95,28 @@ export const SHORT = /(?<![\w.])`?:(\d+)(?:-(\d+))?`?/g;
 // Finds citations in one line of text: `path.ext:12`, `path.ext:12-14`, `path.ext`, line 12, lines 12 to 14.
 export const CITE = new RegExp(`\`?(${CPATH})\`?(?::(\\d+)(?:-(\\d+))?|\`?,? lines? (\\d+)(?: (?:to|-) (\\d+))?)`, 'g');
 
+// A numbered reference in the text: [1], [1, 3]. Not a Markdown link, so not followed by "(".
+export const NUMREF = /\[(\d+(?:\s*,\s*\d+)*)\](?!\()/g;
+
+// The "## Sources" section: "1. [sources/x.md:16](../../sources/x.md#L16)" -> 1 -> "sources/x.md:16".
+// Also returns which line indexes belong to the section, so their own text is not resolved again.
+export function numberedSources(lines) {
+  const map = new Map();
+  map.lines = new Set();
+  let inside = false;
+  lines.forEach((line, i) => {
+    if (/^## /.test(line)) inside = /^## Sources\s*$/.test(line);
+    if (!inside) return;
+    map.lines.add(i);
+    const m = line.match(/^(\d+)\.\s+(.*)$/);
+    if (!m) return;
+    const text = m[2].replace(LINK, (all, t) => (LINK_TEXT.test(t) ? t : all));
+    const cite = text.match(new RegExp(CITE.source));
+    if (cite) map.set(m[1], cite[0].replace(/`/g, ''));
+  });
+  return map;
+}
+
 export function check(root) {
   const errors = [];
   let citations = 0, quotes = 0, links = 0;
@@ -106,13 +129,25 @@ export function check(root) {
 
   for (const file of SCAN.flatMap((d) => walk(path.join(root, d)))) {
     const rel = path.relative(root, file);
+    const sources = numberedSources(linesOf(file));
+    const numbered = sources.size > 0 || rel.startsWith(`discovery${path.sep}intents${path.sep}`);
     linesOf(file).forEach((raw, i) => {
       const where = `${rel}:${i + 1}`;
       const found = checkLinks(root, file, raw, where, byName);
       errors.push(...found.errors);
       links += found.links;
       // From here on a citation link reads as its text, so both forms are checked alike.
-      const text = raw.replace(LINK, (m, t) => (LINK_TEXT.test(t) ? t : m));
+      let text = raw.replace(LINK, (m, t) => (LINK_TEXT.test(t) ? t : m));
+      // A numbered reference reads as its source: "quote" [1] is checked like "quote" (file:16).
+      if (numbered && !sources.lines.has(i)) {
+        text = text.replace(NUMREF, (m, list) => {
+          const cites = list.split(/\s*,\s*/).map((n) => {
+            if (!sources.has(n)) { errors.push(`${where}: [${n}] has no entry under "## Sources"`); return null; }
+            return sources.get(n);
+          }).filter(Boolean);
+          return cites.length ? `(${cites.join(', ')})` : m;
+        });
+      }
       if (/[\u2013\u2014]/.test(text)) errors.push(`${where}: em or en dash`);
       for (const m of text.matchAll(/`([a-z_]+)`/g)) {
         if (EVENT_LIKE.test(m[1]) && !EVENTS.includes(m[1]) && !columns.has(m[1])) errors.push(`${where}: unknown event \`${m[1]}\``);

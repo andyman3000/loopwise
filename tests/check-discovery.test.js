@@ -108,3 +108,20 @@ test('a link whose target or line differs from its text fails, and a wrong quote
   assert.match(errors[1], /ends in #L4, expected #L3/);
   assert.match(errors[7], /quote not on sources\/a\.md:3/);
 });
+
+test('a numbered reference reads as its entry under Sources, quotes included', () => {
+  const body = (quote, ref) => `# Intent\n\nOne buyer writes: "${quote}" ${ref}. Today 3 of 4 [1, 2].\n\n## Sources\n1. [sources/interviews/a.md:3](../../sources/interviews/a.md#L3)\n2. [sources/interviews/a.md:4](../../sources/interviews/a.md#L4)\n`;
+  const ok = repo({ 'sources/interviews/a.md': source, 'discovery/intents/x.md': body('no idea which format fits', '[1]') });
+  const r = check(ok);
+  assert.deepEqual(r.errors, []);
+  assert.equal(r.quotes, 1);
+  const wrong = repo({ 'sources/interviews/a.md': source, 'discovery/intents/x.md': body('no idea which format fits', '[2]') });
+  assert.match(check(wrong).errors.join('\n'), /quote not on sources\/interviews\/a\.md:4/);
+  const missing = repo({ 'sources/interviews/a.md': source, 'discovery/intents/x.md': body('no idea which format fits', '[3]') });
+  assert.match(check(missing).errors.join('\n'), /\[3\] has no entry under "## Sources"/);
+});
+
+test('an intent without a Sources section flags a numbered reference', () => {
+  const root = repo({ 'sources/interviews/a.md': source, 'discovery/intents/x.md': 'Claim [1].\n' });
+  assert.match(check(root).errors.join('\n'), /\[1\] has no entry/);
+});
