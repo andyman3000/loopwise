@@ -46,9 +46,9 @@ Start each step with one line, for example "Step 2 of 7: more ideas, about 5 min
 - **Write the file after every step**, then tell the pair to reload `http://localhost:<port>/discovery/tree`, with the port the site runs on. The tree draws every row of "Solution ideas" under the opportunity.
 - **No judging in steps 1 and 2.** No levels, no "this would not work", no constraint checks. Every idea goes in the table. The feedback on the pair's list judges how the ideas are named and how varied they are, never whether one would work. An idea may change any page of the website. If it changes another page than the inquiry page, name the page after the idea, for example "(formats page)".
 - **Ideas are named by mechanism:** what the buyer sees or does on the page ("one question before the form", "calendar link after three case stories"), not by strategy ("reduce friction"). If the pair names a feature without a page change ("a trust badge"), ask once, about one minute, a good answer names what is on the page: "What would the buyer see on the page?"
-- **Driver from step 1 on.** Each idea gets the driver it moves, named as in `discovery/kpi-tree.md`, with its line. This is a lookup, not a judgement. An idea that moves more than one driver lists each, with its line, separated by " · ", for example "start rate ([discovery/kpi-tree.md:21](../kpi-tree.md#L21)) · submit rate ([discovery/kpi-tree.md:22](../kpi-tree.md#L22))". The tree lights up every driver listed. If no driver fits, write "no driver".
+- **Driver from step 1 on.** Each idea gets the driver it moves, named as in `discovery/kpi-tree.md`, with its line. This is a lookup, not a judgement. Its line is a numbered reference, as every citation in this file (next rule). An idea that moves more than one driver lists each, separated by " · ", for example "start rate [3] · submit rate [4]". The tree lights up every driver listed. If no driver fits, write "no driver".
 - **Boundaries apply from step 3 on.** They come from `product/constraints.md`: no prices (`product/constraints.md:7`); the website reaches the inquiry and the scoping call booking, not the training itself (`product/constraints.md:57`, `product/constraints.md:59`). An idea may change the form, replace it, or replace it with booking a call. Which fields a page sends is not settled here.
-- **Every claim quotes its source with location** (file and line). Each citation is a Markdown link from this file: `[sources/inquiry-mails/inquiry-07.md:16](../../sources/inquiry-mails/inquiry-07.md#L16)`, `[discovery/kpi-tree.md:21](../kpi-tree.md#L21)`; a file without a line links to the file (`.claude/rules/writing.md`, "Citations are links"). Evidence levels in words: well supported, partly supported, unsupported. Only counted numbers.
+- **Every claim quotes its source with location** (file and line), as a numbered reference. The intent is read as a document, so its text carries no links (`.claude/rules/writing.md`, "Citations are links", the intent exception). Write `[1]` after the claim or the quote, `"quote" [1]`, or `[1, 3]` for two sources; a table cell carries the number too. The section "## Sources" at the end of the file lists each number once, as a link from this file: `1. [sources/inquiry-mails/inquiry-07.md:16](../../sources/inquiry-mails/inquiry-07.md#L16)`; a file without a line links to the file. Number in the order a source first appears; the same file and line keeps its number. Renumber when you rewrite the file after a step. `npm run check` reads each number as its source and checks a quote before it. Evidence levels in words: well supported, partly supported, unsupported. Only counted numbers.
 - **Feedback on the pair's own answers.** These answers get feedback: the first try at the intent, the corrections to the intent, the pair's own ideas, and why they test one idea first. Tell the pair in two or three short lines how strong the answer was: what was good, what was weak, and why. Name their words. Feedback asks no question: the step's question stays the last line. Be honest and specific, never flattering. Say it in the chat; it does not go into the file. A plain "yes" to the draft, a skipped answer, and the choice of a part or an idea get no feedback.
   - First try at the intent: does it name a change for someone, or a solution ("a shorter form")? Does it say who? Does it name something the site could count? A first try that names a solution is not wrong; say what it would leave open.
   - Intent corrections: is the problem still a need, or did a correction turn it into a solution? Does the desired outcome still name a step and an event that can be counted? Is it the step where the need is met, or only the first step a page changes? Does the file still read on its own?
@@ -97,19 +97,19 @@ This file reads on its own. Links to other files are for further reading.
 Feedback: <two or three short lines: what was strong, what was weak, and why>
 
 ## Problem (draft)
-<the part of the opportunity we work on, in two or three sentences, with the strongest quote in full, who said it, and its file and line as a link>
+<the part of the opportunity we work on, in two or three sentences, with the strongest quote in full, who said it, and its number, as "quote" [1]>
 
 ## Desired outcome (draft)
 <who does what more often, in plain words>
-- How the site counts it: <what is counted, in words> (`<event>`). This step is <the driver or derived line, by its name in the tree> ([discovery/kpi-tree.md:<line>](../kpi-tree.md#L<line>)).
+- How the site counts it: <what is counted, in words> (`<event>`). This step is <the driver or derived line, by its name in the tree> [n].
 - Why this step: <where the need is met, with its source line>.
-- Why it matters: <the KPI branch in words> ([discovery/kpi-tree.md:<line>](../kpi-tree.md#L<line>)).
-- Today: <counted value, period, synthetic or not> ([<file>:<line>](../../<file>#L<line>)).
+- Why it matters: <the KPI branch in words> [n].
+- Today: <counted value, period, synthetic or not> [n].
 - No target here.
 
 ## For whom and where (draft)
-- Who: <buyer types or personas, with [product/personas/<file>.md](../../product/personas/<file>.md)>
-- Pages the ideas may change: <pages in `site/`, each as a link such as [site/inquiry.html](../../site/inquiry.html)>
+- Who: <buyer types or personas, each with its number [n]>
+- Pages the ideas may change: <pages in words, each with its file, such as the inquiry page (`site/inquiry.html`)>
 
 ## Open questions (draft)
 - <question> · who can answer: <role> · blocks: the prototype / the launch / later
@@ -118,10 +118,10 @@ Feedback: <two or three short lines: what was strong, what was weak, and why>
 
 | Idea | From | Driver | Critical assumption | Level |
 |---|---|---|---|---|
-| I1: <idea, by mechanism> | the pair | <driver> ([discovery/kpi-tree.md:<line>](../kpi-tree.md#L<line>)) | <empty until step 3> | <empty until step 3, then level and source> |
+| I1: <idea, by mechanism> | the pair | <driver> [n] | <empty until step 3> | <empty until step 3, then level and source number [n]> |
 
 ## Boundaries
-- <constraint> ([<file>:<line>](../../<file>#L<line>))
+- <constraint> [n]
 
 ## Ideas not picked
 - I<n>: <idea> · <from>
@@ -136,6 +136,10 @@ Feedback: <two or three short lines: what was strong, what was weak, and why>
 - Who: ____ · When: ____
 
 A second round adds a second "Selection (human)" below this one, with its own variant name.
+
+## Sources
+1. [<file>:<line>](../../<file>#L<line>)
+2. [discovery/kpi-tree.md:<line>](../kpi-tree.md#L<line>)
 ```
 
-"Boundaries" and "Ideas not picked" appear from step 3 on. "(draft)" stays on a section until the pair confirms or corrects it.
+"Boundaries" and "Ideas not picked" appear from step 3 on. "Sources" stays the last section, below every "Selection (human)". "(draft)" stays on a section until the pair confirms or corrects it.
