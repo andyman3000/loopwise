@@ -137,6 +137,9 @@ cohort.
   `discovery/intents/x.md`:
   `[sources/inquiry-mails/inquiry-07.md:16](../../sources/inquiry-mails/inquiry-07.md#L16)`.
   `npm run check` reads both forms and flags a link whose target or line differs from its text.
+  One exception: an intent (`discovery/intents/`) is read as a document, so its text carries only
+  numbered references, `[1]` or `[1, 3]`, and a numbered "## Sources" section at the end holds the
+  links. `npm run check` reads each number as its source, so a quote before `[1]` is checked too.
 - **Only counted numbers.** A number appears only if it is counted from a file in `sources/` or
   `data/`. No scores, no probabilities, no estimated totals, no invented targets.
 - **Assessments on three levels, in words:** well supported, partly supported, unsupported. Each
