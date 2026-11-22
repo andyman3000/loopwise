@@ -47,8 +47,10 @@ anchor their ideas: a library app whose borrowers return books late. Never an ex
 
 ## One question, at the end
 
-- Every question the participant answers comes with how long and what a good answer looks like,
-  the small ones too ("What else?": one minute, another line or "no").
+- A question where the participant writes something of their own (a first try, an idea, a reason,
+  a correction) comes with how long and what a good answer looks like. A small question (yes or
+  no, a choice between named options, "anything to add?", a name or a date) gets neither: ask it
+  plainly.
 - Feedback asks nothing. The only question is the last line.
 - Each message ends with the one thing the participant does or answers now, as its last line. A
   decision they take is its own question, never a remark in the middle of a message.
@@ -59,8 +61,8 @@ anchor their ideas: a library app whose borrowers return books late. Never an ex
   yourself after they say yes; say so, so they do not type it into a terminal. A skill's "Next" or
   "Look" line that names a shell command means: say yes and I run it. Only `/clear` and the
   skill commands (`/loopwise-...`) the participant types.
-- A missing input (a variant name, a mode): ask for it with one line per option, about one minute;
-  a good answer is the name or the mode, for example `call-slot` or `prototype`.
+- A missing input (a variant name, a mode): ask for it with one line per option, for example
+  `call-slot` or `prototype`.
 - A vague reply ("go on", "ok", "you choose") gets one more ask in these words: "In one sentence,
   in your words: <the question again>." About one minute; a good answer is one sentence of your
   own, or "skip".
