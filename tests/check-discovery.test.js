@@ -121,6 +121,11 @@ test('a numbered reference reads as its entry under Sources, quotes included', (
   assert.match(check(missing).errors.join('\n'), /\[3\] has no entry under "## Sources"/);
 });
 
+test('a numbered source may be a file without a line', () => {
+  const root = repo({ 'site/formats.html': '<p>x</p>\n', 'discovery/intents/x.md': 'The formats page [1].\n\n## Sources\n1. [site/formats.html](../../site/formats.html)\n' });
+  assert.deepEqual(check(root).errors, []);
+});
+
 test('an intent without a Sources section flags a numbered reference', () => {
   const root = repo({ 'sources/interviews/a.md': source, 'discovery/intents/x.md': 'Claim [1].\n' });
   assert.match(check(root).errors.join('\n'), /\[1\] has no entry/);

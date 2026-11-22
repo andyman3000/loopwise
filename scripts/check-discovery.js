@@ -110,9 +110,10 @@ export function numberedSources(lines) {
     map.lines.add(i);
     const m = line.match(/^(\d+)\.\s+(.*)$/);
     if (!m) return;
-    const text = m[2].replace(LINK, (all, t) => (LINK_TEXT.test(t) ? t : all));
-    const cite = text.match(new RegExp(CITE.source));
-    if (cite) map.set(m[1], cite[0].replace(/`/g, ''));
+    // The first citation link holds the source; a file without a line ("site/formats.html") counts too.
+    const link = [...m[2].matchAll(LINK)].find((l) => LINK_TEXT.test(l[1]));
+    const cite = link ? link[1] : (m[2].match(new RegExp(CITE.source)) || [])[0];
+    if (cite) map.set(m[1], cite.replace(/`/g, ''));
   });
   return map;
 }
