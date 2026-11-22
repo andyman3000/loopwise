@@ -30,7 +30,7 @@ End each step with "Done: <what>. Next: <what the human does now>." At the end, 
 
 ## Rules
 
-- **Try first, then compare.** Before you draft, ask the human for what they would work on next, and why, before you read the new evidence. Point them to their opportunity tree in that first message: with `npm start` running, `http://localhost:3000/discovery/tree` shows the compared candidates linked to the business goal. Wait for the answer and never invent it. After drafting, fill the section "Your first try": their answer word for word, then two or three short lines on where your draft differs and why. If they say skip, write "skipped". This step is how participants learn the concept; do not shorten it.
+- **Try first, then compare.** Before you draft, ask the human for what they would work on next, and why, before you read the new evidence. Point them to their opportunity tree in that first message: `http://localhost:<port>/discovery/tree` shows the compared candidates linked to the business goal (the port and the site as `.claude/rules/guiding.md` says). Wait for the answer and never invent it. After drafting, fill the section "Your first try": their answer word for word, then two or three short lines on where your draft differs and why. If they say skip, write "skipped". This step is how participants learn the concept; do not shorten it.
 - **Feedback on the first try.** After drafting, tell the human in two or three short lines how strong their answer was: what was good, what was weak, and why. Judge the reason, never the opportunity they named. Does it rest on the result and the answers the variant collected? Or on what they wanted before the test? Is what they would work on a need, or a solution in disguise? Name their words. Be honest and specific, never flattering. A skipped answer gets no feedback. Write the same lines under "Feedback" in "Your first try (next bet)".
 - **Every claim quotes its source with location**: file and line or section, as a Markdown link from
   the file being written (`.claude/rules/writing.md`, "Citations are links"). An answer the variant
@@ -50,7 +50,7 @@ End each step with "Done: <what>. Next: <what the human does now>." At the end, 
 
 ## Steps
 
-0. **Try first.** Ask the human to open their opportunity tree (`npm start`, then `http://localhost:<port>/discovery/tree`) and say what they would work on next, and why, before you read the new evidence. Wait for the answer before you read further or draft anything.
+0. **Try first.** Ask the human to open their opportunity tree (`http://localhost:<port>/discovery/tree`) and say what they would work on next, and why, before you read the new evidence. Wait for the answer before you read further or draft anything.
 1. Read the Result section. Copy the counted values and the weeks they cover.
 2. Read the KPI tree; find the branch the tested opportunity hangs on (quote it). Enter the values.
 3. Read the decision files for the tested opportunity: what it said would tip the decision. Check it.
@@ -61,7 +61,8 @@ End each step with "Done: <what>. Next: <what the human does now>." At the end, 
    "fits none". "I don't know yet" fits none. Quote each with its row. Count per opportunity.
 5. Compare: which opportunity does the evidence now point to, and how does that change the earlier
    comparison? Name counter-evidence and what one more source would settle.
-6. Write both files. Give the feedback on the first try (see Rules). Then stop.
+6. Write both files. Give the feedback on the first try (see Rules).
+7. **The next opportunity, the human's decision.** Show where the evidence now points, in three lines, with the field from the file: "Next opportunity: ____ (human decides)". Say: about 5 minutes; a good answer names one opportunity by its ID and the line of evidence it rests on, or "not yet" with what is missing; add your first names and today's date. Ask: "Which opportunity do you work on next?" Wait. Never suggest one. Then say: fill the line yourself in `discovery/opportunity-comparison.md` (its last line), in your words; this skill writes no decision. Then end (see Orientation) and stop.
 
 ## Output template, write 1: `discovery/kpi-tree.md`
 

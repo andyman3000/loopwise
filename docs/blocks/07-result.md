@@ -22,8 +22,7 @@ allow.
    at `http://localhost:3000/formats.html?variant=format-quiz`.
 4. In pairs, start a fresh Claude Code session (`/clear`). Then run `/loopwise-read-result`. Before it says what any number means, it shows a table: what the
    card assumed, one row per line, and where on the dashboard to look. Fill in the last column
-   yourself: met, not met or unclear, and why in a few words. Then: would you keep the quiz, change
-   it, or take it back?
+   yourself: met, not met or unclear, and why in a few words.
 5. The skill sets its own reading beside yours, row by row, and names where the two differ. Settle
    the differences with it: which reading holds, and why? Then the conclusion: keep, change or take
    back. The skill writes it in your words into the "Result" section of the card.

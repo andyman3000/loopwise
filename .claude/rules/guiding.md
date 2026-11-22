@@ -15,6 +15,10 @@ it takes, and what a good answer looks like.
 - Files stay in English (`CLAUDE.md`). Quotes from sources stay word for word.
 - When you show part of a file in chat (a draft, a table, the ideas), show it in the
   participant's language, and say in one line that the file holds it in English.
+- The site runs since `/loopwise-onboarding`, on the port in `discovery/.local.json`. Before you
+  send a link, check quietly that it answers. If it does not, say: "The site does not answer. Say
+  yes and I start it again." On yes, run `PORT=<port> npm start` in the background yourself. Never
+  ask the participant to start it in a terminal.
 
 ## At the start: three lines
 
@@ -22,8 +26,8 @@ Before anything else, show the skill's orientation, three lines and no more:
 
 - **Where:** the block and the step, for example "Block 4, step 2 of 7: more ideas".
 - **You end with:** the file, and the link where you see it. Links use the port from
-  `discovery/.local.json`. If the file is missing, ask the participant which port onboarding named
-  (3000 if they do not know). Never take a port only because it answers: another folder's site may
+  `discovery/.local.json`. If the file is missing, ask the participant which port onboarding named,
+  about one minute; a good answer is the number, or "don't know" (then 3000). Never take a port only because it answers: another folder's site may
   run there.
 - **Time:** the minutes the block plans for these steps.
 
@@ -49,10 +53,17 @@ anchor their ideas: a library app whose borrowers return books late. Never an ex
 - Each message ends with the one thing the participant does or answers now, as its last line. A
   decision they take is its own question, never a remark in the middle of a message.
 - Do your own checks quietly (a `curl`, a `grep`, a test). Name no internal part of a file (a
-  review log, a stage) unless the participant must act on it.
-- A command you run for the participant (`git commit`, `npm run check`), you run yourself after
-  they say yes; say so, so they do not type it into a terminal. Say only the result the participant
+  review log, a stage) unless the participant must act on it. Say only the result the participant
   needs, never a failed command they cannot act on.
+- A command you run for the participant (`git commit`, `npm run check`, `cp`, `git diff`), you run
+  yourself after they say yes; say so, so they do not type it into a terminal. A skill's "Next" or
+  "Look" line that names a shell command means: say yes and I run it. Only `/clear` and the
+  skill commands (`/loopwise-...`) the participant types.
+- A missing input (a variant name, a mode): ask for it with one line per option, about one minute;
+  a good answer is the name or the mode, for example `call-slot` or `prototype`.
+- A vague reply ("go on", "ok", "you choose") gets one more ask in these words: "In one sentence,
+  in your words: <the question again>." About one minute; a good answer is one sentence of your
+  own, or "skip".
 - Before a command Claude Code may ask permission for (`git add`, `git commit`, a server start),
   say in one line what it does: for example "this saves your files in your branch, nothing leaves
   your laptop; say yes when Claude Code asks".
@@ -94,6 +105,10 @@ line every time.
 - **Go-on line, rework-or-drop line:** what you must see to keep the idea, and what makes you
   change or drop it. You set both before the test.
 - **Cross test:** block 6: each pair's page is tried by a tester from another pair.
+- **Learning card:** what the test showed and what you decide: we believed, we observed, we
+  learned, therefore we will.
+- **Persona walkthrough:** Claude plays the two buyer personas through your spec or page.
+- **Roll-out:** the variant goes live for real visitors.
 - **Abgleich:** after each block, the room meets for a short comparison: pairs say what they
   decided and why.
 - **Spec:** the description of the smallest page, precise enough to build it from. Mode `learn`
@@ -102,12 +117,27 @@ line every time.
   plays it.
 - **Launch spec:** one page with what a developer needs and the prototype does not show.
 - **Gate:** a check in `npm run check` that holds the release until it passes. Each gate has an
-  owner.
+  owner. A soft gate lets its owner pass one finding with a waiver; a hard gate passes only after a
+  fix.
 - **Waiver:** a file in which the owner of a soft gate lets one finding pass, with name and reason.
 - **Build to learn:** a fast page, good enough to test one assumption with a few people.
 - **Build to earn:** the same page rebuilt for real visitors, held by the gates.
-- **KPI tree, driver, success line, proxy metric, counter metric, kill criterion:** as `CLAUDE.md`
-  explains them under "Audience and Language".
+- **Handover kit:** what the factory builds from: the prototype, the intent and the launch spec.
+- **Hardened build:** the variant rebuilt for real visitors, in `site/hardened/<variant>/`.
+- **Opportunity tree:** the page at `/discovery/tree`: the business goal on top, the steps from a
+  visit to a booking below it, the opportunities and your ideas at the bottom.
+- **Success line:** on a launch card, what must happen for the variant to count as working: what
+  you count, how much, by when, against what. You set it before launch. The buyer's own success
+  line on the website (`product/glossary.md`) is something else: one sentence on how the buyer will
+  know the format worked.
+- **Usage hypothesis:** what you expect visitors to do with the new page, written before launch.
+- **Proxy metric:** a number the page moves sooner, watched when the step you care about comes
+  later.
+- **Counter metric:** a number that must not get worse while the success line rises.
+- **Kill criterion:** the line that says when you take the variant back.
+- **Threshold:** the value a line on the card must reach, or must not cross.
+- **Usual swing:** how much a rate moves from one block of weeks to the next on the unchanged page.
+  A change smaller than that shows a direction, not an effect.
 
 ## After each step
 

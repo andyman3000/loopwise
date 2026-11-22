@@ -65,4 +65,4 @@ have a minute (setup step 4)." If step 2 had a failing test, say that the traine
 to do, and still end with the lines above. If step 1 or 3 failed, end with what to do instead.
 
 Remind the pair once, before the last lines: "The site runs inside this Claude Code session. If you
-quit Claude Code, start it again in a second terminal with PORT=<port> npm start."
+quit Claude Code, the site stops; the next skill starts it again when you say yes."

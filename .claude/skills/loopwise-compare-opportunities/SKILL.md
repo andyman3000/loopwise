@@ -64,7 +64,7 @@ End each step with "Done: <what>. Next: <what the human does now>." At the end, 
 
 ## Steps
 
-0. **Try first.** Ask the human to open their opportunity map (`npm start`, then `http://localhost:<port>/discovery/map`) and say which opportunity they favour right now, with a one-sentence reason. The challenger step then also attacks their favourite, if it differs from the candidate the comparison favours. Wait for the answer before you read further or draft anything.
+0. **Try first.** Ask the human to open their opportunity map (`http://localhost:<port>/discovery/map`) and say which opportunity they favour right now, with a one-sentence reason. The challenger step then also attacks their favourite, if it differs from the candidate the comparison favours. Wait for the answer before you read further or draft anything.
 1. **Shortlist.** Read all opportunity files and the KPI tree. If a "Goes into comparison" line is
    already filled, show it and ask whether it still holds; otherwise propose:
    - **Merge** the same need found in several source files into one candidate, naming every source
@@ -143,7 +143,7 @@ End each step with "Done: <what>. Next: <what the human does now>." At the end, 
    - **Candidates:** every field is one line, at most 15 words, except the quote.
 6. Write the file with the template below. Run `npm run check`.
 7. **Send the human to the tree before they decide.** Your closing message always gives the link
-   `http://localhost:<port>/discovery/tree` (start the server with `npm start` if it is not running)
+   `http://localhost:<port>/discovery/tree` (the port and the site as `.claude/rules/guiding.md` says)
    and says to read the tree before filling "Chosen opportunity" and "We would switch if". Name the
    one thing to look at first: the question on top and the steps where no candidate acts. Give the
    feedback on the first try (see Rules) in the same message. Never

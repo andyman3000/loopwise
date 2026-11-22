@@ -19,7 +19,7 @@ Guide as `.claude/rules/guiding.md` says, in the language the human writes in. S
 - **You end with:** `discovery/variant-comparison.md`, at http://localhost:<port>/discovery/variant-comparison.md.
 - **Time:** about 20 minutes.
 
-Before the try first, say: about 2 minutes, one sentence. A good answer names a variant and one reason from its card. Example from an unrelated product, a library app: "the one-tap renew: its card has the clearer success line".
+Before the try first, say: about 2 minutes, one sentence. A good answer names a variant, live or a user test first, and one reason from its card. Example from an unrelated product, a library app: "the one-tap renew: its card has the clearer success line".
 
 End each step with "Done: <what>. Next: <what the human does now>." At the end, four lines: Made (the comparison), Look (its link), Next (fill "Decision (human)"), Time (about 20 minutes).
 

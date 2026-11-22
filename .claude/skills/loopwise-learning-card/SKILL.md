@@ -38,15 +38,27 @@ Guide as `.claude/rules/guiding.md` says, in the language the human writes in. S
 
 Before the try first, say: about 2 minutes, a few words. A good answer says what the tester did, not what you hoped. Example from an unrelated product, a library app: "The tester found renew at once, then asked whether it costs anything."
 
-End each step with "Done: <what>. Next: <what the human does now>." At the end, four lines: Made (the learning card), Look (its link), Next (by the decision: move on, `/clear`, then `/loopwise-test-card <variant> launch`; another round, change the spec and rebuild; kill, a second "Selection (human)" in the intent), Time (block 6a planned about 25 minutes for the card).
+End each step with "Done: <what>. Next: <what the human does now>." At the end, four lines: Made (the learning card), Look (its link), Next (by the decision: move on, `/clear`, then `/loopwise-test-card <variant> launch`; another round with a changed spec, `/clear`, then `/loopwise-variant-spec <variant>` and the rebuild with the build prompt at the end of the spec; the next idea or kill, fill a second "Selection (human)" in the intent for the next idea, then `/clear` and `/loopwise-test-card <next-variant> prototype`), Time (block 6a planned about 25 minutes for the card).
 
 ## Rules
 
-- **One question at a time.** Wait for the answer before the next one. At most five sentences per turn. No emojis.
+- **One question at a time.** Wait for the answer before the next one. Keep each turn short: the step frame, what you quote, the question. No emojis.
 - **Try first is the gut feeling.** The first question is always: "How did the test go, in a few words?" Never start with analysis. A vague reply ("go on", "ok") gets one more ask; if it stays vague, write "skipped". "skip" is written as "skipped".
 - **Never ask for what the files hold.** Quote the assumption, the signs and the lines from the prototype card. Do not ask the pair to repeat them.
 - **Write only what the pair says.** Observations, the learning and the decision are the pair's words, shortened at most. If an answer is vague, ask one follow-up. If it stays vague, write it as said and mark it "[vague: the pair did not say more]".
-- **Observations from people and from personas stay apart.** A cross-test observation quotes the watcher's notes with file and line ([discovery/user-tests/<variant>-cross.md:<line>](../user-tests/<variant>-cross.md#L<line>)). If the cross test happened but the notes file is missing, ask the pair to write it first (block 6a says how) and wait. A persona observation quotes the walkthrough file and the persona-file line it rests on ([product/personas/<file>:<line>](../../product/personas/<file>#L<line>)). A persona action with no persona-file line behind it is not an observation and is left out.
+- **Observations from people and from personas stay apart.** A cross-test observation quotes the watcher's notes with file and line ([discovery/user-tests/<variant>-cross.md:<line>](../user-tests/<variant>-cross.md#L<line>)). If the cross test happened but the notes file is missing, ask the watcher to write it first, about 5 minutes, and wait. Give them this format for `discovery/user-tests/<variant>-cross.md`; a good note is one line per thing the watcher saw or heard, the tester's words in quotes, and one mark per sign from the card:
+  ```markdown
+  # Cross test: <variant>
+
+  > Notes by the watcher, <first name>, <date>. One tester from another pair.
+
+  ## What the tester did and said
+  - <one line per thing you saw or heard, words in quotes, word for word>
+
+  ## Signs from the card
+  - <sign>: seen / not seen / unclear
+  ```
+  The watcher may also tell you the notes in the chat; then you write the file in their words and show it to them before you go on. A persona observation quotes the walkthrough file and the persona-file line it rests on ([product/personas/<file>:<line>](../../product/personas/<file>#L<line>)). A persona action with no persona-file line behind it is not an observation and is left out.
 - **One round, one set of files.** Round 1 reads `<variant>-cross.md`, `<variant>-page.md` and the card's first section. Round 2 reads `<variant>-cross-2.md` and `<variant>-page-2.md` and the card's "Round 2" section. A persona walkthrough may have several runs in a round (`-run2`, `-run3`); read the latest run of the round. Never quote an earlier round's test as evidence for a later round.
 - **A test that does not count.** If the watcher's notes say the tester had no real case the scenario asked for, write at the top of the round: "This test does not count: the tester had no such case (`<notes file>:<line>`)." Ask the pair for another tester, or for `/loopwise-persona-walkthrough <variant> page`, before the outcome. If the pair still chooses move on, advise against it once, plainly: "I advise against moving on. No counted test shows the assumption holds, so the launch card would rest on a guess." Then write their choice, and add under "Why": "Moved on without a counted test, against the skill's advice." Do not ask again.
 - **No sign judged.** If every sign of the round is "cannot tell" or "unclear", say so in one line: "No sign could be judged in this round, so it cannot show whether the assumption holds." The pair still names one of the three outcomes; a person test is the usual next step.
@@ -60,7 +72,7 @@ End each step with "Done: <what>. Next: <what the human does now>." At the end, 
 - **Every claim quotes its source with location** (file and line). Each citation is a Markdown link: `[<file>:<line>](<path from this file>#L<line>)` (`.claude/rules/writing.md`, "Citations are links"). A citation into `discovery/` carries a short quote, so `npm run check` catches a line that moved; never a section name alone. No invented numbers: one tester is a pattern, not a rate.
 - **The label of a round.** Each round starts with one label line. If that round has its own cross-test file (`<variant>-cross.md` for round 1, `<variant>-cross-2.md` for round 2): "Tested with one person from another pair: a pattern, not a rate." Otherwise: "Pressure-tested, not validated: rests on persona runs, not on people."
 - **Changes on other pages.** A change the pair names for roll-out may sit on any page. Name the page, and write the change as said.
-- **Invented lines.** If the outcome is move on, ask: "Which lines on the page are invented, and who confirms them before roll-out?" Quote the spec's "Invented lines on the page". Write the answer under "Therefore we will".
+- **Invented lines.** If the outcome is move on, ask it after "What changes before roll-out?", as its own question. Say: about 2 minutes; a good answer names, per invented line, the role that confirms it, for example someone who runs the training. Ask: "Who confirms each invented line before roll-out?" Quote the spec's "Invented lines on the page". Write the answer under "Therefore we will".
 
 ### Setting `team`
 
@@ -92,13 +104,13 @@ End each step with "Done: <what>. Next: <what the human does now>." At the end, 
 
 0. **Try first.** Ask: "How did the test go, in a few words?" Wait.
 1. Read the prototype card and the user-test files. If the prototype card is missing, stop and say so. If neither `<variant>-cross.md` nor `<variant>-page.md` exists, ask which test happened. In setting `team`, read `<variant>-tester-<n>.md` in place of `<variant>-cross.md`.
-2. Ask: "What did the tester do or say? List it freely." Reflect it back as a short list. Give the feedback on it (see Rules). Ask: "Anything else, or shall we work with these?"
-3. Quote the sign marks from `<variant>-cross.md` in one message and ask: "Do these marks stand?" Ask per sign only where a mark is missing. Without a cross test, quote the persona run's sign table instead.
-4. Quote the assumption and the two lines. Ask: "Against these lines, did the assumption hold, break, or is it unclear? Why?" If unclear: "What would you need to see to be sure?" Give the feedback on the reason (see Rules).
-5. Ask: "Finish the sentence: From that we learned that ..." Give the feedback on the sentence (see Rules).
-6. Ask: "Which outcome: move on, another round, or kill? And why?" If move on: "What changes before roll-out?" If another round: "Changed spec, or the next idea from the intent?" Name the two other ideas from the intent, quoted.
-7. Ask who decided and the date.
-8. Show the card. Ask what is wrong. Correct it, then write the file. Then stop.
+2. Say: about 5 minutes; a good answer lists what the watcher saw or heard, one line each, not what the tester felt. Ask: "What did the tester do or say? List it freely." Reflect it back as a short list. Give the feedback on it (see Rules). Then, one minute, a good answer is another line or "no": "Anything else, or shall we work with these?"
+3. Quote the sign marks from `<variant>-cross.md` in one message. Say: about 2 minutes; a good answer is "they stand", or the sign you change, with what the watcher saw. Ask: "Do these marks stand?" Ask per sign only where a mark is missing. Without a cross test, quote the persona run's sign table instead.
+4. Quote the assumption and the two lines. Say: about 3 minutes; a good answer is hold, break or unclear, with the sign or line it rests on. Ask: "Against these lines, did the assumption hold, break, or is it unclear, and why?" Give the feedback on the reason (see Rules). If unclear, then ask as its own question, one minute, a good answer names one thing a watcher could see: "What would you need to see to be sure?"
+5. Say: about 3 minutes; a good answer is one sentence about the buyer or the assumption, not about the page. Ask: "Finish the sentence: From that we learned that ..." Give the feedback on the sentence (see Rules).
+6. Say: about 3 minutes; a good answer is one of the three, with the reason from step 4 or 5. Ask: "Which outcome: move on, another round, or kill, and why?" Wait. Then one follow-up, as its own question, about 2 minutes. If move on: "What changes before roll-out?"; a good answer names the page and the change; then the invented lines (see Rules). If another round: name the two other ideas from the intent, quoted, then ask "Changed spec, or the next idea from the intent?"; a good answer is one of the two, with the idea's number if it is the next idea.
+7. Ask who decided and the date: about one minute; a good answer is your first names and today's date.
+8. Show the card. Say in one line what it is: the record of what the test showed and what you decided, in your words. Check, about 3 minutes: does each observation quote the watcher's notes or a persona line? Does "We learned" say something new about the buyer? Does the decision say what happens next? A good answer is a correction, or "fits". Ask: "What is wrong or missing?" Correct it, then write the file. Then stop.
 
 ## Output template
 

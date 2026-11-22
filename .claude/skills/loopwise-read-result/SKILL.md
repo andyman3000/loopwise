@@ -6,7 +6,7 @@ description: Read the result of the shipped variant against its test card, toget
 # loopwise-read-result
 > **When:** the time frame on the test card of the shipped variant has passed, or a mid-way check is asked for.
 > **Reads:** `site/config.json` (key `shipped`, gives `<variant>`); `discovery/test-cards/<variant>.md`;
-> the output of `npm run summary` (the same numbers as `http://localhost:3000/dashboard`, from the
+> the output of `npm run summary` (the same numbers as `http://localhost:<port>/dashboard`, from the
 > same code); `data/scenario.json` only to state whether the data is synthetic.
 > **Writes:** the `## Result` section of `discovery/test-cards/<variant>.md`. One path. Replace only that
 > section (append it if missing); leave every other line of the test card untouched.
@@ -20,7 +20,7 @@ both settle where they differ and draw the conclusion. The conclusion and the de
 
 Guide as `.claude/rules/guiding.md` says, in the language the human writes in. Show first:
 - **Where:** Block 7, the demo: read a launched variant's result against its card.
-- **You end with:** the `## Result` section of `discovery/test-cards/<variant>.md`, with your reading and your decision.
+- **You end with:** the `## Result` section of `discovery/test-cards/<variant>.md`, with your reading and your decision, at http://localhost:<port>/discovery/test-cards/<variant>.md.
 - **Time:** about 30 minutes.
 
 Before the human reads, say: about 10 minutes for the table. A good reading says met, not met or unclear per row, held against the threshold and the usual swing on the card.
@@ -60,7 +60,7 @@ End each step with "Done: <what>. Next: <what the human does now>." At the end, 
 
 1. **The numbers, then the human's reading.** Read `site/config.json` and the test card. Run
    `npm run summary` for your own reading, but do not show its output in the chat. Point the human
-   to `http://localhost:<port>/dashboard` (it needs `npm start`), where the same numbers are, and to the
+   to `http://localhost:<port>/dashboard` (the port and the site as `.claude/rules/guiding.md` says), where the same numbers are, and to the
    shipped page, so they can see what the numbers are about: the start address the spec names
    (`discovery/specs/<variant>.md`, "Tester starts at"), as a full link on `http://localhost:<port>`.
    Then show what the card assumed, one row per line with a threshold, in plain words with its threshold and
@@ -71,16 +71,20 @@ End each step with "Done: <what>. Next: <what the human does now>." At the end, 
    | <the card line as a sentence, for example "More visits that see the formats page open the inquiry page in quiz weeks than in any four weeks before launch (highest 16.9%) and than in off weeks"> | <the dashboard section that shows it> | met, not met or unclear? Why? |
 
    Take the rows as the rule "Read only the lines that have a threshold" says. Then ask, in these words: "Fill in the
-   last column from the dashboard: met, not met or unclear, and why in a few words. Then: would you
-   keep the variant, change it, or take it back?" Wait.
+   last column from the dashboard: met, not met or unclear, and why in a few words." Wait. Keep,
+   change or take back comes in step 4.
 2. **Our reading beside theirs.** Read each row against the summary yourself: met, not met or
    unclear, with the summary line it rests on. Show a table with both readings side by side. Below it,
    list only the lines where the two readings differ, one sentence each on why yours differs. Then give the feedback on their reading (see Rules).
-3. **Settle the differences together.** Ask: "Where we differ, which reading holds, and why?" Take
+3. **Settle the differences together.** Say: about 5 minutes; a good answer names, per line where
+   we differ, whose reading holds and the summary line it rests on. Ask: "Where we differ, which
+   reading holds, and why?" Take
    their answer for each line. If they keep their reading, write theirs as the agreed one and note
    yours in one line.
-4. **The conclusion.** Ask: "So: keep, change or take back, and why? Who decides, and on what date?"
-   Write it in their words.
+4. **The conclusion.** Say: about 5 minutes; a good answer is keep, change or take back, with the
+   rows it rests on. Ask: "So: keep, change or take back, and why?" Wait. Then, as its own question,
+   about one minute, a good answer is a first name and a date: "Who decides, and on what date?"
+   Write both in their words.
 5. **Write the Result section** with the template below. Then stop.
 
 ## Output template (the `## Result` section)
