@@ -83,7 +83,7 @@ End each step with "Done: <what>. Next: <what the human does now>." At the end, 
    yours in one line.
 4. **The conclusion.** Say: about 5 minutes; a good answer is keep, change or take back, with the
    rows it rests on. Ask: "So: keep, change or take back, and why?" Wait. Then, as its own question,
-   about one minute, a good answer is a first name and a date: "Who decides, and on what date?"
+   "Who decides, and on what date?"
    Write both in their words.
 5. **Write the Result section** with the template below. Then stop.
 

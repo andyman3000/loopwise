@@ -55,7 +55,7 @@ Nothing from `data/`, nothing outside the repo, nothing else. If `v3-03-start` i
 ## Steps
 
 1. Say what happens, in four lines: five questions each, the answers and your work go into one zip, the zip stays on this laptop, you mail it yourselves. Then the not-anonymous line from the rules.
-2. Ask person 1 the five questions. Then ask for the first name: a few seconds; a good answer is your first name, or "skip".
+2. Ask person 1 the five questions. Then ask for the first name, or "skip".
 3. Ask person 2 the five questions. Then the first name, the same way.
 4. Write `feedback/feedback.md`: the branch name, the date, one section per person with each question and the answer word for word.
 5. Collect the git files into a temporary folder together with the files above. Show the pair the list, with the number of files per folder. Say: about one minute; check that nothing private is on the list. Ask: "Pack these into the zip?" On no, ask what to leave out, then show the list again.
