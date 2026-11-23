@@ -103,8 +103,8 @@ line every time.
 - **Variant:** your version of a page, in `site/variants/<name>/`.
 - **Test card:** says before a test what you will watch for, and when you go on.
 - **Prototype:** a rough page built to test one assumption with a person.
-- **Tester, watcher:** in the cross test, a person from another pair (the tester) tries your page
-  with only a short scenario; one of you (the watcher) watches and notes what they do.
+- **Tester, watcher:** in a test with people, a person who matches the card (the tester) tries
+  your page with only a short scenario; one of you (the watcher) watches and notes what they do.
 - **Scenario:** the two or three sentences the tester gets: who they are, what they want, one task.
 - **Sign:** something the watcher can see or hear: a click, a pause, a question.
 - **Go-on line, rework-or-drop line:** what you must see to keep the idea, and what makes you
