@@ -233,7 +233,7 @@ export function formatRelease(result, { dryRun = false, released = false, record
     lines.push(`release: "shipped" in site/config.json is now "${result.variant}"${result.shipped && result.shipped !== result.variant ? ` (was "${result.shipped}")` : ''}.`);
     lines.push(`release: nothing is deployed anywhere. On your local site, /inquiry.html serves the hardened ${result.variant}.`);
     lines.push('release: to take it back, set "shipped" to null in site/config.json. Claude Code asks the product lead first.');
-    lines.push(`release: retro next. In Claude Code: /loopwise-factory ${result.variant} retro, or copy .claude/skills/loopwise-factory/retro-template.md to discovery/factory/${result.variant}-retro.md.`);
+    lines.push(`release: retro next. In Claude Code: /loopwise-factory ${result.variant} retro.`);
   } else {
     lines.push(`release: "shipped" is already "${result.variant}". Nothing changed.`);
   }
