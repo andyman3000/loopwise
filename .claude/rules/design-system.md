@@ -31,7 +31,8 @@ agent builds a variant: a prototype in `site/variants/` (build to learn) and a h
 - Build to learn: the rule leads, no gate blocks. The design system makes the prototype fast and on
   brand.
 - Build to earn: the design gate in `npm run check` scans `site/hardened/`. It is soft: it fails
-  the check, and only the designer can let it pass, with a waiver in `discovery/decisions/`.
+  the check, and only the designer can let it pass: with a waiver in `discovery/decisions/`, or by
+  approving an addition to `site/styles.css` that the page then uses.
 
 ## Changing the design system
 
