@@ -1,13 +1,13 @@
 ---
 name: loopwise-onboarding
-description: Get a pair ready for the Loopwise workshop in one step, right after cloning the repo and starting Claude Code inside the loopwise folder. Asks which language to use, checks Node, runs the tests, starts the site (on a free port if 3000 is taken), checks the Loopwise skills are there, checks Claude Code can open a page in a browser, and ends with the page to open next. Use as "/loopwise-onboarding", or when the pair says "set me up", "get started" or "does everything run". Writes only discovery/.local.json (language and port, ignored by git).
+description: Get a pair ready for the Loopwise workshop in one step, right after cloning the repo and starting Claude Code inside the loopwise folder. Asks which language to use, checks Node, runs the tests, starts the site (on a free port if 3000 is taken), checks the Loopwise skills are there, checks Claude Code can open a page in a browser, and ends with the page to open next. Use as "/loopwise-onboarding", or when the pair says "set me up", "get started" or "does everything run". Writes only discovery/.local.json (language, port and first names, ignored by git).
 ---
 
 # Onboarding
 
 **When:** right after `git clone`, `git switch -c pair-<names> v3-03-start` and starting Claude Code
 inside the `loopwise` folder. Those come first; this skill cannot do them.
-**Writes:** only `discovery/.local.json`, which git ignores: the language and the port, so every later skill uses them. It starts the site in the background of this Claude Code session.
+**Writes:** only `discovery/.local.json`, which git ignores: the language, the port and the pair's first names, so every later skill uses them. It starts the site in the background of this Claude Code session.
 
 ## Orientation
 
@@ -35,7 +35,7 @@ say ok, or what is wrong and what to do. Plain words (`.claude/rules/writing.md`
    first free port from 3000 up: `curl -s -o /dev/null -w '%{http_code}' 'http://localhost:<port>/'`
    answers 000 on a free port. Start `PORT=<port> npm start` in the background on it. Then check
    `curl -s -o /dev/null -w '%{http_code}' 'http://localhost:<port>/inquiry.html'` answers 200. Say
-   which port the site runs on. Write `discovery/.local.json` with the language and the port, for example `{ "language": "Deutsch", "port": 3002 }`, and say in one line that every later skill reads it. If it is not 3000, say: "Port 3000 is taken by another program.
+   which port the site runs on. Then ask: "Your first names? I put them wherever you decide something today." Write `discovery/.local.json` with the language, the port and the names, for example `{ "language": "Deutsch", "port": 3002, "names": "Ada, Linus" }`, and say in one line that every later skill reads it, so no skill asks for your names again. If it is not 3000, say: "Port 3000 is taken by another program.
    I use port <port> in every link from now on."
 4. **The Loopwise skills.** List the folders in `.claude/skills/` whose names start with
    `loopwise-`, and check each holds a `SKILL.md`. Say how many there are, and name the three the
