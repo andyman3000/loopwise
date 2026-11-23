@@ -1,7 +1,8 @@
 # Decision <number>: release <variant>
 
-> Release decision for the hardened build in site/hardened/<variant>/. A person writes it, never an agent.
-> Copied from .claude/skills/loopwise-factory/release-decision-template.md. Replace every <...>.
+> Release decision for the hardened build in site/hardened/<variant>/.
+> `npm run release` writes this record itself after the product lead approves at the release prompt.
+> A person can still write one by hand, never an agent: copy .claude/skills/loopwise-factory/release-decision-template.md and replace every <...>.
 > `npm run release -- <variant>` reads the six lines below. It releases only on "Decision: release".
 
 Variant: <variant>

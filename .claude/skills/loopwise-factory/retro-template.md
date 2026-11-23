@@ -8,7 +8,7 @@ Three gates held the build: the validation gate at the entry (hard, owner: produ
 In each run the factory planted one error on purpose.
 
 ## 1. What did the gate catch?
-Per run: the gate that failed, the file and the rule, and how the pair fixed it.
+Per run: the gate that fired, where it fired, the file and the rule, and how it was fixed.
 - Run 1: ____
 - Run 2: ____
 
@@ -18,13 +18,14 @@ What a person saw in the build or the review that no gate checks.
 - Review of run 2: [discovery/factory/<variant>-review-run-2.md](<variant>-review-run-2.md)
 - Answer: ____
 
-## 3. Who decided?
-Per decision: the role, the person and the file. The factory decided nothing at a gate.
-- Design gate, run 1: <fixed by the pair, or waived in the file below>
+## 3. Whose judgement was in the system, and who was asked live?
+Per check: whose rule decided, and whether a person was asked during the run. The factory decided nothing at a gate.
 - Validation gate, at the entry: <the launch decision file, decided by the product lead>
-- Legal gate, run 2: fixed by the pair. A hard gate takes no waiver.
-- Release: <the release decision file, or "not released">
-- Decision files: <links to the waiver and release files for this variant>
+- Design gate, run 1: the designer's rule, held by the design system. <flagged right after the write and fixed by the factory, or waived in the file below>
+- Legal gate, run 2: legal's rule. The write with the price was refused before it landed. A hard gate takes no waiver.
+- Release: <the release record, approved by the product lead at the release prompt, or "held">
+- Decision files: <links to the release record and any waiver files for this variant>
+- Answer: ____
 
 ## 4. What did the factory have to ask that the kit did not answer?
 One line per question in [discovery/factory/<variant>-questions.md](<variant>-questions.md).
