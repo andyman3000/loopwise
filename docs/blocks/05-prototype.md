@@ -49,7 +49,7 @@ Code builds the page. Later a person from another pair tests it.
    git add discovery site && git commit -m "block 5: spec and prototype"
    ```
 
-**Done when:** the spec, the persona run on the spec and a page that opens at
+**Done when:** the spec, the persona run on the spec (not in the bootcamp) and a page that opens at
 the start page with `?variant=<variant>` are committed. The test needs a page from every pair, so the build
 comes before anything else that is left.
 

@@ -17,7 +17,7 @@ before anything is built: what a tester does, and what you watch for.
 
 You work as a pair on one branch, on the opportunity chosen in decision 001. You keep it to the end.
 
-**Read first (5 min).** Open the page `/loopwise-onboarding` named, `http://localhost:<port>/discovery/tree`
+**Read first (5 min).** Open `http://localhost:<port>/discovery/tree`
 (port 3000 unless onboarding said otherwise). On top
 is the business goal, below it the funnel steps, at the bottom the four candidate opportunities. The
 chosen one, C1, is marked. Then read `discovery/decisions/001-format-fit.md`: what was decided, and
@@ -49,7 +49,7 @@ at a time and waits for you each time. You go first.
    dashes (for example `examples-first`). A variant is your version of a page. Its name becomes the
    folder `site/variants/<name>/`, the link `?variant=<name>`, and the word after each later
    command, for example `/loopwise-test-card examples-first prototype`. The tree marks the idea with a green
-   border. The skill stops here and names the next command.
+   border. The skill stops here.
 5. **Prototype test card (15 min).** Start a fresh session (`/clear`). Then
    `/loopwise-test-card <variant> prototype`, with the variant name from step 4. It writes
    `discovery/test-cards/<variant>-prototype.md` in the four lines of a test card. We believe
@@ -58,7 +58,7 @@ at a time and waits for you each time. You go first.
    you rework or drop the idea. The page in the card does not exist yet: you build it in block 5.
    Until then its link answers "Not found".
 6. **Own the card (10 min).** Read it as the tester will: does the scenario give away the
-   assumption? Can you see each sign, or would you have to guess? Fill `Card owner`. Turn the two
+   assumption? Can you see each sign, or would you have to guess? Check `Card owner`. Turn the two
    lines into your own words. The go-on line says what you must see to keep the idea. The
    rework-or-drop line says what makes you change it or drop it.
    Under the signs, the card says which ones an AI persona can show. In block 5, Claude plays two

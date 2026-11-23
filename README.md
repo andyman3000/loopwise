@@ -49,7 +49,7 @@ block. If you decided differently, keep your own state or continue from the refe
 **Start with `/loopwise-onboarding`.** The training uses the Claude desktop app (Code tab), which
 has a browser built in. In a terminal, Claude Code works too; a browser tool there is your own
 setup, and no skill on the day needs one. After cloning and opening Claude Code on the folder, it
-checks everything the day needs and names the page to open next. Every Loopwise skill starts with
+checks everything the day needs. Every Loopwise skill starts with
 `loopwise-`, so they stand together when you type `/`.
 
 **One Claude Code session per skill.** Start a fresh session before each skill: type `/clear`, or

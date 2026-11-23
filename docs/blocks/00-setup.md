@@ -40,7 +40,7 @@ Every pair starts from decision 001 and works on C1. Your first own step is bloc
 3. Type `/loopwise-onboarding` and the language you want to talk in, for example
    `/loopwise-onboarding Deutsch`. It notes the language and the port for every later skill, checks Node, runs the tests, starts the site (on another port if
    3000 is taken), checks that the Loopwise skills are there and, in the desktop app, opens the
-   site in the app's browser. It ends with the page to open next. If it names a port other than 3000, use that port
+   site in the app's browser. If it names a port other than 3000, use that port
    in every link the block files name.
 4. **Only in the terminal, and only if you want it:** the terminal has no browser built in. Today
    no skill needs one: you open the pages in your own browser. If you want Claude Code to open
@@ -89,7 +89,7 @@ fails, tell the trainer and carry on with the block.
 After each block the room meets for a short comparison, the Abgleich. Pairs say what they decided
 and why. Each block file ends with one question for it.
 
-**Done when:** `/loopwise-onboarding` ends with "Done: everything runs." and the page and command for block 4.
+**Done when:** `/loopwise-onboarding` ends with "Done: everything runs."
 
 If `/loopwise-onboarding` does not show up when you type `/`, Claude Code was started outside the
 `loopwise` folder: in the desktop app, pick the `loopwise` folder again; in a terminal, quit it,

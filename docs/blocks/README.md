@@ -28,7 +28,7 @@ state: you do not need to read them. Block 4's skill briefs you on the opportuni
 - **Run the skill.** In Claude Code, inside the `loopwise` folder, type `/` and the skill name.
   Start a fresh session before each skill: type `/clear` first. Every skill starts with three
   lines (where you are, what you end with, how long), says before each step what to do and what a
-  good answer looks like, and ends with the next command. It talks in the language you write in.
+  good answer looks like. In the workshop it ends there: the next command is on the slide. It talks in the language you write in.
   Your block file has the full order.
 - **Try first.** Before it drafts anything, the skill asks you one question about the step. Answer it
   yourself, in a sentence or two. Afterwards the output shows your answer next to its draft, under
