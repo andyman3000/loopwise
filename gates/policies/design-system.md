@@ -4,9 +4,19 @@
 
 ## Owner
 
-The designer role owns this rule. A failing design gate lands on the designer's table.
-The designer gets the page fixed, waives the gate for one variant, or adds the missing token or
-component to the design system (`site/styles.css`) as its owner: fix, waive, or add it to the system.
+The designer role owns this rule.
+The designer decides it once, in the design system, not page by page.
+In a factory run the designer has nothing to do: the agent fixes each finding.
+Outside the run the designer has two moves.
+The designer makes an exception for one variant: a waiver, below.
+Or the designer adds the missing token or component to `site/styles.css`.
+
+## Where it fires
+
+- Right after each write in `site/hardened/`. A guard runs the gate on the written file.
+  It flags each finding, and the agent fixes it at once. Nobody is asked.
+- In `npm run check`, for every hardened variant.
+- In `npm run release`, which runs every gate again before `shipped` changes.
 
 ## Rule
 
@@ -47,9 +57,11 @@ The gate reads the HTML, CSS and JS files of each hardened variant.
 Page-local classes are allowed, such as a calendar or a list of slot times.
 Their CSS must use tokens only. The colour and spacing rules check that.
 
-## Soft gate: the waiver
+## Soft gate: the owner's exception, outside the run
 
+The gate is soft: its owner may make an exception.
 Only the designer can let a failing design gate pass.
+The designer does this outside a factory run, never inside it.
 The designer writes a waiver file in `discovery/decisions/`.
 Its file name contains `waiver`, for example `004-design-waiver-call-slot.md`.
 It holds these lines:

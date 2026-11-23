@@ -51,6 +51,9 @@ loopwise/
                    styles.css: the design system (tokens and components), owned by the designer
   gates/           gates.json: the release gates, owner role, soft or hard
                    policies/: the rule behind each gate (launch-decision.md, design-system.md, no-prices.md)
+  scripts/         check-gates.js: the release gates; release.js: npm run release
+                   hooks/gate-guard.js: the guard, run by Claude Code before and after each write
+                   in site/hardened/ and on site/config.json (wired in .claude/settings.json)
   lib/             discovery-view.js: renders discovery/ at /discovery
                    opportunity-map.js: /discovery/map, opportunities in rows by KPI driver
                    opportunity-tree.js: /discovery/tree, the comparison drawn as an opportunity tree
@@ -184,8 +187,8 @@ prototype, the intent and the launch spec:
 | # | Skill or command | Writes |
 |---|---|---|
 | 12 | `loopwise-variant-spec <variant> launch` | `discovery/specs/<variant>-launch.md`: at most one page, only what the prototype does not show (non-functional requirements, decisions, events against the launch card, invisible behaviour, open points) |
-| 13 | `loopwise-factory <variant> run-1` or `run-2` | `site/hardened/<variant>/`: the variant rebuilt for production on the design system, from the kit only; `discovery/factory/<variant>-questions.md` (what the kit left open) and a review report. Starts only after the validation gate passes: a launch decision by the product lead in `discovery/decisions/`. Plants one error per run; `npm run check` shows the gate that fires |
-| 14 | `npm run release -- <variant>` | the `shipped` key in `site/config.json`, only when the validation and legal gates pass, the design gate passes or is waived, and a release decision by the product lead is in `discovery/decisions/` |
+| 13 | `loopwise-factory <variant> run-1` or `run-2` | `site/hardened/<variant>/`: the variant rebuilt for production on the design system, from the kit only; `discovery/factory/<variant>-questions.md` (what the kit left open) and a review report. Starts only after the validation gate passes: a launch decision by the product lead in `discovery/decisions/`. Plants one error per run. The guard (`scripts/hooks/gate-guard.js`) catches it where it would happen: in run 1 the design gate flags it right after the write and the agent fixes it; in run 2 the legal gate refuses the price before the write. Nobody is asked in the run |
+| 14 | `npm run release -- <variant> --approved-by <name>` | the `shipped` key in `site/config.json`, only when the validation and legal gates pass and the design gate passes or is waived. The product lead's yes on the Claude Code permission prompt is the approval, like approving a pull request for production. The release then writes its record into `discovery/decisions/`. On a hold nothing runs. Only the release sets `shipped`: the guard refuses any other write to it |
 | 15 | `loopwise-factory <variant> retro` | `discovery/factory/<variant>-retro.md`: what the gate caught, what it would have missed, who decided, what the factory had to ask |
 
 `loopwise-compare-variants` compares several variants of one opportunity, each with a launch card, before

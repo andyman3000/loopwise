@@ -628,3 +628,26 @@ Decided by the trainers on 2026-11-20:
   ideas, test card, spec, persona walkthrough, factory) also frames each human step. The try-first
   questions and the human-decides fields are unchanged.
 - **Undo:** revert the commit of this entry; the six tags move back.
+
+### P5-9. Checks at the right places: the guard, and one person asked live
+
+- **Question:** in both factory runs a person sat at the gate after the fact. In run 1 the
+  designer chose for each finding: fix, waiver or an addition to the system. In run 2 legal
+  tried a waiver. The product lead filled in a release decision by hand. A company does not ask its
+  designer and its lawyer about every page. The runs taught the opposite.
+- **Choice:** the system puts each check where the mistake would happen. A guard
+  (`scripts/hooks/gate-guard.js`, wired in `.claude/settings.json`) runs before and after each
+  write in `site/hardened/`. The legal gate (hard) refuses a price before the write lands. The
+  design gate (soft) flags a finding right after the write. The agent fixes it. Nobody is
+  asked in the run. Owners decide the rule once, outside the run. The designer may write a waiver or
+  change `site/styles.css`. Legal may change the rule. Before each run, the owner role reads its
+  policy. It says in one sentence what the system will catch. The legal waiver try is gone. One person is
+  asked live: the product lead, at the release. The factory runs
+  `npm run release -- <variant> --approved-by <name>`. The yes on its permission prompt is the
+  approval, as for a pull request to production. The release writes its own record
+  into `discovery/decisions/`. Only the release sets `shipped`; the guard refuses any other write.
+  A shipped variant is served only from its hardened build. Block 10 names the stand-ins: the
+  guard for a linter, `npm run check` for CI, `npm run release` for the deploy pipeline.
+- **Reason:** decided by the trainers on 2026-11-23. Owners put their
+  judgement into the system once. The runs now show where that judgement sits.
+- **Undo:** revert the commits of this entry; the tags v3-06 to v3-08 move back.

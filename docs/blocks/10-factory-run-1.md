@@ -1,13 +1,13 @@
-# Factory run 1: the design gate fires, heal it
+# Factory run 1: the design gate fires, the agent fixes it
 
 > **Pairs or threes, at one laptop. 50 minutes. Task: hand call-slot to the factory, let it build
-> for production, and heal what the design gate finds.**
+> for production, and read what the design gate did.**
 
 **What it's for:** the prototype `call-slot` was built to learn (the vibe cycle): fast, on the
 design system, good enough to test one assumption with a person. Now it is built to earn (the
 hardening cycle): rebuilt for real visitors, in `site/hardened/call-slot/`. The factory runs in the
-open. Gates hold the release until the checks pass and a person agrees. The agent never decides at
-a gate.
+open. The system puts each check where the mistake would happen. People are not asked in the run.
+Each owner decided the rule once, not each page. The agent never decides at a gate.
 
 The factory reads only the handover kit, three files:
 
@@ -15,17 +15,37 @@ The factory reads only the handover kit, three files:
 - the intent `discovery/intents/format-fit.md`: why;
 - the launch spec `discovery/specs/call-slot-launch.md`: only what the prototype does not show.
 
-**Three gates.** The validation gate (hard, owner: product lead) stands at the entry: the factory
+**Three gates.** The validation gate (hard, owner: product lead) stands at the entry. The factory
 builds only a variant the product lead decided to launch. call-slot passed its test with people,
-so it passes here. A variant of your own from the morning has no launch decision and is stopped
-(at the bootcamp the morning builds no page, so there is nothing to harden yet). It gets in only
-after a test with people and a launch decision by the product lead; the format is in
-`gates/policies/launch-decision.md`.
-The design gate (soft, owner: designer) and the legal gate (hard, owner: legal) check the build.
+so it passes here. Your own variant from the morning is a prototype. It has no launch decision, so
+the entry gate stops it. It gets in only after a test with people. Then the product lead must decide
+launch. The format is in `gates/policies/launch-decision.md`.
+The design gate and the legal gate check the build:
+
+| | Design gate | Legal gate |
+|---|---|---|
+| Rule | pages use the design system | no prices on the website |
+| Owner | designer | legal |
+| Kind | soft: the owner may make an exception | hard: no exception, legal included |
+| Where it fires | right after the write; the agent fixes it | before the write; the write is refused |
+| Owner in the run | nothing to do | nothing to do |
+| Owner outside the run | an exception for one variant (a waiver), or a change to the system (`site/styles.css`) | a change to the rule (`gates/policies/no-prices.md`, `gates/gates.json`) |
 
 **Roles.** Before you start, give each person a role. One is the **designer**: owns the design
 system and the design gate. One is the **product lead**: decides the release in run 2. In a three,
-the third is **legal**: owns the legal gate in run 2. Everybody types; the role decides.
+the third is **legal**: owns the legal gate in run 2. In a pair, the designer is legal too.
+Everybody types. The role decides.
+
+> **On your laptop vs in a company.** Each part here stands in for something a company runs.
+>
+> | On your laptop | In a company |
+> |---|---|
+> | the guard on a write in `site/hardened/` | a linter or a pre-commit check |
+> | `npm run check` | CI |
+> | `npm run release` | the deploy pipeline |
+> | the guard on `site/config.json` | branch protection |
+> | the yes on the release prompt | a pull request approval |
+> | `"shipped"` in `site/config.json` | production |
 
 ## What you do (about 50 min)
 
@@ -47,24 +67,26 @@ the third is **legal**: owns the legal gate in run 2. Everybody types; the role 
    ```bash
    git checkout -- discovery/specs/call-slot-launch.md
    ```
-5. **Run the factory (15 min).** Start a fresh session (`/clear`). Then
-   `/loopwise-factory call-slot run-1`. It first runs the validation gate in the open, then builds. It plants one error on purpose and does
-   not tell you which. At the end it runs `npm run check` in the open. Read the gate lines: each
-   finding names the file, the line, the rule and the owner. A fresh review agent also writes
-   `discovery/factory/call-slot-review-run-1.md`. Read it: it blocks nothing and decides nothing.
-   The factory's open questions are in `discovery/factory/call-slot-questions.md`.
-6. **Heal (10 min).** The design gate is soft and lands on the designer's table. The designer
-   decides, not the agent: fix, waive, or add it to the system.
-   - **Fix it:** tell Claude Code "fix the finding the design gate printed", then `npm run check`.
-   - **Or waive it:** the designer copies `.claude/skills/loopwise-factory/waiver-template.md` to
-     `discovery/decisions/<next number>-design-waiver-call-slot.md` and fills it in with their own
-     name and reason. Then `npm run check`.
-   - **Or add it to the system:** if the page needs a token or a component the design system
-     lacks, Claude Code adds it to `site/styles.css`, and the page uses it. The designer approves
-     the addition as the system's owner, like approving a pull request with a new component. Then
-     `npm run check`. This is an option, not the usual way: fixing the page is quicker.
-
-   Done when `npm run check` ends with `gates: pass`.
+5. **Run the factory (17 min).** Start a fresh session (`/clear`). Then
+   `/loopwise-factory call-slot run-1`.
+   - First the designer reads the rule, `gates/policies/design-system.md`. The designer says in
+     one sentence what the system will catch (about 2 min).
+   - The factory runs the validation gate in the open, then builds. It plants one error on
+     purpose and does not tell you which.
+   - A guard watches each write in `site/hardened/`. Right after the write, the guard flags the
+     design finding: the file, the line, the rule and the owner. The agent fixes it at once.
+     Nobody is asked.
+   - At the end the factory runs `npm run check` in the open. It ends with `gates: pass`.
+   - A fresh review agent writes `discovery/factory/call-slot-review-run-1.md`. Read it: it blocks
+     nothing and decides nothing. The factory's open questions are in
+     `discovery/factory/call-slot-questions.md`.
+6. **Read what the system did (5 min).** The factory names who owns the gate: the designer. It
+   names the kind (soft) and where the gate fired: right after the write in `site/hardened/`.
+   Nobody was asked in the run. The designer's judgement was already in the design system.
+   Outside the run, the designer has two moves:
+   - an exception for one variant: a waiver in `discovery/decisions/`, with name and reason;
+   - a change to the system: a new token or component in `site/styles.css`, which the designer
+     approves as its owner.
 7. **Look at it (5 min).** `npm start`, then open
    `http://localhost:3000/inquiry.html?variant=call-slot&build=hardened` and click through it once.
    Compare it with the prototype at `http://localhost:3000/inquiry.html?variant=call-slot`. Stop the
@@ -84,7 +106,7 @@ release still waits for.
 **If you are stuck:** continue from the reference state after this run:
 `git switch -c from-07 v3-07-factory-run-1`.
 
-**For the Abgleich:** what did the gate catch? Fix, waiver or an addition to the system: who decided, and why? Which line of
-your own launch spec did the prototype already show?
+**For the Abgleich:** whose judgement was in the system, and where? Which line of your own launch
+spec did the prototype already show?
 
 **Next:** [11-factory-run-2.md](11-factory-run-2.md).

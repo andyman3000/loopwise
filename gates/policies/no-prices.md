@@ -5,8 +5,19 @@
 
 ## Owner
 
-The legal role owns this rule. A failing legal gate lands on legal's table.
-The fix is in the page: the price comes out.
+The legal role owns this rule.
+Legal decides it once, in this file, not page by page.
+In a factory run legal has nothing to do: the guard refuses the price.
+Outside the run, legal can change the rule itself.
+
+## Where it fires
+
+- Before each write in `site/hardened/`. A guard reads the text the write would leave.
+  If it holds a price, the write is refused. The price never reaches the file.
+- In `npm run check`, for every hardened variant.
+- In `npm run release`, which runs every gate again before `shipped` changes.
+
+A price that reaches a file anyway is fixed in the page: the price comes out.
 
 ## Rule
 

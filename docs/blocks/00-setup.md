@@ -62,6 +62,10 @@ The repo allows the routine steps in `.claude/settings.json`: writing in `discov
 `grep` and `git status`. For anything else Claude Code asks first. Read the command. Say yes if it
 stays inside the `loopwise` folder. Ask the trainer if you are unsure.
 
+In build to earn the repo also runs a guard. Claude Code runs this check before and after each
+write in `site/hardened/`. It also runs on each write to `site/config.json`. It may refuse a
+write, or ask you a question with a reason. Say yes only when the reason names your role.
+
 ## One Claude Code session per skill
 
 Start a fresh Claude Code session before each skill. Type `/clear`, or quit Claude Code and start it

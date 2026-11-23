@@ -509,7 +509,7 @@ export function formatResult(result) {
     if (parts.length) line += `. ${parts.join('; ')}`;
     if (g.status === 'fail') {
       line += g.kind === 'soft'
-        ? `. On the ${g.owner}'s table: fix it, or the ${g.owner} waives it with a file in discovery/decisions/ (rule: ${g.rule}).`
+        ? `. Fix it in the page. Outside the run, the ${g.owner} may waive it with a file in discovery/decisions/, or change the system in site/styles.css (rule: ${g.rule}).`
         : `. On the ${g.owner} table: fix it. A hard gate takes no waiver (rule: ${g.rule}).`;
     }
     lines.push(line);

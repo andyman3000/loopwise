@@ -14,8 +14,16 @@ npm run check   # citations, quotes, event names, dashes in discovery/ and produ
                 # then the release gates on site/hardened/ (validation and legal: hard, design: soft)
 node scripts/check-gates.js --entry <variant>   # validation gate: has the product lead decided launch?
 node scripts/check-gates.js --json   # the gate result as JSON, read by the release step
-npm run release -- <variant>         # simulated release: sets the shipped key behind both gates and a release decision
+npm run release -- <variant> --dry-run   # what the release still waits for
+npm run release -- <variant> --approved-by <name>   # simulated release: runs every gate again, sets the shipped key, writes the record
 ```
+
+In build to earn a guard runs too: `scripts/hooks/gate-guard.js`, wired in `.claude/settings.json`.
+Claude Code runs it before and after each write in `site/hardened/` and on `site/config.json`.
+It refuses a price before the write lands. It flags a design finding right after the write, and
+the agent fixes it. Only `npm run release` sets `shipped`. The product lead says yes on its
+permission prompt. That yes is the approval, as for a pull request to production. Prototypes in
+`site/variants/` get none of this.
 
 With `npm start` running, `http://localhost:3000/discovery` shows every artefact as a readable page,
 and draws the KPI tree as a tree. `http://localhost:3000/discovery/map` shows every opportunity as a
