@@ -1,0 +1,607 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Opportunity tree</title><style>
+:root{--bg:#faf8f4;--fg:#22262b;--muted:#5b636c;--accent:#2f5d62;--accent-fg:#fff;--line:#c9c3b8;--card:#fff;
+--well:#2f7d4f;--partly:#b07a10;--un:#b5452f;--chip:#efebe4;--lost:#f0d6d0}
+@media (prefers-color-scheme:dark){:root{--bg:#1b1e21;--fg:#e8e6e1;--muted:#a3a8ad;--accent:#7fb3b8;--accent-fg:#10201f;
+--line:#4a5056;--card:#23272b;--well:#6cc08e;--partly:#e2b54f;--un:#ef8a74;--chip:#2c3135;--lost:#4a2e2a}}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--bg);color:var(--fg);font:16px/1.4 system-ui,-apple-system,sans-serif;overflow:hidden}
+a{color:var(--accent)}
+code{font-size:.88em;background:var(--chip);padding:0 .25em;border-radius:3px}
+#stage{position:fixed;inset:0 0 3.5rem 0;overflow:hidden}
+#world{position:absolute;left:0;top:0;width:1600px;padding:40px;transform-origin:0 0;transition:transform .6s cubic-bezier(.4,.1,.2,1)}
+#world>svg{position:absolute;left:0;top:0;width:1600px;pointer-events:none;overflow:visible}
+svg path{fill:none;stroke:var(--line);stroke-width:2}
+svg path.link{stroke:var(--muted);stroke-width:2.5}
+svg path.assumed{stroke-dasharray:8 6}
+svg path.sol-link{stroke:var(--accent);stroke-width:2;stroke-dasharray:3 5}
+svg path.hot{stroke:var(--accent);stroke-width:4}
+svg path.dim{opacity:.15}
+.w-head h1{font-size:30px;line-height:1.2;margin:0 0 6px}
+.w-head p{margin:0 0 4px;color:var(--muted);font-size:15px}
+.w-head .status{color:var(--fg);font-size:17px}
+.w-head .status b.open{color:var(--un)}
+.goalrow{display:flex;flex-direction:column;align-items:center;gap:26px;margin:22px 0 0}
+.node{background:var(--card);border:2px solid var(--line);border-radius:10px;padding:10px 14px}
+.goal{background:var(--accent);color:var(--accent-fg);border-color:var(--accent);font-size:22px;font-weight:650;text-align:center}
+.branch{font-size:19px;font-weight:600;text-align:center}
+.kind{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;opacity:.8;font-weight:600}
+.drivers{display:grid;grid-template-columns:repeat(var(--n),1fr);gap:16px;margin-top:44px;align-items:start}
+.driver{cursor:zoom-in;display:flex;flex-direction:column;gap:4px;min-width:0;overflow-wrap:anywhere}
+.driver .step{font-size:13px;color:var(--muted);font-weight:600}
+.driver .name{font-size:20px;font-weight:650}
+.driver .big{font-size:24px;font-weight:700}
+.driver .big small{font-size:15px;font-weight:400;color:var(--muted)}
+.driver .sum{font-size:15px;color:var(--muted)}
+.bar{display:block;height:14px;border-radius:7px;background:var(--lost);overflow:hidden;margin:4px 0}
+.bar i{display:block;height:100%;background:var(--accent)}
+.driver.gap{border-style:dashed;border-color:var(--muted)}
+.nocand{font-size:13px;font-style:italic;color:var(--muted)}
+.cands,.sols{display:grid;grid-template-columns:repeat(var(--n),1fr);gap:24px;align-items:start}
+.cands{margin-top:110px}
+.sols{margin-top:70px}
+.col{display:flex;flex-direction:column;gap:14px;min-width:0}
+.card{background:var(--card);border:2px solid var(--line);border-top:8px solid var(--lvl);border-radius:12px;padding:16px 18px;cursor:zoom-in;min-width:0}
+.card.well{--lvl:var(--well)}.card.partly{--lvl:var(--partly)}.card.un{--lvl:var(--un)}
+.card.chosen{outline:4px solid var(--well)}
+.top{display:flex;gap:6px;flex-wrap:wrap;align-items:center;font-size:12px}
+.id{font-weight:700;font-size:15px;color:var(--muted);margin-right:2px}
+.tag{border-radius:4px;padding:1px 6px;font-weight:600}
+.tag.fav{background:var(--accent);color:var(--accent-fg)}
+.tag.you{border:1.5px solid var(--fg)}
+.tag.pick{background:var(--well);color:#fff}
+.card .title{font-size:22px;line-height:1.2;margin:6px 0 12px;font-weight:650}
+.row{display:grid;grid-template-columns:82px 1fr;gap:8px;margin:8px 0;align-items:baseline}
+.row .k{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+.row .v{font-size:17px}
+.pill{display:inline-block;border-radius:999px;padding:0 9px;font-size:13px;font-weight:650;color:#fff;white-space:nowrap;margin-right:4px}
+.pill.well{background:var(--well)}.pill.partly{background:var(--partly)}.pill.un{background:var(--un)}
+.hint{font-size:12px;color:var(--muted);margin-top:8px}
+.sol{background:var(--card);border:2px solid var(--line);border-top:6px solid var(--lvl,var(--line));border-radius:10px;padding:10px 14px;cursor:zoom-in;display:flex;flex-direction:column;gap:6px}
+.sol.well{--lvl:var(--well)}.sol.partly{--lvl:var(--partly)}.sol.un{--lvl:var(--un)}
+.sol.picked{outline:3px solid var(--well);outline-offset:-1px}
+.sol.rest{border-style:dashed;border-top-width:2px;color:var(--muted);justify-content:center}
+.sol .mech{font-weight:650;font-size:18px;line-height:1.25}
+.sol .open-btn{align-self:flex-start;margin-top:4px}
+.notpicked{margin:0;padding-left:0;list-style:none}.notpicked li{margin:4px 0}
+.exps{display:grid;grid-template-columns:repeat(var(--n),1fr);gap:24px;align-items:start;margin-top:60px}
+.exp{background:var(--card);border:2px solid var(--accent);border-top:6px solid var(--lvl,var(--line));border-radius:10px;padding:10px 14px;cursor:zoom-in;display:flex;flex-direction:column;gap:6px}
+.exp.well{--lvl:var(--well)}.exp.partly{--lvl:var(--partly)}.exp.un{--lvl:var(--un)}
+.exp .mech{font-weight:650;font-size:18px;font-family:ui-monospace,Menlo,monospace}
+.dots{display:flex;gap:5px}.dots i{width:14px;height:14px;border-radius:50%;border:2px solid var(--accent)}.dots i.f{background:var(--accent)}
+.exp .now{font-size:14px;color:var(--muted);line-height:1.3}
+.exp .open-btn{align-self:flex-start;margin-top:2px}
+.exp .btns{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.exp .btns .open-btn{margin-top:0}
+a.try{font-size:13px;font-weight:600;color:var(--accent-fg);background:var(--accent);border:1.5px solid var(--accent);border-radius:6px;padding:3px 10px;text-decoration:none;white-space:nowrap}
+a.try:hover{filter:brightness(1.1)}
+.stages{margin:0;padding-left:1.2em}.stages .runs{margin:0;padding-left:1em}.stages li{color:var(--muted)}.stages li.done{color:var(--fg)}
+.exp .more .x{display:none}
+body.focus .exp.dim{opacity:.3}
+body.focus .exp.hit{opacity:1;outline:3px solid var(--accent);outline-offset:-1px}
+body.flat .exps{grid-template-columns:1fr;margin-top:24px}body.flat .exps>div{grid-column:auto!important}
+body.flat .exp .more .x{display:block}
+.acts{display:flex;gap:4px;flex-wrap:wrap;align-items:center}
+.chip{font-size:12px;background:var(--chip);border-radius:4px;padding:1px 6px}
+.chip.assumed{background:transparent;border:1px dashed var(--muted)}
+.more{display:none;border-top:1px solid var(--line);margin-top:10px;padding-top:6px;font-size:13px;line-height:1.4}
+.more h3{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:9px 0 2px}
+.more .pill{font-size:10px;padding:0 6px}
+.more blockquote{margin:0;font-style:italic}
+.more small,.more .src{font:10px ui-monospace,Menlo,monospace;color:var(--muted);font-style:normal}
+.more .basis{color:var(--muted)}
+.more ul{margin:2px 0;padding-left:14px}
+.driver .more{font-size:11px}
+.part{break-inside:avoid}
+.card .more .x,.sol .more .x{display:none}
+.more .basis{display:block}
+.tip{position:relative;cursor:help}
+.tip:hover::after{content:attr(data-tip);position:absolute;left:0;top:calc(100% + 6px);z-index:5;width:max-content;max-width:300px;white-space:normal;background:var(--fg);color:var(--bg);font-size:14px;font-weight:500;line-height:1.35;border-radius:6px;padding:6px 9px}
+.open-btn{font:inherit;font-size:13px;font-weight:600;color:var(--accent);background:transparent;border:1.5px solid var(--accent);border-radius:6px;padding:3px 10px;margin-top:10px;cursor:pointer}
+.open-btn:hover{background:var(--accent);color:var(--accent-fg)}
+/* the large view: one candidate over the whole screen, for reading from the back of the room */
+#veil{position:fixed;inset:0;background:rgba(20,24,28,.45);display:none;z-index:9}
+#detail{position:fixed;inset:24px 24px calc(3.5rem + 24px);background:var(--card);border:2px solid var(--accent);border-radius:16px;padding:24px 36px 32px;overflow:auto;display:none;z-index:10}
+body.big #veil,body.big #detail{display:block}
+#detail .dh{display:flex;gap:16px;align-items:flex-start;justify-content:space-between}
+#detail .dh h2{font-size:1.45em;line-height:1.2;margin:.1em 0 .4em}
+#detail .dh .id{font-size:.9em}
+#detail .close{font:inherit;font-size:.7em;border:1px solid var(--line);background:var(--card);color:inherit;border-radius:8px;padding:6px 12px;cursor:pointer;white-space:nowrap}
+#detail .more{display:block;columns:2;column-gap:2.6em;column-rule:1px solid var(--line);border:0;margin:0;padding:0;font-size:1em;line-height:1.5}
+#detail .more .part{padding:0 0 .55em;margin:0 0 .65em;border-bottom:1px solid var(--line)}
+#detail .more .part:last-child{border-bottom:0}
+#detail .more h3{font-size:.8em;font-weight:700;text-transform:none;letter-spacing:0;color:var(--fg);margin:0 0 .2em;display:flex;gap:.4em;align-items:center}
+#detail .more h3 .pill{font-size:.85em}
+#detail .more .line{display:block;margin-top:.2em}
+#detail .more .basis{font-size:.8em;margin-top:.3em}
+#detail .more code{background:none;padding:0;font:inherit;font-weight:600}
+#detail .more small{display:block;font:.6em ui-monospace,Menlo,monospace;color:var(--muted);margin-top:.2em}
+#detail .more .chip{font-size:.62em}
+#detail .more .acts{margin-top:.4em}
+#detail .more ul{margin:.1em 0 0;padding-left:1.1em}
+#detail .more li{margin:.1em 0}
+#detail .more .go{border-bottom:0;font-weight:600}
+#detail .more ol.voices{margin:.3em 0 .2em;padding-left:1.3em}
+#detail .more ol.voices li{margin:.3em 0}
+#detail .more ol.voices q{font-style:italic}
+#detail .open-btn{display:none}
+.legend{display:flex;flex-wrap:wrap;gap:6px 22px;font-size:14px;color:var(--muted);margin-top:40px}
+.legend span{display:inline-flex;gap:6px;align-items:center}
+.sw{width:28px;height:0;border-top:2.5px solid var(--muted)}
+.sw.d{border-top-style:dashed}.sw.s{border-top:2.5px dotted var(--accent)}
+.box{width:14px;height:14px;border-radius:3px}
+.box.gapbox{border:1.5px dashed var(--muted)}
+.decide{margin-top:60px;background:var(--card);border:2px solid var(--line);border-radius:12px;padding:18px 20px;display:grid;gap:8px;cursor:zoom-in;max-width:1000px}
+.decide .q{font-size:22px;font-weight:650}
+.decide .row{grid-template-columns:200px 1fr;margin:0}
+.decide .row b{color:var(--muted);font-weight:600;font-size:14px}
+.decide .row span{font-size:15px}
+.decide .open{color:var(--un);font-weight:650}
+.decide p{margin:4px 0 0;font-size:14px;color:var(--muted)}
+/* zoomed in: the focused element shows its details, the rest steps back */
+.on .more,.decide .more{display:block}
+.on .hint{display:none}
+.on{cursor:default}
+body.f-funnel .driver .more{display:block}
+body.focus .card.dim,body.focus .sol.dim,body.focus .driver.dim{opacity:.3}
+body.focus .driver.hit,body.focus .card.hit,body.focus .sol.hit{opacity:1;outline:3px solid var(--accent);outline-offset:-1px}
+nav{position:fixed;left:0;right:0;bottom:0;height:3.5rem;display:flex;gap:6px;align-items:center;justify-content:center;background:var(--card);border-top:1px solid var(--line);font-size:14px;padding:0 12px;overflow-x:auto}
+nav button{font:inherit;color:inherit;border:1px solid var(--line);background:var(--card);border-radius:8px;padding:5px 10px;cursor:pointer;white-space:nowrap}
+nav button.on{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+nav kbd{font:11px ui-monospace,Menlo,monospace;opacity:.65;margin-left:4px}
+nav .sep{width:1px;height:24px;background:var(--line);margin:0 4px;flex:none}
+nav .help{color:var(--muted);font-size:12px;white-space:nowrap}
+.empty{max-width:48rem;margin:2rem auto;padding:0 16px}
+/* phone or small window: no camera, one scrolling page with every detail open */
+body.flat{overflow:auto}
+body.flat #stage{position:static;overflow:visible}
+body.flat #world{position:static;width:auto;padding:16px;transform:none!important}
+body.flat #world>svg,body.flat nav,body.flat .hint{display:none}
+body.flat .drivers{grid-template-columns:1fr 1fr;margin-top:20px}
+body.flat .cands,body.flat .sols{grid-template-columns:1fr;margin-top:24px}
+body.flat .more{display:block;font-size:14px}
+body.flat .card .more .x,body.flat .sol .more .x{display:block}
+body.flat #detail{inset:8px;padding:16px}
+body.flat #detail .more{columns:1}
+body.flat .more h3{font-size:12px}
+body.flat .more small,body.flat .more .src,body.flat .more .pill{font-size:12px}
+body.flat .goalrow{gap:12px}
+body.flat .row{grid-template-columns:70px 1fr}
+body.flat .decide .row{grid-template-columns:1fr}
+</style></head><body>
+<div id="stage"><div id="world">
+<svg aria-hidden="true"></svg>
+<div class="w-head">
+<h1>Which buyer need before the booking do we work on for the next eight weeks?</h1>
+<p class="status">Your decision: <b>C1: &quot;I can't tell which format fits my group.&quot; Chosen by Product lead (Loopwise), 2026-08-18. The product lead's words: &quot;C1 because the evidence is very good and it affects a step very early in the funnel.&quot;</b></p>
+<p>Drawn from <a href="/discovery/opportunity-comparison.md"><code>discovery/opportunity-comparison.md</code></a>, an assessment by an agent, not a decision, data up to 2026-08-18. Material: interviews, inquiry mails, inbox and data are synthetic; the feedback free text is an anonymised composite. This file repeats that label.</p>
+</div>
+<div class="goalrow">
+<div class="node goal"><span class="kind">Business goal</span>more booked in-house workshops per quarter</div>
+<div class="node branch"><span class="kind">KPI branch</span>Branch A: more inquiries that end in a booking</div>
+</div>
+<div class="drivers" style="--n:6"><div class="node driver" tabindex="0" data-kind="step" data-view="S1" data-name="website visits">
+<span class="step">Step 1</span><span class="name">website visits</span>
+<span class="big">3,766 <small>visits, the top of the funnel</small></span>
+
+<div class="more">
+<b>Counted in the data:</b> 3,766 visits, the top of the funnel
+
+<h3>Candidates on this step</h3>none
+</div>
+</div><div class="node driver" tabindex="0" data-kind="step" data-view="S2" data-name="reach rate">
+<span class="step">Step 2</span><span class="name">reach rate</span>
+<span class="big">740 <small>of 3,766 go on</small></span><span class="bar" title="3,026 of 3,766 lost at this step"><i style="width:19.6%"></i></span>
+
+<div class="more">
+<b>Counted in the data:</b> 3,026 of 3,766 visits never open the inquiry page
+<h3>Data behind the dashed link</h3>of visits that see the formats page, 376 of 2,291 open the inquiry page; of the others, 364 of 1,475
+<h3>Candidates on this step</h3>C1 (assumed)
+</div>
+</div><div class="node driver" tabindex="0" data-kind="step" data-view="S3" data-name="start rate">
+<span class="step">Step 3</span><span class="name">start rate</span>
+<span class="big">194 <small>of 740 go on</small></span><span class="bar" title="546 of 740 lost at this step"><i style="width:26.2%"></i></span>
+
+<div class="more">
+<b>Counted in the data:</b> 546 of 740 inquiry page visits never start the form
+
+<h3>Candidates on this step</h3>C1, C2
+</div>
+</div><div class="node driver" tabindex="0" data-kind="step" data-view="S4" data-name="submit rate">
+<span class="step">Step 4</span><span class="name">submit rate</span>
+<span class="big">113 <small>of 194 go on</small></span><span class="bar" title="81 of 194 lost at this step"><i style="width:58.2%"></i></span>
+
+<div class="more">
+<b>Counted in the data:</b> 81 of 194 started forms are never sent
+
+<h3>Candidates on this step</h3>C1 (assumed)
+</div>
+</div><div class="node driver" tabindex="0" data-kind="step" data-view="S5" data-name="call rate">
+<span class="step">Step 5</span><span class="name">call rate</span>
+<span class="big">55 <small>of 113 go on</small></span><span class="bar" title="58 of 113 lost at this step"><i style="width:48.7%"></i></span>
+
+<div class="more">
+<b>Counted in the data:</b> 58 of 113 sent inquiries get no scoping call
+
+<h3>Candidates on this step</h3>C3 (assumed), C4
+</div>
+</div><div class="node driver" tabindex="0" data-kind="step" data-view="S6" data-name="booking rate">
+<span class="step">Step 6</span><span class="name">booking rate</span>
+<span class="big">23 <small>of 55 go on</small></span><span class="bar" title="32 of 55 lost at this step"><i style="width:41.8%"></i></span>
+
+<div class="more">
+<b>Counted in the data:</b> 32 of 55 scoping calls end without a booking
+<h3>Data behind the dashed link</h3>calls from visits that saw the buyer preparation page end in a booking 8 of 27 times; the other calls 15 of 28 times
+<h3>Candidates on this step</h3>C1 (assumed), C3 (assumed), C4 (assumed)
+</div>
+</div></div>
+<div class="cands" style="--n:4"><article class="card well chosen" tabindex="0" data-kind="card" data-view="C1" data-id="C1" data-links="[{&quot;name&quot;:&quot;reach rate&quot;,&quot;assumed&quot;:true},{&quot;name&quot;:&quot;start rate&quot;,&quot;assumed&quot;:false},{&quot;name&quot;:&quot;submit rate&quot;,&quot;assumed&quot;:true},{&quot;name&quot;:&quot;booking rate&quot;,&quot;assumed&quot;:true}]">
+<div class="top"><span class="id">C1</span><span class="tag fav">comparison favours</span><span class="tag pick">chosen</span></div>
+<div class="title">&quot;I can't tell which format fits my group.&quot; (buyer, before booking)</div>
+<div class="row"><span class="k">Evidence</span><span class="v"><span class="pill well tip" data-tip="11 buyers · 3 source groups: inquiry emails, support requests, interviews">well supported</span></span></div>
+<div class="row"><span class="k">Lever</span><span class="v"><b>start rate</b> <span class="pill partly tip" data-tip="546 of 740 lost here. 3 more steps only assumed">partly supported</span></span></div>
+<button type="button" class="open-btn" data-open="C1">Details</button>
+<div class="more">
+<div class="part"><h3>Strongest quote</h3><blockquote>&quot;I didn't want to send your form with a guess in it, so I am writing instead.&quot;</blockquote></div>
+<div class="part x"><h3>Evidence <span class="pill well">well supported</span></h3><b class="line">11 voices from 3 sources back this up:</b><ol class="voices"><li><b>Inquiry emails (5):</b> <q>Side by side, I can't tell which one is us.</q></li><li><b>Support requests (4):</b> <q>I looked at your formats but cannot tell which one fits</q></li><li><b>Interviews (2):</b> <q>Tell me what's on the menu and I'll react to it.</q></li></ol><span class="basis">Each about their own situation now or at first contact.</span></div>
+<div class="part x"><h3>Lever <span class="pill partly">partly supported</span></h3><span class="line"><b>start rate</b>: 546 of 740 lost here</span><span class="line">3 more steps only assumed</span><span class="line">direct, the website can change it; but the site already says the format is settled in the scoping call</span></div>
+<div class="part"><h3>Wins on</h3>most voices in most source groups; three buyers say it kept them from the form</div>
+<div class="part"><h3>Loses on</h3>four buyers knew their format; the site already answers the question and buyers still feel stuck</div>
+<div class="part"><h3>Can we see a change in 8 weeks? <span class="pill partly">partly</span></h3><div class="x"><span class="line"><code>inquiry_started</code> 194 and inquiry page visits 740 in 26 weeks; the data cannot say why a visit stops</span><span class="basis">Judged from how often the event that would show the change is counted in the data.</span></div></div>
+<div class="part x"><h3>Open gap</h3>which part of the formats page leaves buyers unsure. No sender says. A walk-through of the formats and inquiry pages with buyers could answer it.</div>
+<div class="part x go"><a href="/discovery/opportunity-comparison.md#evidence-C1">All details of C1, with every quote and source →</a></div>
+</div>
+</article><article class="card well" tabindex="0" data-kind="card" data-view="C2" data-id="C2" data-links="[{&quot;name&quot;:&quot;start rate&quot;,&quot;assumed&quot;:false}]">
+<div class="top"><span class="id">C2</span></div>
+<div class="title">&quot;I feel I must pick a format before I can send you an inquiry.&quot; (buyer, before booking)</div>
+<div class="row"><span class="k">Evidence</span><span class="v"><span class="pill well tip" data-tip="3 buyers · 1 source group: support requests">well supported</span></span></div>
+<div class="row"><span class="k">Lever</span><span class="v"><b>start rate</b> <span class="pill partly tip" data-tip="546 of 740 lost here">partly supported</span></span></div>
+<button type="button" class="open-btn" data-open="C2">Details</button>
+<div class="more">
+<div class="part"><h3>Strongest quote</h3><blockquote>&quot;I do not want to pick one just to have something to write in the form.&quot;</blockquote></div>
+<div class="part x"><h3>Evidence <span class="pill well">well supported</span></h3><b class="line">3 voices from 1 source back this up:</b><ol class="voices"><li><b>Support requests (3):</b> <q>Can I talk to someone before I fill in anything?</q></li></ol><span class="basis">Each lived it on the formats page.</span></div>
+<div class="part x"><h3>Lever <span class="pill partly">partly supported</span></h3><span class="line"><b>start rate</b>: 546 of 740 lost here</span><span class="line">direct, the inquiry page can change it; but the form asks for no format today</span></div>
+<div class="part"><h3>Wins on</h3>acts on the exact step where 546 of 740 visits stop, and the senders name that step</div>
+<div class="part"><h3>Loses on</h3>one source group only; it may be part of C1 rather than a need of its own</div>
+<div class="part"><h3>Can we see a change in 8 weeks? <span class="pill partly">partly</span></h3><div class="x"><span class="line"><code>inquiry_started</code> 194 of 740 inquiry page visits in 26 weeks</span><span class="basis">Judged from how often the event that would show the change is counted in the data.</span></div></div>
+<div class="part x"><h3>Open gap</h3>whether this is a need of its own or the same need as C1, seen at the form. Three of the four C1 inbox senders also say C2. A walk-through of the inquiry page with buyers could separate them.</div>
+<div class="part x go"><a href="/discovery/opportunity-comparison.md#evidence-C2">All details of C2, with every quote and source →</a></div>
+</div>
+</article><article class="card well" tabindex="0" data-kind="card" data-view="C3" data-id="C3" data-links="[{&quot;name&quot;:&quot;call rate&quot;,&quot;assumed&quot;:true},{&quot;name&quot;:&quot;booking rate&quot;,&quot;assumed&quot;:true}]">
+<div class="top"><span class="id">C3</span></div>
+<div class="title">&quot;I need something to show the people who decide with me.&quot; (buyer, before booking)</div>
+<div class="row"><span class="k">Evidence</span><span class="v"><span class="pill well tip" data-tip="5 buyers · 2 source groups: inquiry emails, interviews">well supported</span></span></div>
+<div class="row"><span class="k">Lever</span><span class="v"><b>call rate</b> <span class="pill partly tip" data-tip="58 of 113 lost here. this link is only assumed, 1 more step only assumed">partly supported</span></span></div>
+<button type="button" class="open-btn" data-open="C3">Details</button>
+<div class="more">
+<div class="part"><h3>Strongest quote</h3><blockquote>&quot;My manager asked me to come back with a proposal before the end of the month.&quot;</blockquote></div>
+<div class="part x"><h3>Evidence <span class="pill well">well supported</span></h3><b class="line">5 voices from 2 sources back this up:</b><ol class="voices"><li><b>Inquiry emails (3):</b> <q>Could you send me some information so I can forward it internally?</q></li><li><b>Interviews (2):</b> <q>I'll take this to two colleagues and talk it through with them.</q></li></ol><span class="basis">All in that situation now; one account of a boss is second-hand.</span></div>
+<div class="part x"><h3>Lever <span class="pill partly">partly supported</span></h3><span class="line"><b>call rate</b>: 58 of 113 lost here</span><span class="line">this link is only assumed, 1 more step only assumed</span><span class="line">the website could give something to forward, but the decision happens with colleagues, off the site</span></div>
+<div class="part"><h3>Wins on</h3>buyers say it without being asked; it acts close to the booking</div>
+<div class="part"><h3>Loses on</h3>every driver link is an assumption; no source says what the people above want to see</div>
+<div class="part"><h3>Can we see a change in 8 weeks? <span class="pill un">no</span></h3><div class="x"><span class="line"><code>scoping_call_booked</code> 55 and <code>booking_confirmed</code> 23 in 26 weeks</span><span class="basis">Judged from how often the event that would show the change is counted in the data.</span></div></div>
+<div class="part x"><h3>Open gap</h3>what the people above ask for. No source says. The academy staff who run scoping calls could say what buyers come back with.</div>
+<div class="part x go"><a href="/discovery/opportunity-comparison.md#evidence-C3">All details of C3, with every quote and source →</a></div>
+</div>
+</article><article class="card partly" tabindex="0" data-kind="card" data-view="C4" data-id="C4" data-links="[{&quot;name&quot;:&quot;call rate&quot;,&quot;assumed&quot;:false},{&quot;name&quot;:&quot;booking rate&quot;,&quot;assumed&quot;:true}]">
+<div class="top"><span class="id">C4</span></div>
+<div class="title">&quot;I want proof people work differently months later.&quot; (buyer, before booking)</div>
+<div class="row"><span class="k">Evidence</span><span class="v"><span class="pill partly tip" data-tip="2 buyers · 1 source group: inquiry emails">partly supported</span></span></div>
+<div class="row"><span class="k">Lever</span><span class="v"><b>call rate</b> <span class="pill un tip" data-tip="58 of 113 lost here. 1 more step only assumed">unsupported</span></span></div>
+<button type="button" class="open-btn" data-open="C4">Details</button>
+<div class="more">
+<div class="part"><h3>Strongest quote</h3><blockquote>&quot;What I have not seen is evidence that any of it changes how people actually work three months later.&quot;</blockquote></div>
+<div class="part x"><h3>Evidence <span class="pill partly">partly supported</span></h3><b class="line">2 voices from 1 source back this up:</b><ol class="voices"><li><b>Inquiry emails (2):</b> <q>How do you measure whether it worked?</q></li></ol><span class="basis">One lived a training that faded, one has seen offers without proof.</span></div>
+<div class="part x"><h3>Lever <span class="pill un">unsupported</span></h3><span class="line"><b>call rate</b>: 58 of 113 lost here</span><span class="line">1 more step only assumed</span><span class="line">the website can show how the effect is checked, but it cannot cause the effect, and no proof exists yet to show</span></div>
+<div class="part"><h3>Wins on</h3>the one buyer who makes the call depend on it says so; it is the version of your favourite that sits on this quarter's branch</div>
+<div class="part"><h3>Loses on</h3>fewest voices, one source group; the other buyer offered a call anyway</div>
+<div class="part"><h3>Can we see a change in 8 weeks? <span class="pill un">no</span></h3><div class="x"><span class="line"><code>scoping_call_booked</code> 55 in 26 weeks; <code>followup_answered</code> 14 in 26 weeks measures the need itself, on Branch B, a month after the booking</span><span class="basis">Judged from how often the event that would show the change is counted in the data.</span></div></div>
+<div class="part x"><h3>Open gap</h3>what proof would be enough. No mail says. Whether buyers who never wrote hold back for this reason. The academy staff who run scoping calls could say how often proof comes up.</div>
+<div class="part x go"><a href="/discovery/opportunity-comparison.md#evidence-C4">All details of C4, with every quote and source →</a></div>
+</div>
+</article></div>
+<div class="sols" style="--n:5" aria-label="Solution ideas"><article class="sol partly picked" tabindex="0" data-kind="sol" data-view="C1-I1" data-key="discovery/intents/format-fit.md#I1" data-parent="C1" data-driver="reach rate · start rate · submit rate" data-drivers="[&quot;reach rate&quot;,&quot;start rate&quot;,&quot;submit rate&quot;]" data-title="Build a small quiz to help the buyer pick the right format">
+<div class="top"><span class="id">I1</span><span class="tag pick">tested first: format-quiz</span></div>
+<span class="mech">Build a small quiz to help the buyer pick the right format</span>
+<button type="button" class="open-btn" data-open="C1-I1">Details</button>
+<div class="more">
+<div class="part"><h3>The idea</h3>Build a small quiz to help the buyer pick the right format. The quiz fills &quot;What do you need?&quot; in the form<span class="basis">Changes: home page, formats page, inquiry page</span></div>
+<div class="part"><h3>From</h3><span class="tag you">the team</span></div>
+<div class="part"><h3>Critical assumption</h3>Buyers who cannot tell which format fits will answer a few questions about their team. They then trust the format the quiz names enough to start the form.</div>
+<div class="part x"><h3>Level <span class="pill partly">partly supported</span></h3>buyers ask for a way to find out where the team stands: &quot;Is there a way to find out where the team stands before we decide?&quot;. Another buyer asks what Loopwise would need to work it out: &quot;What would you need from me to work it out?&quot;. No source shows a buyer trusting a format a tool names. Counter: one buyer wants to see the options and react: &quot;Tell me what's on the menu and I'll react to it.&quot;</div>
+<div class="part x"><h3>Steps it moves</h3><span class="acts"><span class="chip">reach rate</span><span class="chip">start rate</span><span class="chip">submit rate</span></span></div>
+<div class="part x go"><a href="/discovery/intents/format-fit.md">The whole intent, with every quote and source →</a></div>
+</div>
+</article><article class="sol partly" tabindex="0" data-kind="sol" data-view="C1-I2" data-key="discovery/intents/format-fit.md#I2" data-parent="C1" data-driver="call rate" data-drivers="[&quot;call rate&quot;]" data-title="Offer other ways of contact: Call us directly, Book a call slot, that opens a calendar link">
+<div class="top"><span class="id">I2</span></div>
+<span class="mech">Offer other ways of contact: Call us directly, Book a call slot, that opens a calendar link</span>
+<button type="button" class="open-btn" data-open="C1-I2">Details</button>
+<div class="more">
+<div class="part"><h3>The idea</h3><span class="basis">Changes: inquiry page</span></div>
+<div class="part"><h3>From</h3><span class="tag you">the team</span></div>
+<div class="part"><h3>Critical assumption</h3>Buyers who cannot tell which format fits would rather talk to a person than write. They book a call slot themselves when the page offers one.</div>
+<div class="part x"><h3>Level <span class="pill partly">partly supported</span></h3>two buyers in two source groups ask for a call first: &quot;Can I talk to someone before I fill in anything?&quot;; &quot;maybe a 20 minute call would be easier.&quot;. No source shows a buyer booking a slot alone. Counter: the buyer with budget wants answers in writing before a call: &quot;If you can answer these in writing, I am happy to follow up with a call.&quot;. Gap: the site counts a booked scoping call, but no event counts a phone call.</div>
+<div class="part x"><h3>Steps it moves</h3><span class="acts"><span class="chip">call rate</span></span></div>
+<div class="part x go"><a href="/discovery/intents/format-fit.md">The whole intent, with every quote and source →</a></div>
+</div>
+</article><article class="sol partly" tabindex="0" data-kind="sol" data-view="C1-I6" data-key="discovery/intents/format-fit.md#I6" data-parent="C1" data-driver="start rate · submit rate" data-drivers="[&quot;start rate&quot;,&quot;submit rate&quot;]" data-title="Cut the form to name and email">
+<div class="top"><span class="id">I6</span></div>
+<span class="mech">Cut the form to name and email</span>
+<button type="button" class="open-btn" data-open="C1-I6">Details</button>
+<div class="more">
+<div class="part"><h3>The idea</h3>Cut the form to name and email. Everything else is asked in the scoping call<span class="basis">Changes: inquiry page</span></div>
+<div class="part"><h3>From</h3><span class="tag">today's page, changed</span></div>
+<div class="part"><h3>Critical assumption</h3>Buyers stop at the form because of what it asks them to write. With only name and email to give, they send it without knowing the format.</div>
+<div class="part x"><h3>Level <span class="pill partly">partly supported</span></h3>buyers hold back from writing a guess into the form: &quot;I didn't want to send your form with a guess in it&quot;; &quot;I do not want to pick one just to have something to write in the form.&quot;. Counter: the form asks no format today, only &quot;What do you need?&quot;. Gap: the data cannot show where inside the form people stop.</div>
+<div class="part x"><h3>Steps it moves</h3><span class="acts"><span class="chip">start rate</span><span class="chip">submit rate</span></span></div>
+<div class="part x go"><a href="/discovery/intents/format-fit.md">The whole intent, with every quote and source →</a></div>
+</div>
+</article><article class="sol partly" tabindex="0" data-kind="sol" data-view="C1-I8" data-key="discovery/intents/format-fit.md#I8" data-parent="C1" data-driver="start rate · call rate" data-drivers="[&quot;start rate&quot;,&quot;call rate&quot;]" data-title="The inquiry page promises a short written proposal of two fitting formats, sent before any call">
+<div class="top"><span class="id">I8</span></div>
+<span class="mech">The inquiry page promises a short written proposal of two fitting formats, sent before any call</span>
+<button type="button" class="open-btn" data-open="C1-I8">Details</button>
+<div class="more">
+<div class="part"><h3>The idea</h3><span class="basis">Changes: inquiry page</span></div>
+<div class="part"><h3>From</h3><span class="tag">another domain: a travel agent</span></div>
+<div class="part"><h3>Critical assumption</h3>Buyers send an inquiry when Loopwise promises two fitting formats in writing first. Loopwise can name two formats from what the form says.</div>
+<div class="part x"><h3>Level <span class="pill partly">partly supported</span></h3>buyers ask for something in writing: &quot;do you have a price list or an overview of your formats you could send me?&quot;; &quot;Could you send me some information so I can forward it internally?&quot;. No source shows that two named formats would get a buyer to send the form. Counter: the same buyer who asks for a list offers a call instead: &quot;maybe a 20 minute call would be easier.&quot;. The site says the format is settled in the scoping call.</div>
+<div class="part x"><h3>Steps it moves</h3><span class="acts"><span class="chip">start rate</span><span class="chip">call rate</span></span></div>
+<div class="part x go"><a href="/discovery/intents/format-fit.md">The whole intent, with every quote and source →</a></div>
+</div>
+</article><article class="sol rest" tabindex="0" data-kind="sol" data-view="C1-rest" data-parent="C1" data-drivers="[]" data-title="6 more ideas, not picked">
+<div class="top"><span class="id">+6</span></div>
+<span class="mech">more ideas, not picked</span>
+<div class="more"><ul class="notpicked"><li><b>I3</b> Format page: add more info to the actual format tiles</li><li><b>I4</b> Remove &quot;Team size&quot; from the form and put it all together in the quiz, which fills &quot;What do you need?&quot;</li><li><b>I5</b> Lets skip the form all together and just put a &quot;book a call&quot; button, also add a mail link, so people can just write an email</li><li><b>I7</b> Replace the free-text box with three situation choices: &quot;new to AI&quot;, &quot;tried it&quot;, &quot;uses it daily&quot;</li><li><b>I9</b> Two filter buttons above the tiles, team size and days away from work</li><li><b>I10</b> The inquiry page heading reads &quot;Ask without choosing a format&quot;</li></ul></div>
+</article></div>
+<div class="exps" style="--n:5" aria-label="Experiments"><div style="grid-column:1"><article class="exp nolevel" tabindex="0" data-kind="exp" data-view="C1-I1-E1" data-parent="C1-I1" data-title="format-quiz">
+<div class="top"><span class="id">Experiment</span></div>
+<span class="mech">format-quiz</span>
+<span class="dots" aria-label="3 of 8 stages done"><i class="f" title="Test card"></i><i class="f" title="Spec"></i><i class="" title="Built"></i><i class="f" title="Personas"></i><i class="" title="People"></i><i class="" title="Learning card"></i><i class="" title="Launch"></i><i class="" title="Result"></i></span>
+<span class="now">spec checked in 1 persona run · 0 of 5 people tested</span>
+<span class="btns"><button type="button" class="open-btn" data-open="C1-I1-E1">Details</button></span>
+<div class="more">
+<div class="part"><h3>Stages</h3><ol class="stages">
+<li class="done"><b>Test card</b> Product lead (Loopwise), 2026-11-15</li>
+<li class="done"><b>Spec</b></li>
+<li class=""><b>Built</b></li>
+<li class="done"><b>Personas</b> <ul class="runs"><li>spec, run 1: 2 personas, 2026-11-16, against the lines: unclear</li></ul></li>
+<li class=""><b>People</b> 0 of 5 tested</li>
+<li class=""><b>Learning card</b></li>
+<li class=""><b>Launch</b></li>
+<li class=""><b>Result</b></li>
+</ol></div>
+<div class="part"><h3>We believe that</h3>&quot;Buyers who cannot tell which format fits will answer a few questions about their team. They then trust the format the quiz names enough to start the form.&quot;</div>
+<div class="part"><h3>We go on if</h3>At least 3 of 5 testers answer the quiz for their own group, take the step from the result into the form, and send it with the named format still in it.</div>
+<div class="part x"><h3>We rework or drop if</h3>The line has two parts. A problem with the page means rework. A problem with trust in the named format means drop. We rework the quiz if 3 or more of 5 testers get stuck on a question, or cannot find the way from the result to the form. We drop the idea if 3 or more of 5 testers delete the format the quiz named, or reach the form and leave without sending it. If the five testers fit none of these lines, the result is mixed. The learning card then decides on another round.</div>
+
+
+
+<div class="part x go"><a href="/discovery/test-cards/format-quiz-prototype.md">The prototype test card →</a></div>
+</div>
+</article></div></div>
+<div class="legend" aria-label="Legend">
+<span><i class="sw"></i>an opportunity file names this step</span>
+<span><i class="sw d"></i>only assumed</span>
+<span><i class="box" style="background:var(--well)"></i>well supported</span>
+<span><i class="box" style="background:var(--partly)"></i>partly supported</span>
+<span><i class="box" style="background:var(--un)"></i>unsupported</span>
+<span><i class="box gapbox"></i>loss with no candidate</span>
+<span><i class="sw s"></i>solution idea, green border: tested first</span>
+<span>Bar: how many of the people on a step go on. Lever: the count says where people stop, not how many this need would bring back.</span>
+</div>
+<section class="decide" tabindex="0" data-kind="decision" data-view="decision" aria-label="What you decide">
+<div class="q">Which buyer need before the booking do we work on for the next eight weeks?</div>
+<div class="row"><b>Your decision</b><span class="">C1: &quot;I can't tell which format fits my group.&quot; Chosen by Product lead (Loopwise), 2026-08-18. The product lead's words: &quot;C1 because the evidence is very good and it affects a step very early in the funnel.&quot;</span></div>
+<div class="row"><b>We would switch if</b><span>the product lead's words, 2026-08-18: &quot;We would switch if we learn that the real problem is not that people dont know which format to pick, but if they dont book because we cannot convince them enough, that our training is really different&quot;</span></div>
+<div class="row"><b>The comparison favours</b><span>C1, because 11 buyers in three source groups say it, three of them say it kept them from the form, and the website can change the step where 546 of 740 inquiry page visits stop. A reading of the comparison, not a choice.</span></div>
+<div class="row"><b>Your first try</b><span>&quot;I'm afraid my people slip back into old habits afterwards.&quot; If we can create trust that we can do this on the site, this will help throughout the process and this is the actual outcome that the training should achieve</span></div>
+<div class="row"><b>Not readable from today's data</b><span>C3 and C4. Both show mainly in <code>scoping_call_booked</code> (55 in 26 weeks) and <code>booking_confirmed</code> (23 in 26 weeks).</span></div>
+<div class="row"><b>No candidate</b><span>reach rate, 3026 of 3766 visits never open the inquiry page, and submit rate, 81 of 194 started forms are never sent. Only C1 touches them, as an assumption. Open research questions, not candidates.</span></div>
+<p>Solution ideas come from <a href="/discovery/intents/format-fit.md"><code>discovery/intents/format-fit.md</code></a>.</p>
+<p>Every quote, the counter-evidence, the shortlist and the challenger are in <a href="/discovery/opportunity-comparison.md">the comparison file</a>. Read the challenger before you decide.</p>
+</section>
+</div></div>
+<div id="veil"></div><div id="detail" role="dialog" aria-label="Candidate details"></div>
+<nav aria-label="Jump to">
+<a href="/discovery">Discovery</a><a href="/discovery/map">Map</a><span class="sep"></span>
+<button type="button" data-v="overview">Overview<kbd>0</kbd></button><button type="button" data-v="funnel">Funnel<kbd>F</kbd></button><span class="sep"></span>
+<button type="button" data-v="C1">C1<kbd>1</kbd></button><button type="button" data-v="C2">C2<kbd>2</kbd></button><button type="button" data-v="C3">C3<kbd>3</kbd></button><button type="button" data-v="C4">C4<kbd>4</kbd></button><span class="sep"></span>
+<button type="button" data-v="ideas">Ideas<kbd>I</kbd></button><button type="button" data-v="exps">Experiments<kbd>E</kbd></button><button type="button" data-v="decision">Decision<kbd>D</kbd></button><span class="sep"></span>
+<span class="help">← → next · ↑ ↓ level · Enter details · Esc back</span>
+</nav>
+<script>{
+const stage = document.getElementById('stage'), world = document.getElementById('world'), svg = world.querySelector('svg');
+const $$ = (s) => [...world.querySelectorAll(s)];
+const goal = world.querySelector('.goal'), branch = world.querySelector('.branch');
+const drivers = $$('.driver'), cards = $$('.card'), sols = $$('.sol'), exps = $$('.exp'), decide = world.querySelector('.decide');
+const expsOf = (s) => exps.filter((x) => x.dataset.parent === s.dataset.view);
+const byView = (v) => world.querySelector('[data-view="' + v + '"]');
+const linksOf = (c) => JSON.parse(c.dataset.links);
+// An idea lights up its opportunity card and every step its driver cell names, matched on the server.
+const solDrivers = (s) => { const names = JSON.parse(s.dataset.drivers); return drivers.filter((d) => names.includes(d.dataset.name)); };
+const idsOfCard = (c) => sols.filter((s) => s.dataset.parent === c.dataset.id);
+let cur = 'overview';
+const flat = () => matchMedia('(max-width: 48rem)').matches;
+function pos(el) { let x = 0, y = 0, e = el; while (e && e !== world) { x += e.offsetLeft; y += e.offsetTop; e = e.offsetParent; } return { x, y, w: el.offsetWidth, h: el.offsetHeight }; }
+function curve(a, b, cls) { const m = (a.y + b.y) / 2; return '<path class="' + cls + '" d="M' + a.x + ' ' + a.y + ' C' + a.x + ' ' + m + ' ' + b.x + ' ' + m + ' ' + b.x + ' ' + b.y + '"/>'; }
+const bottomOf = (el) => { const p = pos(el); return { x: p.x + p.w / 2, y: p.y + p.h }; };
+const topOf = (el) => { const p = pos(el); return { x: p.x + p.w / 2, y: p.y }; };
+function draw() {
+  const el = byView(cur), kind = el ? el.dataset.kind : '';
+  let out = curve(bottomOf(goal), topOf(branch), '');
+  for (const d of drivers) out += curve(bottomOf(branch), topOf(d), '');
+  for (const c of cards) for (const l of linksOf(c)) {
+    const d = drivers.find((x) => x.dataset.name === l.name);
+    if (!d) continue;
+    const on = (kind === 'card' && el === c) || (kind === 'step' && el === d) || (kind === 'sol' && el.dataset.parent === c.dataset.id && solDrivers(el).includes(d));
+    const off = (kind === 'card' || kind === 'step' || kind === 'sol') && !on;
+    out += curve(bottomOf(d), topOf(c), 'link' + (l.assumed ? ' assumed' : '') + (on ? ' hot' : '') + (off ? ' dim' : ''));
+  }
+  for (const s of sols) {
+    const c = cards.find((x) => x.dataset.id === s.dataset.parent);
+    if (!c) continue;
+    const on = (kind === 'sol' && el === s) || (kind === 'card' && el === c);
+    out += curve(bottomOf(c), topOf(s), 'sol-link' + (on ? ' hot' : '') + (kind && kind !== 'decision' && !on ? ' dim' : ''));
+  }
+  for (const x of exps) {
+    const s = byView(x.dataset.parent);
+    if (!s) continue;
+    const on = (kind === 'exp' && el === x) || (kind === 'sol' && el === s);
+    out += curve(bottomOf(s), topOf(x), 'sol-link' + (on ? ' hot' : '') + (kind && kind !== 'decision' && !on ? ' dim' : ''));
+  }
+  svg.setAttribute('height', world.offsetHeight);
+  svg.innerHTML = out;
+}
+// The overview sits at the top of the screen; a zoomed box is centred.
+function fit(r, max, top) {
+  const vw = stage.clientWidth, vh = stage.clientHeight, pad = 0.05;
+  const s = Math.min(vw * (1 - pad) / r.w, vh * (1 - pad) / r.h, max || 9);
+  const y = top ? -r.y * s : (vh - r.h * s) / 2 - r.y * s;
+  world.style.transform = 'translate(' + ((vw - r.w * s) / 2 - r.x * s) + 'px,' + y + 'px) scale(' + s + ')';
+}
+function overviewRect() {
+  const last = world.querySelector('.legend');
+  const p = pos(last);
+  return { x: 0, y: 0, w: world.offsetWidth, h: p.y + p.h + 20 };
+}
+function related(el) {
+  const kind = el.dataset.kind;
+  if (kind === 'card') return [...drivers.filter((d) => linksOf(el).some((l) => l.name === d.dataset.name)), ...idsOfCard(el)];
+  if (kind === 'step') return cards.filter((c) => linksOf(c).some((l) => l.name === el.dataset.name));
+  if (kind === 'sol') return [...cards.filter((c) => c.dataset.id === el.dataset.parent), ...solDrivers(el), ...expsOf(el)];
+  if (kind === 'exp') { const s = byView(el.dataset.parent); return s ? [s, ...related(s).filter((x) => x.dataset.kind !== 'exp')] : []; }
+  return [];
+}
+function show(v, push) {
+  const pseudo = v === 'overview' || v === 'funnel' || (v === 'ideas' && sols.length) || (v === 'exps' && exps.length);
+  const el = pseudo ? null : byView(v);
+  if (!pseudo && !el) v = 'overview';
+  cur = v;
+  const kind = el ? el.dataset.kind : '';
+  const rel = el ? related(el) : [];
+  document.body.classList.toggle('f-funnel', v === 'funnel');
+  document.body.classList.toggle('focus', kind === 'card' || kind === 'step' || kind === 'sol' || kind === 'exp');
+  for (const x of [...drivers, ...cards, ...sols, ...exps]) {
+    x.classList.toggle('on', x === el);
+    x.classList.toggle('hit', rel.includes(x));
+    x.classList.toggle('dim', !!el && x !== el && !rel.includes(x));
+  }
+  for (const b of document.querySelectorAll('nav button')) b.classList.toggle('on', b.dataset.v === v || (kind === 'sol' && b.dataset.v === 'ideas') || (kind === 'exp' && b.dataset.v === 'exps'));
+  draw();
+  if (!flat()) {
+    if (v === 'overview') fit(overviewRect(), 9, true);
+    else if (v === 'funnel') fit(pos(world.querySelector('.drivers')));
+    else if (v === 'ideas') fit(pos(world.querySelector('.sols')));
+    else if (v === 'exps') { const a = pos(world.querySelector('.sols')), b = pos(world.querySelector('.exps')); fit({ x: a.x, y: a.y, w: a.w, h: b.y + b.h - a.y }); }
+    else {
+      fit(pos(el), kind === 'decision' ? 2 : 3.2);
+    }
+  } else if (el && push) el.scrollIntoView({ block: 'start', behavior: 'smooth' });
+  if (location.hash.slice(1) !== v) history.replaceState(null, '', v === 'overview' ? location.pathname : '#' + v);
+}
+const idx = (list, el) => list.indexOf(el);
+const step = (list, el, d) => list[Math.max(0, Math.min(list.length - 1, idx(list, el) + d))];
+function move(key) {
+  const el = byView(cur), kind = el ? el.dataset.kind : cur;
+  const side = key === 'ArrowRight' ? 1 : key === 'ArrowLeft' ? -1 : 0;
+  if (cur === 'overview') return show(key === 'ArrowUp' ? 'funnel' : key === 'ArrowLeft' ? cards[cards.length - 1].dataset.view : cards[0].dataset.view);
+  if (cur === 'ideas') return show(key === 'ArrowUp' ? 'overview' : (sols.find((x) => x.classList.contains('picked')) || sols[0]).dataset.view);
+  if (cur === 'funnel') return show(key === 'ArrowUp' ? 'overview' : key === 'ArrowDown' ? cards[0].dataset.view : (side < 0 ? drivers[drivers.length - 1] : drivers[0]).dataset.view);
+  if (kind === 'step') {
+    if (side) return show(step(drivers, el, side).dataset.view);
+    if (key === 'ArrowUp') return show('funnel');
+    const c = related(el)[0] || cards[0]; return show(c.dataset.view);
+  }
+  if (kind === 'card') {
+    if (side) return show(cards[(idx(cards, el) + side + cards.length) % cards.length].dataset.view);
+    if (key === 'ArrowUp') { const d = drivers.find((x) => x.dataset.name === (linksOf(el).find((l) => !l.assumed) || linksOf(el)[0] || {}).name); return show(d ? d.dataset.view : 'funnel'); }
+    const own = idsOfCard(el), s = own.find((x) => x.classList.contains('picked')) || own[0]; if (s) show(s.dataset.view); return;
+  }
+  if (kind === 'sol') {
+    if (side) return show(step(sols, el, side).dataset.view);
+    if (key === 'ArrowUp') return show(el.dataset.parent);
+    if (key === 'ArrowDown') { const x = expsOf(el)[0]; if (x) show(x.dataset.view); return; }
+  }
+  if (kind === 'exp') {
+    if (side) return show(step(exps, el, side).dataset.view);
+    if (key === 'ArrowUp') return show(el.dataset.parent);
+  }
+  if (cur === 'exps') return show(key === 'ArrowUp' ? 'ideas' : exps[0].dataset.view);
+  if (kind === 'decision' && key === 'ArrowUp') show('overview');
+}
+// The large view copies the card's details into one panel over the whole screen. The map stays where it was.
+const detail = document.getElementById('detail');
+const isBig = () => document.body.classList.contains('big');
+const bigList = (el) => (el.dataset.kind === 'sol' ? sols : el.dataset.kind === 'exp' ? exps : cards);
+function openBig(id) {
+  const c = byView(id);
+  if (!c || !['card', 'sol', 'exp'].includes(c.dataset.kind)) return;
+  if (cur !== id) show(id);
+  const title = c.dataset.title ? c.dataset.title.replace(/&/g, '&amp;').replace(/</g, '&lt;') : c.querySelector('.title').innerHTML;
+  detail.innerHTML = '<div class="dh"><div><span class="id">' + c.querySelector('.id').textContent + '</span><h2>' + title + '</h2></div><button type="button" class="close">Close<kbd> Esc</kbd></button></div>' + c.querySelector('.more').outerHTML;
+  document.body.classList.add('big');
+  fitText();
+  detail.scrollTop = 0;
+  history.replaceState(null, '', '#' + id + '/large');
+}
+// The text grows until the panel is full: the largest font size at which nothing scrolls, at most BIG_MAX.
+const BIG_MAX = 40, BIG_MIN = 14;
+function fitText() {
+  let lo = BIG_MIN, hi = BIG_MAX;
+  const fits = (px) => { detail.style.fontSize = px + 'px'; return detail.scrollHeight <= detail.clientHeight + 1; };
+  if (fits(hi)) return;
+  for (let i = 0; i < 9; i++) { const mid = (lo + hi) / 2; if (fits(mid)) lo = mid; else hi = mid; }
+  detail.style.fontSize = Math.floor(lo) + 'px';
+}
+function closeBig() { document.body.classList.remove('big'); history.replaceState(null, '', '#' + cur); }
+detail.addEventListener('click', (e) => { if (e.target.closest('.close')) closeBig(); });
+document.getElementById('veil').addEventListener('click', closeBig);
+function back() {
+  const el = byView(cur), kind = el ? el.dataset.kind : '';
+  show(kind === 'exp' ? 'exps' : kind === 'sol' ? 'ideas' : kind === 'step' ? 'funnel' : 'overview');
+}
+addEventListener('keydown', (e) => {
+  if (e.metaKey || e.ctrlKey || e.altKey || flat()) return;
+  const k = e.key;
+  if (isBig()) {
+    if (k === 'Escape' || k === 'Enter') { e.preventDefault(); closeBig(); }
+    else if (k === 'ArrowLeft' || k === 'ArrowRight') { e.preventDefault(); const list = bigList(byView(cur)), i = list.indexOf(byView(cur)); openBig(list[(i + (k === 'ArrowRight' ? 1 : -1) + list.length) % list.length].dataset.view); }
+    return;
+  }
+  if (k === 'Enter' && byView(cur) && ['card', 'sol', 'exp'].includes(byView(cur).dataset.kind)) { e.preventDefault(); openBig(cur); return; }
+  if (k === '0') show('overview');
+  else if (k === 'Escape') back();
+  else if (k === 'f' || k === 'F') show('funnel');
+  else if ((k === 'd' || k === 'D') && decide) show('decision');
+  else if ((k === 'i' || k === 'I') && sols.length) show('ideas');
+  else if ((k === 'e' || k === 'E') && exps.length) show('exps');
+  else if (/^[1-9]$/.test(k) && cards[k - 1]) show(cards[k - 1].dataset.view);
+  else if (k.startsWith('Arrow')) { e.preventDefault(); move(k); }
+  else if (k === 'Enter' && document.activeElement && document.activeElement.dataset.view) show(document.activeElement.dataset.view);
+  else return;
+});
+world.addEventListener('click', (e) => {
+  const ob = e.target.closest('.open-btn');
+  if (ob) { e.stopPropagation(); openBig(ob.dataset.open); return; }
+  if (e.target.closest('a')) return;
+  const t = e.target.closest('[data-view]');
+  if (t) { if (t.dataset.view !== cur) show(t.dataset.view, true); }
+  else if (!flat()) show('overview');
+});
+document.querySelector('nav').addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) show(b.dataset.v, true); });
+function go(hash) { const [v, large] = hash.split('/'); if (isBig()) document.body.classList.remove('big'); show(v || 'overview'); if (large === 'large') openBig(v); }
+addEventListener('hashchange', () => go(location.hash.slice(1)));
+function layout() { document.body.classList.toggle('flat', flat()); show(cur); if (isBig()) { fitText(); history.replaceState(null, '', '#' + cur + '/large'); } }
+addEventListener('resize', layout);
+new ResizeObserver(() => draw()).observe(world);
+// The camera follows any change of the stage size, also one without a window resize event.
+let lastSize = '';
+new ResizeObserver(() => { const k = stage.clientWidth + 'x' + stage.clientHeight; if (k !== lastSize) { lastSize = k; layout(); } }).observe(stage);
+// Focus or find-in-page can scroll the stage behind the camera; keep it at the origin.
+stage.addEventListener('scroll', () => { if (!flat()) { stage.scrollTop = 0; stage.scrollLeft = 0; } });
+const startLarge = location.hash.endsWith('/large');
+cur = location.hash.slice(1).split('/')[0] || 'overview';
+layout();
+if (startLarge) openBig(cur);
+}</script></body></html>
