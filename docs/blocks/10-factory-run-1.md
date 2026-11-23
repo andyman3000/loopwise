@@ -55,19 +55,14 @@ Everybody types. The role decides.
    git switch -c factory-<names> v3-06-test-decision
    ```
    If git says "nothing to commit", go on: the switch still works.
-2. **Launch spec: your list, the skill's draft (10 min).** Start a fresh Claude Code session (`/clear`). Then
-   `/loopwise-variant-spec call-slot launch`. It asks what a developer would need to know that the
-   prototype does not show. Answer it yourself first. It drafts at most one page and cuts every
-   line the prototype already shows. It writes over the reference spec; that is fine for now.
-   If it runs past 10 minutes, stop it and go to step 3.
-3. **Compare with the reference (5 min).** `git diff discovery/specs/call-slot-launch.md` shows your
-   draft against the reference. Talk about two things: which line of yours describes something the
-   prototype already shows, and what the reference has that you missed.
-4. **Put the reference back (1 min).** The factory builds from the reference kit:
-   ```bash
-   git checkout -- discovery/specs/call-slot-launch.md
-   ```
-5. **Run the factory (17 min).** Start a fresh session (`/clear`). Then
+2. **Meet the prototype (5 min).** Open `http://localhost:<port>/inquiry.html?variant=call-slot` and
+   book a call slot as a visitor. This page is the first file of the kit: everything visible.
+3. **Read the launch spec (5 min).** Open
+   `http://localhost:<port>/discovery/specs/call-slot-launch.md` next to the prototype. The product
+   team hands it to you, the developer. You write no launch spec in this run. Write down two things:
+   - which open point you need answered before you build;
+   - which question you have that is nowhere on the page.
+4. **Run the factory (17 min).** Start a fresh session (`/clear`). Then
    `/loopwise-factory call-slot run-1`.
    - First the designer reads the rule, `gates/policies/design-system.md`. The designer says in
      one sentence what the system will catch (about 2 min).
@@ -79,22 +74,23 @@ Everybody types. The role decides.
    - At the end the factory runs `npm run check` in the open. It ends with `gates: pass`.
    - A fresh review agent writes `discovery/factory/call-slot-review-run-1.md`. Read it: it blocks
      nothing and decides nothing. The factory's open questions are in
-     `discovery/factory/call-slot-questions.md`.
-6. **Read what the system did (5 min).** The factory names who owns the gate: the designer. It
+     `discovery/factory/call-slot-questions.md`. Hold them against your list: what did you ask that
+     the factory did not ask, and the other way round?
+5. **Read what the system did (5 min).** The factory names who owns the gate: the designer. It
    names the kind (soft) and where the gate fired: right after the write in `site/hardened/`.
    Nobody was asked in the run. The designer's judgement was already in the design system.
    Outside the run, the designer has two moves:
    - an exception for one variant: a waiver in `discovery/decisions/`, with name and reason;
    - a change to the system: a new token or component in `site/styles.css`, which the designer
      approves as its owner.
-7. **Look at it (5 min).** Open
+6. **Look at it (5 min).** Open
    `http://localhost:<port>/inquiry.html?variant=call-slot&build=hardened` and click through it once.
    Compare it with the prototype at `http://localhost:<port>/inquiry.html?variant=call-slot`. The
    factory ran the dry run at its end. It lists what the release still waits for. To run it again:
    ```bash
    npm run release -- call-slot --dry-run
    ```
-8. **Commit (2 min).**
+7. **Commit (2 min).**
    ```bash
    npm test && npm run check
    git add -A && git commit -m "factory run 1: built, gate healed"
@@ -106,7 +102,7 @@ release still waits for.
 **If you are stuck:** continue from the reference state after this run:
 `git switch -c from-07 v3-07-factory-run-1`.
 
-**For the Abgleich:** whose judgement was in the system, and where? Which line of your own launch
-spec did the prototype already show?
+**For the Abgleich:** whose judgement was in the system, and where? What would you have asked before
+building, and did the factory ask it?
 
 **Next:** [11-factory-run-2.md](11-factory-run-2.md).
