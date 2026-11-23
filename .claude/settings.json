@@ -4,10 +4,13 @@
     "allow": [
       "Edit(/discovery/**)",
       "Edit(/site/variants/**)",
+      "Edit(/site/hardened/**)",
       "Bash(npm run check)",
       "Bash(npm test)",
       "Bash(npm start)",
       "Bash(npm run tree)",
+      "Bash(node scripts/check-gates.js *)",
+      "Bash(npm run release -- * --dry-run)",
       "Bash(curl http://localhost:3000)",
       "Bash(curl http://localhost:3000/*)",
       "Bash(curl -s http://localhost:3000/*)",
@@ -17,6 +20,30 @@
       "Bash(git status *)",
       "Bash(git diff *)",
       "Bash(git log *)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit|NotebookEdit|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/scripts/hooks/gate-guard.js\""
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/scripts/hooks/gate-guard.js\""
+          }
+        ]
+      }
     ]
   }
 }
