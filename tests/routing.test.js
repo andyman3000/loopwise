@@ -62,11 +62,12 @@ test('missing config file behaves like shipped null', async () => {
   assert.match(r.text, /id="inquiry-form"/);
 });
 
-test('shipped set and folder exists: /inquiry serves that variant', async () => {
+test('shipped prototype without a hardened build: /inquiry serves the baseline', async () => {
   setConfig({ shipped: 'zz-test-a', variants: ['zz-test-a', 'zz-test-b'] });
   const r = await get('/inquiry');
   assert.equal(r.status, 200);
-  assert.match(r.text, new RegExp(MARK + '-zz-test-a'));
+  assert.match(r.text, /id="inquiry-form"/);
+  assert.doesNotMatch(r.text, new RegExp(MARK), 'a prototype never goes live');
 });
 
 test('shipped set but folder missing: /inquiry falls back to baseline', async () => {
@@ -116,8 +117,8 @@ test('a variant replaces any page by holding a file of the same name', async () 
     assert.doesNotMatch((await get('/formats.html')).text, new RegExp(MARK), 'no variant asked for, none shipped');
     assert.doesNotMatch((await get('/formats.html?variant=zz-test-a')).text, new RegExp(MARK), 'zz-test-a holds no formats page');
     setConfig({ shipped: 'zz-test-b', variants: ['zz-test-b'] });
-    assert.match((await get('/formats.html')).text, new RegExp(MARK + '-formats'), 'shipped variant replaces every page it holds');
-    assert.match((await get('/inquiry.html')).text, new RegExp(MARK + '-zz-test-b'), '/inquiry.html is the same page as /inquiry');
+    assert.doesNotMatch((await get('/formats.html')).text, new RegExp(MARK), 'a shipped prototype without a hardened build is not served');
+    assert.match((await get('/inquiry.html')).text, /id="inquiry-form"/, '/inquiry.html is the same page as /inquiry');
   } finally { fs.rmSync(f); }
 });
 
@@ -210,7 +211,7 @@ test('build=hardened is 404 when the variant has no hardened build or is not lis
   assert.equal((await get('/inquiry?variant=../../server&build=hardened')).status, 404);
 });
 
-test('a shipped variant is served from its hardened build if there is one, else from its prototype', async () => {
+test('a shipped variant with a hardened build serves the hardened page', async () => {
   hardenedBuild('zz-test-a', { 'inquiry.html': `<!doctype html>${HMARK}-zz-test-a` });
   setConfig({ shipped: 'zz-test-a', variants: ['zz-test-a', 'zz-test-b'] });
   assert.match((await get('/inquiry')).text, new RegExp(HMARK + '-zz-test-a'));
@@ -218,7 +219,14 @@ test('a shipped variant is served from its hardened build if there is one, else 
   assert.match((await get('/formats.html')).text, /<title>[^<]*<\/title>/, 'a page the hardened build does not hold is the baseline');
   assert.doesNotMatch((await get('/formats.html')).text, new RegExp(HMARK));
   assert.match((await get('/inquiry?variant=baseline')).text, /id="inquiry-form"/);
+});
+
+test('a shipped variant without a hardened build serves the baseline, not its prototype', async () => {
   fs.rmSync(path.join(HARDENED, 'zz-test-b'), { recursive: true, force: true });
   setConfig({ shipped: 'zz-test-b', variants: ['zz-test-a', 'zz-test-b'] });
-  assert.match((await get('/inquiry')).text, new RegExp(MARK + '-zz-test-b'), 'no hardened folder: the prototype');
+  const r = await get('/inquiry');
+  assert.equal(r.status, 200);
+  assert.match(r.text, /id="inquiry-form"/);
+  assert.doesNotMatch(r.text, new RegExp(MARK), 'no hardened folder: the baseline');
+  assert.match((await get('/inquiry?variant=zz-test-b')).text, new RegExp(MARK + '-zz-test-b'), 'the prototype stays reachable with ?variant=');
 });

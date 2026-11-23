@@ -5,7 +5,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { checkRelease, readReleaseDecisions, decisionProblem, formatRelease } from '../scripts/release.js';
+import { checkRelease, readReleaseDecisions, decisionProblem, formatRelease, nextDecisionNumber } from '../scripts/release.js';
 
 const REPO = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SCRIPT = path.join(REPO, 'scripts', 'release.js');
@@ -54,7 +54,7 @@ test('refuses without a release decision, names the product lead, and leaves the
   assert.deepEqual(missing(r), ['product lead']);
   const out = run(root, 'call-slot');
   assert.equal(out.status, 1);
-  assert.match(out.stdout, /MISSING {2}a release decision for call-slot exists in discovery\/decisions\/ {2}owner: product lead/);
+  assert.match(out.stdout, /MISSING {2}the product lead approves the release: npm run release -- call-slot --approved-by <name>\. The permission prompt on that command is the approval\. {2}owner: product lead/);
   assert.match(out.stdout, /release: refused\. Waiting on: product lead\. site\/config\.json is unchanged\./);
   assert.equal(fs.readFileSync(path.join(root, 'site', 'config.json'), 'utf8'), CONFIG);
 });
@@ -143,4 +143,86 @@ test('a hold decision by the product lead is reported as a hold, not as a missin
   assert.doesNotMatch(out, /^MISSING/m);
   assert.doesNotMatch(out, /Copy \.claude\/skills\/loopwise-factory\/release-decision-template\.md/);
   assert.match(fs.readFileSync(path.join(root, 'site', 'config.json'), 'utf8'), /"shipped": null/);
+});
+
+const decisionFiles = (root) => fs.readdirSync(path.join(root, 'discovery', 'decisions')).sort();
+
+test('--approved-by releases, writes the record with the next number and the six fields, and sets shipped', () => {
+  for (const form of [['--approved-by=Noa Vale', '--reason=Gates green, launch decided.'], ['--approved-by', 'Noa Vale', '--reason', 'Gates green, launch decided.']]) {
+    const root = repo({ 'site/hardened/call-slot/inquiry.html': CLEAN, 'discovery/decisions/004-short-form.md': '# Decision 004\n' });
+    assert.equal(nextDecisionNumber(root), '901', 'the fixture launch decision is 900');
+    const out = run(root, ...form, 'call-slot');
+    assert.equal(out.status, 0, out.stdout + out.stderr);
+    assert.equal(shipped(root), 'call-slot');
+    assert.match(out.stdout, /ok +the product lead approved the release of call-slot at the release prompt: Noa Vale {2}owner: product lead/);
+    assert.match(out.stdout, /release: the approval by Noa Vale is recorded in discovery\/decisions\/901-release-call-slot\.md\./);
+    const text = fs.readFileSync(path.join(root, 'discovery', 'decisions', '901-release-call-slot.md'), 'utf8');
+    assert.match(text, /^# Decision 901: release call-slot$/m);
+    assert.match(text, /^> Recorded by npm run release after the product lead approved at the release prompt\.$/m);
+    for (const re of [/^Variant: call-slot$/m, /^Decision: release$/m, /^Decided by: Noa Vale$/m, /^Role: product lead$/m, /^Date: \d{4}-\d{2}-\d{2}$/m, /^Reason: Gates green, launch decided\.$/m]) assert.match(text, re);
+    assert.match(text, /## What it rests on\n- Validation gate \(owner: product lead, hard\): pass\n- Legal gate \(owner: legal, hard\): pass\n- Design gate \(owner: designer, soft\): pass\n/);
+    const [d] = readReleaseDecisions(root);
+    assert.equal(decisionProblem(d), null, 'the record counts as a release decision');
+  }
+});
+
+test('--approved-by without --reason records the default reason, and numbering starts at 001 in an empty folder', () => {
+  const root = repo({ 'site/hardened/call-slot/inquiry.html': CLEAN });
+  fs.rmSync(path.join(root, 'discovery', 'decisions', '900-launch-call-slot.md'));
+  fs.writeFileSync(path.join(root, 'discovery', 'decisions', 'notes.md'), 'no number\n');
+  assert.equal(nextDecisionNumber(root), '001');
+  // Without a launch decision the validation gate fails, so add one with a number.
+  fs.writeFileSync(path.join(root, 'discovery', 'decisions', '005-launch-call-slot.md'), 'Variant: call-slot\nDecision: launch\nDecided by: Kim Example\nRole: product lead\nDate: 2026-11-20\nReason: The test with people passed.\n');
+  const out = run(root, 'call-slot', '--approved-by=Noa Vale');
+  assert.equal(out.status, 0, out.stdout);
+  const text = fs.readFileSync(path.join(root, 'discovery', 'decisions', '006-release-call-slot.md'), 'utf8');
+  assert.match(text, /^Reason: Approved at the release prompt\.$/m);
+});
+
+test('--approved-by "Claude" or "agent" or a placeholder is refused and writes nothing', () => {
+  for (const name of ['Claude', 'agent', '<name>', '']) {
+    const root = repo({ 'site/hardened/call-slot/inquiry.html': CLEAN });
+    const before = decisionFiles(root);
+    const out = run(root, 'call-slot', `--approved-by=${name}`);
+    assert.equal(out.status, 1, name);
+    assert.match(out.stdout, /names no person\. An agent never approves a release\./);
+    assert.match(out.stdout, /release: refused\. Waiting on: product lead\./);
+    assert.deepEqual(decisionFiles(root), before);
+    assert.equal(shipped(root), null);
+  }
+  const root = repo({ 'site/hardened/call-slot/inquiry.html': CLEAN });
+  const out = run(root, 'call-slot', '--approved-by', 'Claude');
+  assert.equal(out.status, 1, 'the space form is checked too');
+  assert.match(out.stdout, /--approved-by "Claude" names no person/);
+});
+
+test('--dry-run with --approved-by reports a release and writes nothing', () => {
+  const root = repo({ 'site/hardened/call-slot/inquiry.html': CLEAN });
+  const before = decisionFiles(root);
+  const out = run(root, 'call-slot', '--dry-run', '--approved-by', 'Noa Vale');
+  assert.equal(out.status, 0, out.stdout);
+  assert.match(out.stdout, /every condition holds/);
+  assert.deepEqual(decisionFiles(root), before);
+  assert.equal(fs.readFileSync(path.join(root, 'site', 'config.json'), 'utf8'), CONFIG);
+});
+
+test('a refused release with --approved-by (failing legal gate) writes nothing', () => {
+  const root = repo({ 'site/hardened/call-slot/inquiry.html': PRICE });
+  const before = decisionFiles(root);
+  const out = run(root, 'call-slot', '--approved-by=Noa Vale');
+  assert.equal(out.status, 1);
+  assert.match(out.stdout, /release: refused\. Waiting on: legal\./);
+  assert.deepEqual(decisionFiles(root), before);
+  assert.equal(shipped(root), null);
+});
+
+test('a valid decision file still releases without --approved-by and no record is written', () => {
+  const root = repo({ 'site/hardened/call-slot/inquiry.html': CLEAN, 'discovery/decisions/006-release-call-slot.md': RELEASE });
+  const before = decisionFiles(root);
+  const out = run(root, 'call-slot', '--approved-by', 'Noa Vale');
+  assert.equal(out.status, 0, out.stdout);
+  assert.match(out.stdout, /a release decision for call-slot exists: discovery\/decisions\/006-release-call-slot\.md/);
+  assert.doesNotMatch(out.stdout, /is recorded in/);
+  assert.deepEqual(decisionFiles(root), before);
+  assert.equal(shipped(root), 'call-slot');
 });

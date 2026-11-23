@@ -268,9 +268,10 @@ export function createServer() {
       const variant = params.get('variant');
       const hardened = params.get('build') === 'hardened';
       const baseline = path.join(SITE, page + '.html');
-      // A shipped variant is served from its hardened build if there is one, else from its prototype.
+      // A shipped variant is served only from its hardened build. A prototype never goes live.
+      // Without a hardened build, visitors get the baseline page.
       const shipped = readConfig().shipped;
-      if (variant === null) file = variantPage(hardenedDir(shipped) || variantDir(shipped), page) || baseline;
+      if (variant === null) file = variantPage(hardenedDir(shipped), page) || baseline;
       else if (variant === 'baseline') file = baseline;
       else {
         const dir = hardened ? hardenedDir(variant) : variantDir(variant);
