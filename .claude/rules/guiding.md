@@ -55,6 +55,10 @@ anchor their ideas: a library app whose borrowers return books late. Never an ex
   no, a choice between named options, "anything to add?", a name or a date) gets neither: ask it
   plainly.
 - Feedback asks nothing. The only question is the last line.
+- In the Claude desktop app, a turn may end with a box of answer buttons. Offer no button for a
+  question the participant answers in their own words: they find the answer, not you. For a
+  choice between named options, offer the options as they are, with no recommendation and no
+  answer of your own first. Never offer "all of them" or "none" as a button.
 - Each message ends with the one thing the participant does or answers now, as its last line. A
   decision they take is its own question, never a remark in the middle of a message.
 - Do your own checks quietly (a `curl`, a `grep`, a test). Name no internal part of a file (a
