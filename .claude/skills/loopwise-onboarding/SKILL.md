@@ -56,7 +56,7 @@ say ok, or what is wrong and what to do. Plain words (`.claude/rules/writing.md`
 
 If steps 1 to 4 are ok, in setting `workshop` (`CLAUDE.md`), end with this line, and nothing after it:
 
-"Done: everything runs. Stop here. The trainer shows what comes next."
+"Done: everything runs. This skill ends here. Go on with the next step on the slide. If there is none, wait for the trainer."
 
 In setting `team`, end with these lines instead, and nothing after them:
 

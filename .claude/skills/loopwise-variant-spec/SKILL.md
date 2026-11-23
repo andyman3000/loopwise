@@ -161,6 +161,8 @@ Feedback: <two or three short lines: what was strong, what was weak, and why>
 > Build on the design system in site/styles.css: its components and tokens, no own colours,
 > spacing values or button looks (.claude/rules/design-system.md).
 > Build only what the spec names. Where the spec says an element is faked, do not wire it up.
+> Write the files, then stop: start no server and no browser, and run no test. The pair clicks
+> through the page.
 ```
 
 ## Output template, mode `launch`

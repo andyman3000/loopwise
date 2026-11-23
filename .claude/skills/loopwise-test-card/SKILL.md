@@ -135,7 +135,7 @@ Show <n> people who <criteria> the page `/<page>?variant=<variant>`. Each tester
 
 ### Testers
 - **Who qualifies:** <criteria, proposal, with the persona lines they rest on>
-- **How many:** <n> per <buyer type>, proposal · Set by: ____ (human decides)
+- **How many:** <n> per <buyer type>, proposal · Set by: <team: ____ (human decides) | workshop: after the workshop>
 - **Recruited by:** <workshop: "after the workshop" | team: <name or role> · **By:** <YYYY-MM-DD>>
 
 ### Test scenario (the tester sees only this)
