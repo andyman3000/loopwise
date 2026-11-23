@@ -27,6 +27,8 @@ Before the human reads, say: about 10 minutes for the table. A good reading says
 
 End each step with "Done: <what>. Next: <what the human does now>." At the end, four lines: Made (the Result section), Look (http://localhost:<port>/discovery/test-cards/<variant>.md), Next (the trainer runs `/loopwise-next-bet`), Time (the demo planned about 30 minutes for this).
 
+**At the end, in setting `workshop`:** the Next and Time lines follow `.claude/rules/guiding.md`, "At the end of the skill", not the lines this skill names below. Stop; name no next skill, no command to type and no block.
+
 ## Rules
 
 - **The human reads first.** Before you say what any number means, ask for their reading (step 1).

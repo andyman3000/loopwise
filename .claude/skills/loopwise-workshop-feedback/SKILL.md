@@ -24,6 +24,8 @@ Before each question, say: about 2 minutes; a good answer is honest and concrete
 
 End each step with "Done: <what>. Next: <what the human does now>." At the end, the closing line in step 9 covers Made, Look and Next; add Time: block 9 planned about 15 minutes, and the day ends after it.
 
+**At the end, in setting `workshop`:** the Next and Time lines follow `.claude/rules/guiding.md`, "At the end of the skill", not the lines this skill names below. Stop; name no next skill, no command to type and no block.
+
 ## Rules
 
 - **One question at a time.** Use AskUserQuestion with the options below; the person can always type their own answer instead. After each answer, ask the question's follow-up once, as its own message, unless the answer already says it or is "skip". About one minute; a good answer is one sentence. No emojis.

@@ -23,6 +23,8 @@ Before the try first, say: about 2 minutes, one sentence. A good answer names a 
 
 End each step with "Done: <what>. Next: <what the human does now>." At the end, four lines: Made (the comparison), Look (its link), Next (fill "Decision (human)"), Time (about 20 minutes).
 
+**At the end, in setting `workshop`:** the Next and Time lines follow `.claude/rules/guiding.md`, "At the end of the skill", not the lines this skill names below. Stop; name no next skill, no command to type and no block.
+
 ## Rules
 
 - **Try first, then compare.** Before you draft, ask the human for which variant they would ship, and whether they would test it with users first, with a one-sentence reason. Wait for the answer and never invent it. After drafting, fill the section "Your first try": their answer word for word, then two or three short lines on where your draft differs and why. If they say skip, write "skipped". This step is how participants learn the concept; do not shorten it.

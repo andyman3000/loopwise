@@ -40,6 +40,8 @@ Before the try first, say: about 2 minutes, a few words. A good answer says what
 
 End each step with "Done: <what>. Next: <what the human does now>." At the end, four lines: Made (the learning card), Look (its link), Next (by the decision: move on, `/clear`, then `/loopwise-test-card <variant> launch`; another round with a changed spec, `/clear`, then `/loopwise-variant-spec <variant>` and the rebuild with the build prompt at the end of the spec; the next idea or kill, fill a second "Selection (human)" in the intent for the next idea, then `/clear` and `/loopwise-test-card <next-variant> prototype`), Time (block 6a planned about 25 minutes for the card).
 
+**At the end, in setting `workshop`:** the Next and Time lines follow `.claude/rules/guiding.md`, "At the end of the skill", not the lines this skill names below. Stop; name no next skill, no command to type and no block.
+
 ## Rules
 
 - **One question at a time.** Wait for the answer before the next one. Keep each turn short: the step frame, what you quote, the question. No emojis.

@@ -32,6 +32,8 @@ Guide as `.claude/rules/guiding.md` says, in the language the human writes in. S
 
 Say in one line what a test card is, and in mode `prototype` what the cross test is (`.claude/rules/guiding.md`, "Terms"). End each step with "Done: <what>. Next: <what the human does now>."
 
+**At the end, in setting `workshop`:** the Next and Time lines follow `.claude/rules/guiding.md`, "At the end of the skill", not the lines this skill names below. Stop; name no next skill, no command to type and no block.
+
 ## Rules for both modes
 
 - **Every claim quotes its source with location** (file and line). No quote, no claim. Each citation is a Markdown link: `[<file>:<line>](<path from this file>#L<line>)` (`.claude/rules/writing.md`, "Citations are links").

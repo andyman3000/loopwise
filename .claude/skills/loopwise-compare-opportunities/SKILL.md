@@ -26,6 +26,8 @@ Before the try first, say: about 3 minutes, one sentence. A good answer names on
 
 End each step with "Done: <what>. Next: <what the human does now>." At the end, four lines: Made (the comparison), Look (http://localhost:<port>/discovery/tree), Next (fill "Decision (human)" and record it in `discovery/decisions/`; then block 4: `/clear`, then `/loopwise-intent-and-ideas <C-id>`), Time (block 3 planned about 60 minutes).
 
+**At the end, in setting `workshop`:** the Next and Time lines follow `.claude/rules/guiding.md`, "At the end of the skill", not the lines this skill names below. Stop; name no next skill, no command to type and no block.
+
 ## Rules
 
 - **Try first, then compare.** Before you draft, ask the human for which opportunity they favour right now, with a one-sentence reason. Point them to their opportunity map first: with `npm start` running, `http://localhost:3000/discovery/map` shows every opportunity by source and evidence. The challenger step then also attacks their favourite, if it differs from the candidate the comparison favours. Wait for the answer and never invent it. After drafting, fill the section "Your first try": their answer word for word, the candidate ID it matches ("Matches: C1", or "none"), then two or three short lines on where your draft differs and why. If they say skip, write "skipped". This step is how participants learn the concept; do not shorten it.

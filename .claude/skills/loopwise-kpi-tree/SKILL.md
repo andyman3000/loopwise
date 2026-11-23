@@ -23,6 +23,8 @@ Before the try first, say: about 3 minutes, one line. A good answer lists the st
 
 End each step with "Done: <what>. Next: <what the human does now>." At the end, four lines: Made (the tree), Look (http://localhost:<port>/discovery/kpi-tree.html), Next ("type `/clear`, then `/loopwise-opportunities-from-source`"), Time (block 1 planned about 30 minutes).
 
+**At the end, in setting `workshop`:** the Next and Time lines follow `.claude/rules/guiding.md`, "At the end of the skill", not the lines this skill names below. Stop; name no next skill, no command to type and no block.
+
 ## Rules
 
 - **Only the tree.** Goal, branches, drivers, the formula of each branch. No counts, no drop-off ranking, no assessment, no assumptions table, no recommendation, no decision field. Opportunities, assumptions and the choice of what to move come in later blocks.

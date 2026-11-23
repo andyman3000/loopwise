@@ -28,6 +28,8 @@ Guide as `.claude/rules/guiding.md` says, in the language the human writes in. S
 
 End each step with "Done: <what>. Next: <what the human does now>."
 
+**At the end, in setting `workshop`:** the Next and Time lines follow `.claude/rules/guiding.md`, "At the end of the skill", not the lines this skill names below. Stop; name no next skill, no command to type and no block.
+
 ## Rules, both modes
 
 - **Try first, then compare.** Before you draft, ask the human. In `learn`: "What is the smallest page that lets a tester hit the assumption?" In `launch`: "What would a developer need to know that the prototype does not show?" Wait for the answer and never invent it. A vague reply ("go on", "ok") is not an answer: ask once more, and if it stays vague, write "skipped". After drafting, fill the section "Your first try": their answer word for word, then two or three short lines on where your draft differs and why. If they say skip, write "skipped". This step is how participants learn the concept; do not shorten it.

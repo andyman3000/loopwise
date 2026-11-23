@@ -15,7 +15,7 @@ If the command came with a language (`/loopwise-onboarding Deutsch`), use it. If
 
 Guide as `.claude/rules/guiding.md` says. Show first:
 - **Where:** Setup, before block 4. You only watch; I check five things: Node, the tests, the site, the Loopwise skills, the browser.
-- **You end with:** the site running on your laptop, and the page where block 4 starts.
+- **You end with:** the site running on your laptop.
 - **Time:** about two minutes. You type nothing until I ask.
 
 Then go through the steps. Before each step, say in one line what you check now. After each step,
@@ -51,7 +51,11 @@ say ok, or what is wrong and what to do. Plain words (`.claude/rules/writing.md`
 
 ## The end
 
-If steps 1 to 4 are ok, end with these lines, and nothing after them:
+If steps 1 to 4 are ok, in setting `workshop` (`CLAUDE.md`), end with this line, and nothing after it:
+
+"Done: everything runs. Stop here. The trainer shows what comes next."
+
+In setting `team`, end with these lines instead, and nothing after them:
 
 "Done: everything runs. Next, block 4 (50 minutes), first 5 minutes: open
 http://localhost:<port>/discovery/tree. On top is the business goal, below it the steps from a visit
@@ -62,7 +66,7 @@ Then type /clear and /loopwise-intent-and-ideas C1. It briefs you on C1 first."
 
 If the browser step failed, put one line before it: "The browser tool is missing; add it when you
 have a minute (setup step 4)." If step 2 had a failing test, say that the trainer knows best what
-to do, and still end with the lines above. If step 1 or 3 failed, end with what to do instead.
+to do, and still end with the line or lines above. If step 1 or 3 failed, end with what to do instead.
 
 Remind the pair once, before the last lines: "The site runs inside this Claude Code session. If you
 quit Claude Code, the site stops; the next skill starts it again when you say yes."

@@ -28,6 +28,8 @@ Guide as `.claude/rules/guiding.md` says, in the language the pair writes in. Sh
 
 Say in one line what a gate is, and in run 1 what a waiver is (`.claude/rules/guiding.md`, "Terms"). Before every decision the pair takes, say who decides (the role), how long, and what a good answer looks like. End each step with "Done: <what>. Next: <what the pair does now>."
 
+**At the end, in setting `workshop`:** the Next and Time lines follow `.claude/rules/guiding.md`, "At the end of the skill", not the lines this skill names below. Stop; name no next skill, no command to type and no block.
+
 **Say this first, word for word:** "The factory runs in the open. In each run it plants one error on purpose and does not tell you which. The gate should find it. If the gate stays green, note that for the retro."
 
 ## What the factory reads

@@ -36,6 +36,8 @@ Guide as `.claude/rules/guiding.md` says, in the language the human writes in. S
 
 Say in one line what a persona is (`.claude/rules/guiding.md`, "Terms"). End each step with "Done: <what>. Next: <what the human does now>."
 
+**At the end, in setting `workshop`:** the Next and Time lines follow `.claude/rules/guiding.md`, "At the end of the skill", not the lines this skill names below. Stop; name no next skill, no command to type and no block.
+
 ## Rules
 
 - **Try first, then compare.** Before the personas read anything, tell the human in two lines what this run can and cannot show. It can show gaps in the spec or page and clashes with what the persona files say about buyers. It cannot show whether the idea works: a persona repeats its file and cannot react to anything new. Then ask: "Before I play the buyer without budget and the buyer with budget through your page: where will each of them hesitate or leave, and why?" Wait for the answer and never invent it. A vague reply ("go on", "ok") is not an answer: ask once more, and if it stays vague, write "skipped". If the answer names a page change instead of a place where they expect a stall, keep it word for word and say so in "Your first try". After the run, fill "Your first try": their answer word for word, then two or three short lines on where the personas stalled instead, or also. If they say skip, write "skipped". This step is how participants learn the concept; do not shorten it.

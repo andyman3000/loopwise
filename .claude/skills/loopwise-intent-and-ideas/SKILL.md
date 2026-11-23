@@ -34,6 +34,8 @@ Guide as `.claude/rules/guiding.md` says, in the language the pair writes in. Sh
 
 Start each step with one line, for example "Step 2 of 7: more ideas." The line names no minutes: the time comes once, with the action the pair takes, so the pair never sees two times for one step. End each step with "Done: <what>. Next: <what the pair does now>."
 
+**At the end, in setting `workshop`:** the Next and Time lines follow `.claude/rules/guiding.md`, "At the end of the skill", not the lines this skill names below. Stop; name no next skill, no command to type and no block.
+
 ## Rules
 
 - **The intent is short and reads on its own.** People read it as a communication tool. Agents read it as context for the prototype and later the implementation. Someone with only this file open must be able to say what should change, for whom, and how it would show on the site. Less detail is better, as long as that meaning stays.
