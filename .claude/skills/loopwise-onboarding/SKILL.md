@@ -40,7 +40,7 @@ say ok, or what is wrong and what to do. Plain words (`.claude/rules/writing.md`
 4. **The Loopwise skills.** List the folders in `.claude/skills/` whose names start with
    `loopwise-`, and check each holds a `SKILL.md`. Say how many there are, and name the three the
    day starts with: `/loopwise-intent-and-ideas`, `/loopwise-test-card`, `/loopwise-variant-spec`.
-   This skill runs, so Claude Code sees the repo's skills. Tell the pair: "Later, when a skill
+   This skill runs, so Claude Code sees the repo's skills. Tell the pair: "Later, when the slide
    says so, type / and loopwise: all Loopwise skills start with loopwise-, so they stand together."
 5. **The browser.** The training uses the Claude desktop app, which has a browser built in. Check
    whether this session has a browser tool: the desktop app's built-in browser first, else any
