@@ -30,9 +30,13 @@ agent builds a variant: a prototype in `site/variants/` (build to learn) and a h
 
 - Build to learn: the rule leads, no gate blocks. The design system makes the prototype fast and on
   brand.
-- Build to earn: the design gate in `npm run check` scans `site/hardened/`. It is soft: it fails
-  the check, and only the designer can let it pass: with a waiver in `discovery/decisions/`, or by
-  approving an addition to `site/styles.css` that the page then uses.
+- Build to earn: the guard flags design findings right after each write in `site/hardened/`. The
+  guard is a check in `.claude/settings.json` that Claude Code runs before and after each write.
+  The agent fixes each finding then and there. `npm run check` and `npm run release` check again.
+  The designer is not asked in the run: the design system holds the designer's judgement.
+- Outside the run, the designer can let one finding pass. The designer writes a waiver in
+  `discovery/decisions/`, or approves an addition to `site/styles.css` that the page then uses.
+  The guard asks before any change to `site/styles.css`.
 
 ## Changing the design system
 
