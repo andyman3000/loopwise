@@ -39,8 +39,7 @@ The design gate is the same as in run 1 ([10-factory-run-1.md](10-factory-run-1.
    the run. Legal's judgement was already in the rule. Outside the run, legal can change the rule
    itself. No one can make an exception for one page.
 3. **Decide the release (7 min).** The product lead reads three things:
-   - the build: `npm start`, then
-     `http://localhost:3000/inquiry.html?variant=call-slot&build=hardened`;
+   - the build: `http://localhost:<port>/inquiry.html?variant=call-slot&build=hardened`;
    - the review;
    - the open questions in `discovery/factory/call-slot-questions.md`.
 
@@ -52,8 +51,8 @@ The design gate is the same as in run 1 ([10-factory-run-1.md](10-factory-run-1.
      for production. Only the product lead clicks it. The release runs every gate again. It sets
      `shipped` in `site/config.json` and writes its record into `discovery/decisions/`.
    - **Hold:** nothing runs. `site/config.json` stays as it is. A hold is a decision too.
-4. **Look at it (3 min).** After a release, open `http://localhost:3000/inquiry.html` without any
-   `?variant=`. Every visitor now gets the hardened page. Stop the server with `Ctrl+C`.
+4. **Look at it (3 min).** After a release, open `http://localhost:<port>/inquiry.html` without any
+   `?variant=`. Every visitor now gets the hardened page.
 5. **Retro (12 min).** Start a fresh session (`/clear`). Then `/loopwise-factory call-slot retro`.
    It writes `discovery/factory/call-slot-retro.md` and asks you four questions, one at a time:
    - What did the gate catch?
@@ -63,7 +62,7 @@ The design gate is the same as in run 1 ([10-factory-run-1.md](10-factory-run-1.
 6. **Commit (3 min).**
    ```bash
    npm test && npm run check
-   git add -A && git commit -m "factory run 2: gate fixed, release decided, retro"
+   git add -A && git commit -m "factory run 2: price refused, product lead decided, retro"
    ```
 
 **Done when:** the legal gate passes and the product lead answered release or hold. After a

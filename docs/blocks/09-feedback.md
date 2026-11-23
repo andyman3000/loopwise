@@ -1,6 +1,6 @@
 # Block 9: Feedback and your results
 
-**What it's for:** the trainer sees what your pair built and what you thought of the two days, and
+**What it's for:** the trainer sees what your pair built and what you thought of the day, and
 improves the workshop with it.
 
 ## What you do (about 15 min)

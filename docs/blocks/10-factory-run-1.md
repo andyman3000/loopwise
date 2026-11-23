@@ -55,7 +55,7 @@ Everybody types. The role decides.
    git switch -c factory-<names> v3-06-test-decision
    ```
    If git says "nothing to commit", go on: the switch still works.
-2. **Draft the launch spec yourself (10 min).** Start a fresh Claude Code session (`/clear`). Then
+2. **Launch spec: your list, the skill's draft (10 min).** Start a fresh Claude Code session (`/clear`). Then
    `/loopwise-variant-spec call-slot launch`. It asks what a developer would need to know that the
    prototype does not show. Answer it yourself first. It drafts at most one page and cuts every
    line the prototype already shows. It writes over the reference spec; that is fine for now.
@@ -87,10 +87,10 @@ Everybody types. The role decides.
    - an exception for one variant: a waiver in `discovery/decisions/`, with name and reason;
    - a change to the system: a new token or component in `site/styles.css`, which the designer
      approves as its owner.
-7. **Look at it (5 min).** `npm start`, then open
-   `http://localhost:3000/inquiry.html?variant=call-slot&build=hardened` and click through it once.
-   Compare it with the prototype at `http://localhost:3000/inquiry.html?variant=call-slot`. Stop the
-   server with `Ctrl+C`. Then ask what the release still waits for:
+7. **Look at it (5 min).** Open
+   `http://localhost:<port>/inquiry.html?variant=call-slot&build=hardened` and click through it once.
+   Compare it with the prototype at `http://localhost:<port>/inquiry.html?variant=call-slot`. The
+   factory ran the dry run at its end. It lists what the release still waits for. To run it again:
    ```bash
    npm run release -- call-slot --dry-run
    ```
