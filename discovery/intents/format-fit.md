@@ -85,4 +85,22 @@ I1 and I8 rest on a similar assumption: buyers accept a format someone names for
 - Variant name (lowercase with dashes): format-quiz
 - Who: Product lead (Loopwise) · When: 2026-11-14
 
+## Selection (human), round 2
+
+- Part we work on: the whole opportunity
+- Idea it comes from: I2: Offer other ways of contact: Call us directly, Book a call slot, that opens a calendar link (inquiry page)
+- Assumption we test first: Buyers who cannot tell which format fits would rather talk to a person than write. They book a call slot themselves when the page offers one.
+- Why this one first: The furthest from the quiz: talking instead of writing. Drafted by Claude, kept by the product lead on 2026-11-16.
+- Variant name (lowercase with dashes): call-slot
+- Who: Product lead (Loopwise) · When: 2026-11-16
+
+## Selection (human), round 3
+
+- Part we work on: the whole opportunity
+- Idea it comes from: I6: Cut the form to name and email. Everything else is asked in the scoping call (inquiry page)
+- Assumption we test first: Buyers stop at the form because of what it asks them to write. With only name and email to give, they send it without knowing the format.
+- Why this one first: The opposite of the quiz: ask nothing up front. Drafted by Claude, kept by the product lead on 2026-11-16.
+- Variant name (lowercase with dashes): short-form
+- Who: Product lead (Loopwise) · When: 2026-11-16
+
 A second round adds a second "Selection (human)" below this one, with its own variant name.
