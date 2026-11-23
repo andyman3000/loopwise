@@ -1,9 +1,11 @@
-# Block 5: Spec, persona reads the spec, build the prototype
+# Block 5: Spec and prototype
 
-> **Persona test and what to measure, part 2: pairs or threes, at one laptop. About 35 of 60
-> minutes. Task: write the smallest spec for your variant and let two AI personas read it before
-> anything is built.** This is steps 1 and 2; step 3 only if time is left. The bootcamp builds no
-> prototype in the morning: skip step 4. The afternoon starts from the reference prototype `call-slot`
+> **Persona test and what to measure, part 2: pairs or threes, at one laptop. About 30 of 60
+> minutes. Task: write the smallest spec for your variant, then let Claude Code build the page from
+> it.** In the bootcamp, `/loopwise-variant-spec <variant>` does steps 1, 4 and 5 in one run: the
+> spec, the build from the spec alone, a click-through and the commit. Steps 2 and 3 (the persona
+> run) are not part of the bootcamp; the trainer shows on a slide what AI personas can and cannot
+> show. The afternoon starts from the reference prototype `call-slot`
 > ([10-factory-run-1.md](10-factory-run-1.md)).
 
 **What it's for:** you describe the smallest page that lets a tester meet your assumption. Two AI
