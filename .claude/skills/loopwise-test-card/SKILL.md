@@ -19,10 +19,14 @@ Both modes also read `product/constraints.md`, `discovery/kpi-tree.md`, `product
 This is an assessment drafted by an agent, not a decision. A human owns the card and every value on it.
 
 **Setting.** Read the `Setting:` line in `CLAUDE.md`. No line means `workshop`.
-- `workshop`: a pair in the training. One tester from another pair tries the page (the cross test).
-- `team`: a product team. It tests the page with people it recruits. Read "the pair" in this skill
-  as "the team", and "the cross test" as "the test with people". Mode `prototype` adds the rules
-  under "Setting `team`". Mode `launch` is the same in both settings.
+- `workshop`: a pair in the one-day bootcamp. Mode `prototype` plans a real test with people, as
+  under "Testers". The pair does not run it today: two AI personas read the spec instead
+  (`loopwise-persona-walkthrough`), and the test with people comes after the workshop. Propose the
+  testers and how many, each marked "proposal", and ask nothing more about them: the pair changes
+  them when it makes the card its own.
+- `team`: a product team. It runs the test with the people it recruits. Read "the pair" in this
+  skill as "the team".
+Mode `launch` is the same in both settings.
 
 ## Orientation
 
@@ -30,7 +34,7 @@ Guide as `.claude/rules/guiding.md` says, in the language the human writes in. S
 - `prototype`: **Where:** Block 4, steps 5 to 7 of 7: the prototype test card. **You end with:** `discovery/test-cards/<variant>-prototype.md`, at http://localhost:<port>/discovery/test-cards/<variant>-prototype.md, owned by you. **Time:** about 25 minutes: 15 for the card, 5 to make it yours, 5 to check and commit.
 - `launch`: **Where:** Block 6b: the launch card, after the learning card said move on. **You end with:** `discovery/test-cards/<variant>.md`, at http://localhost:<port>/discovery/test-cards/<variant>.md. **Time:** about 20 of the 35 minutes of block 6b.
 
-Say in one line what a test card is, and in mode `prototype` what the cross test is (`.claude/rules/guiding.md`, "Terms"). End each step with "Done: <what>. Next: <what the human does now>."
+Say in one line what a test card is, and in mode `prototype` that the card plans a test with people; in setting `workshop`, add that today two AI personas read the spec in its place, and the test with people comes after the workshop. End each step with "Done: <what>. Next: <what the human does now>."
 
 **At the end, in setting `workshop`:** the Next and Time lines follow `.claude/rules/guiding.md`, "At the end of the skill", not the lines this skill names below. Stop; name no next skill, no command to type and no block.
 
@@ -69,16 +73,17 @@ Under the four lines: **We rework or drop the idea if** <rework-or-drop line>.
   - If the assumption needs the tester to be in a certain situation (a training that did not stick, no idea what to ask for) or to know something about their team, the situation asks them to answer for a real case of their own: "Think of a team you know well", "Think of a training your team had that did not stick". It never hands them that case. If the tester has no such case, the test does not count.
   - It names no role or fact a persona file contradicts unless the test needs it; then say so under "What this test cannot show".
 - **Signs are what the watcher can see or hear:** a click, a pause, a question the tester asks, a field left empty, words the tester says. Not a feeling the watcher guesses. Each sign is tied to the go-on line or to the rework-or-drop line.
-- **Go-on line and rework-or-drop line** are set before the test, in words, by the human. Propose both, mark each "proposal". No percentages: one tester per pair cannot carry a rate. In setting `team` the lines may count testers (see "Setting `team`").
-- **Persona-source rule.** An AI persona (`loopwise-persona-walkthrough`) can test only what its persona file has a source for. For each sign, check `product/personas/buyer-without-budget.md` and `product/personas/buyer-with-budget.md`: quote the line that states the behaviour itself, or write "only the cross test with people can test this". A line that names only the worry, the goal, what the buyer knows, or a different behaviour is not enough. Anything the tester would write in their own words is always "only the cross test with people can test this".
+- **Go-on line and rework-or-drop line** are set before the test, in words, by the human. Propose both, mark each "proposal". No percentages. The lines may count testers (see "Testers").
+- **Persona-source rule.** An AI persona (`loopwise-persona-walkthrough`) can test only what its persona file has a source for. For each sign, check `product/personas/buyer-without-budget.md` and `product/personas/buyer-with-budget.md`: quote the line that states the behaviour itself, or write "only a test with people can test this". A line that names only the worry, the goal, what the buyer knows, or a different behaviour is not enough. Anything the tester would write in their own words is always "only a test with people can test this".
 - **Feedback on the first try** asks: does "We believe that" name the assumption, not the idea? Is "To verify that, we will" something one tester does on a page? Does "And measure" name what a watcher can see or hear, not a feeling? Is "We are right if" set before the test, and could a watcher tell whether it happened?
 - **"Pressure-tested, not validated"** stands at the top of the card. The AI personas come from the same sources as the opportunity, so they cannot confirm it from outside.
 
-### Setting `team`
+### Testers
 
 - **Who tests.** Propose who qualifies as a tester, from the persona file of the buyer type the
-  scenario targets. Quote the lines you use. Ask the human to confirm or change the criteria, and to
-  name who recruits the testers and by when.
+  scenario targets. Quote the lines you use. In setting `team`, ask the human to confirm or change the criteria,
+  and to name who recruits the testers and by when. In setting `workshop`, ask nothing: write
+  "after the workshop" for who recruits and when.
 - **How many.** Propose five people per buyer type the test targets, marked "proposal". Say why in
   one line in the chat: five people show most of the problems people have in understanding and
   using one page. If the scenario fits both buyer types, ask whether the test covers one type or
@@ -98,7 +103,7 @@ Under the four lines: **We rework or drop the idea if** <rework-or-drop line>.
 2. Read the idea's assumptions and their sources in the intent. Do not reassess them.
 3. Draft the scenario, the signs, the two lines and what the test cannot show. Apply the persona-source rule to every sign. Hold the situation against both persona files: their "Persona type" line and their facts (the buyer without budget does not decide alone and has no budget settled at first contact, `product/personas/buyer-without-budget.md:5`; the buyer with budget already got a first step approved, `product/personas/buyer-with-budget.md:16`). A role or fact that clashes goes under "What this test cannot show"; the personas then keep their own file.
 4. Show the human the scenario, then the signs as a numbered list, each with what it tells them (go on, or rework or drop). Say: about 2 minutes, a good answer is the numbers you could not see or hear, or "all of them". Ask: "Picture yourself watching a tester. Which of these could you see or hear? Name the numbers you could not." Change what they say. Then say in two lines which signs an AI persona can show: in block 5 Claude plays two buyers from `product/personas/`, written profiles built from the same sources, and a persona can only do what its file has a line for. In setting `team`, then ask who qualifies, how many, who recruits and by when (see "Setting `team`").
-5. Write the file. Tell the human in three lines which sign is weakest and which lines they must own. If every sign is "only the cross test with people can test this", say so: no AI persona can show a sign on this card. Say that the page on the card is built in block 5: until then its link answers "Not found". Then guide the last part of the block, step by step, and wait after each:
+5. Write the file. Tell the human in three lines which sign is weakest and which lines they must own. If every sign is "only a test with people can test this", say so: no AI persona can show a sign on this card. Say that the page on the card is built in block 5: until then its link answers "Not found". Then guide the last part of the block, step by step, and wait after each:
    - "Step 6 of 7: make the card yours, about 5 minutes." Link the file at http://localhost:<port>/discovery/test-cards/<variant>-prototype.md. Say first what the two lines are (`.claude/rules/guiding.md`, "Terms": go-on line, rework-or-drop line) and what `Card owner` means: the people who run the test and decide after it; write the names from `discovery/.local.json` there (`.claude/rules/guiding.md`, "Language and port"). What to do: tell me in the chat "We are right if" and "We rework or drop the idea if" in your own words; I put them in. Or edit the file yourself. The file is in English: write in English, or tell me your words in your language and I put them in English, keeping your meaning, and show you the English line to confirm. A good line says what a watcher would see, without "maybe". Two things to check in the file first: the scenario must not give the assumption away, and you must be able to see each sign without guessing. End with the one ask: the two lines in your words.
    - "Step 7 of 7: check and commit, about 5 minutes." Say that the commit saves the files in their branch, nothing leaves the laptop, and you run it when they say yes. Run `npm run check`, then `git add discovery && git commit -m "block 4: ideas and prototype test card"`, after the human says yes.
    End with four lines: "Made: the prototype test card for <variant>." "Look: http://localhost:<port>/discovery/test-cards/<variant>-prototype.md." "Next: block 5. Type `/clear`, then `/loopwise-variant-spec <variant>`: the spec, a description of the smallest page for your test." "Time: about 25 minutes were planned for the card; block 5 starts with the spec, 20 minutes." Then stop.
@@ -108,7 +113,7 @@ Under the four lines: **We rework or drop the idea if** <rework-or-drop line>.
 ```markdown
 # Prototype test card: <variant>
 
-> **Pressure-tested, not validated.** The AI personas come from the same sources as the opportunity. Only the cross test with people tests from outside.
+> **Pressure-tested, not validated.** The AI personas come from the same sources as the opportunity. Only a test with people tests from outside.
 > Assessment drafted by an agent on <YYYY-MM-DD>, not a decision.
 > Card owner: ____ (human decides)
 > Intent: `discovery/intents/<opportunity>.md` · Idea: <I-number> ("<idea line, quoted>")
@@ -123,12 +128,13 @@ Feedback: <two or three short lines: what was strong, what was weak, and why>
 Level in the intent: <level, quoted>
 
 ## To verify that, we will
-Show <workshop: "one tester from another pair" | team: "<n> people who <criteria>"> the page `/<page>?variant=<variant>`. Each tester gets only the scenario below. The person who built the page watches for the signs.
+Show <n> people who <criteria> the page `/<page>?variant=<variant>`. Each tester gets only the scenario below. The person who built the page watches for the signs.
+<workshop only: "Today two AI personas read the spec instead. The test with people comes after the workshop.">
 
-### Testers (setting `team` only)
+### Testers
 - **Who qualifies:** <criteria, proposal, with the persona lines they rest on>
 - **How many:** <n> per <buyer type>, proposal · Set by: ____ (human decides)
-- **Recruited by:** <name or role> · **By:** <YYYY-MM-DD>
+- **Recruited by:** <workshop: "after the workshop" | team: <name or role> · **By:** <YYYY-MM-DD>>
 
 ### Test scenario (the tester sees only this)
 - **Situation:** <two or three sentences, "You are ...">
@@ -144,7 +150,7 @@ Show <workshop: "one tester from another pair" | team: "<n> people who <criteria
 | <sign> | rework or drop |
 
 **Which signs an AI persona can show** (block 5: Claude plays the buyer personas from `product/personas/`):
-- <sign>: <"yes: <quote>" ([product/personas/<file>:<line>](../../product/personas/<file>#L<line>)), or "only the cross test with people can test this">
+- <sign>: <"yes: <quote>" ([product/personas/<file>:<line>](../../product/personas/<file>#L<line>)), or "only a test with people can test this">
 
 ## We are right if (go-on line)
 <in words, proposal> · Set on: <YYYY-MM-DD>
@@ -153,8 +159,8 @@ Show <workshop: "one tester from another pair" | team: "<n> people who <criteria
 <in words, proposal> · Set on: <YYYY-MM-DD>
 
 ## What this test cannot show
-- <workshop: "One tester per pair: a pattern, not a rate." | team: "<n> testers: a pattern, not a rate.">
-- <team: whether the assumption needs a test the prototype cannot give, for example whether buyers book>
+- <n> testers: a pattern, not a rate.
+- <whether the assumption needs a test the prototype cannot give, for example whether buyers book>
 - <what the scenario cannot reach, for example whether the buyer later books>
 - <signs no persona file has a source for>
 ```

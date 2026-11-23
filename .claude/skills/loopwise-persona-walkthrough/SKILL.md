@@ -10,20 +10,22 @@ description: Play both buyer personas (buyer without budget, buyer with budget) 
 | Mode | When | The personas meet | Writes |
 |---|---|---|---|
 | `spec` | after `loopwise-variant-spec`, before the build | the spec's "What changes on the page" and "Fields and validation" | `discovery/user-tests/<variant>-spec.md` |
-| `page` | after the build; in block 6 as fallback if the cross test drops, or after a rebuild | the page at `http://localhost:<port>/<page>?variant=<variant>`, the start page the spec names | `discovery/user-tests/<variant>-page.md` |
+| `page` | after the build, or after a rebuild | the page at `http://localhost:<port>/<page>?variant=<variant>`, the start page the spec names | `discovery/user-tests/<variant>-page.md` |
 
 **Reads:** `discovery/test-cards/<variant>-prototype.md` (scenario, signs, the two lines);
 `product/personas/buyer-without-budget.md`; `product/personas/buyer-with-budget.md`; in mode `spec`,
 `discovery/specs/<variant>.md`; in mode `page`, the running page.
 
 A persona here is a written profile of a buyer type, built from the same interviews and mails as
-the opportunity. Playing it finds the obvious problems early, so the cross test with people does not
+the opportunity. Playing it finds the obvious problems early, so the test with people does not
 spend its time on them. **It pressure-tests; it does not validate.** The persona cannot tell you
 anything its file has no source for.
 
-**Setting.** Read the `Setting:` line in `CLAUDE.md`. No line means `workshop`. In `team`, read
-"the pair" in this skill as "the team", and "the cross test" as "the test with people". Mode `page`
-then runs if no people can be found for the test, or before they test. It never replaces them.
+**Setting.** Read the `Setting:` line in `CLAUDE.md`. No line means `workshop`. In `workshop`
+(the one-day bootcamp), the walkthrough on the spec is the only test the pair runs today. Say so
+once: the test with people the card plans comes after the workshop. In `team`, read "the pair" in
+this skill as "the team". Mode `page` then runs if no people can be found for the test, or before
+they test. It never replaces them.
 In `workshop`, block 5 lets the pair pick at most two proposals for the spec, to fit the time box.
 In `team`, there is no such limit: the team picks every proposal it wants fixed before the test.
 Say which case applies when you list the proposals.
@@ -47,7 +49,7 @@ Say in one line what a persona is (`.claude/rules/guiding.md`, "Terms"). End eac
 - **The persona keeps its own role.** If the scenario gives the tester a role or a fact the persona file contradicts (for example "has the budget signed off" for the buyer without budget, who has no budget settled at first contact, `product/personas/buyer-without-budget.md:5`), the persona keeps what its file says. Name the clash in one line at the top of its section. Do not change the scenario.
 - **What a persona types is built from its file.** Text the persona enters in a field is made only from lines of its file, and the walkthrough quotes those lines. A sign that turns on what the persona would write in its own words is "cannot tell", in both modes. Name, company and email get placeholders ("Test Buyer", "buyer@example.com"), marked as having no source.
 - **No source, no reaction.** If the persona file has nothing on a point, write "[no source in the persona file: the persona cannot tell]" and do not use it as a sign. Never invent a goal, a fear or a habit the file does not hold.
-- **Judge by the card's signs only**, after the walkthrough. For each sign: shown, not shown, or cannot tell, with the walkthrough line it rests on. A sign the card marks "only the cross test with people can test this" (or, in setting `team`, "only the test with people can test this") is "cannot tell", unless the walkthrough quotes a persona line that states the behaviour (see "too strict" below). A field the persona leaves empty because its file has no line for it is "cannot tell", never "not shown". If the card says a persona can show a sign but its file holds only the worry, the goal, what the buyer knows, or a different behaviour, the sign is "cannot tell", and the file says the card was too generous. The other way round: if the card says only people can show a sign, but the walkthrough quotes a persona line that states the behaviour, mark it shown or not shown and say the card was too strict. A stall that matches no sign goes under "Other stalls", with its source.
+- **Judge by the card's signs only**, after the walkthrough. For each sign: shown, not shown, or cannot tell, with the walkthrough line it rests on. A sign the card marks "only a test with people can test this" (older cards: "only the cross test with people can test this" or "only the test with people can test this") is "cannot tell", unless the walkthrough quotes a persona line that states the behaviour (see "too strict" below). A field the persona leaves empty because its file has no line for it is "cannot tell", never "not shown". If the card says a persona can show a sign but its file holds only the worry, the goal, what the buyer knows, or a different behaviour, the sign is "cannot tell", and the file says the card was too generous. The other way round: if the card says only people can show a sign, but the walkthrough quotes a persona line that states the behaviour, mark it shown or not shown and say the card was too strict. A stall that matches no sign goes under "Other stalls", with its source.
 - **Two questions per sign, two tables.** Table 1 asks what the persona would do on the page: shown, not shown or cannot tell. Table 2 asks whether the spec or page goes against something the persona file says: "yes" with what clashes and the line, "no", or "the file says nothing". Ask the second question for every sign, most of all where the card says "a fact the page must fit". Never hide a clash in the "Rests on" column. A sign can read "cannot tell" in table 1 and "yes" in table 2. The persona files hold facts about buyers, not behaviour on a new page, so table 1 mostly reads "cannot tell". The findings then come from table 2. Title each table with its question, never with a short label.
 - **Every proposal names its evidence**, in this order of strength: a sign the persona showed; a clash with a fact in the persona file; a stall outside the signs; a gap where the persona file has no line. Sort the proposals in that order. Mark a proposal "buyer with budget only" when only that persona backs it, and say so if the card recruits no tester of that type.
 - **Stay on the assumption under test.** A walkthrough tests the one critical assumption on the prototype card. If a finding rests on something else the buyer would have to do or believe, for example how they decide, who they ask, budget or timing, it is a new assumption. Do not turn it into a proposal for the page, and never mark it "fix before the test". Write it once under "New assumptions (not blocking)" as `[assumption: ...]`, with the persona line it rests on, and say which sign it may blur. It goes to the intent, not to this spec. Before you rank a finding, ask: does it change whether a tester meets the assumption under test? If not, it is a new assumption.
