@@ -29,8 +29,9 @@ it takes, and what a good answer looks like.
 
 ## At the start: three lines
 
-Read only `discovery/.local.json` first. Then, before any other file or command, show the skill's
-orientation, three lines and no more, and say in one line what you read now:
+Before anything else, show the skill's orientation, three lines and no more. Your first message that
+ends with a question always opens with these lines. If you read more than two files before it, show
+the lines before you read, and say in one line what you read now:
 
 - **Where:** the block and the step, for example "Block 4, step 2 of 7: more ideas".
 - **You end with:** the file, and the link where you see it. Links use the port from
