@@ -72,6 +72,14 @@ test('rule 1: MultiEdit applies the edits in order', () => {
     file_path: path.join(root, rel), edits: [{ old_string: 'Pick', new_string: 'Choose' }, { old_string: 'Choose a slot', new_string: 'Choose a slot, $ 450' }],
   } });
   assert.equal(decision(r), 'deny');
+  assert.equal(r.out.systemMessage, reason(r));
+});
+
+test('rule 8: an approval prompt adds no message of its own', () => {
+  const root = repo();
+  const r = guard(root, { hook_event_name: 'PreToolUse', tool_name: 'Bash', tool_input: { command: 'npm run release -- call-slot' } });
+  assert.equal(decision(r), 'ask');
+  assert.equal(r.out.systemMessage, undefined);
 });
 
 test('rule 2: setting "shipped" in site/config.json is refused, a new variant is allowed', () => {
@@ -168,7 +176,7 @@ test('rule 9: after a write in site/hardened/, design findings go back to the ag
   assert.match(lines[lines.length - 1], /^design gate \(soft, owner: designer\)\. Fix it in the page with a token or a component from site\/styles\.css\./);
   assert.equal(r.out.hookSpecificOutput.hookEventName, 'PostToolUse');
   assert.equal(r.out.hookSpecificOutput.additionalContext, r.out.reason);
-  assert.equal(r.out.systemMessage, 'design gate (soft, owner: designer): 1 finding(s) in call-slot. The agent fixes them.');
+  assert.equal(r.out.systemMessage, r.out.reason);
 });
 
 test('rule 9: a clean hardened page prints nothing', () => {

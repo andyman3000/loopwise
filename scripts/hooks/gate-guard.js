@@ -94,8 +94,9 @@ function textAfter(tool, input, before) {
 
 // ---------------------------------------------------------------- decisions printed
 
+// A refusal also goes to the pair as a message, so they see it when it happens.
 function pre(decision, reason) {
-  return { hookSpecificOutput: { hookEventName: 'PreToolUse', permissionDecision: decision, permissionDecisionReason: reason } };
+  return { ...(decision === 'deny' ? { systemMessage: reason } : {}), hookSpecificOutput: { hookEventName: 'PreToolUse', permissionDecision: decision, permissionDecisionReason: reason } };
 }
 
 // ---------------------------------------------------------------- rules 1 to 4: before a file write
@@ -211,7 +212,7 @@ function afterFileWrite(input, cwd, gates) {
     decision: 'block',
     reason: text,
     hookSpecificOutput: { hookEventName: 'PostToolUse', additionalContext: text },
-    systemMessage: `design gate (soft, owner: designer): ${findings.length} finding(s) in ${variant}. The agent fixes them.`,
+    systemMessage: text,
   };
 }
 
