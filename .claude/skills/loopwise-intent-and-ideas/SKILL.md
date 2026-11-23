@@ -32,7 +32,7 @@ Guide as `.claude/rules/guiding.md` says, in the language the pair writes in. Sh
 - **You end with:** `discovery/intents/<opportunity-slug>.md`: 3 to 5 ideas, one marked "tested first", drawn at http://localhost:<port>/discovery/tree.
 - **Time:** about 35 of the block's 50 minutes: step 1 15, step 2 5, step 3 10, step 4 5. The 5 minutes on the tree page came before; the prototype test card follows right after this skill, about 25 minutes.
 
-Start each step with one line, for example "Step 2 of 7: more ideas, about 5 minutes." End each step with "Done: <what>. Next: <what the pair does now>."
+Start each step with one line, for example "Step 2 of 7: more ideas." The line names no minutes: the time comes once, with the action the pair takes, so the pair never sees two times for one step. End each step with "Done: <what>. Next: <what the pair does now>."
 
 ## Rules
 
