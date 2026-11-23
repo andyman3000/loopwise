@@ -154,7 +154,13 @@ Four short lines:
 
 - **Made:** the file.
 - **Look:** the link or the file to open.
-- **Next:** the exact command, with `/clear` before a new skill.
-- **Time:** the minutes the block planned for this skill, and what comes after it in the block.
+- **Next:** in setting `workshop`: "Stop here. The trainer shows what comes next." Name no next
+  skill, no command to type and no block: the trainer starts the next skill with the room. A commit
+  the skill offers stays, before this line. In setting `team`: the exact command, with `/clear`
+  before a new skill.
+- **Time:** the minutes the block planned for this skill. In setting `team`, also what comes after.
+
+In setting `workshop`, this holds over any Next or Time line a skill names at its end, and over any
+"Start the next skill now". Then stop.
 
 Keep it short. The orientation is three lines, a step frame one or two.
