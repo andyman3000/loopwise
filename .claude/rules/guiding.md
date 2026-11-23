@@ -164,9 +164,9 @@ Four short lines:
 
 - **Made:** the file.
 - **Look:** the link or the file to open.
-- **Next:** in setting `workshop`: "Stop here. The trainer shows what comes next." Name no next
-  skill, no command to type and no block: the trainer starts the next skill with the room. A commit
-  the skill offers stays, before this line. In setting `team`: the exact command, with `/clear`
+- **Next:** in setting `workshop`: "This skill ends here. Go on with the next step on the slide. If
+  there is none, wait for the trainer." Name no next skill, no command to type and no block: the
+  slide carries the start command. A commit the skill offers stays, before this line. In setting `team`: the exact command, with `/clear`
   before a new skill.
 - **Time:** the minutes the block planned for this skill. In setting `team`, also what comes after.
 
