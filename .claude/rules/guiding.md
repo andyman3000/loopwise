@@ -7,8 +7,11 @@ it takes, and what a good answer looks like.
 ## Language and port
 
 - Before your first line, read `discovery/.local.json` if it exists. `/loopwise-onboarding` writes
-  it, and git ignores it. It holds `language` and `port`. Use both from your first line on, so a
-  fresh session after `/clear` talks in the right language and links the right site.
+  it, and git ignores it. It holds `language`, `port` and `names`. Use them from your first line
+  on, so a fresh session after `/clear` talks in the right language and links the right site.
+- `names` are the pair's first names. Wherever a file records who decided or owns something (a
+  "Who" line, `Card owner`, who decided a learning card), write these names and ask nothing. Ask
+  for the names only if the file has none, once, and add them to the file.
 - Talk to the participant in that language, or the language they write in. Switch when they switch.
 - A question or line a skill gives "in these words" is said in that language, as close to the
   skill's words as the language allows. Never add the English line below it.
