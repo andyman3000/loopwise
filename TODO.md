@@ -58,3 +58,12 @@ Open work on this repo that is not part of a workshop block.
   `loopwise-test-card`, `loopwise-learning-card`, `loopwise-persona-walkthrough`,
   `loopwise-intent-and-ideas` and `.claude/rules/guiding.md`. No effect on a workshop, which runs
   `workshop`. Raised on 2026-11-22, during the Berlin dry run.
+- **Rethink the setting modes.** v3 is the one-day Berlin bootcamp. On 2026-11-23 its `workshop`
+  setting was rewritten for that day: the prototype test card plans a real test with recruited
+  people, and two AI personas read the spec in its place, because Berlin has no cross test. v2
+  keeps the two-day `workshop` with the cross test between pairs. So `workshop` now means two
+  different days on two branches, and `team` means real use. Open: one switch with three values
+  (two-day, one-day, real use), or separate switches for "who decides" and "how the page is
+  tested"? The learning card, block 6 and the term "Cross test" in `.claude/rules/guiding.md`
+  still describe the two-day cross test on v3; Berlin does not run them. Decide together with the
+  rename of `team` above.
