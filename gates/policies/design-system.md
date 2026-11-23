@@ -5,7 +5,8 @@
 ## Owner
 
 The designer role owns this rule. A failing design gate lands on the designer's table.
-The designer either gets the page fixed or waives the gate for one variant.
+The designer gets the page fixed, waives the gate for one variant, or adds the missing token or
+component to the design system (`site/styles.css`) as its owner: fix, waive, or add it to the system.
 
 ## Rule
 
