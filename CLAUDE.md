@@ -160,7 +160,7 @@ cohort.
 
 Every Loopwise skill starts with `loopwise-`. Before the chain, `loopwise-onboarding` checks the setup
 (Node, tests, the site on a free port, the skills, the browser) and writes only `discovery/.local.json`
-(the language and the port, ignored by git).
+(the language, the port and the pair's first names, ignored by git).
 
 Run in this order. Each skill writes its artefact under `discovery/`.
 
