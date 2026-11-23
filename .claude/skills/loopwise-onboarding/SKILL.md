@@ -1,6 +1,6 @@
 ---
 name: loopwise-onboarding
-description: Get a pair ready for the Loopwise workshop in one step, right after cloning the repo and starting Claude Code inside the loopwise folder. Asks which language to use, checks Node, runs the tests, starts the site (on a free port if 3000 is taken), checks the Loopwise skills are there, checks Claude Code can open a page in a browser, and ends with the page to open next. Use as "/loopwise-onboarding", or when the pair says "set me up", "get started" or "does everything run". Writes only discovery/.local.json (language, port and first names, ignored by git).
+description: Get a pair ready for the Loopwise workshop in one step, right after cloning the repo and starting Claude Code inside the loopwise folder. Asks which language to use, checks Node, runs the tests, starts the site (on a free port if 3000 is taken), checks the Loopwise skills are there, opens the site in the Claude desktop app's built-in browser when there is one, and ends with the page to open next. Use as "/loopwise-onboarding", or when the pair says "set me up", "get started" or "does everything run". Writes only discovery/.local.json (language, port and first names, ignored by git).
 ---
 
 # Onboarding
@@ -42,12 +42,15 @@ say ok, or what is wrong and what to do. Plain words (`.claude/rules/writing.md`
    day starts with: `/loopwise-intent-and-ideas`, `/loopwise-test-card`, `/loopwise-variant-spec`.
    This skill runs, so Claude Code sees the repo's skills. Tell the pair: "Later, when a skill
    says so, type / and loopwise: all Loopwise skills start with loopwise-, so they stand together."
-5. **The browser.** Check whether a browser tool is connected to this session (Playwright MCP,
-   Chrome DevTools MCP, or another tool that opens a URL and reads the page). If one is, open
-   `http://localhost:<port>/inquiry.html` with it and read the main heading: it is "Inquiry". If
-   none is connected, say so, and give the two lines from `docs/blocks/00-setup.md`, step 4, to add
-   one. Add: "Without a browser tool you can still work: later skills read the page's HTML and say
-   so." Do not install anything yourself.
+5. **The browser.** The training uses the Claude desktop app, which has a browser built in. Check
+   whether this session has a browser tool: the desktop app's built-in browser first, else any
+   other tool that opens a URL and reads the page. If one is there, open
+   `http://localhost:<port>/inquiry.html` with it and read the main heading: it is "Inquiry". Say
+   in one line that the pair sees the page in the app's browser pane. If none is there, Claude
+   Code runs in a terminal. Say: "No browser in this session. Today no skill needs one: open the
+   links in your own browser. If you want one in the terminal, docs/blocks/00-setup.md, step 4,
+   names two you can set up yourself." This step never fails the setup. Do not install anything
+   yourself.
 
 ## The end
 
@@ -64,8 +67,7 @@ which format fits my group', is marked: your pair works on it all day. You do no
 and not every word on the page: the next skill explains the words it uses.
 Then type /clear and /loopwise-intent-and-ideas C1. It briefs you on C1 first."
 
-If the browser step failed, put one line before it: "The browser tool is missing; add it when you
-have a minute (setup step 4)." If step 2 had a failing test, say that the trainer knows best what
+If step 2 had a failing test, say that the trainer knows best what
 to do, and still end with the line or lines above. If step 1 or 3 failed, end with what to do instead.
 
 Remind the pair once, before the last lines: "The site runs inside this Claude Code session. If you
