@@ -1,6 +1,6 @@
 ---
 name: loopwise-onboarding
-description: Get a pair ready for the Loopwise workshop in one step, right after cloning the repo and starting Claude Code inside the loopwise folder. Asks which language to use, checks Node, runs the tests, starts the site (on a free port if 3000 is taken), checks the Loopwise skills are there, opens the site in the Claude desktop app's built-in browser when there is one, and ends with the page to open next. Use as "/loopwise-onboarding", or when the pair says "set me up", "get started" or "does everything run". Writes only discovery/.local.json (language, port and first names, ignored by git).
+description: Get a pair ready for the Loopwise workshop in one step, right after cloning the repo and starting Claude Code inside the loopwise folder. Asks which language to use, checks Node, runs the tests, starts the site (on a free port if 3000 is taken), checks the Loopwise skills are there, opens the site in the Claude desktop app's built-in browser when there is one. Use as "/loopwise-onboarding", or when the pair says "set me up", "get started" or "does everything run". Writes only discovery/.local.json (language, port and first names, ignored by git).
 ---
 
 # Onboarding
