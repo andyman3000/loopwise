@@ -3,8 +3,8 @@
 > **The jump: pairs or threes, at one laptop. 25 minutes. Task: clone the repo, start your branch
 > from `v3-03-start`, start Claude Code and run `/loopwise-onboarding`.**
 
-**What it's for:** everyone has the repo running, Claude Code sees the skills, and Claude Code can
-open a page in a browser, before block 4 starts.
+**What it's for:** everyone has the repo running and Claude Code sees the skills, before block 4
+starts.
 
 You work in pairs all day, on one laptop and one branch per pair.
 
@@ -29,18 +29,23 @@ Every pair starts from decision 001 and works on C1. Your first own step is bloc
    git clone <repo> loopwise && cd loopwise
    git switch -c pair-<names> v3-03-start
    ```
-2. Start Claude Code **inside the `loopwise` folder**:
+2. Open Claude Code **on the `loopwise` folder**. The training uses the Claude desktop app: open
+   the Code tab and pick the `loopwise` folder. The app has a browser built in, so Claude Code can
+   open the site's pages without any setup.
+   If you prefer the terminal, start Claude Code inside the folder instead:
    ```bash
    claude
    ```
    These two steps you do by hand: the repo and Claude Code must exist before a skill can run.
 3. Type `/loopwise-onboarding` and the language you want to talk in, for example
    `/loopwise-onboarding Deutsch`. It notes the language and the port for every later skill, checks Node, runs the tests, starts the site (on another port if
-   3000 is taken), checks that the Loopwise skills are there and that Claude Code can open a page in
-   a browser. It ends with the page to open next. If it names a port other than 3000, use that port
+   3000 is taken), checks that the Loopwise skills are there and, in the desktop app, opens the
+   site in the app's browser. It ends with the page to open next. If it names a port other than 3000, use that port
    in every link the block files name.
-4. **Only if onboarding says the browser tool is missing:** add one browser tool to Claude Code, for
-   your user only. It is not part of the repo. Pick one:
+4. **Only in the terminal, and only if you want it:** the terminal has no browser built in. Today
+   no skill needs one: you open the pages in your own browser. If you want Claude Code to open
+   pages too, set up a browser tool yourself, for your user only. It is not part of the repo. For
+   example:
    - Playwright MCP (needs Node). From the
      [official README](https://github.com/microsoft/playwright-mcp), section "Claude Code":
      ```bash
@@ -52,8 +57,8 @@ Every pair starts from decision 001 and works on C1. Your first own step is bloc
      ```bash
      claude mcp add chrome-devtools --scope user npx chrome-devtools-mcp@latest
      ```
-   Run the line in a terminal inside the `loopwise` folder, restart Claude Code, and run
-   `/loopwise-onboarding` again.
+   Run the line in a terminal inside the `loopwise` folder and restart Claude Code. The trainer
+   does not support this setup on the day.
 
 ## Permission questions
 
@@ -87,7 +92,7 @@ and why. Each block file ends with one question for it.
 **Done when:** `/loopwise-onboarding` ends with "Done: everything runs." and the page and command for block 4.
 
 If `/loopwise-onboarding` does not show up when you type `/`, Claude Code was started outside the
-`loopwise` folder: quit it, `cd loopwise`, start it again. If the browser tool does not work, carry
-on: later skills read the page's HTML and say so. Tell the trainer.
+`loopwise` folder: in the desktop app, pick the `loopwise` folder again; in a terminal, quit it,
+`cd loopwise`, start it again.
 
 **Next:** wait for the room. Block 4 starts together: [04-test-card.md](04-test-card.md).
