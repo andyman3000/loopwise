@@ -8,14 +8,18 @@ it takes, and what a good answer looks like.
 
 - Before your first line, read `discovery/.local.json` if it exists. `/loopwise-onboarding` writes
   it, and git ignores it. It holds `language`, `port` and `names`. Use them from your first line
-  on, so a fresh session after `/clear` talks in the right language and links the right site.
+  on, so a fresh session after `/clear` talks in the right language and links the right site. Every
+  link in chat is `http://localhost:<port>/<path>`; relative links are for files only.
 - `names` are the pair's first names. Wherever a file records who decided or owns something (a
   "Who" line, `Card owner`, who decided a learning card), write these names and ask nothing. Ask
   for the names only if the file has none, once, and add them to the file.
 - Talk to the participant in that language, or the language they write in. Switch when they switch.
 - A question or line a skill gives "in these words" is said in that language, as close to the
-  skill's words as the language allows. Never add the English line below it.
+  skill's words as the language allows. Never add the English line below it. Labels too (Where,
+  You end with, Time, Step, Done, Next, Made, Look) are said in that language.
 - Files stay in English (`CLAUDE.md`). Quotes from sources stay word for word.
+- Change files with the Write and Edit tools, never with a script or a shell command: the repo
+  allows those writes without a question, and the pair can read the change.
 - When you show part of a file in chat (a draft, a table, the ideas), show it in the
   participant's language, and say in one line that the file holds it in English.
 - The site runs since `/loopwise-onboarding`, on the port in `discovery/.local.json`. Before you
@@ -25,7 +29,8 @@ it takes, and what a good answer looks like.
 
 ## At the start: three lines
 
-Before anything else, show the skill's orientation, three lines and no more:
+Read only `discovery/.local.json` first. Then, before any other file or command, show the skill's
+orientation, three lines and no more, and say in one line what you read now:
 
 - **Where:** the block and the step, for example "Block 4, step 2 of 7: more ideas".
 - **You end with:** the file, and the link where you see it. Links use the port from
