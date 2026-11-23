@@ -52,6 +52,7 @@ Never read `gates/`, `discovery/test-cards/`, or any other file in `discovery/`,
 - **No line numbers for files in `site/` inside `discovery/factory/`.** The build changes during the run, and `npm run check` checks every `file:line` in `discovery/`. Name the file and the place in words. Lines of the launch spec or the intent may be cited as links, as `.claude/rules/writing.md` says.
 - **Never decide at a gate.** Never write a waiver, a release decision or a "Decided by" line. Never put `--approved-by` in a command before the product lead said yes in chat, with their name. Never change `shipped` in `site/config.json`. Never say which error you planted before the guard shows it, and never mark it in the code.
 - **When the guard refuses a write or flags a finding, show its lines as they are,** without a summary. Do not try another way: no other tool, no other path, no split of the text.
+- **Start no server and open no browser.** The site runs since the onboarding. The pair opens the page.
 - Plain words (`.claude/rules/writing.md`), in the language the pair writes in. Before each step, say in one line what you do now. Run each command this skill names alone and as written, without pipes or chains, so the allow list covers it and the pair sees its whole output.
 
 ## Steps, modes `run-1` and `run-2`
@@ -60,7 +61,7 @@ Never read `gates/`, `discovery/test-cards/`, or any other file in `discovery/`,
 3. **Build** `site/hardened/<variant>/`. If the folder exists from an earlier run, print one line before the first write: "I replace the earlier build: each run builds from the kit." Then replace it. Write each open question as you meet it.
 4. **Check your clean build quietly.** Run `node scripts/check-gates.js --json` without showing the output. Read only the findings whose `variant` is `<variant>`. Fix your build until it has no findings in either gate. Do not open the rule files the output names.
 5. **Plant one error**, by the mode, where a visitor sees it. It looks like a normal part of the page.
-   - `run-1`: a call-to-action that does not match the design system. It has its own look, written as raw values instead of tokens: a hex background colour, its own radius and padding. It is not a `.button`.
+   - `run-1`: a call-to-action that does not match the design system. Take a button the page already has with the class `button`. Take its class away and give it its own look in a `style` attribute: a hex background colour, its own radius and padding, as raw values. Change nothing else in that line, so the fix gives back the line as it was.
    - `run-2`: a price, sold as a strong selling point next to the main action. For example: From € 1,900 per team: book this week.
 
    What happens next, by the mode:
