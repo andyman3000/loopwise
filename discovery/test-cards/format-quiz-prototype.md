@@ -34,7 +34,7 @@ Feedback:
 Level in the intent: "partly supported" ([discovery/intents/format-fit.md:57](../intents/format-fit.md#L57))
 
 ## To verify that, we will
-Show 5 people who lead product people and have not booked a Loopwise format the page `/formats.html?variant=format-quiz`. Each tester gets only the scenario below. The person who built the page watches for the signs.
+Show 5 people who lead product people and have not booked a Loopwise format the variant. Proposal: 3 start on `/formats.html?variant=format-quiz`, 2 on `/inquiry.html?variant=format-quiz`. In 26 weeks of synthetic data, 364 of 740 inquiry page visits had no formats page view before them in the same session ([data/events.jsonl](../../data/events.jsonl)). Each tester gets only the scenario below. The person who built the page watches for the signs. The split of 3 and 2 is a proposal; the product lead decided that some testers start on the inquiry page (2026-11-16).
 
 ### Testers
 - **Who qualifies:** proposal. The tester leads product people and looks for an AI format for them ([product/personas/buyer-without-budget.md:14](../../product/personas/buyer-without-budget.md#L14)). The tester does not decide alone, and no budget is settled yet ([product/personas/buyer-without-budget.md:5](../../product/personas/buyer-without-budget.md#L5)). The tester has a real group in mind and has not booked a Loopwise format.
@@ -44,7 +44,7 @@ Show 5 people who lead product people and have not booked a Loopwise format the 
 ### Test scenario (the tester sees only this)
 - **Situation:** You lead a group of product people in your company. You want them trained in using AI in product work. Think of a real group you know well: who is in it, and how they use AI today.
 - **Task:** Find out whether Loopwise has something for that group. Then do what you would do next in real life.
-- **Page:** `/formats.html?variant=format-quiz`, proposal. The spec names the start page.
+- **Page:** `/formats.html?variant=format-quiz` for 3 testers, `/inquiry.html?variant=format-quiz` for 2, proposal.
 - **Sources:** the buyer without budget leads product people and looks for an AI format for them ([product/personas/buyer-without-budget.md:14](../../product/personas/buyer-without-budget.md#L14)). Some teams work with agents every day, others are where they were a year ago ([product/personas/buyer-without-budget.md:22](../../product/personas/buyer-without-budget.md#L22)).
 - **Does not count if:** the tester has no such group in mind.
 
@@ -68,12 +68,12 @@ The last column says what the persona file can do for each sign instead:
 |---|---|---|
 | The tester answers every quiz question for their own group, without asking what a question means | go on | A fact the page must fit: the buyer "Does not know the format or how many pieces it has" ([product/personas/buyer-without-budget.md:42](../../product/personas/buyer-without-budget.md#L42)). A question that needs this knowledge will fail. |
 | On the quiz result, the tester uses the step to the form and clicks into a form field, without going back to the formats | go on | Nothing in the file: only the test with people can test this. |
-| The tester sends the form and keeps the format text in "What do you need?", or adds to it | go on | A fact the page must fit: the buyer needs "Options to react to; she can describe what hurts, not name a format" ([product/personas/buyer-without-budget.md:85](../../product/personas/buyer-without-budget.md#L85)). A result with one format and no options may get deleted. |
+| The tester sends the form and keeps the named format in the first line of "What do you need?", or adds to it. Rewording the other lines does not count against it | go on | A fact the page must fit: the buyer needs "Options to react to; she can describe what hurts, not name a format" ([product/personas/buyer-without-budget.md:85](../../product/personas/buyer-without-budget.md#L85)). A result with one format and no options may get deleted. |
 | Asked afterwards, the tester says in their own words why the format fits their group | go on | Nothing in the file: the tester's own words come only from the test with people. |
 | The tester stops at a question, asks "what do you mean?", or skips it | rework | A fact the page must fit: the buyer "Asks whether to mix the group or split it by level, and leaves it open" ([product/personas/buyer-without-budget.md:43](../../product/personas/buyer-without-budget.md#L43)). The buyer "Cannot name a success line for the group" ([product/personas/buyer-without-budget.md:44](../../product/personas/buyer-without-budget.md#L44)). A question about either will likely stop the tester. |
 | On the quiz result, the tester looks around for what to do next, or asks where to go | rework | Nothing in the file: only the test with people can test this. |
-| The tester deletes or overwrites the format text in the form | drop | A fact the page must fit: the same line on options to react to ([product/personas/buyer-without-budget.md:85](../../product/personas/buyer-without-budget.md#L85)). |
-| The tester leaves the page, or goes back to the formats, without starting the form | drop | Behaviour in the file, partly: "Keeps the formats page open for weeks, or closes it and comes back later" ([product/personas/buyer-without-budget.md:93](../../product/personas/buyer-without-budget.md#L93)). The line describes today's formats page, without a quiz. |
+| The tester deletes the named format in the first line, or puts another format there. Rewording the other lines does not count | drop | A fact the page must fit: the same line on options to react to ([product/personas/buyer-without-budget.md:85](../../product/personas/buyer-without-budget.md#L85)). |
+| The tester leaves the page, or goes back to the formats, without starting the form. Opening the quiz from the form does not count | drop | Behaviour in the file, partly: "Keeps the formats page open for weeks, or closes it and comes back later" ([product/personas/buyer-without-budget.md:93](../../product/personas/buyer-without-budget.md#L93)). The line describes today's formats page, without a quiz. |
 | The tester says "I'm guessing" or "not sure this is us" | drop | A fact the page must fit: the buyer "Does not want to send the form with a guess in it" ([product/personas/buyer-without-budget.md:94](../../product/personas/buyer-without-budget.md#L94)). The filled text must not read like a guess the tester made. |
 
 ## We are right if (go-on line)
