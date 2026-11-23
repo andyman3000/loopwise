@@ -20,7 +20,7 @@ the block is for, what you do step by step, and when you are done.
 
 At the bootcamp the day runs: setup and jump, block 4, block 5 without the persona run (the spec,
 the build from it and a click-through), then factory runs 1 and 2 from `v3-06-test-decision`.
-Block 6 is not part of the bootcamp. Blocks 1 to 3 are done for you in the start
+Blocks 6 and 9 are not part of the bootcamp. Blocks 1 to 3 are done for you in the start
 state: you do not need to read them. Block 4's skill briefs you on the opportunity first.
 
 ## The same four moves in every block
