@@ -37,4 +37,6 @@ agent builds a variant: a prototype in `site/variants/` (build to learn) and a h
 ## Changing the design system
 
 Only the designer changes `site/styles.css` and the Design System artifact linked in `README.md`.
-A change made in one is brought to the other in the same sitting.
+A change made in one is brought to the other in the same sitting. One exception: in setting
+`workshop` (`CLAUDE.md`), an addition the designer approves at the design gate stays in
+`site/styles.css` only. The Design System artifact is not updated in the workshop.
