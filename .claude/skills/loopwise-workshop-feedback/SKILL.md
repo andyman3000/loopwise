@@ -22,7 +22,7 @@ Guide as `.claude/rules/guiding.md` says, in the language the human writes in. S
 
 Before each question, say: about 2 minutes; a good answer is honest and concrete, one or two sentences.
 
-End each step with "Done: <what>. Next: <what the human does now>." At the end, the closing line in step 9 covers Made, Look and Next; add Time: block 9 planned about 15 minutes, and the day ends after it.
+End each step with "Done: <what>. Next: <what the human does now>." At the end, the closing line in step 9 covers Made, Look and Next; add Time: block 9 planned about 15 minutes.
 
 **At the end, in setting `workshop`:** the Next and Time lines follow `.claude/rules/guiding.md`, "At the end of the skill", not the lines this skill names below. Stop; name no next skill, no command to type and no block.
 
@@ -56,7 +56,7 @@ Nothing from `data/`, nothing outside the repo, nothing else. If `v3-03-start` i
 
 ## Steps
 
-1. Say what happens, in four lines: five questions each, the answers and your work go into one zip, the zip stays on this laptop, you mail it yourselves. Then the not-anonymous line from the rules.
+1. In a chat message, before the first question box, say what happens, in four lines: five questions each, the answers and your work go into one zip, the zip stays on this laptop, you mail it yourselves. Then the not-anonymous line from the rules.
 2. Ask person 1 the five questions. Then ask for the first name, or "skip".
 3. Ask person 2 the five questions. Then the first name, the same way.
 4. Write `feedback/feedback.md`: the branch name, the date, one section per person with each question and the answer word for word.
