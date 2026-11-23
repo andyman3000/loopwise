@@ -40,7 +40,7 @@ End each step with "Done: <what>. Next: <what the human does now>." At the end, 
 1. **Expectations.** "How well did the workshop match what you expected?" Options: "Better than expected", "As expected", "Partly", "Not what I expected". Follow-up: "What did you expect?"
 2. **Pace.** "How was the pace of the blocks?" Options: "All about right", "Some too fast", "Some too slow", "Both". Follow-up for any but the first: "Which blocks, and too fast or too slow?"
 3. **Stuck.** "Where did you get stuck most?" Options: "A skill's questions or output", "Git or the branch", "The browser tool or the website", "Understanding the step itself". Follow-up: "What happened?"
-4. **Your own work.** "Which step will you use in your own work in the next two weeks?" Options: "KPI tree", "Opportunities from sources", "Test cards", "None yet". Follow-up: "For what?"
+4. **Your own work.** "Which step will you use in your own work in the next two weeks?" Options: "Intent and ideas", "Test cards", "Gates and the handover kit", "None yet". Follow-up: "For what?"
 5. **Format.** "What should we change about the format?" Options: "Nothing", "More time with the trainer", "More time on our own real topics", "Less theory, more doing". Follow-up: "Anything else?"
 
 ## What goes into the zip

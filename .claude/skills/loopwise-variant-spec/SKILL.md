@@ -24,7 +24,7 @@ In mode `launch` the hand-over is a kit of three files: the prototype, the inten
 
 Guide as `.claude/rules/guiding.md` says, in the language the human writes in. Show first, by mode:
 - `learn`: **Where:** Block 5: the spec, a description of the smallest page for your test, then in setting `workshop` the prototype built from it. **You end with:** `discovery/specs/<variant>.md`, at http://localhost:<port>/discovery/specs/<variant>.md, and in `workshop` the page at http://localhost:<port>/<page>?variant=<variant>. **Time:** about 30 minutes: 20 for the spec, 10 for the build and one click-through.
-- `launch`: **Where:** Factory run 1, step 2 of 8: your own draft of the launch spec, one page with what a developer needs and the prototype does not show. **You end with:** `discovery/specs/<variant>-launch.md`, at http://localhost:<port>/discovery/specs/<variant>-launch.md. **Time:** about 10 minutes; past 10, stop and compare what is there.
+- `launch`: **Where:** Factory run 1: the launch spec, one page with what a developer needs and the prototype does not show. You write the first list, the skill drafts the page from it and the files, you correct it. **You end with:** `discovery/specs/<variant>-launch.md`, at http://localhost:<port>/discovery/specs/<variant>-launch.md. **Time:** about 10 minutes; past 10, stop and compare what is there.
 
 End each step with "Done: <what>. Next: <what the human does now>."
 
