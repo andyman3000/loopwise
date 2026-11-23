@@ -54,11 +54,15 @@ the third is **legal**: owns the legal gate in run 2. Everybody types; the role 
    `discovery/factory/call-slot-review-run-1.md`. Read it: it blocks nothing and decides nothing.
    The factory's open questions are in `discovery/factory/call-slot-questions.md`.
 6. **Heal (10 min).** The design gate is soft and lands on the designer's table. The designer
-   decides, not the agent:
+   decides, not the agent: fix, waive, or add it to the system.
    - **Fix it:** tell Claude Code "fix the finding the design gate printed", then `npm run check`.
    - **Or waive it:** the designer copies `.claude/skills/loopwise-factory/waiver-template.md` to
      `discovery/decisions/<next number>-design-waiver-call-slot.md` and fills it in with their own
      name and reason. Then `npm run check`.
+   - **Or add it to the system:** if the page needs a token or a component the design system
+     lacks, Claude Code adds it to `site/styles.css`, and the page uses it. The designer approves
+     the addition as the system's owner, like approving a pull request with a new component. Then
+     `npm run check`. This is an option, not the usual way: fixing the page is quicker.
 
    Done when `npm run check` ends with `gates: pass`.
 7. **Look at it (5 min).** `npm start`, then open
@@ -80,7 +84,7 @@ release still waits for.
 **If you are stuck:** continue from the reference state after this run:
 `git switch -c from-07 v3-07-factory-run-1`.
 
-**For the Abgleich:** what did the gate catch? Fix or waiver: who decided, and why? Which line of
+**For the Abgleich:** what did the gate catch? Fix, waiver or an addition to the system: who decided, and why? Which line of
 your own launch spec did the prototype already show?
 
 **Next:** [11-factory-run-2.md](11-factory-run-2.md).
