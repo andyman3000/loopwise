@@ -20,8 +20,10 @@ This is an assessment drafted by an agent, not a decision. A human owns the card
 
 **Setting.** Read the `Setting:` line in `CLAUDE.md`. No line means `workshop`.
 - `workshop`: a pair in the one-day bootcamp. Mode `prototype` plans a real test with people, as
-  under "Testers". The pair does not run it today: two AI personas read the spec instead
-  (`loopwise-persona-walkthrough`), and the test with people comes after the workshop. Propose the
+  under "Testers". The pair does not run it today: it builds the page from its spec, and the
+  test with people comes after the workshop. No AI persona reads the card in the bootcamp, so leave
+  out everything about AI personas: the persona-source rule, the column "Can an AI persona show
+  it?", the persona lines in steps 4 and 5, and the persona sentence in the banner. Propose the
   testers and how many, each marked "proposal", and ask nothing more about them: the pair changes
   them when it makes the card its own.
 - `team`: a product team. It runs the test with the people it recruits. Read "the pair" in this
@@ -34,7 +36,7 @@ Guide as `.claude/rules/guiding.md` says, in the language the human writes in. S
 - `prototype`: **Where:** Block 4, steps 5 to 7 of 7: the prototype test card. **You end with:** `discovery/test-cards/<variant>-prototype.md`, at http://localhost:<port>/discovery/test-cards/<variant>-prototype.md, owned by you. **Time:** about 25 minutes: 15 for the card, 5 to make it yours, 5 to check and commit.
 - `launch`: **Where:** Block 6b: the launch card, after the learning card said move on. **You end with:** `discovery/test-cards/<variant>.md`, at http://localhost:<port>/discovery/test-cards/<variant>.md. **Time:** about 20 of the 35 minutes of block 6b.
 
-Say in one line what a test card is, and in mode `prototype` that the card plans a test with people; in setting `workshop`, add that today two AI personas read the spec in its place, and the test with people comes after the workshop. End each step with "Done: <what>. Next: <what the human does now>."
+Say in one line what a test card is, and in mode `prototype` that the card plans a test with people; in setting `workshop`, add that today you build the page from your spec, and the test with people comes after the workshop. End each step with "Done: <what>. Next: <what the human does now>."
 
 **At the end, in setting `workshop`:** the Next and Time lines follow `.claude/rules/guiding.md`, "At the end of the skill", not the lines this skill names below. Stop; name no next skill, no command to type and no block.
 
@@ -76,7 +78,7 @@ Under the four lines: **We rework or drop the idea if** <rework-or-drop line>.
 - **Go-on line and rework-or-drop line** are set before the test, in words, by the human. Propose both, mark each "proposal". No percentages. The lines may count testers (see "Testers").
 - **Persona-source rule.** An AI persona (`loopwise-persona-walkthrough`) can test only what its persona file has a source for. For each sign, check `product/personas/buyer-without-budget.md` and `product/personas/buyer-with-budget.md`: quote the line that states the behaviour itself, or write "only a test with people can test this". A line that names only the worry, the goal, what the buyer knows, or a different behaviour is not enough. Anything the tester would write in their own words is always "only a test with people can test this".
 - **Feedback on the first try** asks: does "We believe that" name the assumption, not the idea? Is "To verify that, we will" something one tester does on a page? Does "And measure" name what a watcher can see or hear, not a feeling? Is "We are right if" set before the test, and could a watcher tell whether it happened?
-- **"Pressure-tested, not validated"** stands at the top of the card. The AI personas come from the same sources as the opportunity, so they cannot confirm it from outside.
+- **"Pressure-tested, not validated"** stands at the top of the card; in setting `workshop`, "Not validated yet". The AI personas come from the same sources as the opportunity, so they cannot confirm it from outside.
 
 ### Testers
 
@@ -113,7 +115,7 @@ Under the four lines: **We rework or drop the idea if** <rework-or-drop line>.
 ```markdown
 # Prototype test card: <variant>
 
-> **Pressure-tested, not validated.** The AI personas come from the same sources as the opportunity. Only a test with people tests from outside.
+> **<team: "Pressure-tested, not validated." | workshop: "Not validated yet.">** <team only: "The AI personas come from the same sources as the opportunity."> Only a test with people tests from outside.
 > Assessment drafted by an agent on <YYYY-MM-DD>, not a decision.
 > Card owner: ____ (human decides)
 > Intent: `discovery/intents/<opportunity>.md` · Idea: <I-number> ("<idea line, quoted>")
@@ -129,7 +131,7 @@ Level in the intent: <level, quoted>
 
 ## To verify that, we will
 Show <n> people who <criteria> the page `/<page>?variant=<variant>`. Each tester gets only the scenario below. The person who built the page watches for the signs.
-<workshop only: "Today two AI personas read the spec instead. The test with people comes after the workshop.">
+<workshop only: "Today you build the page from your spec. The test with people comes after the workshop.">
 
 ### Testers
 - **Who qualifies:** <criteria, proposal, with the persona lines they rest on>
@@ -144,7 +146,7 @@ Show <n> people who <criteria> the page `/<page>?variant=<variant>`. Each tester
 - **Does not count if:** <only when the situation asks for a real case: "the tester has no such case">
 
 ## And measure (the signs the watcher looks for)
-| # | What the watcher sees or hears | What it tells you | Can an AI persona show it? |
+| # | What the watcher sees or hears | What it tells you | Can an AI persona show it? (team only) |
 |---|---|---|---|
 | 1 | <sign> | go on | <"yes: <quote>" ([product/personas/<file>:<line>](../../product/personas/<file>#L<line>)), or "only a test with people can test this"> |
 | 2 | <sign> | rework or drop | <the same> |

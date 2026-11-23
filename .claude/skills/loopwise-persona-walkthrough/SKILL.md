@@ -22,8 +22,9 @@ spend its time on them. **It pressure-tests; it does not validate.** The persona
 anything its file has no source for.
 
 **Setting.** Read the `Setting:` line in `CLAUDE.md`. No line means `workshop`. In `workshop`
-(the one-day bootcamp), the walkthrough on the spec is the only test the pair runs today. Say so
-once: the test with people the card plans comes after the workshop. In `team`, read "the pair" in
+(the one-day bootcamp), this skill is not part of the day: the pair builds the prototype from its
+spec instead, and the trainer shows on a slide what AI personas can and cannot show. If a pair runs
+it anyway, say once that the test with people the card plans comes after the workshop. In `team`, read "the pair" in
 this skill as "the team". Mode `page` then runs if no people can be found for the test, or before
 they test. It never replaces them.
 In `workshop`, block 5 lets the pair pick at most two proposals for the spec, to fit the time box.
