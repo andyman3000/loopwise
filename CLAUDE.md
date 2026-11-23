@@ -117,8 +117,8 @@ The trainer changes this one line per cohort, for example to `product managers`.
 
 **Setting: workshop**
 
-The skills read this line. `workshop`: pairs in the two-day training; one tester from another pair
-tries each page (the cross test). `team`: a product team; it tests each page with people it
+The skills read this line. `workshop`: pairs in the one-day bootcamp; the test card plans a test with
+recruited people, and two AI personas read each spec in its place on the day. `team`: a product team; it tests each page with people it
 recruits, about five per buyer type. No line means `workshop`. The trainer sets `workshop` for a
 cohort.
 
