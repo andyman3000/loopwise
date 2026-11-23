@@ -110,5 +110,5 @@ The numbers are small. A gap of a few visits can come from chance.
 Observations go into the comparison only together with an opportunity from another source.
 
 ## Goes into comparison
-Goes into comparison: none. The confirmed shortlist holds no observation from this file ([discovery/opportunity-comparison.md:117](../opportunity-comparison.md#L117)).
-Decided by: Product lead (Loopwise) · Date: 2026-08-18
+Goes into comparison: ____ (human confirms the shortlist in loopwise-compare-opportunities)
+Decided by: ____ · Date: ____
